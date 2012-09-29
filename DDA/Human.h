@@ -11,7 +11,7 @@ Q_OBJECT
 public:
 	Human(void);
 	~Human(void);
-	virtual void Think() {};
+	virtual bool Think() { return false; };
 	void HumanTurn(int turn);
 };
 

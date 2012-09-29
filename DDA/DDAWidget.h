@@ -2,12 +2,15 @@
 #define _DDSWIDGET_H_
 
 #include <qwidget.h>
+#include <qmainwindow.h>
 #include "IGame.h"
 #include "GameMaze.h"
 
 class DDAWidget :
-	public QWidget
+	public QMainWindow
 {
+Q_OBJECT
+
 private:
 	IGame * activeGame;
 
@@ -17,6 +20,9 @@ public:
 	void paintEvent(QPaintEvent * paintEvent);
 	void mouseMoveEvent ( QMouseEvent * event );
 	void mousePressEvent ( QMouseEvent * event );
+
+	public slots:
+		void NewGame();
 };
 
 #endif

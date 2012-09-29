@@ -16,7 +16,7 @@ public:
 	virtual void StartGame(IGame * _game) {game = _game; isReady = false;};
 	virtual bool IsReady();
 	virtual int MakeTurn();
-	virtual void Think() = 0;
+	virtual bool Think() = 0;
 	virtual void HumanTurn(int turn) {};
 
 signals:

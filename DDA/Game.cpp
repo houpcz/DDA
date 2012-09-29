@@ -1,8 +1,9 @@
 #include "Game.h"
 
 
-Game::Game(void)
+Game::Game(QWidget * _widget)
 {
+	widget = _widget;
 	isRunning = false;
 	playerCount = 0;
 	player = NULL;
@@ -23,17 +24,22 @@ Game::~Game(void)
 
 void Game::NextTurn()
 {
-	if(player[activePlayerID]->IsReady())
+	while(true)
 	{
-		if(!PlayerTurn())
+		if(player[activePlayerID]->IsReady())
 		{
-			// END_GAME
-			return;
+			if(!PlayerTurn())
+			{
+				// END_GAME
+				return;
+			}
+
+			widget->repaint();
+			activePlayerID++;
+			activePlayerID %= playerCount;
+
+			if(!player[activePlayerID]->Think())
+				break;
 		}
-
-		activePlayerID++;
-		activePlayerID %= playerCount;
-
-		player[activePlayerID]->Think();
 	}
 }

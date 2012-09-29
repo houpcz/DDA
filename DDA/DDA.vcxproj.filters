@@ -100,12 +100,21 @@
     <ClCompile Include="IPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerRandomAI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DDAWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DDAWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MazeState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DDAWidget.h">
+    <ClInclude Include="PlayerRandomAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -129,6 +138,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="IGame.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="DDAWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

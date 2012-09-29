@@ -4,6 +4,7 @@
 #include "igame.h"
 #include "IPlayer.h"
 #include <qobject.h>
+#include <qwidget.h>
 
 class Game : public IGame
 {
@@ -14,10 +15,12 @@ protected:
 	int playerCount;
 	int activePlayerID;
 	IPlayer ** player;
+
+	QWidget * widget;
 public:
-	Game(void);
+	Game(QWidget * _widget);
 	virtual ~Game(void);
-	virtual int * GetEnvironmentChoises() = 0;
+	virtual int * GetPlayerChoises() = 0;
 	virtual bool PlayerTurn() = 0; /// Game specific turn
 	virtual void NextTurn();       /// Common for all games
 };

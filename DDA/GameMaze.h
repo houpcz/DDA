@@ -18,11 +18,11 @@ private :
 	float tileWidth;
 	float tileHeight;
 public :
-	GameMaze();
+	GameMaze(QWidget * _widget);
 	~GameMaze();
 	void StartGame();
 	bool PlayerTurn();
-	int * GetEnvironmentChoises();
+	int * GetPlayerChoises();
 	void Draw(QPainter * painter, int tickMillis = 0);
 	void MouseMoveEvent ( QMouseEvent * event );
 	void MousePressEvent ( QMouseEvent * event );

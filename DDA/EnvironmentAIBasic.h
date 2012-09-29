@@ -10,7 +10,7 @@ Q_OBJECT
 public:
 	EnvironmentAIBasic(void);
 	~EnvironmentAIBasic(void);
-	virtual void Think();	
+	virtual bool Think();	
 };
 
 #endif

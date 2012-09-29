@@ -1,5 +1,6 @@
 #include "EnvironmentAIBasic.h"
 #include <qtime>
+#include <stdlib.h>
 
 EnvironmentAIBasic::EnvironmentAIBasic(void)
 {
@@ -10,13 +11,14 @@ EnvironmentAIBasic::~EnvironmentAIBasic(void)
 {
 }
 
-void EnvironmentAIBasic::Think()
+bool EnvironmentAIBasic::Think()
 {
 	int * p_myTurn;
-	p_myTurn = game->GetEnvironmentChoises();
+	p_myTurn = game->GetPlayerChoises();
 
-	myTurn = qrand() % *p_myTurn;
+	myTurn = rand() % *p_myTurn;
 	delete p_myTurn;
 	isReady = true;
-	emit ImReady();
+
+	return true;
 }

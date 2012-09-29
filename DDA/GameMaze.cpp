@@ -1,8 +1,9 @@
 #include "GameMaze.h"
 #include "EnvironmentAIBasic.h"
 #include "Human.h"
+#include "PlayerRandomAI.h"
 
-GameMaze::GameMaze()
+GameMaze::GameMaze(QWidget * _widget) : Game(_widget)
 {
 	currentState = new MazeState(1);
 	tileWidth = 10.0f;
@@ -20,7 +21,7 @@ void GameMaze::StartGame()
 	{
 		player = new IPlayer*[2];
 		player[ENVINRONMENT_AI] = new EnvironmentAIBasic();
-		player[PLAYER_AI] = new Human();
+		player[PLAYER_AI] = new PlayerRandomAI();
 
 		QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),
                          this, SLOT(PlayerIsReady(void)));
@@ -33,8 +34,9 @@ void GameMaze::StartGame()
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);
-
 	isRunning = true;
+	if(player[activePlayerID]->Think())
+		NextTurn();
 }
 
 bool GameMaze::PlayerTurn()
@@ -130,9 +132,9 @@ void GameMaze::MousePressEvent ( QMouseEvent * event )
 	}
 }
 
-int * GameMaze::GetEnvironmentChoises()
+int * GameMaze::GetPlayerChoises()
 {
 	int * a = new int;
-	*a = currentState->GetEnvironmentChoises();
+	*a = currentState->GetPlayerChoises();
 	return a;
 }

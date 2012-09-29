@@ -18,15 +18,40 @@ MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
 		}
 	}
 
-	playerX = 0;
-	playerY = 0;
+	int dx, dy;
+	switch(rand() % 4)
+	{
+		case 0 :
+			playerX = 0;
+			playerY = 0;
+			dx = 1;
+			dy = 1;
+			break;
+		case 1 :
+			playerX = mazeWidth - 1;
+			playerY = mazeHeight - 1;
+			dx = -1;
+			dy = -1;
+			break;
+		case 2 :
+			playerX = mazeWidth - 1;
+			playerY = 0;
+			dx = -1;
+			dy = 1;
+			break;
+		case 3 :
+			playerX = 0;
+			playerY = mazeHeight - 1;
+			dx = 1;
+			dy = -1;
+			break;
+	}
 	maze[playerY][playerX] = TILE_EMPTY;
-	maze[playerY + 1][playerX] = TILE_EMPTY;
-	maze[playerY + 1][playerX + 1] = TILE_WALL;
-	maze[playerY][playerX + 1] = TILE_EMPTY;
-
-	tileToExplore.push_back(Pos2Dto1D(playerX + 1, playerY));
-	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + 1));
+	maze[playerY + dy][playerX] = TILE_EMPTY;
+	maze[playerY + dy][playerX + dx] = TILE_WALL;
+	maze[playerY][playerX + dx] = TILE_EMPTY;
+	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
+	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + dy));
 	hallSize = 0;
 }
 
@@ -147,7 +172,7 @@ void MazeState::ExplorePlayer(int tileToExploreID)
 	int pseudoRnd = playerX + playerY + hallSize;
 	if(hallSize > 7)
 	{
-		hallSize = 7 - (pseudoRnd % 4);
+		hallSize = 7 - (pseudoRnd % 5);
 	}
 }
 

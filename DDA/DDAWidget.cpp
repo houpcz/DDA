@@ -1,16 +1,29 @@
 #include "DDAWidget.h"
+#include <QMenuBar>
 #include <qpainter.h>
 #include <qtime>
-DDAWidget::DDAWidget(QWidget *parent) : QWidget(parent)
+#include <stdlib.h>
+#include <time.h>
+
+DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
 	resize(500, 500);
 	setPalette(QPalette(QColor(250, 250, 200)));
 	setMouseTracking(true);
-	activeGame = new GameMaze();
+	activeGame = new GameMaze(this);
+
+	setWindowTitle(QString::fromUtf8("Dynamic difficulty adjustement"));
+
+	QMenu * game = menuBar()->addMenu(tr("Game"));	
+	QAction * startGameAction = new QAction(tr("&New"), this);
+    startGameAction->setShortcut(tr("Ctrl+S"));
+    startGameAction->setStatusTip(tr("Start new game"));
+    connect(startGameAction, SIGNAL(triggered()), this, SLOT(NewGame()));
+	game->addAction(startGameAction);
+
 	activeGame->StartGame();
 
-	QTime midnight(0, 0, 0);
-	qsrand(midnight.secsTo(QTime::currentTime()));
+	srand (time(NULL));
 }
 
 
@@ -23,6 +36,7 @@ DDAWidget::~DDAWidget(void)
 void DDAWidget::paintEvent(QPaintEvent * paintEvent)
 {
 	 QPainter painter(this);
+	 painter.setViewport(0, menuBar()->height(), painter.window().width(), painter.window().height() - menuBar()->height() / 2);
 	 activeGame->Draw(&painter);
 }
 
@@ -37,3 +51,7 @@ void DDAWidget::mousePressEvent ( QMouseEvent * event )
 	activeGame->MousePressEvent(event);
 }
 
+void DDAWidget::NewGame()
+{
+	activeGame->StartGame();
+}

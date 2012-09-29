@@ -8,7 +8,7 @@ class IEnvironmentAI : public IPlayer
 Q_OBJECT
 
 public :
-	virtual void Think() = 0;
+	virtual bool Think() = 0;
 };
 
 #endif

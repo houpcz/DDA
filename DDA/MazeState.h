@@ -35,7 +35,7 @@ private:
 	void ExploreEnvironment(int turn);
 	void RemoveNonviableTileToExplore();
 public:
-	MazeState(int _activePlayerID, int mWidth = 20, int mHeight = 20);
+	MazeState(int _activePlayerID, int mWidth = 40, int mHeight = 40);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
 	~MazeState(void);
@@ -46,10 +46,21 @@ public:
 	MazeTile ** GetMaze() const { return maze; }
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }
-	int GetEnvironmentChoises() const 
+	int GetPlayerChoises() const 
 	{ 
-		int environmentChoises = (hallSize - 1) * (hallSize - 1);
-		return (environmentChoises == 0) ? 1 : environmentChoises; 
+		int playerChoises;
+		switch(activePlayerID)
+		{
+			case ENVINRONMENT_AI :
+				playerChoises = (hallSize - 1) * (hallSize - 1);
+				return (playerChoises == 0) ? 1 : playerChoises; 
+				break;
+			case PLAYER_AI :
+				return tileToExplore.size();
+				break;
+		}
+
+		return -1;
 	}
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
