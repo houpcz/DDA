@@ -1,0 +1,24 @@
+#ifndef _DDAWIDGET_H_
+#define _DDSWIDGET_H_
+
+#include <qwidget.h>
+#include "IGame.h"
+#include "GameMaze.h"
+
+class DDAWidget :
+	public QWidget
+{
+private:
+	IGame * activeGame;
+
+public:
+	DDAWidget(QWidget *parent = 0);
+	~DDAWidget(void);
+	void paintEvent(QPaintEvent * paintEvent);
+	void mouseMoveEvent ( QMouseEvent * event );
+	void mousePressEvent ( QMouseEvent * event );
+};
+
+#endif
+
+
