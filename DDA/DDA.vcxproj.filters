@@ -109,12 +109,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_DDAWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="MenschArgere.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MazeState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerRandomAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenschArgere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

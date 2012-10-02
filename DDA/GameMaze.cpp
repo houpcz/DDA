@@ -21,7 +21,7 @@ void GameMaze::StartGame()
 	{
 		player = new IPlayer*[2];
 		player[ENVINRONMENT_AI] = new EnvironmentAIBasic();
-		player[PLAYER_AI] = new PlayerRandomAI();
+		player[PLAYER_AI] = new Human();
 
 		QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),
                          this, SLOT(PlayerIsReady(void)));
