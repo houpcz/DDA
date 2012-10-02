@@ -18,6 +18,7 @@ MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
 		}
 	}
 
+	int goalX, goalY;
 	int dx, dy;
 	switch(rand() % 4)
 	{
@@ -50,6 +51,12 @@ MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
 	maze[playerY + dy][playerX] = TILE_EMPTY;
 	maze[playerY + dy][playerX + dx] = TILE_WALL;
 	maze[playerY][playerX + dx] = TILE_EMPTY;
+
+	maze[mazeHeight - playerY - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
+	maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
+	maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - dx - 1] = TILE_WALL;
+	maze[mazeHeight - playerY - 1][mazeWidth - playerX - dx - 1] = TILE_EMPTY;
+
 	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
 	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + dy));
 	hallSize = 0;
@@ -217,11 +224,11 @@ void MazeState::ExploreEnvironment(int turn)
 		int hole;
 		if(loop1 == 0)
 		{
-			hole = turn / (hallSize - 1);
+			hole = turn / hallSize;
 			sign = 1;
 		} else if(loop1 == 2)
 		{
-			hole = turn % (hallSize - 1);
+			hole = turn % hallSize;
 			sign = -1;
 		} else {
 			hole = 0;
@@ -242,7 +249,7 @@ void MazeState::ExploreEnvironment(int turn)
 			} else {
 				if(GetTile(x, y) == TILE_UNDEFINED)
 				{
-					if(x == hX && y == hY)
+					if(x == hX && y == hY && loop2 != hallSize - 1)
 					{
 						maze[y][x] = TILE_EMPTY;
 						if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)

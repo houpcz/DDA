@@ -31,7 +31,7 @@ void Game::NextTurn()
 			if(!PlayerTurn())
 			{
 				// END_GAME
-				return;
+				break;
 			}
 
 			widget->repaint();
@@ -42,4 +42,5 @@ void Game::NextTurn()
 				break;
 		}
 	}
+	widget->repaint();
 }
