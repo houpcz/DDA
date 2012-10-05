@@ -1,6 +1,7 @@
 #include "DDAWidget.h"
 #include <QMenuBar>
 #include <qpainter.h>
+#include <QHBoxLayout>
 #include <qtime>
 #include <stdlib.h>
 #include <time.h>
@@ -9,7 +10,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
 	resize(500, 500);
 	setPalette(QPalette(QColor(250, 250, 200)));
-	setMouseTracking(true);
+	setMouseTracking(false);
 	activeGame = new GameMaze(this);
 
 	setWindowTitle(QString::fromUtf8("Dynamic difficulty adjustement"));
@@ -23,6 +24,14 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 
 	activeGame->StartGame();
 
+	board = new Board(this, activeGame);
+	setCentralWidget(board);
+	/*
+	QHBoxLayout *layout = new QHBoxLayout;
+    layout->addWidget(board);
+	setLayout(layout);
+    show();*/
+
 	srand (time(NULL));
 }
 
@@ -35,11 +44,7 @@ DDAWidget::~DDAWidget(void)
 
 void DDAWidget::paintEvent(QPaintEvent * paintEvent)
 {
-	 QPainter painter(this);
-
-	 //painter.setWindow(0, menuBar()->height(), painter.window().width(), painter.window().height());
-	 painter.setViewport(0, menuBar()->height(), painter.window().width(), painter.window().height() - menuBar()->height() / 2);
-	 activeGame->Draw(&painter);
+	 
 }
 
 void DDAWidget::mouseMoveEvent ( QMouseEvent * event ) 

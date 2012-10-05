@@ -5,6 +5,7 @@
 #include <qmainwindow.h>
 #include "IGame.h"
 #include "GameMaze.h"
+#include "Board.h"
 
 class DDAWidget :
 	public QMainWindow
@@ -13,7 +14,7 @@ Q_OBJECT
 
 private:
 	IGame * activeGame;
-
+	Board * board;
 public:
 	DDAWidget(QWidget *parent = 0);
 	~DDAWidget(void);
