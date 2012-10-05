@@ -17,8 +17,8 @@ public:
 	virtual void StartGame() = 0;
 	virtual int * GetPlayerChoises() = 0;
 	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
-	virtual void MouseMoveEvent ( QMouseEvent * event ) {};
-	virtual void MousePressEvent ( QMouseEvent * event ) {};
+	virtual void MouseMoveEvent ( int xMouse, int yMouse ) {};
+	virtual void MousePressEvent ( int xMouse, int yMouse ) {};
 public slots:
 	void PlayerIsReady();
 };

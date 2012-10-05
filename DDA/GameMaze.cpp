@@ -108,20 +108,20 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 							tileWidth, tileHeight);
 }
 
-void GameMaze::MouseMoveEvent ( QMouseEvent * event )
+void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )
 {
 	if(isRunning)
 	{
-		lastMouseX = event->x();
-		lastMouseY = event->y();
+		lastMouseX = xMouse;
+		lastMouseY = yMouse;
 	}
 }
-void GameMaze::MousePressEvent ( QMouseEvent * event )
+void GameMaze::MousePressEvent ( int xMouse, int yMouse )
 {
 	if(isRunning)
 	{
-		int mouseXID = (int) (lastMouseX / tileWidth);
-		int mouseYID = (int) (lastMouseY / tileHeight);
+		int mouseXID = (int) (xMouse / tileWidth);
+		int mouseYID = (int) (yMouse / tileHeight);
 
 		int playerTurn = currentState->FindTileToExplore(mouseXID, mouseYID);
 

@@ -36,19 +36,21 @@ DDAWidget::~DDAWidget(void)
 void DDAWidget::paintEvent(QPaintEvent * paintEvent)
 {
 	 QPainter painter(this);
+
+	 //painter.setWindow(0, menuBar()->height(), painter.window().width(), painter.window().height());
 	 painter.setViewport(0, menuBar()->height(), painter.window().width(), painter.window().height() - menuBar()->height() / 2);
 	 activeGame->Draw(&painter);
 }
 
 void DDAWidget::mouseMoveEvent ( QMouseEvent * event ) 
 {
-	activeGame->MouseMoveEvent(event);
+	activeGame->MouseMoveEvent(event->x(), event->y());
 	repaint();
 }
 
 void DDAWidget::mousePressEvent ( QMouseEvent * event )
 {
-	activeGame->MousePressEvent(event);
+	activeGame->MousePressEvent(event->x(), event->y());
 }
 
 void DDAWidget::NewGame()

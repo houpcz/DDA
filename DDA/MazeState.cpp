@@ -242,14 +242,15 @@ void MazeState::ExploreEnvironment(int turn)
 		{
 			if(loop1 == 1)
 			{
-				if(loop2 == hallSize -1)
+				if(loop2 == hallSize -1 && GetTile(x + dx, y + dy) == TILE_UNDEFINED)
 					maze[y][x] = TILE_WALL;
 				else
 					maze[y][x] = TILE_EMPTY;
 			} else {
 				if(GetTile(x, y) == TILE_UNDEFINED)
 				{
-					if(x == hX && y == hY && loop2 != hallSize - 1)
+					if(x == hX && y == hY && 
+						(loop2 != hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
 					{
 						maze[y][x] = TILE_EMPTY;
 						if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)

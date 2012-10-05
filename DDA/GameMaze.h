@@ -24,8 +24,8 @@ public :
 	bool PlayerTurn();
 	int * GetPlayerChoises();
 	void Draw(QPainter * painter, int tickMillis = 0);
-	void MouseMoveEvent ( QMouseEvent * event );
-	void MousePressEvent ( QMouseEvent * event );
+	void MouseMoveEvent ( int xMouse, int yMouse );
+	void MousePressEvent ( int xMouse, int yMouse );
 };
 
 #endif
