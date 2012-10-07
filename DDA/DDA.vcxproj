@@ -136,6 +136,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MazeState.cpp" />
     <ClCompile Include="MenschArgere.cpp" />
+    <ClCompile Include="MenschState.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +151,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
     </CustomBuild>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="IGameState.h" />
     <ClInclude Include="MenschArgere.h" />
+    <ClInclude Include="MenschState.h" />
     <ClInclude Include="PlayerRandomAI.h" />
     <CustomBuild Include="EnvironmentAIBasic.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

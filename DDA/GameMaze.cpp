@@ -29,22 +29,21 @@ void GameMaze::StartGame()
                          this, SLOT(PlayerIsReady(void)));
 	} 
 
-	activePlayerID = 1;
-	currentState = new MazeState(activePlayerID);
+	currentState = new MazeState(PLAYER_AI);
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);
 	isRunning = true;
-	if(player[activePlayerID]->Think())
+	if(player[PLAYER_AI]->Think())
 		NextTurn();
 }
 
 bool GameMaze::PlayerTurn()
 {
-	int playerTurn = player[activePlayerID]->MakeTurn();
+	int playerTurn = player[currentState->GetActivePlayerID()]->MakeTurn();
 	currentState->Explore(playerTurn);
 
-	if(activePlayerID == ENVINRONMENT_AI && currentState->GetTileToExplore()->size() == 0)
+	if(GetCurrentState()->GetActivePlayerID() == PLAYER_AI && currentState->GetTileToExplore()->size() == 0)
 		return false;
 
 	return true;
@@ -127,14 +126,12 @@ void GameMaze::MousePressEvent ( int xMouse, int yMouse )
 
 		if(playerTurn >= 0)
 		{
-			player[activePlayerID]->HumanTurn(playerTurn);
+			player[GetCurrentState()->GetActivePlayerID()]->HumanTurn(playerTurn);
 		}
 	}
 }
 
-int * GameMaze::GetPlayerChoises()
+IGameState * GameMaze::GetCurrentState() const
 {
-	int * a = new int;
-	*a = currentState->GetPlayerChoises();
-	return a;
+	return currentState;
 }

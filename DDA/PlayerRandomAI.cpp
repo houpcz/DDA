@@ -12,11 +12,11 @@ PlayerRandomAI::~PlayerRandomAI(void)
 
 bool PlayerRandomAI::Think()
 {
-	int * p_myTurn;
-	p_myTurn = game->GetPlayerChoises();
+	int p_myTurn;
+	p_myTurn = game->GetCurrentState()->GetPlayerChoises();
 
-	myTurn = qrand() % *p_myTurn;
-	delete p_myTurn;
+	myTurn = qrand() % p_myTurn;
+
 	isReady = true;
 
 	return true;

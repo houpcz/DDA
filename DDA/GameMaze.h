@@ -22,7 +22,7 @@ public :
 	~GameMaze();
 	void StartGame();
 	bool PlayerTurn();
-	int * GetPlayerChoises();
+	IGameState * GetCurrentState() const;
 	void Draw(QPainter * painter, int tickMillis = 0);
 	void MouseMoveEvent ( int xMouse, int yMouse );
 	void MousePressEvent ( int xMouse, int yMouse );

@@ -11,7 +11,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	resize(500, 500);
 	setPalette(QPalette(QColor(250, 250, 200)));
 	setMouseTracking(false);
-	activeGame = new GameMaze(this);
+	activeGame = new MenschArgere(this);
 
 	setWindowTitle(QString::fromUtf8("Dynamic difficulty adjustement"));
 
@@ -22,15 +22,10 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
     connect(startGameAction, SIGNAL(triggered()), this, SLOT(NewGame()));
 	game->addAction(startGameAction);
 
-	activeGame->StartGame();
+	//activeGame->StartGame();
 
 	board = new Board(this, activeGame);
 	setCentralWidget(board);
-	/*
-	QHBoxLayout *layout = new QHBoxLayout;
-    layout->addWidget(board);
-	setLayout(layout);
-    show();*/
 
 	srand (time(NULL));
 }
@@ -40,6 +35,8 @@ DDAWidget::~DDAWidget(void)
 {
 	if(activeGame)
 		delete activeGame;
+
+	delete board;
 }
 
 void DDAWidget::paintEvent(QPaintEvent * paintEvent)

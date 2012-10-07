@@ -13,14 +13,13 @@ class Game : public IGame
 protected:
 	bool isRunning;
 	int playerCount;
-	int activePlayerID;
 	IPlayer ** player;
 
 	QWidget * widget;
 public:
 	Game(QWidget * _widget);
 	virtual ~Game(void);
-	virtual int * GetPlayerChoises() = 0;
+	virtual IGameState * GetCurrentState() const = 0;
 	virtual bool PlayerTurn() = 0; /// Game specific turn
 	virtual void NextTurn();       /// Common for all games
 };

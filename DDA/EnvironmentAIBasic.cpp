@@ -13,11 +13,11 @@ EnvironmentAIBasic::~EnvironmentAIBasic(void)
 
 bool EnvironmentAIBasic::Think()
 {
-	int * p_myTurn;
-	p_myTurn = game->GetPlayerChoises();
+	int p_myTurn;
+	p_myTurn = game->GetCurrentState()->GetPlayerChoises();
 
-	myTurn = rand() % *p_myTurn;
-	delete p_myTurn;
+	myTurn = rand() % p_myTurn;
+
 	isReady = true;
 
 	return true;

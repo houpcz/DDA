@@ -2,6 +2,7 @@
 #define _MAZESTATE_H_
 
 #include <vector>
+#include "IGameState.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ enum {
 	PLAYER_AI
 };
 
-class MazeState
+class MazeState : public IGameState
 {
 private:
 	MazeTile ** maze;
@@ -43,6 +44,9 @@ public:
 	void SetActivePlayerID(int _activePlayerID) { activePlayerID = _activePlayerID; }
 	int GetPlayerX() const { return playerX; }
 	int GetPlayerY() const { return playerY; }
+	int GetActivePlayerID() const {
+		return activePlayerID;
+	}
 	MazeTile ** GetMaze() const { return maze; }
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }

@@ -5,6 +5,7 @@
 #include <qmainwindow.h>
 #include "IGame.h"
 #include "GameMaze.h"
+#include "MenschArgere.h"
 #include "Board.h"
 
 class DDAWidget :

@@ -26,7 +26,7 @@ void Game::NextTurn()
 {
 	while(true)
 	{
-		if(player[activePlayerID]->IsReady())
+		if(player[GetCurrentState()->GetActivePlayerID()]->IsReady())
 		{
 			if(!PlayerTurn())
 			{
@@ -35,11 +35,10 @@ void Game::NextTurn()
 			}
 
 			widget->repaint();
-			activePlayerID++;
-			activePlayerID %= playerCount;
-
-			if(!player[activePlayerID]->Think())
+			
+			if(!player[GetCurrentState()->GetActivePlayerID()]->Think())
 				break;
+			//activePlayerID = GetCurrentState()->GetActivePlayerID();
 		}
 	}
 	widget->repaint();
