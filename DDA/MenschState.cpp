@@ -5,7 +5,8 @@ MenschState::MenschState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
-		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
+		figure[loop1][0] = 0;
+		for(int loop2 = 1; loop2 < MAX_FIGURE; loop2++)
 		{
 			figure[loop1][loop2] = -1;
 		}
@@ -14,6 +15,7 @@ MenschState::MenschState(void)
 	dicePlayerNow = true;
 	activePlayerID = 0;
 	lastDice = 0;
+	multipleDice = 2;
 }
 
 
@@ -63,7 +65,7 @@ void MenschState::NextChoises()
 				figureNextState[loop1] = START_TILE;
 				isSomeFigurePreparedToGoToStart = true;
 			}
-		} else if(figure[activePlayerID][loop1] + lastDice < 44) {
+		} else if(figure[activePlayerID][loop1] + lastDice < 44 && figure[activePlayerID][loop1] >= 0) {
 			bool isFreeTile = true;
 			for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 			{
@@ -135,7 +137,23 @@ int MenschState::MakeTurn(int playerChoise)
 
 		if(lastDice != 6)
 		{
-			activePlayerID = (activePlayerID + 1) % 4;
+			bool hasFigureInField = false;
+			for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
+			{
+				if(figureNextState[loop1] >= 0)
+				{
+					hasFigureInField = true;
+					break;
+				}
+			}
+
+			if(multipleDice > 0 && !hasFigureInField)
+			{
+				multipleDice--;
+			} else {
+				multipleDice = 2;
+				activePlayerID = (activePlayerID + 1) % 4;
+			}
 		}
 	}
 	dicePlayerNow = !dicePlayerNow;

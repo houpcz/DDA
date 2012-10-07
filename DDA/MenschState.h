@@ -10,6 +10,7 @@ public:
 	static const int MAX_FIGURE = 4;
 private:
 	int lastDice;
+	int multipleDice;
 	bool dicePlayerNow;
 	int activePlayerID;
 	int figure[MAX_PLAYER][MAX_FIGURE];
@@ -20,6 +21,7 @@ public:
 	MenschState(void);
 	~MenschState(void);
 	int GetFigure(int player, int number) { return figure[player][number]; }
+	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises() const;
 	int GetActivePlayerID() const;
 	int MakeTurn(int playerChoise);

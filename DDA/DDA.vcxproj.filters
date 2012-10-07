@@ -29,15 +29,15 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
+    <Filter Include="Maze">
+      <UniqueIdentifier>{1301f5cb-7815-4b80-87c2-90d4f457bd90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MenschArgere">
+      <UniqueIdentifier>{1a30edb3-9811-4d0f-85aa-894ffdc6782d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMaze.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MazeState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DDAWidget.cpp">
@@ -109,24 +109,27 @@
     <ClCompile Include="GeneratedFiles\Release\moc_DDAWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="MenschArgere.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MazeState.cpp">
+      <Filter>Maze</Filter>
+    </ClCompile>
+    <ClCompile Include="MenschArgere.cpp">
+      <Filter>MenschArgere</Filter>
+    </ClCompile>
     <ClCompile Include="MenschState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>MenschArgere</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMaze.cpp">
+      <Filter>Maze</Filter>
+    </ClCompile>
+    <ClCompile Include="MenschTile.cpp">
+      <Filter>MenschArgere</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MazeState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerRandomAI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenschArgere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Board.h">
@@ -135,15 +138,21 @@
     <ClInclude Include="IGameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenschArgere.h">
+      <Filter>MenschArgere</Filter>
+    </ClInclude>
     <ClInclude Include="MenschState.h">
-      <Filter>Header Files</Filter>
+      <Filter>MenschArgere</Filter>
+    </ClInclude>
+    <ClInclude Include="MazeState.h">
+      <Filter>Maze</Filter>
+    </ClInclude>
+    <ClInclude Include="MenschTile.h">
+      <Filter>MenschArgere</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Game.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GameMaze.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Human.h">
@@ -163,6 +172,9 @@
     </CustomBuild>
     <CustomBuild Include="DDAWidget.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GameMaze.h">
+      <Filter>Maze</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
