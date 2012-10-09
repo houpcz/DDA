@@ -33,7 +33,7 @@ void GameMaze::StartGame()
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);
-	isRunning = true;
+	state = STATE_RUNNING;
 	if(player[PLAYER_AI]->Think())
 		NextTurn();
 }
@@ -41,12 +41,12 @@ void GameMaze::StartGame()
 bool GameMaze::PlayerTurn()
 {
 	int playerTurn = player[currentState->GetActivePlayerID()]->MakeTurn();
-	currentState->Explore(playerTurn);
+	bool gameOver = currentState->Explore(playerTurn);
 
 	if(GetCurrentState()->GetActivePlayerID() == PLAYER_AI && currentState->GetTileToExplore()->size() == 0)
-		return false;
+		return true;
 
-	return true;
+	return gameOver;
 }
 
 GameMaze::~GameMaze()
@@ -79,6 +79,9 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 				case TILE_WALL :
 					painter->setBrush(QBrush(QColor(100, 120, 100)));
 					break;
+				case TILE_GOAL :
+					painter->setBrush(QBrush(QColor(20, 250, 50)));
+					break;
 			}
 			painter->fillRect(loop2 * tileWidth, loop1 * tileHeight, tileWidth + 1, tileHeight + 1, painter->brush());
 		}
@@ -109,7 +112,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 
 void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )
 {
-	if(isRunning)
+	if(state == STATE_RUNNING)
 	{
 		lastMouseX = xMouse;
 		lastMouseY = yMouse;
@@ -117,7 +120,7 @@ void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )
 }
 void GameMaze::MousePressEvent ( int xMouse, int yMouse )
 {
-	if(isRunning)
+	if(state == STATE_RUNNING)
 	{
 		int mouseXID = (int) (xMouse / tileWidth);
 		int mouseYID = (int) (yMouse / tileHeight);

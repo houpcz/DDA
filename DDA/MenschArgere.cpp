@@ -92,7 +92,7 @@ MenschArgere::MenschArgere(QWidget * _widget) : Game(_widget)
 	tileGame[72] = new MenschTile(5, 5, normal, this);
 
 	currentState = NULL;
-	isRunning = false;
+	state = STATE_STOPPED;
 }
 
 
@@ -108,7 +108,7 @@ bool MenschArgere::PlayerTurn()
 {
 	int playerTurn = player[currentState->GetActivePlayerID()]->MakeTurn();
 	
-	return currentState->MakeTurn(playerTurn) < 0;
+	return currentState->MakeTurn(playerTurn) >= 0;
 }
 
 void MenschArgere::StartGame()
@@ -146,7 +146,7 @@ void MenschArgere::StartGame()
 	player[3]->StartGame(this);
 	player[4]->StartGame(this);
 
-	isRunning = true;
+	state = STATE_RUNNING;
 	if(player[0]->Think())
 		NextTurn();
 }
@@ -163,8 +163,11 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 		tileGame[loop1]->Draw(painter, tickMillis);
 	}
 
-	if(!isRunning)
-		return;
+	switch(state)
+	{
+		case STATE_STOPPED :
+			return;
+	}
 
 	for(int loop1 = 0; loop1 < MenschState::MAX_PLAYER; loop1++)
 	{
@@ -228,7 +231,7 @@ void MenschArgere::MouseMoveEvent ( int xMouse, int yMouse )
 
 void MenschArgere::MousePressEvent ( int xMouse, int yMouse )
 {
-	if(!isRunning)
+	if(state == STATE_RUNNING)
 		return;
 
 	int activePlayerID = GetCurrentState()->GetActivePlayerID();

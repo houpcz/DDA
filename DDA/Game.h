@@ -6,12 +6,18 @@
 #include <qobject.h>
 #include <qwidget.h>
 
+typedef enum State {
+	STATE_STOPPED,
+	STATE_RUNNING,
+	STATE_GAME_OVER
+};
+
 class Game : public IGame
 {
 	Q_OBJECT
 
 protected:
-	bool isRunning;
+	State state;
 	int playerCount;
 	IPlayer ** player;
 

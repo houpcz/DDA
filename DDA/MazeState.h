@@ -11,6 +11,7 @@ typedef enum MazeTile
 	TILE_EMPTY,
 	TILE_WALL,
 	TILE_UNDEFINED,
+	TILE_GOAL,
 	TILE_NO
 };
 
@@ -32,9 +33,10 @@ private:
 	MazeTile GetTile(int x, int y);
 	void CopyToMe(const MazeState & origin);
 	void ClearMe();
-	void ExplorePlayer(int tileToExploreID);
-	void ExploreEnvironment(int turn);
+	bool ExplorePlayer(int tileToExploreID);
+	bool ExploreEnvironment(int turn);
 	void RemoveNonviableTileToExplore();
+	void SetTileEmpty(int x, int y);
 public:
 	MazeState(int _activePlayerID, int mWidth = 40, int mHeight = 40);
 	MazeState(const MazeState & origin);
@@ -69,7 +71,7 @@ public:
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
 
-	void Explore(int tileToExploreID);
+	bool Explore(int tileToExploreID);
 
 	int Pos2Dto1D(int x, int y);
 	void Pos1Dto2D(int d1, int * x, int * y);

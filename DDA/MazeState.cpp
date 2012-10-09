@@ -52,10 +52,10 @@ MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
 	maze[playerY + dy][playerX + dx] = TILE_WALL;
 	maze[playerY][playerX + dx] = TILE_EMPTY;
 
-	maze[mazeHeight - playerY - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
-	maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
-	maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - dx - 1] = TILE_WALL;
-	maze[mazeHeight - playerY - 1][mazeWidth - playerX - dx - 1] = TILE_EMPTY;
+	maze[mazeHeight - playerY - 1][mazeWidth - playerX - 1] = TILE_GOAL;
+	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
+	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - dx - 1] = TILE_WALL;
+	//maze[mazeHeight - playerY - 1][mazeWidth - playerX - dx - 1] = TILE_EMPTY;
 
 	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
 	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + dy));
@@ -130,27 +130,33 @@ int MazeState::FindTileToExplore(int x, int y)
 	return -1;
 }
 
-void MazeState::Explore(int tileToExploreID)
+bool MazeState::Explore(int tileToExploreID)
 {
+	bool gameOver = false;
+
 	switch(activePlayerID)
 	{
 		case PLAYER_AI :
-			ExplorePlayer(tileToExploreID);
+			gameOver = ExplorePlayer(tileToExploreID);
 			break;
 		case ENVINRONMENT_AI :
-			ExploreEnvironment(tileToExploreID);
+			gameOver = ExploreEnvironment(tileToExploreID);
 			break;
 	}
 
 	activePlayerID++;
 	if(activePlayerID > 1)
 		activePlayerID = 0;
+
+	return gameOver;
 }
 
-void MazeState::ExplorePlayer(int tileToExploreID)
+bool MazeState::ExplorePlayer(int tileToExploreID)
 {
 	Pos1Dto2D(tileToExplore[tileToExploreID], &playerX, &playerY);
 	tileToExplore.erase(tileToExplore.begin() + tileToExploreID, tileToExplore.begin() + tileToExploreID + 1);
+	if(GetTile(playerX, playerY) == TILE_GOAL)
+		return true;
 
 	int dx = 0, dy = 0;
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
@@ -181,9 +187,11 @@ void MazeState::ExplorePlayer(int tileToExploreID)
 	{
 		hallSize = 7 - (pseudoRnd % 5);
 	}
+
+	return false;
 }
 
-void MazeState::ExploreEnvironment(int turn)
+bool MazeState::ExploreEnvironment(int turn)
 {
 	int dx = 0, dy = 0;
 	int holeX = 0, holeY = 0;
@@ -212,7 +220,7 @@ void MazeState::ExploreEnvironment(int turn)
 			maze[playerY + dy][playerX + dx] = TILE_WALL;
 			RemoveNonviableTileToExplore();
 		}
-		return;
+		return false;
 	}
 
 	int sign;
@@ -244,15 +252,16 @@ void MazeState::ExploreEnvironment(int turn)
 			{
 				if(loop2 == hallSize -1 && GetTile(x + dx, y + dy) == TILE_UNDEFINED)
 					maze[y][x] = TILE_WALL;
-				else
-					maze[y][x] = TILE_EMPTY;
+				else {
+					SetTileEmpty(x, y);
+				}
 			} else {
 				if(GetTile(x, y) == TILE_UNDEFINED)
 				{
 					if(x == hX && y == hY && 
 						(loop2 != hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
 					{
-						maze[y][x] = TILE_EMPTY;
+						SetTileEmpty(x, y);
 						if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)
 						{
 							tileToExplore.push_back(Pos2Dto1D(x, y));
@@ -260,6 +269,9 @@ void MazeState::ExploreEnvironment(int turn)
 					} else {
 						maze[y][x] = TILE_WALL;
 					}
+				} else if(GetTile(x, y) == TILE_GOAL)
+				{
+					tileToExplore.push_back(Pos2Dto1D(x, y));
 				}
 			}
 			x += dx;
@@ -268,6 +280,22 @@ void MazeState::ExploreEnvironment(int turn)
 	}
 
 	RemoveNonviableTileToExplore();
+
+	return false;
+}
+
+void MazeState::SetTileEmpty(int x, int y)
+{
+	maze[y][x] = TILE_EMPTY;
+	if(GetTile(x - 1, y) == TILE_GOAL)
+		tileToExplore.push_back(Pos2Dto1D(x - 1, y));
+	if(GetTile(x + 1, y) == TILE_GOAL)
+		tileToExplore.push_back(Pos2Dto1D(x + 1, y));
+	if(GetTile(x, y - 1) == TILE_GOAL)
+		tileToExplore.push_back(Pos2Dto1D(x, y - 1));
+	if(GetTile(x, y + 1) == TILE_GOAL)
+		tileToExplore.push_back(Pos2Dto1D(x, y + 1));
+
 }
 
 void MazeState::RemoveNonviableTileToExplore()
@@ -280,7 +308,8 @@ void MazeState::RemoveNonviableTileToExplore()
 		if(GetTile(x + 1, y) != TILE_UNDEFINED &&
 		   GetTile(x - 1, y) != TILE_UNDEFINED &&
 		   GetTile(x, y + 1) != TILE_UNDEFINED &&
-		   GetTile(x, y - 1) != TILE_UNDEFINED)
+		   GetTile(x, y - 1) != TILE_UNDEFINED &&
+		   GetTile(x, y) != TILE_GOAL)
 		{
 			tileToExplore.erase(tileToExplore.begin() + loop1, tileToExplore.begin() + loop1 + 1);
 			loop1--;

@@ -4,7 +4,7 @@
 Game::Game(QWidget * _widget)
 {
 	widget = _widget;
-	isRunning = false;
+	state = STATE_STOPPED;
 	playerCount = 0;
 	player = NULL;
 }
@@ -28,9 +28,9 @@ void Game::NextTurn()
 	{
 		if(player[GetCurrentState()->GetActivePlayerID()]->IsReady())
 		{
-			if(!PlayerTurn())
+			if(PlayerTurn())
 			{
-				// END_GAME
+				state = STATE_GAME_OVER;
 				break;
 			}
 
@@ -38,7 +38,6 @@ void Game::NextTurn()
 			
 			if(!player[GetCurrentState()->GetActivePlayerID()]->Think())
 				break;
-			//activePlayerID = GetCurrentState()->GetActivePlayerID();
 		}
 	}
 	widget->repaint();
