@@ -17,6 +17,9 @@ public:
 	void paintEvent(QPaintEvent * paintEvent);
 	void mouseMoveEvent ( QMouseEvent * event );
 	void mousePressEvent ( QMouseEvent * event );
+	void SetGame(IGame * _activeGame) {
+		activeGame = _activeGame;
+	}
 };
 
 #endif

@@ -5,7 +5,7 @@ MenschState::MenschState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
-		figure[loop1][0] = 0;
+		figure[loop1][0] = -1;
 		for(int loop2 = 1; loop2 < MAX_FIGURE; loop2++)
 		{
 			figure[loop1][loop2] = -1;

@@ -14,7 +14,11 @@ class DDAWidget :
 Q_OBJECT
 
 private:
+	static const int GAME_MAZE_ID = 0;
+	static const int GAME_MENSCH_ARGERE_ID = 1;
+
 	IGame * activeGame;
+	int activeGameID;
 	Board * board;
 public:
 	DDAWidget(QWidget *parent = 0);
@@ -25,6 +29,9 @@ public:
 
 	public slots:
 		void NewGame();
+		void SetGame(int gameID);
+		void SetGameMaze();
+		void SetGameMenschArgere();
 };
 
 #endif
