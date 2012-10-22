@@ -27,15 +27,18 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	setGameMenu->addAction(setGameMenschArgereAction);
     connect(setGameMazeAction, SIGNAL(triggered()), this, SLOT(SetGameMaze()));
 	connect(setGameMenschArgereAction, SIGNAL(triggered()), this, SLOT(SetGameMenschArgere()));
-
 	game->addAction(startGameAction);
 
-	//activeGame->StartGame();
+	playersMenu = menuBar()->addMenu(tr("Players"));
+
+	signalMapper = new QSignalMapper(this);
 
 	activeGameID = GAME_MENSCH_ARGERE_ID;
-	activeGame = new MenschArgere(this);
+	activeGame = new GameMaze(this);
 	board = new Board(this, activeGame);
 	setCentralWidget(board);
+
+	SetGame(GAME_MAZE_ID);
 
 	srand (time(NULL));
 }
@@ -47,6 +50,7 @@ DDAWidget::~DDAWidget(void)
 		delete activeGame;
 
 	delete board;
+	delete signalMapper;
 }
 
 void DDAWidget::paintEvent(QPaintEvent * paintEvent)
@@ -99,5 +103,54 @@ void DDAWidget::SetGame(int gameID)
 			break;
 	}
 
+	ChangePlayerMenu();
+
 	board->SetGame(activeGame);
+	activeGame->StartGame();
+}
+#define MAX_PLAYER_ID 2
+
+void DDAWidget::ChangePlayerMenu()
+{
+	playersMenu->clear();
+	signalMapper->disconnect();
+
+	QMenu * playerMenu;
+	QAction * setPlayer;
+	for(int loop1 = 0; loop1 < activeGame->GetMaxEnvironmentalAI(); loop1++)
+	{
+		playerMenu = playersMenu->addMenu(tr("Environmental AI"));
+	}
+	for(int loop1 = 0; loop1 < activeGame->GetMaxPlayerAI(); loop1++)
+	{
+		playerMenu = playersMenu->addMenu(tr("Player AI"));
+		
+		for(int loop2 = 0; loop2 < MAX_PLAYER_ID; loop2++)
+		{
+			switch(loop2)
+			{
+				case 0 :
+					setPlayer = new QAction(tr("Human"), this);
+					break;
+				case 1 :
+					setPlayer = new QAction(tr("AI random"), this);
+					break;
+			}
+			connect(setPlayer, SIGNAL(triggered()), signalMapper, SLOT(map()));
+			int signalInt = loop2 + (loop1 + activeGame->GetMaxEnvironmentalAI()) * MAX_PLAYER_ID;
+			signalMapper->setMapping(setPlayer, signalInt);
+			playerMenu->addAction(setPlayer);
+		}
+	}
+
+	connect(signalMapper, SIGNAL(mapped(int)),
+             this, SLOT(ChangePlayer(int)));
+}
+
+void DDAWidget::ChangePlayer(int player)
+{
+	int playerID = player / MAX_PLAYER_ID;
+	int aiID = player % MAX_PLAYER_ID;
+	
+	activeGame->SetPlayer(playerID, aiID);
 }

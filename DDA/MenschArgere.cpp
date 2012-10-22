@@ -8,6 +8,11 @@ const QColor MenschArgere::playerColor[MenschState::MAX_PLAYER] = { Qt::blue, Qt
 
 MenschArgere::MenschArgere(QWidget * _widget) : Game(_widget)
 {
+	minEnvironmentalAI = 1;
+	maxEnvironmentalAI = 1;
+	minPlayerAI = 2;
+	maxPlayerAI = 4;
+
 	QColor normal = Qt::cyan;
 	QColor player1 = playerColor[0];
 	QColor player2 = playerColor[1];
@@ -231,7 +236,7 @@ void MenschArgere::MouseMoveEvent ( int xMouse, int yMouse )
 
 void MenschArgere::MousePressEvent ( int xMouse, int yMouse )
 {
-	if(state == STATE_RUNNING)
+	if(state != STATE_RUNNING)
 		return;
 
 	int activePlayerID = GetCurrentState()->GetActivePlayerID();

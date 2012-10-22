@@ -7,7 +7,8 @@
 #include "GameMaze.h"
 #include "MenschArgere.h"
 #include "Board.h"
-
+#include <qmenu.h>
+#include <QSignalMapper>
 class DDAWidget :
 	public QMainWindow
 {
@@ -20,6 +21,12 @@ private:
 	IGame * activeGame;
 	int activeGameID;
 	Board * board;
+
+	QMenu * playersMenu;
+    QSignalMapper * signalMapper;
+
+
+	void ChangePlayerMenu();
 public:
 	DDAWidget(QWidget *parent = 0);
 	~DDAWidget(void);
@@ -32,6 +39,7 @@ public:
 		void SetGame(int gameID);
 		void SetGameMaze();
 		void SetGameMenschArgere();
+		void ChangePlayer(int player);
 };
 
 #endif

@@ -5,6 +5,11 @@
 
 GameMaze::GameMaze(QWidget * _widget) : Game(_widget)
 {
+	minEnvironmentalAI = 1;
+	maxEnvironmentalAI = 1;
+	minPlayerAI = 1;
+	maxPlayerAI = 1;
+
 	currentState = new MazeState(1);
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;

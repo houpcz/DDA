@@ -20,6 +20,12 @@ public:
 	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
 	virtual void MouseMoveEvent ( int xMouse, int yMouse ) {};
 	virtual void MousePressEvent ( int xMouse, int yMouse ) {};
+
+	virtual void SetPlayer(int playerID, int aiID) = 0;
+	virtual int GetMinEnvironmentalAI() = 0;
+	virtual int GetMaxEnvironmentalAI() = 0;
+	virtual int GetMinPlayerAI() = 0;
+	virtual int GetMaxPlayerAI() = 0;
 public slots:
 	void PlayerIsReady();
 };

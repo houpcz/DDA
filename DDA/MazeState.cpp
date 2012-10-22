@@ -52,6 +52,7 @@ MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
 	maze[playerY + dy][playerX + dx] = TILE_WALL;
 	maze[playerY][playerX + dx] = TILE_EMPTY;
 
+	//maze[mazeHeight / 2][mazeWidth / 2] = TILE_GOAL;
 	maze[mazeHeight - playerY - 1][mazeWidth - playerX - 1] = TILE_GOAL;
 	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
 	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - dx - 1] = TILE_WALL;

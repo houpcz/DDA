@@ -21,6 +21,11 @@ protected:
 	int playerCount;
 	IPlayer ** player;
 
+	int minEnvironmentalAI;
+	int maxEnvironmentalAI;
+	int minPlayerAI;
+	int maxPlayerAI;
+
 	QWidget * widget;
 public:
 	Game(QWidget * _widget);
@@ -28,6 +33,12 @@ public:
 	virtual IGameState * GetCurrentState() const = 0;
 	virtual bool PlayerTurn() = 0; /// Game specific turn
 	virtual void NextTurn();       /// Common for all games
+	void SetPlayer(int playerID, int aiID);
+
+	int GetMinEnvironmentalAI() { return minEnvironmentalAI; };
+	int GetMaxEnvironmentalAI() { return maxEnvironmentalAI; };
+	int GetMinPlayerAI() { return minPlayerAI; };
+	int GetMaxPlayerAI() { return maxPlayerAI; };
 };
 
 #endif

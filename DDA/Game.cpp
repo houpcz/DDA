@@ -1,5 +1,6 @@
 #include "Game.h"
-
+#include "Human.h"
+#include "PlayerRandomAI.h"
 
 Game::Game(QWidget * _widget)
 {
@@ -41,4 +42,20 @@ void Game::NextTurn()
 		}
 	}
 	widget->repaint();
+}
+
+void Game::SetPlayer(int playerID, int aiID)
+{
+	QObject::disconnect(player[playerID], SIGNAL(ImReady(void)),
+                         this, SLOT(PlayerIsReady(void)));
+	delete player[playerID];
+	
+	switch(aiID)
+	{
+		case 0 : player[playerID] = new Human(); break;
+		case 1 : player[playerID] = new PlayerRandomAI(); break;
+	}
+
+	QObject::connect(player[playerID], SIGNAL(ImReady(void)),
+                         this, SLOT(PlayerIsReady(void)));
 }
