@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "Human.h"
+#include "PlayerRandomAI.h"
+
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
 	resize(500, 500);
@@ -38,6 +41,10 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	board = new Board(this, activeGame);
 	setCentralWidget(board);
 
+	// set all players
+	playerAI.push_back(new Human());
+	playerAI.push_back(new PlayerRandomAI());
+
 	SetGame(GAME_MAZE_ID);
 
 	srand (time(NULL));
@@ -51,6 +58,12 @@ DDAWidget::~DDAWidget(void)
 
 	delete board;
 	delete signalMapper;
+
+	for(int loop1 = 0; loop1 < playerAI.size(); loop1++)
+	{
+		delete playerAI[loop1];
+	}
+	playerAI.clear();
 }
 
 void DDAWidget::paintEvent(QPaintEvent * paintEvent)
@@ -106,40 +119,29 @@ void DDAWidget::SetGame(int gameID)
 	ChangePlayerMenu();
 
 	board->SetGame(activeGame);
-	activeGame->StartGame();
 }
-#define MAX_PLAYER_ID 2
 
 void DDAWidget::ChangePlayerMenu()
 {
 	playersMenu->clear();
 	signalMapper->disconnect();
 
-	QMenu * playerMenu;
 	QAction * setPlayer;
 	for(int loop1 = 0; loop1 < activeGame->GetMaxEnvironmentalAI(); loop1++)
 	{
-		playerMenu = playersMenu->addMenu(tr("Environmental AI"));
+		playerMenu[loop1] = playersMenu->addMenu(tr("Environmental AI"));
 	}
 	for(int loop1 = 0; loop1 < activeGame->GetMaxPlayerAI(); loop1++)
 	{
-		playerMenu = playersMenu->addMenu(tr("Player AI"));
+		playerMenu[loop1 + activeGame->GetMaxEnvironmentalAI()] = playersMenu->addMenu(activeGame->GetPlayer(loop1 + activeGame->GetMaxEnvironmentalAI())->GetAINAme());
 		
-		for(int loop2 = 0; loop2 < MAX_PLAYER_ID; loop2++)
+		for(int loop2 = 0; loop2 < playerAI.size(); loop2++)
 		{
-			switch(loop2)
-			{
-				case 0 :
-					setPlayer = new QAction(tr("Human"), this);
-					break;
-				case 1 :
-					setPlayer = new QAction(tr("AI random"), this);
-					break;
-			}
+			setPlayer = new QAction(playerAI[loop2]->GetAINAme(), this);
 			connect(setPlayer, SIGNAL(triggered()), signalMapper, SLOT(map()));
-			int signalInt = loop2 + (loop1 + activeGame->GetMaxEnvironmentalAI()) * MAX_PLAYER_ID;
+			int signalInt = loop2 + (loop1 + activeGame->GetMaxEnvironmentalAI()) * playerAI.size();
 			signalMapper->setMapping(setPlayer, signalInt);
-			playerMenu->addAction(setPlayer);
+			playerMenu[loop1 + activeGame->GetMaxEnvironmentalAI()]->addAction(setPlayer);
 		}
 	}
 
@@ -149,8 +151,9 @@ void DDAWidget::ChangePlayerMenu()
 
 void DDAWidget::ChangePlayer(int player)
 {
-	int playerID = player / MAX_PLAYER_ID;
-	int aiID = player % MAX_PLAYER_ID;
+	int playerID = player / playerAI.size();
+	int aiID = player % playerAI.size();
 	
 	activeGame->SetPlayer(playerID, aiID);
+	playerMenu[playerID]->setTitle(playerAI[aiID]->GetAINAme());
 }

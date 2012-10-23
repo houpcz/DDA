@@ -2,7 +2,8 @@
 #define _IPLAYER_H_
 
 #include <qobject.h>
-#include "IGame.h"
+
+class IGame;
 
 class IPlayer : public QObject
 {
@@ -18,7 +19,7 @@ public:
 	virtual int MakeTurn();
 	virtual bool Think() = 0;
 	virtual void HumanTurn(int turn) {};
-
+	virtual QString GetAINAme() = 0;
 signals:
 	void ImReady();
 };

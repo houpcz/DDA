@@ -13,6 +13,15 @@ GameMaze::GameMaze(QWidget * _widget) : Game(_widget)
 	currentState = new MazeState(1);
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
+
+	player = new IPlayer*[2];
+	player[ENVINRONMENT_AI] = new EnvironmentAIBasic();
+	player[PLAYER_AI] = new PlayerRandomAI();
+
+	QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
+	QObject::connect(player[ENVINRONMENT_AI], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
 }
 
 void GameMaze::StartGame()
@@ -21,18 +30,6 @@ void GameMaze::StartGame()
 	{
 		delete currentState;
 	}
-
-	if(player == NULL)
-	{
-		player = new IPlayer*[2];
-		player[ENVINRONMENT_AI] = new EnvironmentAIBasic();
-		player[PLAYER_AI] = new PlayerRandomAI();
-
-		QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-		QObject::connect(player[ENVINRONMENT_AI], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-	} 
 
 	currentState = new MazeState(PLAYER_AI);
 	playerCount = 2;

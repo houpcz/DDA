@@ -35,6 +35,7 @@ public:
 	virtual void NextTurn();       /// Common for all games
 	void SetPlayer(int playerID, int aiID);
 
+	IPlayer * GetPlayer(int ID) { return player[ID]; };
 	int GetMinEnvironmentalAI() { return minEnvironmentalAI; };
 	int GetMaxEnvironmentalAI() { return maxEnvironmentalAI; };
 	int GetMinPlayerAI() { return minPlayerAI; };

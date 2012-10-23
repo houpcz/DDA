@@ -1,14 +1,19 @@
 #ifndef _DDAWIDGET_H_
 #define _DDSWIDGET_H_
 
+#include <qmenu.h>
+#include <QSignalMapper>
+#include <vector>
+
 #include <qwidget.h>
 #include <qmainwindow.h>
 #include "IGame.h"
 #include "GameMaze.h"
 #include "MenschArgere.h"
 #include "Board.h"
-#include <qmenu.h>
-#include <QSignalMapper>
+
+using namespace std;
+
 class DDAWidget :
 	public QMainWindow
 {
@@ -25,6 +30,8 @@ private:
 	QMenu * playersMenu;
     QSignalMapper * signalMapper;
 
+	QMenu * playerMenu[5];
+	vector<IPlayer *> playerAI;
 
 	void ChangePlayerMenu();
 public:

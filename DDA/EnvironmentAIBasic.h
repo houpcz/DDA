@@ -11,6 +11,7 @@ public:
 	EnvironmentAIBasic(void);
 	~EnvironmentAIBasic(void);
 	virtual bool Think();	
+	QString GetAINAme() { return QString("Random Environment"); };
 };
 
 #endif

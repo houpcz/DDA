@@ -1,5 +1,5 @@
 #include "PlayerRandomAI.h"
-
+#include "IGame.h"
 
 PlayerRandomAI::PlayerRandomAI(void)
 {

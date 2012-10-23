@@ -1,4 +1,5 @@
 #include "EnvironmentAIBasic.h"
+#include "IGame.h"
 #include <qtime>
 #include <stdlib.h>
 

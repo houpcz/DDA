@@ -96,6 +96,26 @@ MenschArgere::MenschArgere(QWidget * _widget) : Game(_widget)
 
 	tileGame[72] = new MenschTile(5, 5, normal, this);
 
+	player = new IPlayer*[5];
+	player[0] = new EnvironmentAIBasic();
+	player[1] = new PlayerRandomAI();
+	player[2] = new PlayerRandomAI();
+	player[3] = new Human();
+	player[4] = new Human();
+
+	QObject::connect(player[0], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
+	QObject::connect(player[1], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
+	QObject::connect(player[2], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
+	QObject::connect(player[3], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
+	QObject::connect(player[4], SIGNAL(ImReady(void)),
+                        this, SLOT(PlayerIsReady(void)));
+
+	playerCount = 5;
+
 	currentState = NULL;
 	state = STATE_STOPPED;
 }
@@ -123,28 +143,6 @@ void MenschArgere::StartGame()
 
 	currentState = new MenschState();
 
-	if(player == NULL)
-	{
-		player = new IPlayer*[5];
-		player[0] = new EnvironmentAIBasic();
-		player[1] = new PlayerRandomAI();
-		player[2] = new PlayerRandomAI();
-		player[3] = new Human();
-		player[4] = new Human();
-
-		QObject::connect(player[0], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-		QObject::connect(player[1], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-		QObject::connect(player[2], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-		QObject::connect(player[3], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-		QObject::connect(player[4], SIGNAL(ImReady(void)),
-                         this, SLOT(PlayerIsReady(void)));
-	} 
-
-	playerCount = 5;
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);
 	player[2]->StartGame(this);

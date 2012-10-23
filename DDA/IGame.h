@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <qobject.h>
 #include "IGameState.h"
+#include "IPlayer.h"
 
 class IGame : public QObject
 {
@@ -26,6 +27,7 @@ public:
 	virtual int GetMaxEnvironmentalAI() = 0;
 	virtual int GetMinPlayerAI() = 0;
 	virtual int GetMaxPlayerAI() = 0;
+	virtual IPlayer * GetPlayer(int ID) = 0;
 public slots:
 	void PlayerIsReady();
 };
