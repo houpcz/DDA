@@ -35,7 +35,7 @@ void Game::NextTurn()
 				break;
 			}
 
-			widget->repaint();
+			//widget->repaint();
 			
 			if(!player[GetCurrentState()->GetActivePlayerID()]->Think())
 				break;

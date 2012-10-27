@@ -127,6 +127,9 @@
     <ClCompile Include="MenschTile.cpp">
       <Filter>MenschArgere</Filter>
     </ClCompile>
+    <ClCompile Include="GameStat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="MenschTile.h">
       <Filter>MenschArgere</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStat.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

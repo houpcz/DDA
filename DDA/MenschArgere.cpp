@@ -100,8 +100,8 @@ MenschArgere::MenschArgere(QWidget * _widget) : Game(_widget)
 	player[0] = new EnvironmentAIBasic();
 	player[1] = new PlayerRandomAI();
 	player[2] = new PlayerRandomAI();
-	player[3] = new Human();
-	player[4] = new Human();
+	player[3] = new PlayerRandomAI();
+	player[4] = new PlayerRandomAI();
 
 	QObject::connect(player[0], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
@@ -196,13 +196,43 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 		}
 	}
 
-	char numberString[2];
+	char numberString[10];
 	sprintf(numberString, "%d", currentState->GetLastDice());
 	painter->setFont(QFont("Helvetica", 28, QFont::Bold));
 	painter->setPen(Qt::black);
 	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() - 2, Qt::AlignCenter, QString(numberString));
 	painter->setPen(playerColor[(currentState->GetActivePlayerID() - 1 < 0) ? 0 : currentState->GetActivePlayerID() - 1]);
 	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height(), Qt::AlignCenter, QString(numberString));
+
+	int x, y;
+	for(int loop1 = 0; loop1 < MenschState::MAX_PLAYER; loop1++)
+	{
+		sprintf(numberString, "%d", currentState->GetPlayerScore(loop1));
+		switch(loop1)
+		{
+			case 0 :
+				x = painter->viewport().width() / 7;
+				y = painter->viewport().height() - painter->viewport().height() / 3;
+				break;
+			case 1 :
+				x = painter->viewport().width() / 7;
+				y = painter->viewport().height() / 5;
+				break;
+			case 2 :
+				x = painter->viewport().width() - painter->viewport().width() / 4;
+				y = painter->viewport().height() / 5;
+				break;
+			case 3 :
+				x = painter->viewport().width() - painter->viewport().width() / 4;
+				y = painter->viewport().height() - painter->viewport().height() / 3;
+				break;
+		}
+
+		painter->setPen(Qt::black);
+		painter->drawText(x - 1, y - 1, 110, 110, Qt::AlignCenter, QString(numberString));
+		painter->setPen(playerColor[loop1]);
+		painter->drawText(x, y, 110, 110, Qt::AlignCenter, QString(numberString));
+	}
 }
 
 IGameState * MenschArgere::GetCurrentState() const

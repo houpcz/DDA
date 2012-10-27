@@ -1,24 +1,28 @@
+
+#include <queue>
 #include "MazeState.h"
 
+using namespace std;
 
-MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
+MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight)
 {
 	mazeWidth = mWidth;
 	mazeHeight = mHeight;
 	activePlayerID = _activePlayerID;
+	stepsToGameOver = _stepsToGameOver;
 
 	maze = new MazeTile*[mazeHeight];
+	mazeClosedList = new bool*[mazeHeight];
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		maze[loop1] = new MazeTile[mazeWidth];
-
+		mazeClosedList[loop1] = new bool[mazeWidth];
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			maze[loop1][loop2] = TILE_UNDEFINED;
 		}
 	}
 
-	int goalX, goalY;
 	int dx, dy;
 	switch(rand() % 4)
 	{
@@ -53,7 +57,10 @@ MazeState::MazeState(int _activePlayerID, int mWidth, int mHeight)
 	maze[playerY][playerX + dx] = TILE_EMPTY;
 
 	//maze[mazeHeight / 2][mazeWidth / 2] = TILE_GOAL;
-	maze[mazeHeight - playerY - 1][mazeWidth - playerX - 1] = TILE_GOAL;
+	goalX = mazeWidth - playerX - 1;
+	goalY = mazeHeight - playerY - 1;
+	maze[goalY][goalX] = TILE_GOAL;
+	
 	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
 	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - dx - 1] = TILE_WALL;
 	//maze[mazeHeight - playerY - 1][mazeWidth - playerX - dx - 1] = TILE_EMPTY;
@@ -108,8 +115,10 @@ void MazeState::ClearMe()
 {
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
+		delete[] mazeClosedList[loop1];
 		delete[] maze[loop1];
 	}
+	delete[] mazeClosedList;
 	delete[] maze;
 
 	tileToExplore.clear();
@@ -145,6 +154,8 @@ bool MazeState::Explore(int tileToExploreID)
 			break;
 	}
 
+	possibleWayToGoal = GetDistanceBetween(goalX, goalY, playerX, playerY, true) >= 0;
+
 	activePlayerID++;
 	if(activePlayerID > 1)
 		activePlayerID = 0;
@@ -152,9 +163,69 @@ bool MazeState::Explore(int tileToExploreID)
 	return gameOver;
 }
 
+int MazeState::GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined)
+{
+	queue<QueueNode> q;
+	QueueNode tempNode = QueueNode(pos1X, pos1Y, 0);
+	q.push(tempNode);
+
+	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
+	{
+		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
+		{
+			mazeClosedList[loop1][loop2] = false;
+		}
+	}
+
+	while(!q.empty())
+	{
+		tempNode = q.front();
+		q.pop();
+		int x = tempNode.x;
+		int y = tempNode.y;
+		int depth = tempNode.depth;
+		
+		if(x == pos2X && y == pos2Y)
+			return depth;
+
+		if(x > 0 && (maze[y][x-1] == TILE_EMPTY || maze[y][x-1] == TILE_GOAL || (maze[y][x-1] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y][x-1])
+		{
+			mazeClosedList[y][x-1] = true;
+			q.push(QueueNode(x - 1, y, depth + 1));
+		}
+
+		if(x < mazeWidth - 1 && (maze[y][x+1] == TILE_EMPTY || maze[y][x+1] == TILE_GOAL || (maze[y][x+1] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y][x+1])
+		{
+			mazeClosedList[y][x+1] = true;
+			q.push(QueueNode(x + 1, y, depth + 1));
+		}
+		if(y > 0 && (maze[y-1][x] == TILE_EMPTY || maze[y-1][x] == TILE_GOAL || (maze[y-1][x] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y - 1][x])
+		{
+			mazeClosedList[y - 1][x] = true;
+			q.push(QueueNode(x, y - 1, depth + 1));
+		}
+
+		if(y < mazeHeight - 1 && (maze[y+1][x] == TILE_EMPTY || maze[y+1][x] == TILE_GOAL || (maze[y+1][x] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y + 1][x])
+		{
+			mazeClosedList[y + 1][x] = true;
+			q.push(QueueNode(x, y + 1, depth + 1));
+		}
+	}
+
+	return -1;
+}
+
 bool MazeState::ExplorePlayer(int tileToExploreID)
 {
-	Pos1Dto2D(tileToExplore[tileToExploreID], &playerX, &playerY);
+	int newPlayerX, newPlayerY;
+	Pos1Dto2D(tileToExplore[tileToExploreID], &newPlayerX, &newPlayerY);
+	int distance = GetDistanceBetween(playerX, playerY, newPlayerX, newPlayerY);
+	stepsToGameOver -= distance;
+	if(stepsToGameOver <= 0)
+		return true;
+
+	playerX = newPlayerX;
+	playerY = newPlayerY;
 	tileToExplore.erase(tileToExplore.begin() + tileToExploreID, tileToExplore.begin() + tileToExploreID + 1);
 	if(GetTile(playerX, playerY) == TILE_GOAL)
 		return true;
@@ -218,7 +289,26 @@ bool MazeState::ExploreEnvironment(int turn)
 	{
 		if(GetTile(playerX + dx, playerY + dy) == TILE_UNDEFINED)
 		{
-			maze[playerY + dy][playerX + dx] = TILE_WALL;
+			if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED &&
+			   GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
+			{
+				switch(turn % 2)
+				{
+					case 0 :
+						maze[playerY - holeY + dy][playerX - holeX + dx] = TILE_WALL;
+						break;
+					case 1 :
+						maze[playerY + holeY + dy][playerX + holeX + dx] = TILE_WALL;
+						break;
+				}
+			}
+
+			if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED ||
+			   GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
+			{
+				SetTileEmpty(playerX + dx, playerY + dy);
+				tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY + dy));
+			}
 			RemoveNonviableTileToExplore();
 		}
 		return false;
@@ -338,4 +428,13 @@ void MazeState::Pos1Dto2D(int d1, int * x, int * y)
 {
 	*x = d1 % mazeWidth;
 	*y = d1 / mazeWidth;
+}
+
+int MazeState::GetPlayerScore(int playerID) const
+{
+	if(stepsToGameOver <= 0 || tileToExplore.size() == 0 || !possibleWayToGoal)
+		return -IGameState::WINNER_SCORE;
+
+	int manDistToGoal = abs(playerX - goalX) + abs(playerY - goalY);
+	return (manDistToGoal == 0) ? IGameState::WINNER_SCORE : stepsToGameOver - manDistToGoal * 2;
 }

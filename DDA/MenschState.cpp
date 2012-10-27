@@ -123,16 +123,8 @@ int MenschState::MakeTurn(int playerChoise)
 			}
 		}
 
-		bool isWinner = true;
-		for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
-		{
-			if(figure[activePlayerID][loop1] < 40)
-			{
-				isWinner = false;
-				break;
-			}
-		}
-		if(isWinner)
+		
+		if(IsPlayerWinner(activePlayerID))
 			result = activePlayerID;
 
 		if(lastDice != 6)
@@ -167,4 +159,37 @@ int MenschState::GetActivePlayerID() const
 		return 0;
 
 	return activePlayerID + 1;
+}
+
+bool MenschState::IsPlayerWinner(int playerID) const
+{
+	bool isWinner = true;
+	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
+	{
+		if(figure[playerID][loop1] < 40)
+		{
+			isWinner = false;
+			break;
+		}
+	}
+	return isWinner;
+}
+
+int MenschState::GetPlayerScore(int playerID) const
+{
+	if(IsPlayerWinner(playerID))
+		return IGameState::WINNER_SCORE;
+
+	int result = 0;
+	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
+	{
+		if(figure[playerID][loop1] >= FIRST_HOME_TILE)
+		{
+			result += 1000;
+		} else if(figure[playerID][loop1] >= 0)
+		{
+			result += 100 + figure[playerID][loop1];
+		}
+	}
+	return result;
 }

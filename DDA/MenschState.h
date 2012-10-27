@@ -6,6 +6,7 @@ class MenschState :
 	public IGameState
 {
 public:
+	static const int FIRST_HOME_TILE = 40;
 	static const int MAX_PLAYER = 4;
 	static const int MAX_FIGURE = 4;
 private:
@@ -17,6 +18,7 @@ private:
 	int figureNextState[MAX_FIGURE];
 
 	void NextChoises();
+	bool IsPlayerWinner(int playerID) const;
 public:
 	MenschState(void);
 	~MenschState(void);
@@ -24,6 +26,7 @@ public:
 	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises() const;
 	int GetActivePlayerID() const;
+	int GetPlayerScore(int playerID) const;
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }
 };

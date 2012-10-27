@@ -119,6 +119,7 @@ void DDAWidget::SetGame(int gameID)
 	ChangePlayerMenu();
 
 	board->SetGame(activeGame);
+	board->repaint();
 }
 
 void DDAWidget::ChangePlayerMenu()
