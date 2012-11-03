@@ -90,14 +90,25 @@ void MazeState::CopyToMe(const MazeState & origin)
 {
 	mazeWidth = origin.mazeWidth;
 	mazeHeight = origin.mazeHeight;
+	activePlayerID = origin.activePlayerID;
+	playerX = origin.playerX;
+	playerY = origin.playerY;
+	goalX = origin.goalX;
+	goalY = origin.goalY;
+	hallSize = origin.hallSize;
+	stepsToGameOver = origin.stepsToGameOver;
+	possibleWayToGoal = origin.possibleWayToGoal;
 
 	maze = new MazeTile*[mazeHeight];
+	mazeClosedList = new bool*[mazeHeight];
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		maze[loop1] = new MazeTile[mazeWidth];
+		mazeClosedList[loop1] = new bool[mazeWidth];
 
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
+			mazeClosedList[loop1][loop2] = false;
 			maze[loop1][loop2] = origin.maze[loop1][loop2];
 		}
 	}
@@ -122,6 +133,23 @@ void MazeState::ClearMe()
 	delete[] maze;
 
 	tileToExplore.clear();
+}
+
+IGameState ** MazeState::GetNextStates(int *outNumberNextStates) const
+{
+	int numberNextStates = GetPlayerChoises();
+	IGameState ** nextState = new IGameState*[numberNextStates];
+	MazeState * mazeState;
+	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
+	{
+		mazeState = new MazeState(*this);
+		mazeState->Explore(loop1);
+		nextState[loop1] = mazeState;
+	}
+
+	*outNumberNextStates = numberNextStates;
+
+	return nextState;
 }
 
 int MazeState::FindTileToExplore(int x, int y)
@@ -303,10 +331,10 @@ bool MazeState::ExploreEnvironment(int turn)
 				}
 			}
 
+			SetTileEmpty(playerX + dx, playerY + dy);
 			if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED ||
 			   GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
 			{
-				SetTileEmpty(playerX + dx, playerY + dy);
 				tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY + dy));
 			}
 			RemoveNonviableTileToExplore();
@@ -432,9 +460,12 @@ void MazeState::Pos1Dto2D(int d1, int * x, int * y)
 
 int MazeState::GetPlayerScore(int playerID) const
 {
-	if(stepsToGameOver <= 0 || tileToExplore.size() == 0 || !possibleWayToGoal)
+	if(!possibleWayToGoal)
+		return IGameState::ILLEGAL_GAME;
+
+	if(stepsToGameOver <= 0 || (tileToExplore.size() == 0 && activePlayerID == PLAYER_AI))
 		return -IGameState::WINNER_SCORE;
 
-	int manDistToGoal = abs(playerX - goalX) + abs(playerY - goalY);
-	return (manDistToGoal == 0) ? IGameState::WINNER_SCORE : stepsToGameOver - manDistToGoal * 2;
+	int manDistToGoal = mazeHeight + mazeWidth - (abs(playerX - goalX) + abs(playerY - goalY));
+	return (manDistToGoal == mazeHeight + mazeWidth) ? IGameState::WINNER_SCORE : stepsToGameOver + manDistToGoal * 10;
 }

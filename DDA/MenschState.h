@@ -27,6 +27,7 @@ public:
 	int GetPlayerChoises() const;
 	int GetActivePlayerID() const;
 	int GetPlayerScore(int playerID) const;
+	IGameState ** GetNextStates(int *outNumberNextStates) const;
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }
 };

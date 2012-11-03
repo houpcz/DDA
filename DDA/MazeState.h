@@ -90,6 +90,7 @@ public:
 		return -1;
 	}
 	int GetPlayerScore(int playerID) const;
+	IGameState ** GetNextStates(int *outNumberNextStates) const;
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
 

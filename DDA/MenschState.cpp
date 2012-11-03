@@ -23,6 +23,23 @@ MenschState::~MenschState(void)
 {
 }
 
+IGameState ** MenschState::GetNextStates(int *outNumberNextStates) const
+{
+	int numberNextStates = GetPlayerChoises();
+	IGameState ** nextState = new IGameState*[numberNextStates];
+	MenschState * menschState;
+	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
+	{
+		menschState = new MenschState(*this);
+		menschState->MakeTurn(loop1);
+		nextState[loop1] = menschState;
+	}
+
+	*outNumberNextStates = numberNextStates;
+
+	return nextState;
+}
+
 int MenschState::GetPlayerChoises() const
 {
 	if(dicePlayerNow)

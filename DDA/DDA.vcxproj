@@ -133,6 +133,7 @@
     </ClCompile>
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="IGame.cpp" />
+    <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="IPlayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MazeState.cpp" />
