@@ -8,6 +8,7 @@ class IEnvironmentAI : public IPlayer
 Q_OBJECT
 
 public :
+	virtual ~IEnvironmentAI() {};
 	virtual bool Think() = 0;
 };
 

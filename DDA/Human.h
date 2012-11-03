@@ -10,7 +10,7 @@ Q_OBJECT
 
 public:
 	Human(void);
-	~Human(void);
+	virtual ~Human(void);
 	virtual bool Think() { return false; };
 	void HumanTurn(int turn);
 	QString GetAINAme() { return QString("Human"); };

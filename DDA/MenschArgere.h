@@ -25,7 +25,7 @@ private:
 	int GetTileID(int player, int figure, int & atStart);
 public:
 	MenschArgere(QWidget * _widget);
-	~MenschArgere(void);
+	virtual ~MenschArgere(void);
 	bool PlayerTurn();
 	void StartGame();
 	void Draw(QPainter * painter, int tickMillis = 0);

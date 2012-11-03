@@ -36,7 +36,7 @@ private:
 	void ChangePlayerMenu();
 public:
 	DDAWidget(QWidget *parent = 0);
-	~DDAWidget(void);
+	virtual ~DDAWidget(void);
 	void paintEvent(QPaintEvent * paintEvent);
 	void mouseMoveEvent ( QMouseEvent * event );
 	void mousePressEvent ( QMouseEvent * event );

@@ -19,7 +19,7 @@ private :
 	float tileHeight;
 public :
 	GameMaze(QWidget * _widget);
-	~GameMaze();
+	virtual ~GameMaze();
 	void StartGame();
 	bool PlayerTurn();
 	IGameState * GetCurrentState() const;

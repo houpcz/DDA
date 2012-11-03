@@ -14,6 +14,7 @@ protected :
 	int isReady;
 	int myTurn;
 public:
+	virtual ~IPlayer() {};
 	virtual void StartGame(IGame * _game) {game = _game; isReady = false;};
 	virtual bool IsReady();
 	virtual int MakeTurn();

@@ -61,7 +61,7 @@ public:
 	MazeState(int _activePlayerID, int _stepsToGameOver = 500, int mWidth = 40, int mHeight = 40);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
-	~MazeState(void);
+	virtual ~MazeState(void);
 
 	void SetActivePlayerID(int _activePlayerID) { activePlayerID = _activePlayerID; }
 	int GetPlayerX() const { return playerX; }

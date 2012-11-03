@@ -21,7 +21,7 @@ private:
 	bool IsPlayerWinner(int playerID) const;
 public:
 	MenschState(void);
-	~MenschState(void);
+	virtual ~MenschState(void);
 	int GetFigure(int player, int number) { return figure[player][number]; }
 	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises() const;

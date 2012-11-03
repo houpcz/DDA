@@ -5,7 +5,7 @@ class PlayerRandomAI :
 {
 public:
 	PlayerRandomAI(void);
-	~PlayerRandomAI(void);
+	virtual ~PlayerRandomAI(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	QString GetAINAme() { return QString("Random AI"); };
