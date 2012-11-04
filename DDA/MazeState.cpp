@@ -329,9 +329,10 @@ bool MazeState::ExploreEnvironment(int turn)
 		holeX = 1;
 	}
 
-	int hole1 = turn / hallSize;
-	int hole2 = turn % hallSize;
-	hallSize = min(max(hole1, hole2) + 2, hallSize);
+	int hole1 = turn / (hallSize + 1) - 1;
+	int hole2 = turn % (hallSize + 1) - 1;
+	int realHallSize = min(max(hole1, hole2) + 2, hallSize);
+	//hallSize = min(max(hole1, hole2) + 2, hallSize);
 
 	if(hallSize == 1)
 	{
@@ -385,11 +386,11 @@ bool MazeState::ExploreEnvironment(int turn)
 		hY = playerY + (1 + hole) * dy + holeY * sign;
 		x += holeX * sign;
 		y += holeY * sign;
-		for(int loop2 = 0; loop2 < hallSize; loop2++)
+		for(int loop2 = 0; loop2 < realHallSize; loop2++)
 		{
 			if(loop1 == 1)
 			{
-				if(loop2 == hallSize -1 && GetTile(x + dx, y + dy) == TILE_UNDEFINED)
+				if(loop2 == realHallSize -1 && loop2 != hallSize - 1 && GetTile(x + dx, y + dy) == TILE_UNDEFINED)
 					maze[y][x] = TILE_WALL;
 				else {
 					SetTileEmpty(x, y);
@@ -398,7 +399,7 @@ bool MazeState::ExploreEnvironment(int turn)
 				if(GetTile(x, y) == TILE_UNDEFINED)
 				{
 					if(x == hX && y == hY && 
-						(loop2 != hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
+						(loop2 != realHallSize - 1 || loop2 == hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
 					{
 						SetTileEmpty(x, y);
 						if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)

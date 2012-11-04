@@ -101,7 +101,7 @@ public:
 		switch(activePlayerID)
 		{
 			case ENVINRONMENT_AI :
-				playerChoises = hallSize * hallSize;
+				playerChoises = (hallSize + 1) * (hallSize + 1);
 				return (playerChoises <= 1) ? 2 : playerChoises; 
 				break;
 			case PLAYER_AI :
