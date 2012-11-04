@@ -73,6 +73,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
 	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + dy));
 	hallSize = 0;
+
+	CountScore();
 }
 
 MazeState::MazeState(const MazeState & origin)
@@ -197,6 +199,8 @@ bool MazeState::Explore(int tileToExploreID)
 	activePlayerID++;
 	if(activePlayerID > 1)
 		activePlayerID = 0;
+
+	CountScore();
 
 	return gameOver;
 }
@@ -476,14 +480,24 @@ void MazeState::Pos1Dto2D(int d1, int * x, int * y)
 
 int MazeState::GetPlayerScore(int playerID) const
 {
+	return playerScore;
+}
+void MazeState::CountScore()
+{
 	if(!possibleWayToGoal)
-		return IGameState::ILLEGAL_GAME;
+	{
+		playerScore = IGameState::ILLEGAL_GAME;
+		return;
+	}
 
 	if(stepsToGameOver <= 0 || (tileToExplore.size() == 0 && activePlayerID == PLAYER_AI))
-		return -IGameState::WINNER_SCORE;
+	{
+		playerScore = -IGameState::WINNER_SCORE;
+		return;
+	}
 
 	int manDistToGoal = mazeHeight + mazeWidth - (abs(playerX - goalX) + abs(playerY - goalY));
-	return (manDistToGoal == mazeHeight + mazeWidth) ? IGameState::WINNER_SCORE : stepsToGameOver + manDistToGoal * 10;
+	playerScore = (manDistToGoal == mazeHeight + mazeWidth) ? IGameState::WINNER_SCORE : stepsToGameOver + manDistToGoal * 10;
 }
 
 void MazeState::PrintToFile(const char * firstLine)

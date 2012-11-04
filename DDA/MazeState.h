@@ -63,6 +63,7 @@ private:
 	int activePlayerID;
 	int playerX, playerY;
 	int goalX, goalY;
+	int playerScore;
 	vector<int> tileToExplore;
 	int hallSize;
 	int stepsToGameOver;
@@ -77,6 +78,7 @@ private:
 	void SetTileEmpty(int x, int y);
 	// undefined - can go through undefined files
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
+	void CountScore();
 public:
 	MazeState(int _activePlayerID, int _stepsToGameOver = 50000, int mWidth = 40, int mHeight = 40);
 	MazeState(const MazeState & origin);
