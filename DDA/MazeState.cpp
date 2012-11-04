@@ -311,22 +311,51 @@ bool MazeState::ExploreEnvironment(int turn)
 {
 	int dx = 0, dy = 0;
 	int holeX = 0, holeY = 0;
+	bool isOneUndefinedTile = false;
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
 	{
 		dx = -1;
 		holeY = 1;
-	} else if(GetTile(playerX + 1, playerY) == TILE_UNDEFINED)
+		isOneUndefinedTile = true;
+	} 
+	
+	if(GetTile(playerX + 1, playerY) == TILE_UNDEFINED)
 	{
-		dx = 1;
-		holeY = 1;
-	} else if(GetTile(playerX, playerY - 1) == TILE_UNDEFINED)
+		if(!isOneUndefinedTile)
+		{
+			dx = 1;
+			holeY = 1;
+			isOneUndefinedTile = true;
+		} else {
+			SetTileEmpty(playerX + 1, playerY);
+			tileToExplore.push_back(Pos2Dto1D(playerX + 1, playerY));
+		}
+	} 
+	
+	if(GetTile(playerX, playerY - 1) == TILE_UNDEFINED)
 	{
-		dy = -1;
-		holeX = 1;
-	} else if(GetTile(playerX, playerY + 1) == TILE_UNDEFINED)
+		if(!isOneUndefinedTile)
+		{
+			dy = -1;
+			holeX = 1;
+			isOneUndefinedTile= true;
+		} else {
+			SetTileEmpty(playerX, playerY - 1);
+			tileToExplore.push_back(Pos2Dto1D(playerX, playerY - 1));
+		}
+	} 
+	
+	if(GetTile(playerX, playerY + 1) == TILE_UNDEFINED)
 	{
-		dy = 1;
-		holeX = 1;
+		if(!isOneUndefinedTile)
+		{
+			dy = 1;
+			holeX = 1;
+			isOneUndefinedTile = true;
+		} else {
+			SetTileEmpty(playerX, playerY + 1);
+			tileToExplore.push_back(Pos2Dto1D(playerX, playerY + 1));
+		}
 	}
 
 	int hole1 = turn / (hallSize + 1) - 1;
@@ -402,7 +431,7 @@ bool MazeState::ExploreEnvironment(int turn)
 						(loop2 != realHallSize - 1 || loop2 == hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
 					{
 						SetTileEmpty(x, y);
-						if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)
+						//if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)
 						{
 							tileToExplore.push_back(Pos2Dto1D(x, y));
 						}
@@ -485,13 +514,13 @@ int MazeState::GetPlayerScore(int playerID) const
 }
 void MazeState::CountScore()
 {
-	if(!possibleWayToGoal)
+	if(!possibleWayToGoal || (tileToExplore.size() == 0 && activePlayerID == PLAYER_AI))
 	{
 		playerScore = IGameState::ILLEGAL_GAME;
 		return;
-	}
+	} 
 
-	if(stepsToGameOver <= 0 || (tileToExplore.size() == 0 && activePlayerID == PLAYER_AI))
+	if(stepsToGameOver <= 0)
 	{
 		playerScore = -IGameState::WINNER_SCORE;
 		return;
@@ -506,13 +535,13 @@ void MazeState::PrintToFile(const char * firstLine)
 	FILE *fw;
 	fw = fopen("log.txt", "a");
 
-	fprintf(fw, "%s\n", firstLine);
+	fprintf(fw, "%s %d\n", firstLine, tileToExplore.size());
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			int c = '@';
-			switch(maze[loop1][loop2])
+			switch((MazeTile) maze[loop1][loop2])
 			{
 				case MazeTile::TILE_EMPTY : c = '.'; break;
 				case MazeTile::TILE_GOAL : c = 'G'; break;
