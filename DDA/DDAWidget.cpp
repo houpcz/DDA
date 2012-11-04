@@ -84,7 +84,8 @@ void DDAWidget::mousePressEvent ( QMouseEvent * event )
 
 void DDAWidget::NewGame()
 {
-	activeGame->StartGame();
+	for(int loop1 = 0; loop1 < 10000; loop1++)
+		activeGame->StartGame();
 }
 
 void DDAWidget::SetGameMaze()

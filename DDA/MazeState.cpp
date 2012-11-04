@@ -1,6 +1,8 @@
 
 #include <queue>
+#include <QDebug>
 #include "MazeState.h"
+#include "MatrixFactory.h"
 
 using namespace std;
 
@@ -11,12 +13,14 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
 
-	maze = new MazeTile*[mazeHeight];
-	mazeClosedList = new bool*[mazeHeight];
+	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
+	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
+	//maze = new char*[mazeHeight];
+	//mazeClosedList = new char*[mazeHeight];
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
-		maze[loop1] = new MazeTile[mazeWidth];
-		mazeClosedList[loop1] = new bool[mazeWidth];
+		//maze[loop1] = new char[mazeWidth];
+		//mazeClosedList[loop1] = new char[mazeWidth];
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			maze[loop1][loop2] = TILE_UNDEFINED;
@@ -99,12 +103,14 @@ void MazeState::CopyToMe(const MazeState & origin)
 	stepsToGameOver = origin.stepsToGameOver;
 	possibleWayToGoal = origin.possibleWayToGoal;
 
-	maze = new MazeTile*[mazeHeight];
-	mazeClosedList = new bool*[mazeHeight];
+	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
+	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
+	//maze = new char*[mazeHeight];
+	//mazeClosedList = new char*[mazeHeight];
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
-		maze[loop1] = new MazeTile[mazeWidth];
-		mazeClosedList[loop1] = new bool[mazeWidth];
+		//maze[loop1] = new char[mazeWidth];
+		//mazeClosedList[loop1] = new char[mazeWidth];
 
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
@@ -124,6 +130,9 @@ MazeState::~MazeState(void)
 
 void MazeState::ClearMe()
 {
+	MatrixFactory::Inst()->ReturnMatrix(maze, mazeWidth, mazeHeight);
+	MatrixFactory::Inst()->ReturnMatrix(mazeClosedList, mazeWidth, mazeHeight);
+	/*
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		delete[] mazeClosedList[loop1];
@@ -131,7 +140,7 @@ void MazeState::ClearMe()
 	}
 	delete[] mazeClosedList;
 	delete[] maze;
-
+	*/
 	tileToExplore.clear();
 }
 
@@ -193,50 +202,51 @@ bool MazeState::Explore(int tileToExploreID)
 
 int MazeState::GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined)
 {
-	queue<QueueNode> q;
-	QueueNode tempNode = QueueNode(pos1X, pos1Y, 0);
+	priority_queue<QueueNode, vector<QueueNode>, CompareNode> q;
+	QueueNode tempNode = QueueNode(pos1X, pos1Y, 0, pos2X, pos2Y);
 	q.push(tempNode);
 
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
-			mazeClosedList[loop1][loop2] = false;
+			mazeClosedList[loop1][loop2] = OPEN;
 		}
 	}
 
 	while(!q.empty())
 	{
-		tempNode = q.front();
+		tempNode = q.top();
 		q.pop();
 		int x = tempNode.x;
 		int y = tempNode.y;
-		int depth = tempNode.depth;
-		
+		int depth = tempNode.g;
 		if(x == pos2X && y == pos2Y)
+		{
 			return depth;
-
-		if(x > 0 && (maze[y][x-1] == TILE_EMPTY || maze[y][x-1] == TILE_GOAL || (maze[y][x-1] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y][x-1])
-		{
-			mazeClosedList[y][x-1] = true;
-			q.push(QueueNode(x - 1, y, depth + 1));
 		}
 
-		if(x < mazeWidth - 1 && (maze[y][x+1] == TILE_EMPTY || maze[y][x+1] == TILE_GOAL || (maze[y][x+1] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y][x+1])
+		if(x > 0 && (maze[y][x-1] == TILE_EMPTY || maze[y][x-1] == TILE_GOAL || (maze[y][x-1] == TILE_UNDEFINED && undefined)) && OPEN == mazeClosedList[y][x-1])
 		{
-			mazeClosedList[y][x+1] = true;
-			q.push(QueueNode(x + 1, y, depth + 1));
-		}
-		if(y > 0 && (maze[y-1][x] == TILE_EMPTY || maze[y-1][x] == TILE_GOAL || (maze[y-1][x] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y - 1][x])
-		{
-			mazeClosedList[y - 1][x] = true;
-			q.push(QueueNode(x, y - 1, depth + 1));
+			mazeClosedList[y][x-1] = CLOSE;
+			q.push(QueueNode(x - 1, y, depth + 1, pos2X, pos2Y));
 		}
 
-		if(y < mazeHeight - 1 && (maze[y+1][x] == TILE_EMPTY || maze[y+1][x] == TILE_GOAL || (maze[y+1][x] == TILE_UNDEFINED && undefined)) && !mazeClosedList[y + 1][x])
+		if(x < mazeWidth - 1 && (maze[y][x+1] == TILE_EMPTY || maze[y][x+1] == TILE_GOAL || (maze[y][x+1] == TILE_UNDEFINED && undefined)) && OPEN == mazeClosedList[y][x+1])
 		{
-			mazeClosedList[y + 1][x] = true;
-			q.push(QueueNode(x, y + 1, depth + 1));
+			mazeClosedList[y][x+1] = CLOSE;
+			q.push(QueueNode(x + 1, y, depth + 1, pos2X, pos2Y));
+		}
+		if(y > 0 && (maze[y-1][x] == TILE_EMPTY || maze[y-1][x] == TILE_GOAL || (maze[y-1][x] == TILE_UNDEFINED && undefined)) && OPEN == mazeClosedList[y - 1][x])
+		{
+			mazeClosedList[y - 1][x] = CLOSE;
+			q.push(QueueNode(x, y - 1, depth + 1, pos2X, pos2Y));
+		}
+
+		if(y < mazeHeight - 1 && (maze[y+1][x] == TILE_EMPTY || maze[y+1][x] == TILE_GOAL || (maze[y+1][x] == TILE_UNDEFINED && undefined)) && OPEN == mazeClosedList[y + 1][x])
+		{
+			mazeClosedList[y + 1][x] = CLOSE;
+			q.push(QueueNode(x, y + 1, depth + 1, pos2X, pos2Y));
 		}
 	}
 
@@ -283,10 +293,11 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 	}
 
 	int pseudoRnd = playerX + playerY + hallSize;
+	/*
 	if(hallSize > 7)
 	{
 		hallSize = 7 - (pseudoRnd % 5);
-	}
+	}*/
 
 	return false;
 }
@@ -312,6 +323,10 @@ bool MazeState::ExploreEnvironment(int turn)
 		dy = 1;
 		holeX = 1;
 	}
+
+	int hole1 = turn / hallSize;
+	int hole2 = turn % hallSize;
+	hallSize = min(max(hole1, hole2) + 2, hallSize);
 
 	if(hallSize == 1)
 	{
@@ -351,11 +366,11 @@ bool MazeState::ExploreEnvironment(int turn)
 		int hole;
 		if(loop1 == 0)
 		{
-			hole = turn / hallSize;
+			hole = hole1;
 			sign = 1;
 		} else if(loop1 == 2)
 		{
-			hole = turn % hallSize;
+			hole = hole2;
 			sign = -1;
 		} else {
 			hole = 0;
@@ -436,7 +451,7 @@ void MazeState::RemoveNonviableTileToExplore()
 	}
 }
 
-MazeTile MazeState::GetTile(int x, int y)
+char MazeState::GetTile(int x, int y)
 {
 	if(x >= 0 && x < mazeWidth &&
 	   y >= 0 && y < mazeHeight)

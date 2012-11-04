@@ -133,6 +133,9 @@
     <ClCompile Include="IGameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MatrixFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -157,6 +160,9 @@
       <Filter>MenschArgere</Filter>
     </ClInclude>
     <ClInclude Include="GameStat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

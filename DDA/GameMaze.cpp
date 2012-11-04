@@ -60,7 +60,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 {
 	int mazeWidth = currentState->GetMazeWidth();
 	int mazeHeight = currentState->GetMazeHeight();
-	MazeTile ** maze = currentState->GetMaze();
+	char ** maze = currentState->GetMaze();
 	const vector<int>* tileToExplore = currentState->GetTileToExplore();
 
 	tileWidth = painter->viewport().width() / (float) mazeWidth;
@@ -119,7 +119,18 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	painter->setPen(Qt::red);
 	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height(), Qt::AlignCenter, QString(numberString));
 
-	sprintf(numberString, "%d", currentState->GetPlayerScore(0));
+	int score = currentState->GetPlayerScore(0);
+	sprintf(numberString, "%d", score);
+
+	static bool wasIlegal = false;
+	if(score == IGameState::ILLEGAL_GAME)
+		wasIlegal = true;
+	if(wasIlegal)
+	{
+		painter->setPen(Qt::white);
+		painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() + 52 , Qt::AlignCenter, QString("Ilegal"));
+	}
+
 	painter->setFont(QFont("Helvetica", 18, QFont::Bold));
 	painter->setPen(Qt::black);
 	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() + 52 , Qt::AlignCenter, QString(numberString));

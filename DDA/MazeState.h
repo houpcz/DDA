@@ -24,21 +24,41 @@ struct QueueNode
 {
 	int x;
 	int y;
-	int depth;
+	int g;
+	int h;
+	int f;
 
 	public :
-		QueueNode(int _x, int _y, int _depth) {
+		QueueNode(int _x, int _y, int _g, int goalX, int goalY) {
 			x = _x;
 			y = _y;
-			depth = _depth;
+			g = _g;
+			int dx = x - goalX;
+			int dy = y - goalY;
+			h = dx * dx + dy * dy;
+			//h = abs(dx) + abs(dy);
+			f = h + g;
 		}
 };
+
+class CompareNode
+{  
+public:
+  bool operator()(const QueueNode& l, const QueueNode& r)  
+  {  
+      return l.f > r.f;  
+  }  
+}; 
+
 
 class MazeState : public IGameState
 {
 private:
-	MazeTile ** maze;
-	bool ** mazeClosedList;
+	static const char OPEN = ' ';
+	static const char CLOSE = '#';
+
+	char ** maze;
+	char ** mazeClosedList;
 	int mazeWidth, mazeHeight;
 	int activePlayerID;
 	int playerX, playerY;
@@ -48,7 +68,7 @@ private:
 	int stepsToGameOver;
 	bool possibleWayToGoal;
 
-	MazeTile GetTile(int x, int y);
+	char GetTile(int x, int y);
 	void CopyToMe(const MazeState & origin);
 	void ClearMe();
 	bool ExplorePlayer(int tileToExploreID);
@@ -58,7 +78,7 @@ private:
 	// undefined - can go through undefined files
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
 public:
-	MazeState(int _activePlayerID, int _stepsToGameOver = 500, int mWidth = 40, int mHeight = 40);
+	MazeState(int _activePlayerID, int _stepsToGameOver = 50000, int mWidth = 40, int mHeight = 40);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);
@@ -69,7 +89,7 @@ public:
 	int GetActivePlayerID() const {
 		return activePlayerID;
 	}
-	MazeTile ** GetMaze() const { return maze; }
+	char ** GetMaze() const { return maze; }
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }
 	int GetStepsToGameOver() const { return stepsToGameOver; }
