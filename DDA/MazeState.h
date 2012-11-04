@@ -118,6 +118,7 @@ public:
 
 	int Pos2Dto1D(int x, int y);
 	void Pos1Dto2D(int d1, int * x, int * y);
+	void PrintToFile(const char * firstLine);
 };
 
 #endif

@@ -23,6 +23,17 @@ bool EnvironmentAIBasic::Think()
 		myTurn = (myTurn + 1) % p_myTurn;
 		tries++;
 	} while(nextState[myTurn]->GetPlayerScore(0) == IGameState::ILLEGAL_GAME && tries < p_myTurn + 1);
+
+	if(nextState[myTurn]->GetPlayerScore(0) == IGameState::ILLEGAL_GAME && game->GetCurrentState()->GetPlayerScore(0) != IGameState::ILLEGAL_GAME)
+	{
+		game->GetCurrentState()->PrintToFile("Last legal state");
+		/*
+		for(int loop1 = 0; loop1 < p_myTurn; loop1++)
+		{
+			nextState[loop1]->PrintToFile("Option");
+		}
+		*/
+	}
 	isReady = true;
 
 	for(int loop1 = 0; loop1 < p_myTurn; loop1++)

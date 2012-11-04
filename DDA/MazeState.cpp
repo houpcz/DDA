@@ -13,6 +13,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
 
+	possibleWayToGoal = true;
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	//maze = new char*[mazeHeight];
@@ -191,7 +192,7 @@ bool MazeState::Explore(int tileToExploreID)
 			break;
 	}
 
-	possibleWayToGoal = GetDistanceBetween(goalX, goalY, playerX, playerY, true) >= 0;
+	possibleWayToGoal = GetDistanceBetween(playerX, playerY, goalX, goalY, true) >= 0;
 
 	activePlayerID++;
 	if(activePlayerID > 1)
@@ -483,4 +484,31 @@ int MazeState::GetPlayerScore(int playerID) const
 
 	int manDistToGoal = mazeHeight + mazeWidth - (abs(playerX - goalX) + abs(playerY - goalY));
 	return (manDistToGoal == mazeHeight + mazeWidth) ? IGameState::WINNER_SCORE : stepsToGameOver + manDistToGoal * 10;
+}
+
+void MazeState::PrintToFile(const char * firstLine)
+{
+	FILE *fw;
+	fw = fopen("log.txt", "a");
+
+	fprintf(fw, "%s\n", firstLine);
+	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
+	{
+		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
+		{
+			int c = '@';
+			switch(maze[loop1][loop2])
+			{
+				case MazeTile::TILE_EMPTY : c = '.'; break;
+				case MazeTile::TILE_GOAL : c = 'G'; break;
+				case MazeTile::TILE_NO : c = 'N'; break;
+				case MazeTile::TILE_UNDEFINED : c = '?'; break;
+				case MazeTile::TILE_WALL : c = '#'; break;
+			}
+			putc(c, fw);
+		}
+		fprintf(fw, "\n");
+	}
+
+	fclose(fw);
 }
