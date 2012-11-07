@@ -84,7 +84,7 @@ void DDAWidget::mousePressEvent ( QMouseEvent * event )
 
 void DDAWidget::NewGame()
 {
-	for(int loop1 = 0; loop1 < 10000; loop1++)
+	//for(int loop1 = 0; loop1 < 10000; loop1++)
 		activeGame->StartGame();
 }
 

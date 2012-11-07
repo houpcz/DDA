@@ -32,7 +32,12 @@ void MenschTile::DrawPlayer(QPainter * painter, const QColor & playerColor)
 	float borderWidth = game->GetTileWidth() * 0.40f;
 	float borderHeight = game->GetTileHeight() * 0.40f;
 	
-	painter->setBrush(QBrush(playerColor));
+	QRadialGradient radialGradient(borderWidth / 2.0f + x * tileWidth + x * borderWidth + tileWidth / 2.0f, painter->viewport().height() - (borderHeight + y * tileHeight + y * borderHeight) - painter->viewport().height() / 22.0f + tileWidth / 2.0, tileWidth, tileWidth, tileHeight);
+    radialGradient.setColorAt(0.0, Qt::white);
+	radialGradient.setColorAt(0.5, playerColor);
+    radialGradient.setColorAt(1.0, Qt::black);
+	QBrush brush(radialGradient);
+	painter->setBrush(brush);
 	painter->drawEllipse(borderWidth / 2.0f + x * tileWidth + x * borderWidth, painter->viewport().height() - (borderHeight + y * tileHeight + y * borderHeight) - painter->viewport().height() / 22.0f, tileWidth, tileHeight);
 }
 
