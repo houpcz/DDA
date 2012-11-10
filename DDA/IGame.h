@@ -15,6 +15,13 @@ public:
 	IGame() {};
 	virtual ~IGame() {};
 	virtual void NextTurn() = 0;
+
+	/// Execute player turn
+	/**
+	  The active player has decided what to do. This method ask him for his choise and make turn
+
+	  \return True if next state is game over
+	*/
 	virtual bool PlayerTurn() = 0;
 	virtual void StartGame() = 0;
 	virtual IGameState * GetCurrentState() const = 0;

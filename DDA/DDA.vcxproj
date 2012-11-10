@@ -135,6 +135,8 @@
     <ClCompile Include="IGame.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="IPlayer.cpp" />
+    <ClCompile Include="LostCities.cpp" />
+    <ClCompile Include="LostCitiesState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixFactory.cpp" />
     <ClCompile Include="MazeState.cpp" />
@@ -157,6 +159,8 @@
     <ClInclude Include="Board.h" />
     <ClInclude Include="GameStat.h" />
     <ClInclude Include="IGameState.h" />
+    <ClInclude Include="LostCities.h" />
+    <ClInclude Include="LostCitiesState.h" />
     <ClInclude Include="MatrixFactory.h" />
     <ClInclude Include="MenschArgere.h" />
     <ClInclude Include="MenschState.h" />
@@ -233,6 +237,13 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
     </CustomBuild>
     <ClInclude Include="MazeState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

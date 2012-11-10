@@ -26,10 +26,13 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	QMenu * setGameMenu = game->addMenu(tr("Set Game"));
 	QAction * setGameMazeAction = new QAction(tr("Maze"), this);
     QAction * setGameMenschArgereAction = new QAction(tr("Mensch Argere"), this);
+	QAction * setGameLostCitiesAction = new QAction(tr("Lost cities"), this);
 	setGameMenu->addAction(setGameMazeAction);
 	setGameMenu->addAction(setGameMenschArgereAction);
+	setGameMenu->addAction(setGameLostCitiesAction);
     connect(setGameMazeAction, SIGNAL(triggered()), this, SLOT(SetGameMaze()));
 	connect(setGameMenschArgereAction, SIGNAL(triggered()), this, SLOT(SetGameMenschArgere()));
+	connect(setGameLostCitiesAction, SIGNAL(triggered()), this, SLOT(SetGameLostCities()));
 	game->addAction(startGameAction);
 
 	playersMenu = menuBar()->addMenu(tr("Players"));
@@ -37,7 +40,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	signalMapper = new QSignalMapper(this);
 
 	activeGameID = GAME_MENSCH_ARGERE_ID;
-	activeGame = new GameMaze(this);
+	activeGame = new LostCities(this);
 	board = new Board(this, activeGame);
 	setCentralWidget(board);
 
@@ -45,7 +48,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	playerAI.push_back(new Human());
 	playerAI.push_back(new PlayerRandomAI());
 
-	SetGame(GAME_MAZE_ID);
+	SetGame(GAME_LOST_CITIES_ID);
 
 	srand (time(NULL));
 }
@@ -88,6 +91,11 @@ void DDAWidget::NewGame()
 		activeGame->StartGame();
 }
 
+void DDAWidget::SetGameLostCities()
+{
+	SetGame(GAME_LOST_CITIES_ID);
+}
+
 void DDAWidget::SetGameMaze()
 {
 	SetGame(GAME_MAZE_ID);
@@ -114,6 +122,9 @@ void DDAWidget::SetGame(int gameID)
 			break;
 		case GAME_MAZE_ID :
 			activeGame = new GameMaze(this);
+			break;
+		case GAME_LOST_CITIES_ID :
+			activeGame = new LostCities(this);
 			break;
 	}
 

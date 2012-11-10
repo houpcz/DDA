@@ -10,6 +10,7 @@
 #include "IGame.h"
 #include "GameMaze.h"
 #include "MenschArgere.h"
+#include "LostCities.h"
 #include "Board.h"
 
 using namespace std;
@@ -22,6 +23,7 @@ Q_OBJECT
 private:
 	static const int GAME_MAZE_ID = 0;
 	static const int GAME_MENSCH_ARGERE_ID = 1;
+	static const int GAME_LOST_CITIES_ID = 2;
 
 	IGame * activeGame;
 	int activeGameID;
@@ -46,6 +48,7 @@ public:
 		void SetGame(int gameID);
 		void SetGameMaze();
 		void SetGameMenschArgere();
+		void SetGameLostCities();
 		void ChangePlayer(int player);
 };
 

@@ -35,6 +35,9 @@
     <Filter Include="MenschArgere">
       <UniqueIdentifier>{1a30edb3-9811-4d0f-85aa-894ffdc6782d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LostCities">
+      <UniqueIdentifier>{28a5bb4b-594e-4696-92af-71de9b984d74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -136,6 +139,12 @@
     <ClCompile Include="MatrixFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LostCities.cpp">
+      <Filter>LostCities</Filter>
+    </ClCompile>
+    <ClCompile Include="LostCitiesState.cpp">
+      <Filter>LostCities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -164,6 +173,12 @@
     </ClInclude>
     <ClInclude Include="MatrixFactory.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LostCities.h">
+      <Filter>LostCities</Filter>
+    </ClInclude>
+    <ClInclude Include="LostCitiesState.h">
+      <Filter>LostCities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
