@@ -67,6 +67,8 @@ bool LostCitiesState::MakeTurn(int turn)
 		} else // discard card
 		{
 			card[cardID] = discardPileTopCard[cardColorNumber] + 1;
+			if(allChoisesPhase2IDFromColor[cardColorNumber] >= 0)
+				allChoisesPhase2[allChoisesPhase2IDFromColor[cardColorNumber]] = cardID;
 		}
 		// Phase 2 - drawing card
 		int drawSite = turn / playerChoisesPhase1;
@@ -88,6 +90,33 @@ bool LostCitiesState::MakeTurn(int turn)
 	}
 	CountPlayerChoises();
 	return false;
+}
+
+int LostCitiesState::GetTurnID(int playCardID, int drawCardID)
+{
+	int allChoisesID = 0;
+	for(int loop1 = 0; loop1 < playerChoisesPhase1; loop1++)
+	{
+		if(allChoises[loop1] == playCardID)
+		{
+			allChoisesID = loop1;
+			break;
+		}
+	}
+
+	int cardSite = 0;
+	if(drawCardID >= 0)
+	{
+		for(int loop1 = 0; loop1 < playerChoisesPhase2 - 1; loop1++)
+		{
+			if(allChoisesPhase2[loop1] == drawCardID)
+			{
+				cardSite = loop1 + 1; // + 1 for draw from deck
+				break;
+			}
+		}
+	}
+	return allChoisesID + cardSite * playerChoisesPhase1;
 }
 void LostCitiesState::CountPlayerChoises()
 {
@@ -118,7 +147,8 @@ void LostCitiesState::CountPlayerChoises()
 		{
 			bool canAddCardToExpedition = true;
 			bool wasCountDiscardPileForThisColor = false;
-			discardPileTopCard[loop1] = ON_DESK;
+			discardPileTopCard[loop1] = ON_DESK - 1;
+			allChoisesPhase2IDFromColor[loop1] = -1;
 			for(char loop2 = CARD_ONE_COLOR_AMOUNT - 1; loop2 >= 0; loop2--)
 			{
 				char cardID = loop1 * CARD_ONE_COLOR_AMOUNT + loop2;
@@ -136,6 +166,7 @@ void LostCitiesState::CountPlayerChoises()
 				{
 					if(!wasCountDiscardPileForThisColor)
 					{
+						allChoisesPhase2IDFromColor[loop1] = playerChoisesPhase2 - 1; // -1 because first is drawing from deck
 						playerChoisesPhase2++;			// can draw from discard pile
 						wasCountDiscardPileForThisColor = true;
 					}
@@ -143,13 +174,15 @@ void LostCitiesState::CountPlayerChoises()
 					if(discardPileTopCard[loop1] < card[cardID])
 					{
 						discardPileTopCard[loop1] = card[cardID];
-						allChoisesPhase2[playerChoisesPhase2 - 2] = cardID; // constat 2 - 1 is for drawing from deck, 2 because we added new Choise for this color before
+						allChoisesPhase2[playerChoisesPhase2 - 2] = cardID; // -1 because we added new Choise for this color before
 					}
 				}
 			}
 		}
 
 		playerChoises = playerChoisesPhase2 * playerChoisesPhase1;
+		if(playerChoises == 0)
+			playerChoises = 1;
 	}
 }
 int LostCitiesState::GetPlayerChoises() const

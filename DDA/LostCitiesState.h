@@ -26,6 +26,7 @@ public :
 private:
 	char card[CARD_AMOUNT];
 	char allChoises[CARD_AMOUNT]; // valid "playerChoises" values, ids of cards which can be played
+	int allChoisesPhase2IDFromColor[COLOR_AMOUNT];		// translate color number to allChoisesPhase2 ID
 	char allChoisesPhase2[COLOR_AMOUNT];
 	int activePlayerID;
 	int lastRealPlayer; // not environmental AI
@@ -45,6 +46,7 @@ public:
 	int GetPlayerScore(int playerID) const;
 	IGameState ** GetNextStates(int *outNumberNextStates) const;
 	bool MakeTurn(int turn);
+	int GetTurnID(int playCardID, int cardSite);
 };
 
 #endif

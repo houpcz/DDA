@@ -5,6 +5,32 @@
 
 LostCities::LostCities(QWidget * _widget) : Game(_widget)
 {
+	cardWidth = 60;
+	cardHeight = 60;
+	
+	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
+	{
+		clickableArea[loop1].SetCardID(-1);
+		clickableArea[loop1].SetSize(cardWidth, cardHeight);
+	}
+
+	for(int loop1 = 0; loop1 < HAND_SIZE; loop1++)
+	{
+		clickableArea[loop1].MoveTo(cardWidth / 2 + loop1 * (cardWidth / 2), 400);
+	}
+
+	for(int loop1 = 0; loop1 < LostCitiesState::COLOR_AMOUNT; loop1++)
+	{
+		clickableArea[loop1 + ClickableArea::EXPEDITION].MoveTo(cardWidth / 2 + loop1 * (1.5f * cardWidth), 250);
+		clickableArea[loop1 + ClickableArea::DISCARD].MoveTo(cardWidth / 2 + loop1 * (1.5f * cardWidth), 180);
+	}
+	clickableArea[ClickableArea::DECK].MoveTo(cardWidth / 2 + 15 * (cardWidth / 3), 400);
+				
+	for(int loop1 = 0; loop1 < CLICKABLE_MAX_ACTIVE; loop1++)
+	{
+		highlightClickableAreas[loop1] = -1;
+	}
+
 	minEnvironmentalAI = 1;
 	maxEnvironmentalAI = 1;
 	minPlayerAI = 2;
@@ -12,7 +38,7 @@ LostCities::LostCities(QWidget * _widget) : Game(_widget)
 
 	player = new IPlayer*[3];
 	player[0] = new EnvironmentAIBasic();
-	player[1] = new PlayerRandomAI();
+	player[1] = new PlayerRandomAI();//Human();
 	player[2] = new PlayerRandomAI();
 
 	QObject::connect(player[0], SIGNAL(ImReady(void)),
@@ -23,9 +49,6 @@ LostCities::LostCities(QWidget * _widget) : Game(_widget)
                         this, SLOT(PlayerIsReady(void)));
 
 	playerCount = 3;
-
-	cardWidth = 60;
-	cardHeight = 60;
 	currentState = new LostCitiesState();
 	state = STATE_STOPPED;
 }
@@ -54,9 +77,47 @@ void LostCities::StartGame()
 	player[1]->StartGame(this);
 	player[2]->StartGame(this);
 
+	UpdateActiveClickableAres();
+
 	state = STATE_RUNNING;
 	if(player[1]->Think())
 		NextTurn();
+}
+
+void LostCities::UpdateActiveClickableAres()
+{
+	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
+	{
+		clickableArea[loop1].SetActive(false);
+	}
+
+	if(highlightClickableAreas[CLICKABLE_PLAY_FROM] == -1)
+	{
+		for(int loop1 = 0; loop1 < HAND_SIZE; loop1++)
+		{
+			clickableArea[loop1].SetActive(true);
+		}
+	} else {
+		if(highlightClickableAreas[CLICKABLE_PLAY_TO] == -1)
+		{
+			int cardID = clickableArea[highlightClickableAreas[CLICKABLE_PLAY_FROM]].CardID();
+			int colorNumber = GetCardColor(cardID);
+			clickableArea[colorNumber + ClickableArea::DISCARD].SetActive(true);
+			if(clickableArea[colorNumber + ClickableArea::EXPEDITION].CardID() <= cardID)
+			{
+				clickableArea[colorNumber + ClickableArea::EXPEDITION].SetActive(true);
+			}
+		} else if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == -1) {
+			for(int loop1 = ClickableArea::DISCARD; loop1 < ClickableArea::DECK; loop1++)
+			{
+				if(clickableArea[loop1].CardID() >= 0)
+				{
+					clickableArea[loop1].SetActive(true);
+				}
+			}
+			clickableArea[ClickableArea::DECK].SetActive(true);
+		}
+	}
 }
 
 void LostCities::Draw(QPainter * painter, int tickMillis)
@@ -75,33 +136,99 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	}
 
 	int inDeck = 0;
+	int cardHand2ID = 0;
+	int discardPileMax = 0;
+	int discardPile[LostCitiesState::CARD_ONE_COLOR_AMOUNT];
+
+	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
+	{
+		clickableArea[loop1].SetCardID(-1);
+	}
+
 	for(int loop1 = 0; loop1 < LostCitiesState::CARD_AMOUNT; loop1++)
 	{
 		int cardNumber = loop1 % 12 + 2;
 		int cardColorNumber = loop1 / 12;
 		
-		switch(currentState->GetCard(loop1))
+		int cardSite = currentState->GetCard(loop1);
+		
+		switch(cardSite)
 		{
 			case PLAYER_1_HAND :
-				DrawCard(painter, loop1, cardWidth / 2 + cardHandID * (cardWidth / 3), 400);
+				DrawCard(painter, loop1, clickableArea[cardHandID].X(), clickableArea[cardHandID].Y());
+				clickableArea[cardHandID].SetCardID(loop1);
 				cardHandID++;
 				break;
+			case PLAYER_2_HAND :
+				//DrawCard(painter, loop1, cardWidth / 2 + cardHand2ID * (cardWidth / 3) + 250, 400);
+				cardHand2ID++;
+				break;
+
 			case PLAYER_1_ON_DESK :
 				DrawCard(painter, loop1, cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), 250 + (cardHeight / 3) * expedition[0][cardColorNumber]);
+				
+				if(expedition[0][cardColorNumber] == 0)
+					clickableArea[ClickableArea::EXPEDITION + cardColorNumber].SetCardID(loop1);
+
 				expedition[0][cardColorNumber]++;
 				break;
 			case PLAYER_2_ON_DESK :
-				DrawCard(painter, loop1, cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), 50 + (cardHeight / 3) * expedition[1][cardColorNumber]);
+				DrawCard(painter, loop1, cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), (cardHeight / 3) + (cardHeight / 3) * expedition[1][cardColorNumber]);
 				expedition[1][cardColorNumber]++;
 				break;
 			case IN_DECK :
 				inDeck++;
 				break;
+			default :
+				discardPile[cardSite-ON_DESK] = loop1;
+				discardPileMax++;
+				break;
 		}	
+		if(loop1 % LostCitiesState::CARD_ONE_COLOR_AMOUNT == LostCitiesState::CARD_ONE_COLOR_AMOUNT - 1)
+		{
+			if(discardPileMax == 0)
+				clickableArea[ClickableArea::DISCARD + cardColorNumber].SetCardID(-1);
+			else
+				clickableArea[ClickableArea::DISCARD + cardColorNumber].SetCardID(discardPile[discardPileMax - 1]);
+			for(int loop2 = 0; loop2 < discardPileMax; loop2++)
+			{
+				DrawCard(painter, discardPile[loop2], cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), 180);
+			}
+			discardPileMax = 0;
+		}
 	}
+
+	for(int loop2 = 0; loop2 < LostCitiesState::COLOR_AMOUNT; loop2++)
+	{
+		clickableArea[ClickableArea::EXPEDITION + loop2].SetHeight((cardHeight / 3) * (expedition[0][loop2]- 1) + cardHeight);
+	}
+
 	char cardInDeckString[24];
-	sprintf(cardInDeckString, "Cards in the deck : %d", inDeck);
-	painter->drawText(20, 20, 500, 500, 0, cardInDeckString);
+	DrawCard(painter, 61, clickableArea[ClickableArea::DECK].X(), clickableArea[ClickableArea::DECK].Y());
+	sprintf(cardInDeckString, "%d", inDeck);
+	painter->drawText(clickableArea[ClickableArea::DECK].X() + 5, clickableArea[ClickableArea::DECK].Y() + 5, 500, 500, 0, cardInDeckString);
+
+
+	if(highlightClickableAreas[CLICKABLE_HOVER] >= 0 && highlightClickableAreas[CLICKABLE_HOVER] < HAND_SIZE)
+		DrawCard(painter, clickableArea[highlightClickableAreas[CLICKABLE_HOVER]].CardID(), clickableArea[highlightClickableAreas[CLICKABLE_HOVER]].X(), clickableArea[highlightClickableAreas[CLICKABLE_HOVER]].Y());
+
+	painter->setBrush(Qt::BrushStyle::NoBrush);
+	painter->setPen(Qt::lightGray);
+	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
+	{
+		if(clickableArea[loop1].Active())
+		{
+			painter->drawRoundRect(clickableArea[loop1].Area());
+		}
+	}
+
+	painter->setPen(Qt::darkMagenta);
+	for(int loop1 = 0; loop1 < CLICKABLE_MAX_ACTIVE; loop1++)
+	{
+		if(highlightClickableAreas[loop1] >= 0)
+			painter->drawRoundRect(clickableArea[highlightClickableAreas[loop1]].Area());
+		painter->setPen(Qt::lightGray);
+	}
 }
 
 void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
@@ -126,6 +253,9 @@ void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
 		case 4 :
 			cardColor = Qt::red;
 			break;
+		default :
+			cardColor = Qt::darkGray;
+			break;
 	}
 
 	char symbolString[3];
@@ -143,7 +273,8 @@ void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
 
 	painter->setBrush(cardColor);
 	painter->drawRoundRect(x, y, cardWidth, cardHeight);
-	painter->drawText(x + 5, y + 5, cardWidth, cardHeight, 0, symbolString);
+	if(cardID < LostCitiesState::CARD_AMOUNT)
+		painter->drawText(x + 5, y + 5, cardWidth, cardHeight, 0, symbolString);
 }
 
 IGameState * LostCities::GetCurrentState() const
@@ -152,7 +283,100 @@ IGameState * LostCities::GetCurrentState() const
 }
 void LostCities::MouseMoveEvent ( int xMouse, int yMouse )
 {
+	if(state != STATE_RUNNING)
+		return;
+
+	highlightClickableAreas[CLICKABLE_HOVER] = -1;
+	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
+	{
+		if(clickableArea[loop1].Area().contains(xMouse, yMouse))
+		{
+			highlightClickableAreas[CLICKABLE_HOVER] = loop1;
+		}
+	}
 }
 void LostCities::MousePressEvent ( int xMouse, int yMouse )
 {
+	if(state != STATE_RUNNING)
+		return;
+
+	for(int loop1 = CLICKABLE_AREAS - 1; loop1 >= 0; loop1--)
+	{
+		if(clickableArea[loop1].Area().contains(xMouse, yMouse))
+		{
+			if(loop1 < HAND_SIZE)
+			{
+				if(highlightClickableAreas[CLICKABLE_PLAY_FROM] == loop1)
+				{
+					highlightClickableAreas[CLICKABLE_PLAY_FROM] = -1;
+					highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
+					highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+				}
+				else {
+					highlightClickableAreas[CLICKABLE_PLAY_FROM] = loop1;
+					highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
+					highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+				}
+			} else if(highlightClickableAreas[CLICKABLE_PLAY_FROM] >= 0)
+			{
+				if(loop1 < ClickableArea::DISCARD)
+				{
+					if(highlightClickableAreas[CLICKABLE_PLAY_TO] == loop1)
+					{
+						highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
+						highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+					} else if(clickableArea[loop1].Active()) {
+						highlightClickableAreas[CLICKABLE_PLAY_TO] = loop1;
+					}
+					
+				} else if(loop1 < ClickableArea::DECK)
+				{
+					if(highlightClickableAreas[CLICKABLE_PLAY_TO] >= 0)
+					{
+						if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == loop1)
+							highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+						else if(clickableArea[loop1].Active())
+							highlightClickableAreas[CLICKABLE_DRAW_FROM] = loop1;
+					} else {
+						if(highlightClickableAreas[CLICKABLE_PLAY_TO] == loop1)
+						{
+							highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
+							highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+						}
+						else if(clickableArea[loop1].Active())
+							highlightClickableAreas[CLICKABLE_PLAY_TO] = loop1;
+					}
+				} else {
+					if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == loop1)
+						highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+					else if(clickableArea[loop1].Active()) {
+						highlightClickableAreas[CLICKABLE_DRAW_FROM] = loop1;
+					}
+				}
+			}
+			break;
+		}
+	}
+
+	if(highlightClickableAreas[CLICKABLE_DRAW_FROM] >= 0)
+	{
+		int drawCardID;
+		if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == ClickableArea::DECK)
+		{
+			drawCardID = -1;
+		} else
+			drawCardID = clickableArea[highlightClickableAreas[CLICKABLE_DRAW_FROM]].CardID();
+
+		int playCardID = clickableArea[highlightClickableAreas[CLICKABLE_PLAY_FROM]].CardID();
+
+		if(highlightClickableAreas[CLICKABLE_PLAY_TO] < ClickableArea::DISCARD)
+			playCardID += LostCitiesState::DISCARD_CARD_OFFSET;
+
+		player[currentState->GetActivePlayerID()]->HumanTurn(currentState->GetTurnID(playCardID, drawCardID));
+
+		highlightClickableAreas[CLICKABLE_PLAY_FROM] = -1;
+		highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
+		highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+	}
+	UpdateActiveClickableAres();
 }

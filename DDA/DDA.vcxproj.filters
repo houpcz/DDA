@@ -145,6 +145,9 @@
     <ClCompile Include="LostCitiesState.cpp">
       <Filter>LostCities</Filter>
     </ClCompile>
+    <ClCompile Include="ClickableArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -179,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="LostCitiesState.h">
       <Filter>LostCities</Filter>
+    </ClInclude>
+    <ClInclude Include="ClickableArea.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

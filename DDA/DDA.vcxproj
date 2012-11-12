@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="ClickableArea.cpp" />
     <ClCompile Include="DDAWidget.cpp" />
     <ClCompile Include="EnvironmentAIBasic.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -157,6 +158,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui"</Command>
     </CustomBuild>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="ClickableArea.h" />
     <ClInclude Include="GameStat.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="LostCities.h" />
