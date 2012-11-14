@@ -52,7 +52,7 @@ bool LostCitiesState::MakeTurn(int turn)
 		if(playerChoises == 1)
 			return true;
 	} else {
-		int allChoisesID = turn % playerChoisesPhase1;
+		int allChoisesID = turn;
 		int cardID = (allChoises[allChoisesID] >= DISCARD_CARD_OFFSET) ? allChoises[allChoisesID] - DISCARD_CARD_OFFSET: allChoises[allChoisesID];
 		int cardColorNumber;
 		cardColorNumber = cardID / CARD_ONE_COLOR_AMOUNT;
@@ -66,23 +66,20 @@ bool LostCitiesState::MakeTurn(int turn)
 				card[cardID] = PLAYER_2_ON_DESK;
 		} else // discard card
 		{
-			card[cardID] = discardPileTopCard[cardColorNumber] + 1;
-			if(allChoisesPhase2IDFromColor[cardColorNumber] >= 0)
-				allChoisesPhase2[allChoisesPhase2IDFromColor[cardColorNumber]] = cardID;
+			card[cardID] = discardPileTopCardCode[cardColorNumber] + 1;
 		}
 		// Phase 2 - drawing card
-		int drawSite = turn / playerChoisesPhase1;
-		if(drawSite == 0) // draw from deck
+		if(drawFrom[turn] == DRAW_FROM_DECK) // draw from deck
 		{
 			activePlayerID = 0; // environment plays
 		} else {
 			if(activePlayerID == 1)
 			{
-				card[allChoisesPhase2[drawSite - 1]] = PLAYER_1_HAND;
+				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_1_HAND;
 				activePlayerID = 2;
 				lastRealPlayer = 2;
 			} else {
-				card[allChoisesPhase2[drawSite - 1]] = PLAYER_2_HAND;
+				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_2_HAND;
 				activePlayerID = 1;
 				lastRealPlayer = 1;
 			}
@@ -92,31 +89,19 @@ bool LostCitiesState::MakeTurn(int turn)
 	return false;
 }
 
-int LostCitiesState::GetTurnID(int playCardID, int drawCardID)
+int LostCitiesState::GetTurnID(int playCardID, int drawSite)
 {
 	int allChoisesID = 0;
-	for(int loop1 = 0; loop1 < playerChoisesPhase1; loop1++)
+	for(int loop1 = 0; loop1 < playerChoises; loop1++)
 	{
-		if(allChoises[loop1] == playCardID)
+		if(allChoises[loop1] == playCardID && drawFrom[loop1] == drawSite)
 		{
 			allChoisesID = loop1;
 			break;
 		}
 	}
 
-	int cardSite = 0;
-	if(drawCardID >= 0)
-	{
-		for(int loop1 = 0; loop1 < playerChoisesPhase2 - 1; loop1++)
-		{
-			if(allChoisesPhase2[loop1] == drawCardID)
-			{
-				cardSite = loop1 + 1; // + 1 for draw from deck
-				break;
-			}
-		}
-	}
-	return allChoisesID + cardSite * playerChoisesPhase1;
+	return allChoisesID;
 }
 void LostCitiesState::CountPlayerChoises()
 {
@@ -133,8 +118,6 @@ void LostCitiesState::CountPlayerChoises()
 	} else {
 		int playerHand;
 		int playerOnDesk;
-		playerChoisesPhase1 = 0;
-		playerChoisesPhase2 = 1;	// can draw from main pile
 		if(activePlayerID == 1)
 		{
 			playerHand = PLAYER_1_HAND;
@@ -146,43 +129,50 @@ void LostCitiesState::CountPlayerChoises()
 		for(char loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 		{
 			bool canAddCardToExpedition = true;
-			bool wasCountDiscardPileForThisColor = false;
-			discardPileTopCard[loop1] = ON_DESK - 1;
-			allChoisesPhase2IDFromColor[loop1] = -1;
+			discardPileTopCardCode[loop1] = ON_DESK - 1;
+			discardPileTopCardID[loop1] = -1;
 			for(char loop2 = CARD_ONE_COLOR_AMOUNT - 1; loop2 >= 0; loop2--)
 			{
 				char cardID = loop1 * CARD_ONE_COLOR_AMOUNT + loop2;
 				if(card[cardID] == playerHand)
 				{
-					allChoises[playerChoisesPhase1++] = cardID;	// can discard card
+					allChoises[playerChoises] = cardID;	// can discard card
+					drawFrom[playerChoises] = DRAW_FROM_DECK;
+					playerChoises++;
 					if(canAddCardToExpedition)
 					{
-						allChoises[playerChoisesPhase1++] = cardID + DISCARD_CARD_OFFSET; // may add to expedition
+						allChoises[playerChoises] = cardID + DISCARD_CARD_OFFSET; // may add to expedition
+						drawFrom[playerChoises] = DRAW_FROM_DECK;
+						playerChoises++;
 					}
 				} else if(canAddCardToExpedition && card[cardID] == playerOnDesk) // you can't add lower value card to existing expedition
 				{
 					canAddCardToExpedition = false; 
 				} else if(card[cardID] >= ON_DESK)
 				{
-					if(!wasCountDiscardPileForThisColor)
+					if(discardPileTopCardCode[loop1] < card[cardID])
 					{
-						allChoisesPhase2IDFromColor[loop1] = playerChoisesPhase2 - 1; // -1 because first is drawing from deck
-						playerChoisesPhase2++;			// can draw from discard pile
-						wasCountDiscardPileForThisColor = true;
-					}
-
-					if(discardPileTopCard[loop1] < card[cardID])
-					{
-						discardPileTopCard[loop1] = card[cardID];
-						allChoisesPhase2[playerChoisesPhase2 - 2] = cardID; // -1 because we added new Choise for this color before
+						discardPileTopCardCode[loop1] = card[cardID];
+						discardPileTopCardID[loop1] = cardID;
 					}
 				}
 			}
 		}
 
-		playerChoises = playerChoisesPhase2 * playerChoisesPhase1;
-		if(playerChoises == 0)
-			playerChoises = 1;
+		int oldChoises = playerChoises;
+		for(int loop1 = 0; loop1 < oldChoises; loop1++)
+		{
+			for(int loop2 = 0; loop2 < COLOR_AMOUNT; loop2++)
+			{
+				// if there is card on discard pile and if you dont play card of same color on discard pile, you can draw from thad pile
+				if(discardPileTopCardID[loop2] >= 0 && (allChoises[loop1] >= DISCARD_CARD_OFFSET || loop2 != allChoises[loop1] / CARD_ONE_COLOR_AMOUNT))
+				{
+					allChoises[playerChoises] = allChoises[loop1];
+					drawFrom[playerChoises] = loop2;
+					playerChoises++;
+				}
+			}
+		}
 	}
 }
 int LostCitiesState::GetPlayerChoises() const

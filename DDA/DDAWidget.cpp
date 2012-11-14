@@ -83,12 +83,14 @@ void DDAWidget::mouseMoveEvent ( QMouseEvent * event )
 void DDAWidget::mousePressEvent ( QMouseEvent * event )
 {
 	activeGame->MousePressEvent(event->x(), event->y());
+	repaint();
 }
 
 void DDAWidget::NewGame()
 {
 	//for(int loop1 = 0; loop1 < 10000; loop1++)
-		activeGame->StartGame();
+	activeGame->StartGame();
+	repaint();
 }
 
 void DDAWidget::SetGameLostCities()

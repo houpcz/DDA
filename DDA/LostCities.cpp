@@ -300,6 +300,7 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 	if(state != STATE_RUNNING)
 		return;
 
+	int drawSite = -1;
 	for(int loop1 = CLICKABLE_AREAS - 1; loop1 >= 0; loop1--)
 	{
 		if(clickableArea[loop1].Area().contains(xMouse, yMouse))
@@ -333,23 +334,32 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 				{
 					if(highlightClickableAreas[CLICKABLE_PLAY_TO] >= 0)
 					{
-						if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == loop1)
-							highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
-						else if(clickableArea[loop1].Active())
-							highlightClickableAreas[CLICKABLE_DRAW_FROM] = loop1;
-					} else {
 						if(highlightClickableAreas[CLICKABLE_PLAY_TO] == loop1)
 						{
 							highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
 							highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+						} else {
+							if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == loop1)
+							{
+								highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+							}
+							else if(clickableArea[loop1].Active())
+							{
+								drawSite = loop1 - ClickableArea::DISCARD;
+								highlightClickableAreas[CLICKABLE_DRAW_FROM] = loop1;
+							}
 						}
-						else if(clickableArea[loop1].Active())
+					} else {
+						if(clickableArea[loop1].Active())
 							highlightClickableAreas[CLICKABLE_PLAY_TO] = loop1;
 					}
 				} else {
 					if(highlightClickableAreas[CLICKABLE_DRAW_FROM] == loop1)
+					{
 						highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
+					}
 					else if(clickableArea[loop1].Active()) {
+						drawSite = LostCitiesState::DRAW_FROM_DECK;
 						highlightClickableAreas[CLICKABLE_DRAW_FROM] = loop1;
 					}
 				}
@@ -372,7 +382,7 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 		if(highlightClickableAreas[CLICKABLE_PLAY_TO] < ClickableArea::DISCARD)
 			playCardID += LostCitiesState::DISCARD_CARD_OFFSET;
 
-		player[currentState->GetActivePlayerID()]->HumanTurn(currentState->GetTurnID(playCardID, drawCardID));
+		player[currentState->GetActivePlayerID()]->HumanTurn(currentState->GetTurnID(playCardID, drawSite));
 
 		highlightClickableAreas[CLICKABLE_PLAY_FROM] = -1;
 		highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;

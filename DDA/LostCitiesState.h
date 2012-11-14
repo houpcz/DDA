@@ -17,6 +17,8 @@ enum CardPosition
 class LostCitiesState : public IGameState
 {
 public :
+	static const int DRAW_FROM_DECK = 5;
+	static const int MAX_CHOISES = 80;		// 8 cards, each 2 option max, than draw max 5 option 8*2*5
 	static const int ENVIRONMENTAL_AI = 0;
 	static const int PLAYER_AMOUNT = 2;
 	static const int COLOR_AMOUNT = 5;
@@ -25,15 +27,13 @@ public :
 	static const int DISCARD_CARD_OFFSET = 60;
 private:
 	char card[CARD_AMOUNT];
-	char allChoises[CARD_AMOUNT]; // valid "playerChoises" values, ids of cards which can be played
-	int allChoisesPhase2IDFromColor[COLOR_AMOUNT];		// translate color number to allChoisesPhase2 ID
-	char allChoisesPhase2[COLOR_AMOUNT];
+	char allChoises[MAX_CHOISES]; // valid "playerChoises" values, ids of cards which can be played and where
+	char drawFrom[MAX_CHOISES];   // ids to discardOnTop
 	int activePlayerID;
 	int lastRealPlayer; // not environmental AI
 	int playerChoises;
-	int playerChoisesPhase1;
-	int playerChoisesPhase2;		// drawing card phase
-	int discardPileTopCard[COLOR_AMOUNT];
+	int discardPileTopCardCode[COLOR_AMOUNT];
+	int discardPileTopCardID[COLOR_AMOUNT];
 
 	void InitGame(int handSize);
 	void CountPlayerChoises();
@@ -46,7 +46,7 @@ public:
 	int GetPlayerScore(int playerID) const;
 	IGameState ** GetNextStates(int *outNumberNextStates) const;
 	bool MakeTurn(int turn);
-	int GetTurnID(int playCardID, int cardSite);
+	int GetTurnID(int playCardID, int drawSite);
 };
 
 #endif
