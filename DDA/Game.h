@@ -17,6 +17,8 @@ class Game : public IGame
 	Q_OBJECT
 
 protected:
+	bool paint;
+
 	State state;
 	int playerCount;
 	IPlayer ** player;
@@ -28,12 +30,14 @@ protected:
 
 	QWidget * widget;
 public:
-	Game(QWidget * _widget);
+	Game(QWidget * _widget, bool paint = true);
 	virtual ~Game(void);
 	virtual IGameState * GetCurrentState() const = 0;
 	virtual bool PlayerTurn() = 0; /// Game specific turn
 	virtual void NextTurn();       /// Common for all games
 	void SetPlayer(int playerID, int aiID);
+	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
+	virtual void Paint(QPainter * painter);
 
 	IPlayer * GetPlayer(int ID) { return player[ID]; };
 	int GetMinEnvironmentalAI() { return minEnvironmentalAI; };

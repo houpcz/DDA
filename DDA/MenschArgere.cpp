@@ -6,7 +6,7 @@
 const int MenschArgere::firstTile[MenschState::MAX_PLAYER] = { 0, 10, 20, 30 };
 const QColor MenschArgere::playerColor[MenschState::MAX_PLAYER] = { Qt::blue, Qt::red, Qt::green, Qt::yellow };
 
-MenschArgere::MenschArgere(QWidget * _widget) : Game(_widget)
+MenschArgere::MenschArgere(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
 	minEnvironmentalAI = 1;
 	maxEnvironmentalAI = 1;

@@ -24,7 +24,7 @@ private:
 	static const QColor playerColor[MenschState::MAX_PLAYER];
 	int GetTileID(int player, int figure, int & atStart);
 public:
-	MenschArgere(QWidget * _widget);
+	MenschArgere(QWidget * _widget, bool _paint = true);
 	virtual ~MenschArgere(void);
 	bool PlayerTurn();
 	void StartGame();

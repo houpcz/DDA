@@ -26,7 +26,7 @@ private :
 	int GetCardValue(int cardID) { return cardID % LostCitiesState::CARD_ONE_COLOR_AMOUNT; };
 	void UpdateActiveClickableAres();
 public:
-	LostCities(QWidget * _widget);
+	LostCities(QWidget * _widget, bool _paint = true);
 	~LostCities(void);
 	bool PlayerTurn();
 	void StartGame();

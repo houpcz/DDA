@@ -3,7 +3,7 @@
 #include "Human.h"
 #include "PlayerRandomAI.h"
 
-GameMaze::GameMaze(QWidget * _widget) : Game(_widget)
+GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
 	minEnvironmentalAI = 1;
 	maxEnvironmentalAI = 1;

@@ -22,6 +22,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
     startGameAction->setShortcut(tr("Ctrl+S"));
     startGameAction->setStatusTip(tr("Start new game"));
     connect(startGameAction, SIGNAL(triggered()), this, SLOT(NewGame()));
+	game->addAction(startGameAction);
 
 	QMenu * setGameMenu = game->addMenu(tr("Set Game"));
 	QAction * setGameMazeAction = new QAction(tr("Maze"), this);
@@ -33,7 +34,12 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
     connect(setGameMazeAction, SIGNAL(triggered()), this, SLOT(SetGameMaze()));
 	connect(setGameMenschArgereAction, SIGNAL(triggered()), this, SLOT(SetGameMenschArgere()));
 	connect(setGameLostCitiesAction, SIGNAL(triggered()), this, SLOT(SetGameLostCities()));
-	game->addAction(startGameAction);
+
+	QAction * batchMenuAction = new QAction(tr("&Batch"), this);
+    batchMenuAction->setShortcut(tr("Ctrl+B"));
+    batchMenuAction->setStatusTip(tr("Start batch of games"));
+    connect(batchMenuAction, SIGNAL(triggered()), this, SLOT(BatchMenu()));
+	game->addAction(batchMenuAction);
 
 	playersMenu = menuBar()->addMenu(tr("Players"));
 
@@ -59,7 +65,6 @@ DDAWidget::~DDAWidget(void)
 	if(activeGame)
 		delete activeGame;
 
-	delete board;
 	delete signalMapper;
 
 	for(int loop1 = 0; loop1 < playerAI.size(); loop1++)
@@ -93,6 +98,12 @@ void DDAWidget::NewGame()
 	repaint();
 }
 
+void DDAWidget::BatchMenu()
+{
+	batchWindow = new BatchWindow(this);
+	setCentralWidget(batchWindow);
+}
+
 void DDAWidget::SetGameLostCities()
 {
 	SetGame(GAME_LOST_CITIES_ID);
@@ -110,6 +121,9 @@ void DDAWidget::SetGameMenschArgere()
 
 void DDAWidget::SetGame(int gameID)
 {
+	board = new Board(this, activeGame);
+	setCentralWidget(board);
+
 	if(gameID == activeGameID)
 		return;
 

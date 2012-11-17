@@ -2,9 +2,10 @@
 #include "Human.h"
 #include "PlayerRandomAI.h"
 
-Game::Game(QWidget * _widget)
+Game::Game(QWidget * _widget, bool _paint)
 {
 	widget = _widget;
+	paint = _paint;
 	state = STATE_STOPPED;
 	playerCount = 0;
 	player = NULL;
@@ -35,13 +36,21 @@ void Game::NextTurn()
 				break;
 			}
 
-			widget->repaint();
+			if(paint)
+				widget->repaint();
 			
 			if(!player[GetCurrentState()->GetActivePlayerID()]->Think())
 				break;
 		}
 	}
-	widget->repaint();
+	if(paint)
+		widget->repaint();
+}
+
+void Game::Paint(QPainter * painter)
+{
+	if(paint)
+		Draw(painter, 0);
 }
 
 void Game::SetPlayer(int playerID, int aiID)

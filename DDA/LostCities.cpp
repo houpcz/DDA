@@ -3,7 +3,7 @@
 #include "PlayerRandomAI.h"
 #include "Human.h"
 
-LostCities::LostCities(QWidget * _widget) : Game(_widget)
+LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
 	cardWidth = 60;
 	cardHeight = 60;

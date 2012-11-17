@@ -16,7 +16,7 @@ Board::~Board(void)
 void Board::paintEvent(QPaintEvent * paintEvent)
 {
 	QPainter painter(this);
-	activeGame->Draw(&painter);
+	activeGame->Paint(&painter);
 }
 
 void Board::mouseMoveEvent ( QMouseEvent * event ) 

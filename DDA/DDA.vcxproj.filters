@@ -38,6 +38,9 @@
     <Filter Include="LostCities">
       <UniqueIdentifier>{28a5bb4b-594e-4696-92af-71de9b984d74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Batch">
+      <UniqueIdentifier>{8b0b49dd-2b53-4408-bc2e-3509cba50a0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -148,6 +151,24 @@
     <ClCompile Include="ClickableArea.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchThread.cpp">
+      <Filter>Batch</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchWindow.cpp">
+      <Filter>Batch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -211,6 +232,12 @@
     </CustomBuild>
     <CustomBuild Include="GameMaze.h">
       <Filter>Maze</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchThread.h">
+      <Filter>Batch</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchWindow.h">
+      <Filter>Batch</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

@@ -23,9 +23,10 @@ public:
 	  \return True if next state is game over
 	*/
 	virtual bool PlayerTurn() = 0;
+
 	virtual void StartGame() = 0;
 	virtual IGameState * GetCurrentState() const = 0;
-	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
+	virtual void Paint(QPainter * painter) = 0;
 	virtual void MouseMoveEvent ( int xMouse, int yMouse ) {};
 	virtual void MousePressEvent ( int xMouse, int yMouse ) {};
 

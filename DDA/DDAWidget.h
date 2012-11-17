@@ -7,6 +7,7 @@
 
 #include <qwidget.h>
 #include <qmainwindow.h>
+#include "BatchWindow.h"
 #include "IGame.h"
 #include "GameMaze.h"
 #include "MenschArgere.h"
@@ -28,6 +29,7 @@ private:
 	IGame * activeGame;
 	int activeGameID;
 	Board * board;
+	BatchWindow * batchWindow;
 
 	QMenu * playersMenu;
     QSignalMapper * signalMapper;
@@ -44,6 +46,7 @@ public:
 	void mousePressEvent ( QMouseEvent * event );
 
 	public slots:
+		void BatchMenu();
 		void NewGame();
 		void SetGame(int gameID);
 		void SetGameMaze();
