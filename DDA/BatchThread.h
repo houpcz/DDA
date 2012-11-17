@@ -10,10 +10,14 @@ class BatchThread : public QThread {
 private:
 	IGame * game;
 	int batchSize;
+	bool shouldRun;
 public:
-	BatchThread(IGame * _game, int _batchSize);
+	BatchThread();
 	~BatchThread(void);
 	void run();
+	bool Start(IGame * _game, int _batchSize);
+	void Stop() { shouldRun = false; };
+	bool ShouldRun() { return shouldRun; }
 
 signals:
 	void GameOver(int gameID);

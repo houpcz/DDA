@@ -26,10 +26,13 @@ Game::~Game(void)
 
 void Game::NextTurn()
 {
+	int turnNumber = 0;
 	while(true)
 	{
 		if(player[GetCurrentState()->GetActivePlayerID()]->IsReady())
 		{
+			turnNumber++;
+
 			if(PlayerTurn())
 			{
 				state = STATE_GAME_OVER;
@@ -39,7 +42,9 @@ void Game::NextTurn()
 			if(paint)
 				widget->repaint();
 			
-			if(!player[GetCurrentState()->GetActivePlayerID()]->Think())
+			IGameState * gameState = GetCurrentState();
+			int activePlayerID = gameState->GetActivePlayerID();
+			if(!player[activePlayerID]->Think())
 				break;
 		}
 	}

@@ -31,6 +31,43 @@ void LostCitiesState::InitGame(int handSize)
 	CountPlayerChoises();
 }
 
+LostCitiesState::LostCitiesState(const LostCitiesState & origin)
+{
+	CopyToMe(origin);
+}
+
+LostCitiesState& LostCitiesState::operator=(const LostCitiesState &origin)
+{
+	if(&origin != this)
+	{
+		CopyToMe(origin);
+	}
+
+	return *this;
+}
+
+void LostCitiesState::CopyToMe(const LostCitiesState & origin)
+{
+	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+		card[loop1] = origin.card[loop1];
+
+	activePlayerID = origin.activePlayerID;
+	lastRealPlayer = origin.lastRealPlayer;
+	playerChoises = origin.playerChoises;
+
+	for(int loop1 = 0; loop1 < playerChoises; loop1++)
+	{
+		allChoises[loop1] = origin.allChoises[loop1];
+		drawFrom[loop1] = origin.allChoises[loop1];
+	}
+
+	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
+	{
+		discardPileTopCardCode[loop1] = origin.discardPileTopCardCode[loop1];
+		discardPileTopCardID[loop1] = origin.discardPileTopCardID[loop1];
+	}
+}
+
 LostCitiesState::~LostCitiesState(void)
 {
 }

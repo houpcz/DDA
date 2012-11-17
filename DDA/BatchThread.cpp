@@ -1,10 +1,9 @@
 #include "BatchThread.h"
 
 
-BatchThread::BatchThread(IGame * _game, int _batchSize)
+BatchThread::BatchThread()
 {
-	game = _game;
-	batchSize = _batchSize;
+	shouldRun = false;
 }
 
 
@@ -12,10 +11,26 @@ BatchThread::~BatchThread(void)
 {
 }
 
+bool BatchThread::Start(IGame * _game, int _batchSize)
+{
+	game = _game;
+	batchSize = _batchSize;
+
+	if(!shouldRun)
+	{
+		start();
+		return true;
+	} else {
+		return false;
+	}
+}
+
 void BatchThread::run() {
-	for(int loop1 = 0; loop1 < batchSize; loop1++)
+	shouldRun = true;
+	for(int loop1 = 0; loop1 < batchSize && shouldRun; loop1++)
 	{
 		game->StartGame();
 		emit GameOver(loop1);
 	}
+	shouldRun = false;
 }

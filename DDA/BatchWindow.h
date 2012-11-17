@@ -15,12 +15,14 @@ private :
 	BatchThread *batchThread;
 	QLCDNumber *gameIDNumber;
 	QPushButton *startButton;
+	QPushButton *stopButton;
 	IGame *activeGame;
 public:
 	BatchWindow(QWidget *parent);
 	~BatchWindow(void);
 public slots:
 	void StartBatch();
+	void StopBatch();
 };
 
 #endif

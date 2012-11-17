@@ -18,7 +18,7 @@ class LostCitiesState : public IGameState
 {
 public :
 	static const int DRAW_FROM_DECK = 5;
-	static const int MAX_CHOISES = 80;		// 8 cards, each 2 option max, than draw max 5 option 8*2*5
+	static const int MAX_CHOISES = 88;		// 8 cards, each 2 option max (16 play options), first 8 play option has max 6 draw options, last 8 max 5 draw options
 	static const int ENVIRONMENTAL_AI = 0;
 	static const int PLAYER_AMOUNT = 2;
 	static const int COLOR_AMOUNT = 5;
@@ -39,12 +39,16 @@ private:
 	void CountPlayerChoises();
 public:
 	LostCitiesState();
-	~LostCitiesState(void);
+	virtual ~LostCitiesState(void);
+	LostCitiesState(const LostCitiesState & origin);
+	LostCitiesState& operator=(const LostCitiesState &origin);
+	void CopyToMe(const LostCitiesState & origin);
+
 	char GetCard(int id) { return card[id]; }
-	int GetPlayerChoises() const;
-	int GetActivePlayerID() const;
-	int GetPlayerScore(int playerID) const;
-	IGameState ** GetNextStates(int *outNumberNextStates) const;
+	virtual int GetPlayerChoises() const;
+	virtual int GetActivePlayerID() const;
+	virtual int GetPlayerScore(int playerID) const;
+	virtual IGameState ** GetNextStates(int *outNumberNextStates) const;
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
 };
