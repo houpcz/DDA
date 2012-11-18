@@ -4,6 +4,9 @@
 #include <qwidget.h>
 #include <QPushButton>
 #include <QLCDNumber>
+#include <QSpinBox>
+#include <QComboBox>
+#include <QTreeWidget>
 #include "BatchThread.h"
 #include "IGame.h"
 
@@ -16,6 +19,12 @@ private :
 	QLCDNumber *gameIDNumber;
 	QPushButton *startButton;
 	QPushButton *stopButton;
+	QPushButton *addBatch;
+	QPushButton *removeBatch;
+	QPushButton *setupBatch;
+	QTreeWidget *listBatch;
+	QComboBox * gameList;
+	QSpinBox * batchSize;
 	IGame *activeGame;
 public:
 	BatchWindow(QWidget *parent);
@@ -23,6 +32,8 @@ public:
 public slots:
 	void StartBatch();
 	void StopBatch();
+	void RemoveTopItem();
+	void AddItemToBatch();
 };
 
 #endif

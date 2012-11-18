@@ -30,7 +30,7 @@ void BatchThread::run() {
 	for(int loop1 = 0; loop1 < batchSize && shouldRun; loop1++)
 	{
 		game->StartGame();
-		emit GameOver(loop1);
+		emit GameOver(loop1 + 1);
 	}
 	shouldRun = false;
 }
