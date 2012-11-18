@@ -21,6 +21,7 @@ public:
 
 signals:
 	void GameOver(int gameID);
+	void BatchItemOver();
 };
 
 #endif

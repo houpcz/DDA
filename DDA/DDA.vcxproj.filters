@@ -169,6 +169,9 @@
     <ClCompile Include="BatchWindow.cpp">
       <Filter>Batch</Filter>
     </ClCompile>
+    <ClCompile Include="BatchItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -205,6 +208,9 @@
       <Filter>LostCities</Filter>
     </ClInclude>
     <ClInclude Include="ClickableArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

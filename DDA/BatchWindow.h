@@ -1,14 +1,19 @@
 #ifndef _BATCH_WINDOW_H_
 #define _BATCH_WINDOW_H_
 
+#include <vector>
 #include <qwidget.h>
 #include <QPushButton>
 #include <QLCDNumber>
 #include <QSpinBox>
 #include <QComboBox>
 #include <QTreeWidget>
+#include <QProgressBar>
 #include "BatchThread.h"
 #include "IGame.h"
+#include "BatchItem.h"
+
+using namespace std;
 
 class BatchWindow : public QWidget
 {
@@ -17,6 +22,8 @@ class BatchWindow : public QWidget
 private :
 	BatchThread *batchThread;
 	QLCDNumber *gameIDNumber;
+	int progressValue;
+	QProgressBar *progressBar;
 	QPushButton *startButton;
 	QPushButton *stopButton;
 	QPushButton *addBatch;
@@ -25,7 +32,10 @@ private :
 	QTreeWidget *listBatch;
 	QComboBox * gameList;
 	QSpinBox * batchSize;
-	IGame *activeGame;
+
+	bool batchIsRunning;
+	int currentBatchItemID;
+	vector<BatchItem *> batchItem;
 public:
 	BatchWindow(QWidget *parent);
 	~BatchWindow(void);
@@ -34,6 +44,8 @@ public slots:
 	void StopBatch();
 	void RemoveTopItem();
 	void AddItemToBatch();
+	void NextBatchItem();
+	void GameOver(int gameID);
 };
 
 #endif

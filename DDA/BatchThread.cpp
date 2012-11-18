@@ -18,6 +18,9 @@ bool BatchThread::Start(IGame * _game, int _batchSize)
 
 	if(!shouldRun)
 	{
+		while(isRunning())
+			;
+
 		start();
 		return true;
 	} else {
@@ -32,5 +35,7 @@ void BatchThread::run() {
 		game->StartGame();
 		emit GameOver(loop1 + 1);
 	}
+
 	shouldRun = false;
+	emit BatchItemOver();
 }
