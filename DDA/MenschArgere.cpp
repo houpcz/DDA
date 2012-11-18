@@ -8,8 +8,6 @@ const QColor MenschArgere::playerColor[MenschState::MAX_PLAYER] = { Qt::blue, Qt
 
 MenschArgere::MenschArgere(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
-	minEnvironmentalAI = 1;
-	maxEnvironmentalAI = 1;
 	minPlayerAI = 2;
 	maxPlayerAI = 4;
 

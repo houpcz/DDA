@@ -31,8 +31,6 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 		highlightClickableAreas[loop1] = -1;
 	}
 
-	minEnvironmentalAI = 1;
-	maxEnvironmentalAI = 1;
 	minPlayerAI = 2;
 	maxPlayerAI = 2;
 

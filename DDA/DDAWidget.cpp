@@ -156,21 +156,19 @@ void DDAWidget::ChangePlayerMenu()
 	signalMapper->disconnect();
 
 	QAction * setPlayer;
-	for(int loop1 = 0; loop1 < activeGame->GetMaxEnvironmentalAI(); loop1++)
-	{
-		playerMenu[loop1] = playersMenu->addMenu(tr("Environmental AI"));
-	}
+	playerMenu[0] = playersMenu->addMenu(tr("Environmental AI"));
+	int environmentalAINumber = 1;
 	for(int loop1 = 0; loop1 < activeGame->GetMaxPlayerAI(); loop1++)
 	{
-		playerMenu[loop1 + activeGame->GetMaxEnvironmentalAI()] = playersMenu->addMenu(activeGame->GetPlayer(loop1 + activeGame->GetMaxEnvironmentalAI())->GetAINAme());
+		playerMenu[loop1 + environmentalAINumber] = playersMenu->addMenu(activeGame->GetPlayer(loop1 + environmentalAINumber)->GetAINAme());
 		
 		for(int loop2 = 0; loop2 < playerAI.size(); loop2++)
 		{
 			setPlayer = new QAction(playerAI[loop2]->GetAINAme(), this);
 			connect(setPlayer, SIGNAL(triggered()), signalMapper, SLOT(map()));
-			int signalInt = loop2 + (loop1 + activeGame->GetMaxEnvironmentalAI()) * playerAI.size();
+			int signalInt = loop2 + (loop1 + environmentalAINumber) * playerAI.size();
 			signalMapper->setMapping(setPlayer, signalInt);
-			playerMenu[loop1 + activeGame->GetMaxEnvironmentalAI()]->addAction(setPlayer);
+			playerMenu[loop1 + environmentalAINumber]->addAction(setPlayer);
 		}
 	}
 

@@ -31,8 +31,6 @@ public:
 	virtual void MousePressEvent ( int xMouse, int yMouse ) {};
 
 	virtual void SetPlayer(int playerID, int aiID) = 0;
-	virtual int GetMinEnvironmentalAI() = 0;
-	virtual int GetMaxEnvironmentalAI() = 0;
 	virtual int GetMinPlayerAI() = 0;
 	virtual int GetMaxPlayerAI() = 0;
 	virtual IPlayer * GetPlayer(int ID) = 0;

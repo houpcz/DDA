@@ -23,8 +23,6 @@ protected:
 	int playerCount;
 	IPlayer ** player;
 
-	int minEnvironmentalAI;
-	int maxEnvironmentalAI;
 	int minPlayerAI;
 	int maxPlayerAI;
 
@@ -40,8 +38,6 @@ public:
 	virtual void Paint(QPainter * painter);
 
 	IPlayer * GetPlayer(int ID) { return player[ID]; };
-	int GetMinEnvironmentalAI() { return minEnvironmentalAI; };
-	int GetMaxEnvironmentalAI() { return maxEnvironmentalAI; };
 	int GetMinPlayerAI() { return minPlayerAI; };
 	int GetMaxPlayerAI() { return maxPlayerAI; };
 };
