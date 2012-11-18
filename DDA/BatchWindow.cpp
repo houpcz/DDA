@@ -83,7 +83,7 @@ void BatchWindow::GameOver(int gameID)
 }
 void BatchWindow::StartBatch()
 {
-	if(batchThread->isRunning())
+	if(batchThread->isRunning() || batchItem.empty())
 		return;
 
 	int sumBatchSize = 0;
