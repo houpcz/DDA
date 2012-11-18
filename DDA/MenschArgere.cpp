@@ -136,6 +136,8 @@ bool MenschArgere::PlayerTurn()
 
 void MenschArgere::StartGame()
 {
+	Game::StartGame();
+
 	if(currentState != NULL)
 		delete currentState;
 

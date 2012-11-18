@@ -1,4 +1,5 @@
 #include <QGridLayout>
+
 #include "BatchWindow.h"
 #include "LostCities.h"
 #include "MenschArgere.h"
@@ -35,11 +36,12 @@ BatchWindow::BatchWindow(QWidget *parent) : QWidget(parent)
 	 connect(removeBatch, SIGNAL(clicked()), this, SLOT(RemoveTopItem()));
 	 setupBatch = new QPushButton(tr("Setup"), this);
 	 listBatch = new QTreeWidget(this);
-	 listBatch->setColumnCount(3);
+	 listBatch->setColumnCount(4);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
 	 header->setData(0, 0, "Game"); 
 	 header->setData(1, 0, "Batch"); 
 	 header->setData(2, 0, "Completed"); 
+	 header->setData(3, 0, "Turn Number"); 
 	 listBatch->setHeaderItem(header);
 
 	 gridLayout->addWidget(gameList, 0, 0);
@@ -63,10 +65,13 @@ BatchWindow::~BatchWindow(void)
 
 void BatchWindow::NextBatchItem()
 {
+	if(currentBatchItemID >= 0)
+		batchItem[currentBatchItemID]->UpdateTreeWidget();
+
 	currentBatchItemID++;
 	if(currentBatchItemID < batchItem.size() && batchIsRunning)
 	{
-		batchThread->Start(batchItem[currentBatchItemID]->Game(), batchItem[currentBatchItemID]->BatchSize());
+		batchThread->Start(batchItem[currentBatchItemID]);
 	} else {
 		removeBatch->setEnabled(true);
 		addBatch->setEnabled(true);
@@ -126,6 +131,7 @@ void BatchWindow::AddItemToBatch()
 	tempItem->setData(0, 0, gameList->currentText());
 	tempItem->setData(1, 0, batchSize->value());
 	tempItem->setData(2, 0, 0);
+	tempItem->setData(3, 0, 0);
 	listBatch->addTopLevelItem(tempItem);
 
 	switch(gameList->currentIndex())

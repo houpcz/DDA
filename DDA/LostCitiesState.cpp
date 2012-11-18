@@ -1,5 +1,6 @@
 
 #include <algorithm>
+#include <ctime>
 #include "LostCitiesState.h"
 
 using namespace std;
@@ -21,6 +22,7 @@ void LostCitiesState::InitGame(int handSize)
 		allCards[loop1] = loop1;
 	}
 	
+	srand(time(NULL)); 
 	random_shuffle(allCards, allCards + CARD_AMOUNT);
 	
 	for(int loop1 = 0; loop1 < handSize; loop1++)

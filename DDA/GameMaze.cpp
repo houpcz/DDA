@@ -12,7 +12,8 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
 
-	player = new IPlayer*[2];
+	playerCount = 2;
+	player = new IPlayer*[playerCount];
 	player[ENVINRONMENT_AI] = new EnvironmentAIBasic();
 	player[PLAYER_AI] = new PlayerRandomAI();
 
@@ -24,6 +25,8 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 void GameMaze::StartGame()
 {
+	Game::StartGame();
+
 	if(currentState != NULL)
 	{
 		delete currentState;

@@ -6,6 +6,7 @@
 #include <qobject.h>
 #include "IGameState.h"
 #include "IPlayer.h"
+#include "GameStat.h"
 
 class IGame : public QObject
 {
@@ -31,8 +32,10 @@ public:
 	virtual void MousePressEvent ( int xMouse, int yMouse ) {};
 
 	virtual void SetPlayer(int playerID, int aiID) = 0;
+	virtual GameStat GetGameStat() = 0;
 	virtual int GetMinPlayerAI() = 0;
 	virtual int GetMaxPlayerAI() = 0;
+	virtual int GetPlayerCount() = 0;
 	virtual IPlayer * GetPlayer(int ID) = 0;
 public slots:
 	void PlayerIsReady();

@@ -2,6 +2,7 @@
 #define _GAME_H_
 
 #include "igame.h"
+#include "GameStat.h"
 #include "IPlayer.h"
 #include <qobject.h>
 #include <qwidget.h>
@@ -17,11 +18,13 @@ class Game : public IGame
 	Q_OBJECT
 
 protected:
+	static const int ENVIRONMENTAL_AI_ID = 0;
 	bool paint;
 
 	State state;
 	int playerCount;
 	IPlayer ** player;
+	GameStat * gameStat;
 
 	int minPlayerAI;
 	int maxPlayerAI;
@@ -36,10 +39,13 @@ public:
 	void SetPlayer(int playerID, int aiID);
 	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
 	virtual void Paint(QPainter * painter);
+	virtual void StartGame();
 
 	IPlayer * GetPlayer(int ID) { return player[ID]; };
 	int GetMinPlayerAI() { return minPlayerAI; };
 	int GetMaxPlayerAI() { return maxPlayerAI; };
+	int GetPlayerCount() { return playerCount;};
+	GameStat GetGameStat() { return *gameStat; }
 };
 
 #endif

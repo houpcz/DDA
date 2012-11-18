@@ -67,6 +67,8 @@ bool LostCities::PlayerTurn()
 
 void LostCities::StartGame()
 {
+	Game::StartGame();
+
 	if(currentState != NULL)
 		delete currentState;
 	currentState = new LostCitiesState();

@@ -170,7 +170,7 @@
       <Filter>Batch</Filter>
     </ClCompile>
     <ClCompile Include="BatchItem.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Batch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,7 +211,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BatchItem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Batch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ Game::Game(QWidget * _widget, bool _paint)
 	state = STATE_STOPPED;
 	playerCount = 0;
 	player = NULL;
+	gameStat = NULL;
 }
 
 
@@ -24,6 +25,14 @@ Game::~Game(void)
 	}
 }
 
+void Game::StartGame()
+{
+	if(gameStat != NULL)
+		delete gameStat;
+
+	gameStat = new GameStat(playerCount - 1);
+}
+
 void Game::NextTurn()
 {
 	int turnNumber = 0;
@@ -32,6 +41,11 @@ void Game::NextTurn()
 		if(player[GetCurrentState()->GetActivePlayerID()]->IsReady())
 		{
 			turnNumber++;
+
+			gameStat->AddTurnNumber();
+
+			if(GetCurrentState()->GetActivePlayerID() != ENVIRONMENTAL_AI_ID)
+				gameStat->AddTurnNumberReal();
 
 			if(PlayerTurn())
 			{
