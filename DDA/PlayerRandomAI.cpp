@@ -1,7 +1,7 @@
 #include "PlayerRandomAI.h"
 #include "IGame.h"
 
-PlayerRandomAI::PlayerRandomAI(void)
+PlayerRandomAI::PlayerRandomAI(int _myID) : IPlayer(_myID)
 {
 }
 
@@ -13,7 +13,7 @@ PlayerRandomAI::~PlayerRandomAI(void)
 bool PlayerRandomAI::Think()
 {
 	int p_myTurn;
-	p_myTurn = game->GetCurrentState()->GetPlayerChoises();
+	p_myTurn = game->GetCurrentState()->GetPlayerChoises(myID);
 
 	myTurn = qrand() % p_myTurn;
 	/*

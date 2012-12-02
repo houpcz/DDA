@@ -9,7 +9,7 @@ class Human :
 Q_OBJECT
 
 public:
-	Human(void);
+	Human(int _myID) : IPlayer(_myID) {};
 	virtual ~Human(void);
 	virtual bool Think() { return false; };
 	void HumanTurn(int turn);

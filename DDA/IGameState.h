@@ -8,10 +8,10 @@ public :
 	static const int ILLEGAL_GAME = -20000;
 
 	virtual ~IGameState() {};
-	virtual int GetPlayerChoises() const = 0;
+	virtual int GetPlayerChoises(int whoAskID) = 0;
 	virtual int GetActivePlayerID() const = 0;
-	virtual int GetPlayerScore(int playerID) const = 0;
-	virtual IGameState ** GetNextStates(int *outNumberNextStates) const = 0;
+	virtual int GetPlayerScore(int playerID, int whoAskID) = 0;
+	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
 	virtual void PrintToFile(const char * firstLine) {};
 };
 

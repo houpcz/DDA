@@ -80,8 +80,8 @@ void Game::SetPlayer(int playerID, int aiID)
 	
 	switch(aiID)
 	{
-		case 0 : player[playerID] = new Human(); break;
-		case 1 : player[playerID] = new PlayerRandomAI(); break;
+		case 0 : player[playerID] = new Human(playerID); break;
+		case 1 : player[playerID] = new PlayerRandomAI(playerID); break;
 	}
 
 	QObject::connect(player[playerID], SIGNAL(ImReady(void)),

@@ -8,7 +8,7 @@ class EnvironmentAIBasic :
 Q_OBJECT
 
 public:
-	EnvironmentAIBasic(void);
+	EnvironmentAIBasic(int _myID) : IEnvironmentAI(_myID) {};
 	virtual ~EnvironmentAIBasic(void);
 	virtual bool Think();	
 	QString GetAINAme() { return QString("Random Environment"); };

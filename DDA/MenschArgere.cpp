@@ -95,11 +95,11 @@ MenschArgere::MenschArgere(QWidget * _widget, bool _paint) : Game(_widget, _pain
 	tileGame[72] = new MenschTile(5, 5, normal, this);
 
 	player = new IPlayer*[5];
-	player[0] = new EnvironmentAIBasic();
-	player[1] = new PlayerRandomAI();
-	player[2] = new PlayerRandomAI();
-	player[3] = new PlayerRandomAI();
-	player[4] = new PlayerRandomAI();
+	player[0] = new EnvironmentAIBasic(0);
+	player[1] = new PlayerRandomAI(1);
+	player[2] = new PlayerRandomAI(2);
+	player[3] = new PlayerRandomAI(3);
+	player[4] = new PlayerRandomAI(4);
 
 	QObject::connect(player[0], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
@@ -207,7 +207,7 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 	int x, y;
 	for(int loop1 = 0; loop1 < MenschState::MAX_PLAYER; loop1++)
 	{
-		sprintf(numberString, "%d", currentState->GetPlayerScore(loop1));
+		sprintf(numberString, "%d", currentState->GetPlayerScore(loop1, 0));
 		switch(loop1)
 		{
 			case 0 :

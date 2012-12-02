@@ -35,9 +35,9 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	maxPlayerAI = 2;
 
 	player = new IPlayer*[3];
-	player[0] = new EnvironmentAIBasic();
-	player[1] = new PlayerRandomAI();//Human();
-	player[2] = new PlayerRandomAI();
+	player[0] = new EnvironmentAIBasic(0);
+	player[1] = new PlayerRandomAI(1);//Human();
+	player[2] = new PlayerRandomAI(2);
 
 	QObject::connect(player[0], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
@@ -154,13 +154,14 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 		
 		switch(cardSite)
 		{
-			case PLAYER_1_HAND :
+			case PLAYER_1_HAND_HIDDEN :
+			case PLAYER_1_HAND_KNOWN :
 				DrawCard(painter, loop1, clickableArea[cardHandID].X(), clickableArea[cardHandID].Y());
 				clickableArea[cardHandID].SetCardID(loop1);
 				cardHandID++;
 				break;
-			case PLAYER_2_HAND :
-				//DrawCard(painter, loop1, cardWidth / 2 + cardHand2ID * (cardWidth / 3) + 250, 400);
+			case PLAYER_2_HAND_HIDDEN :
+			case PLAYER_2_HAND_KNOWN :
 				cardHand2ID++;
 				break;
 
@@ -229,6 +230,14 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 			painter->drawRoundRect(clickableArea[highlightClickableAreas[loop1]].Area());
 		painter->setPen(Qt::lightGray);
 	}
+
+	painter->setPen(Qt::darkMagenta);
+	painter->setFont(QFont("SansSerif", 20, 3, false));
+	char temp[20];
+	sprintf(temp, "%d", currentState->GetPlayerPoints(1));
+	painter->drawText(10, 300, 500, 500, 0, temp);
+	sprintf(temp, "%d", currentState->GetPlayerPoints(2));
+	painter->drawText(10, 30, 500, 500, 0, temp);
 }
 
 void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)

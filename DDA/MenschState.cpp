@@ -5,10 +5,10 @@ MenschState::MenschState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
-		figure[loop1][0] = -1;
-		for(int loop2 = 1; loop2 < MAX_FIGURE; loop2++)
+		figure[loop1][0] = 0;
+		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
-			figure[loop1][loop2] = -1;
+			figure[loop1][loop2] = loop2;
 		}
 	}
 
@@ -23,9 +23,9 @@ MenschState::~MenschState(void)
 {
 }
 
-IGameState ** MenschState::GetNextStates(int *outNumberNextStates) const
+IGameState ** MenschState::GetNextStates(int whoAskID, int *outNumberNextStates)
 {
-	int numberNextStates = GetPlayerChoises();
+	int numberNextStates = GetPlayerChoises(whoAskID);
 	IGameState ** nextState = new IGameState*[numberNextStates];
 	MenschState * menschState;
 	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
@@ -40,7 +40,7 @@ IGameState ** MenschState::GetNextStates(int *outNumberNextStates) const
 	return nextState;
 }
 
-int MenschState::GetPlayerChoises() const
+int MenschState::GetPlayerChoises(int whoAskID)
 {
 	if(dicePlayerNow)
 	{
@@ -192,7 +192,7 @@ bool MenschState::IsPlayerWinner(int playerID) const
 	return isWinner;
 }
 
-int MenschState::GetPlayerScore(int playerID) const
+int MenschState::GetPlayerScore(int playerID, int whoAskID)
 {
 	if(IsPlayerWinner(playerID))
 		return IGameState::WINNER_SCORE;

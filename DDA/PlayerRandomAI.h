@@ -4,7 +4,7 @@ class PlayerRandomAI :
 	public IPlayer
 {
 public:
-	PlayerRandomAI(void);
+	PlayerRandomAI(int _myID);
 	virtual ~PlayerRandomAI(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};

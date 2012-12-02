@@ -95,7 +95,7 @@ public:
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }
 	int GetStepsToGameOver() const { return stepsToGameOver; }
-	int GetPlayerChoises() const 
+	int GetPlayerChoises(int whoAskID) 
 	{ 
 		int playerChoises;
 		switch(activePlayerID)
@@ -111,8 +111,8 @@ public:
 
 		return -1;
 	}
-	int GetPlayerScore(int playerID) const;
-	IGameState ** GetNextStates(int *outNumberNextStates) const;
+	int GetPlayerScore(int playerID, int whoAskID);
+	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
 

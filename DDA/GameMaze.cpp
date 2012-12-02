@@ -14,8 +14,8 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	playerCount = 2;
 	player = new IPlayer*[playerCount];
-	player[ENVINRONMENT_AI] = new EnvironmentAIBasic();
-	player[PLAYER_AI] = new PlayerRandomAI();
+	player[ENVINRONMENT_AI] = new EnvironmentAIBasic(ENVINRONMENT_AI);
+	player[PLAYER_AI] = new PlayerRandomAI(PLAYER_AI);
 
 	QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
@@ -120,7 +120,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	painter->setPen(Qt::red);
 	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height(), Qt::AlignCenter, QString(numberString));
 
-	int score = currentState->GetPlayerScore(0);
+	int score = currentState->GetPlayerScore(0, 0);
 	sprintf(numberString, "%d", score);
 
 	static bool wasIlegal = false;

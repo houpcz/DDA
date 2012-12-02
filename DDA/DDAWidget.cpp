@@ -51,8 +51,8 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	setCentralWidget(board);
 
 	// set all players
-	playerAI.push_back(new Human());
-	playerAI.push_back(new PlayerRandomAI());
+	playerAI.push_back(new Human(1));
+	playerAI.push_back(new PlayerRandomAI(2));
 
 	SetGame(GAME_LOST_CITIES_ID);
 
@@ -164,6 +164,9 @@ void DDAWidget::ChangePlayerMenu()
 		
 		for(int loop2 = 0; loop2 < playerAI.size(); loop2++)
 		{
+			if(loop1 > 0 && loop2 == 0)
+				continue;
+
 			setPlayer = new QAction(playerAI[loop2]->GetAINAme(), this);
 			connect(setPlayer, SIGNAL(triggered()), signalMapper, SLOT(map()));
 			int signalInt = loop2 + (loop1 + environmentalAINumber) * playerAI.size();

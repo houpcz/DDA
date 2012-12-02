@@ -147,9 +147,9 @@ void MazeState::ClearMe()
 	tileToExplore.clear();
 }
 
-IGameState ** MazeState::GetNextStates(int *outNumberNextStates) const
+IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 {
-	int numberNextStates = GetPlayerChoises();
+	int numberNextStates = GetPlayerChoises(whoAskID);
 	IGameState ** nextState = new IGameState*[numberNextStates];
 	MazeState * mazeState;
 	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
@@ -508,7 +508,7 @@ void MazeState::Pos1Dto2D(int d1, int * x, int * y)
 	*y = d1 / mazeWidth;
 }
 
-int MazeState::GetPlayerScore(int playerID) const
+int MazeState::GetPlayerScore(int playerID, int whoAskID)
 {
 	return playerScore;
 }

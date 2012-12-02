@@ -13,7 +13,9 @@ protected :
 	IGame * game;
 	int isReady;
 	int myTurn;
+	int myID;
 public:
+	IPlayer(int _myID) { myID = _myID; };
 	virtual ~IPlayer() {};
 	virtual void StartGame(IGame * _game) {game = _game; isReady = false;};
 	virtual bool IsReady();

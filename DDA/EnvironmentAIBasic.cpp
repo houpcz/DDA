@@ -3,10 +3,6 @@
 #include <qtime>
 #include <stdlib.h>
 
-EnvironmentAIBasic::EnvironmentAIBasic(void)
-{
-}
-
 
 EnvironmentAIBasic::~EnvironmentAIBasic(void)
 {
@@ -15,16 +11,16 @@ EnvironmentAIBasic::~EnvironmentAIBasic(void)
 bool EnvironmentAIBasic::Think()
 {
 	int p_myTurn;
-	IGameState ** nextState = game->GetCurrentState()->GetNextStates(&p_myTurn);
+	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
 
 	int tries = 0;
 	myTurn = rand() % p_myTurn;
 	do {
 		myTurn = (myTurn + 1) % p_myTurn;
 		tries++;
-	} while(nextState[myTurn]->GetPlayerScore(0) == IGameState::ILLEGAL_GAME && tries < p_myTurn + 1);
+	} while(nextState[myTurn]->GetPlayerScore(0, myID) == IGameState::ILLEGAL_GAME && tries < p_myTurn + 1);
 
-	if(nextState[myTurn]->GetPlayerScore(0) == IGameState::ILLEGAL_GAME && game->GetCurrentState()->GetPlayerScore(0) != IGameState::ILLEGAL_GAME)
+	if(nextState[myTurn]->GetPlayerScore(0, myID) == IGameState::ILLEGAL_GAME && game->GetCurrentState()->GetPlayerScore(0, myID) != IGameState::ILLEGAL_GAME)
 	{
 		game->GetCurrentState()->PrintToFile("Last legal state");
 		/*

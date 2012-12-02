@@ -24,10 +24,10 @@ public:
 	virtual ~MenschState(void);
 	int GetFigure(int player, int number) { return figure[player][number]; }
 	int GetFigureNextState(int number) { return figureNextState[number]; }
-	int GetPlayerChoises() const;
+	int GetPlayerChoises(int whoAskID);
 	int GetActivePlayerID() const;
-	int GetPlayerScore(int playerID) const;
-	IGameState ** GetNextStates(int *outNumberNextStates) const;
+	int GetPlayerScore(int playerID, int whoAskID);
+	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }
 };

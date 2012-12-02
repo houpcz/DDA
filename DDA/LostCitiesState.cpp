@@ -26,11 +26,11 @@ void LostCitiesState::InitGame(int handSize)
 	random_shuffle(allCards, allCards + CARD_AMOUNT);
 	
 	for(int loop1 = 0; loop1 < handSize; loop1++)
-		card[allCards[loop1]] = PLAYER_1_HAND;
+		card[allCards[loop1]] = PLAYER_1_HAND_HIDDEN;
 	for(int loop1 = handSize; loop1 < 2 * handSize; loop1++)
-		card[allCards[loop1]] = PLAYER_2_HAND;
+		card[allCards[loop1]] = PLAYER_2_HAND_HIDDEN;
 
-	CountPlayerChoises();
+	whoAskIDlast = NOBODY;
 }
 
 LostCitiesState::LostCitiesState(const LostCitiesState & origin)
@@ -55,13 +55,11 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 
 	activePlayerID = origin.activePlayerID;
 	lastRealPlayer = origin.lastRealPlayer;
-	playerChoises = origin.playerChoises;
 
-	for(int loop1 = 0; loop1 < playerChoises; loop1++)
-	{
-		allChoises[loop1] = origin.allChoises[loop1];
-		drawFrom[loop1] = origin.allChoises[loop1];
-	}
+	allChoises.clear();
+	allChoises.insert(allChoises.begin(), origin.allChoises.begin(), origin.allChoises.end());
+	drawFrom.clear();
+	drawFrom.insert(drawFrom.begin(), origin.drawFrom.begin(), origin.drawFrom.end());
 
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
@@ -80,15 +78,15 @@ bool LostCitiesState::MakeTurn(int turn)
 	{
 		if(lastRealPlayer == 1)
 		{
-			card[allChoises[turn]] = PLAYER_1_HAND;
+			card[allChoises[turn]] = PLAYER_1_HAND_HIDDEN;
 			activePlayerID = 2;
 			lastRealPlayer = 2;
 		} else {
-			card[allChoises[turn]] = PLAYER_2_HAND;
+			card[allChoises[turn]] = PLAYER_2_HAND_HIDDEN;
 			activePlayerID = 1;
 			lastRealPlayer = 1;
 		}
-		if(playerChoises == 1)
+		if(allChoises.size() == 1)
 			return true;
 	} else {
 		int allChoisesID = turn;
@@ -114,24 +112,27 @@ bool LostCitiesState::MakeTurn(int turn)
 		} else {
 			if(activePlayerID == 1)
 			{
-				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_1_HAND;
+				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_1_HAND_KNOWN;
 				activePlayerID = 2;
 				lastRealPlayer = 2;
 			} else {
-				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_2_HAND;
+				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_2_HAND_KNOWN;
 				activePlayerID = 1;
 				lastRealPlayer = 1;
 			}
 		}
 	}
-	CountPlayerChoises();
+	
+	whoAskIDlast = NOBODY;
+
 	return false;
 }
 
 int LostCitiesState::GetTurnID(int playCardID, int drawSite)
 {
+	WhoAsked(1);
 	int allChoisesID = 0;
-	for(int loop1 = 0; loop1 < playerChoises; loop1++)
+	for(int loop1 = 0; loop1 < allChoises.size(); loop1++)
 	{
 		if(allChoises[loop1] == playCardID && drawFrom[loop1] == drawSite)
 		{
@@ -142,27 +143,52 @@ int LostCitiesState::GetTurnID(int playCardID, int drawSite)
 
 	return allChoisesID;
 }
-void LostCitiesState::CountPlayerChoises()
+void LostCitiesState::CountPlayerChoises(int whoAskID)
 {
-	playerChoises = 0;
+	allChoises.clear();
+	drawFrom.clear();
+
 	if(activePlayerID == ENVIRONMENTAL_AI)
 	{
 		for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
 		{
 			if(card[loop1] == IN_DECK)
 			{
-				allChoises[playerChoises++] = loop1;
+				allChoises.push_back(loop1);
 			}
 		}
 	} else {
-		int playerHand;
+		int playerHand1;		// hidden/known - or known/deck
+		int playerHand2;		// hidden/known - or known/deck
 		int playerOnDesk;
 		if(activePlayerID == 1)
 		{
-			playerHand = PLAYER_1_HAND;
+			switch(whoAskID)
+			{
+				case 0 :
+				case 1 :
+					playerHand2 = PLAYER_1_HAND_HIDDEN;
+					break;
+				case 2 :
+					playerHand2 = IN_DECK;
+					break;
+			}
+			
+			playerHand1 = PLAYER_1_HAND_KNOWN;
 			playerOnDesk = PLAYER_1_ON_DESK;
 		} else {
-			playerHand = PLAYER_2_HAND;
+			switch(whoAskID)
+			{
+				case 0 :
+				case 2 :
+					playerHand2 = PLAYER_2_HAND_HIDDEN;
+					break;
+				case 1 :
+					playerHand2 = IN_DECK;
+					break;
+				
+			}
+			playerHand1 = PLAYER_2_HAND_KNOWN;
 			playerOnDesk = PLAYER_2_ON_DESK;
 		}
 		for(char loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
@@ -173,16 +199,15 @@ void LostCitiesState::CountPlayerChoises()
 			for(char loop2 = CARD_ONE_COLOR_AMOUNT - 1; loop2 >= 0; loop2--)
 			{
 				char cardID = loop1 * CARD_ONE_COLOR_AMOUNT + loop2;
-				if(card[cardID] == playerHand)
+				if(card[cardID] == playerHand1 || card[cardID] == playerHand2)
 				{
-					allChoises[playerChoises] = cardID;	// can discard card
-					drawFrom[playerChoises] = DRAW_FROM_DECK;
-					playerChoises++;
+					allChoises.push_back(cardID);	// can discard card
+					drawFrom.push_back(DRAW_FROM_DECK);
+
 					if(canAddCardToExpedition)
 					{
-						allChoises[playerChoises] = cardID + DISCARD_CARD_OFFSET; // may add to expedition
-						drawFrom[playerChoises] = DRAW_FROM_DECK;
-						playerChoises++;
+						allChoises.push_back(cardID + DISCARD_CARD_OFFSET); // may add to expedition
+						drawFrom.push_back(DRAW_FROM_DECK);
 					}
 				} else if(canAddCardToExpedition && card[cardID] == playerOnDesk) // you can't add lower value card to existing expedition
 				{
@@ -198,7 +223,7 @@ void LostCitiesState::CountPlayerChoises()
 			}
 		}
 
-		int oldChoises = playerChoises;
+		int oldChoises = allChoises.size();
 		for(int loop1 = 0; loop1 < oldChoises; loop1++)
 		{
 			for(int loop2 = 0; loop2 < COLOR_AMOUNT; loop2++)
@@ -206,29 +231,114 @@ void LostCitiesState::CountPlayerChoises()
 				// if there is card on discard pile and if you dont play card of same color on discard pile, you can draw from thad pile
 				if(discardPileTopCardID[loop2] >= 0 && (allChoises[loop1] >= DISCARD_CARD_OFFSET || loop2 != allChoises[loop1] / CARD_ONE_COLOR_AMOUNT))
 				{
-					allChoises[playerChoises] = allChoises[loop1];
-					drawFrom[playerChoises] = loop2;
-					playerChoises++;
+					allChoises.push_back(allChoises[loop1]);
+					drawFrom.push_back(loop2);
 				}
 			}
 		}
 	}
 }
-int LostCitiesState::GetPlayerChoises() const
+
+void LostCitiesState::WhoAsked(int whoAskID)
 {
-	return playerChoises;
+	if(whoAskID != whoAskIDlast)
+	{
+		whoAskIDlast = whoAskID;
+		CountPlayerChoises(whoAskID);
+	}
+}
+
+int LostCitiesState::GetPlayerChoises(int whoAskID)
+{
+	WhoAsked(whoAskID);
+	return allChoises.size();
 }
 int LostCitiesState::GetActivePlayerID() const
 {
 	return activePlayerID;
 }
-int LostCitiesState::GetPlayerScore(int playerID) const
+int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 {
-	return 0;
+	WhoAsked(whoAskID);
+
+	int score = 0;
+	int handKnown;
+	int handHidden;
+
+	switch(playerID)
+	{
+		case 1 :
+			handKnown = PLAYER_1_HAND_KNOWN;
+			handHidden = PLAYER_1_HAND_HIDDEN;
+			break;
+		case 2 :
+			handKnown = PLAYER_2_HAND_KNOWN;
+			handHidden = PLAYER_2_HAND_HIDDEN;
+			break;
+	}
+
+	return score + GetPlayerPoints(playerID);
 }
-IGameState ** LostCitiesState::GetNextStates(int *outNumberNextStates) const
+
+int LostCitiesState::GetPlayerPoints(int playerID)
 {
-	int numberNextStates = GetPlayerChoises();
+	int score = 0;
+	int onDesk;
+	switch(playerID)
+	{
+		case 1 :
+			onDesk = PLAYER_1_ON_DESK;
+			break;
+		case 2 :
+			onDesk = PLAYER_2_ON_DESK;
+			break;
+	}
+
+	bool firstOfColorOnDesk = 0;
+	int premiumBonus = 0;
+	int cardBonus = 0;
+	int journey = 0;
+	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+	{
+		if(loop1 % CARD_ONE_COLOR_AMOUNT == 0)
+		{
+			firstOfColorOnDesk = true;
+			cardBonus = 0;
+			premiumBonus = 1;
+			journey = 0;
+		}
+
+		if(card[loop1] == onDesk)
+		{
+			if(firstOfColorOnDesk)
+			{
+				journey -= 20;
+				firstOfColorOnDesk = false;
+			}
+			cardBonus++;
+			int cardType = loop1 % CARD_ONE_COLOR_AMOUNT;
+
+			if(cardType < 3)
+				premiumBonus++;
+			else
+				journey += cardType - 1;
+		}
+
+		if(loop1 % CARD_ONE_COLOR_AMOUNT == CARD_ONE_COLOR_AMOUNT - 1)
+		{
+			journey *= premiumBonus;
+			if(cardBonus >= 8)
+				journey += 20;
+			score += journey;
+		}
+	}
+	return score;
+}
+
+IGameState ** LostCitiesState::GetNextStates(int whoAskID, int *outNumberNextStates)
+{
+	WhoAsked(whoAskID);
+	int numberNextStates = GetPlayerChoises(whoAskID);
 	IGameState ** nextState = new IGameState*[numberNextStates];
 	LostCitiesState * lostCitiesState;
 	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
