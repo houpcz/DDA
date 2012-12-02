@@ -25,4 +25,5 @@ void BatchItem::UpdateTreeWidget()
 { 
 	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
 	treeWidgetItem->setData(3, 0, sumGameStat->TurnNumberReal() / (float) realBatchSize);
+	treeWidgetItem->setData(4, 0, (sumGameStat->TurnNumber() - sumGameStat->TurnNumberReal()) / (float) realBatchSize);
 }

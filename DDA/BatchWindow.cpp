@@ -42,6 +42,7 @@ BatchWindow::BatchWindow(QWidget *parent) : QWidget(parent)
 	 header->setData(1, 0, "Batch"); 
 	 header->setData(2, 0, "Completed"); 
 	 header->setData(3, 0, "Turn Number"); 
+	 header->setData(4, 0, "EAI Turn"); 
 	 listBatch->setHeaderItem(header);
 
 	 gridLayout->addWidget(gameList, 0, 0);
@@ -132,6 +133,7 @@ void BatchWindow::AddItemToBatch()
 	tempItem->setData(1, 0, batchSize->value());
 	tempItem->setData(2, 0, 0);
 	tempItem->setData(3, 0, 0);
+	tempItem->setData(4, 0, 0);
 	listBatch->addTopLevelItem(tempItem);
 
 	switch(gameList->currentIndex())
