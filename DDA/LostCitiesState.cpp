@@ -209,7 +209,7 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 						allChoises.push_back(cardID + DISCARD_CARD_OFFSET); // may add to expedition
 						drawFrom.push_back(DRAW_FROM_DECK);
 					}
-				} else if(canAddCardToExpedition && card[cardID] == playerOnDesk) // you can't add lower value card to existing expedition
+				} else if(canAddCardToExpedition && card[cardID] == playerOnDesk && loop2 > 2) // you can't add lower value card to existing expedition
 				{
 					canAddCardToExpedition = false; 
 				} else if(card[cardID] >= ON_DESK)

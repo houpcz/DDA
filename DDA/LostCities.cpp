@@ -100,10 +100,12 @@ void LostCities::UpdateActiveClickableAres()
 	} else {
 		if(highlightClickableAreas[CLICKABLE_PLAY_TO] == -1)
 		{
-			int cardID = clickableArea[highlightClickableAreas[CLICKABLE_PLAY_FROM]].CardID();
-			int colorNumber = GetCardColor(cardID);
+			int cardID1 = clickableArea[highlightClickableAreas[CLICKABLE_PLAY_FROM]].CardID();
+			int colorNumber = GetCardColor(cardID1);
+			int cardID2 = clickableArea[colorNumber + ClickableArea::EXPEDITION].CardID();
+			
 			clickableArea[colorNumber + ClickableArea::DISCARD].SetActive(true);
-			if(clickableArea[colorNumber + ClickableArea::EXPEDITION].CardID() <= cardID)
+			if(cardID2 <= cardID1 || (cardID1 % LostCitiesState::CARD_ONE_COLOR_AMOUNT < 3 && cardID2 % LostCitiesState::CARD_ONE_COLOR_AMOUNT < 3))
 			{
 				clickableArea[colorNumber + ClickableArea::EXPEDITION].SetActive(true);
 			}
