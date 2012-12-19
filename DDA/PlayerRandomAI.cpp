@@ -16,23 +16,23 @@ bool PlayerRandomAI::Think()
 	p_myTurn = game->GetCurrentState()->GetPlayerChoises(myID);
 
 	myTurn = qrand() % p_myTurn;
-	/*
-	IGameState ** nextState = game->GetCurrentState()->GetNextStates(&p_myTurn);
+	
+	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
 	int maxID = 0;
-	int myID = game->GetCurrentState()->GetActivePlayerID() - 1;
-	int maxValue = nextState[0]->GetPlayerScore(myID);
+	int maxValue = nextState[0]->GetPlayerScore(myID, myID);
 	for(int loop1 = 1; loop1 < p_myTurn; loop1++)
 	{
-		if(nextState[loop1]->GetPlayerScore(myID) > maxValue)
+		int tempScore = nextState[loop1]->GetPlayerScore(myID, myID);
+		if(tempScore > maxValue)
 		{
-			maxValue = nextState[loop1]->GetPlayerScore(myID);
+			maxValue = tempScore;
 			maxID = loop1;
 		}
 		delete nextState[loop1];
 	}
 	delete [] nextState;
 	myTurn = maxID;
-	*/
+	
 	isReady = true;
 
 	return true;

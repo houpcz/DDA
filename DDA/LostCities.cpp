@@ -240,6 +240,20 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->drawText(10, 300, 500, 500, 0, temp);
 	sprintf(temp, "%d", currentState->GetPlayerPoints(2));
 	painter->drawText(10, 30, 500, 500, 0, temp);
+	painter->setPen(Qt::black);
+	painter->setFont(QFont("SansSerif", 15, 3, false));
+	sprintf(temp, "%d", currentState->GetPlayerScore(1, 0) - currentState->GetPlayerScore(2, 0));
+	painter->drawText(10, 330, 500, 500, 0, temp);
+	sprintf(temp, "%d", currentState->GetPlayerScore(1, 1) - currentState->GetPlayerScore(2, 1));
+	painter->drawText(10, 350, 500, 500, 0, temp);
+	sprintf(temp, "%d", currentState->GetPlayerScore(1, 2) - currentState->GetPlayerScore(2, 2));
+	painter->drawText(10, 370, 500, 500, 0, temp);
+	sprintf(temp, "%d", currentState->GetPlayerScore(2, 0) - currentState->GetPlayerScore(1, 0));
+	painter->drawText(10, 60, 500, 500, 0, temp);
+	sprintf(temp, "%d", currentState->GetPlayerScore(2, 1) - currentState->GetPlayerScore(1, 1));
+	painter->drawText(10, 80, 500, 500, 0, temp);
+	sprintf(temp, "%d", currentState->GetPlayerScore(2, 2) - currentState->GetPlayerScore(1, 2));
+	painter->drawText(10, 100, 500, 500, 0, temp);
 }
 
 void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
