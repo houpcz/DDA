@@ -150,6 +150,7 @@ void MenschArgere::StartGame()
 	player[4]->StartGame(this);
 
 	state = STATE_RUNNING;
+	activeHumanFigure = -1;
 	if(player[0]->Think())
 		NextTurn();
 }
@@ -162,7 +163,7 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 	tileHeight = boardHeight / 11.0f;
 
 	for(int loop1 = 0; loop1 < MAX_TILE; loop1++)
-	{
+	{	
 		tileGame[loop1]->Draw(painter, tickMillis);
 	}
 
@@ -189,11 +190,17 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 				tileId = (tileId + firstTile[loop1]) % 40;
 			}
 
-			if(loop1 + 1 == currentState->GetActivePlayerID() && currentState->GetFigureNextState(loop2) >= 0)
+			if(activeHumanFigure < 0 && loop1 + 1 == currentState->GetActivePlayerID() && currentState->GetFigureNextState(loop2) >= 0)
 				tileGame[tileId]->Draw(painter, Qt::white, tickMillis);
 
 			tileGame[tileId]->DrawPlayer(painter, playerColor[loop1]);
 		}
+	}
+
+	for(int loop1 = 0; loop1 < MAX_TILE; loop1++)
+	{
+		if(activeHumanFigure >= 0 && state == STATE_RUNNING && currentState->GetFigureNextState(activeHumanFigure) == loop1)
+			tileGame[loop1]->DrawPlayer(painter, Qt::white);
 	}
 
 	char numberString[10];
@@ -272,18 +279,39 @@ void MenschArgere::MousePressEvent ( int xMouse, int yMouse )
 	bool noTurn = true;
 	int atStart = 0;
 	int action = 0;
+
 	for(int loop2 = 0; loop2 < MenschState::MAX_FIGURE; loop2++)
 	{
 		int tileId = GetTileID(activePlayerID - 1, loop2, atStart);
-
 		if(currentState->GetFigureNextState(loop2) >= 0)
 		{
 			noTurn = false;
 			if(tileGame[tileId]->Contain(xMouse, yMouse))
 			{
-				player[activePlayerID]->HumanTurn(action);
+				activeHumanFigure = loop2;
+				break;
 			}
-			action++;
+		}
+
+	}
+	
+	if(activeHumanFigure >= 0) 
+	{
+		for(int loop2 = 0; loop2 < MenschState::MAX_FIGURE; loop2++)
+		{
+			int tileId = GetTileID(activePlayerID - 1, loop2, atStart);
+
+			if(currentState->GetFigureNextState(loop2) >= 0)
+			{
+				noTurn = false;
+				if(loop2 == activeHumanFigure && tileGame[currentState->GetFigureNextState(loop2)]->Contain(xMouse, yMouse))
+				{
+					player[activePlayerID]->HumanTurn(action);
+					activeHumanFigure = -1;
+					break;
+				}
+				action++;
+			}
 		}
 	}
 

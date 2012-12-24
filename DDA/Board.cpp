@@ -28,4 +28,5 @@ void Board::mouseMoveEvent ( QMouseEvent * event )
 void Board::mousePressEvent ( QMouseEvent * event )
 {
 	activeGame->MousePressEvent(event->x(), event->y());
+	repaint();
 }

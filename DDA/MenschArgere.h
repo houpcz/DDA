@@ -16,6 +16,7 @@ public :
 private:
 	MenschState *currentState;
 	MenschTile *tileGame[MAX_TILE];
+	int activeHumanFigure;
 	float tileWidth;
 	float tileHeight;
 	float boardWidth;
