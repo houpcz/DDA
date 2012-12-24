@@ -58,6 +58,7 @@ MenschArgere::MenschArgere(QWidget * _widget, bool _paint) : Game(_widget, _pain
 	tileGame[38] = new MenschTile(6, 0, normal, this);
 	tileGame[39] = new MenschTile(5, 0, normal, this);
 
+	// home start
 	tileGame[40] = new MenschTile(0, 0, player1, this);
 	tileGame[41] = new MenschTile(1, 0, player1, this);
 	tileGame[42] = new MenschTile(0, 1, player1, this);
@@ -75,6 +76,7 @@ MenschArgere::MenschArgere(QWidget * _widget, bool _paint) : Game(_widget, _pain
 	tileGame[54] = new MenschTile(10, 1, player4, this);
 	tileGame[55] = new MenschTile(9, 1, player4, this);
 
+	// home end
 	tileGame[56] = new MenschTile(5, 1, player1, this);
 	tileGame[57] = new MenschTile(5, 2, player1, this);
 	tileGame[58] = new MenschTile(5, 3, player1, this);
@@ -92,6 +94,7 @@ MenschArgere::MenschArgere(QWidget * _widget, bool _paint) : Game(_widget, _pain
 	tileGame[70] = new MenschTile(7, 5, player4, this);
 	tileGame[71] = new MenschTile(6, 5, player4, this);
 
+	// center cube number
 	tileGame[72] = new MenschTile(5, 5, normal, this);
 
 	player = new IPlayer*[5];
@@ -199,7 +202,8 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 
 	for(int loop1 = 0; loop1 < MAX_TILE; loop1++)
 	{
-		if(activeHumanFigure >= 0 && state == STATE_RUNNING && currentState->GetFigureNextState(activeHumanFigure) == loop1)
+		int temp;
+		if(activeHumanFigure >= 0 && state == STATE_RUNNING && GetTileID(currentState->GetActivePlayerID() - 1, activeHumanFigure, temp, true) == loop1)
 			tileGame[loop1]->DrawPlayer(painter, Qt::white);
 	}
 
@@ -247,9 +251,14 @@ IGameState * MenschArgere::GetCurrentState() const
 	return currentState;
 }
 
-int MenschArgere::GetTileID(int player, int figure, int & atStart)
+int MenschArgere::GetTileID(int player, int figure, int & atStart, bool nextState)
 {
-	int tileId = currentState->GetFigure(player, figure);
+	int tileId;
+	
+	if(nextState)
+		tileId = currentState->GetFigureNextState(figure);
+	else
+		tileId = currentState->GetFigure(player, figure);
 	if(tileId < 0)
 	{
 		tileId = atStart + player * MenschState::MAX_FIGURE + PLAYER_1_START;
@@ -304,7 +313,7 @@ void MenschArgere::MousePressEvent ( int xMouse, int yMouse )
 			if(currentState->GetFigureNextState(loop2) >= 0)
 			{
 				noTurn = false;
-				if(loop2 == activeHumanFigure && tileGame[currentState->GetFigureNextState(loop2)]->Contain(xMouse, yMouse))
+				if(loop2 == activeHumanFigure && tileGame[GetTileID(activePlayerID - 1, loop2, atStart, true)]->Contain(xMouse, yMouse))
 				{
 					player[activePlayerID]->HumanTurn(action);
 					activeHumanFigure = -1;

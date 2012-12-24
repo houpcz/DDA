@@ -23,7 +23,7 @@ private:
 	float boardHeight;
 	
 	static const QColor playerColor[MenschState::MAX_PLAYER];
-	int GetTileID(int player, int figure, int & atStart);
+	int GetTileID(int player, int figure, int & atStart, bool nextState = false);
 public:
 	MenschArgere(QWidget * _widget, bool _paint = true);
 	virtual ~MenschArgere(void);
