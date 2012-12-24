@@ -302,6 +302,12 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 	int deckScoreColor;
 	int handUnknownCountColor; 
 	int inDeckCountColor;
+
+	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+	{
+		if(card[loop1] == IN_DECK)
+			inDeckCount++;
+	}
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
 		expeditionExist = false;
@@ -370,7 +376,7 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 			score += predictedScore * bonuses;
 			deckScore += deckScoreColor * bonuses;
 			handUnknownCount += handUnknownCountColor;
-			inDeckCount += inDeckCountColor;
+			// inDeckCount += inDeckCountColor;
 		}
 	}
 
