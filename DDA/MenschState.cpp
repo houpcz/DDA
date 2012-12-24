@@ -49,7 +49,7 @@ int MenschState::GetPlayerChoises(int whoAskID)
 
 	int choises = 0;
 	
-	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
+	for(int loop1 = 0; loop1 < MAX_CHOISES; loop1++)
 	{
 		if(figureNextState[loop1] >= 0)
 			choises++;
@@ -64,6 +64,7 @@ void MenschState::NextChoises()
 	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
 	{
 		figureNextState[loop1] = -2;
+		figureNextState[loop1 + MAX_FIGURE] = -2;
 
 		if(figure[activePlayerID][loop1] < 0 && lastDice == 6 && !isSomeFigurePreparedToGoToStart)
 		{
@@ -82,19 +83,38 @@ void MenschState::NextChoises()
 				figureNextState[loop1] = START_TILE;
 				isSomeFigurePreparedToGoToStart = true;
 			}
-		} else if(figure[activePlayerID][loop1] + lastDice < 44 && figure[activePlayerID][loop1] >= 0) {
-			bool isFreeTile = true;
-			for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
+		} else {
+			if(figure[activePlayerID][loop1] + lastDice < 44 && figure[activePlayerID][loop1] >= 0) 
 			{
-				if(figure[activePlayerID][loop2] == figure[activePlayerID][loop1] + lastDice)
+				bool isFreeTile = true;
+				for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 				{
-					isFreeTile = false;
-					break;
+					if(figure[activePlayerID][loop2] == figure[activePlayerID][loop1] + lastDice)
+					{
+						isFreeTile = false;
+						break;
+					}
 				}
+
+				if(isFreeTile)
+					figureNextState[loop1] = figure[activePlayerID][loop1] + lastDice;
 			}
 
-			if(isFreeTile)
-				figureNextState[loop1] = figure[activePlayerID][loop1] + lastDice;
+			if(figure[activePlayerID][loop1] - lastDice >= 0 && figure[activePlayerID][loop1] >= 0) 
+			{
+				bool isFreeTile = true;
+				for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
+				{
+					if(figure[activePlayerID][loop2] == figure[activePlayerID][loop1] - lastDice)
+					{
+						isFreeTile = false;
+						break;
+					}
+				}
+
+				if(isFreeTile)
+					figureNextState[loop1 + MAX_FIGURE] = figure[activePlayerID][loop1] - lastDice;
+			}
 		}
 	}
 }
@@ -109,14 +129,15 @@ int MenschState::MakeTurn(int playerChoise)
 		NextChoises();
 	} else {
 		int choise = 0;
-		for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
+		for(int loop1 = 0; loop1 < MAX_CHOISES; loop1++)
 		{
 			if(figureNextState[loop1] >= 0)
 			{
 				if(choise == playerChoise)
 				{
-					figure[activePlayerID][loop1] = figureNextState[loop1];
-					int tileID1 = (figure[activePlayerID][loop1] + MenschArgere::firstTile[activePlayerID]) % MenschArgere::PLAYER_1_START;
+					int figureId = loop1 % MAX_FIGURE;
+					figure[activePlayerID][figureId] = figureNextState[loop1];
+					int tileID1 = (figure[activePlayerID][figureId] + MenschArgere::firstTile[activePlayerID]) % MenschArgere::PLAYER_1_START;
 					for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 					{
 						if(loop2 == activePlayerID)

@@ -203,7 +203,8 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 	for(int loop1 = 0; loop1 < MAX_TILE; loop1++)
 	{
 		int temp;
-		if(activeHumanFigure >= 0 && state == STATE_RUNNING && GetTileID(currentState->GetActivePlayerID() - 1, activeHumanFigure, temp, true) == loop1)
+		if(activeHumanFigure >= 0 && state == STATE_RUNNING && 
+			(GetTileID(currentState->GetActivePlayerID() - 1, activeHumanFigure, temp, true) == loop1 || GetTileID(currentState->GetActivePlayerID() - 1, activeHumanFigure + MenschState::MAX_FIGURE, temp, true) == loop1))
 			tileGame[loop1]->DrawPlayer(painter, Qt::white);
 	}
 
@@ -292,12 +293,15 @@ void MenschArgere::MousePressEvent ( int xMouse, int yMouse )
 	for(int loop2 = 0; loop2 < MenschState::MAX_FIGURE; loop2++)
 	{
 		int tileId = GetTileID(activePlayerID - 1, loop2, atStart);
-		if(currentState->GetFigureNextState(loop2) >= 0)
+		if(currentState->GetFigureNextState(loop2) >= 0 || currentState->GetFigureNextState(loop2 + MenschState::MAX_FIGURE) >= 0)
 		{
 			noTurn = false;
 			if(tileGame[tileId]->Contain(xMouse, yMouse))
 			{
-				activeHumanFigure = loop2;
+				if(activeHumanFigure == loop2)
+					activeHumanFigure = -1;
+				else
+					activeHumanFigure = loop2;
 				break;
 			}
 		}
@@ -306,14 +310,12 @@ void MenschArgere::MousePressEvent ( int xMouse, int yMouse )
 	
 	if(activeHumanFigure >= 0) 
 	{
-		for(int loop2 = 0; loop2 < MenschState::MAX_FIGURE; loop2++)
+		for(int loop2 = 0; loop2 < MenschState::MAX_CHOISES; loop2++)
 		{
-			int tileId = GetTileID(activePlayerID - 1, loop2, atStart);
-
 			if(currentState->GetFigureNextState(loop2) >= 0)
 			{
 				noTurn = false;
-				if(loop2 == activeHumanFigure && tileGame[GetTileID(activePlayerID - 1, loop2, atStart, true)]->Contain(xMouse, yMouse))
+				if(loop2 % MenschState::MAX_FIGURE == activeHumanFigure && tileGame[GetTileID(activePlayerID - 1, loop2, atStart, true)]->Contain(xMouse, yMouse))
 				{
 					player[activePlayerID]->HumanTurn(action);
 					activeHumanFigure = -1;
