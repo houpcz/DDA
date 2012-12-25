@@ -24,6 +24,10 @@ void BatchItem::SetSumGameStat(GameStat _sumGameStat)
 void BatchItem::UpdateTreeWidget() 
 { 
 	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
-	treeWidgetItem->setData(3, 0, sumGameStat->TurnNumberReal() / (float) realBatchSize);
-	treeWidgetItem->setData(4, 0, (sumGameStat->TurnNumber() - sumGameStat->TurnNumberReal()) / (float) realBatchSize);
+	float avgTurnNumberReal = sumGameStat->TurnNumberReal() / (float) realBatchSize;
+	treeWidgetItem->setData(3, 0, avgTurnNumberReal);
+	treeWidgetItem->setData(4, 0, sumGameStat->PlayerWinner(0) / (float) realBatchSize);
+	treeWidgetItem->setData(5, 0, sumGameStat->LeaderSwitches() / (float) realBatchSize);
+	treeWidgetItem->setData(6, 0, sumGameStat->SumScoreDifference() / (float) realBatchSize / avgTurnNumberReal);
+	treeWidgetItem->setData(7, 0, sumGameStat->EndScoreDifference() / (float) realBatchSize);
 }

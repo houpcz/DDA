@@ -6,9 +6,7 @@
 class PlayerStat
 {
 	long choisesSum, choisesMin, choisesMax;
-	long AIhelpedMe;
-	long AIdamagedMe;
-
+	long winner;
 public :
 	const PlayerStat operator+(const PlayerStat &other)
 	{
@@ -16,17 +14,28 @@ public :
 		newPlayerStat.choisesSum = choisesSum + other.choisesSum;
 		newPlayerStat.choisesMin = choisesMin + other.choisesMin;
 		newPlayerStat.choisesMax = choisesMax + other.choisesMax;
-		newPlayerStat.AIhelpedMe = AIhelpedMe + other.AIhelpedMe;
-		newPlayerStat.AIdamagedMe = AIdamagedMe + other.AIdamagedMe;
+		newPlayerStat.winner = winner + other.winner;
 		return newPlayerStat;
+	}
+	void SetWinner() {
+		winner = 1;
+	}
+	void UpdateChoises(int choises)
+	{
+		choisesSum += choises;
+		if(choises < choisesMin)
+			choisesMin = choises;
+		if(choises > choisesMax)
+			choisesMax = choises;
 	}
 	void Reset() {
 		choisesSum = 0;
 		choisesMin = MAX_INT;
 		choisesMax = 0;
-		AIhelpedMe = 0;
-		AIdamagedMe = 0;
+		winner = 0;
 	}
+
+	long Winner() { return winner; };
 };
 
 class GameStat
@@ -34,12 +43,15 @@ class GameStat
 private :
 	long numberPlayers;
 	// counts all plie number - environmental ai too
-	long turnNumber;
+	long long turnNumber;
 	// doesnt count environmental ai turn
-	long turnNumberReal;
+	long long turnNumberReal;
+
+	long long leaderSwitches;
+	long long sumScoreDifference;
+	long long endScoreDifference;
+
 	PlayerStat * playerStat;
-	long sureWinner;
-	long sureLooser;
 
 	void CopyToMe(const GameStat &origin);
 public:
@@ -53,9 +65,18 @@ public:
 	void Reset();
 	void AddTurnNumber() { turnNumber++; }
 	void AddTurnNumberReal() { turnNumberReal++; }
+	void AddLeaderSwitch() { leaderSwitches++; };
+	void AddScoreDifference(int difference) { sumScoreDifference += difference; };
+	void SetEndScoreDifference(int difference) { endScoreDifference = difference; };
+	void SetWinner(int playerID) { playerStat[playerID].SetWinner(); };
+	void UpdatePlayerChoises(int playerID, int playerChoises) { playerStat[playerID].UpdateChoises(playerChoises); };
 
-	int TurnNumber() { return turnNumber; }
-	int TurnNumberReal() { return turnNumberReal; }
+	long long TurnNumber() { return turnNumber; };
+	long long TurnNumberReal() { return turnNumberReal; };
+	long long LeaderSwitches() { return leaderSwitches; };
+	long long SumScoreDifference() { return sumScoreDifference;};
+	long long EndScoreDifference() { return endScoreDifference;};
+	long PlayerWinner(int playerID) { return playerStat[playerID].Winner(); };
 };
 
 #endif

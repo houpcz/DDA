@@ -19,8 +19,9 @@ void GameStat::Reset()
 	}
 	turnNumber = 0;
 	turnNumberReal = 0;
-	sureLooser = 0;
-	sureWinner = 0;
+	leaderSwitches = 0;
+	sumScoreDifference = 0;
+	endScoreDifference = 0;
 }
 
 GameStat::~GameStat(void)
@@ -38,8 +39,9 @@ void GameStat::CopyToMe(const GameStat &origin)
 	numberPlayers = origin.numberPlayers;
 	turnNumber = origin.turnNumber;
 	turnNumberReal = origin.turnNumberReal;
-	sureWinner = origin.sureWinner;
-	sureLooser = origin.sureLooser;
+	leaderSwitches = origin.leaderSwitches;
+	sumScoreDifference = origin.sumScoreDifference;
+	endScoreDifference = origin.endScoreDifference;
 	playerStat = new PlayerStat[numberPlayers];
 
 	for(int loop1 = 0; loop1 < numberPlayers; loop1++)
@@ -61,8 +63,9 @@ const GameStat GameStat::operator+(const GameStat &other)
 	}
 	newGameStat.turnNumber = turnNumber + other.turnNumber;
 	newGameStat.turnNumberReal = turnNumberReal + other.turnNumberReal;
-	newGameStat.sureLooser = sureLooser + other.sureLooser;
-	newGameStat.sureWinner = sureWinner + other.sureWinner;
+	newGameStat.leaderSwitches = leaderSwitches + other.leaderSwitches;
+	newGameStat.sumScoreDifference = sumScoreDifference + other.sumScoreDifference;
+	newGameStat.endScoreDifference = endScoreDifference + other.endScoreDifference;
 
 	return newGameStat;
 }

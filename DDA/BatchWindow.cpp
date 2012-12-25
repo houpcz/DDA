@@ -36,13 +36,16 @@ BatchWindow::BatchWindow(QWidget *parent) : QWidget(parent)
 	 connect(removeBatch, SIGNAL(clicked()), this, SLOT(RemoveTopItem()));
 	 setupBatch = new QPushButton(tr("Setup"), this);
 	 listBatch = new QTreeWidget(this);
-	 listBatch->setColumnCount(4);
+	 listBatch->setColumnCount(8);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
 	 header->setData(0, 0, "Game"); 
 	 header->setData(1, 0, "Batch"); 
 	 header->setData(2, 0, "Completed"); 
 	 header->setData(3, 0, "Turn Number"); 
-	 header->setData(4, 0, "EAI Turn"); 
+	 header->setData(4, 0, "P1 winner"); 
+	 header->setData(5, 0, "LS"); 
+	 header->setData(6, 0, "Avg Diff"); 
+	 header->setData(7, 0, "End Diff"); 
 	 listBatch->setHeaderItem(header);
 
 	 gridLayout->addWidget(gameList, 0, 0);
@@ -131,9 +134,10 @@ void BatchWindow::AddItemToBatch()
 	tempItem = new QTreeWidgetItem();
 	tempItem->setData(0, 0, gameList->currentText());
 	tempItem->setData(1, 0, batchSize->value());
-	tempItem->setData(2, 0, 0);
-	tempItem->setData(3, 0, 0);
-	tempItem->setData(4, 0, 0);
+	for(int loop1 = 2; loop1 < listBatch->columnCount(); loop1++)
+	{
+		tempItem->setData(loop1, 0, 0);
+	}
 	listBatch->addTopLevelItem(tempItem);
 
 	switch(gameList->currentIndex())

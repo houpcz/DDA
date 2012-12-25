@@ -23,6 +23,8 @@ protected:
 
 	State state;
 	int playerCount;
+	int playerLeader;
+	int * currentPlayerScore;
 	IPlayer ** player;
 	GameStat * gameStat;
 
@@ -30,6 +32,8 @@ protected:
 	int maxPlayerAI;
 
 	QWidget * widget;
+
+	int GetLeaderID(int * outScoreDifference);
 public:
 	Game(QWidget * _widget, bool paint = true);
 	virtual ~Game(void);

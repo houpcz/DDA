@@ -39,6 +39,8 @@ void BatchThread::run() {
 	qsrand((uint)time.msec() + (int) batchItem->TreeWidgetItem());
 
 	sumGameStat = new GameStat(game->GetPlayerCount() - 1);
+	for(int loop1 = 0; loop1 < game->GetPlayerCount() - 1; loop1++)
+		sumGameStat->UpdatePlayerChoises(loop1, 0);
 
 	shouldRun = true;
 	for(int loop1 = 0; loop1 < batchSize && shouldRun; loop1++)
