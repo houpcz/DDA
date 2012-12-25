@@ -16,15 +16,15 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	for(int loop1 = 0; loop1 < HAND_SIZE; loop1++)
 	{
-		clickableArea[loop1].MoveTo(cardWidth / 2 + loop1 * (cardWidth / 2), 400);
+		clickableArea[loop1].MoveTo(cardWidth / 4 + loop1 * (cardWidth / 2), 500 - ((cardHeight * 6) / 4));
 	}
 
 	for(int loop1 = 0; loop1 < LostCitiesState::COLOR_AMOUNT; loop1++)
 	{
-		clickableArea[loop1 + ClickableArea::EXPEDITION].MoveTo(cardWidth / 2 + loop1 * (1.5f * cardWidth), 250);
-		clickableArea[loop1 + ClickableArea::DISCARD].MoveTo(cardWidth / 2 + loop1 * (1.5f * cardWidth), 180);
+		clickableArea[loop1 + ClickableArea::EXPEDITION].MoveTo(cardWidth / 4 + loop1 * (1.5f * cardWidth), 250);
+		clickableArea[loop1 + ClickableArea::DISCARD].MoveTo(cardWidth / 4 + loop1 * (1.5f * cardWidth), 180);
 	}
-	clickableArea[ClickableArea::DECK].MoveTo(cardWidth / 2 + 15 * (cardWidth / 3), 400);
+	clickableArea[ClickableArea::DECK].MoveTo(cardWidth / 4 + 15 * (cardWidth / 3), 500 - (cardHeight * 6 / 4));
 				
 	for(int loop1 = 0; loop1 < CLICKABLE_MAX_ACTIVE; loop1++)
 	{
@@ -147,6 +147,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 		clickableArea[loop1].SetCardID(-1);
 	}
 
+	bool newCollumn;
 	for(int loop1 = 0; loop1 < LostCitiesState::CARD_AMOUNT; loop1++)
 	{
 		int cardNumber = loop1 % 12 + 2;
@@ -158,25 +159,24 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 		{
 			case PLAYER_1_HAND_HIDDEN :
 			case PLAYER_1_HAND_KNOWN :
-				DrawCard(painter, loop1, clickableArea[cardHandID].X(), clickableArea[cardHandID].Y());
-				clickableArea[cardHandID].SetCardID(loop1);
-				cardHandID++;
 				break;
+
 			case PLAYER_2_HAND_HIDDEN :
 			case PLAYER_2_HAND_KNOWN :
 				cardHand2ID++;
 				break;
 
 			case PLAYER_1_ON_DESK :
-				DrawCard(painter, loop1, cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), 250 + (cardHeight / 3) * expedition[0][cardColorNumber]);
+				newCollumn = expedition[0][cardColorNumber] >= 6;
+				DrawCard(painter, loop1, cardWidth / 4 + cardColorNumber * (1.5f * cardWidth) + newCollumn * 13, 250 + (cardHeight / 3) * expedition[0][cardColorNumber] - newCollumn * 6 * (cardHeight / 3));
 				
-				if(expedition[0][cardColorNumber] == 0)
-					clickableArea[ClickableArea::EXPEDITION + cardColorNumber].SetCardID(loop1);
+				clickableArea[ClickableArea::EXPEDITION + cardColorNumber].SetCardID(loop1);
 
 				expedition[0][cardColorNumber]++;
 				break;
 			case PLAYER_2_ON_DESK :
-				DrawCard(painter, loop1, cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), (cardHeight / 3) + (cardHeight / 3) * expedition[1][cardColorNumber]);
+				newCollumn = expedition[1][cardColorNumber] >= 6;
+				DrawCard(painter, loop1, cardWidth / 4 + cardColorNumber * (1.5f * cardWidth) - newCollumn * 13, 110 - (cardHeight / 3) * expedition[1][cardColorNumber] + newCollumn * 6 * (cardHeight / 3));
 				expedition[1][cardColorNumber]++;
 				break;
 			case IN_DECK :
@@ -195,15 +195,36 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 				clickableArea[ClickableArea::DISCARD + cardColorNumber].SetCardID(discardPile[discardPileMax - 1]);
 			for(int loop2 = 0; loop2 < discardPileMax; loop2++)
 			{
-				DrawCard(painter, discardPile[loop2], cardWidth / 2 + cardColorNumber * (1.5f * cardWidth), 180);
+				DrawCard(painter, discardPile[loop2], cardWidth / 4 + cardColorNumber * (1.5f * cardWidth), 180);
 			}
 			discardPileMax = 0;
 		}
 	}
+	
+	for(int loop1 = 0; loop1 < LostCitiesState::CARD_AMOUNT; loop1++)
+	{
+		int cardNumber = loop1 % 12 + 2;
+		int cardColorNumber = loop1 / 12;
+		
+		int cardSite = currentState->GetCard(loop1);
+		
+		switch(cardSite)
+		{
+			case PLAYER_1_HAND_HIDDEN :
+			case PLAYER_1_HAND_KNOWN :
+				DrawCard(painter, loop1, clickableArea[cardHandID].X(), clickableArea[cardHandID].Y());
+				clickableArea[cardHandID].SetCardID(loop1);
+				cardHandID++;
+				break;
+		}	
+	}
 
 	for(int loop2 = 0; loop2 < LostCitiesState::COLOR_AMOUNT; loop2++)
 	{
-		clickableArea[ClickableArea::EXPEDITION + loop2].SetHeight((cardHeight / 3) * (expedition[0][loop2]- 1) + cardHeight);
+		int expeditionHeight = expedition[0][loop2]- 1;
+		if(expeditionHeight > 5)
+			expeditionHeight = 5;
+		clickableArea[ClickableArea::EXPEDITION + loop2].SetHeight((cardHeight / 3) * expeditionHeight + cardHeight);
 	}
 
 	char cardInDeckString[24];
@@ -217,7 +238,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 
 	painter->setBrush(Qt::BrushStyle::NoBrush);
 	painter->setPen(Qt::lightGray);
-	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
+	for(int loop1 = ClickableArea::EXPEDITION; loop1 < CLICKABLE_AREAS; loop1++)
 	{
 		if(clickableArea[loop1].Active())
 		{
@@ -237,17 +258,17 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->setFont(QFont("SansSerif", 20, 3, false));
 	char temp[25];
 	sprintf(temp, "%d", currentState->GetPlayerPoints(1));
-	painter->drawText(10, 300, 500, 500, 0, temp);
+	painter->drawText(445, 240, 500, 500, 0, temp);
 	sprintf(temp, "%d", currentState->GetPlayerPoints(2));
-	painter->drawText(10, 30, 500, 500, 0, temp);
+	painter->drawText(445, 145, 500, 500, 0, temp);
 	painter->setPen(Qt::black);
 	painter->setFont(QFont("SansSerif", 15, 3, false));
 	sprintf(temp, "%d Env Sees 1", currentState->GetPlayerScore(1, 0) - currentState->GetPlayerScore(2, 0));
-	painter->drawText(10, 330, 500, 500, 0, temp);
+	painter->drawText(510, 330, 500, 500, 0, temp);
 	sprintf(temp, "%d 1 seems himself", currentState->GetPlayerScore(1, 1) - currentState->GetPlayerScore(2, 1));
-	painter->drawText(10, 350, 500, 500, 0, temp);
+	painter->drawText(510, 350, 500, 500, 0, temp);
 	sprintf(temp, "%d 2 seams 1", currentState->GetPlayerScore(1, 2) - currentState->GetPlayerScore(2, 2));
-	painter->drawText(10, 370, 500, 500, 0, temp);
+	painter->drawText(510, 370, 500, 500, 0, temp);
 }
 
 void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
@@ -293,7 +314,13 @@ void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
 	painter->setBrush(cardColor);
 	painter->drawRoundRect(x, y, cardWidth, cardHeight);
 	if(cardID < LostCitiesState::CARD_AMOUNT)
+	{
 		painter->drawText(x + 5, y + 5, cardWidth, cardHeight, 0, symbolString);
+		if(symbolString[1] == '0')
+			painter->drawText(x + cardWidth - 15, y + cardHeight - 15, cardWidth, cardHeight, 0, symbolString);
+		else
+			painter->drawText(x + cardWidth - 10, y + cardHeight - 15, cardWidth, cardHeight, 0, symbolString);
+	}
 }
 
 IGameState * LostCities::GetCurrentState() const

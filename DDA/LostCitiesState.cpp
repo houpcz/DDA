@@ -259,7 +259,7 @@ int LostCitiesState::GetActivePlayerID() const
 }
 int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 {
-	WhoAsked(whoAskID);
+	//WhoAsked(whoAskID);
 
 	int score = 0;
 	int handKnown;
@@ -302,11 +302,11 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 	int deckScoreColor;
 	int handUnknownCountColor; 
 	int inDeckCountColor;
-
+	int maxTurnToTheEnd = 0;
 	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
 	{
 		if(card[loop1] == IN_DECK)
-			inDeckCount++;
+			maxTurnToTheEnd++;
 	}
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
@@ -339,17 +339,20 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 				break;
 			}
 			else
-			if(card[cardID] > topCardOrder)
+			if(card[cardID] > ON_DESK)
 			{
-				topCardOrder = card[loop1];
-				topCardId = cardType;
+				if(card[cardID] > topCardOrder)
+				{
+					topCardOrder = card[loop1];
+					topCardId = cardType;
+				}
 			}
 			else
 			if(card[cardID] == handKnown || 
 			  (card[cardID] == handHidden && (whoAskID == playerID || whoAskID == 0)))
 			{
 				if(cardType > 2)
-					predictedScore += min(PREDICTED_IN_HAND, inDeckCount / 2) * (cardType - 1);
+					predictedScore += min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2) * (cardType - 1);
 			}
 			else
 			if(card[cardID] == onDeskOther || card[cardID] == handKnownOther ||
@@ -371,19 +374,19 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 		{
 			if(topCardOrder > ON_DESK && topCardId > 2)
 			{
-				predictedScore += PREDICTED_TOP_DISCARD * (topCardId - 1);
+				predictedScore += min(PREDICTED_TOP_DISCARD, maxTurnToTheEnd / 2) * (topCardId - 1);
 			}
 			score += predictedScore * bonuses;
 			deckScore += deckScoreColor * bonuses;
 			handUnknownCount += handUnknownCountColor;
-			// inDeckCount += inDeckCountColor;
+			inDeckCount += inDeckCountColor;
 		}
 	}
 
 	float avgDeckCard = 0.0f;
 	if(inDeckCount + handUnknownCount > 0)
 		avgDeckCard = deckScore / (float) (inDeckCount + handUnknownCount);
-	return score + avgDeckCard * inDeckCount * PREDICTED_DECK + avgDeckCard * handUnknownCount * min(PREDICTED_IN_HAND, inDeckCount / 2) + GetPlayerPoints(playerID) * PREDICTED_ON_BOARD;
+	return score + avgDeckCard * inDeckCount * min(PREDICTED_DECK, maxTurnToTheEnd / 2) + avgDeckCard * handUnknownCount * min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2) + GetPlayerPoints(playerID) * PREDICTED_ON_BOARD;
 }
 
 int LostCitiesState::GetPlayerPoints(int playerID)
