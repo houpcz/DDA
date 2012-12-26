@@ -8,6 +8,7 @@
 
 #include "Human.h"
 #include "PlayerRandomAI.h"
+#include "PlayerHillClimber.h"
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
@@ -53,6 +54,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	// set all players
 	playerAI.push_back(new Human(1));
 	playerAI.push_back(new PlayerRandomAI(2));
+	playerAI.push_back(new PlayerHillClimber(3));
 
 	SetGame(GAME_LOST_CITIES_ID);
 

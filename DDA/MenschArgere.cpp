@@ -193,7 +193,7 @@ void MenschArgere::Draw(QPainter * painter, int tickMillis)
 				tileId = (tileId + firstTile[loop1]) % 40;
 			}
 
-			if(activeHumanFigure < 0 && loop1 + 1 == currentState->GetActivePlayerID() && currentState->GetFigureNextState(loop2) >= 0)
+			if(activeHumanFigure < 0 && loop1 + 1 == currentState->GetActivePlayerID() && (currentState->GetFigureNextState(loop2) >= 0 || currentState->GetFigureNextState(loop2 + MenschState::MAX_FIGURE) >= 0))
 				tileGame[tileId]->Draw(painter, Qt::white, tickMillis);
 
 			tileGame[tileId]->DrawPlayer(painter, playerColor[loop1]);

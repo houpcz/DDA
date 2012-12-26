@@ -159,6 +159,7 @@
     <ClCompile Include="MenschArgere.cpp" />
     <ClCompile Include="MenschState.cpp" />
     <ClCompile Include="MenschTile.cpp" />
+    <ClCompile Include="PlayerHillClimber.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +204,7 @@
     <ClInclude Include="MenschArgere.h" />
     <ClInclude Include="MenschState.h" />
     <ClInclude Include="MenschTile.h" />
+    <ClInclude Include="PlayerHillClimber.h" />
     <ClInclude Include="PlayerRandomAI.h" />
     <CustomBuild Include="EnvironmentAIBasic.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

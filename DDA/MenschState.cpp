@@ -215,18 +215,18 @@ bool MenschState::IsPlayerWinner(int playerID) const
 
 int MenschState::GetPlayerScore(int playerID, int whoAskID)
 {
-	if(IsPlayerWinner(playerID))
-		return IGameState::WINNER_SCORE;
+	//if(IsPlayerWinner(playerID))
+	//	return IGameState::WINNER_SCORE;
 
 	int result = 0;
 	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
 	{
 		if(figure[playerID][loop1] >= FIRST_HOME_TILE)
 		{
-			result += 1000;
+			result += 50;
 		} else if(figure[playerID][loop1] >= 0)
 		{
-			result += 100 + figure[playerID][loop1];
+			result += 10 + figure[playerID][loop1];
 		}
 	}
 	return result;

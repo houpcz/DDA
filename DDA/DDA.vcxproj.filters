@@ -172,6 +172,9 @@
     <ClCompile Include="BatchItem.cpp">
       <Filter>Batch</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHillClimber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -212,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="BatchItem.h">
       <Filter>Batch</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHillClimber.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
