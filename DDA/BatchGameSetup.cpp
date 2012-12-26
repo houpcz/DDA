@@ -19,6 +19,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidg
 		playerList[loop1] = new QComboBox(this);
 		playerLevel[loop1-1] = new QSpinBox(this);
 		playerLevel[loop1-1]->setRange(1, 100);
+		playerLevel[loop1-1]->setValue(game->GetPlayer(loop1)->Level());
 
 		for(int loop2 = 1; loop2 < playerAI.size(); loop2++)
 		{
@@ -76,6 +77,7 @@ void BatchGameSetup::SaveSetup()
 			if(str1.compare(str2) == 0)
 			{
 				game->SetPlayer(loop1, loop2);
+				game->GetPlayer(loop1)->SetLevel(playerLevel[loop1 - 1]->value());
 				break;
 			}
 		}

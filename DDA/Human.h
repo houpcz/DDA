@@ -13,6 +13,7 @@ public:
 	virtual ~Human(void);
 	virtual bool Think() { return false; };
 	void HumanTurn(int turn);
+	virtual bool IsScalable() { return false; };
 	QString GetAINAme() { return QString("Human"); };
 };
 

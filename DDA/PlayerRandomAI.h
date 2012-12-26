@@ -8,6 +8,7 @@ public:
 	virtual ~PlayerRandomAI(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};
+	virtual bool IsScalable() { return false; }
 	QString GetAINAme() { return QString("Random AI"); };
 };
 

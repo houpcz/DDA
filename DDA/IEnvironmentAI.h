@@ -11,6 +11,7 @@ public :
 	IEnvironmentAI(int _myID) : IPlayer(_myID) {};
 	virtual ~IEnvironmentAI() {};
 	virtual bool Think() = 0;
+	virtual bool IsScalable() { return false; };
 };
 
 #endif
