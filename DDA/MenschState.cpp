@@ -100,7 +100,7 @@ void MenschState::NextChoises()
 					figureNextState[loop1] = figure[activePlayerID][loop1] + lastDice;
 			}
 
-			if(figure[activePlayerID][loop1] - lastDice >= 0 && figure[activePlayerID][loop1] >= 0) 
+			if(figure[activePlayerID][loop1] < FIRST_HOME_TILE && figure[activePlayerID][loop1] - lastDice >= 0 && figure[activePlayerID][loop1] >= 0) 
 			{
 				bool isFreeTile = true;
 				for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
@@ -221,12 +221,12 @@ int MenschState::GetPlayerScore(int playerID, int whoAskID)
 	int result = 0;
 	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
 	{
-		if(figure[playerID][loop1] >= FIRST_HOME_TILE)
+		if(figure[playerID - 1][loop1] >= FIRST_HOME_TILE)
 		{
 			result += 50;
-		} else if(figure[playerID][loop1] >= 0)
+		} else if(figure[playerID - 1][loop1] >= 0)
 		{
-			result += 10 + figure[playerID][loop1];
+			result += 10 + figure[playerID - 1][loop1];
 		}
 	}
 	return result;
