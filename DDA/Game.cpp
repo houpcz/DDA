@@ -44,7 +44,7 @@ void Game::NextTurn()
 {
 	int turnNumber = 0;
 
-	while(true)
+	while(turnNumber < 10000)
 	{
 		IGameState * currentState = GetCurrentState();
 		if(player[currentState->GetActivePlayerID()]->IsReady())

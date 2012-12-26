@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QSpinBox>
 #include <QGridLayout>
+#include <QPushButton>
 #include <vector>
 #include "IGame.h"
 
@@ -19,10 +20,13 @@ private :
 	QGridLayout * gridLayout;
 	QComboBox ** playerList;
 	QSpinBox ** playerLevel;
+	QPushButton * okButton;
 	vector<IPlayer *> playerAI;
 public:
 	BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidget *parent = 0);
 	~BatchGameSetup(void);
+public slots:
+		void SaveSetup();
 };
 
 #endif
