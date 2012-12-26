@@ -59,6 +59,7 @@ void Game::NextTurn()
 				gameStat->AddTurnNumberReal();
 				int playerChoises = currentState->GetPlayerChoises(currentPlayerID);
 				gameStat->UpdatePlayerChoises(currentPlayerID - 1, playerChoises);
+				gameStat->AddPlayerTurnNumber(currentPlayerID - 1);
 
 				int outScoreDifference;
 				int newLeaderID = GetLeaderID(&outScoreDifference);

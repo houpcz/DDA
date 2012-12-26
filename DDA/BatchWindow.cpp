@@ -1,5 +1,5 @@
 #include <QGridLayout>
-
+#include <QFileDialog>
 #include "BatchWindow.h"
 #include "BatchGameSetup.h"
 #include "LostCities.h"
@@ -38,6 +38,10 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 connect(removeBatch, SIGNAL(clicked()), this, SLOT(RemoveTopItem()));
 	 setupBatch = new QPushButton(tr("Setup"), this);
 	 connect(setupBatch, SIGNAL(clicked()), this, SLOT(SetupBatch()));
+	 saveBatchToCsv = new QPushButton(tr("Save"), this);
+	 connect(saveBatchToCsv, SIGNAL(clicked()), this, SLOT(SaveBatchToCsv()));
+	 saveAllToCsv = new QPushButton(tr("Save All"), this);
+	 connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
 	 listBatch = new QTreeWidget(this);
 	 listBatch->setColumnCount(8);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
@@ -56,10 +60,12 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 gridLayout->addWidget(addBatch, 0, 2);
 	 gridLayout->addWidget(removeBatch, 1, 0);
 	 gridLayout->addWidget(setupBatch, 1, 1);
-	 gridLayout->addWidget(listBatch, 2, 0, 1, 3);
+	 gridLayout->addWidget(saveBatchToCsv, 1, 2);
+	 gridLayout->addWidget(listBatch, 2, 0, 1, 4);
 	 gridLayout->addWidget(startButton, 3, 0);
 	 gridLayout->addWidget(stopButton, 3, 1);
-	 gridLayout->addWidget(progressBar, 3, 2);
+	 gridLayout->addWidget(saveAllToCsv, 3, 2);
+	 gridLayout->addWidget(progressBar, 3, 3);
      setLayout(gridLayout);
 }
 
@@ -83,6 +89,8 @@ void BatchWindow::NextBatchItem()
 		removeBatch->setEnabled(true);
 		addBatch->setEnabled(true);
 		setupBatch->setEnabled(true);
+		saveAllToCsv->setEnabled(true);
+		saveBatchToCsv->setEnabled(true);
 		batchIsRunning = false;
 	}
 }
@@ -112,6 +120,8 @@ void BatchWindow::StartBatch()
 	removeBatch->setEnabled(false);
 	addBatch->setEnabled(false);
 	setupBatch->setEnabled(false);
+	saveAllToCsv->setEnabled(false);
+	saveBatchToCsv->setEnabled(false);
 	NextBatchItem();
 }
 
@@ -139,6 +149,19 @@ void BatchWindow::SetupBatch()
 		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAI, this);
 		setup->exec();
 	}
+}
+void BatchWindow::SaveBatchToCsv()
+{
+	int currentID = listBatch->currentIndex().row();
+	if(currentID >= 0)
+	{
+		QString fileName = QFileDialog::getSaveFileName(this, tr("Save to CSV"), "", tr("CSV (*.csv);;Text files (*.txt)"));
+		batchItem[currentID]->ExportToCsv(fileName);
+	}
+}
+
+void BatchWindow::SaveAllToCsv()
+{
 }
 
 void BatchWindow::AddItemToBatch()

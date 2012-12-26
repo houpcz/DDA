@@ -29,6 +29,8 @@ private :
 	QPushButton *addBatch;
 	QPushButton *removeBatch;
 	QPushButton *setupBatch;
+	QPushButton *saveBatchToCsv;
+	QPushButton *saveAllToCsv;
 	QTreeWidget *listBatch;
 	QComboBox * gameList;
 	QSpinBox * batchSize;
@@ -44,6 +46,8 @@ public slots:
 	void StartBatch();
 	void StopBatch();
 	void SetupBatch();
+	void SaveBatchToCsv();
+	void SaveAllToCsv();
 	void RemoveTopItem();
 	void AddItemToBatch();
 	void NextBatchItem();

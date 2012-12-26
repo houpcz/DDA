@@ -43,10 +43,13 @@ void BatchThread::run() {
 		sumGameStat->UpdatePlayerChoises(loop1, 0);
 
 	shouldRun = true;
+	GameStat * gameStat = new GameStat(game->GetPlayerCount() - 1);
 	for(int loop1 = 0; loop1 < batchSize && shouldRun; loop1++)
 	{
 		game->StartGame();
-		(*sumGameStat) = (*sumGameStat) + game->GetGameStat();
+		*gameStat = game->GetGameStat();
+		(*sumGameStat) = (*sumGameStat) + *gameStat;
+		batchItem->SetGameStat(*gameStat, loop1);
 		emit GameOver(loop1 + 1);
 	}
 

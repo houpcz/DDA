@@ -12,6 +12,7 @@ private:
 	IGame * game;
 	QTreeWidgetItem * treeWidgetItem;
 	GameStat * sumGameStat;
+	GameStat ** allGameStat;
 public:
 	BatchItem(int _batchSize, IGame * _game, QTreeWidgetItem * _treeWidgetItem);
 	~BatchItem(void);
@@ -20,6 +21,8 @@ public:
 	QTreeWidgetItem * TreeWidgetItem() { return treeWidgetItem;};
 	void UpdateTreeWidget();
 	void SetSumGameStat(GameStat _sumGameStat);
+	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
+	void ExportToCsv(QString path);
 };
 
 #endif
