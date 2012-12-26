@@ -102,7 +102,7 @@ void DDAWidget::NewGame()
 
 void DDAWidget::BatchMenu()
 {
-	batchWindow = new BatchWindow(this);
+	batchWindow = new BatchWindow(playerAI, this);
 	setCentralWidget(batchWindow);
 }
 

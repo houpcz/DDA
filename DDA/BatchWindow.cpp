@@ -1,14 +1,16 @@
 #include <QGridLayout>
 
 #include "BatchWindow.h"
+#include "BatchGameSetup.h"
 #include "LostCities.h"
 #include "MenschArgere.h"
 #include "GameMaze.h"
 
-BatchWindow::BatchWindow(QWidget *parent) : QWidget(parent)
+BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget(parent)
 {
 	 batchThread = new BatchThread();
 	 batchIsRunning = false;
+	 playerAI = _playerAI;
 
 	 QGridLayout *gridLayout = new QGridLayout;
 	 startButton = new QPushButton(tr("Start"), this);
@@ -35,6 +37,7 @@ BatchWindow::BatchWindow(QWidget *parent) : QWidget(parent)
 	 removeBatch = new QPushButton(tr("Remove"), this);
 	 connect(removeBatch, SIGNAL(clicked()), this, SLOT(RemoveTopItem()));
 	 setupBatch = new QPushButton(tr("Setup"), this);
+	 connect(setupBatch, SIGNAL(clicked()), this, SLOT(SetupBatch()));
 	 listBatch = new QTreeWidget(this);
 	 listBatch->setColumnCount(8);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
@@ -125,6 +128,16 @@ void BatchWindow::RemoveTopItem()
 	{
 		batchItem.erase(batchItem.begin() + currentID, batchItem.begin() + currentID + 1);
 		delete listBatch->currentItem();
+	}
+}
+
+void BatchWindow::SetupBatch()
+{
+	int currentID = listBatch->currentIndex().row();
+	if(currentID >= 0)
+	{
+		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAI, this);
+		setup->exec();
 	}
 }
 

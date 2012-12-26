@@ -36,12 +36,14 @@ private :
 	bool batchIsRunning;
 	int currentBatchItemID;
 	vector<BatchItem *> batchItem;
+	vector<IPlayer *> playerAI;
 public:
-	BatchWindow(QWidget *parent);
+	BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent);
 	~BatchWindow(void);
 public slots:
 	void StartBatch();
 	void StopBatch();
+	void SetupBatch();
 	void RemoveTopItem();
 	void AddItemToBatch();
 	void NextBatchItem();

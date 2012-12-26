@@ -175,6 +175,15 @@
     <ClCompile Include="PlayerHillClimber.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BatchGameSetup.cpp">
+      <Filter>Batch</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchGameSetup.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchGameSetup.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -249,6 +258,9 @@
       <Filter>Batch</Filter>
     </CustomBuild>
     <CustomBuild Include="BatchWindow.h">
+      <Filter>Batch</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchGameSetup.h">
       <Filter>Batch</Filter>
     </CustomBuild>
   </ItemGroup>
