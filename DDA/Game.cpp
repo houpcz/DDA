@@ -32,10 +32,14 @@ void Game::StartGame()
 {
 	if(gameStat != NULL)
 		delete gameStat;
-	if(currentPlayerScore != NULL)
-		delete [] currentPlayerScore;
+	if(currentPlayerScore == NULL)
+		currentPlayerScore = new int[playerCount - 1];
 
-	currentPlayerScore = new int[playerCount - 1];
+	for(int loop1 = 0; loop1 < playerCount - 1; loop1++)
+	{
+		currentPlayerScore[loop1] = 0;
+	}
+
 	gameStat = new GameStat(playerCount - 1);
 	playerLeader = -1;
 }
@@ -98,16 +102,27 @@ int Game::GetLeaderID(int * outScoreDifference)
 {
 	IGameState * currentState = GetCurrentState();
 
-	if(playerCount <= 2) // real player + environmental AI
+	for(int loop1 = 1; loop1 <= playerCount; loop1++)
 	{
-		*outScoreDifference = currentState->GetPlayerScore(1, 0);
-		return 0;
+		currentPlayerScore[loop1 - 1] = currentState->GetPlayerScore(loop1, 0);
 	}
 
+	int bestID = 0;
+	int bestScore = currentPlayerScore[0];
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
-		currentPlayerScore[loop1 - 1] = currentState->GetPlayerScore(loop1, 0);
+	{
+		if(currentPlayerScore[loop1] > bestScore)
+		{ 
+			bestScore = currentPlayerScore[loop1];
+			bestID = loop1;
+		}
+	}
+	// we have almost zero sum games
+	// score of winner is difference between best one and second one
+	*outScoreDifference = bestScore;
+	return bestID;
 
-
+	/*
 	int maxScore = currentPlayerScore[0];
 	int maxSecondScore = currentPlayerScore[1];
 	int maxScoreID;
@@ -136,6 +151,7 @@ int Game::GetLeaderID(int * outScoreDifference)
 	}
 	*outScoreDifference = maxScore - maxSecondScore;
 	return maxScoreID;
+	*/
 }
 
 void Game::Paint(QPainter * painter)

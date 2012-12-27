@@ -16,12 +16,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	possibleWayToGoal = true;
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
-	//maze = new char*[mazeHeight];
-	//mazeClosedList = new char*[mazeHeight];
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
-		//maze[loop1] = new char[mazeWidth];
-		//mazeClosedList[loop1] = new char[mazeWidth];
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			maze[loop1][loop2] = TILE_UNDEFINED;
@@ -61,14 +57,11 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	maze[playerY + dy][playerX + dx] = TILE_WALL;
 	maze[playerY][playerX + dx] = TILE_EMPTY;
 
-	//maze[mazeHeight / 2][mazeWidth / 2] = TILE_GOAL;
-	goalX = mazeWidth - playerX - 1;
-	goalY = mazeHeight - playerY - 1;
+	goalX = mazeHeight / 2;
+	goalY = mazeWidth / 2;
+	//goalX = mazeWidth - playerX - 1;
+	//goalY = mazeHeight - playerY - 1;
 	maze[goalY][goalX] = TILE_GOAL;
-	
-	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - 1] = TILE_EMPTY;
-	//maze[mazeHeight - playerY - dy - 1][mazeWidth - playerX - dx - 1] = TILE_WALL;
-	//maze[mazeHeight - playerY - 1][mazeWidth - playerX - dx - 1] = TILE_EMPTY;
 
 	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
 	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + dy));
@@ -526,8 +519,8 @@ void MazeState::CountScore()
 		return;
 	}
 
-	int manDistToGoal = mazeHeight + mazeWidth - (abs(playerX - goalX) + abs(playerY - goalY));
-	playerScore = (manDistToGoal == mazeHeight + mazeWidth) ? IGameState::WINNER_SCORE : stepsToGameOver + manDistToGoal * 10;
+	int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
+	playerScore = manDistToGoal * 10 + stepsToGameOver;
 }
 
 void MazeState::PrintToFile(const char * firstLine)

@@ -5,6 +5,7 @@ MenschState::MenschState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
+		playerScore[loop1] = 0;
 		figure[loop1][0] = 0;
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
@@ -188,6 +189,9 @@ int MenschState::MakeTurn(int playerChoise)
 	}
 	dicePlayerNow = !dicePlayerNow;
 
+
+	CountPlayerScores();
+
 	return result;
 }
 
@@ -213,21 +217,50 @@ bool MenschState::IsPlayerWinner(int playerID) const
 	return isWinner;
 }
 
+
 int MenschState::GetPlayerScore(int playerID, int whoAskID)
 {
-	//if(IsPlayerWinner(playerID))
-	//	return IGameState::WINNER_SCORE;
+	return playerScore[playerID - 1];
+}
+void MenschState::CountPlayerScores()
+{
+	int tempScore[MAX_PLAYER];
 
-	int result = 0;
-	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
+	int bestScore = 0;
+	int secondBest = 0;
+	for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 	{
-		if(figure[playerID - 1][loop1] >= FIRST_HOME_TILE)
+		int result = 0;
+		for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
 		{
-			result += 50;
-		} else if(figure[playerID - 1][loop1] >= 0)
+			if(figure[loop2][loop1] >= FIRST_HOME_TILE)
+			{
+				result += 50;
+			} else if(figure[loop2][loop1] >= 0)
+			{
+				result += 10 + figure[loop2][loop1];
+			}
+		}
+		tempScore[loop2] = result;
+
+		if(result > secondBest)
 		{
-			result += 10 + figure[playerID - 1][loop1];
+			if(result > bestScore)
+			{
+				secondBest = bestScore;
+				bestScore = result;
+			} else
+			{
+				secondBest = result;
+			}
 		}
 	}
-	return result;
+
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+	{
+		if(tempScore[loop1] == bestScore)
+			playerScore[loop1] = tempScore[loop1] - secondBest;
+		else
+			playerScore[loop1] = tempScore[loop1] - bestScore;
+	}
 }

@@ -80,7 +80,7 @@ private:
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
 	void CountScore();
 public:
-	MazeState(int _activePlayerID, int _stepsToGameOver = 50000, int mWidth = 40, int mHeight = 40);
+	MazeState(int _activePlayerID, int _stepsToGameOver = 5000, int mWidth = 41, int mHeight = 41);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);

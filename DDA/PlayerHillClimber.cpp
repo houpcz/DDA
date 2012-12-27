@@ -1,6 +1,8 @@
+#include <vector>
 #include "PlayerHillClimber.h"
 #include "IGame.h"
 
+using namespace std;
 
 PlayerHillClimber::PlayerHillClimber(int _myID) : IPlayer(_myID)
 {
@@ -10,24 +12,28 @@ PlayerHillClimber::~PlayerHillClimber(void)
 {
 }
 
+
+typedef std::pair<int,int> valueIndex;
+bool comparator ( const valueIndex& l, const valueIndex& r)
+{ 
+	return l.first > r.first; 
+}
+
 bool PlayerHillClimber::Think()
 {
-	int p_myTurn;
-	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
-	int maxID = 0;
-	int maxValue = nextState[0]->GetPlayerScore(myID, myID);
-	for(int loop1 = 1; loop1 < p_myTurn; loop1++)
+	int choises;
+	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &choises);
+
+	vector<valueIndex> scores;
+	for(int loop1 = 1; loop1 < choises; loop1++)
 	{
-		int tempScore = nextState[loop1]->GetPlayerScore(myID, myID);
-		if(tempScore > maxValue)
-		{
-			maxValue = tempScore;
-			maxID = loop1;
-		}
+		scores.push_back(valueIndex(nextState[loop1]->GetPlayerScore(myID, myID), loop1));
 		delete nextState[loop1];
 	}
 	delete [] nextState;
-	myTurn = maxID;
+	sort(scores.begin(), scores.end(), comparator);
+
+	myTurn = scores[0].second;
 	
 	isReady = true;
 

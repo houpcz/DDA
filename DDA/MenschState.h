@@ -17,7 +17,9 @@ private:
 	int activePlayerID;
 	int figure[MAX_PLAYER][MAX_FIGURE];
 	int figureNextState[MAX_CHOISES];
+	int playerScore[MAX_PLAYER];
 
+	void CountPlayerScores();
 	void NextChoises();
 	bool IsPlayerWinner(int playerID) const;
 public:
