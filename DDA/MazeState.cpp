@@ -523,6 +523,18 @@ void MazeState::CountScore()
 	playerScore = manDistToGoal * 10 + stepsToGameOver;
 }
 
+bool MazeState::IsGameOver()
+{
+	if(goalX = playerX && goalY == playerY)
+		return true;
+	if(stepsToGameOver <= 0)
+		return true;
+	if(activePlayerID == PLAYER_AI && tileToExplore.size() == 0)
+		return true;
+
+	return false;
+}
+
 void MazeState::PrintToFile(const char * firstLine)
 {
 	FILE *fw;

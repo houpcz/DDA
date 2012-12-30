@@ -46,9 +46,6 @@ bool GameMaze::PlayerTurn()
 	int playerTurn = player[currentState->GetActivePlayerID()]->MakeTurn();
 	bool gameOver = currentState->Explore(playerTurn);
 
-	if(GetCurrentState()->GetActivePlayerID() == PLAYER_AI && currentState->GetTileToExplore()->size() == 0)
-		return true;
-
 	return gameOver;
 }
 

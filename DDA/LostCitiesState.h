@@ -43,6 +43,7 @@ private:
 	int discardPileTopCardCode[COLOR_AMOUNT];
 	int discardPileTopCardID[COLOR_AMOUNT];
 	int whoAskIDlast;
+	bool isGameOver;
 
 	void InitGame(int handSize);
 	void WhoAsked(int whoAskID);
@@ -62,6 +63,7 @@ public:
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
+	bool IsGameOver();
 };
 
 #endif

@@ -74,7 +74,8 @@ void Game::NextTurn()
 				playerLeader = newLeaderID;
 			}
 
-			if(PlayerTurn())
+			PlayerTurn();
+			if(currentState->IsGameOver())
 			{
 				state = STATE_GAME_OVER;
 				

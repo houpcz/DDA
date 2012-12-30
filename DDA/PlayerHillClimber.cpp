@@ -35,7 +35,7 @@ bool PlayerHillClimber::Think()
 	sort(scores.begin(), scores.end(), comparator);
 	
 	double mean = (level / 100.0) * choises;
-	double deviation = choises / 10.0;
+	double deviation = choises / 20.0;
 	normal_distribution<> normalDistribution(mean, deviation);
 	int choise = (int) (normalDistribution(*generator) + 0.5);
 	if(choise < 0)

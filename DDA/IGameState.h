@@ -12,6 +12,7 @@ public :
 	virtual int GetActivePlayerID() const = 0;
 	virtual int GetPlayerScore(int playerID, int whoAskID) = 0;
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
+	virtual bool IsGameOver() = 0;
 	virtual void PrintToFile(const char * firstLine) {};
 };
 

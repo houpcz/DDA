@@ -29,6 +29,7 @@ void LostCitiesState::InitGame(int handSize)
 	for(int loop1 = handSize; loop1 < 2 * handSize; loop1++)
 		card[allCards[loop1]] = PLAYER_2_HAND_HIDDEN;
 
+	isGameOver = false;
 	whoAskIDlast = NOBODY;
 }
 
@@ -54,6 +55,8 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 
 	activePlayerID = origin.activePlayerID;
 	lastRealPlayer = origin.lastRealPlayer;
+	isGameOver = origin.isGameOver;
+	whoAskIDlast = origin.whoAskIDlast;
 
 	allChoises.clear();
 	allChoises.insert(allChoises.begin(), origin.allChoises.begin(), origin.allChoises.end());
@@ -71,6 +74,10 @@ LostCitiesState::~LostCitiesState(void)
 {
 }
 
+bool LostCitiesState::IsGameOver()
+{
+	return isGameOver;
+}
 bool LostCitiesState::MakeTurn(int turn)
 {
 	if(activePlayerID == ENVIRONMENTAL_AI)
@@ -86,7 +93,10 @@ bool LostCitiesState::MakeTurn(int turn)
 			lastRealPlayer = 1;
 		}
 		if(allChoises.size() == 1)
+		{
+			isGameOver = true;
 			return true;
+		}
 	} else {
 		int allChoisesID = turn;
 		int cardID = (allChoises[allChoisesID] >= DISCARD_CARD_OFFSET) ? allChoises[allChoisesID] - DISCARD_CARD_OFFSET: allChoises[allChoisesID];

@@ -264,3 +264,13 @@ void LudoState::CountPlayerScores()
 			playerScore[loop1] = tempScore[loop1] - bestScore;
 	}
 }
+
+bool LudoState::IsGameOver()
+{
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+	{
+		if(IsPlayerWinner(loop1))
+			return true;
+	}
+	return false;
+}

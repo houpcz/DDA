@@ -34,6 +34,7 @@ public:
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }
+	bool IsGameOver();
 };
 
 #endif;

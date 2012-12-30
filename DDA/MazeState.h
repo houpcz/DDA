@@ -111,6 +111,7 @@ public:
 
 		return -1;
 	}
+	bool IsGameOver();
 	int GetPlayerScore(int playerID, int whoAskID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
