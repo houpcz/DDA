@@ -63,7 +63,13 @@ private :
 	long long endScoreDifference;
 
 	PlayerStat * playerStat;
-
+	void CheckPlayerID(int playerID)
+	{
+		if(playerID < 0 || playerID >= numberPlayers)
+		{
+			throw "GameStat.h -> bad playerID";
+		}
+	}
 	void CopyToMe(const GameStat &origin);
 public:
 	GameStat();
@@ -80,9 +86,18 @@ public:
 	void AddScoreDifference(int difference) { sumScoreDifference += difference; };
 	void SetEndScoreDifference(int difference) { endScoreDifference = difference; };
 
-	void AddPlayerTurnNumber(int playerID) { playerStat[playerID].AddTurn(); };
-	void SetWinner(int playerID) { playerStat[playerID].SetWinner(); };
-	void UpdatePlayerChoises(int playerID, int playerChoises) { playerStat[playerID].UpdateChoises(playerChoises); };
+	void AddPlayerTurnNumber(int playerID) { 
+		CheckPlayerID(playerID);
+		playerStat[playerID].AddTurn(); 
+	};
+	void SetWinner(int playerID) { 
+		CheckPlayerID(playerID);
+		playerStat[playerID].SetWinner(); 
+	};
+	void UpdatePlayerChoises(int playerID, int playerChoises) { 
+		CheckPlayerID(playerID);
+		playerStat[playerID].UpdateChoises(playerChoises); 
+	};
 
 	long NumberPlayers() { return numberPlayers; };
 	long long TurnNumber() { return turnNumber; };
@@ -90,11 +105,26 @@ public:
 	long long LeaderSwitches() { return leaderSwitches; };
 	long long SumScoreDifference() { return sumScoreDifference;};
 	long long EndScoreDifference() { return endScoreDifference;};
-	long PlayerWinner(int playerID) { return playerStat[playerID].Winner(); };
-	long long PlayerChoisesMin(int playerID) { return playerStat[playerID].ChoisesMin(); };
-	long long PlayerChoisesMax(int playerID) { return playerStat[playerID].ChoisesMax(); };
-	long long PlayerChoisesSum(int playerID) { return playerStat[playerID].ChoisesSum(); };
-	long long PlayerTurnNumber(int playerID) { return playerStat[playerID].TurnNumber(); };
+	long PlayerWinner(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].Winner(); 
+	};
+	long long PlayerChoisesMin(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].ChoisesMin(); 
+	};
+	long long PlayerChoisesMax(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].ChoisesMax(); 
+	};
+	long long PlayerChoisesSum(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].ChoisesSum(); 
+	};
+	long long PlayerTurnNumber(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].TurnNumber(); 
+	};
 };
 
 #endif

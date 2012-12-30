@@ -46,7 +46,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 
 	signalMapper = new QSignalMapper(this);
 
-	activeGameID = GAME_MENSCH_ARGERE_ID;
+	activeGameID = -1;
 	activeGame = new LostCities(this);
 	board = new Board(this, activeGame);
 	setCentralWidget(board);

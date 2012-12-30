@@ -3,10 +3,11 @@
 #include <QTime>
 
 #include "DDAWidget.h"
+#include "QApp.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QApp app(argc, argv);
 
     DDAWidget widget;
 	QTime time = QTime::currentTime();

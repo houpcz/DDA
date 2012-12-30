@@ -184,6 +184,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_BatchGameSetup.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="QApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -226,6 +229,9 @@
       <Filter>Batch</Filter>
     </ClInclude>
     <ClInclude Include="PlayerHillClimber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

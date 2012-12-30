@@ -58,6 +58,7 @@ void Game::NextTurn()
 			gameStat->AddTurnNumber();
 
 			int currentPlayerID = currentState->GetActivePlayerID();
+			
 			if(currentPlayerID != ENVIRONMENTAL_AI_ID)
 			{
 				gameStat->AddTurnNumberReal();
@@ -76,12 +77,13 @@ void Game::NextTurn()
 			if(PlayerTurn())
 			{
 				state = STATE_GAME_OVER;
-
+				
 				int outScoreDifference;
 				int newLeaderID = GetLeaderID(&outScoreDifference);
 				gameStat->AddScoreDifference(outScoreDifference);
 				gameStat->SetEndScoreDifference(outScoreDifference);
 				gameStat->SetWinner(newLeaderID);
+				
 				break;
 			}
 
@@ -102,14 +104,14 @@ int Game::GetLeaderID(int * outScoreDifference)
 {
 	IGameState * currentState = GetCurrentState();
 
-	for(int loop1 = 1; loop1 <= playerCount; loop1++)
+	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
 		currentPlayerScore[loop1 - 1] = currentState->GetPlayerScore(loop1, 0);
 	}
 
 	int bestID = 0;
 	int bestScore = currentPlayerScore[0];
-	for(int loop1 = 1; loop1 < playerCount; loop1++)
+	for(int loop1 = 1; loop1 < playerCount - 1; loop1++)
 	{
 		if(currentPlayerScore[loop1] > bestScore)
 		{ 

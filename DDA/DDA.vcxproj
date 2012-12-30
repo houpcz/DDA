@@ -168,8 +168,10 @@
     <ClCompile Include="MenschTile.cpp" />
     <ClCompile Include="PlayerHillClimber.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
+    <ClCompile Include="QApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="QApp.h" />
     <CustomBuild Include="DDAWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing DDAWidget.h...</Message>

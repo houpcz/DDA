@@ -2,7 +2,7 @@
 
 IPlayer::IPlayer(int _myID) 
 { 
-	level = 50;
+	level = 100;
 	myID = _myID;
 }
 bool IPlayer::IsReady()
