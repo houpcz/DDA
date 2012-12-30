@@ -10,7 +10,7 @@
 #include "BatchWindow.h"
 #include "IGame.h"
 #include "GameMaze.h"
-#include "MenschArgere.h"
+#include "Ludo.h"
 #include "LostCities.h"
 #include "Board.h"
 
@@ -50,7 +50,7 @@ public:
 		void NewGame();
 		void SetGame(int gameID);
 		void SetGameMaze();
-		void SetGameMenschArgere();
+		void SetGameLudo();
 		void SetGameLostCities();
 		void ChangePlayer(int player);
 };

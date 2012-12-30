@@ -3,16 +3,16 @@
 #include "qcolor.h"
 #include "qpainter.h"
 
-class MenschArgere;
+class Ludo;
 
-class MenschTile
+class LudoTile
 {
 	int x;
 	int y;
 	QColor color;
-	MenschArgere * game;
+	Ludo * game;
 public:
-	MenschTile(int _x, int _y, QColor _color, MenschArgere * _game);
+	LudoTile(int _x, int _y, QColor _color, Ludo * _game);
 	bool Contain(int pointX, int pointY);
 	void Draw(QPainter * painter, const QColor &tileColor, int tickMillis = 0);
 	void Draw(QPainter * painter, int tickMillis = 0);

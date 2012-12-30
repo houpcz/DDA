@@ -27,13 +27,13 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 
 	QMenu * setGameMenu = game->addMenu(tr("Set Game"));
 	QAction * setGameMazeAction = new QAction(tr("Maze"), this);
-    QAction * setGameMenschArgereAction = new QAction(tr("Mensch Argere"), this);
+    QAction * setGameLudoAction = new QAction(tr("Ludo"), this);
 	QAction * setGameLostCitiesAction = new QAction(tr("Lost cities"), this);
 	setGameMenu->addAction(setGameMazeAction);
-	setGameMenu->addAction(setGameMenschArgereAction);
+	setGameMenu->addAction(setGameLudoAction);
 	setGameMenu->addAction(setGameLostCitiesAction);
     connect(setGameMazeAction, SIGNAL(triggered()), this, SLOT(SetGameMaze()));
-	connect(setGameMenschArgereAction, SIGNAL(triggered()), this, SLOT(SetGameMenschArgere()));
+	connect(setGameLudoAction, SIGNAL(triggered()), this, SLOT(SetGameLudo()));
 	connect(setGameLostCitiesAction, SIGNAL(triggered()), this, SLOT(SetGameLostCities()));
 
 	QAction * batchMenuAction = new QAction(tr("&Batch"), this);
@@ -116,7 +116,7 @@ void DDAWidget::SetGameMaze()
 	SetGame(GAME_MAZE_ID);
 }
 
-void DDAWidget::SetGameMenschArgere()
+void DDAWidget::SetGameLudo()
 {
 	SetGame(GAME_MENSCH_ARGERE_ID);
 }
@@ -136,7 +136,7 @@ void DDAWidget::SetGame(int gameID)
 	switch(gameID)
 	{
 		case GAME_MENSCH_ARGERE_ID :
-			activeGame = new MenschArgere(this);
+			activeGame = new Ludo(this);
 			break;
 		case GAME_MAZE_ID :
 			activeGame = new GameMaze(this);

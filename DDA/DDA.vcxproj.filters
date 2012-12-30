@@ -32,14 +32,14 @@
     <Filter Include="Maze">
       <UniqueIdentifier>{1301f5cb-7815-4b80-87c2-90d4f457bd90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MenschArgere">
-      <UniqueIdentifier>{1a30edb3-9811-4d0f-85aa-894ffdc6782d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="LostCities">
       <UniqueIdentifier>{28a5bb4b-594e-4696-92af-71de9b984d74}</UniqueIdentifier>
     </Filter>
     <Filter Include="Batch">
       <UniqueIdentifier>{8b0b49dd-2b53-4408-bc2e-3509cba50a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Ludo">
+      <UniqueIdentifier>{1a30edb3-9811-4d0f-85aa-894ffdc6782d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,17 +121,8 @@
     <ClCompile Include="MazeState.cpp">
       <Filter>Maze</Filter>
     </ClCompile>
-    <ClCompile Include="MenschArgere.cpp">
-      <Filter>MenschArgere</Filter>
-    </ClCompile>
-    <ClCompile Include="MenschState.cpp">
-      <Filter>MenschArgere</Filter>
-    </ClCompile>
     <ClCompile Include="GameMaze.cpp">
       <Filter>Maze</Filter>
-    </ClCompile>
-    <ClCompile Include="MenschTile.cpp">
-      <Filter>MenschArgere</Filter>
     </ClCompile>
     <ClCompile Include="GameStat.cpp">
       <Filter>Source Files</Filter>
@@ -187,6 +178,15 @@
     <ClCompile Include="QApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ludo.cpp">
+      <Filter>Ludo</Filter>
+    </ClCompile>
+    <ClCompile Include="LudoState.cpp">
+      <Filter>Ludo</Filter>
+    </ClCompile>
+    <ClCompile Include="LudoTile.cpp">
+      <Filter>Ludo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerRandomAI.h">
@@ -198,17 +198,8 @@
     <ClInclude Include="IGameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MenschArgere.h">
-      <Filter>MenschArgere</Filter>
-    </ClInclude>
-    <ClInclude Include="MenschState.h">
-      <Filter>MenschArgere</Filter>
-    </ClInclude>
     <ClInclude Include="MazeState.h">
       <Filter>Maze</Filter>
-    </ClInclude>
-    <ClInclude Include="MenschTile.h">
-      <Filter>MenschArgere</Filter>
     </ClInclude>
     <ClInclude Include="GameStat.h">
       <Filter>Header Files</Filter>
@@ -233,6 +224,15 @@
     </ClInclude>
     <ClInclude Include="QApp.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ludo.h">
+      <Filter>Ludo</Filter>
+    </ClInclude>
+    <ClInclude Include="LudoState.h">
+      <Filter>Ludo</Filter>
+    </ClInclude>
+    <ClInclude Include="LudoTile.h">
+      <Filter>Ludo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

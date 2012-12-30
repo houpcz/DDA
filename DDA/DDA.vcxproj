@@ -163,9 +163,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixFactory.cpp" />
     <ClCompile Include="MazeState.cpp" />
-    <ClCompile Include="MenschArgere.cpp" />
-    <ClCompile Include="MenschState.cpp" />
-    <ClCompile Include="MenschTile.cpp" />
+    <ClCompile Include="Ludo.cpp" />
+    <ClCompile Include="LudoState.cpp" />
+    <ClCompile Include="LudoTile.cpp" />
     <ClCompile Include="PlayerHillClimber.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
     <ClCompile Include="QApp.cpp" />
@@ -220,9 +220,9 @@
     <ClInclude Include="LostCities.h" />
     <ClInclude Include="LostCitiesState.h" />
     <ClInclude Include="MatrixFactory.h" />
-    <ClInclude Include="MenschArgere.h" />
-    <ClInclude Include="MenschState.h" />
-    <ClInclude Include="MenschTile.h" />
+    <ClInclude Include="Ludo.h" />
+    <ClInclude Include="LudoState.h" />
+    <ClInclude Include="LudoTile.h" />
     <ClInclude Include="PlayerHillClimber.h" />
     <ClInclude Include="PlayerRandomAI.h" />
     <CustomBuild Include="EnvironmentAIBasic.h">

@@ -1,7 +1,7 @@
-#include "MenschState.h"
-#include "MenschArgere.h"
 
-MenschState::MenschState(void)
+#include "Ludo.h"
+
+LudoState::LudoState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
@@ -20,20 +20,20 @@ MenschState::MenschState(void)
 }
 
 
-MenschState::~MenschState(void)
+LudoState::~LudoState(void)
 {
 }
 
-IGameState ** MenschState::GetNextStates(int whoAskID, int *outNumberNextStates)
+IGameState ** LudoState::GetNextStates(int whoAskID, int *outNumberNextStates)
 {
 	int numberNextStates = GetPlayerChoises(whoAskID);
 	IGameState ** nextState = new IGameState*[numberNextStates];
-	MenschState * menschState;
+	LudoState * ludoState; 
 	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
 	{
-		menschState = new MenschState(*this);
-		menschState->MakeTurn(loop1);
-		nextState[loop1] = menschState;
+		ludoState = new LudoState(*this);
+		ludoState->MakeTurn(loop1);
+		nextState[loop1] = ludoState; 
 	}
 
 	*outNumberNextStates = numberNextStates;
@@ -41,7 +41,7 @@ IGameState ** MenschState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	return nextState;
 }
 
-int MenschState::GetPlayerChoises(int whoAskID)
+int LudoState::GetPlayerChoises(int whoAskID)
 {
 	if(dicePlayerNow)
 	{
@@ -58,7 +58,7 @@ int MenschState::GetPlayerChoises(int whoAskID)
 	return (choises > 0) ? choises : 1;
 }
 
-void MenschState::NextChoises()
+void LudoState::NextChoises()
 {
 	const int START_TILE = 0;
 	bool isSomeFigurePreparedToGoToStart = false;
@@ -120,7 +120,7 @@ void MenschState::NextChoises()
 	}
 }
 
-int MenschState::MakeTurn(int playerChoise)
+int LudoState::MakeTurn(int playerChoise)
 {
 	int result = -1;
 
@@ -138,17 +138,17 @@ int MenschState::MakeTurn(int playerChoise)
 				{
 					int figureId = loop1 % MAX_FIGURE;
 					figure[activePlayerID][figureId] = figureNextState[loop1];
-					int tileID1 = (figure[activePlayerID][figureId] + MenschArgere::firstTile[activePlayerID]) % MenschArgere::PLAYER_1_START;
+					int tileID1 = (figure[activePlayerID][figureId] + Ludo::firstTile[activePlayerID]) % Ludo::PLAYER_1_START;
 					for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 					{
 						if(loop2 == activePlayerID)
 							continue;
 						for(int loop3 = 0; loop3 < MAX_PLAYER; loop3++)
 						{
-							int tileID2 = (figure[loop2][loop3] + MenschArgere::firstTile[loop2]) % MenschArgere::PLAYER_1_START;
+							int tileID2 = (figure[loop2][loop3] + Ludo::firstTile[loop2]) % Ludo::PLAYER_1_START;
 							if(tileID1 == tileID2 &&
 								figure[loop2][loop3] >= 0 &&
-								figure[loop2][loop3] < MenschArgere::PLAYER_1_START)
+								figure[loop2][loop3] < Ludo::PLAYER_1_START)
 							{
 								figure[loop2][loop3] = -1;
 								break;
@@ -195,7 +195,7 @@ int MenschState::MakeTurn(int playerChoise)
 	return result;
 }
 
-int MenschState::GetActivePlayerID() const
+int LudoState::GetActivePlayerID() const
 {
 	if(dicePlayerNow)
 		return 0;
@@ -203,7 +203,7 @@ int MenschState::GetActivePlayerID() const
 	return activePlayerID + 1;
 }
 
-bool MenschState::IsPlayerWinner(int playerID) const
+bool LudoState::IsPlayerWinner(int playerID) const
 {
 	bool isWinner = true;
 	for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
@@ -218,11 +218,11 @@ bool MenschState::IsPlayerWinner(int playerID) const
 }
 
 
-int MenschState::GetPlayerScore(int playerID, int whoAskID)
+int LudoState::GetPlayerScore(int playerID, int whoAskID)
 {
 	return playerScore[playerID - 1];
 }
-void MenschState::CountPlayerScores()
+void LudoState::CountPlayerScores()
 {
 	int tempScore[MAX_PLAYER];
 

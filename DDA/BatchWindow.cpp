@@ -3,7 +3,7 @@
 #include "BatchWindow.h"
 #include "BatchGameSetup.h"
 #include "LostCities.h"
-#include "MenschArgere.h"
+#include "Ludo.h"
 #include "GameMaze.h"
 
 BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget(parent)
@@ -27,7 +27,7 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 gameList = new QComboBox(this);
 	 gameList->addItem(tr("Lost Cities"));
 	 gameList->addItem(tr("Maze"));
-	 gameList->addItem(tr("Mensch Argere"));
+	 gameList->addItem(tr("Ludo"));
 	 batchSize = new QSpinBox(this);
 	 batchSize->setMinimum(0);
 	 batchSize->setMaximum(1000000);
@@ -185,7 +185,7 @@ void BatchWindow::AddItemToBatch()
 			batchItem.push_back(new BatchItem(batchSize->value(), new GameMaze(this, false), tempItem));
 			break;
 		case 2 :
-			batchItem.push_back(new BatchItem(batchSize->value(), new MenschArgere(this, false), tempItem));
+			batchItem.push_back(new BatchItem(batchSize->value(), new Ludo(this, false), tempItem));
 			break;
 	}
 	

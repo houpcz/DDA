@@ -1,8 +1,9 @@
-#ifndef _MENSCHSTATE_H_
-#define _MENSCHSTATE_H_
+#ifndef _LUDOSTATE_H_
+#define _LUDOSTATE_H_
 
 #include "igamestate.h"
-class MenschState :
+
+class LudoState :
 	public IGameState
 {
 public:
@@ -23,8 +24,8 @@ private:
 	void NextChoises();
 	bool IsPlayerWinner(int playerID) const;
 public:
-	MenschState(void);
-	virtual ~MenschState(void);
+	LudoState(void);
+	virtual ~LudoState(void);
 	int GetFigure(int player, int number) { return figure[player][number]; }
 	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises(int whoAskID);
