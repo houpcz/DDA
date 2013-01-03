@@ -23,7 +23,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidg
 
 		for(int loop2 = 1; loop2 < playerAI.size(); loop2++)
 		{
-			playerList[loop1]->addItem(playerAI[loop2]->GetAINAme());
+			playerList[loop1]->addItem(playerAI[loop2]->GetAIName());
 		}
 
 		gridLayout->addWidget(playerList[loop1], loop1, 0);
@@ -35,7 +35,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidg
 		for(int loop2 = 1; loop2 < playerAI.size(); loop2++)
 		{
 			QString str1 = playerList[loop1]->itemText(loop2);
-			QString str2 = game->GetPlayer(loop1)->GetAINAme();
+			QString str2 = game->GetPlayer(loop1)->GetAIName();
 			if(str1.compare(str2) == 0)
 			{
 				playerList[loop1]->setCurrentIndex(loop2);
@@ -73,7 +73,7 @@ void BatchGameSetup::SaveSetup()
 		QString str1 = playerList[loop1]->currentText();
 		for(int loop2 = 1; loop2 < playerAI.size(); loop2++)
 		{		
-			QString str2 = playerAI[loop2]->GetAINAme();
+			QString str2 = playerAI[loop2]->GetAIName();
 			if(str1.compare(str2) == 0)
 			{
 				game->SetPlayer(loop1, loop2);

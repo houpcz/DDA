@@ -32,6 +32,7 @@ public:
 	void StartGame();
 	void Draw(QPainter * painter, int tickMillis = 0);
 	void DrawCard(QPainter * painter, int cardID, int x, int y);
+	QString GetGameName() { return tr("Lost Cities"); };
 	IGameState * GetCurrentState() const;
 	void MouseMoveEvent ( int xMouse, int yMouse );
 	void MousePressEvent ( int xMouse, int yMouse );

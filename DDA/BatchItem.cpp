@@ -26,6 +26,17 @@ BatchItem::~BatchItem(void)
 	delete sumGameStat;
 }
 
+QString BatchItem::GetName()
+{
+	QString playerNames = "";
+
+	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
+	{
+		playerNames += "," + game->GetPlayer(loop1)->GetAIName() + QString::number(game->GetPlayer(loop1)->Level());
+	}
+
+	return game->GetGameName() + QString::number(batchSize) + playerNames;
+}
 void BatchItem::SetSumGameStat(GameStat _sumGameStat) 
 { 
 	*sumGameStat = _sumGameStat; 

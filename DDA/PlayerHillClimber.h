@@ -19,6 +19,6 @@ public:
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
-	QString GetAINAme() { return QString("Hill Climber"); };
+	QString GetAIName() { return QString("Hill Climber"); };
 };
 

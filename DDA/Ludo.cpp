@@ -100,7 +100,12 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	player = new IPlayer*[5];
 	player[0] = new EnvironmentAIBasic(0);
-	player[1] = new PlayerHillClimber(1);
+	if(paint)
+	{
+		player[1] = new Human(1);
+	} else {
+		player[1] = new PlayerHillClimber(1);
+	}
 	player[2] = new PlayerHillClimber(2);
 	player[3] = new PlayerHillClimber(3);
 	player[4] = new PlayerHillClimber(4);

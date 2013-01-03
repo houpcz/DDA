@@ -22,6 +22,7 @@ public:
 	void UpdateTreeWidget();
 	void SetSumGameStat(GameStat _sumGameStat);
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
+	QString GetName();
 	void ExportToCsv(QString path);
 };
 

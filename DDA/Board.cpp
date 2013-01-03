@@ -1,9 +1,15 @@
 #include "Board.h"
 #include <qpainter.h>
+#include <QTime>
 
 Board::Board(QWidget *parent, IGame * _activeGame) : QWidget(parent)
 {
 	activeGame = _activeGame;
+
+	QTime time = QTime::currentTime();
+	srand((uint)time.msec());
+	qsrand((uint)time.msec());
+
 	this->resize(500, 500);
 	setMouseTracking(true);
 }

@@ -9,6 +9,6 @@ public:
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return false; }
-	QString GetAINAme() { return QString("Random AI"); };
+	QString GetAIName() { return QString("Random AI"); };
 };
 

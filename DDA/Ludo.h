@@ -29,6 +29,7 @@ public:
 	virtual ~Ludo(void);
 	bool PlayerTurn();
 	void StartGame();
+	QString GetGameName() { return tr("Ludo"); };
 	void Draw(QPainter * painter, int tickMillis = 0);
 	IGameState * GetCurrentState() const;
 	void MouseMoveEvent ( int xMouse, int yMouse );

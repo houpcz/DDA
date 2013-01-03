@@ -42,6 +42,7 @@ public:
 	virtual void NextTurn();       /// Common for all games
 	void SetPlayer(int playerID, int aiID);
 	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
+	virtual QString GetGameName() = 0;
 	virtual void Paint(QPainter * painter);
 	virtual void StartGame();
 

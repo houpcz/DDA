@@ -37,6 +37,7 @@ public:
 	virtual int GetMaxPlayerAI() = 0;
 	virtual int GetPlayerCount() = 0;
 	virtual IPlayer * GetPlayer(int ID) = 0;
+	virtual QString GetGameName() = 0;
 public slots:
 	void PlayerIsReady();
 };

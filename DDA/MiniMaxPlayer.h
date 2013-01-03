@@ -22,7 +22,7 @@ public:
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
-	QString GetAINAme() { return QString("Mini Max"); };
+	QString GetAIName() { return QString("Mini Max"); };
 };
 
 #endif

@@ -22,6 +22,7 @@ public :
 	virtual ~GameMaze();
 	void StartGame();
 	bool PlayerTurn();
+	QString GetGameName() { return tr("Maze"); };
 	IGameState * GetCurrentState() const;
 	void Draw(QPainter * painter, int tickMillis = 0);
 	void MouseMoveEvent ( int xMouse, int yMouse );

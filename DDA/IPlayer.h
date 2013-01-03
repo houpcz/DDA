@@ -26,7 +26,7 @@ public:
 	virtual int MakeTurn();
 	virtual bool Think() = 0;
 	virtual void HumanTurn(int turn) {};
-	virtual QString GetAINAme() = 0;
+	virtual QString GetAIName() = 0;
 	void SetLevel(int _level) { level = _level; };
 	int Level() { return level; };
 	virtual bool IsScalable() = 0;

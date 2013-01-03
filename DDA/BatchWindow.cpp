@@ -162,6 +162,12 @@ void BatchWindow::SaveBatchToCsv()
 
 void BatchWindow::SaveAllToCsv()
 {
+	QString dirName = QFileDialog::getExistingDirectory(this, tr("Save to CSV"), "");
+
+	for(int loop1 = 0; loop1 < batchItem.size(); loop1++)
+	{
+		batchItem[loop1]->ExportToCsv(dirName + "\\" + QString::number(loop1) + batchItem[loop1]->GetName() + ".csv");
+	}
 }
 
 void BatchWindow::AddItemToBatch()

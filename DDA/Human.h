@@ -14,7 +14,7 @@ public:
 	virtual bool Think() { return false; };
 	void HumanTurn(int turn);
 	virtual bool IsScalable() { return false; };
-	QString GetAINAme() { return QString("Human"); };
+	QString GetAIName() { return QString("Human"); };
 };
 
 #endif
