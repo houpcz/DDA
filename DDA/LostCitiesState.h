@@ -23,7 +23,7 @@ class LostCitiesState : public IGameState
 {
 public :
 	static const int PREDICTED_ON_BOARD = 10;
-	static const int PREDICTED_IN_HAND = 7;
+	static const int PREDICTED_IN_HAND = 9;
 	static const int PREDICTED_TOP_DISCARD = 5;
 	static const int PREDICTED_DECK = 3;
 	static const int NOBODY = -1;
@@ -44,8 +44,8 @@ private:
 	int discardPileTopCardID[COLOR_AMOUNT];
 	int whoAskIDlast;
 	bool isGameOver;
-
-	void InitGame(int handSize);
+	int handSize;
+	void InitGame(int _handSize);
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);
 public:
@@ -58,6 +58,7 @@ public:
 	char GetCard(int id) { return card[id]; }
 	virtual int GetPlayerChoises(int whoAskID);
 	virtual int GetActivePlayerID() const;
+	int GetPositivePlayerScore(int playerID, int whoAskID);
 	virtual int GetPlayerScore(int playerID, int whoAskID);
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);

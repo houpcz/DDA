@@ -2,6 +2,7 @@
 #include "Human.h"
 #include "PlayerRandomAI.h"
 #include "PlayerHillClimber.h"
+#include "MiniMaxPlayer.h"
 
 Game::Game(QWidget * _widget, bool _paint)
 {
@@ -174,6 +175,7 @@ void Game::SetPlayer(int playerID, int aiID)
 		case 0 : player[playerID] = new Human(playerID); break;
 		case 1 : player[playerID] = new PlayerRandomAI(playerID); break;
 		case 2 : player[playerID] = new PlayerHillClimber(playerID); break;
+		case 3 : player[playerID] = new MiniMaxPlayer(playerID); break;
 		default :
 			throw "Not implemented yet";
 			break;

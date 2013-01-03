@@ -41,6 +41,9 @@
     <Filter Include="Ludo">
       <UniqueIdentifier>{1a30edb3-9811-4d0f-85aa-894ffdc6782d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{cce25237-c9ad-4648-b4e0-6b919f2ec593}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,9 +56,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EnvironmentAIBasic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Human.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Game.cpp">
@@ -101,12 +101,6 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="IGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerRandomAI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_DDAWidget.cpp">
@@ -163,9 +157,6 @@
     <ClCompile Include="BatchItem.cpp">
       <Filter>Batch</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHillClimber.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BatchGameSetup.cpp">
       <Filter>Batch</Filter>
     </ClCompile>
@@ -187,11 +178,23 @@
     <ClCompile Include="LudoTile.cpp">
       <Filter>Ludo</Filter>
     </ClCompile>
+    <ClCompile Include="IPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerRandomAI.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHillClimber.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Human.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMaxPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PlayerRandomAI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -219,9 +222,6 @@
     <ClInclude Include="BatchItem.h">
       <Filter>Batch</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHillClimber.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="QApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -234,15 +234,18 @@
     <ClInclude Include="LudoTile.h">
       <Filter>Ludo</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerHillClimber.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRandomAI.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMaxPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Game.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Human.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="IPlayer.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="IEnvironmentAI.h">
@@ -268,6 +271,12 @@
     </CustomBuild>
     <CustomBuild Include="BatchGameSetup.h">
       <Filter>Batch</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Human.h">
+      <Filter>Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IPlayer.h">
+      <Filter>Player</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

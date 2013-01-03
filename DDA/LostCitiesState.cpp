@@ -10,8 +10,9 @@ LostCitiesState::LostCitiesState()
 	InitGame(8);
 }
 
-void LostCitiesState::InitGame(int handSize)
+void LostCitiesState::InitGame(int _handSize)
 {
+	handSize = _handSize;
 	activePlayerID = 1;
 	lastRealPlayer = 1;
 
@@ -57,6 +58,7 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 	lastRealPlayer = origin.lastRealPlayer;
 	isGameOver = origin.isGameOver;
 	whoAskIDlast = origin.whoAskIDlast;
+	handSize = origin.handSize;
 
 	allChoises.clear();
 	allChoises.insert(allChoises.begin(), origin.allChoises.begin(), origin.allChoises.end());
@@ -268,8 +270,14 @@ int LostCitiesState::GetActivePlayerID() const
 }
 int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 {
-	//WhoAsked(whoAskID);
+	int opponentID = (playerID == 1) ? 2 : 1;
 
+	int me = GetPositivePlayerScore(playerID, whoAskID);
+	int him = GetPositivePlayerScore(opponentID, whoAskID);
+	return me - him;
+}
+int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
+{
 	int score = 0;
 	int handKnown;
 	int handHidden;
@@ -307,21 +315,38 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 	int cardType;
 	int handUnknownCount = 0;
 	int inDeckCount = 0;
-
+	int scoreNotExpeditionKnown = 0;
+	int scoreNotExpeditionUnknown = 0;
+	int scoreNotExpeditionUnknownDeckCount = 0;
+	int scoreNotExpeditionUnknownHandCount = 0;
 	int deckScoreColor;
 	int handUnknownCountColor; 
 	int inDeckCountColor;
 	int maxTurnToTheEnd = 0;
+	int knownCards = CARD_AMOUNT;
+	int realHandSize = 0;
 	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
 	{
 		if(card[loop1] == IN_DECK)
 			maxTurnToTheEnd++;
+
+		if(card[loop1] == handHiddenOther ||
+		   card[loop1] == IN_DECK)
+		{
+			knownCards--;
+		}
+
+		if(card[loop1] == handKnown ||
+		   card[loop1] == handHidden)
+		{
+			realHandSize++;
+		}
 	}
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
 		expeditionExist = false;
 		predictedScore = 0;
-		topCardOrder = ON_DESK;
+		topCardOrder = ON_DESK - 1;
 		topCardId = 0;
 		bonuses = 1;
 		deckScoreColor = 0;
@@ -332,7 +357,6 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 		{
 			int cardID = loop2 + loop1 * CARD_ONE_COLOR_AMOUNT;
 			cardType = cardID % CARD_ONE_COLOR_AMOUNT;
-			
 
 			if(card[cardID] == onDesk)
 			{
@@ -348,20 +372,21 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 				break;
 			}
 			else
-			if(card[cardID] > ON_DESK)
+			if(card[cardID] >= ON_DESK)
 			{
 				if(card[cardID] > topCardOrder)
 				{
-					topCardOrder = card[loop1];
+					topCardOrder = card[cardID];
 					topCardId = cardType;
 				}
+				continue;
 			}
 			else
 			if(card[cardID] == handKnown || 
 			  (card[cardID] == handHidden && (whoAskID == playerID || whoAskID == 0)))
 			{
 				if(cardType > 2)
-					predictedScore += min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2) * (cardType - 1);
+					predictedScore += (cardType - 1);
 			}
 			else
 			if(card[cardID] == onDeskOther || card[cardID] == handKnownOther ||
@@ -381,7 +406,8 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 
 		if(expeditionExist)
 		{
-			if(topCardOrder > ON_DESK && topCardId > 2)
+			predictedScore *= min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2);
+			if(topCardOrder >= ON_DESK && topCardId > 2)
 			{
 				predictedScore += min(PREDICTED_TOP_DISCARD, maxTurnToTheEnd / 2) * (topCardId - 1);
 			}
@@ -389,13 +415,38 @@ int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
 			deckScore += deckScoreColor * bonuses;
 			handUnknownCount += handUnknownCountColor;
 			inDeckCount += inDeckCountColor;
+		} else {
+			scoreNotExpeditionKnown += predictedScore;
+			scoreNotExpeditionUnknown += deckScoreColor;
+			scoreNotExpeditionUnknownHandCount += handUnknownCountColor;
+			scoreNotExpeditionUnknownDeckCount += inDeckCountColor;
 		}
 	}
 
 	float avgDeckCard = 0.0f;
 	if(inDeckCount + handUnknownCount > 0)
 		avgDeckCard = deckScore / (float) (inDeckCount + handUnknownCount);
-	return score + avgDeckCard * inDeckCount * min(PREDICTED_DECK, maxTurnToTheEnd / 2) + avgDeckCard * handUnknownCount * min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2) + GetPlayerPoints(playerID) * PREDICTED_ON_BOARD;
+
+	float scoreNotExpedition = scoreNotExpeditionKnown;
+	float avgNotExpedition = 0.0f;
+	if(scoreNotExpeditionUnknownHandCount > 0)
+	{
+		avgNotExpedition = scoreNotExpeditionUnknown / (float) (scoreNotExpeditionUnknownHandCount + scoreNotExpeditionUnknownDeckCount);
+		scoreNotExpedition += avgNotExpedition * scoreNotExpeditionUnknownHandCount;
+	}
+
+	if(realHandSize < handSize)
+	{
+		if(avgNotExpedition + avgDeckCard < 2.0)
+			scoreNotExpedition += 7;
+		else
+			scoreNotExpedition += (avgNotExpedition + avgDeckCard) / 2.0f;
+	}
+
+	float scoreDeckBonus = avgDeckCard * inDeckCount * min(PREDICTED_DECK, maxTurnToTheEnd / 2);
+	float scoreHiddenHandBonus = avgDeckCard * handUnknownCount * min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2);
+	float scoreReal = GetPlayerPoints(playerID) * PREDICTED_ON_BOARD;
+	return score + scoreNotExpedition +scoreDeckBonus + scoreHiddenHandBonus + scoreReal;
 }
 
 int LostCitiesState::GetPlayerPoints(int playerID)

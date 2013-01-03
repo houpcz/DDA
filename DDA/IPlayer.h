@@ -5,6 +5,9 @@
 
 class IGame;
 
+typedef std::pair<int,int> valueIndex;
+bool comparator ( const valueIndex& l, const valueIndex& r);
+
 class IPlayer : public QObject
 {
 Q_OBJECT

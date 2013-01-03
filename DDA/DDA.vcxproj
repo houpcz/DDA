@@ -166,11 +166,13 @@
     <ClCompile Include="Ludo.cpp" />
     <ClCompile Include="LudoState.cpp" />
     <ClCompile Include="LudoTile.cpp" />
+    <ClCompile Include="MiniMaxPlayer.cpp" />
     <ClCompile Include="PlayerHillClimber.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
     <ClCompile Include="QApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MiniMaxPlayer.h" />
     <ClInclude Include="QApp.h" />
     <CustomBuild Include="DDAWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
