@@ -530,6 +530,7 @@ bool MazeState::ExploreEnvironment(int turn)
 					}
 				} else if(GetTile(x, y) == TILE_GOAL)
 				{
+					SetGoalNeightboursWall(x, y);
 					tileToExplore.push_back(Pos2Dto1D(x, y));
 				}
 			}
@@ -543,17 +544,41 @@ bool MazeState::ExploreEnvironment(int turn)
 	return false;
 }
 
+void MazeState::SetGoalNeightboursWall(int x, int y)
+{
+	if(GetTile(x + 1, y) == TILE_UNDEFINED) maze[y][x + 1] = TILE_WALL;
+	if(GetTile(x - 1, y) == TILE_UNDEFINED) maze[y][x - 1] = TILE_WALL;
+	if(GetTile(x, y + 1) == TILE_UNDEFINED) maze[y + 1][x] = TILE_WALL;
+	if(GetTile(x, y - 1) == TILE_UNDEFINED) maze[y - 1][x] = TILE_WALL;
+	if(GetTile(x + 1, y + 1) == TILE_UNDEFINED) maze[y + 1][x + 1] = TILE_WALL;
+	if(GetTile(x - 1, y - 1) == TILE_UNDEFINED) maze[y - 1][x - 1] = TILE_WALL;
+	if(GetTile(x - 1, y + 1) == TILE_UNDEFINED) maze[y + 1][x - 1] = TILE_WALL;
+	if(GetTile(x + 1, y - 1) == TILE_UNDEFINED) maze[y - 1][x + 1] = TILE_WALL;
+}
+
 void MazeState::SetTileEmpty(int x, int y)
 {
 	maze[y][x] = TILE_EMPTY;
 	if(GetTile(x - 1, y) == TILE_GOAL)
+	{
+		SetGoalNeightboursWall(x - 1, y);
 		tileToExplore.push_back(Pos2Dto1D(x - 1, y));
+	}
 	if(GetTile(x + 1, y) == TILE_GOAL)
+	{
+		SetGoalNeightboursWall(x + 1, y);
 		tileToExplore.push_back(Pos2Dto1D(x + 1, y));
+	}
 	if(GetTile(x, y - 1) == TILE_GOAL)
+	{
+		SetGoalNeightboursWall(x, y - 1);
 		tileToExplore.push_back(Pos2Dto1D(x, y - 1));
+	}
 	if(GetTile(x, y + 1) == TILE_GOAL)
+	{
+		SetGoalNeightboursWall(x, y + 1);
 		tileToExplore.push_back(Pos2Dto1D(x, y + 1));
+	}
 
 }
 
@@ -572,6 +597,16 @@ void MazeState::RemoveNonviableTileToExplore()
 		{
 			tileToExplore.erase(tileToExplore.begin() + loop1, tileToExplore.begin() + loop1 + 1);
 			loop1--;
+		} else {
+			if(GetTile(x + 1, y) == TILE_GOAL ||
+			   GetTile(x - 1, y) == TILE_GOAL ||
+			   GetTile(x, y + 1) == TILE_GOAL ||
+			   GetTile(x, y - 1) == TILE_GOAL)
+			{
+				SetGoalNeightboursWall(x, y);
+				tileToExplore.erase(tileToExplore.begin() + loop1, tileToExplore.begin() + loop1 + 1);
+				loop1--;
+			}
 		}
 	}
 }

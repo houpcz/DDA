@@ -79,6 +79,7 @@ private:
 	void FindNonRedundantTurns();
 	void ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn);
 	void RemoveNonviableTileToExplore();
+	void SetGoalNeightboursWall(int x, int y);
 	void SetTileEmpty(int x, int y);
 	// undefined - can go through undefined files
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
