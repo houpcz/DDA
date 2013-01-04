@@ -13,10 +13,11 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	maxPlayerAI = 4;
 
 	QColor normal = Qt::cyan;
-	QColor player1 = playerColor[0];
-	QColor player2 = playerColor[1];
-	QColor player3 = playerColor[2];
-	QColor player4 = playerColor[3];
+	QColor safe = Qt::darkCyan;
+	QColor player1 = Qt::blue;
+	QColor player2 = Qt::red;
+	QColor player3 = Qt::green;
+	QColor player4 = Qt::yellow;
 
 	tileGame[0] = new LudoTile(4, 0, player1, this);
 	tileGame[1] = new LudoTile(4, 1, normal, this);	
@@ -25,37 +26,37 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	tileGame[4] = new LudoTile(4, 4, normal, this);
 	tileGame[5] = new LudoTile(3, 4, normal, this);
 	tileGame[6] = new LudoTile(2, 4, normal, this);
-	tileGame[7] = new LudoTile(1, 4, normal, this);
+	tileGame[7] = new LudoTile(1, 4, safe, this);
 	tileGame[8] = new LudoTile(0, 4, normal, this);
 	tileGame[9] = new LudoTile(0, 5, normal, this);
 	tileGame[10] = new LudoTile(0, 6, player2, this);
 	tileGame[11] = new LudoTile(1, 6, normal, this);
 	tileGame[12] = new LudoTile(2, 6, normal, this);
-	tileGame[13] = new LudoTile(3, 6, normal, this);
+	tileGame[13] = new LudoTile(3, 6, safe, this);
 	tileGame[14] = new LudoTile(4, 6, normal, this);
 	tileGame[15] = new LudoTile(4, 7, normal, this);
 	tileGame[16] = new LudoTile(4, 8, normal, this);
-	tileGame[17] = new LudoTile(4, 9, normal, this);
+	tileGame[17] = new LudoTile(4, 9, safe, this);
 	tileGame[18] = new LudoTile(4, 10, normal, this);
 	tileGame[19] = new LudoTile(5, 10, normal, this);
 	tileGame[20] = new LudoTile(6, 10, player3, this);
 	tileGame[21] = new LudoTile(6, 9, normal, this);
 	tileGame[22] = new LudoTile(6, 8, normal, this);
-	tileGame[23] = new LudoTile(6, 7, normal, this);
+	tileGame[23] = new LudoTile(6, 7, safe, this);
 	tileGame[24] = new LudoTile(6, 6, normal, this);
 	tileGame[25] = new LudoTile(7, 6, normal, this);
 	tileGame[26] = new LudoTile(8, 6, normal, this);
-	tileGame[27] = new LudoTile(9, 6, normal, this);
+	tileGame[27] = new LudoTile(9, 6, safe, this);
 	tileGame[28] = new LudoTile(10, 6, normal, this);
 	tileGame[29] = new LudoTile(10, 5, normal, this);
 	tileGame[30] = new LudoTile(10, 4, player4, this);
 	tileGame[31] = new LudoTile(9, 4, normal, this);
 	tileGame[32] = new LudoTile(8, 4, normal, this);
-	tileGame[33] = new LudoTile(7, 4, normal, this);
+	tileGame[33] = new LudoTile(7, 4, safe, this);
 	tileGame[34] = new LudoTile(6, 4, normal, this);
 	tileGame[35] = new LudoTile(6, 3, normal, this);
 	tileGame[36] = new LudoTile(6, 2, normal, this);
-	tileGame[37] = new LudoTile(6, 1, normal, this);
+	tileGame[37] = new LudoTile(6, 1, safe, this);
 	tileGame[38] = new LudoTile(6, 0, normal, this);
 	tileGame[39] = new LudoTile(5, 0, normal, this);
 
@@ -94,6 +95,14 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	tileGame[69] = new LudoTile(8, 5, player4, this);
 	tileGame[70] = new LudoTile(7, 5, player4, this);
 	tileGame[71] = new LudoTile(6, 5, player4, this);
+
+	for(int loop1 = 0; loop1 < LudoState::FIRST_HOME_TILE; loop1++)
+	{
+		if(LudoState::IsTileSafe(loop1))
+		{
+			tileGame[loop1]->SetColor(safe);
+		}
+	}
 
 	// center cube number
 	tileGame[72] = new LudoTile(5, 5, normal, this);

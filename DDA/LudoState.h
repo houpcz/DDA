@@ -12,6 +12,7 @@ public:
 	static const int MAX_FIGURE = 4;
 	static const int MAX_CHOISES = MAX_FIGURE * 2;
 private:
+	static const int safeTile[FIRST_HOME_TILE];
 	int lastDice;
 	int multipleDice;
 	bool dicePlayerNow;
@@ -23,9 +24,11 @@ private:
 	void CountPlayerScores();
 	void NextChoises();
 	bool IsPlayerWinner(int playerID) const;
+	bool IsTileFreeCheckOpponents(int newPosition);
 public:
 	LudoState(void);
 	virtual ~LudoState(void);
+	static bool IsTileSafe(int tileID);
 	int GetFigure(int player, int number) { return figure[player][number]; }
 	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises(int whoAskID);

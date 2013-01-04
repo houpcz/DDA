@@ -1,6 +1,12 @@
 
 #include "Ludo.h"
 
+
+const int LudoState::safeTile[] = {0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
+								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
+								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
+								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0};
+
 LudoState::LudoState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
@@ -58,6 +64,26 @@ int LudoState::GetPlayerChoises(int whoAskID)
 	return (choises > 0) ? choises : 1;
 }
 
+bool LudoState::IsTileFreeCheckOpponents(int newPosition)
+{
+	int tileID1 = (newPosition + Ludo::firstTile[activePlayerID]) % Ludo::PLAYER_1_START;
+	for(int loop3 = 0; loop3 < MAX_PLAYER; loop3++)
+	{
+		if(loop3 == activePlayerID)
+			continue;
+
+		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
+		{
+			int tileID2 = (figure[loop3][loop2] + Ludo::firstTile[loop3]) % Ludo::PLAYER_1_START;
+			if(tileID2 == tileID1)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
 void LudoState::NextChoises()
 {
 	const int START_TILE = 0;
@@ -85,32 +111,45 @@ void LudoState::NextChoises()
 				isSomeFigurePreparedToGoToStart = true;
 			}
 		} else {
-			if(figure[activePlayerID][loop1] + lastDice < 44 && figure[activePlayerID][loop1] >= 0) 
+			int oldPosition = figure[activePlayerID][loop1];
+			int newPosition = figure[activePlayerID][loop1] + lastDice;
+			if(newPosition < 44 && oldPosition >= 0) 
 			{
 				bool isFreeTile = true;
 				for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 				{
-					if(figure[activePlayerID][loop2] == figure[activePlayerID][loop1] + lastDice)
+					// you cant go to position of your others figures
+					if(figure[activePlayerID][loop2] == newPosition)
 					{
 						isFreeTile = false;
 						break;
 					}
+				}
+				if(isFreeTile && LudoState::IsTileSafe(newPosition))
+				{
+					isFreeTile = IsTileFreeCheckOpponents(newPosition);
 				}
 
 				if(isFreeTile)
 					figureNextState[loop1] = figure[activePlayerID][loop1] + lastDice;
 			}
 
-			if(figure[activePlayerID][loop1] < FIRST_HOME_TILE && figure[activePlayerID][loop1] - lastDice >= 0 && figure[activePlayerID][loop1] >= 0) 
+			newPosition = figure[activePlayerID][loop1] - lastDice;
+			if(figure[activePlayerID][loop1] < FIRST_HOME_TILE && newPosition >= 0 && oldPosition >= 0) 
 			{
 				bool isFreeTile = true;
 				for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 				{
-					if(figure[activePlayerID][loop2] == figure[activePlayerID][loop1] - lastDice)
+					if(figure[activePlayerID][loop2] == newPosition)
 					{
 						isFreeTile = false;
 						break;
 					}
+				}
+
+				if(isFreeTile && LudoState::IsTileSafe(newPosition))
+				{
+					isFreeTile = IsTileFreeCheckOpponents(newPosition);
 				}
 
 				if(isFreeTile)
@@ -217,6 +256,12 @@ bool LudoState::IsPlayerWinner(int playerID) const
 	return isWinner;
 }
 
+bool LudoState::IsTileSafe(int tileID)
+{
+	if(tileID < 0 || tileID >= FIRST_HOME_TILE)
+		return true;
+	else return safeTile[tileID];
+}
 
 int LudoState::GetPlayerScore(int playerID, int whoAskID)
 {
