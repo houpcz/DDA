@@ -48,7 +48,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	signalMapper = new QSignalMapper(this);
 
 	activeGameID = -1;
-	activeGame = new LostCities(this);
+	activeGame = new GameMaze(this);
 	board = new Board(this, activeGame);
 	setCentralWidget(board);
 
@@ -58,7 +58,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	playerAI.push_back(new PlayerHillClimber(3));
 	playerAI.push_back(new MiniMaxPlayer(4));
 
-	SetGame(GAME_LOST_CITIES_ID);
+	SetGame(GAME_MAZE_ID);
 
 	srand (time(NULL));
 }

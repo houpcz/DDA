@@ -16,7 +16,7 @@ bool EnvironmentAIBasic::Think()
 	int tries = 0;
 	myTurn = rand() % p_myTurn;
 	do {
-		myTurn = (myTurn + 1) % p_myTurn;
+		myTurn = ++myTurn % p_myTurn;
 		tries++;
 	} while(nextState[myTurn]->GetPlayerScore(0, myID) == IGameState::ILLEGAL_GAME && tries < p_myTurn + 1);
 

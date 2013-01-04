@@ -15,7 +15,12 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	playerCount = 2;
 	player = new IPlayer*[playerCount];
 	player[ENVINRONMENT_AI] = new EnvironmentAIBasic(ENVINRONMENT_AI);
-	player[PLAYER_AI] = new PlayerRandomAI(PLAYER_AI);
+	if(paint)
+	{
+		player[PLAYER_AI] = new Human(PLAYER_AI);
+	} else {
+		player[PLAYER_AI] = new PlayerRandomAI(PLAYER_AI);
+	}
 
 	QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
