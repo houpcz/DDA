@@ -139,13 +139,11 @@ void MazeState::ClearMe()
 
 IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 {
-	int numberNextStates = GetPlayerChoises(whoAskID);
 	IGameState ** nextState;
 	MazeState * mazeState;
 
 	if(activePlayerID == ENVINRONMENT_AI)
 	{
-		FindNonRedundantTurns();
 		nextState = new IGameState*[nonRedundantTurns.size()];
 		for(int loop1 = 0; loop1 < nonRedundantTurns.size(); loop1++)
 		{
@@ -155,6 +153,7 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 		}
 		*outNumberNextStates = nonRedundantTurns.size();
 	} else {	
+		int numberNextStates = GetPlayerChoises(whoAskID);
 		nextState = new IGameState*[numberNextStates];
 		for(int loop1 = 0; loop1 < numberNextStates; loop1++)
 		{
@@ -197,6 +196,7 @@ bool MazeState::Explore(int tileToExploreID)
 	{
 		case PLAYER_AI :
 			gameOver = ExplorePlayer(tileToExploreID);
+			FindNonRedundantTurns();
 			break;
 		case ENVINRONMENT_AI :
 			gameOver = ExploreEnvironment(nonRedundantTurns[tileToExploreID]);
@@ -323,10 +323,15 @@ void MazeState::FindNonRedundantTurns()
 	
 	nonRedundantTurns.clear();
 
+	for(int loop1 = 0; loop1 < hallSize; loop1++)
+	{
+		nonRedundantTurns.push_back(loop1);
+	}
+
 	if(hallSize == 1)
 	{
-		nonRedundantTurns.push_back(0);
-		nonRedundantTurns.push_back(1);
+		nonRedundantTurns.push_back(0 + hallSize);
+		nonRedundantTurns.push_back(1 + hallSize);
 	}
 
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
@@ -368,7 +373,7 @@ void MazeState::FindNonRedundantTurns()
 				if(((hole2 >= 0 && GetTile(h2X, h2Y) == TILE_UNDEFINED) || hole2 < 0))
 				{
 					int turn = loop2 + loop1 * hallSizePlus1;
-					nonRedundantTurns.push_back(turn);
+					nonRedundantTurns.push_back(turn + hallSize);
 				}
 			}
 		}
@@ -454,10 +459,21 @@ bool MazeState::ExploreEnvironment(int turn)
 		}
 	}
 
-	int hole1 = turn / (hallSize + 1) - 1;
-	int hole2 = turn % (hallSize + 1) - 1;
-	int rndNumber = 0; //turn + hole1 * 3 + hole2 * 5;
-	int realHallSize = min(max(hole1, hole2) + 2 + rndNumber % 4, hallSize);
+	int hole1;
+	int hole2;
+	int realHallSize;
+	if(turn < hallSize)
+	{
+		hole1 = -1;
+		hole2 = -1;
+		realHallSize = min(turn + 2, hallSize);
+	} else {
+		turn -= hallSize;
+		hole1 = turn / (hallSize + 1) - 1;
+		hole2 = turn % (hallSize + 1) - 1;
+		realHallSize = min(max(hole1, hole2) + 2, hallSize);
+	}
+	
 	//hallSize = min(max(hole1, hole2) + 2, hallSize);
 
 	if(hallSize == 1)

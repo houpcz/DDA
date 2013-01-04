@@ -105,8 +105,7 @@ public:
 		switch(activePlayerID)
 		{
 			case ENVINRONMENT_AI :
-				playerChoises = (hallSize + 1) * (hallSize + 1);
-				return (playerChoises <= 1) ? 2 : playerChoises; 
+				return nonRedundantTurns.size();
 				break;
 			case PLAYER_AI :
 				return tileToExplore.size();
