@@ -124,38 +124,11 @@ int Game::GetLeaderID(int * outScoreDifference)
 	// we have almost zero sum games
 	// score of winner is difference between best one and second one
 	*outScoreDifference = bestScore;
+
+	if(bestScore < 0)
+		return -1;
+
 	return bestID;
-
-	/*
-	int maxScore = currentPlayerScore[0];
-	int maxSecondScore = currentPlayerScore[1];
-	int maxScoreID;
-	if(maxScore < maxSecondScore)
-	{
-		maxScore = currentPlayerScore[1];
-		maxSecondScore = currentPlayerScore[0];
-		maxScoreID = 1;
-	} else {
-		maxScoreID = 0;
-	}
-
-	for(int loop1 = 2; loop1 < playerCount - 1; loop1++)
-	{
-		if(currentPlayerScore[loop1] > maxSecondScore)
-		{
-			if(currentPlayerScore[loop1] > maxScore)
-			{
-				maxSecondScore = maxScore;
-				maxScore = currentPlayerScore[loop1];
-				maxScoreID = loop1;
-			} else {
-				maxSecondScore = currentPlayerScore[loop1];
-			}
-		}
-	}
-	*outScoreDifference = maxScore - maxSecondScore;
-	return maxScoreID;
-	*/
 }
 
 void Game::Paint(QPainter * painter)

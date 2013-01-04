@@ -610,12 +610,6 @@ void MazeState::CountScore()
 		return;
 	} 
 
-	if(stepsToGameOver <= 0)
-	{
-		playerScore = -IGameState::WINNER_SCORE;
-		return;
-	}
-
 	int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
 	playerScore = manDistToGoal * 10 + stepsToGameOver;
 }

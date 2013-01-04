@@ -4,7 +4,6 @@
 class IGameState
 {
 public :
-	static const int WINNER_SCORE = 10000;
 	static const int ILLEGAL_GAME = -20000;
 
 	virtual ~IGameState() {};
