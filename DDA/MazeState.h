@@ -128,7 +128,7 @@ public:
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
-
+	bool IsPossibleWayToGoal() { return possibleWayToGoal; };
 	bool Explore(int tileToExploreID);
 
 	int Pos2Dto1D(int x, int y);

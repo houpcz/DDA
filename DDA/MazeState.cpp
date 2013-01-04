@@ -145,7 +145,7 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 		{
 			mazeState = new MazeState(*this);
 			mazeState->Explore(loop1);
-			if(mazeState->GetPlayerScore(PLAYER_AI, ENVINRONMENT_AI) == IGameState::ILLEGAL_GAME)
+			if(!mazeState->IsPossibleWayToGoal())
 			{
 				delete mazeState;
 				nonRedundantTurns.erase(nonRedundantTurns.begin() + loop1, nonRedundantTurns.begin() + (loop1 + 1));
