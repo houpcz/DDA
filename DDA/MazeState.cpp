@@ -138,15 +138,38 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 
 	int choises = GetPlayerChoises(whoAskID);
 
-	nextState = new IGameState*[choises];
-	for(int loop1 = 0; loop1 < choises; loop1++)
+	if(activePlayerID == ENVINRONMENT_AI)
 	{
-		mazeState = new MazeState(*this);
-		mazeState->Explore(loop1);
-		nextState[loop1] = mazeState;
+		vector<IGameState *> tempState;
+		for(int loop1 = 0; loop1 < choises; loop1++)
+		{
+			mazeState = new MazeState(*this);
+			mazeState->Explore(loop1);
+			if(mazeState->GetPlayerScore(PLAYER_AI, ENVINRONMENT_AI) == IGameState::ILLEGAL_GAME)
+			{
+				delete mazeState;
+				nonRedundantTurns.erase(nonRedundantTurns.begin() + loop1, nonRedundantTurns.begin() + (loop1 + 1));
+				loop1--;
+				choises--;
+			} else {
+				tempState.push_back(mazeState);
+			}
+		}
+		choises = tempState.size();
+		nextState = new IGameState*[choises];
+		for(int loop1 = 0; loop1 < choises; loop1++)
+			nextState[loop1] = tempState[loop1];
+		tempState.clear();
+	} else {
+		nextState = new IGameState*[choises];
+		for(int loop1 = 0; loop1 < choises; loop1++)
+		{
+			mazeState = new MazeState(*this);
+			mazeState->Explore(loop1);
+			nextState[loop1] = mazeState;
+		}
 	}
 	*outNumberNextStates = choises;
-
 	return nextState;
 }
 
@@ -183,10 +206,9 @@ bool MazeState::Explore(int tileToExploreID)
 			break;
 		case ENVINRONMENT_AI :
 			gameOver = ExploreEnvironment(nonRedundantTurns[tileToExploreID]);
+			possibleWayToGoal = IsStateLegal();
 			break;
 	}
-
-	possibleWayToGoal = IsStateLegal();
 
 	activePlayerID++;
 	if(activePlayerID > 1)

@@ -15,11 +15,6 @@ bool EnvironmentAIBasic::Think()
 
 	int tries = 0;
 	myTurn = rand() % p_myTurn;
-	do {
-		myTurn = ++myTurn % p_myTurn;
-		tries++;
-	} while(nextState[myTurn]->GetPlayerScore(0, myID) == IGameState::ILLEGAL_GAME && tries < p_myTurn + 1);
-
 	if(nextState[myTurn]->GetPlayerScore(0, myID) == IGameState::ILLEGAL_GAME && game->GetCurrentState()->GetPlayerScore(0, myID) != IGameState::ILLEGAL_GAME)
 	{
 		game->GetCurrentState()->PrintToFile("Last legal state");
