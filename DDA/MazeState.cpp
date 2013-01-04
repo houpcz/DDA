@@ -456,7 +456,8 @@ bool MazeState::ExploreEnvironment(int turn)
 
 	int hole1 = turn / (hallSize + 1) - 1;
 	int hole2 = turn % (hallSize + 1) - 1;
-	int realHallSize = min(max(hole1, hole2) + 2, hallSize);
+	int rndNumber = 0; //turn + hole1 * 3 + hole2 * 5;
+	int realHallSize = min(max(hole1, hole2) + 2 + rndNumber % 4, hallSize);
 	//hallSize = min(max(hole1, hole2) + 2, hallSize);
 
 	if(hallSize == 1)
