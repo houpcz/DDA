@@ -74,6 +74,7 @@ private:
 	void ClearMe();
 	bool ExplorePlayer(int tileToExploreID);
 	bool ExploreEnvironment(int turn);
+	void ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn);
 	void RemoveNonviableTileToExplore();
 	void SetTileEmpty(int x, int y);
 	// undefined - can go through undefined files

@@ -300,6 +300,34 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 	return false;
 }
 
+void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
+{
+	if(GetTile(playerX + dx, playerY + dy) == TILE_UNDEFINED)
+	{
+		if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED &&
+			GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
+		{
+			switch(turn % 2)
+			{
+				case 0 :
+					maze[playerY - holeY + dy][playerX - holeX + dx] = TILE_WALL;
+					break;
+				case 1 :
+					maze[playerY + holeY + dy][playerX + holeX + dx] = TILE_WALL;
+					break;
+			}
+		}
+
+		SetTileEmpty(playerX + dx, playerY + dy);
+		if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED ||
+			GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
+		{
+			tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY + dy));
+		}
+		RemoveNonviableTileToExplore();
+	}
+}
+
 bool MazeState::ExploreEnvironment(int turn)
 {
 	int dx = 0, dy = 0;
@@ -358,30 +386,7 @@ bool MazeState::ExploreEnvironment(int turn)
 
 	if(hallSize == 1)
 	{
-		if(GetTile(playerX + dx, playerY + dy) == TILE_UNDEFINED)
-		{
-			if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED &&
-			   GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
-			{
-				switch(turn % 2)
-				{
-					case 0 :
-						maze[playerY - holeY + dy][playerX - holeX + dx] = TILE_WALL;
-						break;
-					case 1 :
-						maze[playerY + holeY + dy][playerX + holeX + dx] = TILE_WALL;
-						break;
-				}
-			}
-
-			SetTileEmpty(playerX + dx, playerY + dy);
-			if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED ||
-			   GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
-			{
-				tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY + dy));
-			}
-			RemoveNonviableTileToExplore();
-		}
+		ExploreHallSize1(dx, dy, holeX, holeY, turn);
 		return false;
 	}
 
@@ -525,7 +530,7 @@ void MazeState::CountScore()
 
 bool MazeState::IsGameOver()
 {
-	if(goalX = playerX && goalY == playerY)
+	if(goalX == playerX && goalY == playerY)
 		return true;
 	if(stepsToGameOver <= 0)
 		return true;
