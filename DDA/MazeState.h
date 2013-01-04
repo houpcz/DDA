@@ -20,6 +20,13 @@ enum {
 	PLAYER_AI
 };
 
+typedef enum EOpenHallEnds
+{
+	OPEN_HALL_ENDS_NEVER,
+	OPEN_HALL_ENDS_SOMETIMES,
+	OPEN_HALL_ENDS_ALWAYS
+};
+
 struct QueueNode
 {
 	int x;
@@ -69,6 +76,7 @@ private:
 	int hallSize;
 	int stepsToGameOver;
 	bool possibleWayToGoal;
+	EOpenHallEnds setupOpenHallEnds;
 
 	char GetTile(int x, int y);
 	bool IsStateLegal();

@@ -13,6 +13,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
 
+	setupOpenHallEnds = OPEN_HALL_ENDS_SOMETIMES;
 	possibleWayToGoal = true;
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
@@ -98,6 +99,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 	hallSize = origin.hallSize;
 	stepsToGameOver = origin.stepsToGameOver;
 	possibleWayToGoal = origin.possibleWayToGoal;
+	setupOpenHallEnds = origin.setupOpenHallEnds;
 
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
@@ -125,16 +127,8 @@ void MazeState::ClearMe()
 {
 	MatrixFactory::Inst()->ReturnMatrix(maze, mazeWidth, mazeHeight);
 	MatrixFactory::Inst()->ReturnMatrix(mazeClosedList, mazeWidth, mazeHeight);
-	/*
-	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
-	{
-		delete[] mazeClosedList[loop1];
-		delete[] maze[loop1];
-	}
-	delete[] mazeClosedList;
-	delete[] maze;
-	*/
 	tileToExplore.clear();
+	nonRedundantTurns.clear();
 }
 
 IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
@@ -142,27 +136,16 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	IGameState ** nextState;
 	MazeState * mazeState;
 
-	if(activePlayerID == ENVINRONMENT_AI)
+	int choises = GetPlayerChoises(whoAskID);
+
+	nextState = new IGameState*[choises];
+	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		nextState = new IGameState*[nonRedundantTurns.size()];
-		for(int loop1 = 0; loop1 < nonRedundantTurns.size(); loop1++)
-		{
-			mazeState = new MazeState(*this);
-			mazeState->Explore(loop1);
-			nextState[loop1] = mazeState;
-		}
-		*outNumberNextStates = nonRedundantTurns.size();
-	} else {	
-		int numberNextStates = GetPlayerChoises(whoAskID);
-		nextState = new IGameState*[numberNextStates];
-		for(int loop1 = 0; loop1 < numberNextStates; loop1++)
-		{
-			mazeState = new MazeState(*this);
-			mazeState->Explore(loop1);
-			nextState[loop1] = mazeState;
-		}
-		*outNumberNextStates = numberNextStates;
+		mazeState = new MazeState(*this);
+		mazeState->Explore(loop1);
+		nextState[loop1] = mazeState;
 	}
+	*outNumberNextStates = choises;
 
 	return nextState;
 }
@@ -510,7 +493,17 @@ bool MazeState::ExploreEnvironment(int turn)
 			if(loop1 == 1)
 			{
 				if(loop2 == realHallSize -1 && loop2 != hallSize - 1 && GetTile(x + dx, y + dy) == TILE_UNDEFINED)
-					maze[y][x] = TILE_WALL;
+				{
+					int rndNumber = stepsToGameOver + hole1 + hole2;
+					if(setupOpenHallEnds == OPEN_HALL_ENDS_ALWAYS ||
+					   (setupOpenHallEnds == OPEN_HALL_ENDS_SOMETIMES && (rndNumber & 1) == 1))
+					{
+						SetTileEmpty(x, y);
+						tileToExplore.push_back(Pos2Dto1D(x, y));
+					} else {
+						maze[y][x] = TILE_WALL;
+					}
+				}
 				else {
 					SetTileEmpty(x, y);
 				}
@@ -521,10 +514,7 @@ bool MazeState::ExploreEnvironment(int turn)
 						(loop2 != realHallSize - 1 || loop2 == hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
 					{
 						SetTileEmpty(x, y);
-						//if(GetTile(x + holeX * sign, y + holeY * sign) == TILE_UNDEFINED)
-						{
-							tileToExplore.push_back(Pos2Dto1D(x, y));
-						}
+						tileToExplore.push_back(Pos2Dto1D(x, y));
 					} else {
 						maze[y][x] = TILE_WALL;
 					}
