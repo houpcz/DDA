@@ -38,12 +38,12 @@ void BatchThread::run() {
 	srand((uint)time.msec() + (int) batchItem->TreeWidgetItem());
 	qsrand((uint)time.msec() + (int) batchItem->TreeWidgetItem());
 
-	sumGameStat = new GameStat(game->GetPlayerCount() - 1);
-	for(int loop1 = 0; loop1 < game->GetPlayerCount() - 1; loop1++)
+	sumGameStat = new GameStat(game->GetPlayerCount());
+	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
 		sumGameStat->UpdatePlayerChoises(loop1, 0);
 
 	shouldRun = true;
-	GameStat * gameStat = new GameStat(game->GetPlayerCount() - 1);
+	GameStat * gameStat = new GameStat(game->GetPlayerCount());
 	for(int loop1 = 0; loop1 < batchSize && shouldRun; loop1++)
 	{
 		game->StartGame();

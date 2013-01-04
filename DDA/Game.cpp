@@ -41,7 +41,7 @@ void Game::StartGame()
 		currentPlayerScore[loop1] = 0;
 	}
 
-	gameStat = new GameStat(playerCount - 1);
+	gameStat = new GameStat(playerCount);
 	playerLeader = -1;
 }
 
@@ -63,9 +63,6 @@ void Game::NextTurn()
 			if(currentPlayerID != ENVIRONMENTAL_AI_ID)
 			{
 				gameStat->AddTurnNumberReal();
-				int playerChoises = currentState->GetPlayerChoises(currentPlayerID);
-				gameStat->UpdatePlayerChoises(currentPlayerID - 1, playerChoises);
-				gameStat->AddPlayerTurnNumber(currentPlayerID - 1);
 
 				int outScoreDifference;
 				int newLeaderID = GetLeaderID(&outScoreDifference);
@@ -74,6 +71,11 @@ void Game::NextTurn()
 					gameStat->AddLeaderSwitch();
 				playerLeader = newLeaderID;
 			}
+
+			int playerChoises = currentState->GetPlayerChoises(currentPlayerID);
+			gameStat->UpdatePlayerChoises(currentPlayerID, playerChoises);
+			gameStat->AddPlayerTurnNumber(currentPlayerID);
+			
 
 			PlayerTurn();
 			if(currentState->IsGameOver())
@@ -126,9 +128,9 @@ int Game::GetLeaderID(int * outScoreDifference)
 	*outScoreDifference = bestScore;
 
 	if(bestScore < 0)
-		return -1;
+		return 0;
 
-	return bestID;
+	return bestID + 1;
 }
 
 void Game::Paint(QPainter * painter)
