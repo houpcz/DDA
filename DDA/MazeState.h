@@ -65,15 +65,18 @@ private:
 	int goalX, goalY;
 	int playerScore;
 	vector<int> tileToExplore;
+	vector<int> nonRedundantTurns;
 	int hallSize;
 	int stepsToGameOver;
 	bool possibleWayToGoal;
 
 	char GetTile(int x, int y);
+	bool IsStateLegal();
 	void CopyToMe(const MazeState & origin);
 	void ClearMe();
 	bool ExplorePlayer(int tileToExploreID);
 	bool ExploreEnvironment(int turn);
+	void FindNonRedundantTurns();
 	void ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn);
 	void RemoveNonviableTileToExplore();
 	void SetTileEmpty(int x, int y);

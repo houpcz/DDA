@@ -57,10 +57,10 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	maze[playerY + dy][playerX + dx] = TILE_WALL;
 	maze[playerY][playerX + dx] = TILE_EMPTY;
 
-	goalX = mazeHeight / 2;
-	goalY = mazeWidth / 2;
-	//goalX = mazeWidth - playerX - 1;
-	//goalY = mazeHeight - playerY - 1;
+	//goalX = mazeHeight / 2;
+	//goalY = mazeWidth / 2;
+	goalX = mazeWidth - playerX - 1;
+	goalY = mazeHeight - playerY - 1;
 	maze[goalY][goalX] = TILE_GOAL;
 
 	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
@@ -101,13 +101,9 @@ void MazeState::CopyToMe(const MazeState & origin)
 
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
-	//maze = new char*[mazeHeight];
-	//mazeClosedList = new char*[mazeHeight];
+
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
-		//maze[loop1] = new char[mazeWidth];
-		//mazeClosedList[loop1] = new char[mazeWidth];
-
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			mazeClosedList[loop1][loop2] = false;
@@ -116,6 +112,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 	}
 
 	tileToExplore = origin.tileToExplore;
+	nonRedundantTurns = origin.nonRedundantTurns;
 }
 
 
@@ -143,16 +140,30 @@ void MazeState::ClearMe()
 IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 {
 	int numberNextStates = GetPlayerChoises(whoAskID);
-	IGameState ** nextState = new IGameState*[numberNextStates];
+	IGameState ** nextState;
 	MazeState * mazeState;
-	for(int loop1 = 0; loop1 < numberNextStates; loop1++)
-	{
-		mazeState = new MazeState(*this);
-		mazeState->Explore(loop1);
-		nextState[loop1] = mazeState;
-	}
 
-	*outNumberNextStates = numberNextStates;
+	if(activePlayerID == ENVINRONMENT_AI)
+	{
+		FindNonRedundantTurns();
+		nextState = new IGameState*[nonRedundantTurns.size()];
+		for(int loop1 = 0; loop1 < nonRedundantTurns.size(); loop1++)
+		{
+			mazeState = new MazeState(*this);
+			mazeState->Explore(loop1);
+			nextState[loop1] = mazeState;
+		}
+		*outNumberNextStates = nonRedundantTurns.size();
+	} else {	
+		nextState = new IGameState*[numberNextStates];
+		for(int loop1 = 0; loop1 < numberNextStates; loop1++)
+		{
+			mazeState = new MazeState(*this);
+			mazeState->Explore(loop1);
+			nextState[loop1] = mazeState;
+		}
+		*outNumberNextStates = numberNextStates;
+	}
 
 	return nextState;
 }
@@ -173,6 +184,11 @@ int MazeState::FindTileToExplore(int x, int y)
 	return -1;
 }
 
+bool MazeState::IsStateLegal()
+{
+	return GetDistanceBetween(playerX, playerY, goalX, goalY, true) >= 0;
+}
+
 bool MazeState::Explore(int tileToExploreID)
 {
 	bool gameOver = false;
@@ -183,11 +199,11 @@ bool MazeState::Explore(int tileToExploreID)
 			gameOver = ExplorePlayer(tileToExploreID);
 			break;
 		case ENVINRONMENT_AI :
-			gameOver = ExploreEnvironment(tileToExploreID);
+			gameOver = ExploreEnvironment(nonRedundantTurns[tileToExploreID]);
 			break;
 	}
 
-	possibleWayToGoal = GetDistanceBetween(playerX, playerY, goalX, goalY, true) >= 0;
+	possibleWayToGoal = IsStateLegal();
 
 	activePlayerID++;
 	if(activePlayerID > 1)
@@ -298,6 +314,65 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 	}*/
 
 	return false;
+}
+
+void MazeState::FindNonRedundantTurns()
+{
+	int dx = 0, dy = 0;
+	int holeX = 0, holeY = 0;
+	
+	nonRedundantTurns.clear();
+
+	if(hallSize == 1)
+	{
+		nonRedundantTurns.push_back(0);
+		nonRedundantTurns.push_back(1);
+	}
+
+	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
+	{
+		dx = -1;
+		holeY = 1;
+	} else
+	if(GetTile(playerX + 1, playerY) == TILE_UNDEFINED)
+	{
+		dx = 1;
+		holeY = 1;
+	} else
+	if(GetTile(playerX, playerY - 1) == TILE_UNDEFINED)
+	{
+		dy = -1;
+		holeX = 1;
+	} else
+	if(GetTile(playerX, playerY + 1) == TILE_UNDEFINED)
+	{
+		dy = 1;
+		holeX = 1;
+	}
+
+	int hallSizePlus1 = hallSize + 1;
+	int maxTurn = hallSizePlus1 * hallSizePlus1;
+	for(int loop1 = 0; loop1 < hallSizePlus1; loop1++)
+	{
+		int hole1 = loop1 - 1;
+		int h1X = playerX + (1 + hole1) * dx + holeX;
+		int h1Y = playerY + (1 + hole1) * dy + holeY;
+
+		if((hole1 >= 0 && GetTile(h1X, h1Y) == TILE_UNDEFINED) || hole1 < 0)
+		{
+			for(int loop2 = 0; loop2 < hallSizePlus1; loop2++)
+			{
+				int hole2 = loop2 - 1;
+				int h2X = playerX + (1 + hole2) * dx - holeX;
+				int h2Y = playerY + (1 + hole2) * dy - holeY;
+				if(((hole2 >= 0 && GetTile(h2X, h2Y) == TILE_UNDEFINED) || hole2 < 0))
+				{
+					int turn = loop2 + loop1 * hallSizePlus1;
+					nonRedundantTurns.push_back(turn);
+				}
+			}
+		}
+	}
 }
 
 void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
@@ -545,7 +620,7 @@ void MazeState::PrintToFile(const char * firstLine)
 	FILE *fw;
 	fw = fopen("log.txt", "a");
 
-	fprintf(fw, "%s %d\n", firstLine, tileToExplore.size());
+	fprintf(fw, "%s %d\n\n", firstLine, tileToExplore.size());
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
