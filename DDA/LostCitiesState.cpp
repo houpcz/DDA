@@ -5,9 +5,9 @@
 
 using namespace std;
 
-LostCitiesState::LostCitiesState()
+LostCitiesState::LostCitiesState(int _handSize)
 {
-	InitGame(8);
+	InitGame(_handSize);
 }
 
 void LostCitiesState::InitGame(int _handSize)

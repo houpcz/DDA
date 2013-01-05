@@ -49,7 +49,7 @@ private:
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);
 public:
-	LostCitiesState();
+	LostCitiesState(int _handSize);
 	virtual ~LostCitiesState(void);
 	LostCitiesState(const LostCitiesState & origin);
 	LostCitiesState& operator=(const LostCitiesState &origin);

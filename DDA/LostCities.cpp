@@ -53,7 +53,8 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
                         this, SLOT(PlayerIsReady(void)));
 
 	playerCount = 3;
-	currentState = new LostCitiesState();
+	realHandSize = 8;
+	currentState = new LostCitiesState(realHandSize);
 	state = STATE_STOPPED;
 }
 
@@ -77,7 +78,7 @@ void LostCities::StartGame()
 
 	if(currentState != NULL)
 		delete currentState;
-	currentState = new LostCitiesState();
+	currentState = new LostCitiesState(realHandSize);
 
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);
@@ -446,4 +447,23 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 		highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
 	}
 	UpdateActiveClickableAres();
+}
+
+#include <QSpinBox>
+vector<pair<QWidget *, QString> > LostCities::GetSetupWidget()
+{
+	vector<pair<QWidget *, QString> > widgets;
+
+	QSpinBox * spinBox = new QSpinBox();
+	spinBox->setMinimum(2);
+	spinBox->setMaximum(8);
+	spinBox->setValue(realHandSize);
+	widgets.push_back(pair<QWidget *, QString>(spinBox, QString("Hand Size")));
+	bool ok = connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(SetHandSize(int)));
+	return widgets;
+}
+
+void LostCities::SetHandSize(int _handSize)
+{
+	realHandSize = _handSize;
 }

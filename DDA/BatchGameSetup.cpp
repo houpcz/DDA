@@ -1,8 +1,10 @@
 #include "BatchGameSetup.h"
+#include <QLabel>
 
 BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidget *parent) : QDialog(parent)
 {
 	game = _game;
+	setWindowTitle(game->GetGameName());
 	playerAI = _playerAI;
 
 	int playerCount = game->GetPlayerCount();
@@ -47,6 +49,14 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidg
 	okButton = new QPushButton(tr("Save"));
 	connect(okButton, SIGNAL(clicked()), this, SLOT(SaveSetup()));
 	gridLayout->addWidget(okButton, 0, 1);
+
+	vector<pair<QWidget *, QString> > gSS = game->GetSetupWidget();
+	for(int loop1 = 0; loop1 < gSS.size(); loop1++)
+	{
+		gridLayout->addWidget(new QLabel(gSS[loop1].second), playerCount + loop1, 0);
+		gridLayout->addWidget(gSS[loop1].first, playerCount + loop1, 1);
+	}
+
 	setLayout(gridLayout);
 }
 

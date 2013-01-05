@@ -4,9 +4,12 @@
 #include <qpainter.h>
 #include <QMouseEvent>
 #include <qobject.h>
+#include <vector>
 #include "IGameState.h"
 #include "IPlayer.h"
 #include "GameStat.h"
+
+using namespace std;
 
 class IGame : public QObject
 {
@@ -38,6 +41,7 @@ public:
 	virtual int GetPlayerCount() = 0;
 	virtual IPlayer * GetPlayer(int ID) = 0;
 	virtual QString GetGameName() = 0;
+	virtual vector<pair<QWidget *, QString> > GetSetupWidget() = 0; 
 public slots:
 	void PlayerIsReady();
 };

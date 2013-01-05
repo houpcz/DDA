@@ -27,6 +27,10 @@ public :
 	void Draw(QPainter * painter, int tickMillis = 0);
 	void MouseMoveEvent ( int xMouse, int yMouse );
 	void MousePressEvent ( int xMouse, int yMouse );
+	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
+	public slots:
+		void SetMazeWidth(int width);
+		void SetMazeHeight(int height);
 };
 
 #endif

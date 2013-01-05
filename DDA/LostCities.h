@@ -1,6 +1,7 @@
 #ifndef _LOSTCITIES_H_
 #define _LOSTCITIES_H_
 
+#include <QObject>
 #include "LostCitiesState.h"
 #include "game.h"
 #include "IPlayer.h"
@@ -9,10 +10,13 @@
 class LostCities :
 	public Game
 {
+	Q_OBJECT
+
 private :
 	static const int HAND_SIZE = 8;
 	LostCitiesState * currentState;
 	int cardWidth, cardHeight;
+	int realHandSize;
 	static const int CLICKABLE_MAX_ACTIVE = 4;
 	static const int CLICKABLE_HOVER = 0;
 	static const int CLICKABLE_PLAY_FROM = 1;
@@ -36,6 +40,10 @@ public:
 	IGameState * GetCurrentState() const;
 	void MouseMoveEvent ( int xMouse, int yMouse );
 	void MousePressEvent ( int xMouse, int yMouse );
+	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
+
+public slots:
+	void SetHandSize(int _handSize);
 };
 
 #endif

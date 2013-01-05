@@ -193,6 +193,12 @@
     <ClCompile Include="MiniMaxPlayer.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_LostCities.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_LostCities.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -209,9 +215,6 @@
     </ClInclude>
     <ClInclude Include="MatrixFactory.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LostCities.h">
-      <Filter>LostCities</Filter>
     </ClInclude>
     <ClInclude Include="LostCitiesState.h">
       <Filter>LostCities</Filter>
@@ -277,6 +280,9 @@
     </CustomBuild>
     <CustomBuild Include="IPlayer.h">
       <Filter>Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="LostCities.h">
+      <Filter>LostCities</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

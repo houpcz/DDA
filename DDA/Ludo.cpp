@@ -346,3 +346,11 @@ void Ludo::MousePressEvent ( int xMouse, int yMouse )
 		player[activePlayerID]->HumanTurn(0);
 	}
 }
+
+#include <QSpinBox>
+vector<pair<QWidget *, QString> > Ludo::GetSetupWidget()
+{
+	vector<pair<QWidget *, QString> > widgets;
+
+	return widgets;
+}

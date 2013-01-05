@@ -41,7 +41,7 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 saveBatchToCsv = new QPushButton(tr("Save"), this);
 	 connect(saveBatchToCsv, SIGNAL(clicked()), this, SLOT(SaveBatchToCsv()));
 	 saveAllToCsv = new QPushButton(tr("Save All"), this);
-	 connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
+	 bool ok = connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
 
 	 playerStatsTree = new QTreeWidget(this);
 	 playerStatsTree->setColumnCount(7);

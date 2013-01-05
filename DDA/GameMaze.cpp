@@ -181,3 +181,30 @@ IGameState * GameMaze::GetCurrentState() const
 {
 	return currentState;
 }
+
+#include <QSpinBox>
+
+vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
+{
+	vector<pair<QWidget *, QString> > widgets;
+
+	QSpinBox * spinBoxWidth = new QSpinBox();
+	spinBoxWidth->setMinimum(5);
+	spinBoxWidth->setMaximum(100);
+	widgets.push_back(pair<QWidget *, QString>(spinBoxWidth, QString("Maze width")));
+
+	QSpinBox * spinBoxHeight = new QSpinBox();
+	spinBoxHeight->setMinimum(5);
+	spinBoxHeight->setMaximum(100);
+	widgets.push_back(pair<QWidget *, QString>(spinBoxHeight, QString("Maze height")));
+
+	return widgets;
+}
+
+void GameMaze::SetMazeWidth(int width)
+{
+}
+
+void GameMaze::SetMazeHeight(int height)
+{
+}

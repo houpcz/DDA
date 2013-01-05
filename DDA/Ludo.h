@@ -37,4 +37,5 @@ public:
 	float GetTileWidth() { return tileWidth; }
 	float GetTileHeight() { return tileHeight; }
 	float GetBoardHeight() { return boardHeight; }
+	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
 };
