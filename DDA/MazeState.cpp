@@ -192,7 +192,63 @@ int MazeState::FindTileToExplore(int x, int y)
 
 bool MazeState::IsStateLegal()
 {
-	return GetDistanceBetween(playerX, playerY, goalX, goalY, true) >= 0;
+	priority_queue<QueueNode, vector<QueueNode>, CompareNode> q;
+	int pos1X;
+	int pos1Y;
+	QueueNode tempNode(0, 0, 0, 0, 0);
+	for(int loop1 = 0; loop1 < tileToExplore.size(); loop1++)
+	{
+		int pos = tileToExplore[loop1];
+		Pos1Dto2D(pos, &pos1X, &pos1Y);
+		tempNode = QueueNode(pos1X, pos1Y, 0, goalX, goalY);
+		q.push(tempNode);
+	}
+
+	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
+	{
+		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
+		{
+			mazeClosedList[loop1][loop2] = OPEN;
+		}
+	}
+
+	while(!q.empty())
+	{
+		tempNode = q.top();
+		q.pop();
+		int x = tempNode.x;
+		int y = tempNode.y;
+		int depth = tempNode.g;
+		if(x == goalX && y == goalY)
+		{
+			return true;
+		}
+
+		if(x > 0 && (maze[y][x-1] == TILE_UNDEFINED || maze[y][x-1] == TILE_GOAL) && OPEN == mazeClosedList[y][x-1])
+		{
+			mazeClosedList[y][x-1] = CLOSE;
+			q.push(QueueNode(x - 1, y, 0, goalX, goalY));
+		}
+
+		if(x < mazeWidth - 1 && (maze[y][x+1] == TILE_UNDEFINED || maze[y][x+1] == TILE_GOAL) && OPEN == mazeClosedList[y][x+1])
+		{
+			mazeClosedList[y][x+1] = CLOSE;
+			q.push(QueueNode(x + 1, y, 0, goalX, goalY));
+		}
+		if(y > 0 && (maze[y-1][x] == TILE_GOAL || maze[y-1][x] == TILE_UNDEFINED) && OPEN == mazeClosedList[y - 1][x])
+		{
+			mazeClosedList[y - 1][x] = CLOSE;
+			q.push(QueueNode(x, y - 1, 0, goalX, goalY));
+		}
+
+		if(y < mazeHeight - 1 && (maze[y+1][x] == TILE_GOAL || maze[y+1][x] == TILE_UNDEFINED) && OPEN == mazeClosedList[y + 1][x])
+		{
+			mazeClosedList[y + 1][x] = CLOSE;
+			q.push(QueueNode(x, y + 1, 0, goalX, goalY));
+		}
+	}
+
+	return false;
 }
 
 bool MazeState::Explore(int tileToExploreID)
@@ -671,7 +727,9 @@ void MazeState::CountScore()
 bool MazeState::IsGameOver()
 {
 	if(goalX == playerX && goalY == playerY)
+	{
 		return true;
+	}
 	if(stepsToGameOver <= 0)
 		return true;
 	if(activePlayerID == PLAYER_AI && tileToExplore.size() == 0)

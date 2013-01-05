@@ -91,20 +91,29 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 			painter->fillRect(loop2 * tileWidth, loop1 * tileHeight, tileWidth + 1, tileHeight + 1, painter->brush());
 		}
 	}
-	
-	painter->setBrush(QBrush(QColor(200, 200, 10)));
-	painter->drawEllipse(currentState->GetPlayerX() * tileWidth + 1, 
-			                currentState->GetPlayerY() * tileHeight + 1, 
-							tileWidth - 2, tileHeight - 2);
 
 	for(int loop1 = 0; loop1 < tileToExplore->size(); loop1++)
 	{
 		int x, y;
 		currentState->Pos1Dto2D((*tileToExplore)[loop1], &x, &y);
+
+		QColor color;
+		if(maze[y][x] == TILE_GOAL)
+		{
+			color = Qt::darkCyan;
+		} else {
+			color = QColor(238, 154, 77);
+		}
 		painter->fillRect(x * tileWidth + 1, 
 			              y * tileHeight + 1, 
-						  tileWidth - 2, tileHeight - 2, QBrush(QColor(238, 154, 77)));
+						  tileWidth - 2, tileHeight - 2, QBrush(color));
 	}
+
+	
+	painter->setBrush(QBrush(QColor(200, 200, 10)));
+	painter->drawEllipse(currentState->GetPlayerX() * tileWidth + 1, 
+			                currentState->GetPlayerY() * tileHeight + 1, 
+							tileWidth - 2, tileHeight - 2);
 
 	int mouseXID = (int) (lastMouseX / tileWidth);
 	int mouseYID = (int) (lastMouseY / tileHeight);
@@ -135,11 +144,6 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString("Ilegal"));
 	}
 
-	if(currentState->IsGameOver())
-	{
-		
-	}
-
 	/*
 	painter->setFont(QFont("Helvetica", 14, QFont::Bold));
 	painter->setPen(Qt::black);
@@ -151,7 +155,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 
 void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )
 {
-	if(state == STATE_RUNNING)
+	if(state != STATE_STOPPED)
 	{
 		lastMouseX = xMouse;
 		lastMouseY = yMouse;
