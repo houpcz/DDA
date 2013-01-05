@@ -53,6 +53,7 @@ public:
 		void SetGameLudo();
 		void SetGameLostCities();
 		void ChangePlayer(int player);
+		void SetupGame();
 };
 
 #endif

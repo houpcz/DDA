@@ -22,8 +22,9 @@ private :
 	QSpinBox ** playerLevel;
 	QPushButton * okButton;
 	vector<IPlayer *> playerAI;
+	int playerCount;
 public:
-	BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidget *parent = 0);
+	BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, bool human = false, QWidget *parent = 0);
 	~BatchGameSetup(void);
 public slots:
 		void SaveSetup();

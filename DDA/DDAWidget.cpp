@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+#include "BatchGameSetup.h" 
 #include "Human.h"
 #include "PlayerRandomAI.h"
 #include "PlayerHillClimber.h"
@@ -26,7 +27,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
     connect(startGameAction, SIGNAL(triggered()), this, SLOT(NewGame()));
 	game->addAction(startGameAction);
 
-	QMenu * setGameMenu = game->addMenu(tr("Set Game"));
+	QMenu * setGameMenu = game->addMenu(tr("Change Game"));
 	QAction * setGameMazeAction = new QAction(tr("Maze"), this);
     QAction * setGameLudoAction = new QAction(tr("Ludo"), this);
 	QAction * setGameLostCitiesAction = new QAction(tr("Lost cities"), this);
@@ -36,6 +37,10 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
     connect(setGameMazeAction, SIGNAL(triggered()), this, SLOT(SetGameMaze()));
 	connect(setGameLudoAction, SIGNAL(triggered()), this, SLOT(SetGameLudo()));
 	connect(setGameLostCitiesAction, SIGNAL(triggered()), this, SLOT(SetGameLostCities()));
+
+	QAction * setupMenuAction = new QAction(tr("&Setup"), this);
+	connect(setupMenuAction, SIGNAL(triggered()), this, SLOT(SetupGame()));
+	game->addAction(setupMenuAction);
 
 	QAction * batchMenuAction = new QAction(tr("&Batch"), this);
     batchMenuAction->setShortcut(tr("Ctrl+B"));
@@ -191,4 +196,10 @@ void DDAWidget::ChangePlayer(int player)
 	
 	activeGame->SetPlayer(playerID, aiID);
 	playerMenu[playerID]->setTitle(playerAI[aiID]->GetAIName());
+}
+
+void DDAWidget::SetupGame()
+{
+	BatchGameSetup * setup = new BatchGameSetup(activeGame, playerAI, true, this);
+	setup->exec();
 }

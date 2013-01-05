@@ -53,6 +53,8 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 headerPlayer->setData(4, 0, "Ch. Min"); 
 	 headerPlayer->setData(5, 0, "Ch. Max"); 
 	 headerPlayer->setData(6, 0, "Turn"); 
+	 for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
+		 playerStatsTree->resizeColumnToContents(loop1);
 	 playerStatsTree->setHeaderItem(headerPlayer);
 	 playerStatsTree->setRootIsDecorated(false);
 	 playerStatsTree->setMaximumHeight(120);
@@ -166,7 +168,7 @@ void BatchWindow::SetupBatch()
 	int currentID = listBatch->currentIndex().row();
 	if(currentID >= 0)
 	{
-		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAI, this);
+		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAI, false, this);
 		setup->exec();
 		listBatch->setCurrentItem(NULL);
 	}

@@ -100,7 +100,7 @@ void LostCities::UpdateActiveClickableAres()
 
 	if(highlightClickableAreas[CLICKABLE_PLAY_FROM] == -1)
 	{
-		for(int loop1 = 0; loop1 < HAND_SIZE; loop1++)
+		for(int loop1 = 0; loop1 < realHandSize; loop1++)
 		{
 			clickableArea[loop1].SetActive(true);
 		}
@@ -245,7 +245,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->drawText(clickableArea[ClickableArea::DECK].X() + 5, clickableArea[ClickableArea::DECK].Y() + 5, 500, 500, 0, cardInDeckString);
 
 
-	if(highlightClickableAreas[CLICKABLE_HOVER] >= 0 && highlightClickableAreas[CLICKABLE_HOVER] < HAND_SIZE)
+	if(highlightClickableAreas[CLICKABLE_HOVER] >= 0 && highlightClickableAreas[CLICKABLE_HOVER] < realHandSize)
 		DrawCard(painter, clickableArea[highlightClickableAreas[CLICKABLE_HOVER]].CardID(), clickableArea[highlightClickableAreas[CLICKABLE_HOVER]].X(), clickableArea[highlightClickableAreas[CLICKABLE_HOVER]].Y());
 
 	painter->setBrush(Qt::BrushStyle::NoBrush);
@@ -347,6 +347,10 @@ void LostCities::MouseMoveEvent ( int xMouse, int yMouse )
 	highlightClickableAreas[CLICKABLE_HOVER] = -1;
 	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
 	{
+		if(loop1 >= realHandSize && loop1 < HAND_SIZE)
+		{
+			continue;
+		}
 		if(clickableArea[loop1].Area().contains(xMouse, yMouse))
 		{
 			highlightClickableAreas[CLICKABLE_HOVER] = loop1;
@@ -363,7 +367,7 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 	{
 		if(clickableArea[loop1].Area().contains(xMouse, yMouse))
 		{
-			if(loop1 < HAND_SIZE)
+			if(loop1 < realHandSize)
 			{
 				if(highlightClickableAreas[CLICKABLE_PLAY_FROM] == loop1)
 				{
@@ -376,7 +380,7 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 					highlightClickableAreas[CLICKABLE_PLAY_TO] = -1;
 					highlightClickableAreas[CLICKABLE_DRAW_FROM] = -1;
 				}
-			} else if(highlightClickableAreas[CLICKABLE_PLAY_FROM] >= 0)
+			} else if(loop1 >= HAND_SIZE && highlightClickableAreas[CLICKABLE_PLAY_FROM] >= 0)
 			{
 				if(loop1 < ClickableArea::DISCARD)
 				{

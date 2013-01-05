@@ -1,13 +1,13 @@
 #include "BatchGameSetup.h"
 #include <QLabel>
 
-BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidget *parent) : QDialog(parent)
+BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, bool human, QWidget *parent) : QDialog(parent)
 {
 	game = _game;
 	setWindowTitle(game->GetGameName());
 	playerAI = _playerAI;
 
-	int playerCount = game->GetPlayerCount();
+	playerCount = game->GetPlayerCount();
 
 	gridLayout = new QGridLayout();
 	playerList = new QComboBox*[playerCount];
@@ -23,7 +23,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidg
 		playerLevel[loop1-1]->setRange(1, 100);
 		playerLevel[loop1-1]->setValue(game->GetPlayer(loop1)->Level());
 
-		for(int loop2 = 1; loop2 < playerAI.size(); loop2++)
+		for(int loop2 = (human) ? 0 : 1; loop2 < playerAI.size(); loop2++)
 		{
 			playerList[loop1]->addItem(playerAI[loop2]->GetAIName());
 		}
@@ -63,11 +63,11 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IPlayer *> _playerAI, QWidg
 
 BatchGameSetup::~BatchGameSetup(void)
 {
-	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
+	for(int loop1 = 0; loop1 < playerCount; loop1++)
 	{
 		delete playerList[loop1];
 	}
-	for(int loop1 = 0; loop1 < game->GetPlayerCount() - 1; loop1++)
+	for(int loop1 = 0; loop1 < playerCount - 1; loop1++)
 	{
 		delete playerLevel[loop1];
 	}
