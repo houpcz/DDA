@@ -15,6 +15,10 @@ private :
 	int lastMouseX;
 	int lastMouseY;
 
+	int mazeWidth;
+	int mazeHeight;
+	int stepsToGameOver;
+
 	float tileWidth;
 	float tileHeight;
 public :
@@ -31,6 +35,7 @@ public :
 	public slots:
 		void SetMazeWidth(int width);
 		void SetMazeHeight(int height);
+		void SetStepsToGameOver(int steps);
 };
 
 #endif

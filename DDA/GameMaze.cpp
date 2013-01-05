@@ -8,7 +8,10 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	minPlayerAI = 1;
 	maxPlayerAI = 1;
 
-	currentState = new MazeState(1);
+	mazeWidth = 41;
+	mazeHeight = 41;
+	stepsToGameOver = 2000;
+	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight);
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
 
@@ -37,7 +40,7 @@ void GameMaze::StartGame()
 		delete currentState;
 	}
 
-	currentState = new MazeState(PLAYER_AI);
+	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight);
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);
@@ -191,20 +194,38 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	QSpinBox * spinBoxWidth = new QSpinBox();
 	spinBoxWidth->setMinimum(5);
 	spinBoxWidth->setMaximum(100);
+	spinBoxWidth->setValue(mazeWidth);
 	widgets.push_back(pair<QWidget *, QString>(spinBoxWidth, QString("Maze width")));
+	connect(spinBoxWidth, SIGNAL(valueChanged(int)), this, SLOT(SetMazeWidth(int)));
 
 	QSpinBox * spinBoxHeight = new QSpinBox();
 	spinBoxHeight->setMinimum(5);
 	spinBoxHeight->setMaximum(100);
+	spinBoxHeight->setValue(mazeHeight);
 	widgets.push_back(pair<QWidget *, QString>(spinBoxHeight, QString("Maze height")));
+	connect(spinBoxHeight, SIGNAL(valueChanged(int)), this, SLOT(SetMazeHeight(int)));
+
+	QSpinBox * spinBoxStep = new QSpinBox();
+	spinBoxStep->setMinimum(100);
+	spinBoxStep->setMaximum(10000);
+	spinBoxStep->setValue(stepsToGameOver);
+	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));
+	connect(spinBoxStep, SIGNAL(valueChanged(int)), this, SLOT(SetStepsToGameOver(int)));
 
 	return widgets;
 }
 
 void GameMaze::SetMazeWidth(int width)
 {
+	mazeWidth = width;
 }
 
 void GameMaze::SetMazeHeight(int height)
 {
+	mazeHeight = height;
+}
+
+void GameMaze::SetStepsToGameOver(int steps)
+{
+	stepsToGameOver = steps;
 }
