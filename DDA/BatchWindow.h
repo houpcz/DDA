@@ -32,6 +32,7 @@ private :
 	QPushButton *saveBatchToCsv;
 	QPushButton *saveAllToCsv;
 	QTreeWidget *listBatch;
+	QTreeWidget *playerStatsTree;
 	QComboBox * gameList;
 	QSpinBox * batchSize;
 
@@ -51,6 +52,7 @@ public slots:
 	void RemoveTopItem();
 	void AddItemToBatch();
 	void NextBatchItem();
+	void ItemSelect();
 	void GameOver(int gameID);
 };
 

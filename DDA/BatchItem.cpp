@@ -116,11 +116,29 @@ void BatchItem::ExportToCsv(QString path)
 
 void BatchItem::UpdateTreeWidget() 
 { 
-	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
+	float realBatchSize = (float) treeWidgetItem->data(2, 0).toInt();
 	float avgTurnNumberReal = sumGameStat->TurnNumberReal() / (float) realBatchSize;
 	treeWidgetItem->setData(3, 0, avgTurnNumberReal);
 	treeWidgetItem->setData(4, 0, sumGameStat->PlayerWinner(1) / (float) realBatchSize);
 	treeWidgetItem->setData(5, 0, sumGameStat->LeaderSwitches() / (float) realBatchSize);
 	treeWidgetItem->setData(6, 0, sumGameStat->SumScoreDifference() / (float) realBatchSize / avgTurnNumberReal);
 	treeWidgetItem->setData(7, 0, sumGameStat->EndScoreDifference() / (float) realBatchSize);
+}
+
+void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree)
+{
+	float realBatchSize = (float) treeWidgetItem->data(2, 0).toInt();
+	if(realBatchSize < 0.5)
+		return;
+
+	for(int loop1 = 0; loop1 < sumGameStat->NumberPlayers(); loop1++)
+	{
+		QTreeWidgetItem * playerItem = playerTree->topLevelItem(loop1);
+		float avgTurnNumberReal = sumGameStat->PlayerTurnNumber(loop1) / realBatchSize;
+		playerItem->setData(2, 0, sumGameStat->PlayerWinner(loop1) / realBatchSize);
+		playerItem->setData(3, 0, (sumGameStat->PlayerChoisesSum(loop1) / realBatchSize) / avgTurnNumberReal);
+		playerItem->setData(4, 0, sumGameStat->PlayerChoisesMin(loop1) / realBatchSize);
+		playerItem->setData(5, 0, sumGameStat->PlayerChoisesMax(loop1) / realBatchSize);
+		playerItem->setData(6, 0, avgTurnNumberReal);
+	}
 }

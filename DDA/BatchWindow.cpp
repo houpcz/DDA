@@ -42,18 +42,37 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 connect(saveBatchToCsv, SIGNAL(clicked()), this, SLOT(SaveBatchToCsv()));
 	 saveAllToCsv = new QPushButton(tr("Save All"), this);
 	 connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
+
+	 playerStatsTree = new QTreeWidget(this);
+	 playerStatsTree->setColumnCount(7);
+	 QTreeWidgetItem * headerPlayer = new QTreeWidgetItem();
+	 headerPlayer->setData(0, 0, "Player"); 
+	 headerPlayer->setData(1, 0, "Level"); 
+	 headerPlayer->setData(2, 0, "Winner"); 
+	 headerPlayer->setData(3, 0, "Ch. Avg"); 
+	 headerPlayer->setData(4, 0, "Ch. Min"); 
+	 headerPlayer->setData(5, 0, "Ch. Max"); 
+	 headerPlayer->setData(6, 0, "Turn"); 
+	 playerStatsTree->setHeaderItem(headerPlayer);
+	 playerStatsTree->setRootIsDecorated(false);
+	 playerStatsTree->setMaximumHeight(120);
 	 listBatch = new QTreeWidget(this);
 	 listBatch->setColumnCount(8);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
-	 header->setData(0, 0, "Game"); 
+	 header->setData(0, 0, "Game name"); 
 	 header->setData(1, 0, "Batch"); 
-	 header->setData(2, 0, "Completed"); 
-	 header->setData(3, 0, "Turn Number"); 
+	 header->setData(2, 0, "Compl."); 
+	 header->setData(3, 0, "Turn N."); 
 	 header->setData(4, 0, "P1 winner"); 
-	 header->setData(5, 0, "LS"); 
+	 header->setData(5, 0, "Leader S."); 
 	 header->setData(6, 0, "Avg Diff"); 
 	 header->setData(7, 0, "End Diff"); 
 	 listBatch->setHeaderItem(header);
+	 listBatch->setRootIsDecorated(false);
+	 for(int loop1 = 0; loop1 < listBatch->columnCount(); loop1++)
+		 listBatch->resizeColumnToContents(loop1);
+	 connect(listBatch, SIGNAL(itemSelectionChanged()), this, SLOT(ItemSelect()));
+	 connect(listBatch, SIGNAL(itemClicked (QTreeWidgetItem*,int)), this, SLOT(ItemSelect()));
 
 	 gridLayout->addWidget(gameList, 0, 0);
 	 gridLayout->addWidget(batchSize, 0, 1);
@@ -62,10 +81,11 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 gridLayout->addWidget(setupBatch, 1, 1);
 	 gridLayout->addWidget(saveBatchToCsv, 1, 2);
 	 gridLayout->addWidget(listBatch, 2, 0, 1, 4);
-	 gridLayout->addWidget(startButton, 3, 0);
-	 gridLayout->addWidget(stopButton, 3, 1);
-	 gridLayout->addWidget(saveAllToCsv, 3, 2);
-	 gridLayout->addWidget(progressBar, 3, 3);
+	 gridLayout->addWidget(playerStatsTree, 3, 0, 1, 4);
+	 gridLayout->addWidget(startButton, 4, 0);
+	 gridLayout->addWidget(stopButton, 4, 1);
+	 gridLayout->addWidget(saveAllToCsv, 4, 2);
+	 gridLayout->addWidget(progressBar, 4, 3);
      setLayout(gridLayout);
 }
 
@@ -148,6 +168,7 @@ void BatchWindow::SetupBatch()
 	{
 		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAI, this);
 		setup->exec();
+		listBatch->setCurrentItem(NULL);
 	}
 }
 void BatchWindow::SaveBatchToCsv()
@@ -168,6 +189,34 @@ void BatchWindow::SaveAllToCsv()
 	{
 		batchItem[loop1]->ExportToCsv(dirName + "\\" + QString::number(loop1) + batchItem[loop1]->GetName() + ".csv");
 	}
+}
+
+void BatchWindow::ItemSelect()
+{
+	int currentID = listBatch->currentIndex().row();
+	if(currentID < 0 || currentID >= batchItem.size())
+		return;
+
+	playerStatsTree->clear();
+
+	IGame * game = batchItem[currentID]->Game();
+	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
+	{
+		IPlayer * player = game->GetPlayer(loop1);
+		QTreeWidgetItem * tempItem;
+		tempItem = new QTreeWidgetItem();
+		tempItem->setData(0, 0, player->GetAIName());
+		if(player->IsScalable())
+			tempItem->setData(1, 0, player->Level());
+		else
+			tempItem->setData(1, 0, "NS");
+		playerStatsTree->addTopLevelItem(tempItem);
+	}
+
+	batchItem[currentID]->UpdatePlayerTreeWidget(playerStatsTree);
+
+	for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
+		playerStatsTree->resizeColumnToContents(loop1);
 }
 
 void BatchWindow::AddItemToBatch()

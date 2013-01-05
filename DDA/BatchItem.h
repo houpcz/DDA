@@ -20,6 +20,7 @@ public:
 	int BatchSize() { return batchSize; };
 	QTreeWidgetItem * TreeWidgetItem() { return treeWidgetItem;};
 	void UpdateTreeWidget();
+	void UpdatePlayerTreeWidget(QTreeWidget * playerTree);
 	void SetSumGameStat(GameStat _sumGameStat);
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
 	QString GetName();
