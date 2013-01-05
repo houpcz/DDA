@@ -64,8 +64,9 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	goalY = mazeHeight - playerY - 1;
 	maze[goalY][goalX] = TILE_GOAL;
 
-	tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY));
-	tileToExplore.push_back(Pos2Dto1D(playerX, playerY + dy));
+	AddCloseDoor(playerX + dx, playerY);
+	AddCloseDoor(playerX, playerY + dy);
+	
 	hallSize = 0;
 
 	CountScore();
@@ -407,7 +408,7 @@ void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
 		if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED ||
 			GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
 		{
-			tileToExplore.push_back(Pos2Dto1D(playerX + dx, playerY + dy));
+			AddCloseDoor(playerX + dx, playerY + dy);
 		}
 		RemoveNonviableTileToExplore();
 	}
@@ -434,7 +435,7 @@ bool MazeState::ExploreEnvironment(int turn)
 			isOneUndefinedTile = true;
 		} else {
 			SetTileEmpty(playerX + 1, playerY);
-			tileToExplore.push_back(Pos2Dto1D(playerX + 1, playerY));
+			AddCloseDoor(playerX + 1, playerY);
 		}
 	} 
 	
@@ -447,7 +448,7 @@ bool MazeState::ExploreEnvironment(int turn)
 			isOneUndefinedTile= true;
 		} else {
 			SetTileEmpty(playerX, playerY - 1);
-			tileToExplore.push_back(Pos2Dto1D(playerX, playerY - 1));
+			AddCloseDoor(playerX, playerY - 1);
 		}
 	} 
 	
@@ -460,7 +461,7 @@ bool MazeState::ExploreEnvironment(int turn)
 			isOneUndefinedTile = true;
 		} else {
 			SetTileEmpty(playerX, playerY + 1);
-			tileToExplore.push_back(Pos2Dto1D(playerX, playerY + 1));
+			AddCloseDoor(playerX, playerY + 1);
 		}
 	}
 
@@ -521,7 +522,7 @@ bool MazeState::ExploreEnvironment(int turn)
 					   (setupOpenHallEnds == OPEN_HALL_ENDS_SOMETIMES && (rndNumber & 1) == 1))
 					{
 						SetTileEmpty(x, y);
-						tileToExplore.push_back(Pos2Dto1D(x, y));
+						AddCloseDoor(x, y);
 					} else {
 						maze[y][x] = TILE_WALL;
 					}
@@ -536,14 +537,14 @@ bool MazeState::ExploreEnvironment(int turn)
 						(loop2 != realHallSize - 1 || loop2 == hallSize - 1 || GetTile(x + dx, y + dy) == TILE_NO))
 					{
 						SetTileEmpty(x, y);
-						tileToExplore.push_back(Pos2Dto1D(x, y));
+						AddCloseDoor(x, y);
 					} else {
 						maze[y][x] = TILE_WALL;
 					}
 				} else if(GetTile(x, y) == TILE_GOAL)
 				{
 					SetGoalNeightboursWall(x, y);
-					tileToExplore.push_back(Pos2Dto1D(x, y));
+					AddCloseDoor(x, y);
 				}
 			}
 			x += dx;
@@ -574,22 +575,22 @@ void MazeState::SetTileEmpty(int x, int y)
 	if(GetTile(x - 1, y) == TILE_GOAL)
 	{
 		SetGoalNeightboursWall(x - 1, y);
-		tileToExplore.push_back(Pos2Dto1D(x - 1, y));
+		AddCloseDoor(x - 1, y);
 	}
 	if(GetTile(x + 1, y) == TILE_GOAL)
 	{
 		SetGoalNeightboursWall(x + 1, y);
-		tileToExplore.push_back(Pos2Dto1D(x + 1, y));
+		AddCloseDoor(x + 1, y);
 	}
 	if(GetTile(x, y - 1) == TILE_GOAL)
 	{
 		SetGoalNeightboursWall(x, y - 1);
-		tileToExplore.push_back(Pos2Dto1D(x, y - 1));
+		AddCloseDoor(x, y - 1);
 	}
 	if(GetTile(x, y + 1) == TILE_GOAL)
 	{
 		SetGoalNeightboursWall(x, y + 1);
-		tileToExplore.push_back(Pos2Dto1D(x, y + 1));
+		AddCloseDoor(x, y + 1);
 	}
 
 }
@@ -699,3 +700,24 @@ void MazeState::PrintToFile(const char * firstLine)
 
 	fclose(fw);
 }
+
+void MazeState::AddCloseDoor(int x, int y)
+{
+	tileToExplore.push_back(Pos2Dto1D(x, y));
+}
+
+int MazeState::GetPlayerChoises(int whoAskID) 
+	{ 
+		int playerChoises;
+		switch(activePlayerID)
+		{
+			case ENVINRONMENT_AI :
+				return nonRedundantTurns.size();
+				break;
+			case PLAYER_AI :
+				return tileToExplore.size();
+				break;
+		}
+
+		return -1;
+	}

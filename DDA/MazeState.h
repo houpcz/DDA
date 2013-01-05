@@ -78,6 +78,7 @@ private:
 	bool possibleWayToGoal;
 	EOpenHallEnds setupOpenHallEnds;
 
+	void AddCloseDoor(int x, int y);
 	char GetTile(int x, int y);
 	bool IsStateLegal();
 	void CopyToMe(const MazeState & origin);
@@ -108,21 +109,7 @@ public:
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }
 	int GetStepsToGameOver() const { return stepsToGameOver; }
-	int GetPlayerChoises(int whoAskID) 
-	{ 
-		int playerChoises;
-		switch(activePlayerID)
-		{
-			case ENVINRONMENT_AI :
-				return nonRedundantTurns.size();
-				break;
-			case PLAYER_AI :
-				return tileToExplore.size();
-				break;
-		}
-
-		return -1;
-	}
+	int GetPlayerChoises(int whoAskID);
 	bool IsGameOver();
 	int GetPlayerScore(int playerID, int whoAskID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
