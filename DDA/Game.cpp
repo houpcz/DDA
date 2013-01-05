@@ -135,8 +135,38 @@ int Game::GetLeaderID(int * outScoreDifference)
 
 void Game::Paint(QPainter * painter)
 {
-	if(paint)
+	if(paint) {
 		Draw(painter, 0);
+		if(state != STATE_STOPPED)
+		{
+			IGameState * currentState = GetCurrentState();
+			if(currentState->IsGameOver())
+			{
+				int score;
+				int leaderID = GetLeaderID(&score);
+
+				QString winnerText;
+				QColor winnerColor;
+				if(score < 0)
+				{
+					winnerColor = Qt::red;
+					winnerText = "You lose!";
+				} else {
+					winnerColor = Qt::darkCyan;
+					if(playerCount <= 2)
+						winnerText = "You won!";
+					else
+						winnerText = QString("Player ") + QString::number(leaderID) + QString(" won!");
+				}
+
+				painter->setFont(QFont("Helvetica", 28, QFont::Bold));
+				painter->setPen(Qt::black);
+				painter->drawText(0, 0, painter->viewport().width() - 3, painter->viewport().height() - 43, Qt::AlignCenter, winnerText);
+				painter->setPen(winnerColor);
+				painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height() - 40, Qt::AlignCenter, winnerText);
+			}
+		}
+	}
 }
 
 void Game::SetPlayer(int playerID, int aiID)

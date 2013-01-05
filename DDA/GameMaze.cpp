@@ -93,34 +93,35 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	}
 	
 	painter->setBrush(QBrush(QColor(200, 200, 10)));
-	painter->drawEllipse(currentState->GetPlayerX() * tileWidth, 
-			                currentState->GetPlayerY() * tileHeight, 
-							tileWidth, tileHeight);
+	painter->drawEllipse(currentState->GetPlayerX() * tileWidth + 1, 
+			                currentState->GetPlayerY() * tileHeight + 1, 
+							tileWidth - 2, tileHeight - 2);
 
-	painter->setBrush(QBrush(QColor(200, 10, 10, 100)));
 	for(int loop1 = 0; loop1 < tileToExplore->size(); loop1++)
 	{
 		int x, y;
 		currentState->Pos1Dto2D((*tileToExplore)[loop1], &x, &y);
-		painter->drawRect(x * tileWidth + 1, 
+		painter->fillRect(x * tileWidth + 1, 
 			              y * tileHeight + 1, 
-						  tileWidth - 2, tileHeight - 2);
+						  tileWidth - 2, tileHeight - 2, QBrush(QColor(238, 154, 77)));
 	}
 
 	int mouseXID = (int) (lastMouseX / tileWidth);
 	int mouseYID = (int) (lastMouseY / tileHeight);
 	painter->setBrush(QBrush(QColor(200, 200, 10, 100)));
-	painter->drawRect(mouseXID * tileWidth, 
-			             mouseYID * tileHeight, 
-							tileWidth, tileHeight);
+	painter->drawRect(mouseXID * tileWidth + 1, 
+			             mouseYID * tileHeight + 1, 
+							tileWidth - 2, tileHeight - 2);
 
-	char numberString[4];
+
+
+	char numberString[6];
 	sprintf(numberString, "%d", currentState->GetStepsToGameOver());
-	painter->setFont(QFont("Helvetica", 28, QFont::Bold));
+	painter->setFont(QFont("Helvetica", 14, QFont::Bold));
 	painter->setPen(Qt::black);
-	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() - 2, Qt::AlignCenter, QString(numberString));
-	painter->setPen(Qt::red);
-	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height(), Qt::AlignCenter, QString(numberString));
+	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() / 8 - 2, Qt::AlignCenter, QString(numberString));
+	painter->setPen(Qt::cyan);
+	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height() / 8, Qt::AlignCenter, QString(numberString));
 
 	int score = currentState->GetPlayerScore(0, 0);
 	sprintf(numberString, "%d", score);
@@ -131,14 +132,21 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	if(wasIlegal)
 	{
 		painter->setPen(Qt::white);
-		painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() + 52 , Qt::AlignCenter, QString("Ilegal"));
+		painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString("Ilegal"));
 	}
 
-	painter->setFont(QFont("Helvetica", 18, QFont::Bold));
+	if(currentState->IsGameOver())
+	{
+		
+	}
+
+	/*
+	painter->setFont(QFont("Helvetica", 14, QFont::Bold));
 	painter->setPen(Qt::black);
-	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() + 52 , Qt::AlignCenter, QString(numberString));
-	painter->setPen(Qt::cyan);
-	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height() + 54, Qt::AlignCenter, QString(numberString));
+	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString(numberString));
+	painter->setPen(Qt::red);
+	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height() / 8 + 54, Qt::AlignCenter, QString(numberString));
+	*/
 }
 
 void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )

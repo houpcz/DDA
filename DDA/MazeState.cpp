@@ -338,6 +338,8 @@ void MazeState::FindNonRedundantTurns()
 	{
 		nonRedundantTurns.push_back(0 + hallSize);
 		nonRedundantTurns.push_back(1 + hallSize);
+		nonRedundantTurns.push_back(2 + hallSize);
+		nonRedundantTurns.push_back(3 + hallSize);
 	}
 
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
@@ -390,26 +392,30 @@ void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
 {
 	if(GetTile(playerX + dx, playerY + dy) == TILE_UNDEFINED)
 	{
-		if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED &&
-			GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
+		SetTileEmpty(playerX + dx, playerY + dy);
+		if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED)
 		{
-			switch(turn % 2)
+			if(turn % 2 == 0)
 			{
-				case 0 :
-					maze[playerY - holeY + dy][playerX - holeX + dx] = TILE_WALL;
-					break;
-				case 1 :
-					maze[playerY + holeY + dy][playerX + holeX + dx] = TILE_WALL;
-					break;
+				SetTileEmpty(playerX + holeX + dx, playerY + holeY + dy);
+				AddCloseDoor(playerX + holeX + dx, playerY + holeY + dy);
+			} else {
+				maze[playerY + holeY + dy][playerX + holeX + dx] = TILE_WALL;
+			}
+		}
+		if(GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
+		{
+			if(turn > 1)
+			{
+				SetTileEmpty(playerX - holeX + dx, playerY - holeY + dy);
+				AddCloseDoor(playerX - holeX + dx, playerY - holeY + dy);
+			} else {
+				maze[playerY - holeY + dy][playerX - holeX + dx] = TILE_WALL;
 			}
 		}
 
 		SetTileEmpty(playerX + dx, playerY + dy);
-		if(GetTile(playerX + holeX + dx, playerY + holeY + dy) == TILE_UNDEFINED ||
-			GetTile(playerX - holeX + dx, playerY - holeY + dy) == TILE_UNDEFINED)
-		{
-			AddCloseDoor(playerX + dx, playerY + dy);
-		}
+
 		RemoveNonviableTileToExplore();
 	}
 }
