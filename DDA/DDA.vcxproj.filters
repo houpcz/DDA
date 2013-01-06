@@ -199,6 +199,12 @@
     <ClCompile Include="GeneratedFiles\Release\moc_LostCities.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ISpecificStat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MazeStat.cpp">
+      <Filter>Maze</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -245,6 +251,12 @@
     </ClInclude>
     <ClInclude Include="MiniMaxPlayer.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ISpecificStat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MazeStat.h">
+      <Filter>Maze</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -69,6 +69,7 @@ private:
 	int mazeWidth, mazeHeight;
 	int activePlayerID;
 	int playerX, playerY;
+	int startX, startY;
 	int goalX, goalY;
 	int playerScore;
 	vector<int> tileToExplore;
@@ -99,6 +100,7 @@ public:
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);
 
+	ISpecificStat * GetGameSpecificStat();
 	void SetActivePlayerID(int _activePlayerID) { activePlayerID = _activePlayerID; }
 	int GetPlayerX() const { return playerX; }
 	int GetPlayerY() const { return playerY; }

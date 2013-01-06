@@ -87,6 +87,7 @@ void Game::NextTurn()
 				gameStat->AddScoreDifference(outScoreDifference);
 				gameStat->SetEndScoreDifference(outScoreDifference);
 				gameStat->SetWinner(newLeaderID);
+				gameStat->SetGameSpecificStat(currentState->GetGameSpecificStat());
 				
 				break;
 			}

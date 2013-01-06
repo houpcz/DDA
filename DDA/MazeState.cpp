@@ -2,6 +2,7 @@
 #include <queue>
 #include <QDebug>
 #include "MazeState.h"
+#include "MazeStat.h"
 #include "MatrixFactory.h"
 
 using namespace std;
@@ -53,6 +54,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 			dy = -1;
 			break;
 	}
+	startX = playerX;
+	startY = playerY;
 	maze[playerY][playerX] = TILE_EMPTY;
 	maze[playerY + dy][playerX] = TILE_EMPTY;
 	maze[playerY + dy][playerX + dx] = TILE_WALL;
@@ -97,6 +100,8 @@ void MazeState::CopyToMe(const MazeState & origin)
 	playerY = origin.playerY;
 	goalX = origin.goalX;
 	goalY = origin.goalY;
+	startX = origin.startX;
+	startY = origin.startY;
 	hallSize = origin.hallSize;
 	stepsToGameOver = origin.stepsToGameOver;
 	possibleWayToGoal = origin.possibleWayToGoal;
@@ -722,6 +727,16 @@ void MazeState::CountScore()
 
 	int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
 	playerScore = manDistToGoal * 10 + stepsToGameOver;
+}
+
+ISpecificStat * MazeState::GetGameSpecificStat()
+{
+	MazeStat * mazeStat = new MazeStat();
+
+	int length = this->GetDistanceBetween(startX, startY, goalX, goalY, false);
+	mazeStat->SetRouteLength(length);
+
+	return mazeStat;
 }
 
 bool MazeState::IsGameOver()

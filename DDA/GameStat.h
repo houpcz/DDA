@@ -1,7 +1,10 @@
 #ifndef _GAMESTAT_H_
 #define _GAMESTAT_H_
 
+#include "ISpecificStat.h"
+
 #define MAX_INT 1000000
+
 
 class PlayerStat
 {
@@ -63,6 +66,8 @@ private :
 	long long endScoreDifference;
 
 	PlayerStat * playerStat;
+	ISpecificStat * gameStat; 
+
 	void CheckPlayerID(int playerID)
 	{
 		if(playerID < 0 || playerID >= numberPlayers)
@@ -99,6 +104,14 @@ public:
 		playerStat[playerID].UpdateChoises(playerChoises); 
 	};
 
+	void SetGameSpecificStat(ISpecificStat * _gameStat) 
+	{
+		if(gameStat != NULL)
+			delete gameStat;
+		gameStat = _gameStat;
+	}
+	QString GameStatHeader() { return gameStat->Header(); };
+	QString GameStatRecord() { return gameStat->Record(); };
 	long NumberPlayers() { return numberPlayers; };
 	long long TurnNumber() { return turnNumber; };
 	long long TurnNumberReal() { return turnNumberReal; };

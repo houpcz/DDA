@@ -310,6 +310,11 @@ void LudoState::CountPlayerScores()
 	}
 }
 
+ISpecificStat * LudoState::GetGameSpecificStat()
+{
+	return NULL;
+}
+
 bool LudoState::IsGameOver()
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)

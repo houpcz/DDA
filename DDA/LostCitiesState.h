@@ -53,6 +53,7 @@ public:
 	virtual ~LostCitiesState(void);
 	LostCitiesState(const LostCitiesState & origin);
 	LostCitiesState& operator=(const LostCitiesState &origin);
+	ISpecificStat * GetGameSpecificStat();
 	void CopyToMe(const LostCitiesState & origin);
 
 	char GetCard(int id) { return card[id]; }

@@ -28,6 +28,7 @@ private:
 public:
 	LudoState(void);
 	virtual ~LudoState(void);
+	ISpecificStat * GetGameSpecificStat();
 	static bool IsTileSafe(int tileID);
 	int GetFigure(int player, int number) { return figure[player][number]; }
 	int GetFigureNextState(int number) { return figureNextState[number]; }

@@ -522,3 +522,8 @@ IGameState ** LostCitiesState::GetNextStates(int whoAskID, int *outNumberNextSta
 
 	return nextState;
 }
+
+ISpecificStat * LostCitiesState::GetGameSpecificStat()
+{
+	return NULL;
+}

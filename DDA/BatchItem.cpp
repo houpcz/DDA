@@ -73,6 +73,7 @@ void BatchItem::ExportToCsv(QString path)
 	{
 		temp+= ";P" + QString::number(loop2+1) + "Turn";
 	}
+	temp+= allGameStat[0]->GameStatHeader();
 	temp+= "\n";
 
 	file->write(temp.toAscii());
@@ -105,6 +106,7 @@ void BatchItem::ExportToCsv(QString path)
 		}
 		temp = temp.simplified();
 		temp = temp.replace(" ", "");
+		temp += allGameStat[loop1]->GameStatRecord();
 		temp += "\n";  
 		file->write(temp.toAscii());
 	}

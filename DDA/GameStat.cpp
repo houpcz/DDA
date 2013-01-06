@@ -8,6 +8,7 @@ GameStat::GameStat(int _numberPlayers)
 {
 	numberPlayers = _numberPlayers;
 	playerStat = new PlayerStat[numberPlayers];
+	gameStat = NULL;
 	Reset();
 }
 
@@ -22,11 +23,19 @@ void GameStat::Reset()
 	leaderSwitches = 0;
 	sumScoreDifference = 0;
 	endScoreDifference = 0;
+
+	if(gameStat != NULL)
+		gameStat->Reset();
 }
 
 GameStat::~GameStat(void)
 {
 	delete [] playerStat;
+	if(gameStat != NULL)
+	{
+		delete gameStat;
+		gameStat = NULL;
+	}
 }
 
 GameStat::GameStat(const GameStat &origin)
@@ -42,6 +51,13 @@ void GameStat::CopyToMe(const GameStat &origin)
 	leaderSwitches = origin.leaderSwitches;
 	sumScoreDifference = origin.sumScoreDifference;
 	endScoreDifference = origin.endScoreDifference;
+
+	if(origin.gameStat == NULL)
+		gameStat = NULL;
+	else {
+		gameStat = origin.gameStat->CopyYourself();
+	}
+
 	playerStat = new PlayerStat[numberPlayers];
 
 	for(int loop1 = 0; loop1 < numberPlayers; loop1++)
@@ -66,12 +82,26 @@ const GameStat GameStat::operator+(const GameStat &other)
 	newGameStat.leaderSwitches = leaderSwitches + other.leaderSwitches;
 	newGameStat.sumScoreDifference = sumScoreDifference + other.sumScoreDifference;
 	newGameStat.endScoreDifference = endScoreDifference + other.endScoreDifference;
+	if(gameStat != NULL && other.gameStat != NULL)
+		newGameStat.gameStat = gameStat->Plus(other.gameStat);
+	else if(other.gameStat != NULL)
+	{
+		newGameStat.gameStat = other.gameStat->CopyYourself();
+	} else {
+		newGameStat.gameStat = NULL;
+	}
+
 
 	return newGameStat;
 }
  GameStat& GameStat::operator=(const GameStat &origin) {
     if (this != &origin) {
       delete playerStat;
+	  if(gameStat != NULL)
+	  {
+		  delete gameStat;
+		  gameStat = NULL;
+	  }
     }
 	
 	CopyToMe(origin);

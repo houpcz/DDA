@@ -164,10 +164,12 @@
     <ClCompile Include="IGame.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="IPlayer.cpp" />
+    <ClCompile Include="ISpecificStat.cpp" />
     <ClCompile Include="LostCities.cpp" />
     <ClCompile Include="LostCitiesState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixFactory.cpp" />
+    <ClCompile Include="MazeStat.cpp" />
     <ClCompile Include="MazeState.cpp" />
     <ClCompile Include="Ludo.cpp" />
     <ClCompile Include="LudoState.cpp" />
@@ -178,6 +180,8 @@
     <ClCompile Include="QApp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ISpecificStat.h" />
+    <ClInclude Include="MazeStat.h" />
     <ClInclude Include="MiniMaxPlayer.h" />
     <ClInclude Include="QApp.h" />
     <CustomBuild Include="DDAWidget.h">
