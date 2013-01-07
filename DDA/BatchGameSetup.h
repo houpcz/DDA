@@ -17,6 +17,7 @@ class BatchGameSetup : public QDialog
 	Q_OBJECT
 
 private :
+	bool human;
 	IGame * game;
 	QGridLayout * gridLayout;
 	QComboBox ** playerList;
@@ -26,10 +27,11 @@ private :
 	vector<IPlayer *> playerAIList;
 	int playerCount;
 public:
-	BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, bool human = false, QWidget *parent = 0);
+	BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, bool _human = false, QWidget *parent = 0);
 	~BatchGameSetup(void);
 public slots:
 		void SaveSetup();
+		void UpdateLevelSpin();
 };
 
 #endif

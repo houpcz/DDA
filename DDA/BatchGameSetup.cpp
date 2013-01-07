@@ -1,9 +1,10 @@
 #include "BatchGameSetup.h"
 #include <QLabel>
 
-BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, bool human, QWidget *parent) : QDialog(parent)
+BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, bool _human, QWidget *parent) : QDialog(parent)
 {
 	game = _game;
+	human = _human;
 	setWindowTitle(game->GetGameName());
 	playerAIList = _playerAIList;
 	environmentAIList = _environmentAIList;
@@ -25,7 +26,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		playerLevel[loop1-1] = new QSpinBox(this);
 		playerLevel[loop1-1]->setRange(1, 100);
 		playerLevel[loop1-1]->setValue(game->GetPlayer(loop1)->Level());
-
+		connect(playerList[loop1], SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateLevelSpin()));
 		for(int loop2 = (human) ? 0 : 1; loop2 < playerAIList.size(); loop2++)
 		{
 			playerList[loop1]->addItem(playerAIList[loop2]->GetAIName());
@@ -73,6 +74,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 	}
 
 	setLayout(gridLayout);
+	UpdateLevelSpin();
 }
 
 
@@ -122,4 +124,12 @@ void BatchGameSetup::SaveSetup()
 	}
 
 	this->close();
+}
+
+void BatchGameSetup::UpdateLevelSpin()
+{
+	for(int loop1 = 1; loop1 < playerCount; loop1++)
+	{
+		playerLevel[loop1 - 1]->setEnabled(playerAIList[playerList[loop1]->currentIndex() + ((human) ? 0 : 1)]->IsScalable());
+	}
 }
