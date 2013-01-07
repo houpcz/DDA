@@ -6,11 +6,13 @@
 #include "Ludo.h"
 #include "GameMaze.h"
 
-BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget(parent)
+BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, QWidget *parent) : QWidget(parent)
 {
 	 batchThread = new BatchThread();
 	 batchIsRunning = false;
-	 playerAI = _playerAI;
+	 playerAIList = _playerAIList;
+	 environmentAIList = _environmentAIList;
+	 gameList = _gameList;
 
 	 QGridLayout *gridLayout = new QGridLayout;
 	 startButton = new QPushButton(tr("Start"), this);
@@ -24,10 +26,10 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 connect(batchThread, SIGNAL(GameOver(int)), this, SLOT(GameOver(int)), Qt::QueuedConnection);
 	 connect(batchThread, SIGNAL(BatchItemOver()), this, SLOT(NextBatchItem()), Qt::QueuedConnection);
 
-	 gameList = new QComboBox(this);
-	 gameList->addItem(tr("Lost Cities"));
-	 gameList->addItem(tr("Maze"));
-	 gameList->addItem(tr("Ludo"));
+	 gameBox = new QComboBox(this);
+	 for(int loop1 = 0; loop1 < gameList.size(); loop1++)
+		 gameBox->addItem(gameList[loop1]->GetGameName());
+
 	 batchSize = new QSpinBox(this);
 	 batchSize->setMinimum(0);
 	 batchSize->setMaximum(1000000);
@@ -76,7 +78,7 @@ BatchWindow::BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent) : QWidget
 	 connect(listBatch, SIGNAL(itemSelectionChanged()), this, SLOT(ItemSelect()));
 	 connect(listBatch, SIGNAL(itemClicked (QTreeWidgetItem*,int)), this, SLOT(ItemSelect()));
 
-	 gridLayout->addWidget(gameList, 0, 0);
+	 gridLayout->addWidget(gameBox, 0, 0);
 	 gridLayout->addWidget(batchSize, 0, 1);
 	 gridLayout->addWidget(addBatch, 0, 2);
 	 gridLayout->addWidget(removeBatch, 1, 0);
@@ -168,7 +170,7 @@ void BatchWindow::SetupBatch()
 	int currentID = listBatch->currentIndex().row();
 	if(currentID >= 0)
 	{
-		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAI, false, this);
+		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAIList, false, this);
 		setup->exec();
 		listBatch->setCurrentItem(NULL);
 	}
@@ -225,7 +227,7 @@ void BatchWindow::AddItemToBatch()
 {
 	QTreeWidgetItem * tempItem;
 	tempItem = new QTreeWidgetItem();
-	tempItem->setData(0, 0, gameList->currentText());
+	tempItem->setData(0, 0, gameBox->currentText());
 	tempItem->setData(1, 0, batchSize->value());
 	for(int loop1 = 2; loop1 < listBatch->columnCount(); loop1++)
 	{
@@ -233,17 +235,5 @@ void BatchWindow::AddItemToBatch()
 	}
 	listBatch->addTopLevelItem(tempItem);
 
-	switch(gameList->currentIndex())
-	{
-		case 0 :
-			batchItem.push_back(new BatchItem(batchSize->value(), new LostCities(this, false), tempItem));
-			break;
-		case 1 :
-			batchItem.push_back(new BatchItem(batchSize->value(), new GameMaze(this, false), tempItem));
-			break;
-		case 2 :
-			batchItem.push_back(new BatchItem(batchSize->value(), new Ludo(this, false), tempItem));
-			break;
-	}
-	
+	batchItem.push_back(new BatchItem(batchSize->value(), gameList[gameBox->currentIndex()]->Factory(this, false), tempItem));	
 }

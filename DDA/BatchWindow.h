@@ -12,6 +12,7 @@
 #include "BatchThread.h"
 #include "IGame.h"
 #include "BatchItem.h"
+#include "IEnvironmentAI.h"
 
 using namespace std;
 
@@ -33,15 +34,17 @@ private :
 	QPushButton *saveAllToCsv;
 	QTreeWidget *listBatch;
 	QTreeWidget *playerStatsTree;
-	QComboBox * gameList;
+	QComboBox * gameBox;
 	QSpinBox * batchSize;
 
 	bool batchIsRunning;
 	int currentBatchItemID;
 	vector<BatchItem *> batchItem;
-	vector<IPlayer *> playerAI;
+	vector<IGame *> gameList;
+	vector<IEnvironmentAI *> environmentAIList;
+	vector<IPlayer *> playerAIList;
 public:
-	BatchWindow(vector<IPlayer *> _playerAI, QWidget *parent);
+	BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, QWidget *parent);
 	~BatchWindow(void);
 public slots:
 	void StartBatch();

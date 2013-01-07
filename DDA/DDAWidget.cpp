@@ -146,7 +146,7 @@ void DDAWidget::NewGame()
 
 void DDAWidget::BatchMenu()
 {
-	batchWindow = new BatchWindow(playerAIList, this);
+	batchWindow = new BatchWindow(gameList, environmentAIList, playerAIList, this);
 	setCentralWidget(batchWindow);
 }
 
