@@ -66,6 +66,9 @@ int LudoState::GetPlayerChoises(int whoAskID)
 
 bool LudoState::IsTileFreeCheckOpponents(int newPosition)
 {
+	if(newPosition >= FIRST_HOME_TILE || newPosition < 0)
+		return true;
+
 	int tileID1 = (newPosition + Ludo::firstTile[activePlayerID]) % Ludo::PLAYER_1_START;
 	for(int loop3 = 0; loop3 < MAX_PLAYER; loop3++)
 	{
@@ -74,6 +77,9 @@ bool LudoState::IsTileFreeCheckOpponents(int newPosition)
 
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
+			if(figure[loop3][loop2] < 0 || figure[loop3][loop2] >= FIRST_HOME_TILE)
+				continue;
+
 			int tileID2 = (figure[loop3][loop2] + Ludo::firstTile[loop3]) % Ludo::PLAYER_1_START;
 			if(tileID2 == tileID1)
 			{
@@ -177,17 +183,23 @@ int LudoState::MakeTurn(int playerChoise)
 				{
 					int figureId = loop1 % MAX_FIGURE;
 					figure[activePlayerID][figureId] = figureNextState[loop1];
+
+					// you cant sent you opponent to home
+					if(figureNextState[loop1] < 0 || figureNextState[loop1] >= FIRST_HOME_TILE)
+						break; 
+
 					int tileID1 = (figure[activePlayerID][figureId] + Ludo::firstTile[activePlayerID]) % Ludo::PLAYER_1_START;
 					for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 					{
 						if(loop2 == activePlayerID)
 							continue;
-						for(int loop3 = 0; loop3 < MAX_PLAYER; loop3++)
+						for(int loop3 = 0; loop3 < MAX_FIGURE; loop3++)
 						{
+							if(figure[loop2][loop3] < 0 || figure[loop2][loop3] >= FIRST_HOME_TILE)
+								continue;
+
 							int tileID2 = (figure[loop2][loop3] + Ludo::firstTile[loop2]) % Ludo::PLAYER_1_START;
-							if(tileID1 == tileID2 &&
-								figure[loop2][loop3] >= 0 &&
-								figure[loop2][loop3] < Ludo::PLAYER_1_START)
+							if(tileID1 == tileID2)
 							{
 								figure[loop2][loop3] = -1;
 								break;

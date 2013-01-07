@@ -9,6 +9,7 @@
 #include <qmainwindow.h>
 #include "BatchWindow.h"
 #include "IGame.h"
+#include "IEnvironmentAI.h"
 #include "GameMaze.h"
 #include "Ludo.h"
 #include "LostCities.h"
@@ -22,10 +23,6 @@ class DDAWidget :
 Q_OBJECT
 
 private:
-	static const int GAME_MAZE_ID = 0;
-	static const int GAME_MENSCH_ARGERE_ID = 1;
-	static const int GAME_LOST_CITIES_ID = 2;
-
 	IGame * activeGame;
 	int activeGameID;
 	Board * board;
@@ -33,10 +30,15 @@ private:
 
 	QMenu * playersMenu;
     QSignalMapper * signalMapper;
+	QSignalMapper * gameMapper;
 
 	QMenu * playerMenu[5];
-	vector<IPlayer *> playerAI;
 
+	vector<IGame *> gameList;
+	vector<IEnvironmentAI *> environmentAIList;
+	vector<IPlayer *> playerAIList;
+
+	void MakePluginLists();
 	void ChangePlayerMenu();
 public:
 	DDAWidget(QWidget *parent = 0);
@@ -49,9 +51,6 @@ public:
 		void BatchMenu();
 		void NewGame();
 		void SetGame(int gameID);
-		void SetGameMaze();
-		void SetGameLudo();
-		void SetGameLostCities();
 		void ChangePlayer(int player);
 		void SetupGame();
 };

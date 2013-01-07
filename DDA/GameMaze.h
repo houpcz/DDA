@@ -32,6 +32,8 @@ public :
 	void MouseMoveEvent ( int xMouse, int yMouse );
 	void MousePressEvent ( int xMouse, int yMouse );
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
+	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new GameMaze(_widget, _paint); };
+
 	public slots:
 		void SetMazeWidth(int width);
 		void SetMazeHeight(int height);
