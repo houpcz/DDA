@@ -11,6 +11,7 @@
 #include "PlayerRandomAI.h"
 #include "PlayerHillClimber.h"
 #include "MiniMaxPlayer.h"
+#include "EnvironmentAIBasic.h"
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
@@ -24,7 +25,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 
 	QMenu * game = menuBar()->addMenu(tr("Game"));	
 	QAction * startGameAction = new QAction(tr("&New"), this);
-    startGameAction->setShortcut(tr("Ctrl+S"));
+    startGameAction->setShortcut(tr("N"));
     startGameAction->setStatusTip(tr("Start new game"));
     connect(startGameAction, SIGNAL(triggered()), this, SLOT(NewGame()));
 	game->addAction(startGameAction);
@@ -42,24 +43,13 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	connect(gameMapper, SIGNAL(mapped(int)),
              this, SLOT(SetGame(int)));
 
-	/*
-	QAction * setGameMazeAction = new QAction(tr("Maze"), this);
-    QAction * setGameLudoAction = new QAction(tr("Ludo"), this);
-	QAction * setGameLostCitiesAction = new QAction(tr("Lost cities"), this);
-	setGameMenu->addAction(setGameMazeAction);
-	setGameMenu->addAction(setGameLudoAction);
-	setGameMenu->addAction(setGameLostCitiesAction);
-    connect(setGameMazeAction, SIGNAL(triggered()), this, SLOT(SetGameMaze()));
-	connect(setGameLudoAction, SIGNAL(triggered()), this, SLOT(SetGameLudo()));
-	connect(setGameLostCitiesAction, SIGNAL(triggered()), this, SLOT(SetGameLostCities()));
-	*/
-
 	QAction * setupMenuAction = new QAction(tr("&Setup"), this);
+	setupMenuAction->setShortcut(tr("S"));
 	connect(setupMenuAction, SIGNAL(triggered()), this, SLOT(SetupGame()));
 	game->addAction(setupMenuAction);
 
 	QAction * batchMenuAction = new QAction(tr("&Batch"), this);
-    batchMenuAction->setShortcut(tr("Ctrl+B"));
+    batchMenuAction->setShortcut(tr("B"));
     batchMenuAction->setStatusTip(tr("Start batch of games"));
     connect(batchMenuAction, SIGNAL(triggered()), this, SLOT(BatchMenu()));
 	game->addAction(batchMenuAction);
@@ -67,6 +57,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	playersMenu = menuBar()->addMenu(tr("Players"));
 
 	signalMapper = new QSignalMapper(this);
+	environmentMapper = new QSignalMapper(this);
 
 	activeGameID = -1;
 	activeGame = new GameMaze(this);
@@ -80,11 +71,13 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 
 void DDAWidget::MakePluginLists()
 {
-		// set all players
+	// set all players
 	playerAIList.push_back(new Human(1));
 	playerAIList.push_back(new PlayerRandomAI(2));
 	playerAIList.push_back(new PlayerHillClimber(3));
 	playerAIList.push_back(new MiniMaxPlayer(4));
+
+	environmentAIList.push_back(new EnvironmentAIBasic(0));
 
 	// set all games
 	gameList.push_back(new GameMaze(this));
@@ -100,6 +93,7 @@ DDAWidget::~DDAWidget(void)
 
 	delete gameMapper;
 	delete signalMapper;
+	delete environmentMapper;
 
 	for(int loop1 = 0; loop1 < playerAIList.size(); loop1++)
 	{
@@ -139,7 +133,6 @@ void DDAWidget::mousePressEvent ( QMouseEvent * event )
 
 void DDAWidget::NewGame()
 {
-	//for(int loop1 = 0; loop1 < 10000; loop1++)
 	activeGame->StartGame();
 	repaint();
 }
@@ -173,9 +166,18 @@ void DDAWidget::ChangePlayerMenu()
 {
 	playersMenu->clear();
 	signalMapper->disconnect();
+	environmentMapper->disconnect();
 
 	QAction * setPlayer;
-	playerMenu[0] = playersMenu->addMenu(tr("Environmental AI"));
+	playerMenu[0] = playersMenu->addMenu(activeGame->GetPlayer(0)->GetAIName());
+	for(int loop1 = 0; loop1 < environmentAIList.size(); loop1++)
+	{
+		setPlayer = new QAction(environmentAIList[loop1]->GetAIName(), this);
+		connect(setPlayer, SIGNAL(triggered()), environmentMapper, SLOT(map()));
+		environmentMapper->setMapping(setPlayer, loop1);
+		playerMenu[0]->addAction(setPlayer);
+	}
+
 	int environmentalAINumber = 1;
 	for(int loop1 = 0; loop1 < activeGame->GetMaxPlayerAI(); loop1++)
 	{
@@ -194,6 +196,9 @@ void DDAWidget::ChangePlayerMenu()
 		}
 	}
 
+	connect(environmentMapper, SIGNAL(mapped(int)),
+             this, SLOT(ChangeEnvironmentPlayer(int)));
+	
 	connect(signalMapper, SIGNAL(mapped(int)),
              this, SLOT(ChangePlayer(int)));
 }
@@ -207,8 +212,14 @@ void DDAWidget::ChangePlayer(int player)
 	playerMenu[playerID]->setTitle(playerAIList[aiID]->GetAIName());
 }
 
+void DDAWidget::ChangeEnvironmentPlayer(int player)
+{
+	activeGame->SetPlayer(0, environmentAIList[player]);
+	playerMenu[0]->setTitle(environmentAIList[player]->GetAIName());
+}
+
 void DDAWidget::SetupGame()
 {
-	BatchGameSetup * setup = new BatchGameSetup(activeGame, playerAIList, true, this);
+	BatchGameSetup * setup = new BatchGameSetup(activeGame, environmentAIList, playerAIList, true, this);
 	setup->exec();
 }

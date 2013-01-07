@@ -170,7 +170,7 @@ void BatchWindow::SetupBatch()
 	int currentID = listBatch->currentIndex().row();
 	if(currentID >= 0)
 	{
-		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), playerAIList, false, this);
+		BatchGameSetup * setup = new BatchGameSetup(batchItem[currentID]->Game(), environmentAIList, playerAIList, false, this);
 		setup->exec();
 		listBatch->setCurrentItem(NULL);
 	}

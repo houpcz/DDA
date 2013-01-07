@@ -30,6 +30,7 @@ private:
 
 	QMenu * playersMenu;
     QSignalMapper * signalMapper;
+	QSignalMapper * environmentMapper;
 	QSignalMapper * gameMapper;
 
 	QMenu * playerMenu[5];
@@ -52,6 +53,7 @@ public:
 		void NewGame();
 		void SetGame(int gameID);
 		void ChangePlayer(int player);
+		void ChangeEnvironmentPlayer(int player);
 		void SetupGame();
 };
 
