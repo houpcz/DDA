@@ -194,7 +194,7 @@ void DDAWidget::ChangePlayer(int player)
 	int playerID = player / playerAI.size();
 	int aiID = player % playerAI.size();
 	
-	activeGame->SetPlayer(playerID, aiID);
+	activeGame->SetPlayer(playerID, playerAI[aiID]);
 	playerMenu[playerID]->setTitle(playerAI[aiID]->GetAIName());
 }
 

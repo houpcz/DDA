@@ -40,7 +40,7 @@ public:
 	virtual IGameState * GetCurrentState() const = 0;
 	virtual bool PlayerTurn() = 0; /// Game specific turn
 	virtual void NextTurn();       /// Common for all games
-	void SetPlayer(int playerID, int aiID);
+	virtual void SetPlayer(int playerID, IPlayer * _player);
 	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget() = 0; 
 	virtual QString GetGameName() = 0;

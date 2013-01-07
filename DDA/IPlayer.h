@@ -30,6 +30,7 @@ public:
 	void SetLevel(int _level) { level = _level; };
 	int Level() { return level; };
 	virtual bool IsScalable() = 0;
+	virtual IPlayer * Factory(int playerID) = 0;
 signals:
 	void ImReady();
 };

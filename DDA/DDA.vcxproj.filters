@@ -55,9 +55,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnvironmentAIBasic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Game.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -205,6 +202,9 @@
     <ClCompile Include="MazeStat.cpp">
       <Filter>Maze</Filter>
     </ClCompile>
+    <ClCompile Include="EnvironmentAIBasic.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -263,12 +263,6 @@
     <CustomBuild Include="Game.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="IEnvironmentAI.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EnvironmentAIBasic.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="IGame.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -295,6 +289,12 @@
     </CustomBuild>
     <CustomBuild Include="LostCities.h">
       <Filter>LostCities</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IEnvironmentAI.h">
+      <Filter>Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EnvironmentAIBasic.h">
+      <Filter>Player</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

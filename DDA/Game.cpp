@@ -170,22 +170,13 @@ void Game::Paint(QPainter * painter)
 	}
 }
 
-void Game::SetPlayer(int playerID, int aiID)
+void Game::SetPlayer(int playerID, IPlayer * _player)
 {
 	QObject::disconnect(player[playerID], SIGNAL(ImReady(void)),
                          this, SLOT(PlayerIsReady(void)));
 	delete player[playerID];
 	
-	switch(aiID)
-	{
-		case 0 : player[playerID] = new Human(playerID); break;
-		case 1 : player[playerID] = new PlayerRandomAI(playerID); break;
-		case 2 : player[playerID] = new PlayerHillClimber(playerID); break;
-		case 3 : player[playerID] = new MiniMaxPlayer(playerID); break;
-		default :
-			throw "Not implemented yet";
-			break;
-	}
+	player[playerID] = _player->Factory(playerID);
 
 	QObject::connect(player[playerID], SIGNAL(ImReady(void)),
                          this, SLOT(PlayerIsReady(void)));

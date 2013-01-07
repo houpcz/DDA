@@ -86,7 +86,7 @@ void BatchGameSetup::SaveSetup()
 			QString str2 = playerAI[loop2]->GetAIName();
 			if(str1.compare(str2) == 0)
 			{
-				game->SetPlayer(loop1, loop2);
+				game->SetPlayer(loop1, playerAI[loop2]);
 				game->GetPlayer(loop1)->SetLevel(playerLevel[loop1 - 1]->value());
 				break;
 			}

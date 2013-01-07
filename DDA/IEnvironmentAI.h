@@ -12,6 +12,7 @@ public :
 	virtual ~IEnvironmentAI() {};
 	virtual bool Think() = 0;
 	virtual bool IsScalable() { return false; };
+	virtual IPlayer * Factory(int playerID) = 0;
 };
 
 #endif

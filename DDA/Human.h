@@ -15,6 +15,7 @@ public:
 	void HumanTurn(int turn);
 	virtual bool IsScalable() { return false; };
 	QString GetAIName() { return QString("Human"); };
+	IPlayer * Factory(int playerID) { return new Human(playerID); };
 };
 
 #endif

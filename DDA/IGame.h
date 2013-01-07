@@ -34,7 +34,7 @@ public:
 	virtual void MouseMoveEvent ( int xMouse, int yMouse ) {};
 	virtual void MousePressEvent ( int xMouse, int yMouse ) {};
 
-	virtual void SetPlayer(int playerID, int aiID) = 0;
+	virtual void SetPlayer(int playerID, IPlayer * _player) = 0;
 	virtual GameStat GetGameStat() = 0;
 	virtual int GetMinPlayerAI() = 0;
 	virtual int GetMaxPlayerAI() = 0;
