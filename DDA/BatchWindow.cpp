@@ -117,6 +117,8 @@ void BatchWindow::NextBatchItem()
 		saveBatchToCsv->setEnabled(true);
 		batchIsRunning = false;
 	}
+
+	ItemSelect();
 }
 
 void BatchWindow::GameOver(int gameID)
@@ -197,6 +199,9 @@ void BatchWindow::SaveAllToCsv()
 
 void BatchWindow::ItemSelect()
 {
+	if(batchIsRunning)
+		return;
+
 	int currentID = listBatch->currentIndex().row();
 	if(currentID < 0 || currentID >= batchItem.size())
 		return;

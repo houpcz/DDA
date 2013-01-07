@@ -20,6 +20,7 @@ private:
 	int figure[MAX_PLAYER][MAX_FIGURE];
 	int figureNextState[MAX_CHOISES];
 	int playerScore[MAX_PLAYER];
+	bool isScoreUpToDate;
 
 	void CountPlayerScores();
 	void NextChoises();

@@ -20,6 +20,7 @@ LudoState::LudoState(void)
 	}
 
 	dicePlayerNow = true;
+	isScoreUpToDate = false;
 	activePlayerID = 0;
 	lastDice = 0;
 	multipleDice = 2;
@@ -240,8 +241,7 @@ int LudoState::MakeTurn(int playerChoise)
 	}
 	dicePlayerNow = !dicePlayerNow;
 
-
-	CountPlayerScores();
+	isScoreUpToDate = false;
 
 	return result;
 }
@@ -277,6 +277,9 @@ bool LudoState::IsTileSafe(int tileID)
 
 int LudoState::GetPlayerScore(int playerID, int whoAskID)
 {
+	if(!isScoreUpToDate)
+		CountPlayerScores();
+
 	return playerScore[playerID - 1];
 }
 void LudoState::CountPlayerScores()
@@ -320,6 +323,8 @@ void LudoState::CountPlayerScores()
 		else
 			playerScore[loop1] = tempScore[loop1] - bestScore;
 	}
+
+	isScoreUpToDate = true;
 }
 
 ISpecificStat * LudoState::GetGameSpecificStat()

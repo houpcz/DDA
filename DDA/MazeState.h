@@ -66,6 +66,7 @@ private:
 
 	char ** maze;
 	char ** mazeClosedList;
+	bool isScoreUpToDate;
 	int mazeWidth, mazeHeight;
 	int activePlayerID;
 	int playerX, playerY;

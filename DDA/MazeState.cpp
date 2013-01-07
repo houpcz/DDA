@@ -72,7 +72,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	
 	hallSize = 0;
 
-	CountScore();
+	isScoreUpToDate = false;
 }
 
 MazeState::MazeState(const MazeState & origin)
@@ -106,6 +106,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 	stepsToGameOver = origin.stepsToGameOver;
 	possibleWayToGoal = origin.possibleWayToGoal;
 	setupOpenHallEnds = origin.setupOpenHallEnds;
+	isScoreUpToDate = origin.isScoreUpToDate;
 
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
@@ -276,7 +277,7 @@ bool MazeState::Explore(int tileToExploreID)
 	if(activePlayerID > 1)
 		activePlayerID = 0;
 
-	CountScore();
+	isScoreUpToDate = false;
 
 	return gameOver;
 }
@@ -715,6 +716,9 @@ void MazeState::Pos1Dto2D(int d1, int * x, int * y)
 
 int MazeState::GetPlayerScore(int playerID, int whoAskID)
 {
+	if(!isScoreUpToDate)
+		CountScore();
+
 	return playerScore;
 }
 void MazeState::CountScore()
@@ -727,6 +731,8 @@ void MazeState::CountScore()
 
 	int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
 	playerScore = manDistToGoal * 10 + stepsToGameOver;
+
+	isScoreUpToDate = true;
 }
 
 ISpecificStat * MazeState::GetGameSpecificStat()

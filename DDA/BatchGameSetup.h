@@ -17,6 +17,7 @@ class BatchGameSetup : public QDialog
 	Q_OBJECT
 
 private :
+	bool init;
 	bool human;
 	IGame * game;
 	QGridLayout * gridLayout;
