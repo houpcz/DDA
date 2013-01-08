@@ -26,16 +26,16 @@ BatchItem::~BatchItem(void)
 	delete sumGameStat;
 }
 
-QString BatchItem::GetName()
+QString BatchItem::GetName(char splitChar)
 {
 	QString playerNames = "";
 
 	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
 	{
-		playerNames += "," + game->GetPlayer(loop1)->GetAIName() + QString::number(game->GetPlayer(loop1)->Level());
+		playerNames += splitChar + game->GetPlayer(loop1)->GetAIName() + splitChar + QString::number(game->GetPlayer(loop1)->Level());
 	}
 
-	return game->GetGameName() + QString::number(batchSize) + playerNames;
+	return game->GetGameName() + splitChar + QString::number(batchSize) + playerNames;
 }
 void BatchItem::SetSumGameStat(GameStat _sumGameStat) 
 { 
@@ -51,7 +51,13 @@ void BatchItem::ExportToCsv(QString path)
         return;
     }
 
-
+	pair<QString, QString> gameSetup = game->GetSetupString();
+	QString setupHeader = QString("Game Name;Batch Size;EAI name;EAI level");
+	for(int loop1 = 1; loop1 < sumGameStat->NumberPlayers(); loop1++)
+		setupHeader += ";P" + QString::number(loop1) + ";Level";
+	setupHeader += ";" + gameSetup.first + '\n';
+	file->write(setupHeader.toAscii());
+	file->write(GetName(';').toAscii() + ';' + gameSetup.second.toAscii() + '\n');
 	QString temp = QString("Turn Number;Leader Switches;SSD;ESD");
 	for(int loop2 = 0; loop2 < allGameStat[0]->NumberPlayers(); loop2++)
 	{

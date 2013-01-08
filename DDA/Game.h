@@ -43,6 +43,7 @@ public:
 	virtual void SetPlayer(int playerID, IPlayer * _player);
 	virtual void Draw(QPainter * painter, int tickMillis = 0) = 0;
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) = 0;
+	virtual pair<QString,QString> GetSetupString() = 0;
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget() = 0; 
 	virtual QString GetGameName() = 0;
 	virtual void Paint(QPainter * painter);

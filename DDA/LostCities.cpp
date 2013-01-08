@@ -454,10 +454,16 @@ void LostCities::MousePressEvent ( int xMouse, int yMouse )
 }
 
 #include <QSpinBox>
+pair<QString,QString> LostCities::GetSetupString()
+{
+	QString header = "Hand Size";
+	QString values = QString::number(realHandSize);
+	return pair<QString, QString>(header, values);
+}
+
 vector<pair<QWidget *, QString> > LostCities::GetSetupWidget()
 {
 	vector<pair<QWidget *, QString> > widgets;
-
 	QSpinBox * spinBox = new QSpinBox();
 	spinBox->setMinimum(2);
 	spinBox->setMaximum(8);

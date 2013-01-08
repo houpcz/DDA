@@ -187,6 +187,13 @@ IGameState * GameMaze::GetCurrentState() const
 
 #include <QSpinBox>
 
+pair<QString,QString> GameMaze::GetSetupString()
+{
+	QString header = QString("Maze Width;Maze Height;Max Steps;");
+	QString values = QString::number(mazeWidth) + QString(";") + QString::number(mazeHeight) + ";" + QString::number(stepsToGameOver);
+	return pair<QString, QString>(header, values);
+}
+
 vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 {
 	vector<pair<QWidget *, QString> > widgets;

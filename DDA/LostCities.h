@@ -40,6 +40,7 @@ public:
 	IGameState * GetCurrentState() const;
 	void MouseMoveEvent ( int xMouse, int yMouse );
 	void MousePressEvent ( int xMouse, int yMouse );
+	virtual pair<QString,QString> GetSetupString();
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new LostCities(_widget, _paint); };
 public slots:

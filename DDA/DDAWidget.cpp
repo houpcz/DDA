@@ -133,8 +133,15 @@ void DDAWidget::mousePressEvent ( QMouseEvent * event )
 
 void DDAWidget::NewGame()
 {
-	activeGame->StartGame();
-	repaint();
+	if(centralWidget() != board)
+	{
+		board = new Board(this, activeGame);
+		setCentralWidget(board);
+		repaint();
+	} else {
+		activeGame->StartGame();
+		repaint();
+	}
 }
 
 void DDAWidget::BatchMenu()

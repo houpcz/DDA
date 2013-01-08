@@ -348,6 +348,14 @@ void Ludo::MousePressEvent ( int xMouse, int yMouse )
 }
 
 #include <QSpinBox>
+
+pair<QString,QString> Ludo::GetSetupString()
+{
+	QString header = "";
+	QString values = "";
+	return pair<QString, QString>(header, values);
+}
+
 vector<pair<QWidget *, QString> > Ludo::GetSetupWidget()
 {
 	vector<pair<QWidget *, QString> > widgets;

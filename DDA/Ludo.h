@@ -37,6 +37,7 @@ public:
 	float GetTileWidth() { return tileWidth; }
 	float GetTileHeight() { return tileHeight; }
 	float GetBoardHeight() { return boardHeight; }
+	virtual pair<QString,QString> GetSetupString();
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new Ludo(_widget, _paint); };
 };

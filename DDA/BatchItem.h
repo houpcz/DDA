@@ -23,7 +23,7 @@ public:
 	void UpdatePlayerTreeWidget(QTreeWidget * playerTree);
 	void SetSumGameStat(GameStat _sumGameStat);
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
-	QString GetName();
+	QString GetName(char splitChar = ',');
 	void ExportToCsv(QString path);
 };
 

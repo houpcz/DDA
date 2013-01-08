@@ -110,8 +110,16 @@ public:
 			delete gameStat;
 		gameStat = _gameStat;
 	}
-	QString GameStatHeader() { return gameStat->Header(); };
-	QString GameStatRecord() { return gameStat->Record(); };
+	QString GameStatHeader() { 
+		if(gameStat == NULL)
+			return "";
+		return gameStat->Header(); 
+	};
+	QString GameStatRecord() { 
+		if(gameStat == NULL)
+			return "";
+		return gameStat->Record(); 
+	};
 	long NumberPlayers() { return numberPlayers; };
 	long long TurnNumber() { return turnNumber; };
 	long long TurnNumberReal() { return turnNumberReal; };
