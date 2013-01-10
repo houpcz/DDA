@@ -162,6 +162,7 @@ void BatchWindow::RemoveTopItem()
 	int currentID = listBatch->currentIndex().row();
 	if(currentID >= 0)
 	{
+		delete batchItem[currentID];
 		batchItem.erase(batchItem.begin() + currentID, batchItem.begin() + currentID + 1);
 		delete listBatch->currentItem();
 	}

@@ -5,6 +5,7 @@
 #include <qtime>
 #include <stdlib.h>
 #include <time.h>
+#include <QToolBar>
 
 #include "BatchGameSetup.h" 
 #include "Human.h"
@@ -15,7 +16,8 @@
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
-	resize(500, 500);
+	resize(500, 500 + 21);
+
 	setPalette(QPalette(QColor(250, 250, 200)));
 	setMouseTracking(false);
 

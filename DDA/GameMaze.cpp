@@ -69,8 +69,14 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	char ** maze = currentState->GetMaze();
 	const vector<int>* tileToExplore = currentState->GetTileToExplore();
 
-	tileWidth = painter->viewport().width() / (float) mazeWidth;
-	tileHeight =  painter->viewport().height() / (float) mazeHeight;
+	int viewportWidth = painter->viewport().width();
+	int viewportHeight = painter->viewport().height();
+	painter->fillRect(0, 0, viewportWidth, viewportHeight, QBrush(QColor(0, 0, 0)));
+	tileWidth = viewportWidth / (float) mazeWidth;
+	tileHeight =  viewportHeight / (float) mazeHeight;
+
+	tileWidth = min(tileWidth, tileHeight);
+	tileHeight = min(tileWidth, tileHeight);
 
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
@@ -213,7 +219,7 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	connect(spinBoxHeight, SIGNAL(valueChanged(int)), this, SLOT(SetMazeHeight(int)));
 
 	QSpinBox * spinBoxStep = new QSpinBox();
-	spinBoxStep->setMinimum(100);
+	spinBoxStep->setMinimum(10);
 	spinBoxStep->setMaximum(10000);
 	spinBoxStep->setValue(stepsToGameOver);
 	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));

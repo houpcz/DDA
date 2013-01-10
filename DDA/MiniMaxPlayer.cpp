@@ -60,7 +60,7 @@ float * MiniMaxPlayer::MaxN(IGameState * state, int depth)
 		}
 	}
 
-	for(int loop1 = 1; loop1 < choises; loop1++)
+	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
 		delete nextState[loop1];
 	}
