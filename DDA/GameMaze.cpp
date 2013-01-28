@@ -71,7 +71,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 
 	int viewportWidth = painter->viewport().width();
 	int viewportHeight = painter->viewport().height();
-	painter->fillRect(0, 0, viewportWidth, viewportHeight, QBrush(QColor(0, 0, 0)));
+	painter->fillRect(0, 0, viewportWidth, viewportHeight, QBrush(QColor(100, 120, 100)));
 	tileWidth = viewportWidth / (float) mazeWidth;
 	tileHeight =  viewportHeight / (float) mazeHeight;
 
