@@ -100,12 +100,12 @@ void BatchGameSetup::SaveSetup()
 	int playerCount = game->GetPlayerCount();
 
 	QString str1 = playerList[0]->currentText();
-	for(int loop1 = 1; loop1 < environmentAIList.size(); loop1++)
+	for(int loop1 = 0; loop1 < environmentAIList.size(); loop1++)
 	{		
 		QString str2 = environmentAIList[loop1]->GetAIName();
 		if(str1.compare(str2) == 0)
 		{
-			game->SetPlayer(loop1, environmentAIList[loop1]);
+			game->SetPlayer(0, environmentAIList[loop1]);
 			break;
 		}
 	}

@@ -177,6 +177,7 @@ void Game::SetPlayer(int playerID, IPlayer * _player)
 	delete player[playerID];
 	
 	player[playerID] = _player->Factory(playerID);
+	player[playerID]->SetGame(this);
 
 	QObject::connect(player[playerID], SIGNAL(ImReady(void)),
                          this, SLOT(PlayerIsReady(void)));

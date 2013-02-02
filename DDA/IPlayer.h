@@ -22,6 +22,7 @@ public:
 	IPlayer(int _myID);
 	virtual ~IPlayer() {};
 	virtual void StartGame(IGame * _game) {game = _game; isReady = false;};
+	virtual void SetGame(IGame * _game) {game = _game;};
 	virtual bool IsReady();
 	virtual int MakeTurn();
 	virtual bool Think() = 0;

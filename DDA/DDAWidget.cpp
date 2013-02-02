@@ -13,6 +13,8 @@
 #include "PlayerHillClimber.h"
 #include "MiniMaxPlayer.h"
 #include "EnvironmentAIBasic.h"
+#include "EAIMaxOptions.h"
+#include "EAIMinOptions.h"
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
@@ -80,6 +82,8 @@ void DDAWidget::MakePluginLists()
 	playerAIList.push_back(new MiniMaxPlayer(4));
 
 	environmentAIList.push_back(new EnvironmentAIBasic(0));
+	environmentAIList.push_back(new EAIMaxOptions(1));
+	environmentAIList.push_back(new EAIMinOptions(2));
 
 	// set all games
 	gameList.push_back(new GameMaze(this));

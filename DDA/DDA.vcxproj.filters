@@ -205,6 +205,24 @@
     <ClCompile Include="EnvironmentAIBasic.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="EAIMaxOptions.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EAIMaxOptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EAIMaxOptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EAIMinOptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EAIMinOptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="EAIMinOptions.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -295,6 +313,12 @@
     </CustomBuild>
     <CustomBuild Include="EnvironmentAIBasic.h">
       <Filter>Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EAIMaxOptions.h">
+      <Filter>Player</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EAIMinOptions.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
