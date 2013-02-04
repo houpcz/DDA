@@ -1,25 +1,43 @@
-#include "PlayerHillClimber.h"
+#include "PlayerLevel.h"
 #include "IGame.h"
 
 using namespace std;
 
-PlayerHillClimber::PlayerHillClimber(int _myID) : IPlayer(_myID)
+PlayerLevel::PlayerLevel(int _myID) : IPlayer(_myID)
 {
-	random_device randomDevice;
-    generator = new mt19937(randomDevice());
 }
 
-PlayerHillClimber::~PlayerHillClimber(void)
+PlayerLevel::~PlayerLevel(void)
 {
-	delete generator;
 }
 
 
-bool PlayerHillClimber::Think()
+void PlayerLevel::StartGame(IGame * _game)
+{
+	IPlayer::StartGame(_game);
+
+	level = 100;
+}
+
+void PlayerLevel::UpdateLevel()
+{
+	int score = game->GetCurrentState()->GetPlayerScore(myID, myID);
+	if(score < 0) level += (int) log((double) -score);
+	if(score > 0) level -= (int) log((double) score);
+	if(level < 50) level = 50;
+	if(level > 100) level = 100;
+
+	qDebug(QString::number(level).toAscii() + " -> " + QString::number(score).toAscii());
+}
+
+
+bool PlayerLevel::Think()
 {
 	int choises;
 	IGameState * currentState = game->GetCurrentState();
 	IGameState ** nextState = currentState->GetNextStates(myID, &choises);
+
+	UpdateLevel();
 
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
@@ -28,10 +46,7 @@ bool PlayerHillClimber::Think()
 	}
 	sort(scores.begin(), scores.end(), comparator);
 	
-	double mean = (level / 100.0) * choises;
-	double deviation = 0.4; 
-	normal_distribution<> normalDistribution(mean, deviation);
-	int choise = (int) (normalDistribution(*generator) + 0.5);
+	int choise = (int) (level / 100.0) * choises;
 	if(choise < 0)
 		choise = 0;
 	else if(choise >= choises)

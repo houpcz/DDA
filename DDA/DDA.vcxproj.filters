@@ -44,6 +44,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{cce25237-c9ad-4648-b4e0-6b919f2ec593}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayerEnvinroment">
+      <UniqueIdentifier>{49526111-b7b9-40a2-ad72-09edfe0a0b0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -202,12 +205,6 @@
     <ClCompile Include="MazeStat.cpp">
       <Filter>Maze</Filter>
     </ClCompile>
-    <ClCompile Include="EnvironmentAIBasic.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
-    <ClCompile Include="EAIMaxOptions.cpp">
-      <Filter>Player</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_EAIMaxOptions.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -220,8 +217,20 @@
     <ClCompile Include="GeneratedFiles\Release\moc_EAIMinOptions.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="EAIMaxOptions.cpp">
+      <Filter>PlayerEnvinroment</Filter>
+    </ClCompile>
     <ClCompile Include="EAIMinOptions.cpp">
+      <Filter>PlayerEnvinroment</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentAIBasic.cpp">
+      <Filter>PlayerEnvinroment</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerPOSM.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLevel.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -276,6 +285,12 @@
     <ClInclude Include="MazeStat.h">
       <Filter>Maze</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerPOSM.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Game.h">
@@ -308,17 +323,17 @@
     <CustomBuild Include="LostCities.h">
       <Filter>LostCities</Filter>
     </CustomBuild>
-    <CustomBuild Include="IEnvironmentAI.h">
-      <Filter>Player</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EnvironmentAIBasic.h">
-      <Filter>Player</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EAIMaxOptions.h">
-      <Filter>Player</Filter>
-    </CustomBuild>
     <CustomBuild Include="EAIMinOptions.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EAIMaxOptions.h">
+      <Filter>PlayerEnvinroment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EnvironmentAIBasic.h">
+      <Filter>PlayerEnvinroment</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IEnvironmentAI.h">
+      <Filter>PlayerEnvinroment</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

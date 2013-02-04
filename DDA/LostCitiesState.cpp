@@ -447,7 +447,7 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 	float scoreHiddenHandBonus = avgDeckCard * handUnknownCount * min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2);
 	float scoreReal = GetPlayerPoints(playerID) * PREDICTED_ON_BOARD;
 	scoreNotExpedition = min(10, maxTurnToTheEnd) / 10.0f * scoreNotExpedition;
-	return score + scoreNotExpedition +scoreDeckBonus + scoreHiddenHandBonus + scoreReal;
+	return score + /*scoreNotExpedition*/ +scoreDeckBonus + scoreHiddenHandBonus + scoreReal;
 }
 
 int LostCitiesState::GetPlayerPoints(int playerID)

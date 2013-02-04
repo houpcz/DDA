@@ -190,6 +190,8 @@
     <ClCompile Include="LudoTile.cpp" />
     <ClCompile Include="MiniMaxPlayer.cpp" />
     <ClCompile Include="PlayerHillClimber.cpp" />
+    <ClCompile Include="PlayerLevel.cpp" />
+    <ClCompile Include="PlayerPOSM.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
     <ClCompile Include="QApp.cpp" />
   </ItemGroup>
@@ -217,6 +219,8 @@
     <ClInclude Include="ISpecificStat.h" />
     <ClInclude Include="MazeStat.h" />
     <ClInclude Include="MiniMaxPlayer.h" />
+    <ClInclude Include="PlayerLevel.h" />
+    <ClInclude Include="PlayerPOSM.h" />
     <ClInclude Include="QApp.h" />
     <CustomBuild Include="DDAWidget.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

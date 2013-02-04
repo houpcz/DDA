@@ -49,7 +49,8 @@ void Game::NextTurn()
 {
 	int turnNumber = 0;
 
-	while(turnNumber < 10000)
+	int MAX_TURN_NUMBER = 5000;
+	while(turnNumber < MAX_TURN_NUMBER)
 	{
 		IGameState * currentState = GetCurrentState();
 		if(player[currentState->GetActivePlayerID()]->IsReady())
@@ -101,6 +102,12 @@ void Game::NextTurn()
 				break;
 		}
 	}
+
+	if(turnNumber == MAX_TURN_NUMBER)
+	{
+		gameStat->SetWinner(0);
+	}
+
 	if(paint)
 		widget->repaint();
 }
