@@ -45,6 +45,12 @@ private:
 	int whoAskIDlast;
 	bool isGameOver;
 	int handSize;
+
+	int cardsInDeck;		// how many cards is in the deck
+	int cardsInDeckTurn;	// how many turns there is same amount cards in deck
+	int cardsInDeckMaxTurn; // limit on max number turn with same amount cards in deck
+
+	int GetInDeckCount();
 	void InitGame(int _handSize);
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);

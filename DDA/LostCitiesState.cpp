@@ -15,6 +15,7 @@ void LostCitiesState::InitGame(int _handSize)
 	handSize = _handSize;
 	activePlayerID = 1;
 	lastRealPlayer = 1;
+	cardsInDeckMaxTurn = 4;
 
 	int allCards[CARD_AMOUNT];
 	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
@@ -29,6 +30,9 @@ void LostCitiesState::InitGame(int _handSize)
 		card[allCards[loop1]] = PLAYER_1_HAND_HIDDEN;
 	for(int loop1 = handSize; loop1 < 2 * handSize; loop1++)
 		card[allCards[loop1]] = PLAYER_2_HAND_HIDDEN;
+
+	cardsInDeck = GetInDeckCount();
+	cardsInDeckTurn = 0;
 
 	isGameOver = false;
 	whoAskIDlast = NOBODY;
@@ -59,6 +63,8 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 	isGameOver = origin.isGameOver;
 	whoAskIDlast = origin.whoAskIDlast;
 	handSize = origin.handSize;
+	cardsInDeck = origin.cardsInDeck;
+	cardsInDeckTurn = origin.cardsInDeckTurn;
 
 	allChoises.clear();
 	allChoises.insert(allChoises.begin(), origin.allChoises.begin(), origin.allChoises.end());
@@ -134,6 +140,15 @@ bool LostCitiesState::MakeTurn(int turn)
 		}
 	}
 	
+	int temp = GetInDeckCount();
+	if(temp == cardsInDeck)
+	{
+		cardsInDeckTurn++;
+	} else {
+		cardsInDeck = temp;
+		cardsInDeckTurn = 0;
+	}
+
 	whoAskIDlast = NOBODY;
 
 	return false;
@@ -235,15 +250,18 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 		}
 
 		int oldChoises = allChoises.size();
-		for(int loop1 = 0; loop1 < oldChoises; loop1++)
+		if(cardsInDeckTurn < cardsInDeckMaxTurn)
 		{
-			for(int loop2 = 0; loop2 < COLOR_AMOUNT; loop2++)
+			for(int loop1 = 0; loop1 < oldChoises; loop1++)
 			{
-				// if there is card on discard pile and if you dont play card of same color on discard pile, you can draw from thad pile
-				if(discardPileTopCardID[loop2] >= 0 && (allChoises[loop1] >= DISCARD_CARD_OFFSET || loop2 != allChoises[loop1] / CARD_ONE_COLOR_AMOUNT))
+				for(int loop2 = 0; loop2 < COLOR_AMOUNT; loop2++)
 				{
-					allChoises.push_back(allChoises[loop1]);
-					drawFrom.push_back(loop2);
+					// if there is card on discard pile and if you dont play card of same color on discard pile, you can draw from thad pile
+					if(discardPileTopCardID[loop2] >= 0 && (allChoises[loop1] >= DISCARD_CARD_OFFSET || loop2 != allChoises[loop1] / CARD_ONE_COLOR_AMOUNT))
+					{
+						allChoises.push_back(allChoises[loop1]);
+						drawFrom.push_back(loop2);
+					}
 				}
 			}
 		}
@@ -503,6 +521,15 @@ int LostCitiesState::GetPlayerPoints(int playerID)
 		}
 	}
 	return score;
+}
+
+int LostCitiesState::GetInDeckCount()
+{
+	int cardNumber = 0;
+	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+		if(card[loop1] == IN_DECK)
+			cardNumber++;
+	return cardNumber;
 }
 
 IGameState ** LostCitiesState::GetNextStates(int whoAskID, int *outNumberNextStates)
