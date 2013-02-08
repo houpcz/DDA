@@ -10,7 +10,7 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	mazeWidth = 41;
 	mazeHeight = 41;
-	stepsToGameOver = 2000;
+	stepsToGameOver = 1000;
 	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight);
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
@@ -153,13 +153,12 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString("Ilegal"));
 	}
 
-	/*
+	
 	painter->setFont(QFont("Helvetica", 14, QFont::Bold));
 	painter->setPen(Qt::black);
-	painter->drawText(0, 0, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString(numberString));
+	painter->drawText(tileWidth * mazeWidth + 8, 0, tileWidth * mazeWidth + 200, painter->viewport().height() / 8 + 52 , Qt::AlignLeft, QString(numberString));
 	painter->setPen(Qt::red);
-	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height() / 8 + 54, Qt::AlignCenter, QString(numberString));
-	*/
+	painter->drawText(tileWidth * mazeWidth + 10, 0, tileWidth * mazeWidth + 202, painter->viewport().height() / 8 + 54, Qt::AlignLeft, QString(numberString));
 }
 
 void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )
