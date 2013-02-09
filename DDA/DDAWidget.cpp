@@ -18,6 +18,8 @@
 #include "EAIMaxOptions.h"
 #include "EAIMinOptions.h"
 
+#include "ViewFlow.h"
+
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
 	resize(500, 500 + 21);
@@ -61,6 +63,11 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	game->addAction(batchMenuAction);
 
 	playersMenu = menuBar()->addMenu(tr("Players"));
+
+	QMenu * viewMenu = menuBar()->addMenu(tr("View"));
+	QAction * viewFlow = new QAction(tr("&Flow"), this);
+	connect(viewFlow, SIGNAL(triggered()), this, SLOT(ShowFlowView()));
+	viewMenu->addAction(viewFlow);
 
 	signalMapper = new QSignalMapper(this);
 	environmentMapper = new QSignalMapper(this);
@@ -239,4 +246,10 @@ void DDAWidget::SetupGame()
 {
 	BatchGameSetup * setup = new BatchGameSetup(activeGame, environmentAIList, playerAIList, true, this);
 	setup->exec();
+}
+
+void DDAWidget::ShowFlowView()
+{
+	ViewFlow * view = new ViewFlow(activeGame);
+	view->show();
 }

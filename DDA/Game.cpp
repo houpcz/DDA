@@ -27,6 +27,8 @@ Game::~Game(void)
 		delete player;
 		delete [] currentPlayerScore;
 	}	
+
+	ClearAllGameStates();
 }
 
 void Game::StartGame()
@@ -45,14 +47,29 @@ void Game::StartGame()
 	playerLeader = -1;
 }
 
+void Game::ClearAllGameStates()
+{
+	for(int loop1 = 0; loop1 < gameState.size(); loop1++)
+		delete gameState[loop1];
+	gameState.clear();
+}
+
 void Game::NextTurn()
 {
 	int turnNumber = 0;
+
+	ClearAllGameStates();
 
 	int MAX_TURN_NUMBER = 5000;
 	while(turnNumber < MAX_TURN_NUMBER)
 	{
 		IGameState * currentState = GetCurrentState();
+
+		if(SaveAllGameStates())
+		{
+			gameState.push_back(currentState->Clone());
+		}
+
 		if(player[currentState->GetActivePlayerID()]->IsReady())
 		{
 			turnNumber++;

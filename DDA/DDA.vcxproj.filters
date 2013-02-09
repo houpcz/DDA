@@ -616,6 +616,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_BatchDiagrams.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ViewFlow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ViewFlow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewFlow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -949,6 +958,9 @@
     </CustomBuild>
     <CustomBuild Include="BatchDiagrams.h">
       <Filter>Batch</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ViewFlow.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

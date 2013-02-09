@@ -33,6 +33,9 @@ protected:
 
 	QWidget * widget;
 
+	vector<IGameState *> gameState;
+	void ClearAllGameStates();
+	bool SaveAllGameStates() { return paint; }
 	int GetLeaderID(int * outScoreDifference);
 public:
 	Game(QWidget * _widget, bool paint = true);
@@ -54,6 +57,7 @@ public:
 	int GetMaxPlayerAI() { return maxPlayerAI; };
 	int GetPlayerCount() { return playerCount;};
 	GameStat GetGameStat() { return *gameStat; }
+	vector<IGameState *> GetAllGameState() { return gameState;} ;
 };
 
 #endif

@@ -44,6 +44,7 @@ public:
 	virtual pair<QString,QString> GetSetupString() = 0;
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget() = 0; 
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) = 0;
+	virtual vector<IGameState *> GetAllGameState() = 0;
 public slots:
 	void PlayerIsReady();
 };

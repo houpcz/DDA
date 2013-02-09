@@ -16,6 +16,7 @@ public :
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
 	virtual bool IsGameOver() = 0;
 	virtual void PrintToFile(const char * firstLine) {};
+	virtual IGameState * Clone() = 0;
 };
 
 #endif

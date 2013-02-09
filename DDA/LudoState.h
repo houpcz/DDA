@@ -31,6 +31,7 @@ public:
 	virtual ~LudoState(void);
 	ISpecificStat * GetGameSpecificStat();
 	static bool IsTileSafe(int tileID);
+	LudoState * Clone() { LudoState * state = new LudoState(*this);  return state; };
 	int GetFigure(int player, int number) { return figure[player][number]; }
 	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises(int whoAskID);

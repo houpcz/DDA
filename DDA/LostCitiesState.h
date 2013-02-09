@@ -61,7 +61,7 @@ public:
 	LostCitiesState& operator=(const LostCitiesState &origin);
 	ISpecificStat * GetGameSpecificStat();
 	void CopyToMe(const LostCitiesState & origin);
-
+	LostCitiesState * Clone() { LostCitiesState * state = new LostCitiesState(*this); return state;};
 	char GetCard(int id) { return card[id]; }
 	virtual int GetPlayerChoises(int whoAskID);
 	virtual int GetActivePlayerID() const;

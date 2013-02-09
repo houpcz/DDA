@@ -84,6 +84,7 @@ private:
 	char GetTile(int x, int y);
 	bool IsStateLegal();
 	void CopyToMe(const MazeState & origin);
+	MazeState * Clone() { MazeState * state = new MazeState(*this);  return state;};
 	void ClearMe();
 	bool ExplorePlayer(int tileToExploreID);
 	bool ExploreEnvironment(int turn);
