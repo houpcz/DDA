@@ -5,6 +5,14 @@
 #include "IGame.h"
 #include "GameStat.h"
 
+enum EAggrFnc {
+	AGGR_MEAN,
+	AGGR_DEVIATION,
+	AGGR_MEDIAN,
+	AGGR_MIN,
+	AGGR_MAX, 
+};
+
 class BatchItem
 {
 private:
@@ -19,7 +27,7 @@ public:
 	IGame * Game() { return game; };
 	int BatchSize() { return batchSize; };
 	QTreeWidgetItem * TreeWidgetItem() { return treeWidgetItem;};
-	void UpdateTreeWidget();
+	void UpdateTreeWidget(EAggrFnc fnc);
 	void UpdatePlayerTreeWidget(QTreeWidget * playerTree);
 	void SetSumGameStat(GameStat _sumGameStat);
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };

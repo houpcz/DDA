@@ -43,7 +43,15 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 saveBatchToCsv = new QPushButton(tr("Save"), this);
 	 connect(saveBatchToCsv, SIGNAL(clicked()), this, SLOT(SaveBatchToCsv()));
 	 saveAllToCsv = new QPushButton(tr("Save All"), this);
-	 bool ok = connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
+	 connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
+
+	 aggrFnc = new QComboBox(this);
+	 aggrFnc->addItem("Mean");
+	 aggrFnc->addItem("Std. deviation");
+	 aggrFnc->addItem("Median");
+	 aggrFnc->addItem("Min");
+	 aggrFnc->addItem("Max");
+	 bool ok = connect(aggrFnc, SIGNAL(activated(int)), this, SLOT(AggrFnc(int)));
 
 	 playerStatsTree = new QTreeWidget(this);
 	 playerStatsTree->setColumnCount(7);
@@ -84,12 +92,13 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 gridLayout->addWidget(removeBatch, 1, 0);
 	 gridLayout->addWidget(setupBatch, 1, 1);
 	 gridLayout->addWidget(saveBatchToCsv, 1, 2);
-	 gridLayout->addWidget(listBatch, 2, 0, 1, 4);
-	 gridLayout->addWidget(playerStatsTree, 3, 0, 1, 4);
+	 gridLayout->addWidget(aggrFnc, 1, 3);
+	 gridLayout->addWidget(listBatch, 2, 0, 1, 6);
+	 gridLayout->addWidget(playerStatsTree, 3, 0, 1, 6);
 	 gridLayout->addWidget(startButton, 4, 0);
 	 gridLayout->addWidget(stopButton, 4, 1);
 	 gridLayout->addWidget(saveAllToCsv, 4, 2);
-	 gridLayout->addWidget(progressBar, 4, 3);
+	 gridLayout->addWidget(progressBar, 4, 3, 1, 3);
      setLayout(gridLayout);
 }
 
@@ -103,7 +112,7 @@ BatchWindow::~BatchWindow(void)
 void BatchWindow::NextBatchItem()
 {
 	if(currentBatchItemID >= 0)
-		batchItem[currentBatchItemID]->UpdateTreeWidget();
+		batchItem[currentBatchItemID]->UpdateTreeWidget((EAggrFnc) aggrFnc->currentIndex());
 
 	currentBatchItemID++;
 	if(currentBatchItemID < batchItem.size() && batchIsRunning)
@@ -242,4 +251,12 @@ void BatchWindow::AddItemToBatch()
 	listBatch->addTopLevelItem(tempItem);
 
 	batchItem.push_back(new BatchItem(batchSize->value(), gameList[gameBox->currentIndex()]->Factory(this, false), tempItem));	
+}
+
+void BatchWindow::AggrFnc(int fnc)
+{
+	for(int loop1 = 0; loop1 < batchItem.size(); loop1++)
+	{
+		batchItem[loop1]->UpdateTreeWidget((EAggrFnc) fnc);
+	}
 }

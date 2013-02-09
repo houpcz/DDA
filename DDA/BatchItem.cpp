@@ -122,15 +122,106 @@ void BatchItem::ExportToCsv(QString path)
 	delete file;
 }
 
-void BatchItem::UpdateTreeWidget() 
+void BatchItem::UpdateTreeWidget(EAggrFnc fnc) 
 { 
 	float realBatchSize = (float) treeWidgetItem->data(2, 0).toInt();
 	float avgTurnNumberReal = sumGameStat->TurnNumberReal() / (float) realBatchSize;
-	treeWidgetItem->setData(3, 0, avgTurnNumberReal);
-	treeWidgetItem->setData(4, 0, sumGameStat->PlayerWinner(1) / (float) realBatchSize);
-	treeWidgetItem->setData(5, 0, sumGameStat->LeaderSwitches() / (float) realBatchSize);
-	treeWidgetItem->setData(6, 0, sumGameStat->SumScoreDifference() / (float) realBatchSize / avgTurnNumberReal);
-	treeWidgetItem->setData(7, 0, sumGameStat->EndScoreDifference() / (float) realBatchSize);
+
+	float turnNumber;
+	float winnerPlayer1;
+	float leaderSwitches;
+	float gameScoreDiff;
+	float endScoreDiff;
+	
+	vector<float> values;
+	values.reserve(batchSize);
+
+	float val;
+	if(fnc == AGGR_MEAN || fnc == AGGR_DEVIATION)
+	{
+		turnNumber = avgTurnNumberReal;
+		winnerPlayer1 = sumGameStat->PlayerWinner(1) / (float) realBatchSize;
+		leaderSwitches = sumGameStat->LeaderSwitches() / (float) realBatchSize;
+		gameScoreDiff = sumGameStat->SumScoreDifference() / (float) realBatchSize / avgTurnNumberReal;
+		endScoreDiff = sumGameStat->EndScoreDifference() / (float) realBatchSize;
+
+		if(fnc == AGGR_DEVIATION)
+		{
+			float sumVal;
+
+			for(int loop2 = 0; loop2 < 5; loop2++)
+			{
+				sumVal = 0.0f;
+				for(int loop1 = 0; loop1 < batchSize; loop1++)
+				{
+					switch(loop2)
+					{
+						case 0 : val = allGameStat[loop1]->TurnNumberReal() - turnNumber; break;
+						case 1 : val = allGameStat[loop1]->PlayerWinner(1) - winnerPlayer1; break;
+						case 2 : val = allGameStat[loop1]->LeaderSwitches() - leaderSwitches; break;
+						case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber() - gameScoreDiff; break;
+						case 4 : val = allGameStat[loop1]->EndScoreDifference() - endScoreDiff; break;
+					}
+					sumVal += (val * val) / batchSize;
+				}
+				float deviation = sqrt(sumVal);
+
+				switch(loop2)
+				{
+					case 0 : turnNumber = deviation; break;
+					case 1 : winnerPlayer1 = deviation; break;
+					case 2 : leaderSwitches = deviation; break;
+					case 3 : gameScoreDiff = deviation; break;
+					case 4 : endScoreDiff = deviation; break;
+				}
+			}
+		}
+	}
+	else {
+		for(int loop2 = 0; loop2 < 5; loop2++)
+		{
+			values.clear();
+			for(int loop1 = 0; loop1 < batchSize; loop1++)
+			{
+				switch(loop2)
+				{
+					case 0 : val = allGameStat[loop1]->TurnNumberReal(); break;
+					case 1 : val = allGameStat[loop1]->PlayerWinner(1); break;
+					case 2 : val = allGameStat[loop1]->LeaderSwitches(); break;
+					case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber(); break;
+					case 4 : val = allGameStat[loop1]->EndScoreDifference(); break;
+				}
+
+				values.push_back(val);
+			}
+
+			sort(values.begin(), values.end());
+
+			switch(fnc)
+			{
+				case AGGR_MIN : val = values[0]; break;
+				case AGGR_MAX : val = values.back(); break;
+				case AGGR_MEDIAN : val = values[values.size() / 2]; break;
+				default : val = 0.0f; break;
+			}
+
+			switch(loop2)
+			{
+				case 0 : turnNumber = val; break;
+				case 1 : winnerPlayer1 = val; break;
+				case 2 : leaderSwitches = val; break;
+				case 3 : gameScoreDiff = val; break;
+				case 4 : endScoreDiff = val; break;
+			}
+		}
+	}
+	
+
+	treeWidgetItem->setData(3, 0, turnNumber);
+	treeWidgetItem->setData(4, 0, winnerPlayer1);
+	treeWidgetItem->setData(5, 0, leaderSwitches);
+	treeWidgetItem->setData(6, 0, gameScoreDiff);
+	treeWidgetItem->setData(7, 0, endScoreDiff);
 }
 
 void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree)

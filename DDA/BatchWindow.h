@@ -35,6 +35,7 @@ private :
 	QTreeWidget *listBatch;
 	QTreeWidget *playerStatsTree;
 	QComboBox * gameBox;
+	QComboBox * aggrFnc;
 	QSpinBox * batchSize;
 
 	bool batchIsRunning;
@@ -57,6 +58,7 @@ public slots:
 	void NextBatchItem();
 	void ItemSelect();
 	void GameOver(int gameID);
+	void AggrFnc(int fnc);
 };
 
 #endif
