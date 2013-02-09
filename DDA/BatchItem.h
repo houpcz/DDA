@@ -38,7 +38,7 @@ public:
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
 	QString GetName(char splitChar = ',');
 	void ExportToCsv(QString path);
-	vector<float> GetStatAsVector(EStatName statName);
+	vector<float> GetStatAsVector(int statName);
 };
 
 #endif

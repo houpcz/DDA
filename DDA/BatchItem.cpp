@@ -180,21 +180,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	else {
 		for(int loop2 = 0; loop2 < 5; loop2++)
 		{
-			values.clear();
-			for(int loop1 = 0; loop1 < realBatchSize; loop1++)
-			{
-				switch(loop2)
-				{
-					case 0 : val = allGameStat[loop1]->TurnNumberReal(); break;
-					case 1 : val = allGameStat[loop1]->PlayerWinner(1); break;
-					case 2 : val = allGameStat[loop1]->LeaderSwitches(); break;
-					case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber(); break;
-					case 4 : val = allGameStat[loop1]->EndScoreDifference(); break;
-				}
-
-				values.push_back(val);
-			}
-
+			values = GetStatAsVector((EStatName) loop2);
 			sort(values.begin(), values.end());
 
 			switch(fnc)
@@ -242,7 +228,7 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree)
 	}
 }
 
-vector<float> BatchItem::GetStatAsVector(EStatName statName)
+vector<float> BatchItem::GetStatAsVector(int statName)
 {
 	vector<float> result;
 
