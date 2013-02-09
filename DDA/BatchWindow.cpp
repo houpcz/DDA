@@ -2,6 +2,7 @@
 #include <QFileDialog>
 #include "BatchWindow.h"
 #include "BatchGameSetup.h"
+#include "BatchDiagrams.h"
 #include "LostCities.h"
 #include "Ludo.h"
 #include "GameMaze.h"
@@ -44,6 +45,8 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 connect(saveBatchToCsv, SIGNAL(clicked()), this, SLOT(SaveBatchToCsv()));
 	 saveAllToCsv = new QPushButton(tr("Save All"), this);
 	 connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
+	 diagramBatch = new QPushButton(tr("Histogram"), this);
+	 connect(diagramBatch, SIGNAL(clicked()), this, SLOT(OpenDiagramWindow()));
 
 	 aggrFnc = new QComboBox(this);
 	 aggrFnc->addItem("Mean");
@@ -93,6 +96,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 gridLayout->addWidget(setupBatch, 1, 1);
 	 gridLayout->addWidget(saveBatchToCsv, 1, 2);
 	 gridLayout->addWidget(aggrFnc, 1, 3);
+	 gridLayout->addWidget(diagramBatch, 1, 4);
 	 gridLayout->addWidget(listBatch, 2, 0, 1, 6);
 	 gridLayout->addWidget(playerStatsTree, 3, 0, 1, 6);
 	 gridLayout->addWidget(startButton, 4, 0);
@@ -112,7 +116,7 @@ BatchWindow::~BatchWindow(void)
 void BatchWindow::NextBatchItem()
 {
 	if(currentBatchItemID >= 0)
-		batchItem[currentBatchItemID]->UpdateTreeWidget((EAggrFnc) aggrFnc->currentIndex());
+		batchItem[currentBatchItemID]->UpdateTreeWidget((BatchItem::EAggrFnc) aggrFnc->currentIndex());
 
 	currentBatchItemID++;
 	if(currentBatchItemID < batchItem.size() && batchIsRunning)
@@ -257,6 +261,16 @@ void BatchWindow::AggrFnc(int fnc)
 {
 	for(int loop1 = 0; loop1 < batchItem.size(); loop1++)
 	{
-		batchItem[loop1]->UpdateTreeWidget((EAggrFnc) fnc);
+		batchItem[loop1]->UpdateTreeWidget((BatchItem::EAggrFnc) fnc);
+	}
+}
+
+void BatchWindow::OpenDiagramWindow()
+{
+	int currentID = listBatch->currentIndex().row();
+	if(currentID >= 0)
+	{
+		BatchDiagrams *diagramWindow = new BatchDiagrams(batchItem[currentID]);
+		diagramWindow->show();
 	}
 }

@@ -5,16 +5,9 @@
 #include "IGame.h"
 #include "GameStat.h"
 
-enum EAggrFnc {
-	AGGR_MEAN,
-	AGGR_DEVIATION,
-	AGGR_MEDIAN,
-	AGGR_MIN,
-	AGGR_MAX, 
-};
-
 class BatchItem
 {
+
 private:
 	int batchSize;
 	IGame * game;
@@ -22,6 +15,18 @@ private:
 	GameStat * sumGameStat;
 	GameStat ** allGameStat;
 public:
+	enum EStatName {
+		STAT_TURN_NUMBER,
+	};
+
+	enum EAggrFnc {
+		AGGR_MEAN,
+		AGGR_DEVIATION,
+		AGGR_MEDIAN,
+		AGGR_MIN,
+		AGGR_MAX, 
+	};
+
 	BatchItem(int _batchSize, IGame * _game, QTreeWidgetItem * _treeWidgetItem);
 	~BatchItem(void);
 	IGame * Game() { return game; };
@@ -33,6 +38,7 @@ public:
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
 	QString GetName(char splitChar = ',');
 	void ExportToCsv(QString path);
+	vector<float> GetStatAsVector(EStatName statName);
 };
 
 #endif

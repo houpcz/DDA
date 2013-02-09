@@ -30,6 +30,7 @@ private :
 	QPushButton *addBatch;
 	QPushButton *removeBatch;
 	QPushButton *setupBatch;
+	QPushButton *diagramBatch;
 	QPushButton *saveBatchToCsv;
 	QPushButton *saveAllToCsv;
 	QTreeWidget *listBatch;
@@ -57,6 +58,7 @@ public slots:
 	void AddItemToBatch();
 	void NextBatchItem();
 	void ItemSelect();
+	void OpenDiagramWindow();
 	void GameOver(int gameID);
 	void AggrFnc(int fnc);
 };

@@ -124,7 +124,7 @@ void BatchItem::ExportToCsv(QString path)
 
 void BatchItem::UpdateTreeWidget(EAggrFnc fnc) 
 { 
-	float realBatchSize = (float) treeWidgetItem->data(2, 0).toInt();
+	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
 	float avgTurnNumberReal = sumGameStat->TurnNumberReal() / (float) realBatchSize;
 
 	float turnNumber;
@@ -152,7 +152,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 			for(int loop2 = 0; loop2 < 5; loop2++)
 			{
 				sumVal = 0.0f;
-				for(int loop1 = 0; loop1 < batchSize; loop1++)
+				for(int loop1 = 0; loop1 < realBatchSize; loop1++)
 				{
 					switch(loop2)
 					{
@@ -162,7 +162,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 						case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber() - gameScoreDiff; break;
 						case 4 : val = allGameStat[loop1]->EndScoreDifference() - endScoreDiff; break;
 					}
-					sumVal += (val * val) / batchSize;
+					sumVal += (val * val) / realBatchSize;
 				}
 				float deviation = sqrt(sumVal);
 
@@ -181,7 +181,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 		for(int loop2 = 0; loop2 < 5; loop2++)
 		{
 			values.clear();
-			for(int loop1 = 0; loop1 < batchSize; loop1++)
+			for(int loop1 = 0; loop1 < realBatchSize; loop1++)
 			{
 				switch(loop2)
 				{
@@ -240,4 +240,27 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree)
 		playerItem->setData(5, 0, sumGameStat->PlayerChoisesMax(loop1) / realBatchSize);
 		playerItem->setData(6, 0, avgTurnNumberReal);
 	}
+}
+
+vector<float> BatchItem::GetStatAsVector(EStatName statName)
+{
+	vector<float> result;
+
+	float val;
+	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
+	for(int loop1 = 0; loop1 < realBatchSize; loop1++)
+	{
+		switch(statName)
+		{
+			case 0 : val = allGameStat[loop1]->TurnNumberReal(); break;
+			case 1 : val = allGameStat[loop1]->PlayerWinner(1); break;
+			case 2 : val = allGameStat[loop1]->LeaderSwitches(); break;
+			case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber(); break;
+			case 4 : val = allGameStat[loop1]->EndScoreDifference(); break;
+		}
+
+		result.push_back(val);
+	}
+
+	return result;
 }
