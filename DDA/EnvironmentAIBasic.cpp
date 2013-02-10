@@ -12,6 +12,9 @@ bool EnvironmentAIBasic::Think()
 {
 	int p_myTurn;
 	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
+	if(p_myTurn == 0)
+		nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
+
 
 	int tries = 0;
 	myTurn = rand() % p_myTurn;

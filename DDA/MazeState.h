@@ -42,8 +42,8 @@ struct QueueNode
 			g = _g;
 			int dx = x - goalX;
 			int dy = y - goalY;
-			h = dx * dx + dy * dy;
-			//h = abs(dx) + abs(dy);
+			//h = dx * dx + dy * dy;
+			h = abs(dx) + abs(dy);
 			f = h + g;
 		}
 };
@@ -63,7 +63,7 @@ class MazeState : public IGameState
 private:
 	static const char OPEN = ' ';
 	static const char CLOSE = '#';
-
+	static const int GOAL_MAX = 10;
 	char ** maze;
 	char ** mazeClosedList;
 	bool isScoreUpToDate;
@@ -71,7 +71,11 @@ private:
 	int activePlayerID;
 	int playerX, playerY;
 	int startX, startY;
-	int goalX, goalY;
+
+	int goalX[GOAL_MAX];
+	int goalY[GOAL_MAX];
+	int goalStart;
+	int goalAmount;
 	int playerScore;
 	vector<int> tileToExplore;
 	vector<int> nonRedundantTurns;
