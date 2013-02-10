@@ -103,6 +103,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 	startX = origin.startX;
 	startY = origin.startY;
 	hallSize = origin.hallSize;
+	playerScore = origin.playerScore;
 	stepsToGameOver = origin.stepsToGameOver;
 	possibleWayToGoal = origin.possibleWayToGoal;
 	setupOpenHallEnds = origin.setupOpenHallEnds;
