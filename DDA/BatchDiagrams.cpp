@@ -1,10 +1,11 @@
 #include <QGridLayout>
 #include "BatchDiagrams.h"
 
-BatchDiagrams::BatchDiagrams(BatchItem * _batchItem)
+BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
 {
 	batchItem = _batchItem;
 	resize(500, 500);
+	setWindowTitle(batchItem->Game()->GetGameName() + " " + QString::number(batchID + 1));
 
 	QGridLayout *gridLayout = new QGridLayout;
 	plot = new QwtPlot(this);
@@ -42,11 +43,23 @@ void BatchDiagrams::SetHistogramData(vector<float> inputData, int collumnNumber)
 		return;
 
 	sort(inputData.begin(), inputData.end());
+	int valueRange = 1;
+	int lastValue = inputData[0];
+	for(int loop1 = 1; loop1 < inputData.size(); loop1++)
+	{
+		if(lastValue != inputData[loop1])
+		{
+			valueRange++;
+			lastValue = inputData[loop1];
+		}
+	}
+
+	collumnNumber = min(collumnNumber, valueRange);
 	float range = inputData.back() - inputData.front();
 	float rangeBin = range / collumnNumber;
 	
 	float startBin = inputData[0];
-	float endBin = inputData[0] + rangeBin + 0.0001f;
+	float endBin = inputData[0] + rangeBin;
 	int lastInput = 0;
 	QVector<QwtIntervalSample> samples( collumnNumber );
     for ( uint i = 0; i < collumnNumber; i++ )
@@ -61,8 +74,8 @@ void BatchDiagrams::SetHistogramData(vector<float> inputData, int collumnNumber)
 		startBin = endBin;
 		endBin = startBin + rangeBin + 0.0001f;
 
-        interval.setBorderFlags( QwtInterval::ExcludeMaximum );
-        samples[i] = QwtIntervalSample( val, interval );
+		interval.setBorderFlags( QwtInterval::ExcludeMinimum );
+		samples[i] = QwtIntervalSample( val, interval );
     }
 
 	histogram->setAxes(100, 100);

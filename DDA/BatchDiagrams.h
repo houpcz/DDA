@@ -19,7 +19,7 @@ private :
 
 	void SetHistogramData(vector<float> inputData, int collumnNumber = 10);
 public:
-	BatchDiagrams(BatchItem * _batchItem);
+	BatchDiagrams(BatchItem * _batchItem, int batchID);
 	~BatchDiagrams(void);
 
 public slots:

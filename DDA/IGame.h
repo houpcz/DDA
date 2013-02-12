@@ -40,6 +40,7 @@ public:
 	virtual int GetMaxPlayerAI() = 0;
 	virtual int GetPlayerCount() = 0;
 	virtual IPlayer * GetPlayer(int ID) = 0;
+	virtual int GetPlayerLevel(int playerID) = 0;
 	virtual QString GetGameName() = 0;
 	virtual pair<QString,QString> GetSetupString() = 0;
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget() = 0; 

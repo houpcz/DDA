@@ -50,6 +50,9 @@
     <Filter Include="Qwt">
       <UniqueIdentifier>{a6ad5f48-5f24-4f3b-8919-0a64e2e6e771}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graph">
+      <UniqueIdentifier>{560d3cfe-14b9-47c4-a792-fa6d1ae73dbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -616,14 +619,17 @@
     <ClCompile Include="GeneratedFiles\Release\moc_BatchDiagrams.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="ViewFlow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ViewFlow.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_ViewGraph.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ViewFlow.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewGraph.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewGraph.cpp">
+      <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="IGraph.cpp">
+      <Filter>Graph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -837,6 +843,15 @@
     <ClInclude Include="Qwt\qwt_text_engine.h">
       <Filter>Qwt</Filter>
     </ClInclude>
+    <ClInclude Include="IGraph.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowGraph.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelGraph.h">
+      <Filter>Graph</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Game.h">
@@ -959,8 +974,8 @@
     <CustomBuild Include="BatchDiagrams.h">
       <Filter>Batch</Filter>
     </CustomBuild>
-    <CustomBuild Include="ViewFlow.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="ViewGraph.h">
+      <Filter>Graph</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

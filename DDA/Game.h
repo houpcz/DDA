@@ -26,10 +26,13 @@ protected:
 	int playerLeader;
 	int * currentPlayerScore;
 	IPlayer ** player;
+	int * currentPlayerLevel;
 	GameStat * gameStat;
 
 	int minPlayerAI;
 	int maxPlayerAI;
+
+	int turnNumber;
 
 	QWidget * widget;
 
@@ -52,12 +55,14 @@ public:
 	virtual void Paint(QPainter * painter);
 	virtual void StartGame();
 
+
 	IPlayer * GetPlayer(int ID) { return player[ID]; };
 	int GetMinPlayerAI() { return minPlayerAI; };
 	int GetMaxPlayerAI() { return maxPlayerAI; };
 	int GetPlayerCount() { return playerCount;};
 	GameStat GetGameStat() { return *gameStat; }
 	vector<IGameState *> GetAllGameState() { return gameState;} ;
+	int GetPlayerLevel(int playerID) { return currentPlayerLevel[playerID]; };
 };
 
 #endif

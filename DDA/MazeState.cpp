@@ -44,7 +44,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	AddCloseDoor(playerX, playerY + 1);
 	AddCloseDoor(playerX, playerY - 1);
 
-	goalStart = 10;
+	goalStart = GOAL_MAX;
 	goalAmount = goalStart;
 	int tempX;
 	int tempY;
@@ -71,7 +71,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 			tries++;
 			if(tries > MAX_TRIES)
 				break;
-		} while(maze[tempY][tempX] != TILE_UNDEFINED || minDist <= 3);
+		} while(maze[tempY][tempX] != TILE_UNDEFINED || minDist <= 4);
 
 		if(tries > MAX_TRIES)
 		{

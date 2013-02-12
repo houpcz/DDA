@@ -5,6 +5,9 @@
 
 class IGameState
 {
+private :
+
+
 public :
 	static const int ILLEGAL_GAME = -20000;
 
@@ -17,6 +20,11 @@ public :
 	virtual bool IsGameOver() = 0;
 	virtual void PrintToFile(const char * firstLine) {};
 	virtual IGameState * Clone() = 0;
+
+	int GetPlayerLevel(int playerID) 
+	{
+		return 0;
+	}
 };
 
 #endif

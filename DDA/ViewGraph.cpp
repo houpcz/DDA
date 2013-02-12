@@ -1,12 +1,13 @@
-#include "ViewFlow.h"
+#include "ViewGraph.h"
 #include <QGridLayout>
 #include "Qwt\qwt_plot.h"
 #include "Qwt\qwt_plot_curve.h"
 #include "Qwt\qwt_legend_item.h"
 
-ViewFlow::ViewFlow(IGame * _game)
+ViewGraph::ViewGraph(IGame * _game, IGraph * _graphKind)
 {
 	game = _game;
+	graphKind = _graphKind;
 
 	resize(500, 500);
 	setWindowTitle("Flow View");
@@ -24,17 +25,17 @@ ViewFlow::ViewFlow(IGame * _game)
 	bool ok = connect( plot, SIGNAL( legendChecked( QwtPlotItem *, bool ) ), this, SLOT( ShowItem( QwtPlotItem *, bool ) ) );
 	plot->replot();
 
-	for(int loop1 = 0; loop1 < game->GetPlayerCount() - 1; loop1++)
+	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
 	{
 		xVal[loop1] = new double[gameState.size()];
 		yVal[loop1] = new double[gameState.size()];
 		QColor color = QColor((Qt::GlobalColor) ((loop1 + 7) % 16)); 
-		IPlayer * player = game->GetPlayer(loop1 + 1);
+		IPlayer * player = game->GetPlayer(loop1);
 		graph[loop1] = new QwtPlotCurve(player->GetAIName() + " " + QString::number(player->Level()));
 		for(int loop2 = 0; loop2 < gameState.size(); loop2++)
 		{
 			xVal[loop1][loop2] = loop2;
-			yVal[loop1][loop2] = gameState[loop2]->GetPlayerScore(loop1 + 1, 0);
+			yVal[loop1][loop2] = graphKind->GetValPlayer(loop1, gameState[loop2]);
 		}
 		graph[loop1]->setRawSamples(xVal[loop1], yVal[loop1], gameState.size());
 		graph[loop1]->setPen(color);
@@ -44,7 +45,7 @@ ViewFlow::ViewFlow(IGame * _game)
 	setLayout(gridLayout);
 }
 
-void ViewFlow::ShowItem( QwtPlotItem *item, bool on )
+void ViewGraph::ShowItem( QwtPlotItem *item, bool on )
 {
     item->setVisible( !on );
 	plot->replot();
@@ -52,7 +53,7 @@ void ViewFlow::ShowItem( QwtPlotItem *item, bool on )
 }
 
 
-ViewFlow::~ViewFlow(void)
+ViewGraph::~ViewGraph(void)
 {
 	for(int loop1 = 0; loop1 < game->GetPlayerCount() - 1; loop1++)
 	{

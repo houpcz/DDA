@@ -270,7 +270,7 @@ void BatchWindow::OpenDiagramWindow()
 	int currentID = listBatch->currentIndex().row();
 	if(currentID >= 0)
 	{
-		BatchDiagrams *diagramWindow = new BatchDiagrams(batchItem[currentID]);
+		BatchDiagrams *diagramWindow = new BatchDiagrams(batchItem[currentID], currentID);
 		diagramWindow->show();
 	}
 }

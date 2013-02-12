@@ -18,7 +18,8 @@
 #include "EAIMaxOptions.h"
 #include "EAIMinOptions.h"
 
-#include "ViewFlow.h"
+#include "FlowGraph.h"
+#include "ViewGraph.h"
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
@@ -250,6 +251,6 @@ void DDAWidget::SetupGame()
 
 void DDAWidget::ShowFlowView()
 {
-	ViewFlow * view = new ViewFlow(activeGame);
+	ViewGraph * view = new ViewGraph(activeGame, new FlowGraph());
 	view->show();
 }
