@@ -180,7 +180,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	else {
 		for(int loop2 = 0; loop2 < 5; loop2++)
 		{
-			values = GetStatAsVector((EStatName) loop2);
+			values = GetStatAsVector(loop2);
 			sort(values.begin(), values.end());
 
 			switch(fnc)
@@ -210,22 +210,121 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	treeWidgetItem->setData(7, 0, endRankDiff);
 }
 
-void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree)
+void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 {
 	float realBatchSize = (float) treeWidgetItem->data(2, 0).toInt();
 	if(realBatchSize < 0.5)
 		return;
 
-	for(int loop1 = 0; loop1 < sumGameStat->NumberPlayers(); loop1++)
+	for(int loop3 = 0; loop3 < sumGameStat->NumberPlayers(); loop3++)
 	{
-		QTreeWidgetItem * playerItem = playerTree->topLevelItem(loop1);
-		float avgTurnNumberReal = sumGameStat->PlayerTurnNumber(loop1) / realBatchSize;
-		playerItem->setData(2, 0, sumGameStat->PlayerWinner(loop1) / realBatchSize);
-		playerItem->setData(3, 0, (sumGameStat->PlayerChoisesSum(loop1) / realBatchSize) / avgTurnNumberReal);
-		playerItem->setData(4, 0, sumGameStat->PlayerChoisesMin(loop1) / realBatchSize);
-		playerItem->setData(5, 0, sumGameStat->PlayerChoisesMax(loop1) / realBatchSize);
-		playerItem->setData(6, 0, avgTurnNumberReal);
+		QTreeWidgetItem * playerItem = playerTree->topLevelItem(loop3);
+		float avgTurnNumberReal = sumGameStat->PlayerTurnNumber(loop3) / realBatchSize;
+		float turnNumber;
+		float winner;
+		float choisesAvg;
+		float choisesMin;
+		float choisesMax;
+	
+		vector<float> values;
+		values.reserve(batchSize);
+
+		float val;
+		if(fnc == AGGR_MEAN || fnc == AGGR_DEVIATION)
+		{
+			turnNumber = avgTurnNumberReal;
+			winner = sumGameStat->PlayerWinner(loop3) / realBatchSize;
+			choisesAvg = (sumGameStat->PlayerChoisesSum(loop3) / realBatchSize) / avgTurnNumberReal;
+			choisesMin = sumGameStat->PlayerChoisesMin(loop3) / realBatchSize;
+			choisesMax = sumGameStat->PlayerChoisesMax(loop3) / realBatchSize;
+
+			if(fnc == AGGR_DEVIATION)
+			{
+				float sumVal;
+
+				for(int loop2 = 0; loop2 < 5; loop2++)
+				{
+					sumVal = 0.0f;
+					for(int loop1 = 0; loop1 < realBatchSize; loop1++)
+					{
+						switch(loop2)
+						{
+							case 0 : val = allGameStat[loop1]->PlayerTurnNumber(loop3) - turnNumber; break;
+							case 1 : val = allGameStat[loop1]->PlayerWinner(loop3) - winner; break;
+							case 2 : val = (allGameStat[loop1]->PlayerChoisesSum(loop3) / (float) allGameStat[loop1]->PlayerTurnNumber(loop3)) - choisesAvg; break;
+							case 3 : val = allGameStat[loop1]->PlayerChoisesMin(loop3) - choisesMin; break;
+							case 4 : val = allGameStat[loop1]->PlayerChoisesMax(loop3) - choisesMax; break;
+						}
+						sumVal += (val * val) / realBatchSize;
+					}
+					float deviation = sqrt(sumVal);
+
+					switch(loop2)
+					{
+						case 0 : turnNumber = deviation; break;
+						case 1 : winner = deviation; break;
+						case 2 : choisesAvg = deviation; break;
+						case 3 : choisesMin = deviation; break;
+						case 4 : choisesMax = deviation; break;
+					}
+				}
+			}
+		}
+		else {
+			for(int loop2 = 0; loop2 < 5; loop2++)
+			{
+				values = GetPlayerStatAsVector(loop2, loop3);
+				sort(values.begin(), values.end());
+
+				switch(fnc)
+				{
+					case AGGR_MIN : val = values[0]; break;
+					case AGGR_MAX : val = values.back(); break;
+					case AGGR_MEDIAN : val = values[values.size() / 2]; break;
+					default : val = 0.0f; break;
+				}
+
+				switch(loop2)
+				{
+					case 0 : turnNumber = val; break;
+					case 1 : winner = val; break;
+					case 2 : choisesAvg = val; break;
+					case 3 : choisesMin = val; break;
+					case 4 : choisesMax = val; break;
+				}
+			}
+		}
+	
+		playerItem->setData(2, 0, winner);
+		playerItem->setData(3, 0, choisesAvg);
+		playerItem->setData(4, 0, choisesMin);
+		playerItem->setData(5, 0, choisesMax);
+		playerItem->setData(6, 0, turnNumber);
 	}
+}
+
+
+vector<float> BatchItem::GetPlayerStatAsVector(int statName, int playerID)
+{
+	vector<float> result;
+
+	float val;
+	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
+	for(int loop1 = 0; loop1 < realBatchSize; loop1++)
+	{
+		switch(statName)
+		{
+			case 0 : val = allGameStat[loop1]->PlayerTurnNumber(playerID); break;
+			case 1 : val = allGameStat[loop1]->PlayerWinner(playerID); break;
+			case 2 : val = allGameStat[loop1]->PlayerChoisesSum(playerID) / (float) allGameStat[loop1]->PlayerTurnNumber(playerID); break;
+			case 3 : val = allGameStat[loop1]->PlayerChoisesMin(playerID); break;
+			case 4 : val = allGameStat[loop1]->PlayerChoisesMax(playerID); break;
+		}
+
+		result.push_back(val);
+	}
+
+	return result;
 }
 
 vector<float> BatchItem::GetStatAsVector(int statName)

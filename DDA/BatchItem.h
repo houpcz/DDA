@@ -15,10 +15,6 @@ private:
 	GameStat * sumGameStat;
 	GameStat ** allGameStat;
 public:
-	enum EStatName {
-		STAT_TURN_NUMBER,
-	};
-
 	enum EAggrFnc {
 		AGGR_MEAN,
 		AGGR_DEVIATION,
@@ -33,12 +29,14 @@ public:
 	int BatchSize() { return batchSize; };
 	QTreeWidgetItem * TreeWidgetItem() { return treeWidgetItem;};
 	void UpdateTreeWidget(EAggrFnc fnc);
-	void UpdatePlayerTreeWidget(QTreeWidget * playerTree);
+	void UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc);
 	void SetSumGameStat(GameStat _sumGameStat);
 	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
 	QString GetName(char splitChar = ',');
 	void ExportToCsv(QString path);
+
 	vector<float> GetStatAsVector(int statName);
+	vector<float> GetPlayerStatAsVector(int statName, int playerID);
 };
 
 #endif

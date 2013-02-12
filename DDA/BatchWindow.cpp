@@ -235,8 +235,8 @@ void BatchWindow::ItemSelect()
 			tempItem->setData(1, 0, "NS");
 		playerStatsTree->addTopLevelItem(tempItem);
 	}
-
-	batchItem[currentID]->UpdatePlayerTreeWidget(playerStatsTree);
+	
+	batchItem[currentID]->UpdatePlayerTreeWidget(playerStatsTree, (BatchItem::EAggrFnc) aggrFnc->currentIndex());
 
 	for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
 		playerStatsTree->resizeColumnToContents(loop1);
@@ -263,6 +263,12 @@ void BatchWindow::AggrFnc(int fnc)
 	{
 		batchItem[loop1]->UpdateTreeWidget((BatchItem::EAggrFnc) fnc);
 	}
+
+	int currentID = listBatch->currentIndex().row();
+	batchItem[currentID]->UpdatePlayerTreeWidget(playerStatsTree, (BatchItem::EAggrFnc) aggrFnc->currentIndex());
+
+	for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
+		playerStatsTree->resizeColumnToContents(loop1);
 }
 
 void BatchWindow::OpenDiagramWindow()
