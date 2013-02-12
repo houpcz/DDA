@@ -2,16 +2,23 @@
 #define _IGAMESTATE_H_
 
 #include "ISpecificStat.h"
+#include "GameStat.h"
 
 class IGameState
 {
 private :
-
+	GameStat * gameStat;
 
 public :
 	static const int ILLEGAL_GAME = -20000;
 
-	virtual ~IGameState() {};
+	IGameState() {
+		gameStat = NULL; 
+	};
+	virtual ~IGameState() {
+		if(gameStat != NULL)
+			delete gameStat;
+	};
 	virtual ISpecificStat * GetGameSpecificStat() = 0;
 	virtual int GetPlayerChoises(int whoAskID) = 0;
 	virtual int GetActivePlayerID() const = 0;
@@ -21,10 +28,13 @@ public :
 	virtual void PrintToFile(const char * firstLine) {};
 	virtual IGameState * Clone() = 0;
 
-	int GetPlayerLevel(int playerID) 
-	{
-		return 0;
-	}
+	void SetGameStat(GameStat * _gameStat) { 
+		if(gameStat != NULL)
+			delete gameStat;
+
+		gameStat = new GameStat(*_gameStat); 
+	};
+	GameStat * Statistics() { return gameStat;};
 };
 
 #endif

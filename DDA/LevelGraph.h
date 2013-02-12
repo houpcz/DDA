@@ -6,11 +6,15 @@
 class LevelGraph : public IGraph
 {
 public:
-	virtual int GetValPlayer(int playerID, IGameState * gameState)
+	virtual int GetValPlayer(int playerID, IGameState * previousState, IGameState * currentState)
 	{
-		return gameState->
+		if(previousState == NULL)
+			return currentState->Statistics()->PlayerLevel(playerID);
+		else
+			return currentState->Statistics()->PlayerLevel(playerID) - previousState->Statistics()->PlayerLevel(playerID);
 	}
 
+	QString GetName() { return "Level view"; }
 	LevelGraph(void) {};
 	~LevelGraph(void) {};
 };

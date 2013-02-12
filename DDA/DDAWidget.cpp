@@ -20,6 +20,7 @@
 
 #include "FlowGraph.h"
 #include "ViewGraph.h"
+#include "LevelGraph.h"
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
@@ -69,6 +70,9 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	QAction * viewFlow = new QAction(tr("&Flow"), this);
 	connect(viewFlow, SIGNAL(triggered()), this, SLOT(ShowFlowView()));
 	viewMenu->addAction(viewFlow);
+	QAction * viewLevel = new QAction(tr("&Level"), this);
+	connect(viewLevel, SIGNAL(triggered()), this, SLOT(ShowLevelView()));
+	viewMenu->addAction(viewLevel);
 
 	signalMapper = new QSignalMapper(this);
 	environmentMapper = new QSignalMapper(this);
@@ -252,5 +256,11 @@ void DDAWidget::SetupGame()
 void DDAWidget::ShowFlowView()
 {
 	ViewGraph * view = new ViewGraph(activeGame, new FlowGraph());
+	view->show();
+}
+
+void DDAWidget::ShowLevelView()
+{
+	ViewGraph * view = new ViewGraph(activeGame, new LevelGraph());
 	view->show();
 }

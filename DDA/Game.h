@@ -26,7 +26,6 @@ protected:
 	int playerLeader;
 	int * currentPlayerScore;
 	IPlayer ** player;
-	int * currentPlayerLevel;
 	GameStat * gameStat;
 
 	int minPlayerAI;
@@ -62,7 +61,6 @@ public:
 	int GetPlayerCount() { return playerCount;};
 	GameStat GetGameStat() { return *gameStat; }
 	vector<IGameState *> GetAllGameState() { return gameState;} ;
-	int GetPlayerLevel(int playerID) { return currentPlayerLevel[playerID]; };
 };
 
 #endif

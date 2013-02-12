@@ -13,7 +13,6 @@ Game::Game(QWidget * _widget, bool _paint)
 	player = NULL;
 	gameStat = NULL;
 	currentPlayerScore = NULL;
-	currentPlayerLevel = NULL;
 }
 
 
@@ -26,11 +25,6 @@ Game::~Game(void)
 			delete player[loop1];
 		}
 		delete [] player;
-		if(currentPlayerLevel != NULL)
-		{
-			delete [] currentPlayerLevel;
-		}
-
 		delete [] currentPlayerScore;
 	}	
 
@@ -45,18 +39,10 @@ void Game::StartGame()
 	{
 		currentPlayerScore = new int[playerCount - 1];
 	}
-	if(currentPlayerLevel == NULL)
-	{
-		currentPlayerLevel = new int[playerCount];
-	}
 
 	for(int loop1 = 0; loop1 < playerCount - 1; loop1++)
 	{
 		currentPlayerScore[loop1] = 0;
-	}
-	for(int loop1 = 0; loop1 < playerCount; loop1++)
-	{
-		currentPlayerLevel[loop1] = player[loop1]->Level();
 	}
 
 	gameStat = new GameStat(playerCount);
@@ -81,13 +67,9 @@ void Game::NextTurn()
 
 		if(player[currentState->GetActivePlayerID()]->IsReady())
 		{
-			if(SaveAllGameStates())
+			for(int loop1 = 0; loop1 < playerCount; loop1++)
 			{
-				gameState.push_back(currentState->Clone());
-				for(int loop1 = 0; loop1 < playerCount; loop1++)
-				{
-					currentPlayerLevel[loop1] = player[loop1]->Level();
-				}
+				gameStat->AddPlayerLevel(loop1, player[loop1]->Level());
 			}
 
 			turnNumber++;
@@ -113,6 +95,14 @@ void Game::NextTurn()
 			
 
 			PlayerTurn();
+
+			if(SaveAllGameStates())
+			{
+				IGameState * newGameState = currentState->Clone();
+				newGameState->SetGameStat(gameStat);
+				gameState.push_back(newGameState);
+			}
+
 			if(currentState->IsGameOver())
 			{
 				state = STATE_GAME_OVER;

@@ -10,7 +10,7 @@ ViewGraph::ViewGraph(IGame * _game, IGraph * _graphKind)
 	graphKind = _graphKind;
 
 	resize(500, 500);
-	setWindowTitle("Flow View");
+	setWindowTitle(graphKind->GetName());
 
 	QGridLayout *gridLayout = new QGridLayout;
 	plot = new QwtPlot(this);
@@ -35,7 +35,8 @@ ViewGraph::ViewGraph(IGame * _game, IGraph * _graphKind)
 		for(int loop2 = 0; loop2 < gameState.size(); loop2++)
 		{
 			xVal[loop1][loop2] = loop2;
-			yVal[loop1][loop2] = graphKind->GetValPlayer(loop1, gameState[loop2]);
+			IGameState * previousState = (loop2 == 0) ? NULL : gameState[loop2 - 1];
+			yVal[loop1][loop2] = graphKind->GetValPlayer(loop1, previousState, gameState[loop2]);
 		}
 		graph[loop1]->setRawSamples(xVal[loop1], yVal[loop1], gameState.size());
 		graph[loop1]->setPen(color);

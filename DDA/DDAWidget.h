@@ -56,6 +56,7 @@ public:
 		void ChangeEnvironmentPlayer(int player);
 		void SetupGame();
 		void ShowFlowView();
+		void ShowLevelView();
 };
 
 #endif

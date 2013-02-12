@@ -11,6 +11,7 @@ class PlayerStat
 	long long choisesSum, choisesMin, choisesMax;
 	long long winner;
 	long long turnNumber;
+	long long level;
 public :
 	const PlayerStat operator+(const PlayerStat &other)
 	{
@@ -20,8 +21,14 @@ public :
 		newPlayerStat.choisesMax = choisesMax + other.choisesMax;
 		newPlayerStat.winner = winner + other.winner;
 		newPlayerStat.turnNumber = turnNumber + other.turnNumber;
+		newPlayerStat.level = level + other.level;
 		return newPlayerStat;
 	}
+	void AddLevel(int _level)
+	{
+		level += _level;
+	}
+
 	void SetWinner() {
 		winner = 1;
 	}
@@ -43,6 +50,7 @@ public :
 		choisesMax = 0;
 		winner = 0;
 		turnNumber = 0;
+		level = 0;
 	}
 
 	long long Winner() { return winner; };
@@ -50,6 +58,7 @@ public :
 	long long ChoisesMax() { return choisesMax; };
 	long long ChoisesSum() { return choisesSum; };
 	long long TurnNumber() { return turnNumber; };
+	long long Level() { return level;};
 };
 
 class GameStat
@@ -91,6 +100,10 @@ public:
 	void AddScoreDifference(int difference) { sumScoreDifference += difference; };
 	void SetEndScoreDifference(int difference) { endScoreDifference = difference; };
 
+	void AddPlayerLevel(int playerID, int _level) {
+		CheckPlayerID(playerID);
+		playerStat[playerID].AddLevel(_level);
+	}
 	void AddPlayerTurnNumber(int playerID) { 
 		CheckPlayerID(playerID);
 		playerStat[playerID].AddTurn(); 
@@ -129,6 +142,11 @@ public:
 	long PlayerWinner(int playerID) { 
 		CheckPlayerID(playerID);
 		return playerStat[playerID].Winner(); 
+	};
+	long long PlayerLevel(int playerID)
+	{
+		CheckPlayerID(playerID);
+		return playerStat[playerID].Level(); 
 	};
 	long long PlayerChoisesMin(int playerID) { 
 		CheckPlayerID(playerID);
