@@ -26,10 +26,28 @@ BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
 	gameStat->addItem("Leader switches");
 	gameStat->addItem("Avg score diff");
 	gameStat->addItem("End score diff");
-	connect(gameStat, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
+	gameStat->addItem("Player stat");
 
-	gridLayout->addWidget(gameStat, 0, 0, 1, 1);
-	gridLayout->addWidget(plot, 1, 0, 1, 1);
+	playerStat = new QComboBox(this);
+	playerStat->addItem("Turn number");
+	playerStat->addItem("Winner");
+	playerStat->addItem("Avg choises");
+	playerStat->addItem("Min choises");
+	playerStat->addItem("Max choises");
+
+	playerName = new QComboBox(this);
+	for(int loop1 = 0; loop1 < batchItem->Game()->GetPlayerCount(); loop1++)
+	{
+		playerName->addItem(batchItem->Game()->GetPlayer(loop1)->GetAIName());
+	}
+	connect(gameStat, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
+	connect(playerStat, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
+	connect(playerName, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
+
+	gridLayout->addWidget(gameStat, 0, 0, 1, 2);
+	gridLayout->addWidget(playerStat, 1, 1, 1, 1);
+	gridLayout->addWidget(playerName, 1, 0, 1, 1);
+	gridLayout->addWidget(plot, 2, 0, 1, 2);
     setLayout(gridLayout);
 }
 
@@ -55,26 +73,38 @@ void BatchDiagrams::SetHistogramData(vector<float> inputData, int collumnNumber)
 	}
 
 	collumnNumber = min(collumnNumber, valueRange);
+	QVector<QwtIntervalSample> samples( collumnNumber );
+
+	if(valueRange == 1)
+	{
+		QwtInterval interval( inputData[0], inputData[0] + 0.00001);
+		interval.setBorderFlags( QwtInterval::ExcludeMaximum );
+		samples[0] = QwtIntervalSample( inputData.size(), interval );
+		histogram->setAxes(100, 100);
+		histogram->setData( new QwtIntervalSeriesData( samples ) );
+		return;
+	}
+
 	float range = inputData.back() - inputData.front();
 	float rangeBin = range / collumnNumber;
 	
 	float startBin = inputData[0];
 	float endBin = inputData[0] + rangeBin;
 	int lastInput = 0;
-	QVector<QwtIntervalSample> samples( collumnNumber );
+	
     for ( uint i = 0; i < collumnNumber; i++ )
 	{
 		int val = 0;
-		while(lastInput < inputData.size() && inputData[lastInput] < endBin)
+		while(lastInput < inputData.size() && inputData[lastInput] < endBin + 0.00001)
 		{
 			val++;
 			lastInput++;
 		}
         QwtInterval interval( startBin, endBin );
 		startBin = endBin;
-		endBin = startBin + rangeBin + 0.0001f;
+		endBin = startBin + rangeBin;
 
-		interval.setBorderFlags( QwtInterval::ExcludeMinimum );
+		interval.setBorderFlags( QwtInterval::ExcludeMaximum );
 		samples[i] = QwtIntervalSample( val, interval );
     }
 
@@ -82,10 +112,20 @@ void BatchDiagrams::SetHistogramData(vector<float> inputData, int collumnNumber)
     histogram->setData( new QwtIntervalSeriesData( samples ) );
 }
 
-void BatchDiagrams::ChangeGameStat(int newGameStat)
+void BatchDiagrams::ChangeGameStat(int dontUseIt)
 {
-	SetHistogramData(batchItem->GetStatAsVector(newGameStat), 15);
-	//plot->setAxisTitle( QwtPlot::xBottom, gameStat->currentText() );
+	UpdateDiagram();
+}
+
+void BatchDiagrams::UpdateDiagram()
+{
+	if(gameStat->currentIndex() == gameStat->count() - 1)
+	{
+		SetHistogramData(batchItem->GetPlayerStatAsVector(playerStat->currentIndex(), playerName->currentIndex()), 15);
+	} else {
+		SetHistogramData(batchItem->GetStatAsVector(gameStat->currentIndex()), 15);
+	}
+
 	plot->replot();
 	plot->repaint();
 }
