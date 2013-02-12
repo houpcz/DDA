@@ -54,8 +54,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 		int MAX_TRIES = 150;
 		int tries = 0;
 		do {
-			tempX = rand() % (mazeWidth / 2) + ((tries % 4  == 0 || tries % 4 == 1) ? 0 : (mazeWidth / 2));
-			tempY = rand() % (mazeHeight / 2) + ((tries % 4  == 1 || tries % 4 == 2) ? 0 : (mazeHeight / 2));
+			tempX = 2 + rand() % (mazeWidth / 2 - 4) + ((tries % 4  == 0 || tries % 4 == 1) ? 0 : (mazeWidth / 2));
+			tempY = 2 + rand() % (mazeHeight / 2 - 4) + ((tries % 4  == 1 || tries % 4 == 2) ? 0 : (mazeHeight / 2));
 
 			minDist = min(abs(playerX - tempX) + 1, abs(playerY - tempY) + 1);
 			for(int loop2 = 0; loop2 < loop1; loop2++)
@@ -83,7 +83,6 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 		goalY[loop1] = tempY;
 		maze[tempY][tempX] = TILE_GOAL;
 
-		/*
 		maze[tempY + 1][tempX + 1] = TILE_WALL;
 		maze[tempY - 1][tempX + 1] = TILE_WALL;
 		maze[tempY + 1][tempX - 1] = TILE_WALL;
@@ -100,7 +99,6 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 			case 2 : maze[tempY][tempX + 1] = TILE_UNDEFINED; break;
 			case 3 : maze[tempY][tempX - 1] = TILE_UNDEFINED; break;
 		}
-		*/
 	}
 	
 	hallSize = 0;
