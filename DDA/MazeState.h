@@ -66,7 +66,7 @@ private:
 	static const int GOAL_MAX = 10;
 	char ** maze;
 	char ** mazeClosedList;
-	bool isScoreUpToDate;
+	bool isRankUpToDate;
 	int mazeWidth, mazeHeight;
 	int activePlayerID;
 	int playerX, playerY;
@@ -76,7 +76,7 @@ private:
 	int goalY[GOAL_MAX];
 	int goalStart;
 	int goalAmount;
-	int playerScore;
+	int playerRank;
 	vector<int> tileToExplore;
 	vector<int> nonRedundantTurns;
 	int hallSize;
@@ -99,7 +99,7 @@ private:
 	void SetTileEmpty(int x, int y);
 	// undefined - can go through undefined files
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
-	void CountScore();
+	void CountRank();
 public:
 	MazeState(int _activePlayerID, int _stepsToGameOver = 2000, int mWidth = 41, int mHeight = 41);
 	MazeState(const MazeState & origin);
@@ -119,7 +119,7 @@ public:
 	int GetStepsToGameOver() const { return stepsToGameOver; }
 	int GetPlayerChoises(int whoAskID);
 	bool IsGameOver();
-	int GetPlayerScore(int playerID, int whoAskID);
+	int GetPlayerRank(int playerID, int whoAskID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);

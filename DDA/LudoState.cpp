@@ -11,7 +11,7 @@ LudoState::LudoState(void)
 {
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
-		playerScore[loop1] = 0;
+		playerRank[loop1] = 0;
 		figure[loop1][0] = 0;
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
@@ -20,7 +20,7 @@ LudoState::LudoState(void)
 	}
 
 	dicePlayerNow = true;
-	isScoreUpToDate = false;
+	isRankUpToDate = false;
 	activePlayerID = 0;
 	lastDice = 0;
 	multipleDice = 2;
@@ -241,7 +241,7 @@ int LudoState::MakeTurn(int playerChoise)
 	}
 	dicePlayerNow = !dicePlayerNow;
 
-	isScoreUpToDate = false;
+	isRankUpToDate = false;
 
 	return result;
 }
@@ -275,18 +275,18 @@ bool LudoState::IsTileSafe(int tileID)
 	else return safeTile[tileID];
 }
 
-int LudoState::GetPlayerScore(int playerID, int whoAskID)
+int LudoState::GetPlayerRank(int playerID, int whoAskID)
 {
-	if(!isScoreUpToDate)
-		CountPlayerScores();
+	if(!isRankUpToDate)
+		CountPlayerRanks();
 
-	return playerScore[playerID - 1];
+	return playerRank[playerID - 1];
 }
-void LudoState::CountPlayerScores()
+void LudoState::CountPlayerRanks()
 {
-	int tempScore[MAX_PLAYER];
+	int tempRank[MAX_PLAYER];
 
-	int bestScore = 0;
+	int bestRank = 0;
 	int secondBest = 0;
 	for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 	{
@@ -301,14 +301,14 @@ void LudoState::CountPlayerScores()
 				result += 10 + figure[loop2][loop1];
 			}
 		}
-		tempScore[loop2] = result;
+		tempRank[loop2] = result;
 
 		if(result > secondBest)
 		{
-			if(result > bestScore)
+			if(result > bestRank)
 			{
-				secondBest = bestScore;
-				bestScore = result;
+				secondBest = bestRank;
+				bestRank = result;
 			} else
 			{
 				secondBest = result;
@@ -318,13 +318,13 @@ void LudoState::CountPlayerScores()
 
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
-		if(tempScore[loop1] == bestScore)
-			playerScore[loop1] = tempScore[loop1] - secondBest;
+		if(tempRank[loop1] == bestRank)
+			playerRank[loop1] = tempRank[loop1] - secondBest;
 		else
-			playerScore[loop1] = tempScore[loop1] - bestScore;
+			playerRank[loop1] = tempRank[loop1] - bestRank;
 	}
 
-	isScoreUpToDate = true;
+	isRankUpToDate = true;
 }
 
 ISpecificStat * LudoState::GetGameSpecificStat()

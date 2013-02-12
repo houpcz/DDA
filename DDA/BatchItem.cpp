@@ -88,8 +88,8 @@ void BatchItem::ExportToCsv(QString path)
 	{
 		temp = QString::number(allGameStat[loop1]->TurnNumberReal()) + ";";
 		temp += QString::number(allGameStat[loop1]->LeaderSwitches()) + ";";
-		temp += czeck.toString(allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumberReal(), 'f') + ";";
-		temp += QString::number(allGameStat[loop1]->EndScoreDifference()) + ";";
+		temp += czeck.toString(allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumberReal(), 'f') + ";";
+		temp += QString::number(allGameStat[loop1]->EndRankDifference()) + ";";
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
 		{
 			temp += QString::number(allGameStat[loop1]->PlayerWinner(loop2)) + ";";
@@ -130,8 +130,8 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	float turnNumber;
 	float winnerPlayer1;
 	float leaderSwitches;
-	float gameScoreDiff;
-	float endScoreDiff;
+	float gameRankDiff;
+	float endRankDiff;
 	
 	vector<float> values;
 	values.reserve(batchSize);
@@ -142,8 +142,8 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 		turnNumber = avgTurnNumberReal;
 		winnerPlayer1 = sumGameStat->PlayerWinner(1) / (float) realBatchSize;
 		leaderSwitches = sumGameStat->LeaderSwitches() / (float) realBatchSize;
-		gameScoreDiff = sumGameStat->SumScoreDifference() / (float) realBatchSize / avgTurnNumberReal;
-		endScoreDiff = sumGameStat->EndScoreDifference() / (float) realBatchSize;
+		gameRankDiff = sumGameStat->SumRankDifference() / (float) realBatchSize / avgTurnNumberReal;
+		endRankDiff = sumGameStat->EndRankDifference() / (float) realBatchSize;
 
 		if(fnc == AGGR_DEVIATION)
 		{
@@ -159,8 +159,8 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 						case 0 : val = allGameStat[loop1]->TurnNumberReal() - turnNumber; break;
 						case 1 : val = allGameStat[loop1]->PlayerWinner(1) - winnerPlayer1; break;
 						case 2 : val = allGameStat[loop1]->LeaderSwitches() - leaderSwitches; break;
-						case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber() - gameScoreDiff; break;
-						case 4 : val = allGameStat[loop1]->EndScoreDifference() - endScoreDiff; break;
+						case 3 : val = allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumber() - gameRankDiff; break;
+						case 4 : val = allGameStat[loop1]->EndRankDifference() - endRankDiff; break;
 					}
 					sumVal += (val * val) / realBatchSize;
 				}
@@ -171,8 +171,8 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 					case 0 : turnNumber = deviation; break;
 					case 1 : winnerPlayer1 = deviation; break;
 					case 2 : leaderSwitches = deviation; break;
-					case 3 : gameScoreDiff = deviation; break;
-					case 4 : endScoreDiff = deviation; break;
+					case 3 : gameRankDiff = deviation; break;
+					case 4 : endRankDiff = deviation; break;
 				}
 			}
 		}
@@ -196,8 +196,8 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 				case 0 : turnNumber = val; break;
 				case 1 : winnerPlayer1 = val; break;
 				case 2 : leaderSwitches = val; break;
-				case 3 : gameScoreDiff = val; break;
-				case 4 : endScoreDiff = val; break;
+				case 3 : gameRankDiff = val; break;
+				case 4 : endRankDiff = val; break;
 			}
 		}
 	}
@@ -206,8 +206,8 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	treeWidgetItem->setData(3, 0, turnNumber);
 	treeWidgetItem->setData(4, 0, winnerPlayer1);
 	treeWidgetItem->setData(5, 0, leaderSwitches);
-	treeWidgetItem->setData(6, 0, gameScoreDiff);
-	treeWidgetItem->setData(7, 0, endScoreDiff);
+	treeWidgetItem->setData(6, 0, gameRankDiff);
+	treeWidgetItem->setData(7, 0, endRankDiff);
 }
 
 void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree)
@@ -241,8 +241,8 @@ vector<float> BatchItem::GetStatAsVector(int statName)
 			case 0 : val = allGameStat[loop1]->TurnNumberReal(); break;
 			case 1 : val = allGameStat[loop1]->PlayerWinner(1); break;
 			case 2 : val = allGameStat[loop1]->LeaderSwitches(); break;
-			case 3 : val = allGameStat[loop1]->SumScoreDifference() / (float) allGameStat[loop1]->TurnNumber(); break;
-			case 4 : val = allGameStat[loop1]->EndScoreDifference(); break;
+			case 3 : val = allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumber(); break;
+			case 4 : val = allGameStat[loop1]->EndRankDifference(); break;
 		}
 
 		result.push_back(val);

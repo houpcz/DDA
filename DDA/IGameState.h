@@ -22,8 +22,10 @@ public :
 	virtual ISpecificStat * GetGameSpecificStat() = 0;
 	virtual int GetPlayerChoises(int whoAskID) = 0;
 	virtual int GetActivePlayerID() const = 0;
-	virtual int GetPlayerScore(int playerID, int whoAskID) = 0;
+	virtual int GetPlayerRank(int playerID, int whoAskID) = 0;
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
+	//virtual IGameState * GetRandomState() = 0;
+	//virtual GetPlayerStatus(int playerID, int whoAskID) = 0;
 	virtual bool IsGameOver() = 0;
 	virtual void PrintToFile(const char * firstLine) {};
 	virtual IGameState * Clone() = 0;

@@ -54,8 +54,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 		int MAX_TRIES = 150;
 		int tries = 0;
 		do {
-			tempX = 2 + rand() % (mazeWidth - 4);
-			tempY = 2 + rand() % (mazeHeight - 4);
+			tempX = rand() % (mazeWidth / 2) + ((tries % 4  == 0 || tries % 4 == 1) ? 0 : (mazeWidth / 2));
+			tempY = rand() % (mazeHeight / 2) + ((tries % 4  == 1 || tries % 4 == 2) ? 0 : (mazeHeight / 2));
 
 			minDist = min(abs(playerX - tempX) + 1, abs(playerY - tempY) + 1);
 			for(int loop2 = 0; loop2 < loop1; loop2++)
@@ -83,6 +83,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 		goalY[loop1] = tempY;
 		maze[tempY][tempX] = TILE_GOAL;
 
+		/*
 		maze[tempY + 1][tempX + 1] = TILE_WALL;
 		maze[tempY - 1][tempX + 1] = TILE_WALL;
 		maze[tempY + 1][tempX - 1] = TILE_WALL;
@@ -99,11 +100,12 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 			case 2 : maze[tempY][tempX + 1] = TILE_UNDEFINED; break;
 			case 3 : maze[tempY][tempX - 1] = TILE_UNDEFINED; break;
 		}
+		*/
 	}
 	
 	hallSize = 0;
 
-	isScoreUpToDate = false;
+	isRankUpToDate = false;
 }
 
 MazeState::MazeState(const MazeState & origin)
@@ -140,11 +142,11 @@ void MazeState::CopyToMe(const MazeState & origin)
 	startX = origin.startX;
 	startY = origin.startY;
 	hallSize = origin.hallSize;
-	playerScore = origin.playerScore;
+	playerRank = origin.playerRank;
 	stepsToGameOver = origin.stepsToGameOver;
 	possibleWayToGoal = origin.possibleWayToGoal;
 	setupOpenHallEnds = origin.setupOpenHallEnds;
-	isScoreUpToDate = origin.isScoreUpToDate;
+	isRankUpToDate = origin.isRankUpToDate;
 	goalAmount = origin.goalAmount;
 
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
@@ -336,7 +338,7 @@ bool MazeState::Explore(int tileToExploreID)
 			activePlayerID = 0;
 	}
 
-	isScoreUpToDate = false;
+	isRankUpToDate = false;
 
 	return gameOver;
 }
@@ -779,18 +781,18 @@ void MazeState::Pos1Dto2D(int d1, int * x, int * y)
 	*y = d1 / mazeWidth;
 }
 
-int MazeState::GetPlayerScore(int playerID, int whoAskID)
+int MazeState::GetPlayerRank(int playerID, int whoAskID)
 {
-	if(!isScoreUpToDate)
-		CountScore();
+	if(!isRankUpToDate)
+		CountRank();
 
-	return playerScore;
+	return playerRank;
 }
-void MazeState::CountScore()
+void MazeState::CountRank()
 {
 	if(!possibleWayToGoal || (tileToExplore.size() == 0 && activePlayerID == PLAYER_AI))
 	{
-		playerScore = IGameState::ILLEGAL_GAME;
+		playerRank = IGameState::ILLEGAL_GAME;
 		return;
 	} 
 
@@ -813,9 +815,9 @@ void MazeState::CountScore()
 	if(goalAmount == 0)
 		length = 0;
 	//int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
-	playerScore = -length * 10 + stepsToGameOver;
+	playerRank = -length * 10 + stepsToGameOver;
 
-	isScoreUpToDate = true;
+	isRankUpToDate = true;
 }
 
 ISpecificStat * MazeState::GetGameSpecificStat()

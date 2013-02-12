@@ -275,11 +275,11 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->drawText(445, 145, 500, 500, 0, temp);
 	painter->setPen(Qt::black);
 	painter->setFont(QFont("SansSerif", 15, 3, false));
-	sprintf(temp, "%d Env Sees 1", currentState->GetPlayerScore(1, 0));
+	sprintf(temp, "%d Env Sees 1", currentState->GetPlayerRank(1, 0));
 	painter->drawText(510, 330, 500, 500, 0, temp);
-	sprintf(temp, "%d 1 seems himself", currentState->GetPlayerScore(1, 1));
+	sprintf(temp, "%d 1 seems himself", currentState->GetPlayerRank(1, 1));
 	painter->drawText(510, 350, 500, 500, 0, temp);
-	sprintf(temp, "%d 2 seams 1", currentState->GetPlayerScore(1, 2));
+	sprintf(temp, "%d 2 seams 1", currentState->GetPlayerRank(1, 2));
 	painter->drawText(510, 370, 500, 500, 0, temp);
 }
 

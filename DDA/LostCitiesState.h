@@ -65,8 +65,8 @@ public:
 	char GetCard(int id) { return card[id]; }
 	virtual int GetPlayerChoises(int whoAskID);
 	virtual int GetActivePlayerID() const;
-	int GetPositivePlayerScore(int playerID, int whoAskID);
-	virtual int GetPlayerScore(int playerID, int whoAskID);
+	int GetPositivePlayerRank(int playerID, int whoAskID);
+	virtual int GetPlayerRank(int playerID, int whoAskID);
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	bool MakeTurn(int turn);

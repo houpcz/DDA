@@ -24,7 +24,7 @@ bool PlayerHillClimber::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		scores.push_back(valueIndex(nextState[loop1]->GetPlayerScore(myID, myID), loop1));
+		scores.push_back(valueIndex(nextState[loop1]->GetPlayerRank(myID, myID), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
 	

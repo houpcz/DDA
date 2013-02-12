@@ -19,10 +19,10 @@ private:
 	int activePlayerID;
 	int figure[MAX_PLAYER][MAX_FIGURE];
 	int figureNextState[MAX_CHOISES];
-	int playerScore[MAX_PLAYER];
-	bool isScoreUpToDate;
+	int playerRank[MAX_PLAYER];
+	bool isRankUpToDate;
 
-	void CountPlayerScores();
+	void CountPlayerRanks();
 	void NextChoises();
 	bool IsPlayerWinner(int playerID) const;
 	bool IsTileFreeCheckOpponents(int newPosition);
@@ -36,7 +36,7 @@ public:
 	int GetFigureNextState(int number) { return figureNextState[number]; }
 	int GetPlayerChoises(int whoAskID);
 	int GetActivePlayerID() const;
-	int GetPlayerScore(int playerID, int whoAskID);
+	int GetPlayerRank(int playerID, int whoAskID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }

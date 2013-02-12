@@ -71,8 +71,8 @@ private :
 	long long turnNumberReal;
 
 	long long leaderSwitches;
-	long long sumScoreDifference;
-	long long endScoreDifference;
+	long long sumRankDifference;
+	long long endRankDifference;
 
 	PlayerStat * playerStat;
 	ISpecificStat * gameStat; 
@@ -97,8 +97,8 @@ public:
 	void AddTurnNumber() { turnNumber++; }
 	void AddTurnNumberReal() { turnNumberReal++; }
 	void AddLeaderSwitch() { leaderSwitches++; };
-	void AddScoreDifference(int difference) { sumScoreDifference += difference; };
-	void SetEndScoreDifference(int difference) { endScoreDifference = difference; };
+	void AddRankDifference(int difference) { sumRankDifference += difference; };
+	void SetEndRankDifference(int difference) { endRankDifference = difference; };
 
 	void AddPlayerLevel(int playerID, int _level) {
 		CheckPlayerID(playerID);
@@ -137,8 +137,8 @@ public:
 	long long TurnNumber() { return turnNumber; };
 	long long TurnNumberReal() { return turnNumberReal; };
 	long long LeaderSwitches() { return leaderSwitches; };
-	long long SumScoreDifference() { return sumScoreDifference;};
-	long long EndScoreDifference() { return endScoreDifference;};
+	long long SumRankDifference() { return sumRankDifference;};
+	long long EndRankDifference() { return endRankDifference;};
 	long PlayerWinner(int playerID) { 
 		CheckPlayerID(playerID);
 		return playerStat[playerID].Winner(); 

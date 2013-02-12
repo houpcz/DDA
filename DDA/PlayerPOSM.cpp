@@ -25,7 +25,7 @@ void PlayerPOSM::StartGame(IGame * _game)
 void PlayerPOSM::UpdateDifficultyLevel()
 {
 	int o = 0;
-	int h = game->GetCurrentState()->GetPlayerScore(myID, myID);
+	int h = game->GetCurrentState()->GetPlayerRank(myID, myID);
 	if(h < 0)
 		o = 1;
 	else if(h > 0)
@@ -100,7 +100,7 @@ bool PlayerPOSM::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		scores.push_back(valueIndex(nextState[loop1]->GetPlayerScore(myID, myID), loop1));
+		scores.push_back(valueIndex(nextState[loop1]->GetPlayerRank(myID, myID), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
 	

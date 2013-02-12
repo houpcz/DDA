@@ -141,7 +141,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	painter->setPen(Qt::cyan);
 	painter->drawText(0, 0, painter->viewport().width(), painter->viewport().height() / 8, Qt::AlignCenter, QString(numberString));
 
-	int score = currentState->GetPlayerScore(0, 0);
+	int score = currentState->GetPlayerRank(0, 0);
 	sprintf(numberString, "%d", score);
 
 	static bool wasIlegal = false;

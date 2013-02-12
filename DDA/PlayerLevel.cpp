@@ -21,7 +21,7 @@ void PlayerLevel::StartGame(IGame * _game)
 
 void PlayerLevel::UpdateLevel()
 {
-	int score = game->GetCurrentState()->GetPlayerScore(myID, myID);
+	int score = game->GetCurrentState()->GetPlayerRank(myID, myID);
 	if(score < 0) level += (int) log((double) -score);
 	if(score > 0) level -= (int) log((double) score);
 	if(level < 50) level = 50;
@@ -42,7 +42,7 @@ bool PlayerLevel::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		scores.push_back(valueIndex(nextState[loop1]->GetPlayerScore(myID, myID), loop1));
+		scores.push_back(valueIndex(nextState[loop1]->GetPlayerRank(myID, myID), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
 	

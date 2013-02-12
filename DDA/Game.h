@@ -24,7 +24,7 @@ protected:
 	State state;
 	int playerCount;
 	int playerLeader;
-	int * currentPlayerScore;
+	int * currentPlayerRank;
 	IPlayer ** player;
 	GameStat * gameStat;
 
@@ -38,7 +38,7 @@ protected:
 	vector<IGameState *> gameState;
 	void ClearAllGameStates();
 	bool SaveAllGameStates() { return paint; }
-	int GetLeaderID(int * outScoreDifference);
+	int GetLeaderID(int * outRankDifference);
 public:
 	Game(QWidget * _widget, bool paint = true);
 	virtual ~Game(void);

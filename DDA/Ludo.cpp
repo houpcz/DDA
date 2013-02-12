@@ -234,7 +234,7 @@ void Ludo::Draw(QPainter * painter, int tickMillis)
 	int x, y;
 	for(int loop1 = 0; loop1 < LudoState::MAX_PLAYER; loop1++)
 	{
-		sprintf(numberString, "%d", currentState->GetPlayerScore(loop1 + 1, 0));
+		sprintf(numberString, "%d", currentState->GetPlayerRank(loop1 + 1, 0));
 		switch(loop1)
 		{
 			case 0 :

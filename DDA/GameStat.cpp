@@ -21,8 +21,8 @@ void GameStat::Reset()
 	turnNumber = 0;
 	turnNumberReal = 0;
 	leaderSwitches = 0;
-	sumScoreDifference = 0;
-	endScoreDifference = 0;
+	sumRankDifference = 0;
+	endRankDifference = 0;
 
 	if(gameStat != NULL)
 		gameStat->Reset();
@@ -49,8 +49,8 @@ void GameStat::CopyToMe(const GameStat &origin)
 	turnNumber = origin.turnNumber;
 	turnNumberReal = origin.turnNumberReal;
 	leaderSwitches = origin.leaderSwitches;
-	sumScoreDifference = origin.sumScoreDifference;
-	endScoreDifference = origin.endScoreDifference;
+	sumRankDifference = origin.sumRankDifference;
+	endRankDifference = origin.endRankDifference;
 
 	if(origin.gameStat == NULL)
 		gameStat = NULL;
@@ -80,8 +80,8 @@ const GameStat GameStat::operator+(const GameStat &other)
 	newGameStat.turnNumber = turnNumber + other.turnNumber;
 	newGameStat.turnNumberReal = turnNumberReal + other.turnNumberReal;
 	newGameStat.leaderSwitches = leaderSwitches + other.leaderSwitches;
-	newGameStat.sumScoreDifference = sumScoreDifference + other.sumScoreDifference;
-	newGameStat.endScoreDifference = endScoreDifference + other.endScoreDifference;
+	newGameStat.sumRankDifference = sumRankDifference + other.sumRankDifference;
+	newGameStat.endRankDifference = endRankDifference + other.endRankDifference;
 	if(gameStat != NULL && other.gameStat != NULL)
 		newGameStat.gameStat = gameStat->Plus(other.gameStat);
 	else if(other.gameStat != NULL)

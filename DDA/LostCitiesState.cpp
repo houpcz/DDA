@@ -286,15 +286,15 @@ int LostCitiesState::GetActivePlayerID() const
 {
 	return activePlayerID;
 }
-int LostCitiesState::GetPlayerScore(int playerID, int whoAskID)
+int LostCitiesState::GetPlayerRank(int playerID, int whoAskID)
 {
 	int opponentID = (playerID == 1) ? 2 : 1;
 
-	int me = GetPositivePlayerScore(playerID, whoAskID);
-	int him = GetPositivePlayerScore(opponentID, whoAskID);
+	int me = GetPositivePlayerRank(playerID, whoAskID);
+	int him = GetPositivePlayerRank(opponentID, whoAskID);
 	return me - him;
 }
-int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
+int LostCitiesState::GetPositivePlayerRank(int playerID, int whoAskID)
 {
 	int score = 0;
 	int handKnown;
@@ -325,10 +325,10 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 	}
 
 	bool expeditionExist = false;
-	int predictedScore = 0;
+	int predictedRank = 0;
 	int topCardOrder = ON_DESK;
 	int topCardId = 0;
-	int deckScore = 0;
+	int deckRank = 0;
 	int bonuses;
 	int cardType;
 	int handUnknownCount = 0;
@@ -337,7 +337,7 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 	int scoreNotExpeditionUnknown = 0;
 	int scoreNotExpeditionUnknownDeckCount = 0;
 	int scoreNotExpeditionUnknownHandCount = 0;
-	int deckScoreColor;
+	int deckRankColor;
 	int handUnknownCountColor; 
 	int inDeckCountColor;
 	int maxTurnToTheEnd = 0;
@@ -363,11 +363,11 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
 		expeditionExist = false;
-		predictedScore = 0;
+		predictedRank = 0;
 		topCardOrder = ON_DESK - 1;
 		topCardId = 0;
 		bonuses = 1;
-		deckScoreColor = 0;
+		deckRankColor = 0;
 		handUnknownCountColor = 0;
 		inDeckCountColor = 0;
 
@@ -404,7 +404,7 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 			  (card[cardID] == handHidden && (whoAskID == playerID || whoAskID == 0)))
 			{
 				if(cardType > 2)
-					predictedScore += (cardType - 1);
+					predictedRank += (cardType - 1);
 			}
 			else
 			if(card[cardID] == onDeskOther || card[cardID] == handKnownOther ||
@@ -418,24 +418,24 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 				else
 					inDeckCountColor++;
 				if(cardType > 2)
-					deckScoreColor += (cardType - 1);
+					deckRankColor += (cardType - 1);
 			}
 		}
 
 		if(expeditionExist)
 		{
-			predictedScore *= min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2);
+			predictedRank *= min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2);
 			if(topCardOrder >= ON_DESK && topCardId > 2)
 			{
-				predictedScore += min(PREDICTED_TOP_DISCARD, maxTurnToTheEnd / 2) * (topCardId - 1);
+				predictedRank += min(PREDICTED_TOP_DISCARD, maxTurnToTheEnd / 2) * (topCardId - 1);
 			}
-			score += predictedScore * bonuses;
-			deckScore += deckScoreColor * bonuses;
+			score += predictedRank * bonuses;
+			deckRank += deckRankColor * bonuses;
 			handUnknownCount += handUnknownCountColor;
 			inDeckCount += inDeckCountColor;
 		} else {
-			scoreNotExpeditionKnown += predictedScore;
-			scoreNotExpeditionUnknown += deckScoreColor;
+			scoreNotExpeditionKnown += predictedRank;
+			scoreNotExpeditionUnknown += deckRankColor;
 			scoreNotExpeditionUnknownHandCount += handUnknownCountColor;
 			scoreNotExpeditionUnknownDeckCount += inDeckCountColor;
 		}
@@ -443,7 +443,7 @@ int LostCitiesState::GetPositivePlayerScore(int playerID, int whoAskID)
 
 	float avgDeckCard = 0.0f;
 	if(inDeckCount + handUnknownCount > 0)
-		avgDeckCard = deckScore / (float) (inDeckCount + handUnknownCount);
+		avgDeckCard = deckRank / (float) (inDeckCount + handUnknownCount);
 
 	float scoreNotExpedition = scoreNotExpeditionKnown;
 	float avgNotExpedition = 0.0f;

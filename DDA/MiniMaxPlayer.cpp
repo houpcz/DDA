@@ -21,7 +21,7 @@ float * MiniMaxPlayer::MaxN(IGameState * state, int depth)
 		leafNumber++;
 		float * score = new float[playerCount];
 		for(int loop1 = 0; loop1 < playerCount; loop1++)
-			score[loop1] = state->GetPlayerScore(loop1 + 1, myID);
+			score[loop1] = state->GetPlayerRank(loop1 + 1, myID);
 		return score;
 	}
 
