@@ -314,7 +314,8 @@ bool MazeState::IsStateLegal()
 bool MazeState::Explore(int tileToExploreID)
 {
 	bool gameOver = false;
-
+	bool twoUndefined;
+	int wallX, wallY;
 	switch(activePlayerID)
 	{
 		case PLAYER_AI :
@@ -322,7 +323,15 @@ bool MazeState::Explore(int tileToExploreID)
 			FindNonRedundantTurns();
 			break;
 		case ENVINRONMENT_AI :
-			gameOver = ExploreEnvironment(nonRedundantTurns[tileToExploreID]);
+			gameOver = ExploreEnvironment(nonRedundantTurns[tileToExploreID], &twoUndefined, &wallX, &wallY);
+			if(twoUndefined)
+			{
+				if(!IsStateLegal())
+				{
+					SetTileEmpty(wallX, wallY);
+					AddCloseDoor(wallX, wallY);
+				}
+			}
 			possibleWayToGoal = IsStateLegal();
 			break;
 	}
@@ -547,10 +556,11 @@ void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
 	}
 }
 
-bool MazeState::ExploreEnvironment(int turn)
+bool MazeState::ExploreEnvironment(int turn, bool * twoUndefined, int * wallX, int * wallY)
 {
 	int dx = 0, dy = 0;
 	int holeX = 0, holeY = 0;
+	*twoUndefined = false;
 	bool isOneUndefinedTile = false;
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
 	{
@@ -567,8 +577,10 @@ bool MazeState::ExploreEnvironment(int turn)
 			holeY = 1;
 			isOneUndefinedTile = true;
 		} else {
-			SetTileEmpty(playerX + 1, playerY);
-			AddCloseDoor(playerX + 1, playerY);
+			*twoUndefined = true;
+			maze[playerY][playerX + 1] = TILE_WALL;
+			*wallX = playerX + 1;
+			*wallY = playerY;
 		}
 	} 
 	
@@ -580,8 +592,10 @@ bool MazeState::ExploreEnvironment(int turn)
 			holeX = 1;
 			isOneUndefinedTile= true;
 		} else {
-			SetTileEmpty(playerX, playerY - 1);
-			AddCloseDoor(playerX, playerY - 1);
+			*twoUndefined = true;
+			maze[playerY - 1][playerX] = TILE_WALL;
+			*wallX = playerX;
+			*wallY = playerY - 1;
 		}
 	} 
 	
@@ -593,8 +607,10 @@ bool MazeState::ExploreEnvironment(int turn)
 			holeX = 1;
 			isOneUndefinedTile = true;
 		} else {
-			SetTileEmpty(playerX, playerY + 1);
-			AddCloseDoor(playerX, playerY + 1);
+			*twoUndefined = true;
+			maze[playerY + 1][playerX] = TILE_WALL;
+			*wallX = playerX;
+			*wallY = playerY + 1;
 		}
 	}
 

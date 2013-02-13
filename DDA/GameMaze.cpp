@@ -77,12 +77,24 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 
 	tileWidth = min(tileWidth, tileHeight);
 	tileHeight = min(tileWidth, tileHeight);
-
+	
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
-			switch(maze[loop1][loop2])
+			int whatDraw = maze[loop1][loop2];
+			if(!currentState->IsGameOver() &&
+			   currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2, loop1 - 1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2 + 1, loop1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2, loop1 + 1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2 - 1, loop1 - 1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2 + 1, loop1 - 1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2 + 1, loop1 + 1) != TILE_EMPTY &&
+			   currentState->GetTile(loop2 - 1, loop1 + 1) != TILE_EMPTY)
+			   whatDraw = TILE_UNDEFINED;
+
+			switch(whatDraw)
 			{
 				case TILE_UNDEFINED :
 					painter->setBrush(QBrush(QColor(0, 0, 0)));

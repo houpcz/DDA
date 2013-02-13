@@ -85,13 +85,12 @@ private:
 	EOpenHallEnds setupOpenHallEnds;
 
 	void AddCloseDoor(int x, int y);
-	char GetTile(int x, int y);
 	bool IsStateLegal();
 	void CopyToMe(const MazeState & origin);
 	MazeState * Clone() { MazeState * state = new MazeState(*this);  return state;};
 	void ClearMe();
 	bool ExplorePlayer(int tileToExploreID);
-	bool ExploreEnvironment(int turn);
+	bool ExploreEnvironment(int turn, bool * twoUndefined, int * wallX, int * wallY);
 	void FindNonRedundantTurns();
 	void ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn);
 	void RemoveNonviableTileToExplore();
@@ -118,6 +117,7 @@ public:
 	int GetMazeHeight() const { return mazeHeight; }
 	int GetStepsToGameOver() const { return stepsToGameOver; }
 	int GetPlayerChoises(int whoAskID);
+	char GetTile(int x, int y);
 	bool IsGameOver();
 	int GetPlayerRank(int playerID, int whoAskID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);

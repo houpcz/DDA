@@ -128,6 +128,8 @@ void BatchWindow::NextBatchItem()
 		setupBatch->setEnabled(true);
 		saveAllToCsv->setEnabled(true);
 		saveBatchToCsv->setEnabled(true);
+		aggrFnc->setEnabled(true);
+		diagramBatch->setEnabled(true);
 		batchIsRunning = false;
 	}
 
@@ -161,6 +163,8 @@ void BatchWindow::StartBatch()
 	setupBatch->setEnabled(false);
 	saveAllToCsv->setEnabled(false);
 	saveBatchToCsv->setEnabled(false);
+	aggrFnc->setEnabled(false);
+	diagramBatch->setEnabled(false);
 	NextBatchItem();
 }
 

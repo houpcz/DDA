@@ -40,6 +40,8 @@ BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
 	{
 		playerName->addItem(batchItem->Game()->GetPlayer(loop1)->GetAIName());
 	}
+	playerStat->setEnabled(false);
+	playerName->setEnabled(false);
 	connect(gameStat, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
 	connect(playerStat, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
 	connect(playerName, SIGNAL(activated(int)), this, SLOT(ChangeGameStat(int)));
@@ -121,8 +123,12 @@ void BatchDiagrams::UpdateDiagram()
 {
 	if(gameStat->currentIndex() == gameStat->count() - 1)
 	{
+		playerStat->setEnabled(true);
+		playerName->setEnabled(true);
 		SetHistogramData(batchItem->GetPlayerStatAsVector(playerStat->currentIndex(), playerName->currentIndex()), 15);
 	} else {
+		playerStat->setEnabled(false);
+		playerName->setEnabled(false);
 		SetHistogramData(batchItem->GetStatAsVector(gameStat->currentIndex()), 15);
 	}
 
