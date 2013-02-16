@@ -12,12 +12,20 @@ typedef enum MazeTile
 	TILE_WALL,
 	TILE_UNDEFINED,
 	TILE_GOAL,
+	TILE_DOOR,
 	TILE_NO
 };
 
 enum {
 	ENVINRONMENT_AI,
 	PLAYER_AI
+};
+
+typedef enum EDoorKind
+{
+	DOOR_GOOD = 10,
+	DOOR_BAD = -10,
+	DOOR_NORMAL = 0,
 };
 
 typedef enum EOpenHallEnds
@@ -67,6 +75,7 @@ private:
 	char ** maze;
 	char ** mazeClosedList;
 	bool isRankUpToDate;
+	int firstRnd;
 	int mazeWidth, mazeHeight;
 	int activePlayerID;
 	int playerX, playerY;
@@ -98,6 +107,7 @@ private:
 	void SetTileEmpty(int x, int y);
 	// undefined - can go through undefined files
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
+	void AddGoalToTileToExploreIfNeighbours(int x, int y);
 	void CountRank();
 public:
 	MazeState(int _activePlayerID, int _stepsToGameOver = 2000, int mWidth = 41, int mHeight = 41);
@@ -113,6 +123,7 @@ public:
 		return activePlayerID;
 	}
 	char ** GetMaze() const { return maze; }
+	int GetDoorKind(int x, int y);
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }
 	int GetStepsToGameOver() const { return stepsToGameOver; }

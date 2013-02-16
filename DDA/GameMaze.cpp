@@ -84,10 +84,10 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		{
 			int whatDraw = maze[loop1][loop2];
 			if(!currentState->IsGameOver() &&
-			   currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY &&
-			   currentState->GetTile(loop2, loop1 - 1) != TILE_EMPTY &&
-			   currentState->GetTile(loop2 + 1, loop1) != TILE_EMPTY &&
-			   currentState->GetTile(loop2, loop1 + 1) != TILE_EMPTY &&
+			   (currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 - 1, loop1) != TILE_DOOR) &&
+			   (currentState->GetTile(loop2, loop1 - 1) != TILE_EMPTY) &&
+			   (currentState->GetTile(loop2 + 1, loop1) != TILE_EMPTY) &&
+			   (currentState->GetTile(loop2, loop1 + 1) != TILE_EMPTY) &&
 			   currentState->GetTile(loop2 - 1, loop1 - 1) != TILE_EMPTY &&
 			   currentState->GetTile(loop2 + 1, loop1 - 1) != TILE_EMPTY &&
 			   currentState->GetTile(loop2 + 1, loop1 + 1) != TILE_EMPTY &&
@@ -108,6 +108,9 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 				case TILE_GOAL :
 					painter->setBrush(QBrush(QColor(20, 250, 50)));
 					break;
+				case TILE_DOOR :
+					painter->setBrush(QBrush(QColor(180, 180, 160)));
+					break;
 			}
 			painter->fillRect(loop2 * tileWidth, loop1 * tileHeight, tileWidth + 1, tileHeight + 1, painter->brush());
 		}
@@ -123,7 +126,15 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		{
 			color = Qt::darkCyan;
 		} else {
-			color = QColor(238, 154, 77);
+			switch(currentState->GetDoorKind(x, y))
+			{
+				case DOOR_NORMAL :
+					color = QColor(238, 154, 77); break;
+				case DOOR_GOOD :
+					color = QColor(77, 77, 200); break;
+				case DOOR_BAD :
+					color = QColor(200, 77, 77); break;
+			}
 		}
 		painter->fillRect(x * tileWidth + 1, 
 			              y * tileHeight + 1, 

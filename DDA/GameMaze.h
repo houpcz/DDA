@@ -21,6 +21,7 @@ private :
 
 	float tileWidth;
 	float tileHeight;
+
 public :
 	GameMaze(QWidget * _widget, bool _paint = true);
 	virtual ~GameMaze();

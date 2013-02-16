@@ -14,6 +14,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
 
+	firstRnd = rand() % 10 + 10;
+
 	setupOpenHallEnds = OPEN_HALL_ENDS_ALWAYS;
 	possibleWayToGoal = true;
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
@@ -135,6 +137,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 		goalX[loop1] = origin.goalX[loop1];
 		goalY[loop1] = origin.goalY[loop1];
 	}
+	firstRnd = origin.firstRnd;
 	goalAmount = origin.goalAmount;
 	goalStart = origin.goalStart;
 	startX = origin.startX;
@@ -330,13 +333,18 @@ bool MazeState::Explore(int tileToExploreID)
 				{
 					SetTileEmpty(wallX, wallY);
 					AddCloseDoor(wallX, wallY);
+					RemoveNonviableTileToExplore();
 				}
 			}
 			possibleWayToGoal = IsStateLegal();
 			break;
 	}
 
-	if(GetTile(playerX, playerY) == TILE_GOAL)
+	if(GetTile(playerX, playerY) == TILE_GOAL ||
+	   GetTile(playerX + 1, playerY) == TILE_GOAL ||
+	   GetTile(playerX - 1, playerY) == TILE_GOAL ||
+	   GetTile(playerX, playerY + 1) == TILE_GOAL ||
+	   GetTile(playerX, playerY - 1) == TILE_GOAL)
 	{
 		maze[playerY][playerX] = TILE_EMPTY;
 	} else {
@@ -407,14 +415,13 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 {
 	int newPlayerX, newPlayerY;
 	Pos1Dto2D(tileToExplore[tileToExploreID], &newPlayerX, &newPlayerY);
-	int distance = GetDistanceBetween(playerX, playerY, newPlayerX, newPlayerY);
+	int distance = GetDistanceBetween(newPlayerX, newPlayerY, playerX, playerY);
 	stepsToGameOver -= distance;
-	if(stepsToGameOver <= 0)
-		return true;
-
+	
 	playerX = newPlayerX;
 	playerY = newPlayerY;
 	tileToExplore.erase(tileToExplore.begin() + tileToExploreID, tileToExplore.begin() + tileToExploreID + 1);
+
 	if(GetTile(playerX, playerY) == TILE_GOAL)
 	{
 		goalAmount--;
@@ -422,7 +429,13 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 			return true;
 		else
 			return false;
+	} else {
+		maze[playerY][playerX] = TILE_EMPTY;
+		stepsToGameOver += GetDoorKind(playerX, playerY);
 	}
+
+	if(stepsToGameOver <= 0)
+		return true;
 
 	int dx = 0, dy = 0;
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
@@ -456,6 +469,52 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 	}*/
 
 	return false;
+}
+
+int MazeState::GetDoorKind(int x, int y)
+{
+	switch((x + y * firstRnd) % 3)
+	{
+		case 0:
+			return DOOR_NORMAL;
+		case 1:
+			return DOOR_GOOD;
+		case 2:
+			return DOOR_BAD;
+	}
+
+
+	return DOOR_NORMAL;
+}
+void MazeState::AddGoalToTileToExploreIfNeighbours(int x, int y)
+{
+	bool added = false;
+	if(GetTile(x - 1, y) == TILE_GOAL)
+	{
+		added = true;
+		SetGoalNeightboursWall(x - 1, y);
+		AddCloseDoor(x - 1, y);
+	}
+	if(GetTile(x + 1, y) == TILE_GOAL)
+	{
+		added = true;
+		SetGoalNeightboursWall(x + 1, y);
+		AddCloseDoor(x + 1, y);
+	}
+	if(GetTile(x, y - 1) == TILE_GOAL)
+	{
+		added = true;
+		SetGoalNeightboursWall(x, y - 1);
+		AddCloseDoor(x, y - 1);
+	}
+	if(GetTile(x, y + 1) == TILE_GOAL)
+	{
+		added = true;
+		SetGoalNeightboursWall(x, y + 1);
+		AddCloseDoor(x, y + 1);
+	}
+	if(added)
+		RemoveNonviableTileToExplore();
 }
 
 void MazeState::FindNonRedundantTurns()
@@ -721,31 +780,29 @@ void MazeState::SetGoalNeightboursWall(int x, int y)
 void MazeState::SetTileEmpty(int x, int y)
 {
 	maze[y][x] = TILE_EMPTY;
-	if(GetTile(x - 1, y) == TILE_GOAL)
-	{
-		SetGoalNeightboursWall(x - 1, y);
-		AddCloseDoor(x - 1, y);
-	}
-	if(GetTile(x + 1, y) == TILE_GOAL)
-	{
-		SetGoalNeightboursWall(x + 1, y);
-		AddCloseDoor(x + 1, y);
-	}
-	if(GetTile(x, y - 1) == TILE_GOAL)
-	{
-		SetGoalNeightboursWall(x, y - 1);
-		AddCloseDoor(x, y - 1);
-	}
-	if(GetTile(x, y + 1) == TILE_GOAL)
-	{
-		SetGoalNeightboursWall(x, y + 1);
-		AddCloseDoor(x, y + 1);
-	}
-
+	AddGoalToTileToExploreIfNeighbours(x, y);
 }
 
 void MazeState::RemoveNonviableTileToExplore()
 {
+	for(int loop1 = 0; loop1 < tileToExplore.size(); loop1++)
+	{
+		int tile = tileToExplore[loop1];
+		int x, y;
+		Pos1Dto2D(tile, &x, &y);
+		if(GetTile(x + 1, y) == TILE_GOAL ||
+			GetTile(x - 1, y) == TILE_GOAL ||
+			GetTile(x, y + 1) == TILE_GOAL ||
+			GetTile(x, y - 1) == TILE_GOAL)
+		{
+			SetGoalNeightboursWall(x, y);
+			maze[y][x] = TILE_EMPTY;
+			tileToExplore.erase(tileToExplore.begin() + loop1, tileToExplore.begin() + loop1 + 1);
+			loop1--;
+		}
+	}
+	return;
+
 	for(int loop1 = 0; loop1 < tileToExplore.size(); loop1++)
 	{
 		int tile = tileToExplore[loop1];
@@ -887,6 +944,9 @@ void MazeState::PrintToFile(const char * firstLine)
 
 void MazeState::AddCloseDoor(int x, int y)
 {
+	if(maze[y][x] != TILE_GOAL)
+		maze[y][x] = TILE_DOOR;
+
 	tileToExplore.push_back(Pos2Dto1D(x, y));
 }
 
