@@ -7,14 +7,15 @@
 
 using namespace std;
 
-MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight)
+MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals)
 {
 	mazeWidth = mWidth;
 	mazeHeight = mHeight;
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
+	visibleGoals = _visibleGoals;
 
-	firstRnd = rand() % 10 + 10;
+	firstRnd = rand() % 100 + 10;
 
 	setupOpenHallEnds = OPEN_HALL_ENDS_ALWAYS;
 	possibleWayToGoal = true;
@@ -128,6 +129,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 {
 	mazeWidth = origin.mazeWidth;
 	mazeHeight = origin.mazeHeight;
+	visibleGoals = origin.visibleGoals;
 	activePlayerID = origin.activePlayerID;
 	playerX = origin.playerX;
 	playerY = origin.playerY;
@@ -473,9 +475,11 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 
 int MazeState::GetDoorKind(int x, int y)
 {
-	switch((x + y * firstRnd) % 3)
+	switch((x * 55 / firstRnd + y * firstRnd) % 5)
 	{
 		case 0:
+		case 3:
+		case 4:
 			return DOOR_NORMAL;
 		case 1:
 			return DOOR_GOOD;

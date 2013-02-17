@@ -2,6 +2,7 @@
 #include "EnvironmentAIBasic.h"
 #include "Human.h"
 #include "PlayerRandomAI.h"
+#include "Qt\qcheckbox.h"
 
 GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
@@ -10,8 +11,10 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	mazeWidth = 41;
 	mazeHeight = 41;
+	visibleGoals = false;
 	stepsToGameOver = 1000;
-	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight);
+
+	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals);
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
 
@@ -40,7 +43,7 @@ void GameMaze::StartGame()
 		delete currentState;
 	}
 
-	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight);
+	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals);
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);
@@ -83,7 +86,8 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			int whatDraw = maze[loop1][loop2];
-			if(!currentState->IsGameOver() &&
+			if(!currentState->VisibleGoals() && 
+			   !currentState->IsGameOver() &&
 			   (currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 - 1, loop1) != TILE_DOOR) &&
 			   (currentState->GetTile(loop2, loop1 - 1) != TILE_EMPTY) &&
 			   (currentState->GetTile(loop2 + 1, loop1) != TILE_EMPTY) &&
@@ -247,7 +251,17 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));
 	connect(spinBoxStep, SIGNAL(valueChanged(int)), this, SLOT(SetStepsToGameOver(int)));
 
+	QCheckBox * visibleGoalsBox = new QCheckBox();
+	visibleGoalsBox->setChecked(visibleGoals);
+	widgets.push_back(pair<QWidget *, QString>(visibleGoalsBox, QString("Visible bombs")));
+	connect(visibleGoalsBox, SIGNAL(stateChanged(int)), this, SLOT(SetVisibleGoals(int)));
+
 	return widgets;
+}
+
+void GameMaze::SetVisibleGoals(int state)
+{
+	visibleGoals = state;
 }
 
 void GameMaze::SetMazeWidth(int width)

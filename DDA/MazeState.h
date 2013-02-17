@@ -77,6 +77,7 @@ private:
 	bool isRankUpToDate;
 	int firstRnd;
 	int mazeWidth, mazeHeight;
+	bool visibleGoals;
 	int activePlayerID;
 	int playerX, playerY;
 	int startX, startY;
@@ -110,7 +111,7 @@ private:
 	void AddGoalToTileToExploreIfNeighbours(int x, int y);
 	void CountRank();
 public:
-	MazeState(int _activePlayerID, int _stepsToGameOver = 2000, int mWidth = 41, int mHeight = 41);
+	MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);
@@ -123,6 +124,7 @@ public:
 		return activePlayerID;
 	}
 	char ** GetMaze() const { return maze; }
+	bool VisibleGoals() { return visibleGoals;}
 	int GetDoorKind(int x, int y);
 	int GetMazeWidth() const { return mazeWidth; }
 	int GetMazeHeight() const { return mazeHeight; }
