@@ -199,9 +199,7 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 			if(!mazeState->IsPossibleWayToGoal())
 			{
 				delete mazeState;
-				nonRedundantTurns.erase(nonRedundantTurns.begin() + loop1, nonRedundantTurns.begin() + (loop1 + 1));
-				loop1--;
-				choises--;
+				tempState.push_back(NULL);
 			} else {
 				tempState.push_back(mazeState);
 			}

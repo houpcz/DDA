@@ -10,28 +10,39 @@ EnvironmentAIBasic::~EnvironmentAIBasic(void)
 
 bool EnvironmentAIBasic::Think()
 {
-	int p_myTurn;
-	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
-	if(p_myTurn == 0)
-		nextState = game->GetCurrentState()->GetNextStates(myID, &p_myTurn);
+	int choises;
+	int choisesLegal = 0;
+	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &choises);
 
-
-	int tries = 0;
-	myTurn = rand() % p_myTurn;
-	if(nextState[myTurn]->GetPlayerRank(0, myID) == IGameState::ILLEGAL_GAME && game->GetCurrentState()->GetPlayerRank(0, myID) != IGameState::ILLEGAL_GAME)
+	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		game->GetCurrentState()->PrintToFile("Last legal state");
-		/*
-		for(int loop1 = 0; loop1 < p_myTurn; loop1++)
+		if(nextState[loop1] != NULL)
 		{
-			nextState[loop1]->PrintToFile("Option");
+			choisesLegal++;
 		}
-		*/
 	}
+	int myTurnLegal = rand() % choisesLegal;
+
+	int tempLegal = 0;
+	for(int loop1 = 0; loop1 < choises; loop1++)
+	{
+		if(nextState[loop1] != NULL)
+		{
+			if(myTurnLegal == tempLegal)
+			{
+				myTurn = loop1;
+			}
+			tempLegal++;
+		}
+	}
+	
 	isReady = true;
 
-	for(int loop1 = 0; loop1 < p_myTurn; loop1++)
-		delete nextState[loop1];
+	for(int loop1 = 0; loop1 < choises; loop1++)
+	{
+		if(nextState[loop1] != NULL)
+			delete nextState[loop1];
+	}
 	delete [] nextState;
 
 	return true;
