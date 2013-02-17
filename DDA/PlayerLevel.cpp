@@ -27,7 +27,7 @@ void PlayerLevel::UpdateLevel()
 	if(level < 50) level = 50;
 	if(level > 100) level = 100;
 
-	qDebug(QString::number(level).toAscii() + " -> " + QString::number(score).toAscii());
+	//qDebug(QString::number(level).toAscii() + " -> " + QString::number(score).toAscii());
 }
 
 

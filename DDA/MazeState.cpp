@@ -877,26 +877,38 @@ void MazeState::CountRank()
 		return;
 	} 
 
-	int length = 1000000;
-	for(int loop1 = 0; loop1 < goalStart; loop1++)
+	if(visibleGoals)
 	{
-		if(goalY[loop1] == playerY && goalX[loop1] == playerX)
+		int length = 1000000;
+		for(int loop1 = 0; loop1 < goalStart; loop1++)
 		{
-			length = 0;
-			break;
+			if(goalY[loop1] == playerY && goalX[loop1] == playerX)
+			{
+				length = 0;
+				break;
+			}
+			if(maze[goalY[loop1]][goalX[loop1]] == TILE_EMPTY)
+				continue;
+
+			int temp = abs(playerX - goalX[loop1]) + abs(playerY - goalY[loop1]);
+
+			if(temp < length)
+				length = temp;
 		}
-		if(maze[goalY[loop1]][goalX[loop1]] == TILE_EMPTY)
-			continue;
-
-		int temp = abs(playerX - goalX[loop1]) + abs(playerY - goalY[loop1]);
-
-		if(temp < length)
-			length = temp;
+		if(goalAmount == 0)
+			length = 0;
+		//int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
+		playerRank = -length * 10 + stepsToGameOver;
+	} else {
+		playerRank = stepsToGameOver + (goalStart - goalAmount) * 1000;
+		if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED ||
+		   GetTile(playerX + 1, playerY) == TILE_UNDEFINED ||
+		   GetTile(playerX, playerY + 1) == TILE_UNDEFINED ||
+		   GetTile(playerX, playerY - 1) == TILE_UNDEFINED)
+		{
+			playerRank += 9;
+		}
 	}
-	if(goalAmount == 0)
-		length = 0;
-	//int manDistToGoal = -GetDistanceBetween(goalX, goalY, playerX, playerY, true);
-	playerRank = -length * 10 + stepsToGameOver;
 
 	isRankUpToDate = true;
 }

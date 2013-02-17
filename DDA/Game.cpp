@@ -12,7 +12,7 @@ Game::Game(QWidget * _widget, bool _paint)
 	playerCount = 0;
 	player = NULL;
 	gameStat = NULL;
-	currentPlayerRank = NULL;
+	currentPlayerStatus = NULL;
 }
 
 
@@ -25,7 +25,7 @@ Game::~Game(void)
 			delete player[loop1];
 		}
 		delete [] player;
-		delete [] currentPlayerRank;
+		delete [] currentPlayerStatus;
 	}	
 
 	ClearAllGameStates();
@@ -35,14 +35,14 @@ void Game::StartGame()
 {
 	if(gameStat != NULL)
 		delete gameStat;
-	if(currentPlayerRank == NULL)
+	if(currentPlayerStatus == NULL)
 	{
-		currentPlayerRank = new int[playerCount - 1];
+		currentPlayerStatus = new int[playerCount - 1];
 	}
 
 	for(int loop1 = 0; loop1 < playerCount - 1; loop1++)
 	{
-		currentPlayerRank[loop1] = 0;
+		currentPlayerStatus[loop1] = 0;
 	}
 
 	gameStat = new GameStat(playerCount);
@@ -81,9 +81,9 @@ void Game::NextTurn()
 			{
 				gameStat->AddTurnNumberReal();
 
-				int outRankDifference;
-				int newLeaderID = GetLeaderID(&outRankDifference);
-				gameStat->AddRankDifference(outRankDifference);
+				int outStatusDifference;
+				int newLeaderID = GetLeaderID(&outStatusDifference);
+				gameStat->AddStatusDifference(outStatusDifference);
 				if(newLeaderID != playerLeader)
 					gameStat->AddLeaderSwitch();
 				playerLeader = newLeaderID;
@@ -107,10 +107,10 @@ void Game::NextTurn()
 			{
 				state = STATE_GAME_OVER;
 				
-				int outRankDifference;
-				int newLeaderID = GetLeaderID(&outRankDifference);
-				gameStat->AddRankDifference(outRankDifference);
-				gameStat->SetEndRankDifference(outRankDifference);
+				int outStatusDifference;
+				int newLeaderID = GetLeaderID(&outStatusDifference);
+				gameStat->AddStatusDifference(outStatusDifference);
+				gameStat->SetEndStatusDifference(outStatusDifference);
 				gameStat->SetWinner(newLeaderID);
 				gameStat->SetGameSpecificStat(currentState->GetGameSpecificStat());
 				
@@ -136,30 +136,30 @@ void Game::NextTurn()
 		widget->repaint();
 }
 
-int Game::GetLeaderID(int * outRankDifference)
+int Game::GetLeaderID(int * outStatusDifference)
 {
 	IGameState * currentState = GetCurrentState();
 
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
-		currentPlayerRank[loop1 - 1] = currentState->GetPlayerRank(loop1, 0);
+		currentPlayerStatus[loop1 - 1] = currentState->GetPlayerStatus(loop1);
 	}
 
 	int bestID = 0;
-	int bestRank = currentPlayerRank[0];
+	int bestStatus = currentPlayerStatus[0];
 	for(int loop1 = 1; loop1 < playerCount - 1; loop1++)
 	{
-		if(currentPlayerRank[loop1] > bestRank)
+		if(currentPlayerStatus[loop1] > bestStatus)
 		{ 
-			bestRank = currentPlayerRank[loop1];
+			bestStatus = currentPlayerStatus[loop1];
 			bestID = loop1;
 		}
 	}
 	// we have almost zero sum games
 	// score of winner is difference between best one and second one
-	*outRankDifference = bestRank;
+	*outStatusDifference = bestStatus;
 
-	if(bestRank < 0)
+	if(bestStatus < 0)
 		return 0;
 
 	return bestID + 1;

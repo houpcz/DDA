@@ -97,8 +97,8 @@ public:
 	void AddTurnNumber() { turnNumber++; }
 	void AddTurnNumberReal() { turnNumberReal++; }
 	void AddLeaderSwitch() { leaderSwitches++; };
-	void AddRankDifference(int difference) { sumRankDifference += difference; };
-	void SetEndRankDifference(int difference) { endRankDifference = difference; };
+	void AddStatusDifference(int difference) { sumRankDifference += difference; };
+	void SetEndStatusDifference(int difference) { endRankDifference = difference; };
 
 	void AddPlayerLevel(int playerID, int _level) {
 		CheckPlayerID(playerID);

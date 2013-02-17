@@ -24,7 +24,7 @@ protected:
 	State state;
 	int playerCount;
 	int playerLeader;
-	int * currentPlayerRank;
+	int * currentPlayerStatus;
 	IPlayer ** player;
 	GameStat * gameStat;
 
