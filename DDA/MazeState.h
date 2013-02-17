@@ -135,6 +135,8 @@ public:
 	int GetPlayerRank(int playerID, int whoAskID);
 	int GetPlayerStatus(int playerID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
+	IGameState * GetRandomNextState(int whoAskID, int * outStateID);
+
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
 	bool IsPossibleWayToGoal() { return possibleWayToGoal; };

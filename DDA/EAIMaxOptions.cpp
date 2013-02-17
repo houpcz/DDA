@@ -14,11 +14,19 @@ bool EAIMaxOptions::Think()
 	int turnNumber;
 	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &turnNumber);
 
-	int bestValue = nextState[0]->GetPlayerChoises(nextState[0]->GetActivePlayerID());
-	bestTurns.push_back(0);
+	int firstValid = 0;
+	for(; firstValid < turnNumber; firstValid++)
+		if(nextState[firstValid] != NULL)
+			break;
 
-	for(int loop1 = 1; loop1 < turnNumber; loop1++)
+	int bestValue = nextState[firstValid]->GetPlayerChoises(nextState[firstValid]->GetActivePlayerID());
+	bestTurns.push_back(firstValid);
+
+	for(int loop1 = firstValid + 1; loop1 < turnNumber; loop1++)
 	{
+		if(nextState[loop1] == NULL)
+			continue;
+
 		int temp = nextState[loop1]->GetPlayerChoises(nextState[loop1]->GetActivePlayerID());
 		if(temp > bestValue)
 		{
@@ -31,7 +39,10 @@ bool EAIMaxOptions::Think()
 	}
 
 	for(int loop1 = 0; loop1 < turnNumber; loop1++)
-		delete nextState[loop1];
+	{
+		if(nextState[loop1] != NULL)
+			delete nextState[loop1];
+	}
 	delete [] nextState;
 
 	myTurn = bestTurns[rand() % bestTurns.size()];

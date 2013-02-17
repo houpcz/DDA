@@ -556,6 +556,18 @@ IGameState ** LostCitiesState::GetNextStates(int whoAskID, int *outNumberNextSta
 	return nextState;
 }
 
+IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
+{
+	WhoAsked(whoAskID);
+	int numberNextStates = GetPlayerChoises(whoAskID);
+	int turn = rand() % numberNextStates;
+	LostCitiesState * lostCitiesState = new LostCitiesState(*this);
+	lostCitiesState->MakeTurn(turn);
+
+	*outStateID = turn;
+	return lostCitiesState;
+}
+
 ISpecificStat * LostCitiesState::GetGameSpecificStat()
 {
 	return NULL;

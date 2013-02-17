@@ -39,6 +39,8 @@ public:
 	int GetPlayerRank(int playerID, int whoAskID);
 	int GetPlayerStatus(int playerID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
+	IGameState * GetRandomNextState(int whoAskID, int * outStateID);
+
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }
 	bool IsGameOver();

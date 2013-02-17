@@ -10,40 +10,13 @@ EnvironmentAIBasic::~EnvironmentAIBasic(void)
 
 bool EnvironmentAIBasic::Think()
 {
-	int choises;
-	int choisesLegal = 0;
-	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &choises);
+	int turnID;
+	IGameState * nextState = game->GetCurrentState()->GetRandomNextState(myID, &turnID);
 
-	for(int loop1 = 0; loop1 < choises; loop1++)
-	{
-		if(nextState[loop1] != NULL)
-		{
-			choisesLegal++;
-		}
-	}
-	int myTurnLegal = rand() % choisesLegal;
-
-	int tempLegal = 0;
-	for(int loop1 = 0; loop1 < choises; loop1++)
-	{
-		if(nextState[loop1] != NULL)
-		{
-			if(myTurnLegal == tempLegal)
-			{
-				myTurn = loop1;
-			}
-			tempLegal++;
-		}
-	}
-	
+	myTurn = turnID;
 	isReady = true;
 
-	for(int loop1 = 0; loop1 < choises; loop1++)
-	{
-		if(nextState[loop1] != NULL)
-			delete nextState[loop1];
-	}
-	delete [] nextState;
+	delete nextState;
 
 	return true;
 }

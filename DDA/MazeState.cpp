@@ -222,6 +222,36 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	return nextState;
 }
 
+IGameState * MazeState::GetRandomNextState(int whoAskID, int * outStateID)
+{
+	int numberNextStates = GetPlayerChoises(whoAskID);
+	int turn;
+	MazeState * mazeState = NULL;
+
+	turn = rand() % numberNextStates;
+	mazeState = new MazeState(*this);
+	mazeState->Explore(turn);
+
+	if(activePlayerID == ENVINRONMENT_AI && !mazeState->IsPossibleWayToGoal())
+	{
+		vector<int> notExploredTurns;
+		for(int loop1 = 0; loop1 < nonRedundantTurns.size(); loop1++)
+		{
+			notExploredTurns.push_back(loop1);
+		}
+		do {
+			int rndNumber = rand() % notExploredTurns.size();
+			mazeState = new MazeState(*this);
+			turn = notExploredTurns[rndNumber];
+			notExploredTurns.erase(notExploredTurns.begin() + rndNumber, notExploredTurns.begin() + rndNumber + 1);
+			mazeState->Explore(turn);
+		} while(!mazeState->IsPossibleWayToGoal());
+	}
+
+	*outStateID = turn;
+	return mazeState;
+}
+
 int MazeState::FindTileToExplore(int x, int y)
 {
 	int tempX, tempY;

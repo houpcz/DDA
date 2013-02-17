@@ -24,6 +24,7 @@ public :
 	virtual int GetActivePlayerID() const = 0;
 	virtual int GetPlayerRank(int playerID, int whoAskID) = 0;
 	virtual int GetPlayerStatus(int playerID) = 0;
+	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID) = 0;
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
 	//virtual IGameState * GetRandomState() = 0;
 	//virtual GetPlayerStatus(int playerID, int whoAskID) = 0;

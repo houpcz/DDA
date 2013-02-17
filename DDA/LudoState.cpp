@@ -48,6 +48,17 @@ IGameState ** LudoState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	return nextState;
 }
 
+IGameState * LudoState::GetRandomNextState(int whoAskID, int * outStateID)
+{
+	int numberNextStates = GetPlayerChoises(whoAskID);
+	int turn = rand() % numberNextStates;
+	LudoState * ludoState = new LudoState(*this);
+	ludoState->MakeTurn(turn);
+
+	*outStateID = turn;
+	return ludoState;
+}
+
 int LudoState::GetPlayerChoises(int whoAskID)
 {
 	if(dicePlayerNow)

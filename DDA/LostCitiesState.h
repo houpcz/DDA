@@ -70,6 +70,7 @@ public:
 	virtual int GetPlayerStatus(int playerID);
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
+	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID);
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
 	bool IsGameOver();
