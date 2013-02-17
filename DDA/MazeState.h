@@ -106,6 +106,8 @@ private:
 	void RemoveNonviableTileToExplore();
 	void SetGoalNeightboursWall(int x, int y);
 	void SetTileEmpty(int x, int y);
+
+	int GetDistanceBetween(vector<int> pos11D, int pos2X, int pos2Y, bool undefined = false);
 	// undefined - can go through undefined files
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
 	void AddGoalToTileToExploreIfNeighbours(int x, int y);

@@ -390,9 +390,22 @@ bool MazeState::Explore(int tileToExploreID)
 
 int MazeState::GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined)
 {
+	vector<int> pos11D;
+	pos11D.push_back(Pos2Dto1D(pos1X, pos1Y));
+	return GetDistanceBetween(pos11D, pos2X, pos2Y, undefined);
+}
+int MazeState::GetDistanceBetween(vector<int> pos11D, int pos2X, int pos2Y, bool undefined)
+{
 	priority_queue<QueueNode, vector<QueueNode>, CompareNode> q;
-	QueueNode tempNode = QueueNode(pos1X, pos1Y, 0, pos2X, pos2Y);
-	q.push(tempNode);
+
+	QueueNode tempNode(0, 0, 0, 0, 0);
+	for(int loop1 = 0; loop1 < pos11D.size(); loop1++)
+	{
+		int pos1X, pos1Y;
+		Pos1Dto2D(pos11D[loop1], &pos1X, &pos1Y);
+		tempNode = QueueNode(pos1X, pos1Y, 0, pos2X, pos2Y);
+		q.push(tempNode);
+	}
 
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
@@ -960,20 +973,7 @@ void MazeState::CountRank()
 			playerRank += 9;
 		} else {
 			int x, y;
-			int minDist = mazeWidth * mazeHeight;
-			for(int loop1 = 0; loop1 < tileToExplore.size(); loop1++)
-			{
-				Pos1Dto2D(tileToExplore[loop1], &x, &y);
-				if(GetTile(x - 1, y) == TILE_UNDEFINED ||
-				   GetTile(x + 1, y) == TILE_UNDEFINED ||
-				   GetTile(x, y + 1) == TILE_UNDEFINED ||
-				   GetTile(x, y - 1) == TILE_UNDEFINED)
-				{
-					int tempDist = GetDistanceBetween(x, y, playerX, playerY, false);
-					if(tempDist < minDist)
-						minDist = tempDist;
-				}
-			}
+			int minDist = GetDistanceBetween(tileToExplore, playerX, playerY, false);
 			playerRank -= minDist * 2;
 		}
 	}

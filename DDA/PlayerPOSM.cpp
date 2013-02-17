@@ -25,7 +25,7 @@ void PlayerPOSM::StartGame(IGame * _game)
 void PlayerPOSM::UpdateDifficultyLevel()
 {
 	int o = 0;
-	int h = game->GetCurrentState()->GetPlayerRank(myID, myID);
+	int h = game->GetCurrentState()->GetPlayerStatus(myID);
 	if(h < 0)
 		o = 1;
 	else if(h > 0)
