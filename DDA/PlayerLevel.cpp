@@ -21,7 +21,7 @@ void PlayerLevel::StartGame(IGame * _game)
 
 void PlayerLevel::UpdateLevel()
 {
-	int score = game->GetCurrentState()->GetPlayerRank(myID, myID);
+	int score = game->GetCurrentState()->GetPlayerStatus(myID);
 	if(score < 0) level += (int) log((double) -score);
 	if(score > 0) level -= (int) log((double) score);
 	if(level < 50) level = 50;

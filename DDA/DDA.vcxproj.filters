@@ -235,9 +235,6 @@
     <ClCompile Include="PlayerPOSM.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Qwt\qwt_abstract_scale.cpp">
       <Filter>Qwt</Filter>
     </ClCompile>
@@ -630,6 +627,9 @@
     </ClCompile>
     <ClCompile Include="IGraph.cpp">
       <Filter>Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLevel.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -282,6 +282,12 @@ int LudoState::GetPlayerRank(int playerID, int whoAskID)
 
 	return playerRank[playerID - 1];
 }
+
+int LudoState::GetPlayerStatus(int playerID)
+{
+	return GetPlayerRank(playerID, 0);
+}
+
 void LudoState::CountPlayerRanks()
 {
 	int tempRank[MAX_PLAYER];

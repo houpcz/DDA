@@ -11,7 +11,7 @@ public:
 		if(playerID == 0)
 			return 0;
 
-		return currentState->GetPlayerRank(playerID, 0);
+		return currentState->GetPlayerStatus(playerID);
 	}
 
 	QString GetName() { return "Flow view"; }

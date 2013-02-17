@@ -133,6 +133,7 @@ public:
 	char GetTile(int x, int y);
 	bool IsGameOver();
 	int GetPlayerRank(int playerID, int whoAskID);
+	int GetPlayerStatus(int playerID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);

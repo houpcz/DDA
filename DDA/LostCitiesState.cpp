@@ -294,6 +294,12 @@ int LostCitiesState::GetPlayerRank(int playerID, int whoAskID)
 	int him = GetPositivePlayerRank(opponentID, whoAskID);
 	return me - him;
 }
+
+int LostCitiesState::GetPlayerStatus(int playerID)
+{
+	return GetPlayerRank(playerID, 0);
+}
+
 int LostCitiesState::GetPositivePlayerRank(int playerID, int whoAskID)
 {
 	int score = 0;

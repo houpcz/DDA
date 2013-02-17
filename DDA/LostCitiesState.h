@@ -67,6 +67,7 @@ public:
 	virtual int GetActivePlayerID() const;
 	int GetPositivePlayerRank(int playerID, int whoAskID);
 	virtual int GetPlayerRank(int playerID, int whoAskID);
+	virtual int GetPlayerStatus(int playerID);
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	bool MakeTurn(int turn);

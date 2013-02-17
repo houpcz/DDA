@@ -863,6 +863,12 @@ int MazeState::GetPlayerRank(int playerID, int whoAskID)
 
 	return playerRank;
 }
+
+int MazeState::GetPlayerStatus(int playerID)
+{
+	return 0;
+}
+
 void MazeState::CountRank()
 {
 	if(!possibleWayToGoal || (tileToExplore.size() == 0 && activePlayerID == PLAYER_AI))
