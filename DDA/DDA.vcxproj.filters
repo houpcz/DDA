@@ -631,6 +631,9 @@
     <ClCompile Include="PlayerLevel.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerLevel2.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
@@ -686,9 +689,6 @@
     </ClInclude>
     <ClInclude Include="PlayerPOSM.h">
       <Filter>Player</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLevel.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Qwt\qwt.h">
       <Filter>Qwt</Filter>
@@ -851,6 +851,12 @@
     </ClInclude>
     <ClInclude Include="LevelGraph.h">
       <Filter>Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevel.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevel2.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

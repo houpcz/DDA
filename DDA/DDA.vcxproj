@@ -355,6 +355,7 @@
     <ClCompile Include="MiniMaxPlayer.cpp" />
     <ClCompile Include="PlayerHillClimber.cpp" />
     <ClCompile Include="PlayerLevel.cpp" />
+    <ClCompile Include="PlayerLevel2.cpp" />
     <ClCompile Include="PlayerPOSM.cpp" />
     <ClCompile Include="PlayerRandomAI.cpp" />
     <ClCompile Include="QApp.cpp" />
@@ -458,6 +459,7 @@
     <ClInclude Include="FlowGraph.h" />
     <ClInclude Include="IGraph.h" />
     <ClInclude Include="LevelGraph.h" />
+    <ClInclude Include="PlayerLevel2.h" />
     <ClInclude Include="Qwt\qwt.h" />
     <ClInclude Include="Qwt\qwt_abstract_scale.h" />
     <ClInclude Include="Qwt\qwt_abstract_scale_draw.h" />

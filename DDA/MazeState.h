@@ -78,6 +78,7 @@ private:
 	int firstRnd;
 	int mazeWidth, mazeHeight;
 	bool visibleGoals;
+	bool abstraction;
 	int activePlayerID;
 	int playerX, playerY;
 	int startX, startY;
@@ -88,7 +89,8 @@ private:
 	int goalAmount;
 	int playerRank;
 	vector<int> tileToExplore;
-	vector<int> nonRedundantTurns;
+	vector<int> environmentTurns;
+	vector<int> enbironmentTurnsAbstract;
 	int hallSize;
 	int stepsToGameOver;
 	bool possibleWayToGoal;

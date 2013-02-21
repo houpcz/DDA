@@ -14,6 +14,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
 	visibleGoals = _visibleGoals;
+	abstraction = true;
 
 	firstRnd = rand() % 100 + 10;
 
