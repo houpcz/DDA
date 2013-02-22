@@ -8,7 +8,10 @@
 #include <QSpinBox>
 #include <QComboBox>
 #include <QTreeWidget>
+#include <QLabel>
 #include <QProgressBar>
+#include <QBasicTimer>
+#include <QElapsedTimer>
 #include "BatchThread.h"
 #include "IGame.h"
 #include "BatchItem.h"
@@ -24,6 +27,10 @@ private :
 	BatchThread *batchThread;
 	QLCDNumber *gameIDNumber;
 	int progressValue;
+	QBasicTimer basicTimer;
+	QElapsedTimer elapsedTime;
+	QLabel * progressTimeLabel;
+	QLabel * elapsedTimeLabel;
 	QProgressBar *progressBar;
 	QPushButton *startButton;
 	QPushButton *stopButton;
@@ -40,14 +47,19 @@ private :
 	QSpinBox * batchSize;
 
 	bool batchIsRunning;
+	double timePerItem;
 	int currentBatchItemID;
 	vector<BatchItem *> batchItem;
 	vector<IGame *> gameList;
 	vector<IEnvironmentAI *> environmentAIList;
 	vector<IPlayer *> playerAIList;
+
+	void DisassemblyTimeInSeconds(int seconds, int *outS, int *outMin, int *outHour);
 public:
 	BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, QWidget *parent);
 	~BatchWindow(void);
+
+	void timerEvent(QTimerEvent *event);
 public slots:
 	void StartBatch();
 	void StopBatch();

@@ -21,6 +21,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 stopButton = new QPushButton(tr("Stop"), this);
 	 connect(stopButton, SIGNAL(clicked()), this, SLOT(StopBatch()));
 	 progressBar = new QProgressBar(this);
+	 progressBar->setTextVisible(false);
 	 progressBar->setMinimum(0);
 	 //gameIDNumber = new QLCDNumber(this);
 	 //connect(batchThread, SIGNAL(GameOver(int)), gameIDNumber, SLOT(display(int)), Qt::QueuedConnection);
@@ -89,6 +90,11 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 connect(listBatch, SIGNAL(itemSelectionChanged()), this, SLOT(ItemSelect()));
 	 connect(listBatch, SIGNAL(itemClicked (QTreeWidgetItem*,int)), this, SLOT(ItemSelect()));
 
+	 timePerItem = 1.0;
+	 elapsedTimeLabel = new QLabel("");
+	 progressTimeLabel = new QLabel("");
+	 progressTimeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+	 elapsedTimeLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 	 gridLayout->addWidget(gameBox, 0, 0);
 	 gridLayout->addWidget(batchSize, 0, 1);
 	 gridLayout->addWidget(addBatch, 0, 2);
@@ -102,7 +108,9 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 gridLayout->addWidget(startButton, 4, 0);
 	 gridLayout->addWidget(stopButton, 4, 1);
 	 gridLayout->addWidget(saveAllToCsv, 4, 2);
-	 gridLayout->addWidget(progressBar, 4, 3, 1, 3);
+	 gridLayout->addWidget(progressBar, 4, 3, 1, 2);
+	 gridLayout->addWidget(elapsedTimeLabel, 4, 5, 1, 1);
+	 gridLayout->addWidget(progressTimeLabel, 4, 3, 1, 1);
      setLayout(gridLayout);
 }
 
@@ -123,6 +131,7 @@ void BatchWindow::NextBatchItem()
 	{
 		batchThread->Start(batchItem[currentBatchItemID]);
 	} else {
+		basicTimer.stop();
 		removeBatch->setEnabled(true);
 		addBatch->setEnabled(true);
 		setupBatch->setEnabled(true);
@@ -140,12 +149,18 @@ void BatchWindow::GameOver(int gameID)
 {
 	batchItem[currentBatchItemID]->TreeWidgetItem()->setData(2, 0, gameID);
 	progressValue++;
+	timePerItem = elapsedTime.elapsed() / (double) progressValue / 1000.0;
 	progressBar->setValue(progressValue);
+
+
 }
 void BatchWindow::StartBatch()
 {
 	if(batchThread->isRunning() || batchItem.empty())
 		return;
+
+	basicTimer.start(1000, this);
+	elapsedTime.start();
 
 	int sumBatchSize = 0;
 	for(int loop1 = 0; loop1 < batchItem.size(); loop1++)
@@ -171,6 +186,7 @@ void BatchWindow::StartBatch()
 void BatchWindow::StopBatch()
 {
 	batchIsRunning = false;
+	basicTimer.stop();
 	batchThread->Stop();
 }
 
@@ -283,4 +299,44 @@ void BatchWindow::OpenDiagramWindow()
 		BatchDiagrams *diagramWindow = new BatchDiagrams(batchItem[currentID], currentID);
 		diagramWindow->show();
 	}
+}
+
+void BatchWindow::DisassemblyTimeInSeconds(int seconds, int *outS, int *outMin, int *outHour)
+{
+	int minute = seconds / 60;
+	
+	*outHour = minute / 60;
+	*outMin = minute % 60;
+	*outS = seconds % 60;
+}
+
+void BatchWindow::timerEvent(QTimerEvent *event)
+{
+	int batchSum = progressBar->maximum();
+
+	int timeElapsed = (int) (elapsedTime.elapsed() / 1000.0);
+	int timeToEnd = (int) (timePerItem * batchSum - timeElapsed);
+	
+	int h, m, s;
+	QString printString;
+	if(progressBar->maximum() == progressValue || progressValue == 0)
+	{
+		progressTimeLabel->setText(" ");
+	} else {
+		DisassemblyTimeInSeconds(timeToEnd, &s, &m, &h);
+		if(h > 0)
+			printString += QString::number(h) + QString(" h ");
+		if(m > 0 || printString.length() > 0)
+			printString += QString::number(m) + QString(" m ");
+		if(s > 0 || printString.length() > 0)
+			progressTimeLabel->setText(printString + QString::number(s) + " s");
+	}
+
+	printString = "";
+	DisassemblyTimeInSeconds(timeElapsed, &s, &m, &h);
+	if(h > 0)
+		printString += QString::number(h) + QString(" h ");
+	if(m > 0 || printString.length() > 0)
+		printString += QString::number(m) + QString(" m ");
+	elapsedTimeLabel->setText(printString + QString::number(s) + " s");
 }
