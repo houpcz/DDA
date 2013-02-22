@@ -7,14 +7,14 @@
 
 using namespace std;
 
-MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals)
+MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction)
 {
 	mazeWidth = mWidth;
 	mazeHeight = mHeight;
 	activePlayerID = _activePlayerID;
 	stepsToGameOver = _stepsToGameOver;
 	visibleGoals = _visibleGoals;
-	abstraction = true;
+	abstraction = _abstraction;
 
 	firstRnd = rand() % 100 + 10;
 
@@ -166,7 +166,9 @@ void MazeState::CopyToMe(const MazeState & origin)
 	}
 
 	tileToExplore = origin.tileToExplore;
-	nonRedundantTurns = origin.nonRedundantTurns;
+	environmentTurns = origin.environmentTurns;
+	environmentTurnsAbstract = origin.environmentTurnsAbstract;
+	environmentTurnsReal = origin.environmentTurnsReal;
 }
 
 
@@ -180,7 +182,9 @@ void MazeState::ClearMe()
 	MatrixFactory::Inst()->ReturnMatrix(maze, mazeWidth, mazeHeight);
 	MatrixFactory::Inst()->ReturnMatrix(mazeClosedList, mazeWidth, mazeHeight);
 	tileToExplore.clear();
-	nonRedundantTurns.clear();
+	environmentTurns.clear();
+	environmentTurnsAbstract.clear();
+	environmentTurnsReal.clear();
 }
 
 IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
@@ -189,17 +193,21 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	MazeState * mazeState;
 
 	int choises = GetPlayerChoises(whoAskID);
-
+	int realTurn;
 	if(activePlayerID == ENVINRONMENT_AI)
 	{
 		vector<IGameState *> tempState;
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			mazeState = new MazeState(*this);
-			mazeState->Explore(loop1);
-			if(!mazeState->IsPossibleWayToGoal())
+			mazeState = GetNextStateWithID(loop1, &realTurn);
+			if(abstraction)
+				environmentTurnsReal[loop1] = realTurn;
+
+			if(mazeState == NULL || !mazeState->IsPossibleWayToGoal())
 			{
-				delete mazeState;
+				if(mazeState != NULL)
+					delete mazeState;
+
 				tempState.push_back(NULL);
 			} else {
 				tempState.push_back(mazeState);
@@ -223,30 +231,76 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	return nextState;
 }
 
+MazeState * MazeState::GetNextStateWithID(int turnID, int * outRealTurn)
+{
+	*outRealTurn = 0;
+
+	MazeState * mazeState = NULL;
+	if(!abstraction)
+	{
+		mazeState = new MazeState(*this);
+		mazeState->Explore(turnID);
+		*outRealTurn = turnID;
+	} else {
+		int start;
+		if(turnID == 0)
+			start = 0;
+		else
+			start = environmentTurnsAbstract[turnID - 1];
+		int end = environmentTurnsAbstract[turnID];
+
+		for(int loop1 = start; loop1 < end; loop1++)
+		{
+			if(mazeState != NULL)
+				delete mazeState;
+
+			mazeState = new MazeState(*this);
+			mazeState->Explore(loop1);
+			*outRealTurn = loop1;
+
+			if(mazeState->IsPossibleWayToGoal())
+				break;
+		}
+	}
+
+	return mazeState;
+}
+
 IGameState * MazeState::GetRandomNextState(int whoAskID, int * outStateID)
 {
 	int numberNextStates = GetPlayerChoises(whoAskID);
 	int turn;
+	int realTurn;
 	MazeState * mazeState = NULL;
 
-	turn = rand() % numberNextStates;
-	mazeState = new MazeState(*this);
-	mazeState->Explore(turn);
+	turn = rand() % numberNextStates;	
+	mazeState = GetNextStateWithID(turn, &realTurn);
+	if(abstraction)
+		environmentTurnsReal[turn] = realTurn;
 
-	if(activePlayerID == ENVINRONMENT_AI && !mazeState->IsPossibleWayToGoal())
+	if(activePlayerID == ENVINRONMENT_AI && (mazeState == NULL || !mazeState->IsPossibleWayToGoal()))
 	{
 		vector<int> notExploredTurns;
-		for(int loop1 = 0; loop1 < nonRedundantTurns.size(); loop1++)
+
+		int end = (abstraction) ? environmentTurnsAbstract.size() : environmentTurns.size();
+		for(int loop1 = 0; loop1 < end; loop1++)
 		{
 			notExploredTurns.push_back(loop1);
 		}
+
 		do {
 			int rndNumber = rand() % notExploredTurns.size();
-			mazeState = new MazeState(*this);
+			if(mazeState != NULL)
+				delete mazeState;
+			
 			turn = notExploredTurns[rndNumber];
 			notExploredTurns.erase(notExploredTurns.begin() + rndNumber, notExploredTurns.begin() + rndNumber + 1);
-			mazeState->Explore(turn);
-		} while(!mazeState->IsPossibleWayToGoal());
+
+			mazeState = GetNextStateWithID(turn, &realTurn);
+			if(abstraction)
+				environmentTurnsReal[turn] = realTurn;
+
+		} while(mazeState == NULL || !mazeState->IsPossibleWayToGoal());
 	}
 
 	*outStateID = turn;
@@ -345,6 +399,14 @@ bool MazeState::IsStateLegal()
 	return true;
 }
 
+bool MazeState::RealExplore(int tileToExploreID)
+{
+	if(abstraction && activePlayerID == ENVINRONMENT_AI)
+		return Explore(environmentTurnsReal[tileToExploreID]);
+	else
+		return Explore(tileToExploreID);
+}
+
 bool MazeState::Explore(int tileToExploreID)
 {
 	bool gameOver = false;
@@ -357,7 +419,7 @@ bool MazeState::Explore(int tileToExploreID)
 			FindNonRedundantTurns();
 			break;
 		case ENVINRONMENT_AI :
-			gameOver = ExploreEnvironment(nonRedundantTurns[tileToExploreID], &twoUndefined, &wallX, &wallY);
+			gameOver = ExploreEnvironment(environmentTurns[tileToExploreID], &twoUndefined, &wallX, &wallY);
 			if(twoUndefined)
 			{
 				if(!IsStateLegal())
@@ -568,20 +630,28 @@ void MazeState::FindNonRedundantTurns()
 	int dx = 0, dy = 0;
 	int holeX = 0, holeY = 0;
 	
-	nonRedundantTurns.clear();
+	environmentTurns.clear();
+	environmentTurnsAbstract.clear();
+	environmentTurnsReal.clear();
+
+	vector<int> helpVector;
 
 	for(int loop1 = 0; loop1 < hallSize; loop1++)
 	{
-		nonRedundantTurns.push_back(loop1);
+		helpVector.push_back(loop1);
 	}
 
 	if(hallSize == 1)
 	{
-		nonRedundantTurns.push_back(0 + hallSize);
-		nonRedundantTurns.push_back(1 + hallSize);
-		nonRedundantTurns.push_back(2 + hallSize);
-		nonRedundantTurns.push_back(3 + hallSize);
-	}
+		helpVector.push_back(0 + hallSize);
+		helpVector.push_back(1 + hallSize);
+		helpVector.push_back(2 + hallSize);
+		helpVector.push_back(3 + hallSize);
+	} 
+	random_shuffle(helpVector.begin(), helpVector.end());
+	environmentTurns.insert(environmentTurns.end(), helpVector.begin(), helpVector.end());
+	environmentTurnsAbstract.push_back(environmentTurns.size());
+	helpVector.clear();
 
 	if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
 	{
@@ -604,29 +674,49 @@ void MazeState::FindNonRedundantTurns()
 		holeX = 1;
 	}
 
+	
 	int hallSizePlus1 = hallSize + 1;
-	int maxTurn = hallSizePlus1 * hallSizePlus1;
-	for(int loop1 = 0; loop1 < hallSizePlus1; loop1++)
-	{
-		int hole1 = loop1 - 1;
-		int h1X = playerX + (1 + hole1) * dx + holeX;
-		int h1Y = playerY + (1 + hole1) * dy + holeY;
+	int abstractWide = max(2, hallSize / 4);
+	int abstractCopyWhen = hallSize % abstractWide;
 
-		if((hole1 >= 0 && GetTile(h1X, h1Y) == TILE_UNDEFINED) || hole1 < 0)
-		{
-			for(int loop2 = 0; loop2 < hallSizePlus1; loop2++)
+	int maxTurn = hallSizePlus1 * hallSizePlus1;
+
+	for(int loop3 = 0; loop3 < abstractWide; loop3++)
+	{
+		for(int loop4 = 0; loop4 < abstractWide; loop4++)
+		{		
+			for(int loop1 = loop3 * abstractWide; loop1 < (loop3 + 1) * abstractWide && loop1 < hallSizePlus1; loop1++)
 			{
-				int hole2 = loop2 - 1;
-				int h2X = playerX + (1 + hole2) * dx - holeX;
-				int h2Y = playerY + (1 + hole2) * dy - holeY;
-				if(((hole2 >= 0 && GetTile(h2X, h2Y) == TILE_UNDEFINED) || hole2 < 0))
+				int hole1 = loop1 - 1;
+				int h1X = playerX + (1 + hole1) * dx + holeX;
+				int h1Y = playerY + (1 + hole1) * dy + holeY;
+
+				if((hole1 >= 0 && GetTile(h1X, h1Y) == TILE_UNDEFINED) || hole1 < 0)
 				{
-					int turn = loop2 + loop1 * hallSizePlus1;
-					nonRedundantTurns.push_back(turn + hallSize);
+					for(int loop2 = loop4 * abstractWide; loop2 < (loop4 + 1) * abstractWide && loop2 < hallSizePlus1; loop2++)
+					{
+						int hole2 = loop2 - 1;
+						int h2X = playerX + (1 + hole2) * dx - holeX;
+						int h2Y = playerY + (1 + hole2) * dy - holeY;
+						if(((hole2 >= 0 && GetTile(h2X, h2Y) == TILE_UNDEFINED) || hole2 < 0))
+						{
+							int turn = loop2 + loop1 * hallSizePlus1;
+							helpVector.push_back(turn + hallSize);
+						}
+					}
 				}
+			}
+
+			if(helpVector.size() > 0)
+			{
+				random_shuffle(helpVector.begin(), helpVector.end());
+				environmentTurns.insert(environmentTurns.end(), helpVector.begin(), helpVector.end());
+				environmentTurnsAbstract.push_back(environmentTurns.size());
+				helpVector.clear();
 			}
 		}
 	}
+	environmentTurnsReal.insert(environmentTurnsReal.begin(), environmentTurnsAbstract.begin(), environmentTurnsAbstract.end());
 }
 
 void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
@@ -1047,7 +1137,12 @@ int MazeState::GetPlayerChoises(int whoAskID)
 		switch(activePlayerID)
 		{
 			case ENVINRONMENT_AI :
-				return nonRedundantTurns.size();
+				if(abstraction)
+				{
+					return environmentTurnsAbstract.size();
+				} else {
+					return environmentTurns.size();
+				}
 				break;
 			case PLAYER_AI :
 				return tileToExplore.size();

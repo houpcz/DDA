@@ -19,6 +19,7 @@ private :
 	int mazeHeight;
 	int stepsToGameOver;
 	bool visibleGoals;
+	bool abstraction;
 
 	float tileWidth;
 	float tileHeight;
@@ -42,6 +43,7 @@ public :
 		void SetMazeHeight(int height);
 		void SetStepsToGameOver(int steps);
 		void SetVisibleGoals(int state);
+		void SetAbstraction(int state);
 };
 
 #endif

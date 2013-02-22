@@ -12,9 +12,10 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	mazeWidth = 41;
 	mazeHeight = 41;
 	visibleGoals = false;
+	abstraction = true;
 	stepsToGameOver = 1000;
 
-	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals);
+	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals, abstraction);
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
 
@@ -43,7 +44,7 @@ void GameMaze::StartGame()
 		delete currentState;
 	}
 
-	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals);
+	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals, abstraction);
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);
@@ -55,7 +56,7 @@ void GameMaze::StartGame()
 bool GameMaze::PlayerTurn()
 {
 	int playerTurn = player[currentState->GetActivePlayerID()]->MakeTurn();
-	bool gameOver = currentState->Explore(playerTurn);
+	bool gameOver = currentState->RealExplore(playerTurn);
 
 	return gameOver;
 }
@@ -256,12 +257,22 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	widgets.push_back(pair<QWidget *, QString>(visibleGoalsBox, QString("Visible bombs")));
 	connect(visibleGoalsBox, SIGNAL(stateChanged(int)), this, SLOT(SetVisibleGoals(int)));
 
+	QCheckBox * abstractionBox = new QCheckBox();
+	abstractionBox->setChecked(abstraction);
+	widgets.push_back(pair<QWidget *, QString>(abstractionBox, QString("State abstraction")));
+	connect(abstractionBox, SIGNAL(stateChanged(int)), this, SLOT(SetAbstraction(int)));
+
 	return widgets;
 }
 
 void GameMaze::SetVisibleGoals(int state)
 {
 	visibleGoals = state;
+}
+
+void GameMaze::SetAbstraction(int state)
+{
+	abstraction = state;
 }
 
 void GameMaze::SetMazeWidth(int width)

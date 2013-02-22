@@ -90,7 +90,8 @@ private:
 	int playerRank;
 	vector<int> tileToExplore;
 	vector<int> environmentTurns;
-	vector<int> enbironmentTurnsAbstract;
+	vector<int> environmentTurnsAbstract;
+	vector<int> environmentTurnsReal;
 	int hallSize;
 	int stepsToGameOver;
 	bool possibleWayToGoal;
@@ -114,8 +115,10 @@ private:
 	int GetDistanceBetween(int pos1X, int pos1Y, int pos2X, int pos2Y, bool undefined = false);
 	void AddGoalToTileToExploreIfNeighbours(int x, int y);
 	void CountRank();
+	bool Explore(int tileToExploreID);
+	MazeState * GetNextStateWithID(int turnID, int * outRealTurn);
 public:
-	MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals);
+	MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);
@@ -144,7 +147,7 @@ public:
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);
 	bool IsPossibleWayToGoal() { return possibleWayToGoal; };
-	bool Explore(int tileToExploreID);
+	bool RealExplore(int tileToExploreID);
 
 	int Pos2Dto1D(int x, int y);
 	void Pos1Dto2D(int d1, int * x, int * y);
