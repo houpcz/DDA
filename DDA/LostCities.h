@@ -17,6 +17,7 @@ private :
 	LostCitiesState * currentState;
 	int cardWidth, cardHeight;
 	int realHandSize;
+	bool abstraction;
 	static const int CLICKABLE_MAX_ACTIVE = 4;
 	static const int CLICKABLE_HOVER = 0;
 	static const int CLICKABLE_PLAY_FROM = 1;
@@ -45,6 +46,7 @@ public:
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new LostCities(_widget, _paint); };
 public slots:
 	void SetHandSize(int _handSize);
+	void SetAbstraction(int state);
 };
 
 #endif

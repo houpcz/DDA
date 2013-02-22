@@ -45,17 +45,18 @@ private:
 	int whoAskIDlast;
 	bool isGameOver;
 	int handSize;
+	bool abstraction;
 
 	int cardsInDeck;		// how many cards is in the deck
 	int cardsInDeckTurn;	// how many turns there is same amount cards in deck
 	int cardsInDeckMaxTurn; // limit on max number turn with same amount cards in deck
 
 	int GetInDeckCount();
-	void InitGame(int _handSize);
+	void InitGame(int _handSize, bool _abstraction);
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);
 public:
-	LostCitiesState(int _handSize);
+	LostCitiesState(int _handSize, bool _abstraction);
 	virtual ~LostCitiesState(void);
 	LostCitiesState(const LostCitiesState & origin);
 	LostCitiesState& operator=(const LostCitiesState &origin);

@@ -265,14 +265,14 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	return widgets;
 }
 
-void GameMaze::SetVisibleGoals(int state)
-{
-	visibleGoals = state;
-}
-
 void GameMaze::SetAbstraction(int state)
 {
 	abstraction = state;
+}
+
+void GameMaze::SetVisibleGoals(int state)
+{
+	visibleGoals = state;
 }
 
 void GameMaze::SetMazeWidth(int width)

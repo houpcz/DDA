@@ -5,17 +5,18 @@
 
 using namespace std;
 
-LostCitiesState::LostCitiesState(int _handSize)
+LostCitiesState::LostCitiesState(int _handSize, bool _abstraction)
 {
-	InitGame(_handSize);
+	InitGame(_handSize, _abstraction);
 }
 
-void LostCitiesState::InitGame(int _handSize)
+void LostCitiesState::InitGame(int _handSize, bool _abstraction)
 {
 	handSize = _handSize;
 	activePlayerID = 1;
 	lastRealPlayer = 1;
 	cardsInDeckMaxTurn = 4;
+	abstraction = _abstraction;
 
 	int allCards[CARD_AMOUNT];
 	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
@@ -65,6 +66,7 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 	handSize = origin.handSize;
 	cardsInDeck = origin.cardsInDeck;
 	cardsInDeckTurn = origin.cardsInDeckTurn;
+	abstraction = origin.abstraction;
 
 	allChoises.clear();
 	allChoises.insert(allChoises.begin(), origin.allChoises.begin(), origin.allChoises.end());
@@ -176,11 +178,27 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 
 	if(activePlayerID == ENVIRONMENTAL_AI)
 	{
+		vector<char> helpArray;
 		for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
 		{
 			if(card[loop1] == IN_DECK)
 			{
-				allChoises.push_back(loop1);
+				helpArray.push_back(loop1);
+			}
+
+			if(loop1 % 4 == 3)
+			{
+				if(abstraction)
+				{
+					if(helpArray.size() > 0)
+					{
+						int rndNumber = rand() % helpArray.size();
+						allChoises.push_back(helpArray[rndNumber]);
+					}
+				} else {
+					allChoises.insert(allChoises.begin(), helpArray.begin(), helpArray.end());
+				}
+				helpArray.clear();
 			}
 		}
 	} else {

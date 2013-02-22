@@ -1,3 +1,4 @@
+#include <Qt\qcheckbox.h>
 #include "LostCities.h"
 #include "EnvironmentAIBasic.h"
 #include "PlayerRandomAI.h"
@@ -54,7 +55,8 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	playerCount = 3;
 	realHandSize = 8;
-	currentState = new LostCitiesState(realHandSize);
+	abstraction = true;
+	currentState = new LostCitiesState(realHandSize, abstraction);
 	state = STATE_STOPPED;
 }
 
@@ -78,7 +80,7 @@ void LostCities::StartGame()
 
 	if(currentState != NULL)
 		delete currentState;
-	currentState = new LostCitiesState(realHandSize);
+	currentState = new LostCitiesState(realHandSize, abstraction);
 
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);
@@ -470,7 +472,18 @@ vector<pair<QWidget *, QString> > LostCities::GetSetupWidget()
 	spinBox->setValue(realHandSize);
 	widgets.push_back(pair<QWidget *, QString>(spinBox, QString("Hand Size")));
 	bool ok = connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(SetHandSize(int)));
+	
+	QCheckBox * abstractionBox = new QCheckBox();
+	abstractionBox->setChecked(abstraction);
+	widgets.push_back(pair<QWidget *, QString>(abstractionBox, QString("State abstraction")));
+	connect(abstractionBox, SIGNAL(stateChanged(int)), this, SLOT(SetAbstraction(int)));
+
 	return widgets;
+}
+
+void LostCities::SetAbstraction(int state)
+{
+	abstraction = state;
 }
 
 void LostCities::SetHandSize(int _handSize)
