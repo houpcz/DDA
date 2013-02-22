@@ -925,6 +925,7 @@ void MazeState::RemoveNonviableTileToExplore()
 	{
 		int tile = tileToExplore[loop1];
 		int x, y;
+		bool delIt = false;
 		Pos1Dto2D(tile, &x, &y);
 		if(GetTile(x + 1, y) == TILE_GOAL ||
 			GetTile(x - 1, y) == TILE_GOAL ||
@@ -932,6 +933,26 @@ void MazeState::RemoveNonviableTileToExplore()
 			GetTile(x, y - 1) == TILE_GOAL)
 		{
 			SetGoalNeightboursWall(x, y);
+			delIt = true;
+		}
+
+		int ways = 0;
+		if(GetTile(x + 1, y) == TILE_EMPTY || GetTile(x + 1, y) == TILE_UNDEFINED || GetTile(x + 1, y) == TILE_DOOR)
+			ways++;
+		if(GetTile(x - 1, y) == TILE_EMPTY || GetTile(x - 1, y) == TILE_UNDEFINED || GetTile(x - 1, y) == TILE_DOOR)
+			ways++;
+		if(GetTile(x, y + 1) == TILE_EMPTY || GetTile(x, y + 1) == TILE_UNDEFINED || GetTile(x, y + 1) == TILE_DOOR)
+			ways++;
+		if(GetTile(x, y - 1) == TILE_EMPTY || GetTile(x, y - 1) == TILE_UNDEFINED || GetTile(x, y - 1) == TILE_DOOR)
+			ways++;
+
+		if(ways <= 1 && GetDoorKind(x, y) != DOOR_GOOD && GetTile(x, y) != TILE_GOAL)
+		{
+			delIt = true;
+		}
+
+		if(delIt)
+		{
 			maze[y][x] = TILE_EMPTY;
 			tileToExplore.erase(tileToExplore.begin() + loop1, tileToExplore.begin() + loop1 + 1);
 			loop1--;
