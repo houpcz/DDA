@@ -74,9 +74,11 @@ public:
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID);
+	virtual float GetNextStateProb(int whoAskID, int actionID);
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
 	bool IsGameOver();
+	void SetGameOver(bool _gameOver) { isGameOver = _gameOver; };
 };
 
 #endif

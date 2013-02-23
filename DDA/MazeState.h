@@ -143,6 +143,7 @@ public:
 	int GetPlayerStatus(int playerID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	IGameState * GetRandomNextState(int whoAskID, int * outStateID);
+	virtual float GetNextStateProb(int whoAskID, int actionID) { return 1.0f; };
 
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);

@@ -15,6 +15,7 @@
 #include "PlayerPOSM.h"
 #include "PlayerLevel.h"
 #include "PlayerLevel2.h"
+#include "PlayerMonteCarlo.h"
 #include "EnvironmentAIBasic.h"
 #include "EAIMaxOptions.h"
 #include "EAIMinOptions.h"
@@ -95,6 +96,8 @@ void DDAWidget::MakePluginLists()
 	playerAIList.push_back(new PlayerRandomAI(2));
 	playerAIList.push_back(new PlayerHillClimber(3));
 	playerAIList.push_back(new MiniMaxPlayer(4));
+	playerAIList.push_back(new PlayerMonteCarlo(8));
+
 	playerAIList.push_back(new PlayerPOSM(5));
 	playerAIList.push_back(new PlayerLevel(6));
 	playerAIList.push_back(new PlayerLevel2(7));

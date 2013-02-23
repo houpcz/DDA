@@ -225,11 +225,13 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 			if(card[loop1] == playerHandHidden) // he has something hidden in hand so from players view he can play anything from deck
 			{
 				hiddenCardAmount++;
-			}
-
-			if(card[loop1] == IN_DECK)
-			{
-				inDeckAmount++;
+				if(notInformed)
+					card[loop1] = IN_DECK;
+			} else {
+				if(card[loop1] == IN_DECK)
+				{
+					inDeckAmount++;
+				}
 			}
 		}
 		knownCardAmount = handSize - hiddenCardAmount;
@@ -609,7 +611,7 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 		turn = rand() % numberNextStates;
 	} else {
 		float rndNumber = rand() / static_cast<float>( RAND_MAX );
-		float sumProb;
+		float sumProb = 0.0;
 		for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
 		{
 			sumProb += probChoises[loop1];
@@ -626,6 +628,15 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 
 	*outStateID = turn;
 	return lostCitiesState;
+}
+
+float LostCitiesState::GetNextStateProb(int whoAskID, int actionID)
+{
+	WhoAsked(whoAskID);
+	if(activePlayerID == ENVIRONMENTAL_AI)
+		return 1.0;
+	else
+		return probChoises[actionID];
 }
 
 ISpecificStat * LostCitiesState::GetGameSpecificStat()
