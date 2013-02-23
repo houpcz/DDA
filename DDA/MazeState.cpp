@@ -1041,7 +1041,7 @@ int MazeState::GetPlayerStatus(int playerID)
 	float undefinedCover = ((float) undefinedTiles) / (mazeWidth * mazeHeight);
 	
 	int koef = (goalAmount > 0) ? 1 : 0;
-	int status = sumDist - stepsToGameOver + (int) (undefinedTiles / 1.8f * koef);
+	int status = (int) (sumDist * 1.5f - stepsToGameOver + (undefinedTiles / 2.0f * koef));
 	return (playerID == 0) ? status : -status;
 }
 
