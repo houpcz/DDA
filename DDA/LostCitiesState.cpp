@@ -67,11 +67,9 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 	cardsInDeck = origin.cardsInDeck;
 	cardsInDeckTurn = origin.cardsInDeckTurn;
 	abstraction = origin.abstraction;
-
-	allChoises.clear();
-	allChoises.insert(allChoises.begin(), origin.allChoises.begin(), origin.allChoises.end());
-	drawFrom.clear();
-	drawFrom.insert(drawFrom.begin(), origin.drawFrom.begin(), origin.drawFrom.end());
+	probChoises = origin.probChoises;
+	allChoises = origin.allChoises;
+	drawFrom = origin.drawFrom;
 
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
@@ -174,6 +172,7 @@ int LostCitiesState::GetTurnID(int playCardID, int drawSite)
 void LostCitiesState::CountPlayerChoises(int whoAskID)
 {
 	allChoises.clear();
+	probChoises.clear();
 	drawFrom.clear();
 
 	if(activePlayerID == ENVIRONMENTAL_AI)
@@ -202,39 +201,46 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 			}
 		}
 	} else {
-		int playerHand1;		// hidden/known - or known/deck
-		int playerHand2;		// hidden/known - or known/deck
+		int playerHandKnown;		// hidden/known - or known/deck
+		int playerHandHidden;		// hidden/known - or known/deck
+		int playerHandDeck;		    // if I dont know whole his hand, he cant distinguish cards between IN_DECK and HAND_HIDDEN
 		int playerOnDesk;
+		int hiddenCardAmount = 0;
+		int inDeckAmount = 0;
+		int knownCardAmount = 0;
 		if(activePlayerID == 1)
 		{
-			switch(whoAskID)
-			{
-				case 0 :
-				case 1 :
-					playerHand2 = PLAYER_1_HAND_HIDDEN;
-					break;
-				case 2 :
-					playerHand2 = IN_DECK;
-					break;
-			}
-			
-			playerHand1 = PLAYER_1_HAND_KNOWN;
+			playerHandKnown = PLAYER_1_HAND_KNOWN;
+			playerHandHidden = PLAYER_1_HAND_HIDDEN;
 			playerOnDesk = PLAYER_1_ON_DESK;
 		} else {
-			switch(whoAskID)
-			{
-				case 0 :
-				case 2 :
-					playerHand2 = PLAYER_2_HAND_HIDDEN;
-					break;
-				case 1 :
-					playerHand2 = IN_DECK;
-					break;
-				
-			}
-			playerHand1 = PLAYER_2_HAND_KNOWN;
+			playerHandKnown = PLAYER_2_HAND_KNOWN;
+			playerHandHidden = PLAYER_2_HAND_HIDDEN;
 			playerOnDesk = PLAYER_2_ON_DESK;
 		}
+		bool notInformed = activePlayerID != 0 && activePlayerID != whoAskID;
+
+		for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+		{
+			if(card[loop1] == playerHandHidden) // he has something hidden in hand so from players view he can play anything from deck
+			{
+				hiddenCardAmount++;
+			}
+
+			if(card[loop1] == IN_DECK)
+			{
+				inDeckAmount++;
+			}
+		}
+		knownCardAmount = handSize - hiddenCardAmount;
+
+		if(hiddenCardAmount > 0 && notInformed)
+			playerHandDeck = IN_DECK;
+		else
+			playerHandDeck = -1;
+
+		float prob;
+		float sumProb = 0.0f;
 		for(char loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 		{
 			bool canAddCardToExpedition = true;
@@ -243,14 +249,25 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 			for(char loop2 = CARD_ONE_COLOR_AMOUNT - 1; loop2 >= 0; loop2--)
 			{
 				char cardID = loop1 * CARD_ONE_COLOR_AMOUNT + loop2;
-				if(card[cardID] == playerHand1 || card[cardID] == playerHand2)
+				if(card[cardID] == playerHandKnown || card[cardID] == playerHandHidden || card[cardID] == playerHandDeck)
 				{
+					if(notInformed && (card[cardID] == playerHandDeck || card[cardID] == playerHandHidden))
+					{
+						prob = (hiddenCardAmount *  1.0f / handSize) * (1.0f / (inDeckAmount + hiddenCardAmount));
+					} else {
+						prob = 1.0f / handSize;
+					}
+
 					allChoises.push_back(cardID);	// can discard card
+					probChoises.push_back(prob);
+					sumProb += prob;
 					drawFrom.push_back(DRAW_FROM_DECK);
 
 					if(canAddCardToExpedition)
 					{
 						allChoises.push_back(cardID + DISCARD_CARD_OFFSET); // may add to expedition
+						probChoises.push_back(prob);
+						sumProb += prob;
 						drawFrom.push_back(DRAW_FROM_DECK);
 					}
 				} else if(canAddCardToExpedition && card[cardID] == playerOnDesk && loop2 > 2) // you can't add lower value card to existing expedition
@@ -278,12 +295,19 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 					if(discardPileTopCardID[loop2] >= 0 && (allChoises[loop1] >= DISCARD_CARD_OFFSET || loop2 != allChoises[loop1] / CARD_ONE_COLOR_AMOUNT))
 					{
 						allChoises.push_back(allChoises[loop1]);
+						probChoises.push_back(probChoises[loop1]);
+						sumProb += probChoises[loop1];
 						drawFrom.push_back(loop2);
 					}
 				}
 			}
 		}
-	}
+
+		for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
+		{
+			probChoises[loop1] = probChoises[loop1] / sumProb;
+		}
+	} 
 }
 
 void LostCitiesState::WhoAsked(int whoAskID)
@@ -578,7 +602,25 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 {
 	WhoAsked(whoAskID);
 	int numberNextStates = GetPlayerChoises(whoAskID);
-	int turn = rand() % numberNextStates;
+	int turn;
+
+	if(activePlayerID == ENVIRONMENTAL_AI)
+	{
+		turn = rand() % numberNextStates;
+	} else {
+		float rndNumber = rand() / static_cast<float>( RAND_MAX );
+		float sumProb;
+		for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
+		{
+			sumProb += probChoises[loop1];
+			if(rndNumber < sumProb)
+			{
+				turn = loop1;
+				break;
+			}
+		}
+	}
+	
 	LostCitiesState * lostCitiesState = new LostCitiesState(*this);
 	lostCitiesState->MakeTurn(turn);
 

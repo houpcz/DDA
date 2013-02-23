@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <vector>
+#include <random>
 #include "igamestate.h"
 
 using namespace std;
@@ -38,6 +39,7 @@ private:
 	char card[CARD_AMOUNT];
 	vector<char> allChoises; // valid "playerChoises" values, ids of cards which can be played and where
 	vector<char> drawFrom;   // ids to discardOnTop
+	vector<float> probChoises;
 	int activePlayerID;
 	int lastRealPlayer; // not environmental AI
 	int discardPileTopCardCode[COLOR_AMOUNT];

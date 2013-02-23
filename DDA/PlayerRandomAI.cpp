@@ -13,8 +13,7 @@ PlayerRandomAI::~PlayerRandomAI(void)
 bool PlayerRandomAI::Think()
 {
 	int choises;
-	choises = game->GetCurrentState()->GetPlayerChoises(myID);
-	myTurn = qrand() % choises;
+	game->GetCurrentState()->GetRandomNextState(myID, &myTurn);
 	isReady = true;
 
 	return true;
