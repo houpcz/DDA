@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.24)  24 FEB 2013 16:17
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.24)  24 FEB 2013 20:19
 entering extended mode
 **beranlu6mst.tex
 (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\beranlu6mst.tex
@@ -954,7 +954,12 @@ Package biblatex Info: ... file 'czech.lbx' found.
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\biblatex\lbx\czech.lbx"
 File: czech.lbx 2013/01/10 v2.5 biblatex localization (PK/JW/AB)
-) (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch01.aux))
+) (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch01.aux)
+(D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch02.aux) (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch03.aux
+
+LaTeX Warning: Label `eq:integraldamage' multiply defined.
+
+))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
@@ -972,8 +977,7 @@ LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 43.
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+ ("D:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )<<t1.cmap>>
 ("D:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
@@ -1053,7 +1057,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 46.
  ("D:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logo/lev.pdf, id=55, 561.09625pt x 440.64626pt>
+<logo/lev.pdf, id=151, 561.09625pt x 440.64626pt>
 File: logo/lev.pdf Graphic file (type pdf)
  <use logo/lev.pdf>
 Package pdftex.def Info: logo/lev.pdf used on input line 46.
@@ -1098,63 +1102,157 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ]
 (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch01.tex
 Kapitola 1.
+
+Overfull \hbox (28.6479pt too wide) in paragraph at lines 25--27
+[]\T1/lmr/m/n/10.95 Jestliºe hrá£ opa-ko-van¥ umírá, do-stane se mu po-moci ve form¥ bo-nu-so-vých lék·(painkillers),
+ []
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.29 
+l.31 
       [1
 
 
 
 
-] [2] <fig/ch1elderlypeople.png, id=145, 429.85594pt x 152.82094pt>
+] [2] <fig/ch1elderlypeople.png, id=276, 429.85594pt x 152.82094pt>
 File: fig/ch1elderlypeople.png Graphic file (type png)
  <use fig/ch1elderlypeople.png>
-Package pdftex.def Info: fig/ch1elderlypeople.png used on input line 54.
+Package pdftex.def Info: fig/ch1elderlypeople.png used on input line 62.
 (pdftex.def)             Requested size: 429.85489pt x 152.82054pt.
 
-Overfull \hbox (16.27368pt too wide) in paragraph at lines 54--55
+Overfull \hbox (16.27368pt too wide) in paragraph at lines 62--63
  [][] 
  []
 
 
-Overfull \hbox (2.48898pt too wide) detected at line 55
+Overfull \hbox (2.48898pt too wide) detected at line 63
 | [] |
  []
 
-) [3 <D:/_Projekty/Diplomka/DDA/Text/beranlu6mst/fig/ch1elderlypeople.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 72.
- [4
+[3 <D:/_Projekty/Diplomka/DDA/Text/beranlu6mst/fig/ch1elderlypeople.png>] [4]
+Overfull \hbox (15.02783pt too wide) in paragraph at lines 107--108
+\T1/lmr/m/n/10.95 mes[[][]14[][]] za-bý-val vy-u-ºi-tím DDA u vý-u-ko-vých her. Vy-tvo-°il hru Mijn naam is Haas(holands
+ky
+ []
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 109.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 109.
+[5] <fig/ch1mariokart2.jpg, id=316, 446.66875pt x 443.6575pt>
+File: fig/ch1mariokart2.jpg Graphic file (type jpg)
+ <use fig/ch1mariokart2.jpg>
+Package pdftex.def Info: fig/ch1mariokart2.jpg used on input line 139.
+(pdftex.def)             Requested size: 206.7906pt x 205.39822pt.
+ [6 <D:/_Projekty/Diplomka/DDA/Text/beranlu6mst/fig/ch1mariokart2.jpg>]) [7] (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst
+\ch02.tex
+Kapitola 2.
+) [8
+
+
+
+] (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch03.tex
+Kapitola 3.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 11.
+
+<fig/ch3pomdp.png, id=337, 295.1025pt x 216.05719pt>
+File: fig/ch3pomdp.png Graphic file (type png)
+ <use fig/ch3pomdp.png>
+Package pdftex.def Info: fig/ch3pomdp.png used on input line 19.
+(pdftex.def)             Requested size: 206.7906pt x 151.40382pt.
+ [9
+
+
+
+ <D:/_Projekty/Diplomka/DDA/Text/beranlu6mst/fig/ch3pomdp.png>]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 40.
+
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 46.
+("D:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 46.
+ <fig/ch3pacman.png, id=347, 333.49594pt x 215.30438pt>
+File: fig/ch3pacman.png Graphic file (type png)
+
+<use fig/ch3pacman.png>
+Package pdftex.def Info: fig/ch3pacman.png used on input line 53.
+(pdftex.def)             Requested size: 206.7906pt x 133.50703pt.
+ [10]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 86.
+
+[11 <D:/_Projekty/Diplomka/DDA/Text/beranlu6mst/fig/ch3pacman.png>]) [12]
+Overfull \hbox (15.48148pt too wide) in paragraph at lines 71--71
+\T1/lmr/m/sc/10.95 url\T1/lmr/m/n/10.95 : [][]$\T1/lmtt/m/n/10.95 http : / / www . destructoid . com / good -[] idea -[]
+ bad -[] idea -[] dynamic -[] difficulty -[]
+ []
+
+
+Overfull \hbox (2.52742pt too wide) in paragraph at lines 71--71
+[]\T1/lmr/m/n/10.95 J. Heer. ``Ba-lan-cing Exer-tion Ex-pe-ri-en-ces''. In: \T1/lmr/m/it/10.95 Movement-Based Ga-meplay 
+\T1/lmr/m/n/10.95 (2012). 
+ []
+
+
+Overfull \hbox (5.28348pt too wide) in paragraph at lines 71--71
+\T1/lmr/m/n/10.95 with De-men-tia''. In: \T1/lmr/m/it/10.95 In-ter-nati-o-nal Joint con-fe-rence on Ar-ti-fi-cial In-tel
+-li-gence \T1/lmr/m/n/10.95 (2005). 
+ []
+
+[13
 
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 72.
-
-(D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\beranlu6mst.aux (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch01.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 72.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 72.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 73.
+ [14]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 73.
+ (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\beranlu6mst.aux
+(D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch01.aux) (D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch02.aux)
+(D:\_Projekty\Diplomka\DDA\Text\beranlu6mst\ch03.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 73.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 73.
 Package rerunfilecheck Info: File `beranlu6mst.out' has not changed.
-(rerunfilecheck)             Checksum: F02FF8224B25B3B055F3CAD605E13980;1711.
+(rerunfilecheck)             Checksum: 275BA60978DF741681A66862C13ABC3B;5978.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package logreq Info: Writing requests to 'beranlu6mst.run.xml'.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 72.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 73.
  ) 
 Here is how much of TeX's memory you used:
- 18365 strings out of 493921
- 277457 string characters out of 3147285
- 712049 words of memory out of 3000000
- 21294 multiletter control sequences out of 15000+200000
- 74805 words of font info for 63 fonts, out of 3000000 for 9000
+ 18575 strings out of 493921
+ 281688 string characters out of 3147285
+ 720144 words of memory out of 3000000
+ 21400 multiletter control sequences out of 15000+200000
+ 91795 words of font info for 76 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 52i,11n,47p,918b,2640s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.p
-fb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr12
-.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
-ri12.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/l
-m/lmssbx10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
-Output written on beranlu6mst.pdf (12 pages, 409537 bytes).
+ 52i,11n,49p,1098b,2640s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.en
+c}{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathe
+x.enc}{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.enc}<D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmcsc
+10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
+lmmi10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi6.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/
+lm/lmmi8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/lm/lmr12.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr6.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/lm/lmr8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr9.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/publ
+ic/lm/lmri10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri12.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/
+public/lm/lmro10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><D:/Program Files/MiKTeX 2.9/fonts/
+type1/public/lm/lmsy10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy6.pfb><D:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/lm/lmsy8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
+Output written on beranlu6mst.pdf (22 pages, 764669 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 511 PDF objects out of 1000 (max. 8388607)
+ 102 named destinations out of 1000 (max. 500000)
+ 334 words of extra memory for PDF output out of 10000 (max. 10000000)
 
