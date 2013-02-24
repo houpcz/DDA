@@ -76,7 +76,7 @@ void MonteCarloNode::Backpropagation(double reward)
 	if(parent != NULL)
 	{
 		if(myState->GetActivePlayerID() == 0)
-			parent->Backpropagation(reward / childrenNumber);
+			parent->Backpropagation(reward);
 		else
 			parent->Backpropagation(reward);
 	}

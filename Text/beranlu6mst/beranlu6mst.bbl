@@ -1,0 +1,169 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{none}
+    \entry{1}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
+      \strng{fullhash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Dynamic Difficulty} font family}
+      \field{title}{{Dynamic Difficulty} font family}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://tvtropes.org/pmwiki/pmwiki.php/Main/DynamicDifficulty
+      \endverb
+    \endentry
+    \entry{2}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=6ba7bf81c3324e90914c9e7bf11b920f}{GiantBomb.com}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=6ba7bf81c3324e90914c9e7bf11b920f}{GiantBomb.com}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{6ba7bf81c3324e90914c9e7bf11b920f}
+      \strng{fullhash}{6ba7bf81c3324e90914c9e7bf11b920f}
+      \field{sortinit}{0}
+      \field{labeltitle}{{A. I. Director} font family}
+      \field{title}{{A. I. Director} font family}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.giantbomb.com/ai-director/3015-2539/
+      \endverb
+    \endentry
+    \entry{3}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=98ac24c1f14857c64789729ca20fdb7b}{RocstarGames.com}{R\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=98ac24c1f14857c64789729ca20fdb7b}{RocstarGames.com}{R\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{98ac24c1f14857c64789729ca20fdb7b}
+      \strng{fullhash}{98ac24c1f14857c64789729ca20fdb7b}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Rockstar Game Tips: Difficulty Settings - Getting Started in Max Payne 3} font family}
+      \field{title}{{Rockstar Game Tips: Difficulty Settings - Getting Started in Max Payne 3} font family}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.giantbomb.com/ai-director/3015-2539/
+      \endverb
+    \endentry
+    \entry{4}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=e10f26ebbf9c42f52743ac2ed639ffab}{Tolentino}{T\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=e10f26ebbf9c42f52743ac2ed639ffab}{Tolentino}{T\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e10f26ebbf9c42f52743ac2ed639ffab}
+      \strng{fullhash}{e10f26ebbf9c42f52743ac2ed639ffab}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Good Idea, Bad Idea: Dynamic Difficulty Adjustment} font family}
+      \field{title}{{Good Idea, Bad Idea: Dynamic Difficulty Adjustment} font family}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.destructoid.com/good-idea-bad-idea-dynamic-difficulty-adjustment-70591.phtml
+      \endverb
+    \endentry
+    \entry{5}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{374d966cfc0e8ab31df1fae2e02b000f}
+      \strng{fullhash}{374d966cfc0e8ab31df1fae2e02b000f}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Game Changers: Dynamic Difficulty} font family}
+      \field{title}{{Game Changers: Dynamic Difficulty} font family}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.gamasutra.com/blogs/AdamSaltsman/20090507/1340/Game_Changers_Dynamic_Difficulty.php
+      \endverb
+    \endentry
+    \entry{6}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=061fd4c7c803f060d71c9e623ee106f9}{Konami}{K\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=061fd4c7c803f060d71c9e623ee106f9}{Konami}{K\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{061fd4c7c803f060d71c9e623ee106f9}
+      \strng{fullhash}{061fd4c7c803f060d71c9e623ee106f9}
+      \field{sortinit}{0}
+      \field{labeltitle}{{The Evolution of the Beautiful Game} font family}
+      \field{title}{{The Evolution of the Beautiful Game} font family}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://uk.games.konami-europe.com/news.do?idNews=251
+      \endverb
+    \endentry
+    \entry{7}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=d9087b114d8c1f9fd14a04334b327b2e}{Heer}{H\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=d9087b114d8c1f9fd14a04334b327b2e}{Heer}{H\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{d9087b114d8c1f9fd14a04334b327b2e}
+      \strng{fullhash}{d9087b114d8c1f9fd14a04334b327b2e}
+      \field{sortinit}{0}
+      \field{labeltitle}{Balancing Exertion Experiences}
+      \field{journaltitle}{Movement-Based Gameplay}
+      \field{title}{Balancing Exertion Experiences}
+      \field{year}{2012}
+    \endentry
+    \entry{8}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=128a6f6f7ef851b18a808d812aa9fda4}{Doyle}{D\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=128a6f6f7ef851b18a808d812aa9fda4}{Doyle}{D\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{128a6f6f7ef851b18a808d812aa9fda4}
+      \strng{fullhash}{128a6f6f7ef851b18a808d812aa9fda4}
+      \field{sortinit}{0}
+      \field{labeltitle}{Motivating Elderly People to Exercise Using a Social Collaborative Exergame with Adaptive Difficulty}
+      \field{journaltitle}{ECGBL}
+      \field{title}{Motivating Elderly People to Exercise Using a Social Collaborative Exergame with Adaptive Difficulty}
+      \field{year}{2012}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
