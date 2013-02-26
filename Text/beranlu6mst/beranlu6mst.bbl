@@ -451,6 +451,157 @@
       \endverb
       \keyw{AI, computer entertainment, dynamic difficulty adjustment, video games}
     \endentry
+    \entry{21cbr}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=ff8007d7fc80e4e4916113b6dfece0da}{Bakkes}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=9f75d5cb6018bd9496574e7c3325e149}{Spronck}{S\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=1d4847be7e3fc20476294f420339ca34}{Herik}{H\bibinitperiod}{J.}{J\bibinitperiod}{van\bibnamedelima den}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=ff8007d7fc80e4e4916113b6dfece0da}{Bakkes}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=9f75d5cb6018bd9496574e7c3325e149}{Spronck}{S\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=1d4847be7e3fc20476294f420339ca34}{Herik}{H\bibinitperiod}{J.}{J\bibinitperiod}{van\bibnamedelima den}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+      }
+      \strng{namehash}{bccc400a4eb5d15ba9e7ee77ff92b620}
+      \strng{fullhash}{bccc400a4eb5d15ba9e7ee77ff92b620}
+      \field{sortinit}{0}
+      \field{labeltitle}{A CBR-Inspired Approach to Rapid and Reliable Adaption of Video Game AI}
+      \field{journaltitle}{ICCBR}
+      \field{title}{A CBR-Inspired Approach to Rapid and Reliable Adaption of Video Game AI}
+      \field{year}{2011}
+    \endentry
+    \entry{22posm1}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=1743c2e61d43b6f0e1cd2a1ae5fadbea}{Missura}{M\bibinitperiod}{Olana}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=b4ecc68977acd188561a6e478c9d2c88}{Gärtner}{G\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=1743c2e61d43b6f0e1cd2a1ae5fadbea}{Missura}{M\bibinitperiod}{Olana}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=b4ecc68977acd188561a6e478c9d2c88}{Gärtner}{G\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{65f62063ae97d977f211164db1da2f1a}
+      \strng{fullhash}{65f62063ae97d977f211164db1da2f1a}
+      \field{sortinit}{0}
+      \field{labeltitle}{Predicting Dynamic Difficulty}
+      \field{booktitle}{NIPS}
+      \field{title}{Predicting Dynamic Difficulty}
+      \field{year}{2011}
+      \field{pages}{2007\bibrangedash 2015}
+    \endentry
+    \entry{23posm2}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=bb8e0e91bb9050f1f5528153ff18d782}{Ilici}{I\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=679c7acc3d3d320e632bd2d0af6e014f}{Wang}{W\bibinitperiod}{Jiaojian}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=b1b5d1a36b336bcbbc5a76d6353a622b}{Missura}{M\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=29b073261566a31f22d7d1165e99c34c}{Gartner}{G\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=bb8e0e91bb9050f1f5528153ff18d782}{Ilici}{I\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=679c7acc3d3d320e632bd2d0af6e014f}{Wang}{W\bibinitperiod}{Jiaojian}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=b1b5d1a36b336bcbbc5a76d6353a622b}{Missura}{M\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=29b073261566a31f22d7d1165e99c34c}{Gartner}{G\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{3c8b4a23dcc15aed754424c6d0471fbf}
+      \strng{fullhash}{566a52a9411bc6a7d335d9e936939020}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic difficulty for checkers and Chinese chess}
+      \field{booktitle}{Computational Intelligence and Games (CIG), 2012 IEEE Conference on}
+      \field{month}{09}
+      \field{title}{Dynamic difficulty for checkers and Chinese chess}
+      \field{year}{2012}
+      \field{pages}{55\bibrangedash 62}
+      \verb{doi}
+      \verb 10.1109/CIG.2012.6374138
+      \endverb
+      \keyw{Computers;Games;Heuristic algorithms;Humans;Materials;Prediction algorithms;Weapons;computer games;Chinese chess;board games;checkers;computer games;partially ordered set master algorithm;sound algorithm;synthetic opponent;}
+    \endentry
+    \entry{24DynLev}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Kennesaw, Georgia}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
+      \strng{fullhash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic game difficulty balancing for backgammon}
+      \field{booktitle}{Proceedings of the 49th Annual Southeast Regional Conference}
+      \field{isbn}{978-1-4503-0686-7}
+      \field{series}{ACM-SE '11}
+      \field{title}{Dynamic game difficulty balancing for backgammon}
+      \field{year}{2011}
+      \field{pages}{295\bibrangedash 299}
+      \verb{doi}
+      \verb 10.1145/2016039.2016115
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2016039.2016115
+      \endverb
+      \keyw{dynamic difficulty balancing, game playing agents}
+    \endentry
+    \entry{25deadend}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=dd8fbb1acb2d17d54f4eb8e1e1dd6208}{Hsieh}{H\bibinitperiod}{H.}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=2126ff11704e4078717686170cbb1b15}{Wang}{W\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=dd8fbb1acb2d17d54f4eb8e1e1dd6208}{Hsieh}{H\bibinitperiod}{H.}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=2126ff11704e4078717686170cbb1b15}{Wang}{W\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{0009ddff1c72dc52dbeb9c8a4a8de290}
+      \strng{fullhash}{0009ddff1c72dc52dbeb9c8a4a8de290}
+      \field{sortinit}{0}
+      \field{labeltitle}{A Fuzzy Approach to Generating Adaptive Opponents in the Dead End Game}
+      \field{booktitle}{Asian Journal of Health and Information Sciences}
+      \field{title}{A Fuzzy Approach to Generating Adaptive Opponents in the Dead End Game}
+      \field{pages}{19\bibrangedash 37}
+    \endentry
+    \entry{26poststroke}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=1154e13b51bf5628343c5a9d5f8b5688}{Gouaïch}{G\bibinitperiod}{Abdelkader}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=11695eefec96addaa3cb2c38a757cf66}{Hocine}{H\bibinitperiod}{Nadia}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=7f6526c0b0b12d615a09ecf9be460d9c}{Van\bibnamedelima Dokkum}{V\bibinitperiod\bibinitdelim D\bibinitperiod}{Liesjet}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=3b851678d4ff2d0eeee326e5d9c7f8a3}{Mottet}{M\bibinitperiod}{Denis}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=1154e13b51bf5628343c5a9d5f8b5688}{Gouaïch}{G\bibinitperiod}{Abdelkader}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=11695eefec96addaa3cb2c38a757cf66}{Hocine}{H\bibinitperiod}{Nadia}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=7f6526c0b0b12d615a09ecf9be460d9c}{Van\bibnamedelima Dokkum}{V\bibinitperiod\bibinitdelim D\bibinitperiod}{Liesjet}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=3b851678d4ff2d0eeee326e5d9c7f8a3}{Mottet}{M\bibinitperiod}{Denis}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Miami, Florida, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{ee3edb96126390da3a55c6fd99ea5e73}
+      \strng{fullhash}{855be04a58932bb591dca69f5490b903}
+      \field{sortinit}{0}
+      \field{labeltitle}{Digital-pheromone based difficulty adaptation in post-stroke therapeutic games}
+      \field{booktitle}{Proceedings of the 2nd ACM SIGHIT International Health Informatics Symposium}
+      \field{isbn}{978-1-4503-0781-9}
+      \field{series}{IHI '12}
+      \field{title}{Digital-pheromone based difficulty adaptation in post-stroke therapeutic games}
+      \field{year}{2012}
+      \field{pages}{5\bibrangedash 12}
+      \verb{doi}
+      \verb 10.1145/2110363.2110368
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2110363.2110368
+      \endverb
+      \keyw{difficulty adaptation, post-stroke rehabilitation, serious game}
+    \endentry
   \endsortlist
 \endrefsection
 \endinput

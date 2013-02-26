@@ -10,6 +10,9 @@
 
 %% --- your additional packages:
 \usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 
 %% --- usefull draft packages
 %%\usepackage[notref]{showkeys} % show labels for referencies
@@ -48,10 +51,13 @@
   \input{acknowledgement}
   \input{declaration}
   \input{abstract}
-  \TableOfContents
+  \tableofcontents
 	\listoffigures
   \input{abbreviations}
 \stopFrontMatter
+
+
+\floatname{algorithm}{Algoritmus}
 
 \startBodyMatter
   %\includeonly{ch01}
