@@ -236,7 +236,7 @@ MazeState * MazeState::GetNextStateWithID(int turnID, int * outRealTurn)
 	*outRealTurn = 0;
 
 	MazeState * mazeState = NULL;
-	if(!abstraction)
+	if(!abstraction || activePlayerID == 1)
 	{
 		mazeState = new MazeState(*this);
 		mazeState->Explore(turnID);
@@ -275,7 +275,7 @@ IGameState * MazeState::GetRandomNextState(int whoAskID, int * outStateID)
 
 	turn = rand() % numberNextStates;	
 	mazeState = GetNextStateWithID(turn, &realTurn);
-	if(abstraction)
+	if(abstraction && activePlayerID == ENVINRONMENT_AI)
 		environmentTurnsReal[turn] = realTurn;
 
 	if(activePlayerID == ENVINRONMENT_AI && (mazeState == NULL || !mazeState->IsPossibleWayToGoal()))

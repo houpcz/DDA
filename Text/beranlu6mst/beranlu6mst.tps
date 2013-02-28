@@ -35,7 +35,7 @@ Class=BibTeXView
 Document=beranlu6mst.bib
 
 [Frame1_View0,0]
-TopLine=254
+TopLine=261
 Cursor=8936
 
 [Frame2]
@@ -53,7 +53,7 @@ Class=LaTeXView
 Document=ch01.tex
 
 [Frame2_View0,0]
-TopLine=236
+TopLine=238
 Cursor=6699
 
 [Frame3]

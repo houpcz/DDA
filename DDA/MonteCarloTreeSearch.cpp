@@ -162,7 +162,25 @@ MonteCarloNode * MonteCarloTreeSearch::Selection(MonteCarloNode * tempNode)
 
 double MonteCarloTreeSearch::Simulation(MonteCarloNode * tempNode)
 {
-	return tempNode->GameState()->GetPlayerRank(whoAskID, whoAskID);
+	IGameState * nodeState = tempNode->GameState();
+	IGameState * tempState;
+	int stateID;
+
+	if(!nodeState->IsGameOver())
+	{
+		nodeState = nodeState->GetRandomNextState(whoAskID, &stateID);
+		while(!nodeState->IsGameOver())
+		{
+			tempState = nodeState;
+			nodeState = nodeState->GetRandomNextState(whoAskID, &stateID);
+			delete tempState;
+		}
+		int rank = nodeState->GetPlayerRank(whoAskID, whoAskID);
+		delete nodeState;
+		return rank;
+	} else {
+		return nodeState->GetPlayerRank(whoAskID, whoAskID);
+	}
 }
 
 int MonteCarloTreeSearch::BestTurn()

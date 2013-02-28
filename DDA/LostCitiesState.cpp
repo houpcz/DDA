@@ -605,20 +605,27 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 	WhoAsked(whoAskID);
 	int numberNextStates = GetPlayerChoises(whoAskID);
 	int turn;
+	float sumProb = 0.0;
 
 	if(activePlayerID == ENVIRONMENTAL_AI)
 	{
 		turn = rand() % numberNextStates;
 	} else {
-		float rndNumber = rand() / static_cast<float>( RAND_MAX );
-		float sumProb = 0.0;
-		for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
+		turn = -1;
+		float epsilon = 0.0000000001f;
+		
+		while(turn = -1)
 		{
-			sumProb += probChoises[loop1];
-			if(rndNumber < sumProb)
+			float rndNumber = rand() / static_cast<float>( RAND_MAX );
+
+			for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
 			{
-				turn = loop1;
-				break;
+				sumProb += probChoises[loop1];
+				if(rndNumber < sumProb + epsilon)
+				{
+					turn = loop1;
+					break;
+				}
 			}
 		}
 	}
