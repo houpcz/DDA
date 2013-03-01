@@ -10,15 +10,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=1008
-NormalPos.bottom=304
+NormalPos.top=32
+NormalPos.right=1562
+NormalPos.bottom=452
 Class=LaTeXView
-Document=ch03.tex
+Document=ch01.tex
 
 [Frame0_View0,0]
-TopLine=608
-Cursor=39525
+TopLine=0
+Cursor=12166
 
 [Frame1]
 Flags=0
@@ -28,15 +28,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=1008
-NormalPos.bottom=304
-Class=BibTeXView
-Document=beranlu6mst.bib
+NormalPos.top=32
+NormalPos.right=1562
+NormalPos.bottom=452
+Class=LaTeXView
+Document=ch02.tex
 
 [Frame1_View0,0]
-TopLine=261
-Cursor=8936
+TopLine=0
+Cursor=32
 
 [Frame2]
 Flags=0
@@ -46,15 +46,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=1008
-NormalPos.bottom=304
-Class=LaTeXView
-Document=ch01.tex
+NormalPos.top=32
+NormalPos.right=1562
+NormalPos.bottom=452
+Class=BibTeXView
+Document=beranlu6mst.bib
 
 [Frame2_View0,0]
-TopLine=238
-Cursor=6699
+TopLine=20
+Cursor=571
 
 [Frame3]
 Flags=0
@@ -64,15 +64,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=1008
-NormalPos.bottom=304
+NormalPos.top=32
+NormalPos.right=1562
+NormalPos.bottom=452
 Class=LaTeXView
-Document=ch02.tex
+Document=beranlu6mst.tex
 
 [Frame3_View0,0]
-TopLine=0
-Cursor=68
+TopLine=48
+Cursor=2126
 
 [Frame4]
 Flags=0
@@ -82,15 +82,15 @@ MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
-NormalPos.top=26
-NormalPos.right=1008
-NormalPos.bottom=304
+NormalPos.top=32
+NormalPos.right=1562
+NormalPos.bottom=452
 Class=LaTeXView
-Document=beranlu6mst.tex
+Document=ch03.tex
 
 [Frame4_View0,0]
-TopLine=48
-Cursor=2126
+TopLine=562
+Cursor=39525
 
 [SessionInfo]
 FrameCount=5

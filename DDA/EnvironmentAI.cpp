@@ -1,7 +1,7 @@
 #include "EnvironmentAI.h"
 
 
-EnvironmentAI::EnvironmentAI(void)
+EnvironmentAI::EnvironmentAI(int _myID) : IEnvironmentAI(_myID)
 {
 }
 

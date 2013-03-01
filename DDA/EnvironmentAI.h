@@ -4,7 +4,7 @@ class EnvironmentAI :
 	public IEnvironmentAI
 {
 public:
-	EnvironmentAI(void);
+	EnvironmentAI(int _myID);
 	~EnvironmentAI(void);
 };
 

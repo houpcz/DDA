@@ -9,6 +9,10 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h</Extensions>
     </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
       <Extensions>qrc;*</Extensions>
@@ -17,58 +21,115 @@
     <Filter Include="Generated Files">
       <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
       <Extensions>moc;h;cpp</Extensions>
-      <ParseFiles>true</ParseFiles>
+      <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{44555461-a029-4e53-9c7e-c537ffe26cba}</UniqueIdentifier>
+      <UniqueIdentifier>{8ccf7800-e0fe-4a99-b065-16c7d2e7d807}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{82c2a355-f4c9-49aa-bc4c-a99ce21cbee8}</UniqueIdentifier>
+      <UniqueIdentifier>{2cc33a9a-ece1-4c89-9a49-cc0bebb9d59f}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Batch">
-      <UniqueIdentifier>{8b0b49dd-2b53-4408-bc2e-3509cba50a0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graph">
-      <UniqueIdentifier>{560d3cfe-14b9-47c4-a792-fa6d1ae73dbb}</UniqueIdentifier>
+    <Filter Include="Players">
+      <UniqueIdentifier>{ac83e42f-4e2f-4bb0-93e2-ff5dc5a2ce3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Games">
-      <UniqueIdentifier>{89ea7621-99f2-4a2d-a114-a57cb95e1210}</UniqueIdentifier>
+      <UniqueIdentifier>{827a3485-2d03-479c-af6a-b21adc32afd4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Games\Maze">
-      <UniqueIdentifier>{1301f5cb-7815-4b80-87c2-90d4f457bd90}</UniqueIdentifier>
+      <UniqueIdentifier>{ba9939f8-636a-49a1-9535-79118c974256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Games\Lost cities">
+      <UniqueIdentifier>{8cd8d835-6b9d-4c13-a162-79562b80dc20}</UniqueIdentifier>
     </Filter>
     <Filter Include="Games\Ludo">
-      <UniqueIdentifier>{1a30edb3-9811-4d0f-85aa-894ffdc6782d}</UniqueIdentifier>
+      <UniqueIdentifier>{34716857-8def-4c11-b431-42373f18af4e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Games\LostCities">
-      <UniqueIdentifier>{28a5bb4b-594e-4696-92af-71de9b984d74}</UniqueIdentifier>
+    <Filter Include="Batch">
+      <UniqueIdentifier>{3b82534f-91a0-47b7-a865-1350abf2c6b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{d592c1bb-f978-43b0-8ca3-1af586ebdab9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\PlayerEnvinroment">
-      <UniqueIdentifier>{49526111-b7b9-40a2-ad72-09edfe0a0b0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\PlayerNormal">
-      <UniqueIdentifier>{cce25237-c9ad-4648-b4e0-6b919f2ec593}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graph\Qwt">
-      <UniqueIdentifier>{a6ad5f48-5f24-4f3b-8919-0a64e2e6e771}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\MonteCarlo">
-      <UniqueIdentifier>{b8c9f6b4-ba96-4a32-aa89-e23be086ae97}</UniqueIdentifier>
+    <Filter Include="Qwt">
+      <UniqueIdentifier>{e309a114-ebb8-47d0-9339-9167746ea79b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClickableArea.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchDiagrams.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchDiagrams.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchGameSetup.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchGameSetup.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_BatchWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_BatchWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewGraph.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ViewGraph.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewGraph.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="DDAWidget.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_DDAWidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_DDAWidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EAIMaxOptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EAIMaxOptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EAIMinOptions.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EAIMinOptions.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_EnvironmentAIBasic.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_EnvironmentAIBasic.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
@@ -85,16 +146,13 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameMaze.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GameStat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Human.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_Human.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_IPlayer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_IPlayer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_IEnvironmentAI.cpp">
@@ -103,11 +161,8 @@
     <ClCompile Include="GeneratedFiles\Release\moc_IEnvironmentAI.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_EnvironmentAIBasic.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_EnvironmentAIBasic.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="IGame.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_IGame.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -115,58 +170,181 @@
     <ClCompile Include="GeneratedFiles\Release\moc_IGame.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="IGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DDAWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DDAWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Board.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MazeState.cpp">
-      <Filter>Games\Maze</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMaze.cpp">
-      <Filter>Games\Maze</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="IGameState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixFactory.cpp">
+    <ClCompile Include="IGraph.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LostCities.cpp">
-      <Filter>Games\LostCities</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_IPlayer.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="LostCitiesState.cpp">
-      <Filter>Games\LostCities</Filter>
+    <ClCompile Include="GeneratedFiles\Release\moc_IPlayer.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="ClickableArea.cpp">
+    <ClCompile Include="ISpecificStat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_BatchWindow.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_LostCities.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_BatchWindow.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_LostCities.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_BatchThread.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_abstract_slider.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_BatchThread.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_abstract_slider.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="BatchThread.cpp">
-      <Filter>Batch</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_analog_clock.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_analog_clock.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_compass.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_compass.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_counter.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_counter.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_dial.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_dial.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_dyngrid_layout.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_dyngrid_layout.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_knob.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_knob.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_legend.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_legend.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_legend_item.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_legend_item.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_magnifier.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_magnifier.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_panner.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_panner.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_picker.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_picker.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_canvas.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_canvas.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_magnifier.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_magnifier.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_panner.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_panner.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_picker.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_picker.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_renderer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_renderer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_zoomer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_zoomer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_sampling_thread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_sampling_thread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_scale_widget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_scale_widget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_slider.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_slider.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_text_label.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_text_label.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_thermo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_thermo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_wheel.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qwt_wheel.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="BatchWindow.cpp">
+      <Filter>Batch</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchThread.cpp">
       <Filter>Batch</Filter>
     </ClCompile>
     <ClCompile Include="BatchItem.cpp">
@@ -175,834 +353,654 @@
     <ClCompile Include="BatchGameSetup.cpp">
       <Filter>Batch</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_BatchGameSetup.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="BatchDiagrams.cpp">
+      <Filter>Batch</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_BatchGameSetup.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="EnvironmentAIBasic.cpp">
+      <Filter>Players</Filter>
     </ClCompile>
-    <ClCompile Include="QApp.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="EnvironmentAI.cpp">
+      <Filter>Players</Filter>
     </ClCompile>
-    <ClCompile Include="Ludo.cpp">
-      <Filter>Games\Ludo</Filter>
+    <ClCompile Include="EAIMinOptions.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="EAIMaxOptions.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="IPlayer.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="Human.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMaze.cpp">
+      <Filter>Games\Maze</Filter>
+    </ClCompile>
+    <ClCompile Include="LostCitiesState.cpp">
+      <Filter>Games\Lost cities</Filter>
+    </ClCompile>
+    <ClCompile Include="LostCities.cpp">
+      <Filter>Games\Lost cities</Filter>
     </ClCompile>
     <ClCompile Include="LudoState.cpp">
+      <Filter>Games\Ludo</Filter>
+    </ClCompile>
+    <ClCompile Include="Ludo.cpp">
       <Filter>Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="LudoTile.cpp">
       <Filter>Games\Ludo</Filter>
     </ClCompile>
-    <ClCompile Include="IPlayer.cpp">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerRandomAI.cpp">
-      <Filter>Player\PlayerNormal</Filter>
+    <ClCompile Include="PlayerLevel.cpp">
+      <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHillClimber.cpp">
-      <Filter>Player\PlayerNormal</Filter>
+      <Filter>Players</Filter>
     </ClCompile>
-    <ClCompile Include="Human.cpp">
-      <Filter>Player\PlayerNormal</Filter>
+    <ClCompile Include="MonteCarloTreeSearch.cpp">
+      <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="MiniMaxPlayer.cpp">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_LostCities.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_LostCities.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="ISpecificStat.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="MazeStat.cpp">
       <Filter>Games\Maze</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_EAIMaxOptions.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="MazeState.cpp">
+      <Filter>Games\Maze</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_EAIMaxOptions.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_EAIMinOptions.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_EAIMinOptions.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="EAIMaxOptions.cpp">
-      <Filter>Player\PlayerEnvinroment</Filter>
-    </ClCompile>
-    <ClCompile Include="EAIMinOptions.cpp">
-      <Filter>Player\PlayerEnvinroment</Filter>
-    </ClCompile>
-    <ClCompile Include="EnvironmentAIBasic.cpp">
-      <Filter>Player\PlayerEnvinroment</Filter>
+    <ClCompile Include="PlayerRandomAI.cpp">
+      <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="PlayerPOSM.cpp">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_abstract_scale.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_abstract_scale_draw.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_abstract_slider.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_abstract_slider.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_abstract_slider.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_analog_clock.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_analog_clock.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_analog_clock.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_arrow_button.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_clipper.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_color_map.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_column_symbol.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_compass.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_compass.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_compass.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_compass_rose.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_counter.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_counter.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_counter.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_curve_fitter.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_dial.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_dial.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_dial.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_dial_needle.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_double_range.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_dyngrid_layout.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_dyngrid_layout.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_dyngrid_layout.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_event_pattern.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_interval.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_interval_symbol.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_knob.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_knob.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_knob.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_legend.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_legend.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_legend.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_legend_item.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_legend_item.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_legend_item.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_magnifier.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_magnifier.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_magnifier.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_math.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_matrix_raster_data.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_null_paintdevice.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_painter.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_panner.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_panner.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_panner.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_picker.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_picker.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_picker.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_picker_machine.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_axis.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_canvas.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_canvas.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_canvas.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_curve.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_dict.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_directpainter.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_grid.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_histogram.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_intervalcurve.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_item.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_layout.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_magnifier.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_magnifier.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_magnifier.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_marker.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_panner.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_panner.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_panner.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_picker.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_picker.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_picker.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_rasteritem.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_renderer.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_renderer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_renderer.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_rescaler.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_scaleitem.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_seriesitem.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_spectrocurve.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_spectrogram.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_xml.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_plot_zoomer.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_plot_zoomer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_plot_zoomer.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_point_3d.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_point_polar.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_raster_data.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_round_scale_draw.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_sampling_thread.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_sampling_thread.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_sampling_thread.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_scale_div.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_scale_draw.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_scale_engine.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_scale_map.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_scale_widget.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_scale_widget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_scale_widget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_series_data.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_slider.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_slider.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_slider.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_spline.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_symbol.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_system_clock.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_text.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_text_engine.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_text_label.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_text_label.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_text_label.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_thermo.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_thermo.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_thermo.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Qwt\qwt_wheel.cpp">
-      <Filter>Graph\Qwt</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_qwt_wheel.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_qwt_wheel.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="BatchDiagrams.cpp">
-      <Filter>Batch</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_BatchDiagrams.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_BatchDiagrams.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ViewGraph.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ViewGraph.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewGraph.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="IGraph.cpp">
-      <Filter>Graph</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerLevel.cpp">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerLevel2.cpp">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClCompile>
-    <ClCompile Include="MonteCarloTreeSearch.cpp">
-      <Filter>Player\MonteCarlo</Filter>
+      <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="PlayerMonteCarlo.cpp">
-      <Filter>Player\PlayerNormal</Filter>
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerLevel2.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_wheel.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_thermo.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_text_label.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_text_engine.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_text.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_system_clock.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_symbol.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_spline.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_slider.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_series_data.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_scale_widget.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_scale_map.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_scale_engine.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_scale_draw.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_scale_div.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_sampling_thread.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_round_scale_draw.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_raster_data.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_point_polar.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_point_3d.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_zoomer.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_xml.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_spectrogram.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_spectrocurve.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_seriesitem.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_scaleitem.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_rescaler.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_renderer.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_rasteritem.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_picker.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_panner.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_marker.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_magnifier.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_layout.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_item.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_intervalcurve.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_histogram.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_grid.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_directpainter.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_dict.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_curve.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_canvas.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot_axis.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_plot.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_picker_machine.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_picker.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_panner.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_painter.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_null_paintdevice.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_matrix_raster_data.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_math.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_magnifier.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_legend_item.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_legend.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_knob.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_interval_symbol.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_interval.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_event_pattern.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_dyngrid_layout.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_double_range.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_dial_needle.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_dial.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_curve_fitter.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_counter.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_compass_rose.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_compass.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_column_symbol.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_color_map.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_clipper.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_arrow_button.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_analog_clock.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_abstract_slider.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_abstract_scale_draw.cpp">
+      <Filter>Qwt</Filter>
+    </ClCompile>
+    <ClCompile Include="Qwt\qwt_abstract_scale.cpp">
+      <Filter>Qwt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClickableArea.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Board.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MazeState.h">
-      <Filter>Games\Maze</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MatrixFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LostCitiesState.h">
-      <Filter>Games\LostCities</Filter>
-    </ClInclude>
-    <ClInclude Include="ClickableArea.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BatchItem.h">
-      <Filter>Batch</Filter>
-    </ClInclude>
     <ClInclude Include="QApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ludo.h">
+    <ClInclude Include="EnvironmentAI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISpecificStat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelGraph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_abstract_scale.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_abstract_scale_draw.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_arrow_button.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_clipper.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_color_map.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_column_symbol.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_compass_rose.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_compat.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_curve_fitter.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_dial_needle.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_double_range.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_event_pattern.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_global.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_interval.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_interval_symbol.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_legend_itemmanager.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_math.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_matrix_raster_data.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_null_paintdevice.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_painter.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_picker_machine.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_curve.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_dict.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_directpainter.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_grid.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_histogram.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_intervalcurve.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_item.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_layout.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_marker.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_rasteritem.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_rescaler.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_scaleitem.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_seriesitem.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_spectrocurve.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_plot_spectrogram.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_point_3d.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_point_polar.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_raster_data.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_round_scale_draw.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_scale_div.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_scale_draw.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_scale_engine.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_scale_map.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_series_data.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_spline.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_symbol.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_system_clock.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_text.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="Qwt\qwt_text_engine.h">
+      <Filter>Qwt</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerRandomAI.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerPOSM.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMonteCarlo.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevel2.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerLevel.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHillClimber.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="MonteCarloTreeSearch.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMaxPlayer.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="LudoTile.h">
       <Filter>Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="LudoState.h">
       <Filter>Games\Ludo</Filter>
     </ClInclude>
-    <ClInclude Include="LudoTile.h">
+    <ClInclude Include="Ludo.h">
       <Filter>Games\Ludo</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHillClimber.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerRandomAI.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMaxPlayer.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClInclude>
-    <ClInclude Include="ISpecificStat.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="LostCitiesState.h">
+      <Filter>Games\Lost cities</Filter>
     </ClInclude>
     <ClInclude Include="MazeStat.h">
       <Filter>Games\Maze</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerPOSM.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_abstract_scale.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_abstract_scale_draw.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_arrow_button.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_clipper.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_color_map.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_column_symbol.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_compass_rose.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_compat.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_curve_fitter.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_dial_needle.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_double_range.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_event_pattern.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_global.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_interval.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_interval_symbol.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_legend_itemmanager.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_math.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_matrix_raster_data.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_null_paintdevice.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_painter.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_picker_machine.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_curve.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_dict.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_directpainter.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_grid.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_histogram.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_intervalcurve.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_item.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_layout.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_marker.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_rasteritem.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_rescaler.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_scaleitem.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_seriesitem.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_spectrocurve.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_plot_spectrogram.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_point_3d.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_point_polar.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_raster_data.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_round_scale_draw.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_scale_div.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_scale_draw.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_scale_engine.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_scale_map.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_series_data.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_spline.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_symbol.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_system_clock.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_text.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="Qwt\qwt_text_engine.h">
-      <Filter>Graph\Qwt</Filter>
-    </ClInclude>
-    <ClInclude Include="IGraph.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="FlowGraph.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelGraph.h">
-      <Filter>Graph</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLevel.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerLevel2.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </ClInclude>
-    <ClInclude Include="MonteCarloTreeSearch.h">
-      <Filter>Player\MonteCarlo</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerMonteCarlo.h">
-      <Filter>Player\PlayerNormal</Filter>
+    <ClInclude Include="MazeState.h">
+      <Filter>Games\Maze</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="Game.h">
+    <CustomBuild Include="BatchDiagrams.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="IGame.h">
+    <CustomBuild Include="BatchGameSetup.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchThread.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchWindow.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ViewGraph.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="DDAWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="GameMaze.h">
-      <Filter>Games\Maze</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BatchThread.h">
-      <Filter>Batch</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BatchWindow.h">
-      <Filter>Batch</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BatchGameSetup.h">
-      <Filter>Batch</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Human.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </CustomBuild>
-    <CustomBuild Include="IPlayer.h">
-      <Filter>Player\PlayerNormal</Filter>
-    </CustomBuild>
-    <CustomBuild Include="LostCities.h">
-      <Filter>Games\LostCities</Filter>
+    <CustomBuild Include="EAIMaxOptions.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="EAIMinOptions.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="EAIMaxOptions.h">
-      <Filter>Player\PlayerEnvinroment</Filter>
-    </CustomBuild>
     <CustomBuild Include="EnvironmentAIBasic.h">
-      <Filter>Player\PlayerEnvinroment</Filter>
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Game.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Human.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="IEnvironmentAI.h">
-      <Filter>Player\PlayerEnvinroment</Filter>
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IGame.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IPlayer.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_abstract_slider.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_analog_clock.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_compass.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_counter.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_dial.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_dyngrid_layout.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_knob.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_legend.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_legend_item.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_magnifier.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_panner.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_picker.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot_canvas.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot_magnifier.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot_panner.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot_picker.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot_renderer.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_plot_zoomer.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_sampling_thread.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_scale_widget.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_slider.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_text_label.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_thermo.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_wheel.h">
-      <Filter>Graph\Qwt</Filter>
+      <Filter>Qwt</Filter>
     </CustomBuild>
-    <CustomBuild Include="BatchDiagrams.h">
-      <Filter>Batch</Filter>
+    <CustomBuild Include="LostCities.h">
+      <Filter>Games\Lost cities</Filter>
     </CustomBuild>
-    <CustomBuild Include="ViewGraph.h">
-      <Filter>Graph</Filter>
+    <CustomBuild Include="GameMaze.h">
+      <Filter>Games\Maze</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
