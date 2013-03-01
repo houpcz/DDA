@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  28 FEB 2013 19:13
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  1 MAR 2013 10:49
 entering extended mode
 **beranlu6mst.tex
 (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.tex
@@ -1292,14 +1292,14 @@ ored
                                                   \fi \fi 
 l.66 	\include{ch03}
                      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3feromons.png>]
-Overfull \hbox (4.50673pt too wide) in paragraph at lines 77--77
-[]\T1/lmr/m/n/10.95 GiantBomb.com. \T1/lmr/m/it/10.95 A. I. Di-rec-tor\T1/lmr/m/n/10.95 . \T1/lmr/m/sc/10.95 url\T1/lmr/
-m/n/10.95 : [][]$\T1/lmtt/m/n/10.95 http : / / www . giantbomb . com / ai -[] director /
+Overfull \hbox (16.81342pt too wide) in paragraph at lines 77--77
+\T1/lmtt/m/n/10.95 com / blogs / AdamSaltsman / 20090507 / 1340 / Game _ Changers _ Dynamic _ Difficulty .
  []
 
 
-Overfull \hbox (16.81342pt too wide) in paragraph at lines 77--77
-\T1/lmtt/m/n/10.95 com / blogs / AdamSaltsman / 20090507 / 1340 / Game _ Changers _ Dynamic _ Difficulty .
+Overfull \hbox (4.50673pt too wide) in paragraph at lines 77--77
+[]\T1/lmr/m/n/10.95 GiantBomb.com. \T1/lmr/m/it/10.95 A. I. Di-rec-tor\T1/lmr/m/n/10.95 . \T1/lmr/m/sc/10.95 url\T1/lmr/
+m/n/10.95 : [][]$\T1/lmtt/m/n/10.95 http : / / www . giantbomb . com / ai -[] director /
  []
 
 
@@ -1328,15 +1328,6 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 79.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 79.
 Package rerunfilecheck Info: File `beranlu6mst.out' has not changed.
 (rerunfilecheck)             Checksum: FC68179AC67A61F87C50DB4826D03E47;9655.
-
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                beranlu6mst
-(biblatex)                and rerun LaTeX afterwards.
-
 Package logreq Info: Writing requests to 'beranlu6mst.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 79.
  ) 
@@ -1361,7 +1352,7 @@ public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro10.p
 pe1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmtt10.pfb>
-Output written on beranlu6mst.pdf (34 pages, 993532 bytes).
+Output written on beranlu6mst.pdf (34 pages, 993054 bytes).
 PDF statistics:
  772 PDF objects out of 1000 (max. 8388607)
  163 named destinations out of 1000 (max. 500000)

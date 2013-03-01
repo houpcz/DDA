@@ -614,7 +614,7 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 		turn = -1;
 		float epsilon = 0.0000000001f;
 		
-		while(turn = -1)
+		while(turn == -1)
 		{
 			float rndNumber = rand() / static_cast<float>( RAND_MAX );
 

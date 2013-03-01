@@ -164,12 +164,16 @@ double MonteCarloTreeSearch::Simulation(MonteCarloNode * tempNode)
 {
 	IGameState * nodeState = tempNode->GameState();
 	IGameState * tempState;
-	int stateID;
+	return nodeState->GetPlayerRank(whoAskID, whoAskID);
 
+	/*
+	int stateID;
+	int depth = 0;
+	int depthMax = 10;
 	if(!nodeState->IsGameOver())
 	{
 		nodeState = nodeState->GetRandomNextState(whoAskID, &stateID);
-		while(!nodeState->IsGameOver())
+		while(!nodeState->IsGameOver() && depth++ < depthMax)
 		{
 			tempState = nodeState;
 			nodeState = nodeState->GetRandomNextState(whoAskID, &stateID);
@@ -180,7 +184,7 @@ double MonteCarloTreeSearch::Simulation(MonteCarloNode * tempNode)
 		return rank;
 	} else {
 		return nodeState->GetPlayerRank(whoAskID, whoAskID);
-	}
+	}*/
 }
 
 int MonteCarloTreeSearch::BestTurn()
