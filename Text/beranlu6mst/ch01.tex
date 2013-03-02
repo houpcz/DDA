@@ -1,5 +1,9 @@
 \chapter{Úvod}
-Some introductory text\dots
+Tady něco chybí \dots
+
+\section{Cíl diplomové práce}
+
+Cílem diplomové práce je prozkoumat možnosti přístupů k dynamické adaptivitě v počítačových hrách. Zaměřit se na přístupy, jež lze využít v nezměněné, či modifikované podobě v oblasti teorie her. Dalším cílem je vymyslet nový přístup a ten spolu s existujícími algoritmy implementovat a otestovat na třech vybraných jednoduchých hrách. Pomocí metrik změřit kvalitu jednotlivých algoritmů a vzájemně je porovnat. V ideálním případě by měl vlastní přístup předčit přístupy existující.
 
 \section{Definice}
 
@@ -7,20 +11,24 @@ Dynamické vyvažování obtížnosti (dynamic difficulty adjustement, DDA) je o
 
 Klasickým přístup je předdefinování několika rozdílných nastavení s odlišnými požadavky na dovednosti uživatelů, kteří si mezi těmito nastaveními volí ručně. Naopak dynamický, adaptivní přístup volbu nastavení nechává alespoň z části na samotném programu, který se rozhoduje na základě modelu uživatele.
 
-Se zkratkou DDA se nejčastěji setkáme v oblasti počítačových her a simulací, ale toto prostředí není závaznou podmínkou. Příklady budou uvedeny v sekci \ref{sec:aplikacedda}. Cílem DDA je přizpůsobovat proměnné systému co nejlépe aktuálním potřebám uživatele.  S typem aplikace úsce souvisí druh potřeb uživatele. Lišit se budou potřeby pacientů využívajících rehabilitační programy a potřeby hráčů počítačových her. Dále se v textu zaměřím na využití DDA v počítačových hrách, případně v tzv. serious game, které mají za úkol udržet uživatele u užitečné činnosti formou zábavné hry.
+Se zkratkou DDA se nejčastěji setkáme v oblasti počítačových her a simulací, ale toto prostředí není závaznou podmínkou. Příklady budou uvedeny v sekci \ref{sec:aplikacedda}. Cílem DDA je přizpůsobovat proměnné systému co nejlépe aktuálním potřebám uživatele.  S typem aplikace úzce souvisí druh potřeb uživatele. Lišit se budou potřeby pacientů využívajících rehabilitační programy a potřeby hráčů počítačových her. Dále se v textu zaměřím na využití DDA v počítačových hrách, případně v tzv. serious game, které mají za úkol udržet uživatele u užitečné činnosti formou zábavné hry.
 
 Synonymy pro DDA jsou např. dynamic difficulty balancing, dynamic game balancing, auto-dynamic difficulty, adaptive difficulty. Ve čtyřech z pěti pojmů se vyskutuje slovo difficulty (obtížnost), které jsem doposud nezmínil. Vyvažování obtížnosti je základem velké většiny hry využívající koncept DDA. Myšlenka za tím je jednoduchá. Je-li hra pro hráče příliš snadná, hráč se nudí, hru opustí. Naopak je-li hra příliš obtížná, hráč je frustrován, hru opouští. V obou případech hra ztrácí své uživatele. U komerčních produktů se pak jedná o ztrátu financí. U programu využívaném při rehabilitaci se pak jedná o ztrátu motivace v pokračovaní rehabilitací. Obtížnost hry tedy přímo souvisí s její zábavností a udělat hru zábavnou pro co největší masu lidí je cílem DDA. Míra zábavnosti hry není závislá pouze na její obtížnosti. Jak lze definovat zábavu a jak ji lze měřit více popíši v kapitole \ref{sec:defzab}. 
 
 Každé využití auto-dynamického vyvažování hry lze zařadit do několika kategorií z různých úhlů pohledu. Různé hry vyžadují různé přístupy a je dobré se zamyslet nad konkrétní hrou. Vybrat si z jakých kategorií by mělo být DDA použito. Designér hry by si měl položit několik následujících otázek :
 
 \begin{enumerate}
+  \item Vytvářím vážnou hru, nebo hru jen pro zábavu?
 	\item Měl by hráč vědět, jestli je DDA použito?
 	\item Má být obtížnost měněna v průběhu hry, nebo pouze na začátku?
-	\item Je hlavním cílem hry zábava, nebo něco jiného?
 	\item Jakým způsobem může být ovlivňována obtížnost hry?
 \end{enumerate}
 
 Dle svých odpovědí každý určitě zvládne zařadit hru do následujících kategorií.
+
+\subsection{Vážné a nevážné hry}
+
+U her ze zábavního průmyslu(entertainment games) je na prvním místě samotná zábava a na tu by se měli vývojáři zaměřit. Především jde o snahu udělat hru dostatečnou výzvou pro hráče. Návrháři vážných her (serious games) mají těžší úkol. Zábava je pouhý prostředek pro splnění jiného cíle. Vezměme v úvahu vzdělávací hry a hry poskytující nějaký druh tréninku. Úkolem těchto her je přenos znalostí mezi hrou a uživatel, a tedy DDA se snaží tento přenos co nejvíce zefektivnit. Důležité je najít vyrovnanou úroveň mezi zábavou a smyslem těchto her, přenosem znalosti. \cite{16Survey}
 
 \subsection{Explicitní a implicitní}
 
@@ -49,6 +57,21 @@ Online adaptivita bude naopak zaměřena na adaptivitu umělé inteligence NPC a
 
 Online adaptivitu můžeme zasadit přímo do principů hry. Ve hře Pocket Billiards hrají proti sobě dva hráči na kulečníkovém stole. Na stole je několik koulí dvou barev. Každý hráč má přiřazenou jednu z barev a jeho úkolem je dostrkat své koule do děr dříve než to udělá soupeř. Adaptivita je zde dána samotným principem hry. Dostane-li se jeden hráč do vedení a odstraní z plochy znatelně více koulí než jeho soupeř, pak je pro něj stále obtížnější dostat další koule do děr. Zároveň se zvyšuje pravděpodobnost, že bude muset provést takový šťouch, který může odstranit z plochy soupeřovu koule, a tedy mu tím může pomoci dorovnat skóre.\cite{5}
 
+\subsection{Adaptivita herních komponent}
+
+Každá hra lze rozdělit do několika komponent. Konkrétně se jedná o následující komponenty \cite{16Survey} : 
+
+\begin{enumerate}
+	\item Svět a objekty v něm.
+	\item Herní mechaniky.
+	\item NPC a jejich umělou inteligenci.
+	\item Příběh.
+	\item Herní scénáře a úkoly.
+\end{enumerate}
+
+Všechny jednotlivé komponenty mohou být adaptivní a přizpůsobovat se konkrétnímu hráči. \textit{Svět a objekty v něm} : V \cite{17Evol} vytvářejí adaptivně logické úlohy, Hamlet \cite{20Hun} pro Half-Life rozmisťuje inteligentně náboje a lékárničky po úrovních. V Left 4 Dead adaptivně generují prostředí s různou komplexitou. \textit{Herní mechaniky} : Ve hře Max Payne se s výkonem hráče mění zaměřovací asistent a síla protivníků. \cite{RiskTakers} \textit{NPC a jejich umělou inteligenci} : V Pro Evolution Soccer 2008 se soupeř přizpůsobují strategii hráče. \cite{6} \textit{Příběh} : Ve Valve považují výběr typu nepřátel dle aktuálního stavu hráče ve hře Left 4 Dead jako formu vyprávění příběhu. \cite{2} Dále se touto problematikou zabývali např. Barber a Kudenko \cite{Narratives}. \textit{Herní scénáře a úkoly} : Tato oblast patří zatím k těm méně probádaným. Lze si ale představit v dnes populárních MMORPG úpravu úkolů na míru jednotlivých hráčů a dle aktuální situace hry. Pokud např. hráč navštěvuje stále stejné území, může NPC postava zadat jako úkol pobití určitého množství monster nacházející se v dané oblasti a tím pro něj rutinu proměnit v o trochu více zábavnou.
+
+
 \section{Aplikace DDA} \label{sec:aplikacedda}
 
 Algoritmy vyvažování obtížnosti lze využít v širokém spektru aplikací. Mohou být vhodné všude tam, kde je vyžadována určitá dovednost, schopnost. V takovém případě může být obtížné aplikaci, program navrhnout tak, aby byl dobře využitelný velkým spektrem lidí různých schopností.
@@ -60,7 +83,6 @@ DDA můžeme nalézt nejen v zábavním průmyslu, ale i u vážných her. Adapt
 Hráče počítačových her lze rozdělit dle jejich schopností od příležitostných až po hardcore hráče. Většina her obsahuje statickou volbu obtížnosti na začátku hry. V některých případech to nemusí být dostačující, a proto se tvůrci komerčních her snaží více, či méně úspěšně implementovat adaptivní obtížnost.
 
 Na stránce \cite{1} lze nalézt desítky příkladů všech různých žánrů. Do následujícího seznamu 5 her jsem vybral ty známější příklady.
-
 
 \subsubsection{Left 4 Dead}
 \label{sec:Left4Dead}
@@ -158,8 +180,6 @@ Peter Peerdeman se ve své diplomové práci Intelligent Tutoring in Educational
 Hra při zadávání úkolů vhodně vybírá slovíčka dle úrovně hráče. Využívá se databáze 6000 slov, kde každé slovo je ohodnoceno číslem mezi 0 – 100 určující jejich obtížnost. Ohodnocení slova vyjadřuje kolik procent učitelů si myslí, že toto slovo je důležité znát žáky druhých tříd(groep  2)  základních škol v Holandsku. \footnote{Groep 2 navštěvují pětileté děti. Navštěvování první třídy ve 4 letech je dobrovolné, druhou třídu musí děti navštěvovat povinně. Číst, psát a počítat se začnou učit až v groep 3, která věkem dětí odpovídá prvním třídám v ČR. \cite{27EdHolland}} Lze předpokládat, že slova s hodnotou 90-100 žáci již dobře znají a naopak slova ohodnocená 0 – 30 nejsou důležitá k naučení. Zbytek slov lze rozdělit do šesti úrovní obtížnosti. Obtížnost 1 obsahující slova s hodnotou 80 – 90 až po obtížnost 6 se slovy s hodnotou 30 – 40.
 
 Zadání úkolu vždy obsahuje většinu slov dítěti dobře známých, zbylé tvoří prostor pro učení. Každý úkol má přiřazeno několik různě obtížných synonym a program vybírá nejvhodnější slovo dle úrovně hráče, které několikrát zopakuje v různých větách pro lepší pochopení jeho významu.
-
-\section{Cíl diplomové práce}
 
 \endinput
 %%

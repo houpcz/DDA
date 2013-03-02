@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=ch01.tex
 
 [Frame0_View0,0]
-TopLine=0
-Cursor=12166
+TopLine=18
+Cursor=3107
 
 [Frame1]
 Flags=0
