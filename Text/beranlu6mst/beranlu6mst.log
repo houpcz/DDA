@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  2 MAR 2013 20:04
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  3 MAR 2013 18:03
 entering extended mode
 **beranlu6mst.tex
 (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.tex
@@ -1083,7 +1083,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 49.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-<logo/lev.pdf, id=276, 561.09625pt x 440.64626pt>
+<logo/lev.pdf, id=287, 561.09625pt x 440.64626pt>
 File: logo/lev.pdf Graphic file (type pdf)
  <use logo/lev.pdf>
 Package pdftex.def Info: logo/lev.pdf used on input line 49.
@@ -1144,7 +1144,7 @@ l.22 	\item M
 
 
 ]
-<fig/ch1mariokart2.jpg, id=462, 446.66875pt x 443.6575pt>
+<fig/ch1mariokart2.jpg, id=488, 446.66875pt x 443.6575pt>
 File: fig/ch1mariokart2.jpg Graphic file (type jpg)
  <use fig/ch1mariokart2.jpg>
 Package pdftex.def Info: fig/ch1mariokart2.jpg used on input line 45.
@@ -1160,7 +1160,7 @@ Overfull \hbox (28.6479pt too wide) in paragraph at lines 96--98
 []\T1/lmr/m/n/10.95 Jestliºe hrá£ opa-ko-van¥ umírá, do-stane se mu po-moci ve form¥ bo-nu-so-vých lék·(painkillers),
  []
 
-[4] [5] <fig/ch1elderlypeople.png, id=522, 429.85594pt x 152.82094pt>
+[4] [5] <fig/ch1elderlypeople.png, id=548, 429.85594pt x 152.82094pt>
 File: fig/ch1elderlypeople.png Graphic file (type png)
  <use fig/ch1elderlypeople.png>
 Package pdftex.def Info: fig/ch1elderlypeople.png used on input line 133.
@@ -1188,13 +1188,13 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 180.
 ) [8] (C:\_projekty\DDA\Text\beranlu6mst\ch02.tex
 Kapitola 2.
-<fig/ch2ddaarch.png, id=558, 619.113pt x 452.892pt>
+<fig/ch2ddaarch.png, id=584, 619.113pt x 452.892pt>
 File: fig/ch2ddaarch.png Graphic file (type png)
  <use fig/ch2ddaarch.png>
 Package pdftex.def Info: fig/ch2ddaarch.png used on input line 12.
 (pdftex.def)             Requested size: 310.1859pt x 226.90845pt.
 
-<fig/ch2ddapatterns.png, id=564, 420.97275pt x 197.538pt>
+<fig/ch2ddapatterns.png, id=590, 420.97275pt x 197.538pt>
 File: fig/ch2ddapatterns.png Graphic file (type png)
  <use fig/ch2ddapatterns.png>
 Package pdftex.def Info: fig/ch2ddapatterns.png used on input line 21.
@@ -1208,13 +1208,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2.3}) h
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.31 
-      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2ddaarch.png>] <fig/ch2senzorfactory.png, id=575, 529.98pt x 280.6485pt>
+      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2ddaarch.png>] <fig/ch2senzorfactory.png, id=601, 529.98pt x 280.6485pt>
 File: fig/ch2senzorfactory.png Graphic file (type png)
 
 <use fig/ch2senzorfactory.png>
 Package pdftex.def Info: fig/ch2senzorfactory.png used on input line 34.
 (pdftex.def)             Requested size: 206.7906pt x 109.50386pt.
- <fig/ch2adaptationdesing.png, id=579, 345.08925pt x 239.6955pt>
+ <fig/ch2adaptationdesing.png, id=605, 345.08925pt x 239.6955pt>
 File: fig/ch2adaptationdesing.png Graphic file (type png)
 
 <use fig/ch2adaptationdesing.png>
@@ -1233,7 +1233,7 @@ uplicate ignored
                                                   \fi \fi 
 l.48 \end{figure}
                   <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2ddapatterns.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2s
-enzorfactory.png>] <fig/ch2casebase.png, id=590, 349.90726pt x 310.761pt>
+enzorfactory.png>] <fig/ch2casebase.png, id=616, 349.90726pt x 310.761pt>
 File: fig/ch2casebase.png Graphic file (type png)
  <use fig/ch2casebase.png>
 Package pdftex.def Info: fig/ch2casebase.png used on input line 56.
@@ -1251,119 +1251,155 @@ ored
                                                   \fi \fi 
 l.64 
       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2adaptationdesing.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2casebase
-.png>] <fig/ch2gamereco.png, id=600, 421.575pt x 273.4215pt>
+.png>] <fig/ch2gamereco.png, id=626, 421.575pt x 273.4215pt>
 File: fig/ch2gamereco.png Graphic file (type png)
  <use fig/ch2gamereco.png>
 Package pdftex.def Info: fig/ch2gamereco.png used on input line 67.
 (pdftex.def)             Requested size: 206.7906pt x 134.11954pt.
-) [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8}) has been already used, duplicate ign
-ored
+
+<fig/ch2flow.png, id=633, 523.35526pt x 324.61275pt>
+File: fig/ch2flow.png Graphic file (type png)
+ <use fig/ch2flow.png>
+Package pdftex.def Info: fig/ch2flow.png used on input line 86.
+(pdftex.def)             Requested size: 206.7906pt x 128.26273pt.
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.8}) has been already used, duplicate igno
+red
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.65   \include{ch02}
-                      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2gamereco.png>]
-(C:\_projekty\DDA\Text\beranlu6mst\ch03.tex
-Kapitola 3.
-<fig/ch3pomdp.png, id=610, 295.1025pt x 216.05719pt>
-File: fig/ch3pomdp.png Graphic file (type png)
- <use fig/ch3pomdp.png>
-Package pdftex.def Info: fig/ch3pomdp.png used on input line 21.
-(pdftex.def)             Requested size: 206.7906pt x 151.40382pt.
- [13
+l.94 
+      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2gamereco.png>] <fig/ch2flowzone1.png, id=652, 258.9675pt x 173.64874pt>
+File: fig/ch2flowzone1.png Graphic file (type png)
 
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{figure.3.9}) has been already used, duplicate ignored
+<use fig/ch2flowzone1.png>
+Package pdftex.def Info: fig/ch2flowzone1.png used on input line 127.
+(pdftex.def)             Requested size: 206.7906pt x 138.66745pt.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.9}) has been already used, duplicate igno
+red
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.27 
-      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3pomdp.png>]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 48.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 48.
+l.133 
+       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2flow.png>] <fig/ch2flowzone2.png, id=675, 258.9675pt x 194.7275pt>
+File: fig/ch2flowzone2.png Graphic file (type png)
 
-<fig/ch3pacman.png, id=619, 333.49594pt x 215.30438pt>
-File: fig/ch3pacman.png Graphic file (type png)
- <use fig/ch3pacman.png>
-Package pdftex.def Info: fig/ch3pacman.png used on input line 55.
-(pdftex.def)             Requested size: 206.7906pt x 133.50703pt.
- [14] [15pdfTeX warning (ext4): destination with the same identifier (name{figure.3.10}) has been already used, duplicat
-e ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.94 \end{equation}
-                    <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3pacman.png>] [16]
-<fig/ch3cbrspring.png, id=656, 511.9125pt x 301.8778pt>
-File: fig/ch3cbrspring.png Graphic file (type png)
- <use fig/ch3cbrspring.png>
-Package pdftex.def Info: fig/ch3cbrspring.png used on input line 137.
-(pdftex.def)             Requested size: 206.7906pt x 121.94661pt.
- [17pdfTeX warning (ext4): destination with the same identifier (name{figure.3.11}) has been already used, duplicate ign
-ored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.159 
-       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3cbrspring.png>] [18]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 209.
- [19] [20] [21]
-<fig/ch3deadend.png, id=696, 222.07968pt x 319.94531pt>
-File: fig/ch3deadend.png Graphic file (type png)
- <use fig/ch3deadend.png>
-Package pdftex.def Info: fig/ch3deadend.png used on input line 342.
-(pdftex.def)             Requested size: 222.07913pt x 319.94452pt.
-
-Underfull \vbox (badness 7667) has occurred while \output is active []
-
- [22pdfTeX warning (ext4): destination with the same identifier (name{figure.3.12}) has been already used, duplicate ign
-ored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.351 
-       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3deadend.png>]
-<fig/ch3fuzzytable.png, id=706, 595.47469pt x 172.39406pt>
-File: fig/ch3fuzzytable.png Graphic file (type png)
- <use fig/ch3fuzzytable.png>
-Package pdftex.def Info: fig/ch3fuzzytable.png used on input line 360.
-(pdftex.def)             Requested size: 310.1859pt x 89.80061pt.
- [23pdfTeX warning (ext4): destination with the same identifier (name{figure.3.13}) has been already used, duplicate ign
-ored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.380 
-       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3fuzzytable.png>]
-<fig/ch3fuzzywinrate.png, id=716, 429.85594pt x 185.19188pt>
-File: fig/ch3fuzzywinrate.png Graphic file (type png)
- <use fig/ch3fuzzywinrate.png>
-Package pdftex.def Info: fig/ch3fuzzywinrate.png used on input line 387.
-(pdftex.def)             Requested size: 310.1859pt x 133.63756pt.
- [24pdfTeX warning (ext4): destination with the same identifier (name{figure.3.14}) has been already used, duplicate ign
-ored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.415 
-       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3fuzzywinrate.png>] [25]
-<fig/ch3feromons.png, id=737, 414.79968pt x 164.86594pt>
-File: fig/ch3feromons.png Graphic file (type png)
- <use fig/ch3feromons.png>
-Package pdftex.def Info: fig/ch3feromons.png used on input line 460.
-(pdftex.def)             Requested size: 310.1859pt x 123.28938pt.
-) [26pdfTeX warning (ext4): destination with the same identifier (name{figure.3.15}) has been already used, duplicate ig
+<use fig/ch2flowzone2.png>
+Package pdftex.def Info: fig/ch2flowzone2.png used on input line 136.
+(pdftex.def)             Requested size: 206.7906pt x 155.49992pt.
+) [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.10}) has been already used, duplicate ig
 nored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.66 	\include{ch03}
-                     <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3feromons.png>]
+l.65   \include{ch02}
+                     pdfTeX warning (ext4): destination with the same identifier (name{figure.2.11}) has been already us
+ed, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.65   \include{ch02}
+                      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2flowzone1.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch
+2flowzone2.png>] (C:\_projekty\DDA\Text\beranlu6mst\ch03.tex
+Kapitola 3.
+<fig/ch3pomdp.png, id=686, 295.1025pt x 216.05719pt>
+File: fig/ch3pomdp.png Graphic file (type png)
+ <use fig/ch3pomdp.png>
+Package pdftex.def Info: fig/ch3pomdp.png used on input line 21.
+(pdftex.def)             Requested size: 206.7906pt x 151.40382pt.
+ [15
+
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.12}) has been already used, duplicate ignored
+
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.27 
+      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3pomdp.png>] [16]
+<fig/ch3cbrspring.png, id=713, 511.9125pt x 301.8778pt>
+File: fig/ch3cbrspring.png Graphic file (type png)
+ <use fig/ch3cbrspring.png>
+Package pdftex.def Info: fig/ch3cbrspring.png used on input line 90.
+(pdftex.def)             Requested size: 206.7906pt x 121.94661pt.
+ [17pdfTeX warning (ext4): destination with the same identifier (name{figure.3.13}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.96 
+      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3cbrspring.png>] [18]
+<fig/ch3deadend.png, id=727, 222.07968pt x 319.94531pt>
+File: fig/ch3deadend.png Graphic file (type png)
+ <use fig/ch3deadend.png>
+Package pdftex.def Info: fig/ch3deadend.png used on input line 155.
+(pdftex.def)             Requested size: 222.07913pt x 319.94452pt.
+ [19]
+<fig/ch3fuzzytable.png, id=736, 595.47469pt x 172.39406pt>
+File: fig/ch3fuzzytable.png Graphic file (type png)
+ <use fig/ch3fuzzytable.png>
+Package pdftex.def Info: fig/ch3fuzzytable.png used on input line 173.
+(pdftex.def)             Requested size: 310.1859pt x 89.80061pt.
+ [20pdfTeX warning (ext4): destination with the same identifier (name{figure.3.14}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.183 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.3.15}) has been already used, duplicate i
+gnored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.183 
+       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3deadend.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3fuzzytable.png>]
+<fig/ch3fuzzywinrate.png, id=747, 429.85594pt x 185.19188pt>
+File: fig/ch3fuzzywinrate.png Graphic file (type png)
+ <use fig/ch3fuzzywinrate.png>
+Package pdftex.def Info: fig/ch3fuzzywinrate.png used on input line 200.
+(pdftex.def)             Requested size: 310.1859pt x 133.63756pt.
+ [21pdfTeX warning (ext4): destination with the same identifier (name{figure.3.16}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.213 	\item M
+              ravenci se na kaÅ¾dÃ©m uzlu rozhodujÃ­, kterou dalÅ¡Ã­ hranou ... <C:/_projekty/DDA/Text/beranlu6mst/fig/c
+h3fuzzywinrate.png>] [22] <fig/ch3feromons.png, id=767, 414.79968pt x 164.86594pt>
+File: fig/ch3feromons.png Graphic file (type png)
+ <use fig/ch3feromons.png>
+Package pdftex.def Info: fig/ch3feromons.png used on input line 273.
+(pdftex.def)             Requested size: 310.1859pt x 123.28938pt.
+
+Underfull \vbox (badness 1127) has occurred while \output is active []
+
+ [23pdfTeX warning (ext4): destination with the same identifier (name{figure.3.17}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.288 
+       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3feromons.png>]
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 298.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmr.fd"
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 298.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 307.
+
+[24] [25] [26] <fig/ch3pacman.png, id=805, 333.49594pt x 215.30438pt>
+File: fig/ch3pacman.png Graphic file (type png)
+ <use fig/ch3pacman.png>
+Package pdftex.def Info: fig/ch3pacman.png used on input line 445.
+(pdftex.def)             Requested size: 206.7906pt x 133.50703pt.
+ [27pdfTeX warning (ext4): destination with the same identifier (name{figure.3.18}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.453 
+       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3pacman.png>]) [28]
 Overfull \hbox (16.81342pt too wide) in paragraph at lines 77--77
 \T1/lmtt/m/n/10.95 com / blogs / AdamSaltsman / 20090507 / 1340 / Game _ Changers _ Dynamic _ Difficulty .
  []
@@ -1380,7 +1416,7 @@ Overfull \hbox (2.52742pt too wide) in paragraph at lines 77--77
 \T1/lmr/m/n/10.95 (2012). 
  []
 
-[27
+[29
 
 
 
@@ -1394,24 +1430,24 @@ Overfull \hbox (5.28348pt too wide) in paragraph at lines 77--77
 Package biblatex Warning: Month out of range
 (biblatex)                at entry 'SwPatterns' on input line 75.
 
-[28]
+[30]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 79.
- [29]
+ [31]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 79.
  (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.aux (C:\_projekty\DDA\Text\beranlu6mst\ch01.aux)
 (C:\_projekty\DDA\Text\beranlu6mst\ch02.aux) (C:\_projekty\DDA\Text\beranlu6mst\ch03.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 79.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 79.
 Package rerunfilecheck Info: File `beranlu6mst.out' has not changed.
-(rerunfilecheck)             Checksum: 78AB245AF1C2903F083CA344343BF827;10900.
+(rerunfilecheck)             Checksum: 615393537115BCB78B15CA885F7AEBB8;11526.
 Package logreq Info: Writing requests to 'beranlu6mst.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 79.
  ) 
 Here is how much of TeX's memory you used:
- 19379 strings out of 493921
- 293737 string characters out of 3147276
- 731914 words of memory out of 3000000
- 22087 multiletter control sequences out of 15000+200000
+ 19430 strings out of 493921
+ 294515 string characters out of 3147276
+ 733250 words of memory out of 3000000
+ 22111 multiletter control sequences out of 15000+200000
  94790 words of font info for 77 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  52i,12n,49p,1383b,2640s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1428,9 +1464,9 @@ public/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro10.p
 pe1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/lm/lmtt10.pfb>
-Output written on beranlu6mst.pdf (39 pages, 1364832 bytes).
+Output written on beranlu6mst.pdf (41 pages, 1775684 bytes).
 PDF statistics:
- 914 PDF objects out of 1000 (max. 8388607)
- 191 named destinations out of 1000 (max. 500000)
- 637 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 995 PDF objects out of 1000 (max. 8388607)
+ 215 named destinations out of 1000 (max. 500000)
+ 676 words of extra memory for PDF output out of 10000 (max. 10000000)
 
