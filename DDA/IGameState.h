@@ -26,7 +26,6 @@ public :
 	virtual int GetPlayerStatus(int playerID) = 0;
 	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID) = 0;
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
-	virtual float GetNextStateProb(int whoAskID, int actionID) = 0;
 
 	//virtual IGameState * GetRandomState() = 0;
 	//virtual GetPlayerStatus(int playerID, int whoAskID) = 0;

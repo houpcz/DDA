@@ -98,21 +98,11 @@ MonteCarloNode * MonteCarloNode::GetBestChild(int whoAskID)
 		if(children[loop1]->visits == 0)
 		{
 			notVisitedNodes.push_back(loop1);
-			sumProb += GameState()->GetNextStateProb(whoAskID, loop1);
 		}
 	}
 	if(notVisitedNodes.size() > 0)
 	{
-		double rndNumber = rand() / (double) RAND_MAX;
-		double tempProb = 0.0;
-		for(int loop1 = 0; loop1 < notVisitedNodes.size(); loop1++)
-		{
-			tempProb += GameState()->GetNextStateProb(whoAskID, notVisitedNodes[loop1]) / sumProb;
-			if(rndNumber < tempProb)
-			{
-				return children[notVisitedNodes[loop1]];
-			}
-		}
+		return children[notVisitedNodes[rand() % notVisitedNodes.size()]];
 	}
 
 	double bestValue = children[0]->value + c * sqrt(log((double) visits) / children[0]->visits);;

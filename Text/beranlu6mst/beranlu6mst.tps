@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=ch03.tex
 
 [Frame0_View0,0]
-TopLine=552
-Cursor=23352
+TopLine=2
+Cursor=317
 
 [Frame1]
 Flags=0

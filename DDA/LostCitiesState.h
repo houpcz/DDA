@@ -40,7 +40,6 @@ private:
 	float probCard[PLAYER_AMOUNT][CARD_AMOUNT];
 	vector<char> allChoises; // valid "playerChoises" values, ids of cards which can be played and where
 	vector<char> drawFrom;   // ids to discardOnTop
-	vector<float> probChoises;
 	int activePlayerID;
 	int lastRealPlayer; // not environmental AI
 	int discardPileTopCardCode[COLOR_AMOUNT];
@@ -76,7 +75,6 @@ public:
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID);
-	virtual float GetNextStateProb(int whoAskID, int actionID);
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
 	bool IsGameOver();

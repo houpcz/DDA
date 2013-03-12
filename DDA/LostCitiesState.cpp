@@ -76,7 +76,6 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 	cardsInDeck = origin.cardsInDeck;
 	cardsInDeckTurn = origin.cardsInDeckTurn;
 	abstraction = origin.abstraction;
-	probChoises = origin.probChoises;
 	allChoises = origin.allChoises;
 	drawFrom = origin.drawFrom;
 
@@ -263,7 +262,6 @@ int LostCitiesState::GetTurnID(int playCardID, int drawSite)
 void LostCitiesState::CountPlayerChoises(int whoAskID)
 {
 	allChoises.clear();
-	probChoises.clear();
 	drawFrom.clear();
 
 	if(activePlayerID == ENVIRONMENTAL_AI)
@@ -292,8 +290,8 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 			}
 		}
 	} else {
-		int playerHandKnown;		// hidden/known - or known/deck
-		int playerHandHidden;		// hidden/known - or known/deck
+		int playerHandKnown;		// known
+		int playerHandHidden;		// hidden
 		int playerHandDeck;		    // if I dont know whole his hand, he cant distinguish cards between IN_DECK and HAND_HIDDEN
 		int playerOnDesk;
 		int hiddenCardAmount = 0;
@@ -330,13 +328,6 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 		}
 		knownCardAmount = handSize - hiddenCardAmount;
 
-		if(hiddenCardAmount > 0 && notInformed)
-			playerHandDeck = IN_DECK;
-		else
-			playerHandDeck = -1;
-
-		float prob;
-		float sumProb = 0.0f;
 		for(char loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 		{
 			bool canAddCardToExpedition = true;
@@ -345,25 +336,15 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 			for(char loop2 = CARD_ONE_COLOR_AMOUNT - 1; loop2 >= 0; loop2--)
 			{
 				char cardID = loop1 * CARD_ONE_COLOR_AMOUNT + loop2;
-				if(card[cardID] == playerHandKnown || card[cardID] == playerHandHidden || card[cardID] == playerHandDeck)
+				if(card[cardID] == playerHandKnown || card[cardID] == playerHandHidden)
 				{
-					if(notInformed && (card[cardID] == playerHandDeck || card[cardID] == playerHandHidden))
-					{
-						prob = (hiddenCardAmount *  1.0f / handSize) * probCard[activePlayerID - 1][cardID];//(1.0f / (inDeckAmount + hiddenCardAmount));
-					} else {
-						prob = 1.0f / handSize;
-					}
 
 					allChoises.push_back(cardID);	// can discard card
-					probChoises.push_back(prob);
-					sumProb += prob;
 					drawFrom.push_back(DRAW_FROM_DECK);
 
 					if(canAddCardToExpedition)
 					{
 						allChoises.push_back(cardID + DISCARD_CARD_OFFSET); // may add to expedition
-						probChoises.push_back(prob);
-						sumProb += prob;
 						drawFrom.push_back(DRAW_FROM_DECK);
 					}
 				} else if(canAddCardToExpedition && card[cardID] == playerOnDesk && loop2 > 2) // you can't add lower value card to existing expedition
@@ -391,17 +372,10 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 					if(discardPileTopCardID[loop2] >= 0 && (allChoises[loop1] >= DISCARD_CARD_OFFSET || loop2 != allChoises[loop1] / CARD_ONE_COLOR_AMOUNT))
 					{
 						allChoises.push_back(allChoises[loop1]);
-						probChoises.push_back(probChoises[loop1]);
-						sumProb += probChoises[loop1];
 						drawFrom.push_back(loop2);
 					}
 				}
 			}
-		}
-
-		for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
-		{
-			probChoises[loop1] = probChoises[loop1] / sumProb;
 		}
 	} 
 }
@@ -699,45 +673,14 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 	WhoAsked(whoAskID);
 	int numberNextStates = GetPlayerChoises(whoAskID);
 	int turn;
-	float sumProb = 0.0;
 
-	if(activePlayerID == ENVIRONMENTAL_AI)
-	{
-		turn = rand() % numberNextStates;
-	} else {
-		turn = -1;
-		float epsilon = 0.0000000001f;
-		
-		while(turn == -1)
-		{
-			float rndNumber = rand() / static_cast<float>( RAND_MAX );
-
-			for(int loop1 = 0; loop1 < probChoises.size(); loop1++)
-			{
-				sumProb += probChoises[loop1];
-				if(rndNumber < sumProb + epsilon)
-				{
-					turn = loop1;
-					break;
-				}
-			}
-		}
-	}
+	turn = rand() % numberNextStates;
 	
 	LostCitiesState * lostCitiesState = new LostCitiesState(*this);
 	lostCitiesState->MakeTurn(turn);
 
 	*outStateID = turn;
 	return lostCitiesState;
-}
-
-float LostCitiesState::GetNextStateProb(int whoAskID, int actionID)
-{
-	WhoAsked(whoAskID);
-	if(activePlayerID == ENVIRONMENTAL_AI)
-		return 1.0;
-	else
-		return probChoises[actionID];
 }
 
 ISpecificStat * LostCitiesState::GetGameSpecificStat()
