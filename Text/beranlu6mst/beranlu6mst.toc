@@ -102,7 +102,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.4}Fuzzy pravidla}{19}{subsection.3.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Dead-end}{19}{section*.30}
+\contentsline {subsubsection}{Dead-end}{20}{section*.30}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Fuzzy pravidla}{20}{section*.31}
 \defcounter {refsection}{0}\relax 
@@ -110,7 +110,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{V\IeC {\'y}sledky}{21}{section*.33}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1.5}Mraven\IeC {\v c}\IeC {\'\i } feromony}{21}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.5}Mraven\IeC {\v c}\IeC {\'\i } feromony}{22}{subsection.3.1.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c}\IeC {\r u}v profil}{22}{section*.34}
 \defcounter {refsection}{0}\relax 
