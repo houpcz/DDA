@@ -37,6 +37,7 @@ public :
 	static const int DISCARD_CARD_OFFSET = 60;
 private:
 	char card[CARD_AMOUNT];
+	float probCard[PLAYER_AMOUNT][CARD_AMOUNT];
 	vector<char> allChoises; // valid "playerChoises" values, ids of cards which can be played and where
 	vector<char> drawFrom;   // ids to discardOnTop
 	vector<float> probChoises;
@@ -53,6 +54,7 @@ private:
 	int cardsInDeckTurn;	// how many turns there is same amount cards in deck
 	int cardsInDeckMaxTurn; // limit on max number turn with same amount cards in deck
 
+	void UpdateProbCard(int playerID, int cardPlayedID);
 	int GetInDeckCount();
 	void InitGame(int _handSize, bool _abstraction);
 	void WhoAsked(int whoAskID);

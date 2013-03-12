@@ -1,0 +1,770 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{entry}{none}
+    \entry{16Survey}{article}{}
+      \name{labelname}{2}{}{%
+        {{hash=5be7ddc130ed7f06138d82ac82823414}{Lopes}{L\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=6b986b5a1da8d498e821521df11b9d98}{Bidarra}{B\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=5be7ddc130ed7f06138d82ac82823414}{Lopes}{L\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=6b986b5a1da8d498e821521df11b9d98}{Bidarra}{B\bibinitperiod}{R.}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{355a696851cdb421a6b3e0295a141ba7}
+      \strng{fullhash}{355a696851cdb421a6b3e0295a141ba7}
+      \field{sortinit}{0}
+      \field{labeltitle}{Adaptivity Challenges in Games and Simulations: A Survey}
+      \field{issn}{1943-068X}
+      \field{journaltitle}{Computational Intelligence and AI in Games, IEEE Transactions on}
+      \field{month}{06}
+      \field{number}{2}
+      \field{title}{Adaptivity Challenges in Games and Simulations: A Survey}
+      \field{volume}{3}
+      \field{year}{2011}
+      \field{pages}{85\bibrangedash 99}
+      \verb{doi}
+      \verb 10.1109/TCIAIG.2011.2152841
+      \endverb
+      \keyw{Adaptation model;Brain modeling;Computational modeling;Games;IEEE Transactions on Computational Intelligence and AI in Games;Learning systems;Predictive models;computer games;computer games;game adaptivity;gameplay expectation;generation engine;learning preference;procedural content generation;semantic modeling;simulation;Adaptive games;declarative modeling;online adaptivity;player assessment;player modeling;procedural content generation;semantic modeling;}
+    \endentry
+    \entry{15UnTrue}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=b75e9f44a51889c1f029138fac60e0b1}{Tassi}{T\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=b75e9f44a51889c1f029138fac60e0b1}{Tassi}{T\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{b75e9f44a51889c1f029138fac60e0b1}
+      \strng{fullhash}{b75e9f44a51889c1f029138fac60e0b1}
+      \field{sortinit}{0}
+      \field{labeltitle}{{A Universal Truth}}
+      \field{title}{{A Universal Truth}}
+      \field{urlday}{24}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://unrealitymag.com/index.php/2012/01/09/a-universal-truth/
+      \endverb
+    \endentry
+    \entry{17Evol}{inproceedings}{}
+      \name{labelname}{1}{}{%
+        {{hash=061c3572009b581f345bdad18078b20d}{Ashlock}{A\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=061c3572009b581f345bdad18078b20d}{Ashlock}{A\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{061c3572009b581f345bdad18078b20d}
+      \strng{fullhash}{061c3572009b581f345bdad18078b20d}
+      \field{sortinit}{0}
+      \field{labeltitle}{Automatic generation of game elements via evolution}
+      \field{booktitle}{Computational Intelligence and Games (CIG), 2010 IEEE Symposium on}
+      \field{month}{08}
+      \field{title}{Automatic generation of game elements via evolution}
+      \field{year}{2010}
+      \field{pages}{289\bibrangedash 296}
+      \verb{doi}
+      \verb 10.1109/ITW.2010.5593341
+      \endverb
+      \keyw{Algorithm design and analysis;Color;Dynamic programming;Evolutionary computation;Games;Heuristic algorithms;Image color analysis;computer games;dynamic programming;evolutionary computation;automatic generation;chess pieces;color wheel;dynamic programming;evolutionary algorithm;fitness function;game content;game elements;puzzles;}
+    \endentry
+    \entry{5}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{374d966cfc0e8ab31df1fae2e02b000f}
+      \strng{fullhash}{374d966cfc0e8ab31df1fae2e02b000f}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Game Changers: Dynamic Difficulty}}
+      \field{title}{{Game Changers: Dynamic Difficulty}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.gamasutra.com/blogs/AdamSaltsman/20090507/1340/Game_Changers_Dynamic_Difficulty.php
+      \endverb
+    \endentry
+    \entry{20Hun}{inproceedings}{}
+      \name{labelname}{1}{}{%
+        {{hash=5eeee8f66d452006be5b86b51aed051d}{Hunicke}{H\bibinitperiod}{Robin}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=5eeee8f66d452006be5b86b51aed051d}{Hunicke}{H\bibinitperiod}{Robin}{R\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Valencia, Spain}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{5eeee8f66d452006be5b86b51aed051d}
+      \strng{fullhash}{5eeee8f66d452006be5b86b51aed051d}
+      \field{sortinit}{0}
+      \field{labeltitle}{The case for dynamic difficulty adjustment in games}
+      \field{booktitle}{Proceedings of the 2005 ACM SIGCHI International Conference on Advances in computer entertainment technology}
+      \field{isbn}{1-59593-110-4}
+      \field{series}{ACE '05}
+      \field{title}{The case for dynamic difficulty adjustment in games}
+      \field{year}{2005}
+      \field{pages}{429\bibrangedash 433}
+      \verb{doi}
+      \verb 10.1145/1178477.1178573
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/1178477.1178573
+      \endverb
+      \keyw{AI, computer entertainment, dynamic difficulty adjustment, video games}
+    \endentry
+    \entry{RiskTakers}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=eeca487e254a39eed9c874920e23d0e0}{Hawkins}{H\bibinitperiod}{Guy}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0dd5fd00ce2a1abfbe66dd304c26a41e}{Nesbitt}{N\bibinitperiod}{Keith}{K\bibinitperiod}{}{}{}{}}%
+        {{hash=d66bc7d5de82f25186651705b24a67f9}{Brown}{B\bibinitperiod}{Scott}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=eeca487e254a39eed9c874920e23d0e0}{Hawkins}{H\bibinitperiod}{Guy}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0dd5fd00ce2a1abfbe66dd304c26a41e}{Nesbitt}{N\bibinitperiod}{Keith}{K\bibinitperiod}{}{}{}{}}%
+        {{hash=d66bc7d5de82f25186651705b24a67f9}{Brown}{B\bibinitperiod}{Scott}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, United States}%
+      }
+      \list{publisher}{1}{%
+        {Hindawi Publishing Corp.}%
+      }
+      \strng{namehash}{0de7a6299d5af52fbe942ddb929d1161}
+      \strng{fullhash}{0de7a6299d5af52fbe942ddb929d1161}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic difficulty balancing for cautious players and risk takers}
+      \field{issn}{1687-7047}
+      \field{journaltitle}{Int. J. Comput. Games Technol.}
+      \field{month}{01}
+      \field{title}{Dynamic difficulty balancing for cautious players and risk takers}
+      \field{volume}{2012}
+      \field{year}{2012}
+      \field{pages}{3:3\bibrangedash 3:3}
+      \verb{doi}
+      \verb 10.1155/2012/625476
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1155/2012/625476
+      \endverb
+    \endentry
+    \entry{6}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=061fd4c7c803f060d71c9e623ee106f9}{Konami}{K\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=061fd4c7c803f060d71c9e623ee106f9}{Konami}{K\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{061fd4c7c803f060d71c9e623ee106f9}
+      \strng{fullhash}{061fd4c7c803f060d71c9e623ee106f9}
+      \field{sortinit}{0}
+      \field{labeltitle}{{The Evolution of the Beautiful Game}}
+      \field{title}{{The Evolution of the Beautiful Game}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://uk.games.konami-europe.com/news.do?idNews=251
+      \endverb
+    \endentry
+    \entry{2}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=6ba7bf81c3324e90914c9e7bf11b920f}{GiantBomb.com}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=6ba7bf81c3324e90914c9e7bf11b920f}{GiantBomb.com}{G\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{6ba7bf81c3324e90914c9e7bf11b920f}
+      \strng{fullhash}{6ba7bf81c3324e90914c9e7bf11b920f}
+      \field{sortinit}{0}
+      \field{labeltitle}{{A. I. Director}}
+      \field{title}{{A. I. Director}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.giantbomb.com/ai-director/3015-2539/
+      \endverb
+    \endentry
+    \entry{Narratives}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=3a270e29ca2ebc65968161775144d100}{Barber}{B\bibinitperiod}{Heather}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=752e7b3c05f8277152ea44286065a69f}{Kudenko}{K\bibinitperiod}{Daniel}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=3a270e29ca2ebc65968161775144d100}{Barber}{B\bibinitperiod}{Heather}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=752e7b3c05f8277152ea44286065a69f}{Kudenko}{K\bibinitperiod}{Daniel}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=4e8be4b6877473bc3b351177fe06561f}{Schaeffer}{S\bibinitperiod}{Jonathan}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=6860903aff3a9110600b92e8c1fb82c1}{Mateas}{M\bibinitperiod}{Michael}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Stanford, California, USA}%
+      }
+      \strng{namehash}{e15fdedfa462cd8baa7fe81caca40d13}
+      \strng{fullhash}{e15fdedfa462cd8baa7fe81caca40d13}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic Generation of Dilemma-based Interactive Narratives}
+      \field{booktitle}{Proceedings of the Third Artificial Intelligence and Interactive Digital Entertainment conference (AIIDE 2007)}
+      \field{day}{6}
+      \field{month}{06}
+      \field{title}{Dynamic Generation of Dilemma-based Interactive Narratives}
+      \field{year}{2007}
+      \keyw{drama\_management}
+    \endentry
+    \entry{1}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
+      \strng{fullhash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Dynamic Difficulty}}
+      \field{title}{{Dynamic Difficulty}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://tvtropes.org/pmwiki/pmwiki.php/Main/DynamicDifficulty
+      \endverb
+    \endentry
+    \entry{3}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=98ac24c1f14857c64789729ca20fdb7b}{RocstarGames.com}{R\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=98ac24c1f14857c64789729ca20fdb7b}{RocstarGames.com}{R\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{98ac24c1f14857c64789729ca20fdb7b}
+      \strng{fullhash}{98ac24c1f14857c64789729ca20fdb7b}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Rockstar Game Tips: Difficulty Settings - Getting Started in Max Payne 3}}
+      \field{title}{{Rockstar Game Tips: Difficulty Settings - Getting Started in Max Payne 3}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.rockstargames.com/newswire/article/34161/rockstar-game-tips-difficulty-settings-getting-started-in-max-pa.html/
+      \endverb
+    \endentry
+    \entry{4}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=e10f26ebbf9c42f52743ac2ed639ffab}{Tolentino}{T\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=e10f26ebbf9c42f52743ac2ed639ffab}{Tolentino}{T\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e10f26ebbf9c42f52743ac2ed639ffab}
+      \strng{fullhash}{e10f26ebbf9c42f52743ac2ed639ffab}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Good Idea, Bad Idea: Dynamic Difficulty Adjustment}}
+      \field{title}{{Good Idea, Bad Idea: Dynamic Difficulty Adjustment}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.destructoid.com/good-idea-bad-idea-dynamic-difficulty-adjustment-70591.phtml
+      \endverb
+    \endentry
+    \entry{7}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=d9087b114d8c1f9fd14a04334b327b2e}{Heer}{H\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=d9087b114d8c1f9fd14a04334b327b2e}{Heer}{H\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{d9087b114d8c1f9fd14a04334b327b2e}
+      \strng{fullhash}{d9087b114d8c1f9fd14a04334b327b2e}
+      \field{sortinit}{0}
+      \field{labeltitle}{Balancing Exertion Experiences}
+      \field{journaltitle}{Movement-Based Gameplay}
+      \field{title}{Balancing Exertion Experiences}
+      \field{year}{2012}
+    \endentry
+    \entry{8}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=128a6f6f7ef851b18a808d812aa9fda4}{Doyle}{D\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=128a6f6f7ef851b18a808d812aa9fda4}{Doyle}{D\bibinitperiod}{G.}{G\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{128a6f6f7ef851b18a808d812aa9fda4}
+      \strng{fullhash}{128a6f6f7ef851b18a808d812aa9fda4}
+      \field{sortinit}{0}
+      \field{labeltitle}{Motivating Elderly People to Exercise Using a Social Collaborative Exergame with Adaptive Difficulty}
+      \field{journaltitle}{ECGBL}
+      \field{title}{Motivating Elderly People to Exercise Using a Social Collaborative Exergame with Adaptive Difficulty}
+      \field{year}{2012}
+    \endentry
+    \entry{9Pomdp}{article}{}
+      \name{labelname}{4}{}{%
+        {{hash=08311374e84c8dfe7ed127c63fc33ab0}{Goetschalckx}{G\bibinitperiod}{Robby}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=1743c2e61d43b6f0e1cd2a1ae5fadbea}{Missura}{M\bibinitperiod}{Olana}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=faae719891a104bbd5fdd7089e6114d2}{Hoey}{H\bibinitperiod}{Jesse}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=8caa55c44b04a8f6a0c322a19feceac2}{Gaertner}{G\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=08311374e84c8dfe7ed127c63fc33ab0}{Goetschalckx}{G\bibinitperiod}{Robby}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=1743c2e61d43b6f0e1cd2a1ae5fadbea}{Missura}{M\bibinitperiod}{Olana}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=faae719891a104bbd5fdd7089e6114d2}{Hoey}{H\bibinitperiod}{Jesse}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=8caa55c44b04a8f6a0c322a19feceac2}{Gaertner}{G\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Haifa, Israel}%
+      }
+      \strng{namehash}{6e84f875ffee2af74e88aa30e92c1c16}
+      \strng{fullhash}{1ff0ca7d2980540207b6ad55520d4297}
+      \field{sortinit}{0}
+      \field{labeltitle}{Games with Dynamic Difficulty Adjustment using POMDPs}
+      \field{booktitle}{ICML 2010 Workshop on Machine Learning and Games}
+      \field{title}{Games with Dynamic Difficulty Adjustment using POMDPs}
+      \field{year}{2010}
+    \endentry
+    \entry{10Dementia}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=90c1e6cb925c28e1df0a99c8f7d32a6c}{Mihailidis}{M\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=90c1e6cb925c28e1df0a99c8f7d32a6c}{Mihailidis}{M\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{90c1e6cb925c28e1df0a99c8f7d32a6c}
+      \strng{fullhash}{90c1e6cb925c28e1df0a99c8f7d32a6c}
+      \field{sortinit}{0}
+      \field{labeltitle}{A Decision-Theoretic Approach to Task Assistance for Persons with Dementia}
+      \field{journaltitle}{International Joint conference on Artificial Intelligence}
+      \field{title}{A Decision-Theoretic Approach to Task Assistance for Persons with Dementia}
+      \field{year}{2005}
+    \endentry
+    \entry{11Stargate}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=9c92b45f60e2f1c219a45b6f5e9e8ee1}{IMDB.com}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9c92b45f60e2f1c219a45b6f5e9e8ee1}{IMDB.com}{I\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{9c92b45f60e2f1c219a45b6f5e9e8ee1}
+      \strng{fullhash}{9c92b45f60e2f1c219a45b6f5e9e8ee1}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Stargate SG-1: Season 8, Episode 6}}
+      \field{title}{{Stargate SG-1: Season 8, Episode 6}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.imdb.com/title/tt0709042/
+      \endverb
+    \endentry
+    \entry{12RocksmithRev}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=861d19bef83cac6ebf2daec9b8f967af}{Bach}{B\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=861d19bef83cac6ebf2daec9b8f967af}{Bach}{B\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{861d19bef83cac6ebf2daec9b8f967af}
+      \strng{fullhash}{861d19bef83cac6ebf2daec9b8f967af}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Rocksmith - recenze}}
+      \field{title}{{Rocksmith - recenze}}
+      \field{urlday}{15}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://games.tiscali.cz/recenze/rocksmith-recenze-61003
+      \endverb
+    \endentry
+    \entry{13RocksmithVid}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=0b3029a74ef7a70c66f95b3f36f3ed7f}{Ubisoft}{U\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=0b3029a74ef7a70c66f95b3f36f3ed7f}{Ubisoft}{U\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{0b3029a74ef7a70c66f95b3f36f3ed7f}
+      \strng{fullhash}{0b3029a74ef7a70c66f95b3f36f3ed7f}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Rocksmith - Dynamic Difficulty}}
+      \field{title}{{Rocksmith - Dynamic Difficulty}}
+      \field{urlday}{15}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.youtube.com/watch?v=R0yhx5aDjws
+      \endverb
+    \endentry
+    \entry{14Haas}{thesis}{}
+      \name{labelname}{1}{}{%
+        {{hash=bef7d84eed238d7d255d0bf8b3fa5ac1}{Peerdeman}{P\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=bef7d84eed238d7d255d0bf8b3fa5ac1}{Peerdeman}{P\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {VU University Amsterdam}%
+      }
+      \strng{namehash}{bef7d84eed238d7d255d0bf8b3fa5ac1}
+      \strng{fullhash}{bef7d84eed238d7d255d0bf8b3fa5ac1}
+      \field{sortinit}{0}
+      \field{labeltitle}{Mijn Naam is Haas, Intelligent Tutoring in Educational Games}
+      \field{title}{Mijn Naam is Haas, Intelligent Tutoring in Educational Games}
+      \field{type}{master thesis}
+      \field{year}{2010}
+    \endentry
+    \entry{27EdHolland}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=eb564f46ab1a2db1816b8a556d7a953c}{Elangovan}{E\bibinitperiod}{N.}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=eb564f46ab1a2db1816b8a556d7a953c}{Elangovan}{E\bibinitperiod}{N.}{N\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{eb564f46ab1a2db1816b8a556d7a953c}
+      \strng{fullhash}{eb564f46ab1a2db1816b8a556d7a953c}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Education in Holland}}
+      \field{title}{{Education in Holland}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.pages.drexel.edu/~ne34/edu.html
+      \endverb
+    \endentry
+    \entry{SwPatterns}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=472e81664efab4aef4e2230373092be5}{Chowdhury}{C\bibinitperiod}{M.I.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=b8c6d9ebc773e3382444f940b9fe3e36}{Katchabaw}{K\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=472e81664efab4aef4e2230373092be5}{Chowdhury}{C\bibinitperiod}{M.I.}{M\bibinitperiod}{}{}{}{}}%
+        {{hash=b8c6d9ebc773e3382444f940b9fe3e36}{Katchabaw}{K\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{b5636d749fd9bbe6fa2371a4a408f1d7}
+      \strng{fullhash}{b5636d749fd9bbe6fa2371a4a408f1d7}
+      \field{sortinit}{0}
+      \field{labeltitle}{Software design patterns for enabling auto dynamic difficulty in video games}
+      \field{booktitle}{Computer Games (CGAMES), 2012 17th International Conference on}
+      \field{month}{30 2012-aug. 1}
+      \field{title}{Software design patterns for enabling auto dynamic difficulty in video games}
+      \field{year}{2012}
+      \field{pages}{76\bibrangedash 80}
+      \verb{doi}
+      \verb 10.1109/CGames.2012.6314555
+      \endverb
+    \endentry
+    \entry{FlowCZ}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=69bf6f2c23b207645e40fbd64b56c325}{Samek}{S\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=69bf6f2c23b207645e40fbd64b56c325}{Samek}{S\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{69bf6f2c23b207645e40fbd64b56c325}
+      \strng{fullhash}{69bf6f2c23b207645e40fbd64b56c325}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Flow...?!}}
+      \field{title}{{Flow...?!}}
+      \field{urlday}{03}
+      \field{urlmonth}{03}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://flowsport.webnode.cz/
+      \endverb
+    \endentry
+    \entry{OptimalFun}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=4102f9749c0a86a4a970e9b54bfb1b29}{Csikszentmihalyi}{C\bibinitperiod}{Mihaly}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=4102f9749c0a86a4a970e9b54bfb1b29}{Csikszentmihalyi}{C\bibinitperiod}{Mihaly}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Harper Perennial}%
+      }
+      \strng{namehash}{4102f9749c0a86a4a970e9b54bfb1b29}
+      \strng{fullhash}{4102f9749c0a86a4a970e9b54bfb1b29}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Flow: The Psychology of Optimal Experience}}
+      \field{day}{13}
+      \field{edition}{First Edition}
+      \field{howpublished}{Paperback}
+      \field{isbn}{0060920432}
+      \field{title}{{Flow: The Psychology of Optimal Experience}}
+      \field{year}{1991}
+      \keyw{flow, psychology}
+    \endentry
+    \entry{FlowEng}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=d4178c47ab49443bb07ea432ff451e69}{Wright}{W\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=d4178c47ab49443bb07ea432ff451e69}{Wright}{W\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{d4178c47ab49443bb07ea432ff451e69}
+      \strng{fullhash}{d4178c47ab49443bb07ea432ff451e69}
+      \field{sortinit}{0}
+      \field{labeltitle}{“In the zone”: enjoyment, creativity, and the nine elements of “flow”}
+      \field{title}{“In the zone”: enjoyment, creativity, and the nine elements of “flow”}
+      \field{urlday}{03}
+      \field{urlmonth}{03}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.meaningandhappiness.com/zone-enjoyment-creativity-elements-flow/26/
+      \endverb
+    \endentry
+    \entry{thesisflow}{thesis}{}
+      \name{labelname}{1}{}{%
+        {{hash=9be4d62c296f903e9a24a63cbbdb61c6}{Chen}{C\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=9be4d62c296f903e9a24a63cbbdb61c6}{Chen}{C\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{institution}{1}{%
+        {University of Southern California's School of Cinematic Arts}%
+      }
+      \strng{namehash}{9be4d62c296f903e9a24a63cbbdb61c6}
+      \strng{fullhash}{9be4d62c296f903e9a24a63cbbdb61c6}
+      \field{sortinit}{0}
+      \field{labeltitle}{Flow in Games}
+      \field{title}{Flow in Games}
+      \field{type}{Master}
+      \field{year}{2006}
+    \endentry
+    \entry{21cbr}{article}{}
+      \name{labelname}{3}{}{%
+        {{hash=ff8007d7fc80e4e4916113b6dfece0da}{Bakkes}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=9f75d5cb6018bd9496574e7c3325e149}{Spronck}{S\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=1d4847be7e3fc20476294f420339ca34}{Herik}{H\bibinitperiod}{J.}{J\bibinitperiod}{van\bibnamedelima den}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+      }
+      \name{author}{3}{}{%
+        {{hash=ff8007d7fc80e4e4916113b6dfece0da}{Bakkes}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=9f75d5cb6018bd9496574e7c3325e149}{Spronck}{S\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=1d4847be7e3fc20476294f420339ca34}{Herik}{H\bibinitperiod}{J.}{J\bibinitperiod}{van\bibnamedelima den}{v\bibinitperiod\bibinitdelim d\bibinitperiod}{}{}}%
+      }
+      \strng{namehash}{bccc400a4eb5d15ba9e7ee77ff92b620}
+      \strng{fullhash}{bccc400a4eb5d15ba9e7ee77ff92b620}
+      \field{sortinit}{0}
+      \field{labeltitle}{A CBR-Inspired Approach to Rapid and Reliable Adaption of Video Game AI}
+      \field{journaltitle}{ICCBR}
+      \field{title}{A CBR-Inspired Approach to Rapid and Reliable Adaption of Video Game AI}
+      \field{year}{2011}
+    \endentry
+    \entry{25deadend}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=dd8fbb1acb2d17d54f4eb8e1e1dd6208}{Hsieh}{H\bibinitperiod}{H.}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=2126ff11704e4078717686170cbb1b15}{Wang}{W\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=dd8fbb1acb2d17d54f4eb8e1e1dd6208}{Hsieh}{H\bibinitperiod}{H.}{H\bibinitperiod}{}{}{}{}}%
+        {{hash=2126ff11704e4078717686170cbb1b15}{Wang}{W\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{0009ddff1c72dc52dbeb9c8a4a8de290}
+      \strng{fullhash}{0009ddff1c72dc52dbeb9c8a4a8de290}
+      \field{sortinit}{0}
+      \field{labeltitle}{A Fuzzy Approach to Generating Adaptive Opponents in the Dead End Game}
+      \field{booktitle}{Asian Journal of Health and Information Sciences}
+      \field{title}{A Fuzzy Approach to Generating Adaptive Opponents in the Dead End Game}
+      \field{pages}{19\bibrangedash 37}
+    \endentry
+    \entry{26poststroke}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=1154e13b51bf5628343c5a9d5f8b5688}{Gouaïch}{G\bibinitperiod}{Abdelkader}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=11695eefec96addaa3cb2c38a757cf66}{Hocine}{H\bibinitperiod}{Nadia}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=7f6526c0b0b12d615a09ecf9be460d9c}{Van\bibnamedelima Dokkum}{V\bibinitperiod\bibinitdelim D\bibinitperiod}{Liesjet}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=3b851678d4ff2d0eeee326e5d9c7f8a3}{Mottet}{M\bibinitperiod}{Denis}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=1154e13b51bf5628343c5a9d5f8b5688}{Gouaïch}{G\bibinitperiod}{Abdelkader}{A\bibinitperiod}{}{}{}{}}%
+        {{hash=11695eefec96addaa3cb2c38a757cf66}{Hocine}{H\bibinitperiod}{Nadia}{N\bibinitperiod}{}{}{}{}}%
+        {{hash=7f6526c0b0b12d615a09ecf9be460d9c}{Van\bibnamedelima Dokkum}{V\bibinitperiod\bibinitdelim D\bibinitperiod}{Liesjet}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=3b851678d4ff2d0eeee326e5d9c7f8a3}{Mottet}{M\bibinitperiod}{Denis}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Miami, Florida, USA}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{ee3edb96126390da3a55c6fd99ea5e73}
+      \strng{fullhash}{855be04a58932bb591dca69f5490b903}
+      \field{sortinit}{0}
+      \field{labeltitle}{Digital-pheromone based difficulty adaptation in post-stroke therapeutic games}
+      \field{booktitle}{Proceedings of the 2nd ACM SIGHIT International Health Informatics Symposium}
+      \field{isbn}{978-1-4503-0781-9}
+      \field{series}{IHI '12}
+      \field{title}{Digital-pheromone based difficulty adaptation in post-stroke therapeutic games}
+      \field{year}{2012}
+      \field{pages}{5\bibrangedash 12}
+      \verb{doi}
+      \verb 10.1145/2110363.2110368
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2110363.2110368
+      \endverb
+      \keyw{difficulty adaptation, post-stroke rehabilitation, serious game}
+    \endentry
+    \entry{22posm1}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=1743c2e61d43b6f0e1cd2a1ae5fadbea}{Missura}{M\bibinitperiod}{Olana}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=b4ecc68977acd188561a6e478c9d2c88}{Gärtner}{G\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=1743c2e61d43b6f0e1cd2a1ae5fadbea}{Missura}{M\bibinitperiod}{Olana}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=b4ecc68977acd188561a6e478c9d2c88}{Gärtner}{G\bibinitperiod}{Thomas}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{65f62063ae97d977f211164db1da2f1a}
+      \strng{fullhash}{65f62063ae97d977f211164db1da2f1a}
+      \field{sortinit}{0}
+      \field{labeltitle}{Predicting Dynamic Difficulty}
+      \field{booktitle}{NIPS}
+      \field{title}{Predicting Dynamic Difficulty}
+      \field{year}{2011}
+      \field{pages}{2007\bibrangedash 2015}
+    \endentry
+    \entry{23posm2}{inproceedings}{}
+      \name{labelname}{4}{}{%
+        {{hash=bb8e0e91bb9050f1f5528153ff18d782}{Ilici}{I\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=679c7acc3d3d320e632bd2d0af6e014f}{Wang}{W\bibinitperiod}{Jiaojian}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=b1b5d1a36b336bcbbc5a76d6353a622b}{Missura}{M\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=29b073261566a31f22d7d1165e99c34c}{Gartner}{G\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{4}{}{%
+        {{hash=bb8e0e91bb9050f1f5528153ff18d782}{Ilici}{I\bibinitperiod}{L.}{L\bibinitperiod}{}{}{}{}}%
+        {{hash=679c7acc3d3d320e632bd2d0af6e014f}{Wang}{W\bibinitperiod}{Jiaojian}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=b1b5d1a36b336bcbbc5a76d6353a622b}{Missura}{M\bibinitperiod}{O.}{O\bibinitperiod}{}{}{}{}}%
+        {{hash=29b073261566a31f22d7d1165e99c34c}{Gartner}{G\bibinitperiod}{T.}{T\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{3c8b4a23dcc15aed754424c6d0471fbf}
+      \strng{fullhash}{566a52a9411bc6a7d335d9e936939020}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic difficulty for checkers and Chinese chess}
+      \field{booktitle}{Computational Intelligence and Games (CIG), 2012 IEEE Conference on}
+      \field{month}{09}
+      \field{title}{Dynamic difficulty for checkers and Chinese chess}
+      \field{year}{2012}
+      \field{pages}{55\bibrangedash 62}
+      \verb{doi}
+      \verb 10.1109/CIG.2012.6374138
+      \endverb
+      \keyw{Computers;Games;Heuristic algorithms;Humans;Materials;Prediction algorithms;Weapons;computer games;Chinese chess;board games;checkers;computer games;partially ordered set master algorithm;sound algorithm;synthetic opponent;}
+    \endentry
+    \entry{24DynLev}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Kennesaw, Georgia}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
+      \strng{fullhash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic game difficulty balancing for backgammon}
+      \field{booktitle}{Proceedings of the 49th Annual Southeast Regional Conference}
+      \field{isbn}{978-1-4503-0686-7}
+      \field{series}{ACM-SE '11}
+      \field{title}{Dynamic game difficulty balancing for backgammon}
+      \field{year}{2011}
+      \field{pages}{295\bibrangedash 299}
+      \verb{doi}
+      \verb 10.1145/2016039.2016115
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2016039.2016115
+      \endverb
+      \keyw{dynamic difficulty balancing, game playing agents}
+    \endentry
+    \entry{18Pac1}{inproceedings}{}
+      \name{labelname}{6}{}{%
+        {{hash=269c38914e858f9cd02e53c4beb8dabf}{Hao}{H\bibinitperiod}{Ya'nan}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=27c7cbe5d4ff6976671a0ee2a6735e83}{He}{H\bibinitperiod}{Suoju}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=9b37b4a9eb21542004fa4c352cb496d3}{Wang}{W\bibinitperiod}{JunPing}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=dd8304255c910bcbd7d7d0cb4f7ed860}{Liu}{L\bibinitperiod}{Xiao}{X\bibinitperiod}{}{}{}{}}%
+        {{hash=aac10bd3fda0eacf72003fb4c4b3764c}{Yang}{Y\bibinitperiod}{Jiajian}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=827477d5ac280b8b489cfbfe35c1ad18}{Huang}{H\bibinitperiod}{Wan}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{6}{}{%
+        {{hash=269c38914e858f9cd02e53c4beb8dabf}{Hao}{H\bibinitperiod}{Ya'nan}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=27c7cbe5d4ff6976671a0ee2a6735e83}{He}{H\bibinitperiod}{Suoju}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=9b37b4a9eb21542004fa4c352cb496d3}{Wang}{W\bibinitperiod}{JunPing}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=dd8304255c910bcbd7d7d0cb4f7ed860}{Liu}{L\bibinitperiod}{Xiao}{X\bibinitperiod}{}{}{}{}}%
+        {{hash=aac10bd3fda0eacf72003fb4c4b3764c}{Yang}{Y\bibinitperiod}{Jiajian}{J\bibinitperiod}{}{}{}{}}%
+        {{hash=827477d5ac280b8b489cfbfe35c1ad18}{Huang}{H\bibinitperiod}{Wan}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{16dab7f2fbfb2e5049eb5dc6f600de8a}
+      \strng{fullhash}{f67f6de139c5b520c96e7c808997bd30}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic Difficulty Adjustment of Game AI by MCTS for the game Pac-Man}
+      \field{booktitle}{Natural Computation (ICNC), 2010 Sixth International Conference on}
+      \field{month}{08}
+      \field{title}{Dynamic Difficulty Adjustment of Game AI by MCTS for the game Pac-Man}
+      \field{volume}{8}
+      \field{year}{2010}
+      \field{pages}{3918\bibrangedash 3922}
+    \endentry
+    \entry{19Pac2}{inproceedings}{}
+      \name{labelname}{6}{}{%
+        {{hash=9e5a02c6c2cd40b7090c4dd06f6200c4}{Wu}{W\bibinitperiod}{Bin}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=2fd21bc06aa240432914047ec9de1c9d}{Chen}{C\bibinitperiod}{DingDing}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=27c7cbe5d4ff6976671a0ee2a6735e83}{He}{H\bibinitperiod}{Suoju}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=3e15a8f16eb60278280a236e626819c0}{Sun}{S\bibinitperiod}{Qijin}{Q\bibinitperiod}{}{}{}{}}%
+        {{hash=619719d32c7208e843cba1161ea1e2d6}{Li}{L\bibinitperiod}{Zhengjun}{Z\bibinitperiod}{}{}{}{}}%
+        {{hash=0b8dc20a972b7e85fdf14e967dc83357}{Zhao}{Z\bibinitperiod}{Minxi}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{6}{}{%
+        {{hash=9e5a02c6c2cd40b7090c4dd06f6200c4}{Wu}{W\bibinitperiod}{Bin}{B\bibinitperiod}{}{}{}{}}%
+        {{hash=2fd21bc06aa240432914047ec9de1c9d}{Chen}{C\bibinitperiod}{DingDing}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=27c7cbe5d4ff6976671a0ee2a6735e83}{He}{H\bibinitperiod}{Suoju}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=3e15a8f16eb60278280a236e626819c0}{Sun}{S\bibinitperiod}{Qijin}{Q\bibinitperiod}{}{}{}{}}%
+        {{hash=619719d32c7208e843cba1161ea1e2d6}{Li}{L\bibinitperiod}{Zhengjun}{Z\bibinitperiod}{}{}{}{}}%
+        {{hash=0b8dc20a972b7e85fdf14e967dc83357}{Zhao}{Z\bibinitperiod}{Minxi}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{de37c25d3f970d44fb985bb809d97af0}
+      \strng{fullhash}{b578c020bd0c2f30736e9302d97d3177}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic difficulty adjustment based on an improved algorithm of UCT for the Pac-Man Game}
+      \field{booktitle}{Electronics, Communications and Control (ICECC), 2011 International Conference on}
+      \field{month}{09}
+      \field{title}{Dynamic difficulty adjustment based on an improved algorithm of UCT for the Pac-Man Game}
+      \field{year}{2011}
+      \field{pages}{4255\bibrangedash 4259}
+      \verb{doi}
+      \verb 10.1109/ICECC.2011.6066649
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

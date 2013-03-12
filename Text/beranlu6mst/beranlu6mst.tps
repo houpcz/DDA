@@ -17,7 +17,7 @@ Class=LaTeXView
 Document=ch03.tex
 
 [Frame0_View0,0]
-TopLine=319
+TopLine=552
 Cursor=23352
 
 [Frame1]
@@ -35,7 +35,7 @@ Class=LaTeXView
 Document=ch02.tex
 
 [Frame1_View0,0]
-TopLine=162
+TopLine=163
 Cursor=12690
 
 [Frame2]
@@ -71,7 +71,7 @@ Class=LaTeXView
 Document=ch01.tex
 
 [Frame3_View0,0]
-TopLine=259
+TopLine=261
 Cursor=19583
 
 [Frame4]

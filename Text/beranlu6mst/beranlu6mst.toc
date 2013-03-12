@@ -98,13 +98,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Inicializace hry}{18}{section*.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Online adaptace}{18}{section*.29}
+\contentsline {subsubsection}{Online adaptace}{19}{section*.29}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.4}Fuzzy pravidla}{19}{subsection.3.1.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Dead-end}{19}{section*.30}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Fuzzy pravidla}{19}{section*.31}
+\contentsline {subsubsection}{Fuzzy pravidla}{20}{section*.31}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Adaptivn\IeC {\'\i } zm\IeC {\v e}na po\IeC {\v c}tu pravidel}{21}{section*.32}
 \defcounter {refsection}{0}\relax 
@@ -114,9 +114,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c}\IeC {\r u}v profil}{22}{section*.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Z\IeC {\'a}kon propagace}{22}{section*.35}
+\contentsline {subsubsection}{Z\IeC {\'a}kon propagace}{23}{section*.35}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Z\IeC {\'a}kon vyprch\IeC {\'a}v\IeC {\'a}n\IeC {\'\i }}{22}{section*.36}
+\contentsline {subsubsection}{Z\IeC {\'a}kon vyprch\IeC {\'a}v\IeC {\'a}n\IeC {\'\i }}{23}{section*.36}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Matice interakce}{23}{section*.37}
 \defcounter {refsection}{0}\relax 
@@ -126,7 +126,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Algoritmus POSM}{24}{section*.38}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{P\IeC {\v r}\IeC {\'\i }klad s bal\IeC {\'o}nky}{25}{section*.39}
+\contentsline {subsubsection}{P\IeC {\v r}\IeC {\'\i }klad s bal\IeC {\'o}nky}{24}{section*.39}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.2}Dynamick\IeC {\'a} \IeC {\'u}rove\IeC {\v n}}{25}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
@@ -138,7 +138,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Pravidla hry Pac-Man}{27}{section*.42}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Tvorba DDA pomoc\IeC {\'\i } MCTS}{28}{section*.43}
+\contentsline {subsubsection}{Tvorba DDA pomoc\IeC {\'\i } MCTS}{27}{section*.43}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Vyu\IeC {\v z}it\IeC {\'\i } neuronov\IeC {\'y}ch s\IeC {\'\i }t\IeC {\'\i }}{28}{section*.44}
 \defcounter {refsection}{0}\relax 

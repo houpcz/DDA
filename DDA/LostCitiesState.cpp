@@ -5,6 +5,8 @@
 
 using namespace std;
 
+#define ZERO_PROB 0.0f;
+
 LostCitiesState::LostCitiesState(int _handSize, bool _abstraction)
 {
 	InitGame(_handSize, _abstraction);
@@ -23,6 +25,9 @@ void LostCitiesState::InitGame(int _handSize, bool _abstraction)
 	{
 		card[loop1] = IN_DECK;
 		allCards[loop1] = loop1;
+
+		probCard[0][loop1] = 1.0f / 60.0f;
+		probCard[1][loop1] = 1.0f / 60.0f;
 	}
 	
 	random_shuffle(allCards, allCards + CARD_AMOUNT);
@@ -57,7 +62,11 @@ LostCitiesState& LostCitiesState::operator=(const LostCitiesState &origin)
 void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 {
 	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+	{
 		card[loop1] = origin.card[loop1];
+		probCard[0][loop1] = origin.probCard[0][loop1];
+		probCard[1][loop1] = origin.probCard[1][loop1];
+	}
 
 	activePlayerID = origin.activePlayerID;
 	lastRealPlayer = origin.lastRealPlayer;
@@ -100,6 +109,8 @@ bool LostCitiesState::MakeTurn(int turn)
 			activePlayerID = 1;
 			lastRealPlayer = 1;
 		}
+
+		UpdateProbCard(lastRealPlayer, allChoises[turn]);
 		if(allChoises.size() == 1)
 		{
 			isGameOver = true;
@@ -122,6 +133,8 @@ bool LostCitiesState::MakeTurn(int turn)
 		{
 			card[cardID] = discardPileTopCardCode[cardColorNumber] + 1;
 		}
+		UpdateProbCard(activePlayerID, cardID);
+
 		// Phase 2 - drawing card
 		if(drawFrom[turn] == DRAW_FROM_DECK) // draw from deck
 		{
@@ -130,10 +143,12 @@ bool LostCitiesState::MakeTurn(int turn)
 			if(activePlayerID == 1)
 			{
 				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_1_HAND_KNOWN;
+				UpdateProbCard(activePlayerID, discardPileTopCardID[drawFrom[turn]]);
 				activePlayerID = 2;
 				lastRealPlayer = 2;
 			} else {
 				card[discardPileTopCardID[drawFrom[turn]]] = PLAYER_2_HAND_KNOWN;
+				UpdateProbCard(activePlayerID, discardPileTopCardID[drawFrom[turn]]);
 				activePlayerID = 1;
 				lastRealPlayer = 1;
 			}
@@ -152,6 +167,82 @@ bool LostCitiesState::MakeTurn(int turn)
 	whoAskIDlast = NOBODY;
 
 	return false;
+}
+
+void LostCitiesState::UpdateProbCard(int playerID, int cardPlayedID)
+{
+	int color = cardPlayedID / CARD_ONE_COLOR_AMOUNT;
+	int kind = cardPlayedID % CARD_ONE_COLOR_AMOUNT;
+	int probID = playerID - 1;
+	int colorStart = color * CARD_ONE_COLOR_AMOUNT;
+	int colorEnd = colorStart + CARD_ONE_COLOR_AMOUNT;
+	int handHidden;
+	if(playerID == 1)
+	{
+		handHidden = PLAYER_1_HAND_HIDDEN;
+	} else {
+		handHidden = PLAYER_2_HAND_HIDDEN;
+	}
+
+
+	switch(card[cardPlayedID])
+	{
+		case PLAYER_1_ON_DESK :
+		case PLAYER_2_ON_DESK :
+			for(int loop1 = colorStart; loop1 < colorEnd; loop1++)
+			{
+				if(loop1 < cardPlayedID)
+				{
+					probCard[probID][loop1] = ZERO_PROB;
+				}
+				else
+				{
+					probCard[probID][loop1] += 0.1;
+				}
+			}
+			break;
+
+		case PLAYER_1_HAND_HIDDEN :
+		case PLAYER_2_HAND_HIDDEN :
+			for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+			{
+				probCard[probID][loop1] += 1.0f / 60.0f;
+			}
+			break;
+
+		case PLAYER_1_HAND_KNOWN :
+		case PLAYER_2_HAND_KNOWN :
+			for(int loop1 = colorStart; loop1 < colorEnd; loop1++)
+			{
+				probCard[probID][loop1] += 0.05;
+			}
+			break;
+
+		default : // he discarded card
+			for(int loop1 = colorStart; loop1 < cardPlayedID; loop1++)
+			{
+				probCard[probID][loop1] = ZERO_PROB;
+			}
+			break;
+	}
+
+	float probSum = ZERO_PROB;
+	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+	{
+		if(card[loop1] != handHidden && card[loop1] != IN_DECK)
+		{
+			probCard[probID][loop1] = ZERO_PROB;
+		} else
+			probSum += probCard[probID][loop1];
+	}
+
+	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+	{
+		probCard[probID][loop1] /= probSum;
+	}
+
+	int a = 2 + 3;
+
 }
 
 int LostCitiesState::GetTurnID(int playCardID, int drawSite)
@@ -208,12 +299,15 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 		int hiddenCardAmount = 0;
 		int inDeckAmount = 0;
 		int knownCardAmount = 0;
+		int enemyID;
 		if(activePlayerID == 1)
 		{
+			enemyID = 2;
 			playerHandKnown = PLAYER_1_HAND_KNOWN;
 			playerHandHidden = PLAYER_1_HAND_HIDDEN;
 			playerOnDesk = PLAYER_1_ON_DESK;
 		} else {
+			enemyID = 1;
 			playerHandKnown = PLAYER_2_HAND_KNOWN;
 			playerHandHidden = PLAYER_2_HAND_HIDDEN;
 			playerOnDesk = PLAYER_2_ON_DESK;
@@ -255,7 +349,7 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 				{
 					if(notInformed && (card[cardID] == playerHandDeck || card[cardID] == playerHandHidden))
 					{
-						prob = (hiddenCardAmount *  1.0f / handSize) * (1.0f / (inDeckAmount + hiddenCardAmount));
+						prob = (hiddenCardAmount *  1.0f / handSize) * probCard[activePlayerID - 1][cardID];//(1.0f / (inDeckAmount + hiddenCardAmount));
 					} else {
 						prob = 1.0f / handSize;
 					}

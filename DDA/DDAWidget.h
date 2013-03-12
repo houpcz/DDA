@@ -42,7 +42,7 @@ private:
 	void MakePluginLists();
 	void ChangePlayerMenu();
 public:
-	DDAWidget(QWidget *parent = 0);
+	DDAWidget(QWidget *parent = 0); 
 	virtual ~DDAWidget(void);
 	void paintEvent(QPaintEvent * paintEvent);
 	void mouseMoveEvent ( QMouseEvent * event );
