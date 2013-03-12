@@ -36,23 +36,23 @@
     <Filter Include="Players">
       <UniqueIdentifier>{ac83e42f-4e2f-4bb0-93e2-ff5dc5a2ce3b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Games">
-      <UniqueIdentifier>{827a3485-2d03-479c-af6a-b21adc32afd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Games\Maze">
-      <UniqueIdentifier>{ba9939f8-636a-49a1-9535-79118c974256}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Games\Lost cities">
-      <UniqueIdentifier>{8cd8d835-6b9d-4c13-a162-79562b80dc20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Games\Ludo">
-      <UniqueIdentifier>{34716857-8def-4c11-b431-42373f18af4e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Batch">
       <UniqueIdentifier>{3b82534f-91a0-47b7-a865-1350abf2c6b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Qwt">
       <UniqueIdentifier>{e309a114-ebb8-47d0-9339-9167746ea79b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files\Games">
+      <UniqueIdentifier>{827a3485-2d03-479c-af6a-b21adc32afd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files\Games\Maze">
+      <UniqueIdentifier>{ba9939f8-636a-49a1-9535-79118c974256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files\Games\Lost cities">
+      <UniqueIdentifier>{8cd8d835-6b9d-4c13-a162-79562b80dc20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Form Files\Games\Ludo">
+      <UniqueIdentifier>{34716857-8def-4c11-b431-42373f18af4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -375,22 +375,22 @@
       <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="GameMaze.cpp">
-      <Filter>Games\Maze</Filter>
+      <Filter>Form Files\Games\Maze</Filter>
     </ClCompile>
     <ClCompile Include="LostCitiesState.cpp">
-      <Filter>Games\Lost cities</Filter>
+      <Filter>Form Files\Games\Lost cities</Filter>
     </ClCompile>
     <ClCompile Include="LostCities.cpp">
-      <Filter>Games\Lost cities</Filter>
+      <Filter>Form Files\Games\Lost cities</Filter>
     </ClCompile>
     <ClCompile Include="LudoState.cpp">
-      <Filter>Games\Ludo</Filter>
+      <Filter>Form Files\Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="Ludo.cpp">
-      <Filter>Games\Ludo</Filter>
+      <Filter>Form Files\Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="LudoTile.cpp">
-      <Filter>Games\Ludo</Filter>
+      <Filter>Form Files\Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="PlayerLevel.cpp">
       <Filter>Players</Filter>
@@ -405,10 +405,10 @@
       <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="MazeStat.cpp">
-      <Filter>Games\Maze</Filter>
+      <Filter>Form Files\Games\Maze</Filter>
     </ClCompile>
     <ClCompile Include="MazeState.cpp">
-      <Filter>Games\Maze</Filter>
+      <Filter>Form Files\Games\Maze</Filter>
     </ClCompile>
     <ClCompile Include="PlayerRandomAI.cpp">
       <Filter>Players</Filter>
@@ -860,22 +860,22 @@
       <Filter>Players</Filter>
     </ClInclude>
     <ClInclude Include="LudoTile.h">
-      <Filter>Games\Ludo</Filter>
+      <Filter>Form Files\Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="LudoState.h">
-      <Filter>Games\Ludo</Filter>
+      <Filter>Form Files\Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="Ludo.h">
-      <Filter>Games\Ludo</Filter>
+      <Filter>Form Files\Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="LostCitiesState.h">
-      <Filter>Games\Lost cities</Filter>
+      <Filter>Form Files\Games\Lost cities</Filter>
     </ClInclude>
     <ClInclude Include="MazeStat.h">
-      <Filter>Games\Maze</Filter>
+      <Filter>Form Files\Games\Maze</Filter>
     </ClInclude>
     <ClInclude Include="MazeState.h">
-      <Filter>Games\Maze</Filter>
+      <Filter>Form Files\Games\Maze</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -997,10 +997,10 @@
       <Filter>Qwt</Filter>
     </CustomBuild>
     <CustomBuild Include="LostCities.h">
-      <Filter>Games\Lost cities</Filter>
+      <Filter>Form Files\Games\Lost cities</Filter>
     </CustomBuild>
     <CustomBuild Include="GameMaze.h">
-      <Filter>Games\Maze</Filter>
+      <Filter>Form Files\Games\Maze</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

@@ -292,11 +292,7 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 	} else {
 		int playerHandKnown;		// known
 		int playerHandHidden;		// hidden
-		int playerHandDeck;		    // if I dont know whole his hand, he cant distinguish cards between IN_DECK and HAND_HIDDEN
 		int playerOnDesk;
-		int hiddenCardAmount = 0;
-		int inDeckAmount = 0;
-		int knownCardAmount = 0;
 		int enemyID;
 		if(activePlayerID == 1)
 		{
@@ -310,23 +306,6 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 			playerHandHidden = PLAYER_2_HAND_HIDDEN;
 			playerOnDesk = PLAYER_2_ON_DESK;
 		}
-		bool notInformed = activePlayerID != 0 && activePlayerID != whoAskID;
-
-		for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
-		{
-			if(card[loop1] == playerHandHidden) // he has something hidden in hand so from players view he can play anything from deck
-			{
-				hiddenCardAmount++;
-				if(notInformed)
-					card[loop1] = IN_DECK;
-			} else {
-				if(card[loop1] == IN_DECK)
-				{
-					inDeckAmount++;
-				}
-			}
-		}
-		knownCardAmount = handSize - hiddenCardAmount;
 
 		for(char loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 		{
@@ -681,6 +660,68 @@ IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 
 	*outStateID = turn;
 	return lostCitiesState;
+}
+
+void LostCitiesState::ChangeCardInsideInformSet(int whoAskID)
+{
+	char hiddenHand;
+	if(whoAskID == 1)
+	{
+		hiddenHand = PLAYER_2_HAND_HIDDEN;
+	} else {
+		hiddenHand = PLAYER_1_HAND_HIDDEN;
+	}
+
+	vector<char> unknownCards;
+	vector<float> probCards;
+
+	int hiddenAmount = 0;
+	for(char loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
+	{
+		if(card[loop1] == IN_DECK || card[loop1] == hiddenHand)
+		{
+			if(card[loop1] == hiddenHand)
+			{
+				hiddenAmount++;
+			}
+			unknownCards.push_back(loop1);
+			probCards.push_back(probCard[whoAskID - 1][loop1]);
+			card[loop1] = IN_DECK;
+		}
+	}
+
+	float rndNumber = rand() / (float) RAND_MAX;
+	int cardToHandID = -1;
+	float probSum;
+	float probAll = 1.0;
+	for(int loop1 = 0; loop1 < hiddenAmount; loop1++)
+	{
+		probSum = 0.0f;
+		cardToHandID = probCards.size() - 1;
+		for(int loop2 = 0; loop2 < probCards.size(); loop2++)
+		{
+			probSum += probCards[loop2] / probAll;
+			if(rndNumber <= probSum)
+			{
+				cardToHandID = loop2;
+				break;
+			}
+		}
+
+		card[unknownCards[cardToHandID]] = hiddenHand;
+		probAll -= probCards[cardToHandID];
+		probCards.erase(probCards.begin() + cardToHandID, probCards.begin() + cardToHandID + 1);
+		unknownCards.erase(unknownCards.begin() + cardToHandID, unknownCards.begin() + cardToHandID + 1);
+	}
+}
+
+IGameState * LostCitiesState::GetStateFromSameInformSet(int whoAskID)
+{
+	LostCitiesState * result = new LostCitiesState(*this);
+
+	result->ChangeCardInsideInformSet(whoAskID);
+
+	return result;
 }
 
 ISpecificStat * LostCitiesState::GetGameSpecificStat()

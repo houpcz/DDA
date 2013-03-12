@@ -58,6 +58,7 @@ private:
 	void InitGame(int _handSize, bool _abstraction);
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);
+	void ChangeCardInsideInformSet(int whoAskID);
 public:
 	LostCitiesState(int _handSize, bool _abstraction);
 	virtual ~LostCitiesState(void);
@@ -75,6 +76,7 @@ public:
 	int GetPlayerPoints(int playerID);
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID);
+	virtual IGameState * GetStateFromSameInformSet(int whoAskID);
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
 	bool IsGameOver();

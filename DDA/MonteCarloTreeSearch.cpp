@@ -34,14 +34,6 @@ void MonteCarloNode::Expansion(int whoAskID)
 		return;
 
 	IGameState ** nextStates = myState->GetNextStates(whoAskID, &childrenNumber);
-	/*
-	if(childrenNumber == 0)
-	{
-		childrenNumber = 0;
-		parent->Expansion(whoAskID);
-		nextStates = myState->GetNextStates(whoAskID, &childrenNumber);
-	}
-	*/
 
 	children = new MonteCarloNode*[childrenNumber];
 
@@ -76,7 +68,7 @@ void MonteCarloNode::Backpropagation(double reward)
 	if(parent != NULL)
 	{
 		if(myState->GetActivePlayerID() == 0)
-			parent->Backpropagation(reward);
+			parent->Backpropagation(reward / (float) myState->GetPlayerChoises(0));
 		else
 			parent->Backpropagation(reward);
 	}
@@ -142,7 +134,7 @@ MonteCarloTreeSearch::MonteCarloTreeSearch(IGameState * rootState, int _whoAskID
 
 MonteCarloNode * MonteCarloTreeSearch::Selection(MonteCarloNode * tempNode)
 {
-	if(tempNode->GameState()->GetActivePlayerID() == 0 && whoAskID != 0)
+	if(tempNode->GameState()->GetActivePlayerID() == 0)
 	{
 		return tempNode->GetRandomChild();
 	} else {
@@ -154,7 +146,7 @@ double MonteCarloTreeSearch::Simulation(MonteCarloNode * tempNode)
 {
 	IGameState * nodeState = tempNode->GameState();
 	IGameState * tempState;
-	return nodeState->GetPlayerRank(whoAskID, whoAskID);
+	return nodeState->GetPlayerRank(whoAskID, 0);
 
 	/*
 	int stateID;
