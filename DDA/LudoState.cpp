@@ -15,7 +15,7 @@ LudoState::LudoState(void)
 		figure[loop1][0] = 0;
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
-			figure[loop1][loop2] = loop2;
+			figure[loop1][loop2] = loop2 + loop1;
 		}
 	}
 
@@ -152,6 +152,7 @@ void LudoState::NextChoises()
 					figureNextState[loop1] = figure[activePlayerID][loop1] + lastDice;
 			}
 
+			/*
 			newPosition = figure[activePlayerID][loop1] - lastDice;
 			if(figure[activePlayerID][loop1] < FIRST_HOME_TILE && newPosition >= 0 && oldPosition >= 0) 
 			{
@@ -172,7 +173,7 @@ void LudoState::NextChoises()
 
 				if(isFreeTile)
 					figureNextState[loop1 + MAX_FIGURE] = figure[activePlayerID][loop1] - lastDice;
-			}
+			}*/
 		}
 	}
 }
@@ -248,6 +249,8 @@ int LudoState::MakeTurn(int playerChoise)
 				multipleDice = 2;
 				activePlayerID = (activePlayerID + 1) % 4;
 			}
+		} else {
+			activePlayerID = (activePlayerID + 1) % 4;
 		}
 	}
 	dicePlayerNow = !dicePlayerNow;
@@ -302,6 +305,9 @@ int LudoState::GetPlayerStatus(int playerID)
 void LudoState::CountPlayerRanks()
 {
 	int tempRank[MAX_PLAYER];
+	char board[FIRST_HOME_TILE];
+	for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)
+		board[loop1] = -1;
 
 	int bestRank = 0;
 	int secondBest = 0;
@@ -310,25 +316,52 @@ void LudoState::CountPlayerRanks()
 		int result = 0;
 		for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
 		{
+			int boardID = (figure[loop2][loop1] + Ludo::firstTile[loop2]) % FIRST_HOME_TILE;
+			board[boardID] = loop2;
+			if(safeTile[boardID] == 1)
+				result += 2;
+
 			if(figure[loop2][loop1] >= FIRST_HOME_TILE)
 			{
-				result += 50;
+				result += 4;
 			} else if(figure[loop2][loop1] >= 0)
 			{
-				result += 10 + figure[loop2][loop1];
+				result -= 6 + (int) ((figure[loop2][loop1] / 3.5f) + 0.5f);
+			} else {
+				result -= (int) ((FIRST_HOME_TILE / 3.5f) + 0.5f) + 2;
 			}
 		}
 		tempRank[loop2] = result;
+	}
 
-		if(result > secondBest)
+	for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)
+	{
+		if(board[loop1] > 0)
 		{
-			if(result > bestRank)
+			for(int loop2 = 1; loop2 < 7; loop2++)
+			{
+				int opponentPos = (loop1 + loop2) % FIRST_HOME_TILE;
+				int opponentID = board[opponentPos];
+				if(safeTile[opponentPos] == 0 && board[opponentPos] > 0 && opponentID != board[loop1])
+				{
+					tempRank[opponentID] -= (int) ((((FIRST_HOME_TILE + opponentPos - Ludo::firstTile[opponentID]) % FIRST_HOME_TILE) / 3.5f) + 0.5f);
+				}
+			}
+		}
+	}
+
+
+	for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
+	{
+		if(tempRank[loop2] > secondBest)
+		{
+			if(tempRank[loop2] > bestRank)
 			{
 				secondBest = bestRank;
-				bestRank = result;
+				bestRank = tempRank[loop2];
 			} else
 			{
-				secondBest = result;
+				secondBest = tempRank[loop2];
 			}
 		}
 	}
@@ -342,6 +375,18 @@ void LudoState::CountPlayerRanks()
 	}
 
 	isRankUpToDate = true;
+}
+
+IGameState * LudoState::SimulateToTheEnd(int whoAskID)
+{
+	LudoState * state = new LudoState(*this);
+
+	while(!state->IsGameOver())
+	{
+		state->MakeTurn(rand() % GetPlayerChoises(whoAskID));
+	}
+	
+	return state;
 }
 
 ISpecificStat * LudoState::GetGameSpecificStat()

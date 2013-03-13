@@ -144,9 +144,14 @@ MonteCarloNode * MonteCarloTreeSearch::Selection(MonteCarloNode * tempNode)
 
 double MonteCarloTreeSearch::Simulation(MonteCarloNode * tempNode)
 {
-	IGameState * nodeState = tempNode->GameState();
+	return tempNode->GameState()->GetPlayerRank(whoAskID, 0);
+
+	/*
 	IGameState * tempState;
-	return nodeState->GetPlayerRank(whoAskID, 0);
+	tempState = nodeState->SimulateToTheEnd(whoAskID);
+	int result = tempState->GetPlayerRank(whoAskID, 0);
+	delete tempState;
+	return result;*/
 
 	/*
 	int stateID;

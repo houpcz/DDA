@@ -40,6 +40,7 @@ public:
 	int GetPlayerStatus(int playerID);
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	IGameState * GetRandomNextState(int whoAskID, int * outStateID);
+	IGameState * SimulateToTheEnd(int whoAskID);
 	float GetNextStateProb(int whoAskID, int actionID) { return 1.0f; };
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }

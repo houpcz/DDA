@@ -647,6 +647,18 @@ IGameState ** LostCitiesState::GetNextStates(int whoAskID, int *outNumberNextSta
 	return nextState;
 }
 
+IGameState * LostCitiesState::SimulateToTheEnd(int whoAskID)
+{
+	LostCitiesState * state = new LostCitiesState(*this);
+
+	while(!state->IsGameOver())
+	{
+		state->MakeTurn(rand() % GetPlayerChoises(whoAskID));
+	}
+	
+	return state;
+}
+
 IGameState * LostCitiesState::GetRandomNextState(int whoAskID, int * outStateID)
 {
 	WhoAsked(whoAskID);

@@ -231,6 +231,19 @@ IGameState ** MazeState::GetNextStates(int whoAskID, int *outNumberNextStates)
 	return nextState;
 }
 
+IGameState * MazeState::SimulateToTheEnd(int whoAskID)
+{
+	MazeState * state = new MazeState(*this);
+
+	while(!state->IsGameOver())
+	{
+		state->Explore(rand() % GetPlayerChoises(whoAskID));
+	}
+	
+	return state;
+}
+
+
 MazeState * MazeState::GetNextStateWithID(int turnID, int * outRealTurn)
 {
 	*outRealTurn = 0;

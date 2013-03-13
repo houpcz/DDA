@@ -117,6 +117,7 @@ private:
 	void CountRank();
 	bool Explore(int tileToExploreID);
 	MazeState * GetNextStateWithID(int turnID, int * outRealTurn);
+	IGameState * SimulateToTheEnd(int whoAskID);
 public:
 	MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction);
 	MazeState(const MazeState & origin);

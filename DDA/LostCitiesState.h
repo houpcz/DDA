@@ -77,6 +77,7 @@ public:
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	virtual IGameState * GetRandomNextState(int whoAskID, int * outStateID);
 	virtual IGameState * GetStateFromSameInformSet(int whoAskID);
+	virtual IGameState * SimulateToTheEnd(int whoAskID);
 	bool MakeTurn(int turn);
 	int GetTurnID(int playCardID, int drawSite);
 	bool IsGameOver();
