@@ -326,12 +326,12 @@ void LudoState::CountPlayerRanks()
 				result += 4;
 			} else if(figure[loop2][loop1] >= 0)
 			{
-				result -= 6 + (int) ((figure[loop2][loop1] / 3.5f) + 0.5f);
+				result -= 6 + (int) (((FIRST_HOME_TILE - figure[loop2][loop1]) / 3.5f / 6.0f) + 0.5f);
 			} else {
 				result -= (int) ((FIRST_HOME_TILE / 3.5f) + 0.5f) + 2;
 			}
 		}
-		tempRank[loop2] = result;
+		tempRank[loop2] = result + 100;
 	}
 
 	for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)

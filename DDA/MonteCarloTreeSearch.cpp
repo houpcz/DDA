@@ -121,12 +121,17 @@ MonteCarloTreeSearch::MonteCarloTreeSearch(IGameState * rootState, int _whoAskID
 	{
 		tempNode1 = rootNode;
 
-		while(tempNode1->Children() != NULL)
+		int maxDepth = loop1 / 1000 + 2;
+		int depth = 0;
+		while(tempNode1->Children() != NULL && depth < maxDepth)
 		{
 			tempNode1 = Selection(tempNode1);
+			depth++;
 		}
 
-		tempNode1->Expansion(whoAskID);
+		if(depth != maxDepth)
+			tempNode1->Expansion(whoAskID);
+
 		double reward = Simulation(tempNode1);
 		tempNode1->Backpropagation(reward);
 	}

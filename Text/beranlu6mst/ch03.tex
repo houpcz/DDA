@@ -1,11 +1,14 @@
 \chapter{Existující přístupy}
 
-Tabulku na začátek chceme. \ref{tab:klasifikacemetod}
+Dynamicky vyvažovaná obtížnost se zdá aktuálním tématem a možná v budoucnu zcela nahradí obtížnost statickou. Většina nalezených a citovaných článků byla napsána po roce 2000, velká část z nich vznikla až po roce 2010. Není tedy překvapením, že existující přístupy pro DDA pokrývají velkou část oblastí v AI obecně. Nalezneme zde částečně pozorovatelné markovské procesy, case-base reasoning, fuzzy logiku, evoluční algoritmy, neuronové sítě, mravenčí kolonie i příklady z teorie her.
 
-\begin{table*}[t]\footnotesize
+Algoritmy můžeme zařadit do kategorií zmíněných v první kapitole. Klasifikaci jsem provedl na základě vědeckých článků, kde danou metodu použili. Ne ve všech případech bylo zařazení metod jednoznačné, a proto tabulka \ref{tab:klasifikacemetod} reflektuje i můj subjektivní názor. Tabulka může na první pohled vypadat podivně, stejný přístup je často označen za explicitní i implicitní nebo statický i dynamický. 
+
+Explicitnost a implicitnost nevychází přímo z použité metody, ale záleží na designérovi, pro kterou z těchto kategorií se rozhodne. Z tohoto důvodu lze zařadit všechny zmíněné metody do implicitní i explicitní kategorie. Nikdy nemusí být hráč obeznámen s použitím DDA. Do explicitní kategorie jsem zařadil pouze evoluční algoritmus, POSM a dynamickou úroveň. Tyto přístupy pracují s hodnotou obtížnosti, která je snadno zobrazitelná uživateli s jejím jasným významem.
+
+\begin{table*}[b]\footnotesize
 \vspace*{0mm}
-\caption{{\label{tab:klasifikacemetod}}Příklad tabulky. Další popis i upřesnění
-  parametrů může následovat v této legendě.}
+\caption{{\label{tab:klasifikacemetod}} Klasifikace metod do různých tříd. Mnohdy je zařazení nejasné, a proto je tabulka z části tvořena subjektivním pohledem.}
 \vspace*{0mm}
 \label{shadowtable}
 \begin{center}
@@ -20,17 +23,20 @@ Case-base reasoning  & & \checkmark &  & \checkmark & \checkmark & & \\ \hline
 Fuzzy pravidla  & & \checkmark & & \checkmark & \checkmark & & \\ \hline
 Evoluční algoritmus & \checkmark & \checkmark & \checkmark & & & \checkmark & \\ \hline
 Mravenčí feromony  &  & \checkmark & & \checkmark & & & \checkmark \\ \hline
-POSM & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \\ \hline
+POSM & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\ \hline
 Dynamická úroveň  & \checkmark & \checkmark & & \checkmark & \checkmark & & \\ \hline
 MCTS  & & \checkmark & & \checkmark & \checkmark & & \\ \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
+Mimo evoluční algoritmus lze všechny metody zařadit mezi online algoritmy. Přístup producent-konzument je i offline algoritmem. Byl využit u střílečky z pohledu první osoby. Staticky je zde přizpůsobován svět, když do něho hráč vstoupí. Naopak dynamicky se upravuje přesnost a účinnost střelby nepřátel během boje. POSM patří k velice obecným přístupům. Vyžaduje na designérovi návrh konečného množství obtížností a algoritmus z nich posléze vybírá nejvhodnější obtížnost v danou dobu. Z tohoto důvodu je zcela na návrháři, jestli obtížnost bude měněna jen před začátkem hry na základě předchozích her, nebo bude měněna i v průběhu.
+
+Poslední trojice kategorií představuje, čím je dána obtížnost hry. Ve většině případů upravovali umělou inteligenci protihráčů. Jak už bylo zmíněno, producent-konzument upravoval kromě NPC i svět, u POSM je volba obtížnosti na návrháři. Evoluční algoritmus byl využit pro generování úrovní do logické hry. POMDP spolu se simulací mravenců byly využity u vážných her. V obou případech se měnil druh úkolu dle jeho obtížnosti.
 
 \section{Ne z teorie her}
 
-\subsection{Částečně pozorovatelné markovské rozhodovací procesy}
+\subsection{Částečně pozorovatelné markovské rozhodovací procesy} \label{sec:POMDP}
 
 Částečně pozorovatelné markovské rozhodovací procesy (POMDP) byly úspěšně použity pro regeneraci rukou lidí po mrtvici \cite{9Pomdp} a u počítačového asistenta při mytí rukou člověkem trpícím demencí.
 
@@ -104,7 +110,7 @@ Autoři se snaží držet hráče v tzv. „komfortní zóně“, kdy se hráč 
 
 Cílem této politiky je udržet zdraví hráče na střední hodnotě 60 se standardní odchylkou 15 bodů. Hamlet je navržen tak, aby pomáhal hráčům, kteří mají problémy, ale na druhou stranu, aby je neprotahoval za každou cenu skrz herní úrovně.
 
-\subsection{Case-base reasoning}
+\subsection{Case-base reasoning} \label{sec:CBR}
 
 Další možností pro implementaci DDA je Case-base reasoning. Rozhodování se v dané situaci dle úspěšné strategie použité v minulosti v situaci podobné.
 
@@ -166,7 +172,7 @@ Zbývá vybrat jedinou novou cílovou strategii. Z M stavů se vybere takový st
 Na závěr nutno podotknout, že tento přístup nedává jistotu stejného chování a výsledku AI hráče jako ve vybrané hře z databáze. Při výběru se porovnávají pouze zjednodušené abstrakce stavu hry a navíc pouze s agregovanými shluky stavů. Výsledné chování hráče se může lišit od očekávaného.
 
 
-\subsection{Fuzzy pravidla}
+\subsection{Fuzzy pravidla} \label{sec:fuzzy}
 
 Máte-li umělou inteligenci ve své hře založenou na fuzzy pravidlech, může vás zajímat následující způsob tvorby adaptivní AI.
 
@@ -230,7 +236,62 @@ Na závěr připojuji jeden z grafů ukazující adaptivnost AI k třem různým
 	\label{fig-ch3fuzzywinrate}
 \end{figure}
 
-\subsection{Mravenčí feromony}
+\subsection{Evoluční algoritmus} \label{sec:evol}
+
+K zástupcům statické DDA lze bez váhání zařadit evoluční algoritmy (EA). Evoluční algoritmy zpravidla vyžadují velký výpočetní výkon, a proto nejsou vhodné pro realtime použití. Využitím EA pro DDA se zabývají např. články Automatic Generation of Game Elements via Evolution\cite{17Evol} a Making Racing Fun Through Player Modeling
+and Track Evolution\cite{EvolTrack}. V prvním ze zmíněných článků využili EA pro generování různě obtížných úrovní logických her, naopak v druhém generovali závodní trať složenou z různých úseků.
+
+\subsubsection{Generování bludišť}
+
+V \cite{17Evol} byly testovacími hrami dva typy bludišť. V obou hrách byl stejný cíl, nalézt cestu mezi dvěma body. Obě bludiště dále sdílely hrací plán složený ze čtverců a nepřímo znázorněné překážky. Obtížnost hry je dána minimálním počtem kroků nutných k průchodu bludištěm. Neplatí zde zcela přímá úměra, obecně neplatí, že čím větší minimální počet kroků k dosažení cíle, tím je hra těžší. V případě, že bychom minimální počet kroků zcela maximalizovali, získáme bludiště, kde na začátku každý z tahů vede blíže k výhře. Hráč nemá dostatek možných tahů na výběr, a tedy je bludiště jednodušší než kdyby minimální počet kroků byl menší, ale naopak počet možných tahů by se zvýšil a ne všechny tahy by vedly blíže k cíli. Tuto hypotézu podporují informace získané při automatickém průchodu bludišť nutného pro ohodnocení obtížnosti hry. Algoritmus řešící bludiště se střední hodnotou minimálního počtu kroků pro daný typ bludiště běžel kratší dobu než pro bludiště s hodnotami blízkými minimu a maximu minimálnímu počtu kroků.
+
+V první hře hráč pohybuje šachovou figurkou dle jejích platných tahů. Dále se na hracím plánu vyskytují nepřátelské šachové figury, které se nepohybují. Tyto figury ohrožují některá hrací pole. Jestliže hráč vkročí svou figurou na ohrožené hrací pole, prohrává. Jeho úkolem je figurku navést z její počáteční pozice do cílové a přitom nevkročit na žádné z ohrožovaných polí. Hráč nemá přímo označena ohrožená pole, musí využít své představivosti. Před generováním bludišť byly vždy pevně nastaveny druhy figur na hrací ploše, figura hráče a jeho startovní a cílová pozice. Cílem genetického algoritmu bylo rozmístit nepřátelské figury. Příklad jednoho bludiště na obr. \ref{fig-ch3evolchess}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.3\textwidth]{ch3evolchess}
+	\includegraphics[width=0.3\textwidth]{ch3evolchess2}
+	\caption{Příklad jednoho vygenerovaného bludiště se 6 jezdci a hráčem ovládajího věž. Vstup do bludiště je označen E, výstup X. Vlevo z pohledu hráče, vpravo znázorněné ohrožované pozice. \cite{17Evol} }
+	\label{fig-ch3evolchess}
+\end{figure}
+
+Gen byl složen z pozic figur. Pro stejný druh figur nezáleželo na jejich pořadí. Bylo použito uniformní křížení. První ze dvou potomků má stejnou šanci pro získání pozice každé z figur jak od matky, tak i otce. Zbytek získá druhý potomek. Jestliže se po křížení nacházely u jednoho z potomků dvě figury na jedné pozici, potomci se zahodili, křížení se opakovalo. Při mutaci byla pozice jedné z figur náhodně přegenerována na ještě neobsazené pozice.
+
+Druhou hrou bylo pestrobarevné bludiště. Každý čtverec bludiště má přidělenou jednu barvu z předem dané uspořádané množiny barev. Hráč se může mezi dvěma čtverci pohnout pouze v případě, kdy přechází mezi čtverci s barvami stejnými, nebo sousedními v rámci uspořádání. Opět při nepovoleném tahu hráč prohrává.
+
+Gen je zde tvořen celým bludištěm uspořádaným po řádcích do jednoho řetězce o délce počtu čtverců bludiště. Bylo použito dvoubodové křížení a při mutaci se náhodně vybral jeden čtverec a vygenerovala se mu nová barva dle uniformního rozdělení pravděpodobnosti.
+
+U obou her EA pracoval se stálou (steady-state) populací a selekce rodičů probíhala metodou turnaje. Vždy bylo vybráno náhodně 7 jedinců z celé populace, dva nejlepší z nich byli vybráni pro křížení a noví jedinci nahradili nejhorší dvojici vybranou pro turnaj.
+
+Byly použity dvě fitness funkce. První maximalizovala minimální počet kroků k vyřešení bludiště. Druhá měla parametr - cílovou hodnotu minimálního počtu kroků - a tato fitness funkce minimalizovala rozdíl skutečného minimálního počtu kroků od požadovaného. Pro výpočet této hodnoty autoři článku využili metodu dynamického programování.
+
+\subsubsection{Generování tratě}
+
+Cílem práce \cite{EvolTrack} bylo procedurální generování co nejzábavnějších tratí pro závodní hry. Autoři článku za základě vlastních zkušeností a zkušeností dotazovaných hráčů definovali, jaká by měla být závodní hra, aby byla zábavná:
+
+
+\begin{itemize}
+	\item Hráči rádi jezdí co největší rychlostí. Trať by měla umožňovat dosažení maximální rychlosti aut.
+	\item Naopak pouze jízda po dlouhých rovných úsecích není zábavná. Trať by měla být určitou výzvou pro hráče.
+	\item Příliš časté nehody také nejsou ideální. Trať by měla být výzvou tak akorát.
+	\item Lidé mají rádi různorodé výzvy. Jednotlivé tratě by měly poskytovat dostatečnou variabilitu výzev.
+	\item Ježdění ve smyku a skoky autem se zdají být jednou ze základních složek zábavy závodních her.
+\end{itemize}
+
+Pro zjednodušení se generovaná trať skládala s předem daného počtu stejně dlouhých úseků.\footnote{Délka úseku dána délkou střední čáry.} Úsek mohl být rovný, nebo zatáčkou vlevo, či vpravo. Každá ze zatáček měla na výběr mezi 3 ostrostmi zatáčky. Dále gen obsahoval jednu ze tří šířek konce úseku. Začátek úseku vždy musel odpovídat šířkou konci úseku předchozího. Poslední variabilitou bylo umístění překážky na jeden z krajů úseku, nebo doprostřed. Dalším zjednodušením bylo vypuštění podmínky na kruhové trati. Trať byla pouze virtuálně kruhová - na jejím konci se hráč teleportoval na začátek se stejnou rychlostí a směrem jízdy. Křížení genů nebylo využito. Mutace změnila náhodně jeden z úseků na nový dle uniformní pravděpodobnosti.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.75\textwidth]{ch3evoltrack}
+	\caption{Příklad tří vygenerovaných tratí. První generována pro špatného hráče, druhá a třetí pro dobrého. Při generaci třetí tratě byla použita pouze jedna z fitness funkcí. \cite{EvolTrack} }
+	\label{fig-ch3evoltrack}
+\end{figure}
+
+Metodou selekce byl kaskádový elitismus. Nejdříve se nagenerovalo 100 jedinců. Dle první fitness funkce se vybralo 50 nejlepších jedinců, kteří postoupili do druhého kola. V druhém kole se použila jiná, druhá fitness funkce, která vyřadila dalších 20 nejhorších jedinců. Ze zbylých 30 skončilo 15 nejlepších dle poslední třetí fitness funkce. První fitness funkci minimalizovala rozdíl cílené(předem dané parametrem) a skutečné hodnotě průměrné rychlosti na trati. Druhá fitness funkce maximalizovala maximální dosaženou rychlost na trati. Cílem bylo, aby trať obsahovala alespoň nějakou posloupnost rovných úseků. Poslední fitness funkce se zaměřila na měření množství výzev na trati. Vycházela z variance rychlosti na trati a počtu ujetých kol za danou dobu. 
+
+Každá z vygenerovaných tratí byla vyzkoušena virtuálním hráčem nahrazující lidského hráče založeného na neuronových sítí. Vstupem do sítě byla aktuální rychlost, směr k dalšími checkpointu a 6 senzorů sledujících překážky.
+
+\subsection{Mravenčí feromony} \label{sec:ants}
 
 Optimalizace pomocí simulace umělých mravenčích kolonií patří mezi známé přístupy inspirované přírodou. Princip optimalizace mravenčími koloniemi je následující :
 
@@ -451,7 +512,7 @@ Ohodnocovací rank funkce je zde složitá a bere v úvahu mnoho parametrů popi
 
 Naopak status funkce popisuje stav hry méně složitě, více z lidského pohledu. Spočítá skóre každého hráče jako počet kamenů již mimo hru + suma vzdáleností zbylých kamenů od konce hry. Status je rozdílem těchto dvou hodnot.
 
-\subsection{Monte-Carlo prohledávání stromu}
+\subsection{Monte-Carlo prohledávání stromu} 
 
 Autoři z Pekingské univerzity vyzkoušeli spojení Monte-Carlo Tree Search(MCTS) algoritmu s dnes populárními neuronovými sítěmi. \cite{18Pac1}\cite{19Pac2}
 

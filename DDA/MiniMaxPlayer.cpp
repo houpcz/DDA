@@ -21,7 +21,7 @@ float * MiniMaxPlayer::MaxN(IGameState * state, int depth)
 		leafNumber++;
 		float * score = new float[playerCount];
 		for(int loop1 = 0; loop1 < playerCount; loop1++)
-			score[loop1] = state->GetPlayerRank(loop1 + 1, myID);
+			score[loop1] = state->GetPlayerRank(loop1 + 1, 0);
 		return score;
 	}
 
@@ -49,8 +49,8 @@ float * MiniMaxPlayer::MaxN(IGameState * state, int depth)
 		for(int loop1 = 1; loop1 < choises; loop1++)
 		{
 			float * temp = MaxN(nextState[loop1], depth - 1);
-
-			if(temp[activePlayerID] > result[activePlayerID])
+			 
+			if(temp[activePlayerID - 1] > result[activePlayerID - 1])
 			{
 				delete [] result;
 				result = temp;
@@ -79,7 +79,7 @@ bool MiniMaxPlayer::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		float * values = MaxN(nextState[loop1], 2);
+		float * values = MaxN(nextState[loop1], 1);
 		scores.push_back(valueIndex((int) values[myID - 1], loop1));
 		delete [] values;
 		delete nextState[loop1];
@@ -87,6 +87,7 @@ bool MiniMaxPlayer::Think()
 	delete [] nextState;
 	sort(scores.begin(), scores.end(), comparator);
 	
+	/*
 	double mean = (level / 100.0) * choises;
 	double deviation = 0.4;
 	normal_distribution<> normalDistribution(mean, deviation);
@@ -97,6 +98,8 @@ bool MiniMaxPlayer::Think()
 		choise = choises - 1;
 
 	myTurn = scores[choise].second;
+	*/
+	myTurn = scores[scores.size() - 1].second;
 	isReady = true;
 
 	return true;

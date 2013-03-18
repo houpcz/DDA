@@ -55,8 +55,8 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	playerCount = 3;
 	realHandSize = 8;
-	abstraction = true;
-	currentState = new LostCitiesState(realHandSize, abstraction);
+	domination = true;
+	currentState = new LostCitiesState(realHandSize, domination);
 	state = STATE_STOPPED;
 }
 
@@ -80,7 +80,7 @@ void LostCities::StartGame()
 
 	if(currentState != NULL)
 		delete currentState;
-	currentState = new LostCitiesState(realHandSize, abstraction);
+	currentState = new LostCitiesState(realHandSize, domination);
 
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);
@@ -277,11 +277,11 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->drawText(445, 145, 500, 500, 0, temp);
 	painter->setPen(Qt::black);
 	painter->setFont(QFont("SansSerif", 15, 3, false));
-	sprintf(temp, "%d Env Sees 1", currentState->GetPlayerRank(1, 0));
+	sprintf(temp, "%4d %4d Env Sees 1", currentState->GetPlayerRank(1, 0), currentState->CountRanks(1, 0));
 	painter->drawText(510, 330, 500, 500, 0, temp);
-	sprintf(temp, "%d 1 seems himself", currentState->GetPlayerRank(1, 1));
+	sprintf(temp, "%4d %4d 1 seems himself", currentState->GetPlayerRank(1, 1), currentState->CountRanks(1, 1));
 	painter->drawText(510, 350, 500, 500, 0, temp);
-	sprintf(temp, "%d 2 seams 1", currentState->GetPlayerRank(1, 2));
+	sprintf(temp, "%4d %4d 2 seams 1", currentState->GetPlayerRank(1, 2), currentState->CountRanks(1, 2));
 	painter->drawText(510, 370, 500, 500, 0, temp);
 }
 
@@ -473,17 +473,17 @@ vector<pair<QWidget *, QString> > LostCities::GetSetupWidget()
 	widgets.push_back(pair<QWidget *, QString>(spinBox, QString("Hand Size")));
 	bool ok = connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(SetHandSize(int)));
 	
-	QCheckBox * abstractionBox = new QCheckBox();
-	abstractionBox->setChecked(abstraction);
-	widgets.push_back(pair<QWidget *, QString>(abstractionBox, QString("State abstraction")));
-	connect(abstractionBox, SIGNAL(stateChanged(int)), this, SLOT(SetAbstraction(int)));
+	QCheckBox * dominationBox = new QCheckBox();
+	dominationBox->setChecked(domination);
+	widgets.push_back(pair<QWidget *, QString>(dominationBox, QString("State domination")));
+	connect(dominationBox, SIGNAL(stateChanged(int)), this, SLOT(SetDomination(int)));
 
 	return widgets;
 }
 
-void LostCities::SetAbstraction(int state)
+void LostCities::SetDomination(int state)
 {
-	abstraction = state;
+	domination = state;
 }
 
 void LostCities::SetHandSize(int _handSize)

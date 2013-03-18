@@ -47,7 +47,7 @@ private:
 	int whoAskIDlast;
 	bool isGameOver;
 	int handSize;
-	bool abstraction;
+	bool domination;
 
 	int cardsInDeck;		// how many cards is in the deck
 	int cardsInDeckTurn;	// how many turns there is same amount cards in deck
@@ -59,8 +59,9 @@ private:
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);
 	void ChangeCardInsideInformSet(int whoAskID);
+	int CountRanks(char * c, int playerID, int whoAskID);
 public:
-	LostCitiesState(int _handSize, bool _abstraction);
+	LostCitiesState(int _handSize, bool _domination);
 	virtual ~LostCitiesState(void);
 	LostCitiesState(const LostCitiesState & origin);
 	LostCitiesState& operator=(const LostCitiesState &origin);
@@ -82,6 +83,8 @@ public:
 	int GetTurnID(int playCardID, int drawSite);
 	bool IsGameOver();
 	void SetGameOver(bool _gameOver) { isGameOver = _gameOver; };
+	int CountRanks(int playerID, int whoAskID) { return CountRanks(card, playerID, whoAskID); };
+
 };
 
 #endif

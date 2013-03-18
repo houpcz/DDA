@@ -591,6 +591,21 @@
       \field{title}{A Fuzzy Approach to Generating Adaptive Opponents in the Dead End Game}
       \field{pages}{19\bibrangedash 37}
     \endentry
+    \entry{EvolTrack}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=82c53e26d32b07fc5d33cf39197b1873}{Julian\bibnamedelima Togelius}{J\bibinitperiod\bibinitdelim T\bibinitperiod}{Renzo\bibnamedelimb De\bibnamedelima Nardi}{R\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim N\bibinitperiod}{}{}{}{}}%
+        {{hash=fc5fd1970a1253f1a5ea1836d411b660}{Lucas}{L\bibinitperiod}{Simon\bibnamedelima M.}{S\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=82c53e26d32b07fc5d33cf39197b1873}{Julian\bibnamedelima Togelius}{J\bibinitperiod\bibinitdelim T\bibinitperiod}{Renzo\bibnamedelimb De\bibnamedelima Nardi}{R\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim N\bibinitperiod}{}{}{}{}}%
+        {{hash=fc5fd1970a1253f1a5ea1836d411b660}{Lucas}{L\bibinitperiod}{Simon\bibnamedelima M.}{S\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{dd9d25afe624f2e4f69db3898d7e5cd3}
+      \strng{fullhash}{dd9d25afe624f2e4f69db3898d7e5cd3}
+      \field{sortinit}{0}
+      \field{labeltitle}{Making Racing Fun Through Player Modeling and Track Evolution}
+      \field{title}{Making Racing Fun Through Player Modeling and Track Evolution}
+    \endentry
     \entry{26poststroke}{inproceedings}{}
       \name{labelname}{4}{}{%
         {{hash=1154e13b51bf5628343c5a9d5f8b5688}{Gouaïch}{G\bibinitperiod}{Abdelkader}{A\bibinitperiod}{}{}{}{}}%
