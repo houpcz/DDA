@@ -9,9 +9,10 @@ MinMaxISPlayer::MinMaxISPlayer(int _myID) : IPlayer(_myID)
 
 MinMaxISPlayer::~MinMaxISPlayer(void)
 {
+	delete generator;
 }
 
-float MinMaxISPlayer::MiniMax(IGameState * state, int depth)
+float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int depth)
 {
 	int activePlayerID = state->GetActivePlayerID();
 	if(depth == 0 || state->IsGameOver())
@@ -29,22 +30,45 @@ float MinMaxISPlayer::MiniMax(IGameState * state, int depth)
 		result = 0;
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			float temp = MiniMax(nextState[loop1], depth - 1);
+			float temp = MiniMax(nextState[loop1], alfa, beta, depth - 1);
 			result += temp;
 		}
 		result /= (float) choises;
 	} else
 	{
 		bool maximaze = activePlayerID == myID;
-		result = MiniMax(nextState[0], depth - 1);
-		for(int loop1 = 1; loop1 < choises; loop1++)
+		result = MiniMax(nextState[0], alfa, beta, depth - 1);
+		int loop1;
+		for(loop1 = 1; loop1 < choises; loop1++)
 		{
-			float temp = MiniMax(nextState[loop1], depth - 1);
+			float temp = MiniMax(nextState[loop1], alfa, beta, depth - 1);
 			 
-			if((maximaze && temp > result) || (!maximaze && temp < result))
+			if(maximaze)
 			{
-				result = temp;
+				alfa = max(temp, alfa);
+				/*
+				if(beta <= alfa)
+				{
+					result = beta;
+					break;
+				}*/
+			} else {
+				beta = min(temp, beta);
+				/*
+				if(beta <= alfa)
+				{
+					result = alfa;
+					break;
+				}
+				*/
 			}
+		}
+		//if(loop1 == choises)
+		{
+			if(maximaze)
+				result = alfa;
+			else
+				result = beta;
 		}
 	}
 
@@ -66,13 +90,13 @@ bool MinMaxISPlayer::Think()
 	for(int loop1 = 0; loop1 < choises; loop1++)
 		rank[loop1] = 0.0f;
 
-	for(int loop2 = 0; loop2 < 100; loop2++)
+	for(int loop2 = 0; loop2 < 50; loop2++)
 	{
 		IGameState *tempState = currState->GetStateFromSameInformSet(myID);
 		IGameState ** nextState = tempState->GetNextStates(myID, &choises);
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			float value = MiniMax(nextState[loop1], 1);
+			float value = MiniMax(nextState[loop1], FLT_MIN, FLT_MAX, 2);
 			rank[loop1] += value;
 			delete nextState[loop1];
 		}

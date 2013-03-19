@@ -15,7 +15,7 @@ class MinMaxISPlayer :
 private:
 	int leafNumber;
 	mt19937 * generator;
-	float MiniMax(IGameState * state, int depth);
+	float MiniMax(IGameState * state, float alfa, float beta, int depth);
 public:
 	MinMaxISPlayer(int _myID);
 	~MinMaxISPlayer(void);
