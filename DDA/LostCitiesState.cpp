@@ -33,9 +33,9 @@ void LostCitiesState::InitGame(int _handSize, bool _domination)
 	random_shuffle(allCards, allCards + CARD_AMOUNT);
 	
 	for(int loop1 = 0; loop1 < handSize; loop1++)
-		card[allCards[loop1]] = PLAYER_1_HAND_KNOWN; // PLAYER_1_HAND_HIDDEN;
+		card[allCards[loop1]] = PLAYER_1_HAND_HIDDEN;
 	for(int loop1 = handSize; loop1 < 2 * handSize; loop1++)
-		card[allCards[loop1]] = PLAYER_2_HAND_KNOWN; // PLAYER_2_HAND_HIDDEN;
+		card[allCards[loop1]] = PLAYER_2_HAND_HIDDEN;
 
 	cardsInDeck = GetInDeckCount();
 	cardsInDeckTurn = 0;
@@ -100,11 +100,11 @@ bool LostCitiesState::MakeTurn(int turn)
 	{
 		if(lastRealPlayer == 1)
 		{
-			card[allChoises[turn]] = PLAYER_1_HAND_KNOWN;//PLAYER_1_HAND_HIDDEN;
+			card[allChoises[turn]] = PLAYER_1_HAND_HIDDEN;
 			activePlayerID = 2;
 			lastRealPlayer = 2;
 		} else {
-			card[allChoises[turn]] = PLAYER_2_HAND_KNOWN;//PLAYER_2_HAND_HIDDEN;
+			card[allChoises[turn]] = PLAYER_2_HAND_HIDDEN;
 			activePlayerID = 1;
 			lastRealPlayer = 1;
 		}
@@ -870,12 +870,13 @@ void LostCitiesState::ChangeCardInsideInformSet(int whoAskID)
 		}
 	}
 
-	float rndNumber = rand() / (float) RAND_MAX;
+	float rndNumber;
 	int cardToHandID = -1;
 	float probSum;
 	float probAll = 1.0;
 	for(int loop1 = 0; loop1 < hiddenAmount; loop1++)
 	{
+		rndNumber = rand() / (float) RAND_MAX;
 		probSum = 0.0f;
 		cardToHandID = probCards.size() - 1;
 		for(int loop2 = 0; loop2 < probCards.size(); loop2++)

@@ -47,13 +47,13 @@ void MonteCarloNode::Expansion(int whoAskID)
 int MonteCarloNode::GetBestChildID()
 {
 	int bestID = 0;
-	double bestVal = children[0]->value;
+	double bestVal = children[0]->visits;
 	for(int loop1 = 1; loop1 < childrenNumber; loop1++)
 	{
 		if(children[loop1]->value > bestVal)
 		{
 			bestID = loop1;
-			bestVal = children[loop1]->value;
+			bestVal = children[loop1]->visits;
 		}
 	}
 	return bestID;
@@ -121,7 +121,7 @@ MonteCarloTreeSearch::MonteCarloTreeSearch(IGameState * rootState, int _whoAskID
 	{
 		tempNode1 = rootNode;
 
-		int maxDepth = loop1 / 1000;
+		int maxDepth = 3;
 		int depth = 0;
 		while(tempNode1->Children() != NULL && depth < maxDepth)
 		{

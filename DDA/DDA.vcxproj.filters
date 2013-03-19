@@ -644,6 +644,9 @@
     <ClCompile Include="Qwt\qwt_abstract_scale.cpp">
       <Filter>Qwt</Filter>
     </ClCompile>
+    <ClCompile Include="MinMaxISPlayer.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -876,6 +879,9 @@
     </ClInclude>
     <ClInclude Include="MazeState.h">
       <Filter>Form Files\Games\Maze</Filter>
+    </ClInclude>
+    <ClInclude Include="MinMaxISPlayer.h">
+      <Filter>Players</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
