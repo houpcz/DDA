@@ -130,6 +130,16 @@ bool LostCitiesState::MakeTurn(int turn)
 				card[cardID] = PLAYER_2_ON_DESK;
 		} else // discard card
 		{
+			/* BUG RESOLVED
+			for(int loop1 = cardColorNumber * CARD_ONE_COLOR_AMOUNT; loop1 < (cardColorNumber + 1) * CARD_ONE_COLOR_AMOUNT; loop1++)
+			{
+				if(discardPileTopCardCode[cardColorNumber] + 1 == card[loop1] && cardID != loop1)
+				{
+					printf("cosestalo");
+					CountPlayerChoises(0);
+				}
+			} BUG RESOLVED
+			*/
 			card[cardID] = discardPileTopCardCode[cardColorNumber] + 1;
 		}
 		UpdateProbCard(activePlayerID, cardID);
@@ -329,8 +339,8 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 				char cardID = loop1 * CARD_ONE_COLOR_AMOUNT + loop2;
 				if(card[cardID] == playerHandKnown || card[cardID] == playerHandHidden)
 				{
-					//if(!domDiscarded && domination && loop2 > 7)
-					//	domDiscarded = true;
+					if(!domDiscarded && domination && loop2 > 7 && allChoises.size() > 0)
+						domDiscarded = true;
 
 					if(!domDiscarded || !domination)
 					{
@@ -345,8 +355,6 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 						drawFrom.push_back(DRAW_FROM_DECK);
 						if(loop2 > 2)
 							domPlayed = true;
-						else
-							loop2 = 2;
 					}
 				}  else if(card[cardID] >= ON_DESK)
 				{

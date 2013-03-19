@@ -121,7 +121,7 @@ MonteCarloTreeSearch::MonteCarloTreeSearch(IGameState * rootState, int _whoAskID
 	{
 		tempNode1 = rootNode;
 
-		int maxDepth = loop1 / 1000 + 2;
+		int maxDepth = loop1 / 1000;
 		int depth = 0;
 		while(tempNode1->Children() != NULL && depth < maxDepth)
 		{
