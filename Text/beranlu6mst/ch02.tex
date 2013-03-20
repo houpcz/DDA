@@ -69,11 +69,13 @@ Posledním krokem je provedení požadované změny v herním světě. Návrhov�
 	\label{fig:ch2gamereco}
 \end{figure}
 
-\section{Flow}
+\section{Zábava}
 
-V předchozích kapitolách jsem zmínil hlavní směr většiny DDA programů. Vyrovnávat obtížnost vzhledem k dovednostem uživatele aplikací. S tímto souvisí pojem Flow.
+Pojem zábava patří mezi velice subjektivní pojmy. Pro každého je zábavného něco jiného a svět her není výjimkou. Mezi hlavní zastupitele zkoumající tento pozitivní požitek patří Mihaly Csikszentmihalyi, který ideální stav maximální zábavy, maximálního ponoření do některé z činností nazval flow. Blíže tento stav bude popsán v následující podsekci.
 
-\subsection{Definice}
+Přestože se jedná o pojem subjektivní, pro použití DDA je nutné najít některé složky zábavy, které jsou změřitelné, kvantifikovatelné. Musíme být schopni zábavu měřit. Jestliže ji dokážeme změřit, můžeme to využít pro stavbu DDA algoritmů a i pro měření kvalit různých algoritmů mezi sebou. Možné metriky budou popsány dále.
+
+\subsection{Flow}
 
 Flow (tok) je stav mysli, kdy je osoba v průběhu provozování činnosti naprosto soustředěná, pociťuje nadšení, úspěch. „Flow je stav vědomí, kdy je člověk plně zaujatý svou činností. Nezabývá se jinými stimuly z okolí ani svými myšlenkami nebo pocity. Je naprosto soustředěný na prováděnou činnost. Dosahuje většinou, na své poměry, nadprůměrných výkonů, ale přitom mu to nepůsobí výraznou námahu. Je to harmonický zážitek, kdy tělo a mysl spolu bez námahy spolupracují. Tento stav je většinou spojen s pocity energie, radosti, harmonie a seberealizace.“ \cite{FlowCZ} S pojmem Flow prvně přišel zástupce pozitivní psychologie Mihaly Csikszentmihalyi ve své práci Flow: The psychology of optimal experience, česky vydané pod názvem O štěstí a smyslu života.
 
@@ -96,7 +98,7 @@ Dle Csikszentmihalyi se flow skládá z devíti elementů. \cite{FlowEng} Ne vš
 
 \begin{enumerate}
 	\item Jasné cíle
-	\item Jednoznačná zpětná vazba
+	\item Zpětná vazba
 	\item Vyrovnanost náročnosti úkolů a schopností
 	\item Splynutí činnosti a vědomí
 	\item Koncentrace
@@ -108,7 +110,7 @@ Dle Csikszentmihalyi se flow skládá z devíti elementů. \cite{FlowEng} Ne vš
 
 Rozepisování jednotlivých bodů není záměrem této práce. Bližší informace lze nalézt např. na \cite{FlowEng}, \cite{FlowCZ}, nebo v originální knize \cite{OptimalFun}.
 
-\subsection{Flow ve hrách}
+\subsubsection{Flow ve hrách}
 
 Nás bude více zajímat napojení flow na vývoj počítačových her. Jenova Chen ve své diplomové práci Flow in Games\cite{thesisflow} vybral několik flow komponent, které označil za hlavní při návrhu hry. Dle Chena musí hra obsahovat následující tři elementy, aby hráč dosáhl stavu flow.
 
@@ -119,6 +121,45 @@ Nás bude více zajímat napojení flow na vývoj počítačových her. Jenova C
 \end{enumerate}
 
 Jsou-li splněny všechny tři body, hráč může ztratit pojem o čase a zcela se do hry ponořit.
+
+Stavem flow ve hrách se dále zabýval Lennart Nacket, který ve svém článku\cite{FlowAll} shrnuje spojení flow s počítačovými hrami od různých autorů. Sweetserův a Wyethův herní flow osmi složkami vycházejícími z 9 složek flow od M. Csikszentmihalyi.
+
+\begin{enumerate}
+  \item Jasné cíle
+	\item Zpětná vazba
+	\item Výzva
+	\item Hráčovi dovednosti
+	\item Koncentrace
+	\item Pocit kontroly
+	\item Ponoření se do činnosti
+	\item Sociální interakce
+\end{enumerate}
+
+\textbf{Jasné cíle} : 
+Hráč by měl být vždy schopen kognitivně zpracovávat herní mise, úrovně, úkoly. Aktuální úkoly by měly být vždy jednoznačné a nematoucí. Hráč by měl být schopen vnímat svůj pokrok ve hře.
+
+\textbf{Zpětná vazba} : 
+Hra by měla vždy uživatele informovat o výsledku provedených akcí. Hráč by měl být seznámen, jak se blíží, či oddaluje od splnění cíle hry.
+
+\textbf{Výzva} : 
+U příliš jednoduchých her se nemohou uživatelé ponořit do hry. Hra musí být výzvou. Podstatné je rozlišovat náročnost ve formě špatně navrženého uživatelského rozhraní a ovládání a výzvu jako část herního designu. Špatné ovládání není nikdy žádoucí.
+
+\textbf{Hráčovi dovednosti} : 
+Hra by měla být navržena tak, aby hráči umožňovala efektivní získávání herních dovedností. Hra by měla brát v úvahu i možné dovednosti získané hráčem z jiných her.
+
+\textbf{Koncentrace} : 
+Hráč musí být do hry zcela ponořen, věnovat ji veškerou svojí pozornost.
+
+\textbf{Pocit kontroly} : 
+Hráč má mít pocit, že ovládá dění ve hře. Tento bod může být kritickým u návrhu DDA. Zjistí-li hráč, že jeho úspěch ve hře není zcela závislý na jeho výkonu, ztrácí pocit kontroly.
+
+\textbf{Ponoření se do činnosti} : 
+Podobné koncentraci. Hra má pohlcovat a udržovat hráče v maximální pozornosti, ale tak, aby mu to bylo stále příjemné.
+
+\textbf{Sociální interakce} : 
+Tento bod je přidán oproti prvotnímu flow. K dokonalému zážitku potřebuje člověk další lidské spoluhráče a protihráče.
+
+\subsubsection{Zóna flow pro různé hráče}
 
 Vraťme se znovu ke flow diagramu \ref{fig:ch2flow}. Dle příkladu s Alexem a jeho učením se tenisu by se mohlo zdát, že pro každého je ideální udržovat zcela vyrovnanou hodnotu schopností a náročnosti úkolů a udržovat uživatele v úzkém flow pásu, jak znázorňuje obr. \ref{fig:ch2flowzone1}.
 
@@ -138,9 +179,19 @@ Bohužel takový flow diagram nebere v úvahu individualitu hráče. Existují h
 	\label{fig:ch2flowzone2}
 \end{figure}	
 
-\subsection{Pozitivní a negativní odezva}
+\subsection{Metriky zábavnosti} \label{sec:defzab}
 
-\section{Definice zábavy a jak ji měřit} \label{sec:defzab}
+Hlavním cílem počítačových her je pobavení hráče. Může být tedy dobré umět zábavu přímo, či nepřímo změřit. Pro techniku DDA je existence takové metriky zcela zásadní. Bez ní by hra nevěděla, jakým způsobem se má přizpůsobovat hráči a neuměla by ohodnotit, jestli to dělá dobře. 
 
+Metriky můžeme rozdělit do několika kategorií. Některé metriky jsou specifické pro konkrétní hru, jiné jsou obecně použitelné pro většinu existujících her. Dále jsou metriky, jež vycházejí pouze ze stavu hry, softwaru. Protikladem mohou být speciální metriky měřící hodnoty z vnějšího světa. Příkladem může sledování srdečního tepu \cite{7}. Dále lze využít webkameru, senzory na herních i neherních zařízení. Kromě tepu lze využívat např. pevnost stisku joysticku, měnící se odpor kůže, teplotu těla.\cite{16Survey} V této práci se pro naše účely zaměřím na metriky univerzálně použitelné a získané ze stavu hry.
 
+Zábava ve hrách se často zjednodušuje do podoby náročnosti hry vzhledem k dovednostem hráče. Z tohoto důvodu velké množství přístupů pracuje s metrikami, které zábavu měří nepřímo, měří obtížnost hry. Často používanou metrikou je hodnota win-rate, poměr vítězstvích hráče ku jeho prohrám. Hodnota 0,5 značí polovinu výher a polovinu proher. Mnohé přístupy hodnotu 0,5 berou jako ideální. V tomto případě se hra snaží obtížnosti přiblížit co nejpřesněji dovednostem hráče. Jak bylo naznačeno v předchozí sekci, ne každý hráč ocení polovinu proher. Zde je prostor pro kombinaci statické a dynamické obtížnosti. Při statické obtížnosti si hráč vybere jednu z předem daných obtížností, např. začátečník, pokročilý, expert, kterým budou odpovídat hodnoty win-rate 25, 50, 75 %.
+
+Další metriky využívají heuristiku, která numericky ohodnotí stav hry pro každého hráče a která nepřímo vyjadřuje pravděpodobnost výhry hráče. Samotná heuristika je herně specifická, ale prakticky u každé hry lze nějakou vymyslet, a proto jsou metriky, které ji využívají, obecně použitelné. 
+
+V článku \cite{24DynLev} na základě zmíněné heuristiky přicházejí k třem metrikám. Počet změn ve vedení, napínavost během a konečný výsledek. Hráč, který dle heuristiky má největší pravděpodobnost na výhru je ve vedení. Jestliže se dostane do vedení jiný hráč, zaznamená se to. Metrika měří počet výměn hráčů během hry od začátku do konce. Je zde předpoklad, že hra je více zábavná, jestliže se hráči častěji ve vedení střídají, a tedy není pořadí hráčů stejné na začátku, během a na konci hry. Napínavost hry souvisí s rozptylem heuristiky pro jednotlivé hráče. Hra je napínavější, jestliže všichni hráči mají stejnou pravděpodobnost na výhru během celé hry. První z metrik počítá průměrnou napínavost během hry. Druhá udává o kolik vítěz vyhrál na ostatními hráči.
+
+Všechny 4 zmíněné metriky (3 předchozí + win-rate) lze dobře využít v teorii her pro ohodnocení jednotlivých algoritmů a porovnání jich mezi sebou. Osobně mi počet změn hráčů na chvostu nepřijde jako dostatečný údaj. Mohlo by se stát, že každý z hráčů by byl během hry 2 krát ve vedení, ale jeden z nich by byl ve vedení 90\% času a zbylí hráči zbývajících 10\%. 5. metrika může znázorňovat dobu ve vedení pro každého hráče, nebo rozptyl těchto hodnot jako sjednocující údaj.
+
+Jednou ze složek flow je kontrola. Hráč chce mít pocit vlády nad hrou. Jestliže budeme hru příliš často a hodně přizpůsobovat hráči, on/a si může všimnout, že nemá plnou kontrolu nad hrou, hra ho může přestat bavit. Proto by počet zásahů do hry měl být minimální. Spočítáme si pro každého hráče heuristiku pravděpodobnosti na vítězství vždy před adaptivním krokem $h_1$ a po něm $h_2$. Rozdíl $\Delta h = h_2 - h_1$ znázorňuje, jak moc jsme konkrétnímu hráči ublížili/pomohli k vítězství.  Můžeme vytvořit nové 2 metriky, kontrola a spravedlnost. Kontrola bude dána sumou absolutních hodnot $\Delta h$ během hry. Trochu paradoxně, čím menší hodnota kontroly, tím lépe. Tím méně bylo zasaženo do hry. Pro spravedlnost je důležité během hry pomáhat/ubližovat všem přibližně stejně. Čím vyrovnanější suma $\Delta h$ na konci hry mezi jednotlivými hráči, tím lépe.
 

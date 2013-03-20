@@ -25,7 +25,7 @@ class LostCitiesState : public IGameState
 public :
 	static const int PREDICTED_ON_BOARD = 10;
 	static const int PREDICTED_IN_HAND = 9;
-	static const int PREDICTED_TOP_DISCARD = 5;
+	static const int PREDICTED_TOP_DISCARD = 3;
 	static const int PREDICTED_DECK = 2;
 	static const int NOBODY = -1;
 	static const int DRAW_FROM_DECK = 7;

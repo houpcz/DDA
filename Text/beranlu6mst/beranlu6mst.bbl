@@ -555,6 +555,54 @@
       \field{type}{Master}
       \field{year}{2006}
     \endentry
+    \entry{FlowAll}{article}{}
+      \name{labelname}{1}{}{%
+        {{hash=f897dc811fb0ab9253f6cec72a843456}{Nacke}{N\bibinitperiod}{Lennart\bibnamedelima E.}{L\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=f897dc811fb0ab9253f6cec72a843456}{Nacke}{N\bibinitperiod}{Lennart\bibnamedelima E.}{L\bibinitperiod\bibinitdelim E\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{f897dc811fb0ab9253f6cec72a843456}
+      \strng{fullhash}{f897dc811fb0ab9253f6cec72a843456}
+      \field{sortinit}{0}
+      \field{labeltitle}{Flow in Games: Proposing a Flow Experience Model}
+      \field{journaltitle}{Fun and Games}
+      \field{title}{Flow in Games: Proposing a Flow Experience Model}
+      \field{year}{2012}
+    \endentry
+    \entry{24DynLev}{inproceedings}{}
+      \name{labelname}{2}{}{%
+        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
+        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Kennesaw, Georgia}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
+      \strng{fullhash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
+      \field{sortinit}{0}
+      \field{labeltitle}{Dynamic game difficulty balancing for backgammon}
+      \field{booktitle}{Proceedings of the 49th Annual Southeast Regional Conference}
+      \field{isbn}{978-1-4503-0686-7}
+      \field{series}{ACM-SE '11}
+      \field{title}{Dynamic game difficulty balancing for backgammon}
+      \field{year}{2011}
+      \field{pages}{295\bibrangedash 299}
+      \verb{doi}
+      \verb 10.1145/2016039.2016115
+      \endverb
+      \verb{url}
+      \verb http://doi.acm.org/10.1145/2016039.2016115
+      \endverb
+      \keyw{dynamic difficulty balancing, game playing agents}
+    \endentry
     \entry{21cbr}{article}{}
       \name{labelname}{3}{}{%
         {{hash=ff8007d7fc80e4e4916113b6dfece0da}{Bakkes}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
@@ -687,39 +735,6 @@
       \verb 10.1109/CIG.2012.6374138
       \endverb
       \keyw{Computers;Games;Heuristic algorithms;Humans;Materials;Prediction algorithms;Weapons;computer games;Chinese chess;board games;checkers;computer games;partially ordered set master algorithm;sound algorithm;synthetic opponent;}
-    \endentry
-    \entry{24DynLev}{inproceedings}{}
-      \name{labelname}{2}{}{%
-        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
-        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{2}{}{%
-        {{hash=ba0d7cb1bcb7d2c303fd98e8593e2c65}{Gomez-Hicks}{G\bibinithyphendelim H\bibinitperiod}{Guillermo}{G\bibinitperiod}{}{}{}{}}%
-        {{hash=0582db81566df6dabf0146eb50f90b65}{Kauchak}{K\bibinitperiod}{David}{D\bibinitperiod}{}{}{}{}}%
-      }
-      \list{location}{1}{%
-        {Kennesaw, Georgia}%
-      }
-      \list{publisher}{1}{%
-        {ACM}%
-      }
-      \strng{namehash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
-      \strng{fullhash}{2d9e7b2f0d97ac5f1299a6d32d8f0184}
-      \field{sortinit}{0}
-      \field{labeltitle}{Dynamic game difficulty balancing for backgammon}
-      \field{booktitle}{Proceedings of the 49th Annual Southeast Regional Conference}
-      \field{isbn}{978-1-4503-0686-7}
-      \field{series}{ACM-SE '11}
-      \field{title}{Dynamic game difficulty balancing for backgammon}
-      \field{year}{2011}
-      \field{pages}{295\bibrangedash 299}
-      \verb{doi}
-      \verb 10.1145/2016039.2016115
-      \endverb
-      \verb{url}
-      \verb http://doi.acm.org/10.1145/2016039.2016115
-      \endverb
-      \keyw{dynamic difficulty balancing, game playing agents}
     \endentry
     \entry{18Pac1}{inproceedings}{}
       \name{labelname}{6}{}{%

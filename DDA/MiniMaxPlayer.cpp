@@ -79,7 +79,7 @@ bool MiniMaxPlayer::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		float * values = MaxN(nextState[loop1], 1);
+		float * values = MaxN(nextState[loop1], 2);
 		scores.push_back(valueIndex((int) values[myID - 1], loop1));
 		delete [] values;
 		delete nextState[loop1];

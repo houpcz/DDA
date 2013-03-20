@@ -96,7 +96,7 @@ bool MinMaxISPlayer::Think()
 		IGameState ** nextState = tempState->GetNextStates(myID, &choises);
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			float value = MiniMax(nextState[loop1], FLT_MIN, FLT_MAX, 2);
+			float value = MiniMax(nextState[loop1], FLT_MIN, FLT_MAX, 1);
 			rank[loop1] += value;
 			delete nextState[loop1];
 		}

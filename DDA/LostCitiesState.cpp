@@ -418,12 +418,17 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 	int discard[PLAYER_AMOUNT];
 	int deck[PLAYER_AMOUNT];
 
+	int inDeckCards = 0;
+	int expedition[PLAYER_AMOUNT];
+	bool cExpedition[PLAYER_AMOUNT];
 	int cScore[PLAYER_AMOUNT];
 	int cBonus[PLAYER_AMOUNT];
 	int cOnDeskCount[PLAYER_AMOUNT];
 	int cHandKnown[PLAYER_AMOUNT];
 	int cHandHidden[PLAYER_AMOUNT];
-	int cDeck;			// same for both players
+	int cDeck[PLAYER_AMOUNT];			// same for both players
+	int cTopValue[PLAYER_AMOUNT];
+	bool cCanBePlayed[PLAYER_AMOUNT];   // you cant play 3 if you have 4 on table
 
 	for(int loop1 = 0; loop1 < PLAYER_AMOUNT; loop1++)
 	{
@@ -432,21 +437,26 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 		handHidden[loop1] = 0;
 		discard[loop1] = 0;
 		deck[loop1] = 0;
+		expedition[loop1] = 0;
 	}
 
 	for(int loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 	{
-		cDeck = 0;
 		discardTop = ON_DESK - 1;
 		discardTopValue = 0;
 
+
 		for(int loop2 = 0; loop2 < PLAYER_AMOUNT; loop2++)
 		{
+			cDeck[loop2] = 0;
 			cScore[loop2] = 0;
 			cBonus[loop2] = 1; 
 			cOnDeskCount[loop2] = 0;
 			cHandKnown[loop2] = 0;
 			cHandHidden[loop2] = 0;
+			cTopValue[loop2] = 0;
+			cCanBePlayed[loop2] = true;
+			cExpedition[loop2] = false;
 		}
 
 		for(int loop2 = CARD_ONE_COLOR_AMOUNT - 1; loop2 >= 0; loop2--)
@@ -459,33 +469,51 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 				switch(c[cardID])
 				{
 					case IN_DECK : 
-						cDeck += cardValue;
+						inDeckCards++;
+						if(cCanBePlayed[0])
+							cDeck[0] += cardValue;
+						if(cCanBePlayed[1])
+							cDeck[1] += cardValue;
 						break;
 
 					case PLAYER_1_HAND_KNOWN :
-						cHandKnown[0] += cardValue;
+						if(cCanBePlayed[0])
+							cHandKnown[0] += cardValue;
 						break;
 
 					case PLAYER_1_HAND_HIDDEN :
-						cHandHidden[0] += cardValue;
+						if(cCanBePlayed[0])
+							cHandHidden[0] += cardValue;
 						break;
 
 					case PLAYER_1_ON_DESK :
 						cOnDeskCount[0]++;
 						cScore[0] += cardValue;
+						cExpedition[0] = true;
+
+						cCanBePlayed[0] = false;
+						if(cTopValue[0] < loop2)
+							cTopValue[0] = loop2;
 						break;
 
 					case PLAYER_2_HAND_KNOWN :
-						cHandKnown[1] += cardValue;
+						if(cCanBePlayed[1])
+							cHandKnown[1] += cardValue;
 						break;
 
 					case PLAYER_2_HAND_HIDDEN :
-						cHandHidden[1] += cardValue;
+						if(cCanBePlayed[1])
+							cHandHidden[1] += cardValue;
 						break;
 
 					case PLAYER_2_ON_DESK :
 						cOnDeskCount[1]++;
 						cScore[1] += cardValue;
+						
+						cCanBePlayed[1] = false;
+
+						if(cTopValue[1] < loop2)
+							cTopValue[1] = loop2;
 						break;
 
 					default :
@@ -523,20 +551,48 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 
 				handHidden[loop2] += cHandHidden[loop2];
 				handKnown[loop2] += cHandKnown[loop2];
-				deck[loop2] += cDeck;
-				discard[loop2] += discardTopValue;
+				deck[loop2] += cDeck[loop2];
+				if(cTopValue[loop2] <= discardTopValue)
+					discard[loop2] += discardTopValue;
+
+				if(cExpedition[loop2])
+					expedition[loop2]++;
 			}
 		}
 	}
 
 	int rank[PLAYER_AMOUNT];
+	
 	for(int loop2 = 0; loop2 < 2; loop2++)
 	{
-		rank[loop2] = handKnown[loop2] * PREDICTED_IN_HAND + 
-					  handHidden[loop2] * PREDICTED_IN_HAND +
+		int minus = 0;
+		switch(expedition[loop2])
+		{
+			case 0 :
+			case 1 :
+			case 2 : 
+			case 3 :
+				minus = 0;
+				break;
+			case 4 :
+				minus = 1;
+				break;
+			case 5 :
+				minus = PREDICTED_IN_HAND;
+				break;
+
+		}
+		int multBase = PREDICTED_IN_HAND - minus;
+		int multTemp = min(multBase, inDeckCards * 2 / 3);
+		float mult = multTemp / (float) PREDICTED_IN_HAND;
+
+		rank[loop2] = (int) (
+			          handKnown[loop2] * PREDICTED_IN_HAND * mult + 
+					  handHidden[loop2] * PREDICTED_IN_HAND * mult +
 					  score[loop2] * PREDICTED_ON_BOARD + 
-					  discard[loop2] * PREDICTED_TOP_DISCARD +
-					  deck[loop2] * PREDICTED_DECK;
+					  discard[loop2] * PREDICTED_TOP_DISCARD * mult +
+					  deck[loop2] * PREDICTED_DECK * mult
+					  );
 	}
 
 	int opponentID = (playerID == 1) ? 2 : 1;
