@@ -187,11 +187,52 @@ Metriky můžeme rozdělit do několika kategorií. Některé metriky jsou speci
 
 Zábava ve hrách se často zjednodušuje do podoby náročnosti hry vzhledem k dovednostem hráče. Z tohoto důvodu velké množství přístupů pracuje s metrikami, které zábavu měří nepřímo, měří obtížnost hry. Často používanou metrikou je hodnota win-rate, poměr vítězstvích hráče ku jeho prohrám. Hodnota 0,5 značí polovinu výher a polovinu proher. Mnohé přístupy hodnotu 0,5 berou jako ideální. V tomto případě se hra snaží obtížnosti přiblížit co nejpřesněji dovednostem hráče. Jak bylo naznačeno v předchozí sekci, ne každý hráč ocení polovinu proher. Zde je prostor pro kombinaci statické a dynamické obtížnosti. Při statické obtížnosti si hráč vybere jednu z předem daných obtížností, např. začátečník, pokročilý, expert, kterým budou odpovídat hodnoty win-rate 25, 50, 75 %.
 
-Další metriky využívají heuristiku, která numericky ohodnotí stav hry pro každého hráče a která nepřímo vyjadřuje pravděpodobnost výhry hráče. Samotná heuristika je herně specifická, ale prakticky u každé hry lze nějakou vymyslet, a proto jsou metriky, které ji využívají, obecně použitelné. 
+Další metriky využívají heuristiku, která numericky ohodnotí stav hry pro každého hráče a která nepřímo vyjadřuje pravděpodobnost výhry hráče. Samotná heuristika je herně specifická, ale prakticky u každé hry lze nějakou vymyslet, a proto jsou metriky, které ji využívají, obecně použitelné. Příkladem jednoduché heuristiky ve hře dáme bude počet zbývajících kamenů hráče. U hry Člověče, nezlob se může být jednoduchou heuristikou suma vzdáleností figur jednoho hráče od cíle.
 
-V článku \cite{24DynLev} na základě zmíněné heuristiky přicházejí k třem metrikám. Počet změn ve vedení, napínavost během a konečný výsledek. Hráč, který dle heuristiky má největší pravděpodobnost na výhru je ve vedení. Jestliže se dostane do vedení jiný hráč, zaznamená se to. Metrika měří počet výměn hráčů během hry od začátku do konce. Je zde předpoklad, že hra je více zábavná, jestliže se hráči častěji ve vedení střídají, a tedy není pořadí hráčů stejné na začátku, během a na konci hry. Napínavost hry souvisí s rozptylem heuristiky pro jednotlivé hráče. Hra je napínavější, jestliže všichni hráči mají stejnou pravděpodobnost na výhru během celé hry. První z metrik počítá průměrnou napínavost během hry. Druhá udává o kolik vítěz vyhrál na ostatními hráči.
+V článku \cite{24DynLev} na základě zmíněné heuristiky přicházejí k třem metrikám. Počet změn ve vedení, napínavost během hry a konečný náskok. Hráč, který dle heuristiky má největší pravděpodobnost na výhru, je ve vedení. Jestliže se dostane do vedení jiný hráč, zaznamená se to. Metrika měří počet výměn hráčů ve vedení během hry od začátku do konce. Je zde předpoklad, že hra je více zábavná, jestliže se hráči častěji ve vedení střídají, a tedy není pořadí hráčů stejné na začátku, během a na konci hry. Napínavost je dána průměrným náskokem prvního hráče před druhým během hry. Konečný náskok je dán rozdílem heuristik prvního a druhého hráče na konci hry.
 
-Všechny 4 zmíněné metriky (3 předchozí + win-rate) lze dobře využít v teorii her pro ohodnocení jednotlivých algoritmů a porovnání jich mezi sebou. Osobně mi počet změn hráčů na chvostu nepřijde jako dostatečný údaj. Mohlo by se stát, že každý z hráčů by byl během hry 2 krát ve vedení, ale jeden z nich by byl ve vedení 90\% času a zbylí hráči zbývajících 10\%. 5. metrika může znázorňovat dobu ve vedení pro každého hráče, nebo rozptyl těchto hodnot jako sjednocující údaj.
+Všechny 4 zmíněné metriky (3 předchozí + win-rate) lze dobře využít v teorii her pro ohodnocení jednotlivých algoritmů a porovnání jich mezi sebou. Metriky doplníme o další tři nové. Počet výměn hráčů ve vedení nemusí být dostatečný. Mohlo by se stát, že každý z hráčů by byl během hry 2 krát ve vedení, ale jeden z nich by byl ve vedení 90\% času a zbylí hráči zbývajících 10\%. Metrika vedení bude udávat rozptyl časů ve vedení jednotlivých hráčů.
 
-Jednou ze složek flow je kontrola. Hráč chce mít pocit vlády nad hrou. Jestliže budeme hru příliš často a hodně přizpůsobovat hráči, on/a si může všimnout, že nemá plnou kontrolu nad hrou, hra ho může přestat bavit. Proto by počet zásahů do hry měl být minimální. Spočítáme si pro každého hráče heuristiku pravděpodobnosti na vítězství vždy před adaptivním krokem $h_1$ a po něm $h_2$. Rozdíl $\Delta h = h_2 - h_1$ znázorňuje, jak moc jsme konkrétnímu hráči ublížili/pomohli k vítězství.  Můžeme vytvořit nové 2 metriky, kontrola a spravedlnost. Kontrola bude dána sumou absolutních hodnot $\Delta h$ během hry. Trochu paradoxně, čím menší hodnota kontroly, tím lépe. Tím méně bylo zasaženo do hry. Pro spravedlnost je důležité během hry pomáhat/ubližovat všem přibližně stejně. Čím vyrovnanější suma $\Delta h$ na konci hry mezi jednotlivými hráči, tím lépe.
+Jednou ze složek flow je kontrola. Hráč chce mít pocit vlády nad hrou. Jestliže budeme hru příliš často a hodně přizpůsobovat hráči, on/a si může všimnout, že nemá plnou kontrolu nad hrou, hra ho může přestat bavit. Proto by počet zásahů do hry měl být minimální. Spočítáme si pro každého hráče heuristiku vždy před adaptivním krokem $h_1$ a po něm $h_2$. Rozdíl $\Delta h = h_2 - h_1$ znázorňuje, jak moc jsme konkrétnímu hráči ublížili/pomohli k vítězství.  Můžeme vytvořit 2 nové metriky, kontrolu a spravedlnost. Kontrola bude dána průměrem z absolutních hodnot $\Delta h$ během hry na jednoho hráče. Trochu paradoxně, čím menší hodnota kontroly, tím lépe. Tím méně bylo zasaženo do hry. Pro spravedlnost je důležité během hry pomáhat/ubližovat všem přibližně stejně. Čím vyrovnanější $s(p) = \frac{1}{k}\sum_i^k \Delta h_i(p)$ na konci hry mezi jednotlivými hráči, tím lépe. Metrika spravedlnost je dáno rozptylem hodnot $s(p)$
+
+\subsubsection{Algoritmus}
+
+Pro lepší pochopení nastíněných metrik prohození prvních hráčů, napínavost, konečný náskok, vedení, kontrola, spravedlnost bude následovat pseudokód algoritmu(\ref{alg-metrik}) na výpočet zmíněných metrik. Mějme heuristickou funkci $H$, která má jediný argument, konkrétního hráče. Funkce vrací ohodnocení hráče v aktuálním stavu hry. Při inicializaci se zaznamenají heuristiky v čase 0. Nikdo z hráčů ještě nebyl ve vedení. Proměnné $pF_i$ a $pS_i$ zaznamenávají, který hráč byl v čase $i$ na první, respektive druhé pozici.
+
+\begin{algorithm}
+\caption{Výpočty metrik}
+\label{alg-metrik}
+\begin{algorithmic}[1]
+\State $\forall p \in P : h_0(p) = H(p)$
+\State $\forall p \in P : dobaVedeni(p) = 0$
+\State $pF_0 = p_0$
+\State $pF_t = 1$
+\For{$i \gets 1, 2, \dots, k$}
+   \State $\forall p \in P : h_i(p) = H(p)$
+	 \State $pF_{i}  = \operatorname{arg\,max}_{p \in P} h_{i}(p)$
+	 \State $pS_i = \operatorname{arg\,max}_{p \in P / pF_i} h_{k}(p)$
+	 \If{$pF_i \neq pF_{i-1}$}
+			\State $prohozeniVitezu = prohozeniVitezu + 1$
+			\State $dobaVedeni(pF_{i-1}) = dobaVedeni(pF_{i-1}) + (i - pF_t)$
+			\State $pF_t = i$
+	 \EndIf
+	 \State $DDA()$
+	 \State $\forall p \in P : \Delta h_i(p) = H(p) - h_i(p)$
+	 \State $ProvedTah()$
+\EndFor
+\State $\forall p \in P : s(p) = \frac{1}{k}\sum_i^k \Delta h_i(p)$
+\State $\mu_s = \frac{1}{|P|}\sum_{p \in P} s(p)$
+\State $\mu_v = \frac{1}{|P|}\sum_{p \in P} dobaVedeni(p)$
+\State $napinavost = \frac{1}{k}\sum_i^k{h_i(pF_i) - h_i(pS_i)}$ 
+\State $konecnyNaskok = h_k(pF_k) - h_i(pS_k)$
+\State $vedeni = \sqrt{\sum_{p \in P} |\mu_v - dobaVedeni(p)|^2}$
+\State $kontrola = \frac{1}{k |P|}\sum_i^k{\sum_{p \in P} |\Delta h_i(p)|}$
+\State $spravedlnost = \sqrt{\sum_{p \in P} |\mu_s - s(p)|^2}$
+\end{algorithmic}
+\end{algorithm}
+
+Následuje for smyčka přes časové okamžiky ve hře. U tahových her odpovídá časový okamžik stavu hry na začátku jednoho tahu. U realtime her je nutno čas rozdělit do pevných časových okamžiků. Ve smyčce se v každém čase zaznamená heuristika pro každého z hráčů a z ní určí hráči na prvních dvou pozicích. Jestliže se hráči na první pozici vystřídají, zvedne se hodnota heuristiky prohození prvních hráčů o jedničku a hráči, který byl do tohoto okamžiku ve vedení se připočte doba, po kterou byl naposledy ve vedení. Na řádku 14 se provede adaptivní krok hry. Zaznamená se rozdíl heuristik hráčů před a po adaptivním kroku. Na konci jednoho cyklu se provede další tah u tahové hry, případně se nechá hra běžet po nějakou dobu u realtime her.
+
+Po skončení hry se mohou dopočíst heuristiky napínavost, konečný náskok, vedení, kontrola a spravedlnost dle popsaného významu dříve.
+
 

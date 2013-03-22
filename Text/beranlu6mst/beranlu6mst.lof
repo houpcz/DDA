@@ -32,20 +32,20 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {12}{\ignorespaces Influence diagram pro adaptivn\IeC {\'\i } syst\IeC {\'e}my}}{18}{figure.3.12}
+\contentsline {figure}{\numberline {12}{\ignorespaces Influence diagram pro adaptivn\IeC {\'\i } syst\IeC {\'e}my}}{19}{figure.3.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {13}{\ignorespaces Proces adaptivn\IeC {\'\i } AI zalo\IeC {\v z}en\IeC {\'e} na CBR \cite {21cbr}}}{20}{figure.3.13}
+\contentsline {figure}{\numberline {13}{\ignorespaces Proces adaptivn\IeC {\'\i } AI zalo\IeC {\v z}en\IeC {\'e} na CBR \cite {21cbr}}}{21}{figure.3.13}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {14}{\ignorespaces Screenshot ze hry Dead-End. \cite {25deadend} }}{23}{figure.3.14}
+\contentsline {figure}{\numberline {14}{\ignorespaces Screenshot ze hry Dead-End. \cite {25deadend} }}{24}{figure.3.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {15}{\ignorespaces \IeC {\v C}\IeC {\'a}st fuzzy pravidel pro p\IeC {\v r}edvoj. \cite {25deadend} }}{23}{figure.3.15}
+\contentsline {figure}{\numberline {15}{\ignorespaces \IeC {\v C}\IeC {\'a}st fuzzy pravidel pro p\IeC {\v r}edvoj. \cite {25deadend} }}{24}{figure.3.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {16}{\ignorespaces P\IeC {\v r}ibli\IeC {\v z}ov\IeC {\'a}n\IeC {\'\i } se k po\IeC {\v z}adovan\IeC {\'e}mu win-rate 75\% b\IeC {\v e}hem 100 kol proti t\IeC {\v r}em r\IeC {\r u}zn\IeC {\'y}m hr\IeC {\'a}\IeC {\v c}\IeC {\r u}m. \cite {25deadend} }}{24}{figure.3.16}
+\contentsline {figure}{\numberline {16}{\ignorespaces P\IeC {\v r}ibli\IeC {\v z}ov\IeC {\'a}n\IeC {\'\i } se k po\IeC {\v z}adovan\IeC {\'e}mu win-rate 75\% b\IeC {\v e}hem 100 kol proti t\IeC {\v r}em r\IeC {\r u}zn\IeC {\'y}m hr\IeC {\'a}\IeC {\v c}\IeC {\r u}m. \cite {25deadend} }}{25}{figure.3.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {17}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad jednoho vygenerovan\IeC {\'e}ho bludi\IeC {\v s}t\IeC {\v e} se 6 jezdci a hr\IeC {\'a}\IeC {\v c}em ovl\IeC {\'a}daj\IeC {\'\i }ho v\IeC {\v e}\IeC {\v z}. Vstup do bludi\IeC {\v s}t\IeC {\v e} je ozna\IeC {\v c}en E, v\IeC {\'y}stup X. Vlevo z pohledu hr\IeC {\'a}\IeC {\v c}e, vpravo zn\IeC {\'a}zorn\IeC {\v e}n\IeC {\'e} ohro\IeC {\v z}ovan\IeC {\'e} pozice. \cite {17Evol} }}{25}{figure.3.17}
+\contentsline {figure}{\numberline {17}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad jednoho vygenerovan\IeC {\'e}ho bludi\IeC {\v s}t\IeC {\v e} se 6 jezdci a hr\IeC {\'a}\IeC {\v c}em ovl\IeC {\'a}daj\IeC {\'\i }ho v\IeC {\v e}\IeC {\v z}. Vstup do bludi\IeC {\v s}t\IeC {\v e} je ozna\IeC {\v c}en E, v\IeC {\'y}stup X. Vlevo z pohledu hr\IeC {\'a}\IeC {\v c}e, vpravo zn\IeC {\'a}zorn\IeC {\v e}n\IeC {\'e} ohro\IeC {\v z}ovan\IeC {\'e} pozice. \cite {17Evol} }}{26}{figure.3.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {18}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad t\IeC {\v r}\IeC {\'\i } vygenerovan\IeC {\'y}ch trat\IeC {\'\i }. Prvn\IeC {\'\i } generov\IeC {\'a}na pro \IeC {\v s}patn\IeC {\'e}ho hr\IeC {\'a}\IeC {\v c}e, druh\IeC {\'a} a t\IeC {\v r}et\IeC {\'\i } pro dobr\IeC {\'e}ho. P\IeC {\v r}i generaci t\IeC {\v r}et\IeC {\'\i } trat\IeC {\v e} byla pou\IeC {\v z}ita pouze jedna z fitness funkc\IeC {\'\i }. \cite {EvolTrack} }}{26}{figure.3.18}
+\contentsline {figure}{\numberline {18}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad t\IeC {\v r}\IeC {\'\i } vygenerovan\IeC {\'y}ch trat\IeC {\'\i }. Prvn\IeC {\'\i } generov\IeC {\'a}na pro \IeC {\v s}patn\IeC {\'e}ho hr\IeC {\'a}\IeC {\v c}e, druh\IeC {\'a} a t\IeC {\v r}et\IeC {\'\i } pro dobr\IeC {\'e}ho. P\IeC {\v r}i generaci t\IeC {\v r}et\IeC {\'\i } trat\IeC {\v e} byla pou\IeC {\v z}ita pouze jedna z fitness funkc\IeC {\'\i }. \cite {EvolTrack} }}{27}{figure.3.18}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {19}{\ignorespaces (a) Z\IeC {\'o}na schopnost\IeC {\'\i }, (b) Interak\IeC {\v c}n\IeC {\'\i } matice pro st\IeC {\'\i }\IeC {\v z}en\IeC {\'\i } hry, (c) Interak\IeC {\v c}n\IeC {\'\i } matice pro zjednodu\IeC {\v s}en\IeC {\'\i } hry \cite {26poststroke} }}{29}{figure.3.19}
+\contentsline {figure}{\numberline {19}{\ignorespaces (a) Z\IeC {\'o}na schopnost\IeC {\'\i }, (b) Interak\IeC {\v c}n\IeC {\'\i } matice pro st\IeC {\'\i }\IeC {\v z}en\IeC {\'\i } hry, (c) Interak\IeC {\v c}n\IeC {\'\i } matice pro zjednodu\IeC {\v s}en\IeC {\'\i } hry \cite {26poststroke} }}{30}{figure.3.19}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {20}{\ignorespaces Zjednodu\IeC {\v s}en\IeC {\'a} verze Pac-Mana. Obr\IeC {\'a}zek p\IeC {\v r}evzat z \cite {18Pac1}}}{33}{figure.3.20}
+\contentsline {figure}{\numberline {20}{\ignorespaces Zjednodu\IeC {\v s}en\IeC {\'a} verze Pac-Mana. Obr\IeC {\'a}zek p\IeC {\v r}evzat z \cite {18Pac1}}}{34}{figure.3.20}
