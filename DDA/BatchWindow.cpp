@@ -9,7 +9,8 @@
 
 BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, QWidget *parent) : QWidget(parent)
 {
-	 batchThread = new BatchThread();
+	 for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+		batchThread[loop1] = new BatchThread();
 	 batchIsRunning = false;
 	 playerAIList = _playerAIList;
 	 environmentAIList = _environmentAIList;
@@ -25,8 +26,12 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 progressBar->setMinimum(0);
 	 //gameIDNumber = new QLCDNumber(this);
 	 //connect(batchThread, SIGNAL(GameOver(int)), gameIDNumber, SLOT(display(int)), Qt::QueuedConnection);
-	 connect(batchThread, SIGNAL(GameOver(int)), this, SLOT(GameOver(int)), Qt::QueuedConnection);
-	 connect(batchThread, SIGNAL(BatchItemOver()), this, SLOT(NextBatchItem()), Qt::QueuedConnection);
+
+	 for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+	 {
+		connect(batchThread[loop1], SIGNAL(GameOver(int)), this, SLOT(GameOver(int)), Qt::QueuedConnection);
+		connect(batchThread[loop1], SIGNAL(BatchItemOver()), this, SLOT(BatchOver()), Qt::QueuedConnection);
+	 }
 
 	 gameBox = new QComboBox(this);
 	 for(int loop1 = 0; loop1 < gameList.size(); loop1++)
@@ -89,6 +94,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 		 listBatch->resizeColumnToContents(loop1);
 	 connect(listBatch, SIGNAL(itemSelectionChanged()), this, SLOT(ItemSelect()));
 	 connect(listBatch, SIGNAL(itemClicked (QTreeWidgetItem*,int)), this, SLOT(ItemSelect()));
+	 threadRunning = 0;
 
 	 timePerItem = 1.0;
 	 elapsedTimeLabel = new QLabel("");
@@ -117,19 +123,43 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 
 BatchWindow::~BatchWindow(void)
 {
-	batchThread->Stop();
+	for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+		batchThread[loop1]->Stop();
 }
 
-
+void BatchWindow::BatchOver()
+{
+	threadRunning--;
+	NextBatchItem();
+}
 void BatchWindow::NextBatchItem()
 {
 	if(currentBatchItemID >= 0)
+	{
+		if(threadRunning > 0)
+		{
+			return;
+		}
+
 		batchItem[currentBatchItemID]->UpdateTreeWidget((BatchItem::EAggrFnc) aggrFnc->currentIndex());
+	}
 
 	currentBatchItemID++;
 	if(currentBatchItemID < batchItem.size() && batchIsRunning)
 	{
-		batchThread->Start(batchItem[currentBatchItemID]);
+		batchProgress = 0;
+		int itemPerThread = batchItem[currentBatchItemID]->BatchSize() / MAX_THREAD;
+		int minID = 0;
+		for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+		{
+			int maxID = (loop1 + 1) * itemPerThread;
+			if(loop1 == MAX_THREAD - 1)
+				maxID = batchItem[currentBatchItemID]->BatchSize();
+
+			batchThread[loop1]->Start(batchItem[currentBatchItemID], minID, maxID);
+			threadRunning++;
+			minID = maxID;
+		}
 	} else {
 		basicTimer.stop();
 		removeBatch->setEnabled(true);
@@ -147,7 +177,8 @@ void BatchWindow::NextBatchItem()
 
 void BatchWindow::GameOver(int gameID)
 {
-	batchItem[currentBatchItemID]->TreeWidgetItem()->setData(2, 0, gameID);
+	batchProgress++;
+	batchItem[currentBatchItemID]->TreeWidgetItem()->setData(2, 0, batchProgress);
 	progressValue++;
 	timePerItem = elapsedTime.elapsed() / (double) progressValue / 1000.0;
 	progressBar->setValue(progressValue);
@@ -156,7 +187,11 @@ void BatchWindow::GameOver(int gameID)
 }
 void BatchWindow::StartBatch()
 {
-	if(batchThread->isRunning() || batchItem.empty())
+	bool running = false;
+	for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+		running = running || batchThread[loop1]->isRunning();
+
+	if(running || batchItem.empty())
 		return;
 
 	basicTimer.start(1000, this);
@@ -172,6 +207,7 @@ void BatchWindow::StartBatch()
 
 	currentBatchItemID = -1;
 	progressValue = 0;
+	batchProgress = 0;
 	batchIsRunning = true;
 	removeBatch->setEnabled(false);
 	addBatch->setEnabled(false);
@@ -187,7 +223,8 @@ void BatchWindow::StopBatch()
 {
 	batchIsRunning = false;
 	basicTimer.stop();
-	batchThread->Stop();
+	for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+		batchThread[loop1]->Stop();
 }
 
 void BatchWindow::RemoveTopItem()

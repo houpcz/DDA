@@ -15,11 +15,13 @@ private:
 	BatchItem * batchItem;
 	int batchSize;
 	bool shouldRun;
+	int firstID;
+	int lastID;
 public:
 	BatchThread();
 	~BatchThread(void);
 	void run();
-	bool Start(BatchItem * _batchItem);
+	bool Start(BatchItem * _batchItem, int _firstID, int _lastID);
 	void Stop() { shouldRun = false; };
 	bool ShouldRun() { return shouldRun; }
 

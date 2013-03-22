@@ -24,9 +24,12 @@ class BatchWindow : public QWidget
     Q_OBJECT
 
 private :
-	BatchThread *batchThread;
+	static const int MAX_THREAD = 10;
+	BatchThread *batchThread[MAX_THREAD];
 	QLCDNumber *gameIDNumber;
+	int batchProgress;
 	int progressValue;
+	int threadRunning;
 	QBasicTimer basicTimer;
 	QElapsedTimer elapsedTime;
 	QLabel * progressTimeLabel;
@@ -59,6 +62,7 @@ public:
 	BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, QWidget *parent);
 	~BatchWindow(void);
 
+	void NextBatchItem();
 	void timerEvent(QTimerEvent *event);
 public slots:
 	void StartBatch();
@@ -68,9 +72,9 @@ public slots:
 	void SaveAllToCsv();
 	void RemoveTopItem();
 	void AddItemToBatch();
-	void NextBatchItem();
 	void ItemSelect();
 	void OpenDiagramWindow();
+	void BatchOver();
 	void GameOver(int gameID);
 	void AggrFnc(int fnc);
 };

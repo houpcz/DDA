@@ -31,7 +31,11 @@ public:
 	void UpdateTreeWidget(EAggrFnc fnc);
 	void UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc);
 	void SetSumGameStat(GameStat _sumGameStat);
-	void SetGameStat(GameStat _gameStat, int gameID) { *allGameStat[gameID] = _gameStat; };
+	void SetGameStat(GameStat _gameStat, int gameID) { 
+		if(allGameStat[gameID] == NULL)
+			allGameStat[gameID] = new GameStat(game->GetPlayerCount());
+		*allGameStat[gameID] = _gameStat; 
+	};
 	QString GetName(char splitChar = ',');
 	void ExportToCsv(QString path);
 

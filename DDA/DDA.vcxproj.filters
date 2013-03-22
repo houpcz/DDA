@@ -655,9 +655,6 @@
     <ClInclude Include="ClickableArea.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BatchItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Board.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -889,15 +886,15 @@
     <ClInclude Include="MaxNPlayer.h">
       <Filter>Players</Filter>
     </ClInclude>
+    <ClInclude Include="BatchItem.h">
+      <Filter>Batch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="BatchDiagrams.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="BatchGameSetup.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="BatchThread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="BatchWindow.h">
@@ -1013,6 +1010,9 @@
     </CustomBuild>
     <CustomBuild Include="GameMaze.h">
       <Filter>Form Files\Games\Maze</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchThread.h">
+      <Filter>Batch</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

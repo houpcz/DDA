@@ -9,9 +9,11 @@ BatchItem::BatchItem(int _batchSize, IGame * _game, QTreeWidgetItem * _treeWidge
 	allGameStat = new GameStat*[batchSize];
 	for(int loop1 = 0; loop1 < batchSize; loop1++)
 	{
-		allGameStat[loop1] = new GameStat(_game->GetPlayerCount());
+		allGameStat[loop1] = NULL;
 	}
 	sumGameStat = new GameStat(_game->GetPlayerCount());
+	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
+		sumGameStat->UpdatePlayerChoises(loop1, 0);
 }
 
 
@@ -19,7 +21,8 @@ BatchItem::~BatchItem(void)
 {
 	for(int loop1 = 0; loop1 < batchSize; loop1++)
 	{
-		delete allGameStat[loop1];
+		if(allGameStat[loop1] != NULL)
+			delete allGameStat[loop1];
 	}
 	delete [] allGameStat;
 	delete game;
@@ -124,6 +127,16 @@ void BatchItem::ExportToCsv(QString path)
 
 void BatchItem::UpdateTreeWidget(EAggrFnc fnc) 
 { 
+	delete sumGameStat;
+	sumGameStat = new GameStat(game->GetPlayerCount());
+	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
+		sumGameStat->UpdatePlayerChoises(loop1, 0);
+	for(int loop1 = 0; loop1 < batchSize; loop1++)
+	{
+		if(allGameStat[loop1] != NULL)
+			(*sumGameStat) = (*sumGameStat) + *allGameStat[loop1];
+	}
+
 	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
 	float avgTurnNumberReal = sumGameStat->TurnNumberReal() / (float) realBatchSize;
 

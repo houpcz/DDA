@@ -2,7 +2,6 @@
 #include "Human.h"
 #include "PlayerRandomAI.h"
 #include "PlayerHillClimber.h"
-#include "MiniMaxPlayer.h"
 
 Game::Game(QWidget * _widget, bool _paint)
 {
