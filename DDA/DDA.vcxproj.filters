@@ -401,9 +401,6 @@
     <ClCompile Include="MonteCarloTreeSearch.cpp">
       <Filter>Players</Filter>
     </ClCompile>
-    <ClCompile Include="MiniMaxPlayer.cpp">
-      <Filter>Players</Filter>
-    </ClCompile>
     <ClCompile Include="MazeStat.cpp">
       <Filter>Form Files\Games\Maze</Filter>
     </ClCompile>
@@ -647,6 +644,12 @@
     <ClCompile Include="MinMaxISPlayer.cpp">
       <Filter>Players</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerHillClimberIS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MaxNPlayer.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -859,9 +862,6 @@
     <ClInclude Include="MonteCarloTreeSearch.h">
       <Filter>Players</Filter>
     </ClInclude>
-    <ClInclude Include="MiniMaxPlayer.h">
-      <Filter>Players</Filter>
-    </ClInclude>
     <ClInclude Include="LudoTile.h">
       <Filter>Form Files\Games\Ludo</Filter>
     </ClInclude>
@@ -881,6 +881,12 @@
       <Filter>Form Files\Games\Maze</Filter>
     </ClInclude>
     <ClInclude Include="MinMaxISPlayer.h">
+      <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHillClimberIS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MaxNPlayer.h">
       <Filter>Players</Filter>
     </ClInclude>
   </ItemGroup>

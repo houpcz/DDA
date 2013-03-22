@@ -11,7 +11,8 @@
 #include "Human.h"
 #include "PlayerRandomAI.h"
 #include "PlayerHillClimber.h"
-#include "MiniMaxPlayer.h"
+#include "PlayerHillClimberIS.h"
+#include "MaxNPlayer.h"
 #include "MinMaxISPlayer.h"
 #include "PlayerPOSM.h"
 #include "PlayerLevel.h"
@@ -96,7 +97,8 @@ void DDAWidget::MakePluginLists()
 	playerAIList.push_back(new Human(1));
 	playerAIList.push_back(new PlayerRandomAI(2));
 	playerAIList.push_back(new PlayerHillClimber(3));
-	playerAIList.push_back(new MiniMaxPlayer(4));
+	playerAIList.push_back(new PlayerHillClimberIS(31));
+	playerAIList.push_back(new MaxNPlayer(4));
 	playerAIList.push_back(new MinMaxISPlayer(7));
 	playerAIList.push_back(new PlayerMonteCarlo(8));
 

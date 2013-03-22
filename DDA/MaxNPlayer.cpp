@@ -1,17 +1,17 @@
-#include "MiniMaxPlayer.h"
+#include "MaxNPlayer.h"
 #include "IGame.h"
 
-MiniMaxPlayer::MiniMaxPlayer(int _myID) : IPlayer(_myID)
+MaxNPlayer::MaxNPlayer(int _myID) : IPlayer(_myID)
 {
 	random_device randomDevice;
     generator = new mt19937(randomDevice());
 }
 
-MiniMaxPlayer::~MiniMaxPlayer(void)
+MaxNPlayer::~MaxNPlayer(void)
 {
 }
 
-float * MiniMaxPlayer::MaxN(IGameState * state, int depth)
+float * MaxNPlayer::MaxN(IGameState * state, int depth)
 {
 	int activePlayerID = state->GetActivePlayerID();
 	int playerCount = game->GetPlayerCount() - 1;
@@ -70,7 +70,7 @@ float * MiniMaxPlayer::MaxN(IGameState * state, int depth)
 }
 
 
-bool MiniMaxPlayer::Think()
+bool MaxNPlayer::Think()
 {
 	int choises;
 	IGameState ** nextState = game->GetCurrentState()->GetNextStates(myID, &choises);

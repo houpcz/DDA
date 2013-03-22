@@ -491,9 +491,11 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 						cScore[0] += cardValue;
 						cExpedition[0] = true;
 
-						cCanBePlayed[0] = false;
-						if(cTopValue[0] < loop2)
+						if(cCanBePlayed[0])
+						{
+							cCanBePlayed[0] = false;
 							cTopValue[0] = loop2;
+						}
 						break;
 
 					case PLAYER_2_HAND_KNOWN :
@@ -510,10 +512,11 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 						cOnDeskCount[1]++;
 						cScore[1] += cardValue;
 						
-						cCanBePlayed[1] = false;
-
-						if(cTopValue[1] < loop2)
+						if(cCanBePlayed[1])
+						{
+							cCanBePlayed[1] = false;
 							cTopValue[1] = loop2;
+						}
 						break;
 
 					default :
@@ -566,32 +569,18 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 	for(int loop2 = 0; loop2 < 2; loop2++)
 	{
 		int minus = 0;
-		switch(expedition[loop2])
-		{
-			case 0 :
-			case 1 :
-			case 2 : 
-			case 3 :
-				minus = 0;
-				break;
-			case 4 :
-				minus = 1;
-				break;
-			case 5 :
-				minus = PREDICTED_IN_HAND;
-				break;
-
-		}
-		int multBase = PREDICTED_IN_HAND - minus;
-		int multTemp = min(multBase, inDeckCards * 2 / 3);
+		int predictedDeck = (expedition[loop2] > 3) ? PREDICTED_DECK_1 : PREDICTED_DECK_2;
+		
+		int multTemp = min(PREDICTED_IN_HAND, inDeckCards * 2 / 3);
 		float mult = multTemp / (float) PREDICTED_IN_HAND;
+		mult = 1.0;
 
 		rank[loop2] = (int) (
 			          handKnown[loop2] * PREDICTED_IN_HAND * mult + 
 					  handHidden[loop2] * PREDICTED_IN_HAND * mult +
 					  score[loop2] * PREDICTED_ON_BOARD + 
 					  discard[loop2] * PREDICTED_TOP_DISCARD * mult +
-					  deck[loop2] * PREDICTED_DECK * mult
+					  deck[loop2] * predictedDeck * mult
 					  );
 	}
 
@@ -782,7 +771,7 @@ int LostCitiesState::GetPositivePlayerRank(int playerID, int whoAskID)
 			scoreNotExpedition += (avgNotExpedition + avgDeckCard) / 2.0f;
 	}
 
-	float scoreDeckBonus = avgDeckCard * inDeckCount * min(PREDICTED_DECK, maxTurnToTheEnd / 2);
+	float scoreDeckBonus = avgDeckCard * inDeckCount * min(PREDICTED_DECK_1, maxTurnToTheEnd / 2);
 	float scoreHiddenHandBonus = avgDeckCard * handUnknownCount * min(PREDICTED_IN_HAND, maxTurnToTheEnd / 2);
 	float scoreReal = GetPlayerPoints(playerID) * PREDICTED_ON_BOARD;
 	scoreNotExpedition = min(10, maxTurnToTheEnd) / 10.0f * scoreNotExpedition;

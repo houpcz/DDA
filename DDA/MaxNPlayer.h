@@ -1,5 +1,5 @@
-#ifndef _MINIMAXPLAYER_H_
-#define _MINIMAXPLAYER_H_
+#ifndef _MAXNPLAYER_H_
+#define _MAXNPLAYER_H_
 
 #include <vector>
 #include <random>
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class MiniMaxPlayer :
+class MaxNPlayer :
 	public IPlayer
 {
 private:
@@ -17,13 +17,13 @@ private:
 	mt19937 * generator;
 	float * MaxN(IGameState * state, int depth);
 public:
-	MiniMaxPlayer(int _myID);
-	~MiniMaxPlayer(void);
+	MaxNPlayer(int _myID);
+	~MaxNPlayer(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return false; }
-	QString GetAIName() { return QString("Mini Max"); };
-	IPlayer * Factory(int playerID) { return new MiniMaxPlayer(playerID); };
+	QString GetAIName() { return QString("Max N"); };
+	IPlayer * Factory(int playerID) { return new MaxNPlayer(playerID); };
 };
 
 #endif

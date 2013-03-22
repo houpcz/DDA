@@ -90,13 +90,13 @@ bool MinMaxISPlayer::Think()
 	for(int loop1 = 0; loop1 < choises; loop1++)
 		rank[loop1] = 0.0f;
 
-	for(int loop2 = 0; loop2 < 50; loop2++)
+	for(int loop2 = 0; loop2 < 10; loop2++)
 	{
 		IGameState *tempState = currState->GetStateFromSameInformSet(myID);
-		IGameState ** nextState = tempState->GetNextStates(myID, &choises);
+		IGameState ** nextState = currState->GetNextStates(myID, &choises);
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			float value = MiniMax(nextState[loop1], FLT_MIN, FLT_MAX, 1);
+			float value = MiniMax(nextState[loop1], FLT_MIN, FLT_MAX, 2);
 			rank[loop1] += value;
 			delete nextState[loop1];
 		}
