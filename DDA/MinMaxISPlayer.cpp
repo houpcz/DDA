@@ -46,24 +46,22 @@ float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int de
 			if(maximaze)
 			{
 				alfa = max(temp, alfa);
-				/*
-				if(beta <= alfa)
-				{
-					result = beta;
-					break;
-				}*/
-			} else {
-				beta = min(temp, beta);
-				/*
 				if(beta <= alfa)
 				{
 					result = alfa;
 					break;
 				}
-				*/
+			} else {
+				beta = min(temp, beta);
+				if(beta <= alfa)
+				{
+					result = beta;
+					break;
+				}
 			}
 		}
-		//if(loop1 == choises)
+
+		if(loop1 == choises)
 		{
 			if(maximaze)
 				result = alfa;
@@ -96,7 +94,7 @@ bool MinMaxISPlayer::Think()
 		IGameState ** nextState = currState->GetNextStates(myID, &choises);
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			float value = MiniMax(nextState[loop1], FLT_MIN, FLT_MAX, 2);
+			float value = MiniMax(nextState[loop1], -FLT_MAX, FLT_MAX, 2);
 			rank[loop1] += value;
 			delete nextState[loop1];
 		}
