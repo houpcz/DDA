@@ -569,7 +569,7 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 	for(int loop2 = 0; loop2 < 2; loop2++)
 	{
 		int minus = 0;
-		int predictedDeck = (expedition[loop2] > 3) ? PREDICTED_DECK_1 : PREDICTED_DECK_2;
+		int predictedDeck = (expedition[loop2] > 3) ? ((expedition[loop2] > 4) ? 2 : PREDICTED_DECK_1) : PREDICTED_DECK_2;
 		
 		int multTemp = min(PREDICTED_IN_HAND, inDeckCards * 2 / 3);
 		float mult = multTemp / (float) PREDICTED_IN_HAND;

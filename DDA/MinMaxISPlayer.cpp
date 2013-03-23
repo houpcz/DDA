@@ -1,4 +1,5 @@
 #include "MinMaxISPlayer.h"
+#include "LostCitiesState.h"
 #include "IGame.h"
 
 MinMaxISPlayer::MinMaxISPlayer(int _myID) : IPlayer(_myID)
@@ -82,45 +83,62 @@ float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int de
 
 bool MinMaxISPlayer::Think()
 {
-	IGameState *currState = game->GetCurrentState();
-	int choises = currState->GetPlayerChoises(myID);
-	float * rank = new float[choises];
-	for(int loop1 = 0; loop1 < choises; loop1++)
-		rank[loop1] = 0.0f;
+	IGameState *state = game->GetCurrentState();
+	LostCitiesState *currState = dynamic_cast<LostCitiesState*>(state);
 
-	for(int loop2 = 0; loop2 < 10; loop2++)
+	int cardCount = currState->GetInDeckCount();
+	int repeats = cardCount + 1;
+	int treeBreadth = 3;
+
+	int choises = currState->GetPlayerChoises(myID);
+	int * rank = new int[choises];
+	for(int loop1 = 0; loop1 < choises; loop1++)
+		rank[loop1] = 0;
+
+	int bestTurn = -1;
+	float bestVal = -FLT_MAX;
+	for(int loop2 = 0; loop2 < repeats; loop2++)
 	{
 		IGameState *tempState = currState->GetStateFromSameInformSet(myID);
 		IGameState ** nextState = currState->GetNextStates(myID, &choises);
+
+		vector<valueIndex> scores;
 		for(int loop1 = 0; loop1 < choises; loop1++)
 		{
-			float value = MiniMax(nextState[loop1], -FLT_MAX, FLT_MAX, 2);
-			rank[loop1] += value;
+			scores.push_back(valueIndex(nextState[loop1]->GetPlayerRank(myID, myID), loop1));
+		}
+		sort(scores.begin(), scores.end(), comparator);
+		for(int loop1 = 0; loop1 < treeBreadth; loop1++)
+		{
+			int turn = scores[scores.size() - 1 - loop1].second;
+			float value = MiniMax(nextState[turn], -FLT_MAX, FLT_MAX, 2);
+			if(bestVal < value)
+			{
+				bestVal = value;
+				bestTurn = turn;
+			}
+		}
+
+		rank[bestTurn]++;
+
+		delete tempState;
+		for(int loop1 = 0; loop1 < choises; loop1++)
+		{
 			delete nextState[loop1];
 		}
-		delete tempState;
 		delete [] nextState;
+
+		if(rank[bestTurn] > repeats / 2 + 1)
+			break;
 	}
 
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
-		scores.push_back(valueIndex((int) rank[loop1], loop1));
+		scores.push_back(valueIndex(rank[loop1], loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
 	
-	/*
-	double mean = (level / 100.0) * choises;
-	double deviation = 0.4;
-	normal_distribution<> normalDistribution(mean, deviation);
-	int choise = (int) (normalDistribution(*generator) + 0.5);
-	if(choise < 0)
-		choise = 0;
-	else if(choise >= choises)
-		choise = choises - 1;
-
-	myTurn = scores[choise].second;
-	*/
 	delete [] rank;
 	myTurn = scores[scores.size() - 1].second;
 	isReady = true;

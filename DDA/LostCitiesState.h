@@ -55,7 +55,6 @@ private:
 	int cardsInDeckMaxTurn; // limit on max number turn with same amount cards in deck
 
 	void UpdateProbCard(int playerID, int cardPlayedID);
-	int GetInDeckCount();
 	void InitGame(int _handSize, bool _abstraction);
 	void WhoAsked(int whoAskID);
 	void CountPlayerChoises(int whoAskID);
@@ -66,6 +65,7 @@ public:
 	virtual ~LostCitiesState(void);
 	LostCitiesState(const LostCitiesState & origin);
 	LostCitiesState& operator=(const LostCitiesState &origin);
+	int GetInDeckCount();
 	ISpecificStat * GetGameSpecificStat();
 	void CopyToMe(const LostCitiesState & origin);
 	LostCitiesState * Clone() { LostCitiesState * state = new LostCitiesState(*this); return state;};
