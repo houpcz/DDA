@@ -27,7 +27,7 @@ bool PlayerHillClimberIS::Think()
 		tempRanks[loop1] = 0.0f;
 	}
 
-	for(int loop2 = 0; loop2 < 10; loop2++)
+	for(int loop2 = 0; loop2 < 25; loop2++)
 	{
 		IGameState * tempState = currentState->GetStateFromSameInformSet(myID);
 		IGameState ** nextState = tempState->GetNextStates(myID, &choises);

@@ -48,7 +48,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 batchSize = new QSpinBox(this);
 	 batchSize->setMinimum(0);
 	 batchSize->setMaximum(1000000);
-	 batchSize->setValue(1000); 
+	 batchSize->setValue(120); 
 	 addBatch = new QPushButton(tr("Add"), this);
 	 connect(addBatch, SIGNAL(clicked()), this, SLOT(AddItemToBatch()));
 	 removeBatch = new QPushButton(tr("Remove"), this);

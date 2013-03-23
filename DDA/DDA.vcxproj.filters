@@ -644,10 +644,10 @@
     <ClCompile Include="MinMaxISPlayer.cpp">
       <Filter>Players</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerHillClimberIS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MaxNPlayer.cpp">
+      <Filter>Players</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHillClimberIS.cpp">
       <Filter>Players</Filter>
     </ClCompile>
   </ItemGroup>

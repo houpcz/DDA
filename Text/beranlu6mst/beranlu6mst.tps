@@ -71,7 +71,7 @@ Class=BibTeXView
 Document=beranlu6mst.bib
 
 [Frame3_View0,0]
-TopLine=370
+TopLine=377
 Cursor=12353
 
 [Frame4]
