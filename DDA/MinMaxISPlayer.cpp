@@ -27,13 +27,12 @@ float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int de
 	
 	if(activePlayerID == 0)
 	{
-		/*
 		int trash;
 		IGameState * nextState = state->GetRandomNextState(myID, &trash);
 		result = MiniMax(nextState, alfa, beta, depth - 1);
 		delete nextState;
-		*/
 		
+		/*
 		IGameState ** nextState = state->GetNextStates(myID, &choises);
 		result = 0;
 		for(int loop1 = 0; loop1 < choises; loop1++)
@@ -47,7 +46,7 @@ float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int de
 			delete nextState[loop1];
 		}
 		delete [] nextState;
-		
+		*/
 	} else
 	{
 		IGameState ** nextState = state->GetNextStates(myID, &choises);
@@ -108,12 +107,12 @@ bool MinMaxISPlayer::Think()
 	int choises = currState->GetPlayerChoises(myID);
 
 	int cardCount = currState->GetInDeckCount();
-	int repeats = cardCount * 2 + 1;
+	int repeats = cardCount * 4 + 5;
 	int treeBreadth = 10;
-	int treeDepth = 2;
+	int treeDepth = 3;
+	if(cardCount < 6)
+		treeDepth = 5;
 	/*
-	if(cardCount < 20)
-		treeDepth = 4;
 	if(cardCount < 10)
 		treeDepth = 5;*/
 	

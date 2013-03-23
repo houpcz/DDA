@@ -296,7 +296,7 @@ void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)
 			cardColor = Qt::yellow;
 			break;
 		case 1 :
-			cardColor = Qt::blue;
+			cardColor = QColor(125,125,255);
 			break;
 		case 2 :
 			cardColor = Qt::white;
