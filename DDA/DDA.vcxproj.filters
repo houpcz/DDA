@@ -897,9 +897,6 @@
     <CustomBuild Include="BatchGameSetup.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="BatchWindow.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="ViewGraph.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -1012,6 +1009,9 @@
       <Filter>Form Files\Games\Maze</Filter>
     </CustomBuild>
     <CustomBuild Include="BatchThread.h">
+      <Filter>Batch</Filter>
+    </CustomBuild>
+    <CustomBuild Include="BatchWindow.h">
       <Filter>Batch</Filter>
     </CustomBuild>
   </ItemGroup>

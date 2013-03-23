@@ -32,6 +32,14 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 		connect(batchThread[loop1], SIGNAL(GameOver(int)), this, SLOT(GameOver(int)), Qt::QueuedConnection);
 		connect(batchThread[loop1], SIGNAL(BatchItemOver()), this, SLOT(BatchOver()), Qt::QueuedConnection);
 	 }
+	 sizeThread = 4;
+	 sizeThreadLabel = new QLabel(tr("Threads"));
+	 sizeThreadBox = new QSpinBox(this);
+	 sizeThreadBox->setMinimum(1);	
+	 sizeThreadBox->setMaximum(MAX_THREAD);
+	 sizeThreadBox->setValue(sizeThread);
+	 connect(sizeThreadBox, SIGNAL(valueChanged(int)), this, SLOT(ThreadChange(int)), Qt::QueuedConnection);
+
 
 	 gameBox = new QComboBox(this);
 	 for(int loop1 = 0; loop1 < gameList.size(); loop1++)
@@ -104,6 +112,8 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 gridLayout->addWidget(gameBox, 0, 0);
 	 gridLayout->addWidget(batchSize, 0, 1);
 	 gridLayout->addWidget(addBatch, 0, 2);
+	 gridLayout->addWidget(sizeThreadLabel, 0, 3);
+	 gridLayout->addWidget(sizeThreadBox, 0, 4);
 	 gridLayout->addWidget(removeBatch, 1, 0);
 	 gridLayout->addWidget(setupBatch, 1, 1);
 	 gridLayout->addWidget(saveBatchToCsv, 1, 2);
@@ -148,13 +158,17 @@ void BatchWindow::NextBatchItem()
 	if(currentBatchItemID < batchItem.size() && batchIsRunning)
 	{
 		batchProgress = 0;
-		int itemPerThread = batchItem[currentBatchItemID]->BatchSize() / MAX_THREAD;
+		int batchSize = batchItem[currentBatchItemID]->BatchSize();
+		int itemPerThread = batchSize / sizeThread;
+		//if(itemPerThread * sizeThread != batchSize)
+		//	itemPerThread += 1;
+
 		int minID = 0;
-		for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
+		for(int loop1 = 0; loop1 < sizeThread; loop1++)
 		{
 			int maxID = (loop1 + 1) * itemPerThread;
 			if(loop1 == MAX_THREAD - 1)
-				maxID = batchItem[currentBatchItemID]->BatchSize();
+				maxID = batchSize;
 
 			batchThread[loop1]->Start(batchItem[currentBatchItemID], minID, maxID);
 			threadRunning++;
@@ -169,6 +183,8 @@ void BatchWindow::NextBatchItem()
 		saveBatchToCsv->setEnabled(true);
 		aggrFnc->setEnabled(true);
 		diagramBatch->setEnabled(true);
+		sizeThreadBox->setEnabled(true);
+		progressTimeLabel->setText(QString("Done."));
 		batchIsRunning = false;
 	}
 
@@ -216,12 +232,16 @@ void BatchWindow::StartBatch()
 	saveBatchToCsv->setEnabled(false);
 	aggrFnc->setEnabled(false);
 	diagramBatch->setEnabled(false);
+	sizeThreadBox->setEnabled(false);
 	NextBatchItem();
 }
 
 void BatchWindow::StopBatch()
 {
+	if(batchIsRunning)
+		progressTimeLabel->setText(QString("  Stopped. Wait please."));
 	batchIsRunning = false;
+
 	basicTimer.stop();
 	for(int loop1 = 0; loop1 < MAX_THREAD; loop1++)
 		batchThread[loop1]->Stop();
@@ -345,6 +365,11 @@ void BatchWindow::DisassemblyTimeInSeconds(int seconds, int *outS, int *outMin, 
 	*outHour = minute / 60;
 	*outMin = minute % 60;
 	*outS = seconds % 60;
+}
+
+void BatchWindow::ThreadChange(int threads)
+{
+	sizeThread = threads;
 }
 
 void BatchWindow::timerEvent(QTimerEvent *event)

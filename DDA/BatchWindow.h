@@ -24,7 +24,8 @@ class BatchWindow : public QWidget
     Q_OBJECT
 
 private :
-	static const int MAX_THREAD = 10;
+	static const int MAX_THREAD = 32;
+	int sizeThread;
 	BatchThread *batchThread[MAX_THREAD];
 	QLCDNumber *gameIDNumber;
 	int batchProgress;
@@ -48,6 +49,8 @@ private :
 	QComboBox * gameBox;
 	QComboBox * aggrFnc;
 	QSpinBox * batchSize;
+	QSpinBox * sizeThreadBox;
+	QLabel * sizeThreadLabel;
 
 	bool batchIsRunning;
 	double timePerItem;
@@ -77,6 +80,7 @@ public slots:
 	void BatchOver();
 	void GameOver(int gameID);
 	void AggrFnc(int fnc);
+	void ThreadChange(int threads);
 };
 
 #endif
