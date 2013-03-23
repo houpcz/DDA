@@ -569,18 +569,21 @@ int LostCitiesState::CountRanks(char * c, int playerID, int whoAskID)
 	for(int loop2 = 0; loop2 < 2; loop2++)
 	{
 		int minus = 0;
-		int predictedDeck = (expedition[loop2] > 3) ? ((expedition[loop2] > 4) ? 2 : PREDICTED_DECK_1) : PREDICTED_DECK_2;
+		int predictedDeck = (expedition[loop2] > 3) ? ((expedition[loop2] > 4) ? 0 : PREDICTED_DECK_1) : PREDICTED_DECK_2;
 		
-		int multTemp = min(PREDICTED_IN_HAND, inDeckCards * 2 / 3);
+		int multTemp = min(PREDICTED_IN_HAND, inDeckCards * 2);
 		float mult = multTemp / (float) PREDICTED_IN_HAND;
 		mult = 1.0;
 
-		rank[loop2] = (int) (
+		if(inDeckCards == 0)
+			rank[loop2] = (int) (score[loop2] * PREDICTED_ON_BOARD);
+		else
+			rank[loop2] = (int) (
 			          handKnown[loop2] * PREDICTED_IN_HAND * mult + 
 					  handHidden[loop2] * PREDICTED_IN_HAND * mult +
 					  score[loop2] * PREDICTED_ON_BOARD + 
 					  discard[loop2] * PREDICTED_TOP_DISCARD * mult +
-					  deck[loop2] * predictedDeck * mult
+					  deck[loop2] * predictedDeck
 					  );
 	}
 

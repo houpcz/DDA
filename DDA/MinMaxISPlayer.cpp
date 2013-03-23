@@ -107,11 +107,13 @@ bool MinMaxISPlayer::Think()
 	int choises = currState->GetPlayerChoises(myID);
 
 	int cardCount = currState->GetInDeckCount();
-	int repeats = cardCount * 4 + 5;
-	int treeBreadth = 10;
+	int repeats = cardCount * 6 + 5;
+	int treeBreadth = 10; 
 	int treeDepth = 3;
-	if(cardCount < 6)
+	if(cardCount < 8)
 		treeDepth = 5;
+	if(cardCount < 6)
+		treeDepth = 7;
 	/*
 	if(cardCount < 10)
 		treeDepth = 5;*/
@@ -166,7 +168,7 @@ bool MinMaxISPlayer::Think()
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
 		if(rankCount[loop1] > 0)
-			scores.push_back(valueIndex(rankCount[loop1], loop1));
+			scores.push_back(valueIndex((int) (rank[loop1] / rankCount[loop1]), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
 	
