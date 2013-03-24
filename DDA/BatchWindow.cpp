@@ -218,6 +218,7 @@ void BatchWindow::StartBatch()
 	{
 		sumBatchSize+=batchItem[loop1]->BatchSize();
 		batchItem[loop1]->TreeWidgetItem()->setData(2, 0, 0);
+		batchItem[loop1]->ClearBatch();
 	}
 	progressBar->setMaximum(sumBatchSize);
 

@@ -28,6 +28,7 @@ public:
 	IGame * Game() { return game; };
 	int BatchSize() { return batchSize; };
 	QTreeWidgetItem * TreeWidgetItem() { return treeWidgetItem;};
+	void ClearBatch();
 	void UpdateTreeWidget(EAggrFnc fnc);
 	void UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc);
 	void SetSumGameStat(GameStat _sumGameStat);

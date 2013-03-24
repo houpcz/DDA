@@ -101,7 +101,7 @@ float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int de
 
 
 bool MinMaxISPlayer::Think()
-{
+{ 
 	IGameState *state = game->GetCurrentState();
 	LostCitiesState *currState = dynamic_cast<LostCitiesState*>(state);
 	int choises = currState->GetPlayerChoises(myID);

@@ -16,6 +16,18 @@ BatchItem::BatchItem(int _batchSize, IGame * _game, QTreeWidgetItem * _treeWidge
 		sumGameStat->UpdatePlayerChoises(loop1, 0);
 }
 
+void BatchItem::ClearBatch()
+{
+	for(int loop1 = 0; loop1 < batchSize; loop1++)
+	{
+		if(allGameStat[loop1] != NULL)
+		{
+			delete allGameStat[loop1];
+			allGameStat[loop1] = NULL;
+		}
+	}
+}
+
 
 BatchItem::~BatchItem(void)
 {
@@ -131,13 +143,36 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	sumGameStat = new GameStat(game->GetPlayerCount());
 	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
 		sumGameStat->UpdatePlayerChoises(loop1, 0);
-	for(int loop1 = 0; loop1 < batchSize; loop1++)
+
+	GameStat * tempStat;
+	int left = 0;
+	int right = batchSize-1;
+
+	while(left< right)
+	{
+		while(allGameStat[left] != NULL && left < right)
+			left++;
+
+		while(allGameStat[right] == NULL && left < right)
+			right--;
+
+		if(left >= right)
+			break;
+
+		tempStat = allGameStat[left];
+		allGameStat[left] = allGameStat[right];
+		allGameStat[right] = tempStat;
+		left++;
+		right--;
+	}
+
+	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
+	for(int loop1 = 0; loop1 < realBatchSize; loop1++)
 	{
 		if(allGameStat[loop1] != NULL)
 			(*sumGameStat) = (*sumGameStat) + *allGameStat[loop1];
 	}
 
-	int realBatchSize = treeWidgetItem->data(2, 0).toInt();
 	float avgTurnNumberReal = sumGameStat->TurnNumberReal() / (float) realBatchSize;
 
 	float turnNumber;
