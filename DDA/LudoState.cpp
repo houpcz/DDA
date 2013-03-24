@@ -16,7 +16,7 @@ LudoState::LudoState(Game * _game) : IGameState(_game)
 		figure[loop1][0] = 0;
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
-			figure[loop1][loop2] = loop2 + loop1;
+			figure[loop1][loop2] = loop2;
 		}
 	}
 
@@ -30,7 +30,7 @@ LudoState::LudoState(Game * _game) : IGameState(_game)
 
 LudoState::LudoState(const LudoState & origin)
 {
-	IGameState::Init(origin.game);
+	IGameState::Init(origin.game, origin.gameStat);
 	CopyToMe(origin);
 }
 

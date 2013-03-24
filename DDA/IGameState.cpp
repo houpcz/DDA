@@ -4,17 +4,22 @@
 IGameState::IGameState()
 {
 	gameStat = NULL;
+	currentPlayerStatus = NULL;
 };
 
 IGameState::IGameState(Game * _game)
 {
+	gameStat = NULL;
+	currentPlayerStatus = NULL;
 	Init(_game);
 };
 
-void IGameState::Init(Game * _game)
+void IGameState::Init(Game * _game, GameStat * stat)
 {
 	game = _game;
 	playerCount = game->GetPlayerCount();
+	if(currentPlayerStatus != NULL || gameStat != NULL)
+		int errro = 0;
 	currentPlayerStatus = new int[playerCount - 1];
 	playerLeader = 0;
 
@@ -23,7 +28,12 @@ void IGameState::Init(Game * _game)
 		currentPlayerStatus[loop1] = 0;
 	}
 
-	gameStat = new GameStat(playerCount); 
+	if(stat == NULL)
+	{
+		gameStat = new GameStat(playerCount); 
+	} else {
+		gameStat = new GameStat(*stat);
+	}
 }
 
 IGameState::~IGameState() {

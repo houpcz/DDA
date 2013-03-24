@@ -48,7 +48,7 @@ void LostCitiesState::InitGame(int _handSize, bool _domination)
 
 LostCitiesState::LostCitiesState(const LostCitiesState & origin)
 {
-	IGameState::Init(origin.game);
+	IGameState::Init(origin.game, origin.gameStat);
 	CopyToMe(origin);
 }
 
