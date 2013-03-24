@@ -1,4 +1,7 @@
 #pragma once
+
+#include <qmutex.h>
+
 class MatrixFactory
 {
 private:
@@ -8,6 +11,7 @@ private:
 	int currentHeight;
 	char ** buffer[BUFFER_SIZE];
 	int bufferSize;
+	QMutex mutex;
 public:
 	~MatrixFactory(void);
 	static MatrixFactory * Inst() { return &inst; }

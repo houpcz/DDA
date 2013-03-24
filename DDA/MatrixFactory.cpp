@@ -29,6 +29,8 @@ void MatrixFactory::ClearBuffer()
 
 char ** MatrixFactory::GetMatrix(int width, int height)
 {
+	mutex.lock();
+
 	if(width != currentWidth || height != currentHeight)
 	{
 		ClearBuffer();
@@ -38,6 +40,7 @@ char ** MatrixFactory::GetMatrix(int width, int height)
 
 	if(bufferSize > 0)
 	{
+		mutex.unlock();
 		return buffer[--bufferSize];
 	} else {
 		char ** matrix;
@@ -46,12 +49,14 @@ char ** MatrixFactory::GetMatrix(int width, int height)
 		{
 			matrix[loop1] = new char[currentWidth];
 		}
+		mutex.unlock();
 		return matrix;
 	}
 }
 
 void MatrixFactory::ReturnMatrix(char ** matrix, int width, int height)
 {
+	mutex.lock();
 	if(width != currentWidth || height != currentHeight || bufferSize == BUFFER_SIZE)
 	{
 		for(int loop1 = 0; loop1 < height; loop1++)
@@ -62,4 +67,5 @@ void MatrixFactory::ReturnMatrix(char ** matrix, int width, int height)
 	} else {
 		buffer[bufferSize++] = matrix;
 	}
+	mutex.unlock();
 }
