@@ -96,8 +96,18 @@ void Game::Paint(QPainter * painter)
 			IGameState * currentState = GetCurrentState();
 			if(currentState->IsGameOver())
 			{
-				int score = 1;
-				int leaderID = 0;//currentState->GetGameStat().
+				GameStat stat = currentState->GetGameStat();
+				long long score = stat.EndRankDifference();
+				
+				int leaderID = 0;
+				for(int loop1 = 0; loop1 < playerCount; loop1++)
+				{
+					if(stat.PlayerWinner(loop1) > 0)
+					{
+						leaderID = loop1;
+						break;
+					}
+				}
 
 				QString winnerText;
 				QColor winnerColor;

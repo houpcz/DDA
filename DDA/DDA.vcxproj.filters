@@ -131,9 +131,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_EnvironmentAIBasic.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Game.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -145,9 +142,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GameMaze.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStat.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_Human.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -161,17 +155,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_IEnvironmentAI.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="IGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_IGame.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_IGame.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="IGameState.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IGraph.cpp">
       <Filter>Source Files</Filter>
@@ -181,9 +169,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_IPlayer.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="ISpecificStat.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_LostCities.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -650,6 +635,21 @@
     <ClCompile Include="PlayerHillClimberIS.cpp">
       <Filter>Players</Filter>
     </ClCompile>
+    <ClCompile Include="ISpecificStat.cpp">
+      <Filter>Games</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameState.cpp">
+      <Filter>Games</Filter>
+    </ClCompile>
+    <ClCompile Include="IGame.cpp">
+      <Filter>Games</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStat.cpp">
+      <Filter>Games</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Games</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -668,15 +668,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FlowGraph.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ISpecificStat.h">
@@ -889,6 +880,15 @@
     <ClInclude Include="BatchItem.h">
       <Filter>Batch</Filter>
     </ClInclude>
+    <ClInclude Include="GameStat.h">
+      <Filter>Games</Filter>
+    </ClInclude>
+    <ClInclude Include="IGraph.h">
+      <Filter>Games</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameState.h">
+      <Filter>Games</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="BatchDiagrams.h">
@@ -912,16 +912,10 @@
     <CustomBuild Include="EnvironmentAIBasic.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="Game.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="Human.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="IEnvironmentAI.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="IGame.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="IPlayer.h">
@@ -1013,6 +1007,12 @@
     </CustomBuild>
     <CustomBuild Include="BatchWindow.h">
       <Filter>Batch</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Game.h">
+      <Filter>Games</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IGame.h">
+      <Filter>Games</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
