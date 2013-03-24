@@ -42,12 +42,6 @@ public :
 	GameStat GetGameStat() {
 		return *gameStat;
 	}
-	void SetGameStat(GameStat * _gameStat) { 
-		if(gameStat != NULL)
-			delete gameStat;
-
-		gameStat = new GameStat(*_gameStat); 
-	};
 	GameStat * Statistics() { return gameStat;};
 };
 

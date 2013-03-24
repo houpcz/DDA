@@ -58,8 +58,8 @@ void Game::NextTurn()
 
 			if(SaveAllGameStates())
 			{
-				IGameState * newGameState = currentState->Clone();
-				gameState.push_back(newGameState);
+				//IGameState * newGameState = currentState->Clone();
+				//gameState.push_back(newGameState);
 			}
 
 			if(currentState->IsGameOver())
@@ -71,8 +71,7 @@ void Game::NextTurn()
 			if(paint)
 				widget->repaint();
 			
-			IGameState * gameState = GetCurrentState();
-			int activePlayerID = gameState->GetActivePlayerID();
+			int activePlayerID = currentState->GetActivePlayerID();
 			if(!player[activePlayerID]->Think())
 				break;
 		}

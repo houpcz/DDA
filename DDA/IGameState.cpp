@@ -37,9 +37,7 @@ void IGameState::Init(Game * _game, GameStat * stat)
 }
 
 IGameState::~IGameState() {
-	if(gameStat != NULL)
-		delete gameStat;
-
+	delete gameStat;
 	delete [] currentPlayerStatus;
 };
 
