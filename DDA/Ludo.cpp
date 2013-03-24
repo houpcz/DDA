@@ -159,7 +159,7 @@ void Ludo::StartGame()
 	if(currentState != NULL)
 		delete currentState;
 
-	currentState = new LudoState();
+	currentState = new LudoState(this);
 
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);

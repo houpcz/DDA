@@ -27,8 +27,11 @@ private:
 	bool IsPlayerWinner(int playerID) const;
 	bool IsTileFreeCheckOpponents(int newPosition);
 public:
-	LudoState(void);
+	LudoState(Game * _game);
 	virtual ~LudoState(void);
+	LudoState(const LudoState & origin);
+	LudoState& operator=(const LudoState &origin);
+	void CopyToMe(const LudoState & origin);
 	ISpecificStat * GetGameSpecificStat();
 	static bool IsTileSafe(int tileID);
 	LudoState * Clone() { LudoState * state = new LudoState(*this);  return state; };

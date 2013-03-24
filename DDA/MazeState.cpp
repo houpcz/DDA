@@ -7,8 +7,9 @@
 
 using namespace std;
 
-MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction)
+MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction, Game * _game) : IGameState(_game)
 {
+	playerCount = 2;
 	mazeWidth = mWidth;
 	mazeHeight = mHeight;
 	activePlayerID = _activePlayerID;
@@ -108,10 +109,12 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	hallSize = 0;
 
 	isRankUpToDate = false;
+	UpdateGameStat();
 }
 
 MazeState::MazeState(const MazeState & origin)
 {
+	IGameState::Init(origin.game);
 	CopyToMe(origin);
 }
 
@@ -460,6 +463,8 @@ bool MazeState::Explore(int tileToExploreID)
 	}
 
 	isRankUpToDate = false;
+
+	UpdateGameStat();
 
 	return gameOver;
 }

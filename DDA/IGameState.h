@@ -4,21 +4,23 @@
 #include "ISpecificStat.h"
 #include "GameStat.h"
 
+class Game;
+
 class IGameState
 {
-private :
+protected :
 	GameStat * gameStat;
-
+	int * currentPlayerStatus;
+	Game * game;
+	int playerCount;
+	int playerLeader;
 public :
 	static const int ILLEGAL_GAME = -20000;
 
-	IGameState() {
-		gameStat = NULL; 
-	};
-	virtual ~IGameState() {
-		if(gameStat != NULL)
-			delete gameStat;
-	};
+	IGameState();
+	IGameState(Game * _game);
+	void Init(Game * _game);
+	virtual ~IGameState();
 	virtual ISpecificStat * GetGameSpecificStat() = 0;
 	virtual int GetPlayerChoises(int whoAskID) = 0;
 	virtual int GetActivePlayerID() const = 0;
@@ -35,6 +37,11 @@ public :
 	virtual void PrintToFile(const char * firstLine) {};
 	virtual IGameState * Clone() = 0;
 
+	int GetLeaderID(int * outRankDifference);
+	void UpdateGameStat();
+	GameStat GetGameStat() {
+		return *gameStat;
+	}
 	void SetGameStat(GameStat * _gameStat) { 
 		if(gameStat != NULL)
 			delete gameStat;

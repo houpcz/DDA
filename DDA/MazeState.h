@@ -119,7 +119,7 @@ private:
 	MazeState * GetNextStateWithID(int turnID, int * outRealTurn);
 	IGameState * SimulateToTheEnd(int whoAskID);
 public:
-	MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction);
+	MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int mHeight, int _visibleGoals, bool _abstraction, Game * _game);
 	MazeState(const MazeState & origin);
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);

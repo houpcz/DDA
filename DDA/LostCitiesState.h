@@ -61,7 +61,7 @@ private:
 	void ChangeCardInsideInformSet(int whoAskID);
 	int CountRanks(char * c, int playerID, int whoAskID);
 public:
-	LostCitiesState(int _handSize, bool _domination);
+	LostCitiesState(int _handSize, bool _domination, Game * _game);
 	virtual ~LostCitiesState(void);
 	LostCitiesState(const LostCitiesState & origin);
 	LostCitiesState& operator=(const LostCitiesState &origin);

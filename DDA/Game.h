@@ -24,9 +24,7 @@ protected:
 	State state;
 	int playerCount;
 	int playerLeader;
-	int * currentPlayerStatus;
 	IPlayer ** player;
-	GameStat * gameStat;
 
 	int minPlayerAI;
 	int maxPlayerAI;
@@ -38,7 +36,6 @@ protected:
 	vector<IGameState *> gameState;
 	void ClearAllGameStates();
 	bool SaveAllGameStates() { return paint; }
-	int GetLeaderID(int * outRankDifference);
 public:
 	Game(QWidget * _widget, bool paint = true);
 	virtual ~Game(void);
@@ -59,7 +56,7 @@ public:
 	int GetMinPlayerAI() { return minPlayerAI; };
 	int GetMaxPlayerAI() { return maxPlayerAI; };
 	int GetPlayerCount() { return playerCount;};
-	GameStat GetGameStat() { return *gameStat; }
+	GameStat GetGameStat() { return GetCurrentState()->GetGameStat(); }
 	vector<IGameState *> GetAllGameState() { return gameState;} ;
 };
 

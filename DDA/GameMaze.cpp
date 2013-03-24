@@ -10,16 +10,16 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	maxPlayerAI = 1;
 
 	mazeWidth = 41;
-	mazeHeight = 41;
+	mazeHeight = 41; 
 	visibleGoals = false;
 	abstraction = true;
 	stepsToGameOver = 1000;
-
-	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals, abstraction);
+	
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
 
 	playerCount = 2;
+	
 	player = new IPlayer*[playerCount];
 	player[ENVINRONMENT_AI] = new EnvironmentAIBasic(ENVINRONMENT_AI);
 	if(paint)
@@ -33,6 +33,8 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
                         this, SLOT(PlayerIsReady(void)));
 	QObject::connect(player[ENVINRONMENT_AI], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
+
+	currentState = new MazeState(1, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals, abstraction, this);
 }
 
 void GameMaze::StartGame()
@@ -44,7 +46,7 @@ void GameMaze::StartGame()
 		delete currentState;
 	}
 
-	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals, abstraction);
+	currentState = new MazeState(PLAYER_AI, stepsToGameOver, mazeWidth, mazeHeight, visibleGoals, abstraction, this);
 	playerCount = 2;
 	player[ENVINRONMENT_AI]->StartGame(this);
 	player[PLAYER_AI]->StartGame(this);

@@ -10,8 +10,6 @@ Game::Game(QWidget * _widget, bool _paint)
 	state = STATE_STOPPED;
 	playerCount = 0;
 	player = NULL;
-	gameStat = NULL;
-	currentPlayerStatus = NULL;
 }
 
 
@@ -24,7 +22,6 @@ Game::~Game(void)
 			delete player[loop1];
 		}
 		delete [] player;
-		delete [] currentPlayerStatus;
 	}	
 
 	ClearAllGameStates();
@@ -32,19 +29,6 @@ Game::~Game(void)
 
 void Game::StartGame()
 {
-	if(gameStat != NULL)
-		delete gameStat;
-	if(currentPlayerStatus == NULL)
-	{
-		currentPlayerStatus = new int[playerCount - 1];
-	}
-
-	for(int loop1 = 0; loop1 < playerCount - 1; loop1++)
-	{
-		currentPlayerStatus[loop1] = 0;
-	}
-
-	gameStat = new GameStat(playerCount);
 	turnNumber = 0;
 	ClearAllGameStates();
 	playerLeader = -1;
@@ -66,31 +50,8 @@ void Game::NextTurn()
 
 		if(player[currentState->GetActivePlayerID()]->IsReady())
 		{
-			for(int loop1 = 0; loop1 < playerCount; loop1++)
-			{
-				gameStat->AddPlayerLevel(loop1, player[loop1]->Level());
-			}
 
 			turnNumber++;
-			gameStat->AddTurnNumber();
-
-			int currentPlayerID = currentState->GetActivePlayerID();
-			
-			if(currentPlayerID != ENVIRONMENTAL_AI_ID)
-			{
-				gameStat->AddTurnNumberReal();
-
-				int outStatusDifference;
-				int newLeaderID = GetLeaderID(&outStatusDifference);
-				gameStat->AddStatusDifference(outStatusDifference);
-				if(newLeaderID != playerLeader)
-					gameStat->AddLeaderSwitch();
-				playerLeader = newLeaderID;
-			}
-
-			int playerChoises = currentState->GetPlayerChoises(currentPlayerID);
-			gameStat->UpdatePlayerChoises(currentPlayerID, playerChoises);
-			gameStat->AddPlayerTurnNumber(currentPlayerID);
 			
 
 			PlayerTurn();
@@ -98,21 +59,12 @@ void Game::NextTurn()
 			if(SaveAllGameStates())
 			{
 				IGameState * newGameState = currentState->Clone();
-				newGameState->SetGameStat(gameStat);
 				gameState.push_back(newGameState);
 			}
 
 			if(currentState->IsGameOver())
 			{
 				state = STATE_GAME_OVER;
-				
-				int outStatusDifference;
-				int newLeaderID = GetLeaderID(&outStatusDifference);
-				gameStat->AddStatusDifference(outStatusDifference);
-				gameStat->SetEndStatusDifference(outStatusDifference);
-				gameStat->SetWinner(newLeaderID);
-				gameStat->SetGameSpecificStat(currentState->GetGameSpecificStat());
-				
 				break;
 			}
 
@@ -128,40 +80,11 @@ void Game::NextTurn()
 
 	if(turnNumber == MAX_TURN_NUMBER)
 	{
-		gameStat->SetWinner(0);
+		//gameStat->SetWinner(0);
 	}
 
 	if(paint)
 		widget->repaint();
-}
-
-int Game::GetLeaderID(int * outStatusDifference)
-{
-	IGameState * currentState = GetCurrentState();
-
-	for(int loop1 = 1; loop1 < playerCount; loop1++)
-	{
-		currentPlayerStatus[loop1 - 1] = currentState->GetPlayerStatus(loop1);
-	}
-
-	int bestID = 0;
-	int bestStatus = currentPlayerStatus[0];
-	for(int loop1 = 1; loop1 < playerCount - 1; loop1++)
-	{
-		if(currentPlayerStatus[loop1] > bestStatus)
-		{ 
-			bestStatus = currentPlayerStatus[loop1];
-			bestID = loop1;
-		}
-	}
-	// we have almost zero sum games
-	// score of winner is difference between best one and second one
-	*outStatusDifference = bestStatus;
-
-	if(bestStatus < 0)
-		return 0;
-
-	return bestID + 1;
 }
 
 void Game::Paint(QPainter * painter)
@@ -173,8 +96,8 @@ void Game::Paint(QPainter * painter)
 			IGameState * currentState = GetCurrentState();
 			if(currentState->IsGameOver())
 			{
-				int score;
-				int leaderID = GetLeaderID(&score);
+				int score = 1;
+				int leaderID = 0;//currentState->GetGameStat().
 
 				QString winnerText;
 				QColor winnerColor;

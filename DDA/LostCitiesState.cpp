@@ -7,13 +7,15 @@ using namespace std;
 
 #define ZERO_PROB 0.0f;
 
-LostCitiesState::LostCitiesState(int _handSize, bool _abstraction)
+LostCitiesState::LostCitiesState(int _handSize, bool _abstraction, Game * _game) : IGameState(_game)
 {
 	InitGame(_handSize, _abstraction);
+	UpdateGameStat();
 }
 
 void LostCitiesState::InitGame(int _handSize, bool _domination)
 {
+	playerCount = 3;
 	handSize = _handSize;
 	activePlayerID = 1;
 	lastRealPlayer = 1;
@@ -46,6 +48,7 @@ void LostCitiesState::InitGame(int _handSize, bool _domination)
 
 LostCitiesState::LostCitiesState(const LostCitiesState & origin)
 {
+	IGameState::Init(origin.game);
 	CopyToMe(origin);
 }
 
@@ -113,6 +116,7 @@ bool LostCitiesState::MakeTurn(int turn)
 		if(allChoises.size() == 1)
 		{
 			isGameOver = true;
+			UpdateGameStat();
 			return true;
 		}
 	} else {
@@ -174,6 +178,8 @@ bool LostCitiesState::MakeTurn(int turn)
 	}
 
 	whoAskIDlast = NOBODY;
+
+	UpdateGameStat();
 
 	return false;
 }

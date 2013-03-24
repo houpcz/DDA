@@ -56,7 +56,7 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	playerCount = 3;
 	realHandSize = 8;
 	domination = true;
-	currentState = new LostCitiesState(realHandSize, domination);
+	currentState = new LostCitiesState(realHandSize, domination, this);
 	state = STATE_STOPPED;
 }
 
@@ -80,7 +80,7 @@ void LostCities::StartGame()
 
 	if(currentState != NULL)
 		delete currentState;
-	currentState = new LostCitiesState(realHandSize, domination);
+	currentState = new LostCitiesState(realHandSize, domination, this);
 
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);

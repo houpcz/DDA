@@ -7,8 +7,9 @@ const int LudoState::safeTile[] = {0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0};
 
-LudoState::LudoState(void)
+LudoState::LudoState(Game * _game) : IGameState(_game)
 {
+	playerCount = 5;
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
 		playerRank[loop1] = 0;
@@ -24,6 +25,45 @@ LudoState::LudoState(void)
 	activePlayerID = 0;
 	lastDice = 0;
 	multipleDice = 2;
+	UpdateGameStat();
+}
+
+LudoState::LudoState(const LudoState & origin)
+{
+	IGameState::Init(origin.game);
+	CopyToMe(origin);
+}
+
+LudoState& LudoState::operator=(const LudoState &origin)
+{
+	if(&origin != this)
+	{
+		CopyToMe(origin);
+	}
+
+	return *this;
+}
+
+void LudoState::CopyToMe(const LudoState & origin)
+{
+	lastDice = origin.lastDice;
+	multipleDice = origin.multipleDice;
+	dicePlayerNow = origin.dicePlayerNow;
+	activePlayerID = origin.activePlayerID;
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+	{
+		playerRank[loop1] = origin.playerRank[loop1];
+		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
+		{
+			figure[loop1][loop2] = origin.figure[loop1][loop2];
+		}
+	}
+	for(int loop1 = 0; loop1 < MAX_CHOISES; loop1++)
+	{
+		figureNextState[loop1] = origin.figureNextState[loop1];
+	}
+
+	isRankUpToDate = origin.isRankUpToDate;
 }
 
 
@@ -256,6 +296,8 @@ int LudoState::MakeTurn(int playerChoise)
 	dicePlayerNow = !dicePlayerNow;
 
 	isRankUpToDate = false;
+
+	UpdateGameStat();
 
 	return result;
 }
