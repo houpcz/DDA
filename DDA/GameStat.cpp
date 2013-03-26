@@ -23,6 +23,7 @@ void GameStat::Reset()
 	leaderSwitches = 0;
 	sumRankDifference = 0;
 	endRankDifference = 0;
+	controlSum = 0;
 
 	if(gameStat != NULL)
 		gameStat->Reset();
@@ -51,6 +52,7 @@ void GameStat::CopyToMe(const GameStat &origin)
 	leaderSwitches = origin.leaderSwitches;
 	sumRankDifference = origin.sumRankDifference;
 	endRankDifference = origin.endRankDifference;
+	controlSum = origin.controlSum;
 
 	if(origin.gameStat == NULL)
 		gameStat = NULL;
@@ -82,6 +84,8 @@ const GameStat GameStat::operator+(const GameStat &other)
 	newGameStat.leaderSwitches = leaderSwitches + other.leaderSwitches;
 	newGameStat.sumRankDifference = sumRankDifference + other.sumRankDifference;
 	newGameStat.endRankDifference = endRankDifference + other.endRankDifference;
+	newGameStat.controlSum = controlSum + other.controlSum;
+
 	if(gameStat != NULL && other.gameStat != NULL)
 		newGameStat.gameStat = gameStat->Plus(other.gameStat);
 	else if(other.gameStat != NULL)

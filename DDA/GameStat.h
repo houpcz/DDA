@@ -12,6 +12,8 @@ class PlayerStat
 	long long winner;
 	long long turnNumber;
 	long long level;
+	long long deltaH;
+	long long leaderTime;
 public :
 	const PlayerStat operator+(const PlayerStat &other)
 	{
@@ -22,13 +24,22 @@ public :
 		newPlayerStat.winner = winner + other.winner;
 		newPlayerStat.turnNumber = turnNumber + other.turnNumber;
 		newPlayerStat.level = level + other.level;
+		newPlayerStat.deltaH = deltaH + other.deltaH;
+		newPlayerStat.leaderTime = leaderTime + other.leaderTime;
 		return newPlayerStat;
 	}
 	void AddLevel(int _level)
 	{
 		level += _level;
 	}
-
+	void AddDeltaH(int _deltaH)
+	{
+		deltaH += _deltaH;
+	}
+	void AddLeaderTime(int _leaderTime)
+	{
+		leaderTime += _leaderTime;
+	}
 	void SetWinner() {
 		winner = 1;
 	}
@@ -51,6 +62,8 @@ public :
 		winner = 0;
 		turnNumber = 0;
 		level = 0;
+		leaderTime = 0;
+		deltaH = 0;
 	}
 
 	long long Winner() { return winner; };
@@ -70,6 +83,8 @@ private :
 	// doesnt count environmental ai turn
 	long long turnNumberReal;
 
+
+	long long controlSum;
 	long long leaderSwitches;
 	long long sumRankDifference;
 	long long endRankDifference;
@@ -99,10 +114,20 @@ public:
 	void AddLeaderSwitch() { leaderSwitches++; };
 	void AddStatusDifference(int difference) { sumRankDifference += difference; };
 	void SetEndStatusDifference(int difference) { endRankDifference = difference; };
-
+	void AddControlSum(long long control) { controlSum += control; };
+	void AddPlayerDeltaH(int playerID, int deltaH)
+	{
+		CheckPlayerID(playerID);
+		playerStat[playerID].AddDeltaH(deltaH);
+	}
 	void AddPlayerLevel(int playerID, int _level) {
 		CheckPlayerID(playerID);
 		playerStat[playerID].AddLevel(_level);
+	}
+	void AddPlayerLeaderTime(int playerID, int leaderTime)
+	{
+		CheckPlayerID(playerID);
+		playerStat[playerID].AddLeaderTime(leaderTime);
 	}
 	void AddPlayerTurnNumber(int playerID) { 
 		CheckPlayerID(playerID);

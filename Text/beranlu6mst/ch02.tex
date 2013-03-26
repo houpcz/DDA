@@ -225,9 +225,9 @@ Pro lepší pochopení nastíněných metrik prohození prvních hráčů, napí
 \State $\mu_v = \frac{1}{|P|}\sum_{p \in P} dobaVedeni(p)$
 \State $napinavost = \frac{1}{k}\sum_i^k{h_i(pF_i) - h_i(pS_i)}$ 
 \State $konecnyNaskok = h_k(pF_k) - h_k(pS_k)$
-\State $vedeni = \sqrt{\sum_{p \in P} |\mu_v - dobaVedeni(p)|^2}$
+\State $vedeni = \frac{1}{|P|}\sum_{p \in P} |\mu_v - dobaVedeni(p)|^2$
 \State $kontrola = \frac{1}{k |P|}\sum_i^k{\sum_{p \in P} |\Delta h_i(p)|}$
-\State $spravedlnost = \sqrt{\sum_{p \in P} |\mu_s - s(p)|^2}$
+\State $spravedlnost = \frac{1}{|P|}\sum_{p \in P} |\mu_s - s(p)|^2$
 \end{algorithmic}
 \end{algorithm}
 

@@ -12,8 +12,13 @@ protected :
 	GameStat * gameStat;
 	int * currentPlayerStatus;
 	Game * game;
+	int lastPlayerID;
 	int playerCount;
 	int playerLeader;
+	int leaderTime;
+
+	static const int MAX_PLAYER = 4;
+	int pStatus[MAX_PLAYER];
 public :
 	static const int ILLEGAL_GAME = -20000;
 

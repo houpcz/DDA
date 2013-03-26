@@ -59,7 +59,7 @@ void BatchItem::SetSumGameStat(GameStat _sumGameStat)
 
 void BatchItem::ExportToCsv(QString path)
 {
-	QLocale czeck(QLocale::Czech);	
+	QLocale czech(QLocale::Czech);	
 
 	QFile * file = new QFile(path);
 	if (!file->open(QIODevice::WriteOnly)) {
@@ -103,7 +103,7 @@ void BatchItem::ExportToCsv(QString path)
 	{
 		temp = QString::number(allGameStat[loop1]->TurnNumberReal()) + ";";
 		temp += QString::number(allGameStat[loop1]->LeaderSwitches()) + ";";
-		temp += czeck.toString(allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumberReal(), 'f') + ";";
+		temp += czech.toString(allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumberReal(), 'f') + ";";
 		temp += QString::number(allGameStat[loop1]->EndRankDifference()) + ";";
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
 		{

@@ -5,12 +5,22 @@ IGameState::IGameState()
 {
 	gameStat = NULL;
 	currentPlayerStatus = NULL;
+	lastPlayerID = -1;
+	leaderTime = 0;
+
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+		pStatus[loop1] = 0;
 };
 
 IGameState::IGameState(Game * _game)
 {
 	gameStat = NULL;
 	currentPlayerStatus = NULL;
+	lastPlayerID = -1;
+	leaderTime = 0;
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+		pStatus[loop1] = 0;
+
 	Init(_game);
 };
 
@@ -46,38 +56,55 @@ void IGameState::UpdateGameStat()
 	for(int loop1 = 0; loop1 < gameStat->NumberPlayers(); loop1++)
 	{
 		gameStat->AddPlayerLevel(loop1, game->GetPlayer(loop1)->Level());
-		gameStat->AddTurnNumber();
-
-		int currentPlayerID = GetActivePlayerID();
-			
-		if(currentPlayerID != 0)
-		{
-			gameStat->AddTurnNumberReal();
-
-			int outStatusDifference;
-			int newLeaderID = GetLeaderID(&outStatusDifference);
-			gameStat->AddStatusDifference(outStatusDifference);
-			if(newLeaderID != playerLeader)
-				gameStat->AddLeaderSwitch();
-			playerLeader = newLeaderID;
-		}
-
-		int playerChoises = GetPlayerChoises(currentPlayerID);
-		gameStat->UpdatePlayerChoises(currentPlayerID, playerChoises);
-		gameStat->AddPlayerTurnNumber(currentPlayerID);
-
-		if(IsGameOver())
-		{
-			int outStatusDifference;
-			int newLeaderID = GetLeaderID(&outStatusDifference);
-			gameStat->AddStatusDifference(outStatusDifference);
-			gameStat->SetEndStatusDifference(outStatusDifference);
-			gameStat->SetWinner(newLeaderID);
-			gameStat->SetGameSpecificStat(GetGameSpecificStat());
-				
-			break;
-		}
 	}
+	gameStat->AddTurnNumber();
+
+	int currentPlayerID = GetActivePlayerID();
+			
+	if(currentPlayerID != 0)
+	{
+		gameStat->AddTurnNumberReal();
+		leaderTime++;
+	}
+
+	int outStatusDifference;
+	int newLeaderID = GetLeaderID(&outStatusDifference);
+	gameStat->AddStatusDifference(outStatusDifference);
+	if(newLeaderID != playerLeader) {
+		gameStat->AddPlayerLeaderTime(playerLeader, leaderTime);
+		gameStat->AddLeaderSwitch();
+	}
+	playerLeader = newLeaderID;
+
+	int playerChoises = GetPlayerChoises(currentPlayerID);
+	gameStat->UpdatePlayerChoises(currentPlayerID, playerChoises);
+	gameStat->AddPlayerTurnNumber(currentPlayerID);
+
+	if(IsGameOver())
+	{
+		int outStatusDifference;
+		int newLeaderID = GetLeaderID(&outStatusDifference);
+		gameStat->AddStatusDifference(outStatusDifference);
+		gameStat->SetEndStatusDifference(outStatusDifference);
+		gameStat->SetWinner(newLeaderID);
+		gameStat->SetGameSpecificStat(GetGameSpecificStat());
+	}
+
+	int tempStatus;
+	int deltaH;
+	for(int loop1 = 0; loop1 < gameStat->NumberPlayers(); loop1++)
+	{
+
+		tempStatus = GetPlayerStatus(loop1 + 1);
+		deltaH = tempStatus - pStatus[loop1];
+		if(lastPlayerID == 0)
+		{
+			gameStat->AddControlSum(abs(deltaH));
+			gameStat->AddPlayerDeltaH(loop1, deltaH);
+		}
+		pStatus[loop1] = tempStatus;
+	}
+	lastPlayerID = currentPlayerID;
 }
 
 int IGameState::GetLeaderID(int * outStatusDifference)
