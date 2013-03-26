@@ -305,7 +305,7 @@ IGameState * MazeState::GetRandomNextState(int whoAskID, int * outStateID)
 		}
 
 		do {
-			int rndNumber = rand() % notExploredTurns.size();
+			int rndNumber = rand() % notExploredTurns.size(); // DIVIZION BY ZERO!!!!!
 			if(mazeState != NULL)
 				delete mazeState;
 			

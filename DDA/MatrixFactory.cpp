@@ -40,8 +40,10 @@ char ** MatrixFactory::GetMatrix(int width, int height)
 
 	if(bufferSize > 0)
 	{
+		bufferSize--;
+		char ** matrix = buffer[bufferSize];
 		mutex.unlock();
-		return buffer[--bufferSize];
+		return matrix;
 	} else {
 		char ** matrix;
 		matrix = new char*[currentHeight];
