@@ -346,74 +346,100 @@ int LudoState::GetPlayerStatus(int playerID)
 
 void LudoState::CountPlayerRanks()
 {
-	int tempRank[MAX_PLAYER];
-	char board[FIRST_HOME_TILE];
-	for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)
-		board[loop1] = -1;
-
-	int bestRank = 0;
-	int secondBest = 0;
-	for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
+	if(dicePlayerNow)
 	{
-		int result = 0;
-		for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
-		{
-			int boardID = (figure[loop2][loop1] + Ludo::firstTile[loop2]) % FIRST_HOME_TILE;
-			board[boardID] = loop2;
-			if(safeTile[boardID] == 1)
-				result += 2;
+		int tempRank[MAX_PLAYER];
+		char board[FIRST_HOME_TILE];
+		for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)
+			board[loop1] = -1;
 
-			if(figure[loop2][loop1] >= FIRST_HOME_TILE)
-			{
-				result += 4;
-			} else if(figure[loop2][loop1] >= 0)
-			{
-				result -= 6 + (int) (((FIRST_HOME_TILE - figure[loop2][loop1]) / 3.5f / 6.0f) + 0.5f);
-			} else {
-				result -= (int) ((FIRST_HOME_TILE / 3.5f) + 0.5f) + 2;
-			}
-		}
-		tempRank[loop2] = result + 100;
-	}
-
-	for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)
-	{
-		if(board[loop1] > 0)
+		int bestRank = 0;
+		int secondBest = 0;
+		for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 		{
-			for(int loop2 = 1; loop2 < 7; loop2++)
+			int result = 0;
+			for(int loop1 = 0; loop1 < MAX_FIGURE; loop1++)
 			{
-				int opponentPos = (loop1 + loop2) % FIRST_HOME_TILE;
-				int opponentID = board[opponentPos];
-				if(safeTile[opponentPos] == 0 && board[opponentPos] > 0 && opponentID != board[loop1])
+				int boardID = (figure[loop2][loop1] + Ludo::firstTile[loop2]) % FIRST_HOME_TILE;
+				board[boardID] = loop2;
+				if(safeTile[boardID] == 1)
+					result += 2;
+
+				if(figure[loop2][loop1] >= FIRST_HOME_TILE)
 				{
-					tempRank[opponentID] -= (int) ((((FIRST_HOME_TILE + opponentPos - Ludo::firstTile[opponentID]) % FIRST_HOME_TILE) / 3.5f) + 0.5f);
+					result += 4;
+				} else if(figure[loop2][loop1] >= 0)
+				{
+					result -= 6 + (int) (((FIRST_HOME_TILE - figure[loop2][loop1]) / 3.5f / 6.0f) + 0.5f);
+				} else {
+					result -= (int) ((FIRST_HOME_TILE / 3.5f) + 0.5f) + 2;
+				}
+			}
+			tempRank[loop2] = result + 100;
+		}
+
+		for(int loop1 = 0; loop1 < FIRST_HOME_TILE; loop1++)
+		{
+			if(board[loop1] > 0)
+			{
+				for(int loop2 = 1; loop2 < 7; loop2++)
+				{
+					int opponentPos = (loop1 + loop2) % FIRST_HOME_TILE;
+					int opponentID = board[opponentPos];
+					if(safeTile[opponentPos] == 0 && board[opponentPos] > 0 && opponentID != board[loop1])
+					{
+						tempRank[opponentID] -= (int) ((((FIRST_HOME_TILE + opponentPos - Ludo::firstTile[opponentID]) % FIRST_HOME_TILE) / 3.5f) + 0.5f);
+					}
 				}
 			}
 		}
-	}
 
 
-	for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
-	{
-		if(tempRank[loop2] > secondBest)
+		for(int loop2 = 0; loop2 < MAX_PLAYER; loop2++)
 		{
-			if(tempRank[loop2] > bestRank)
+			if(tempRank[loop2] > secondBest)
 			{
-				secondBest = bestRank;
-				bestRank = tempRank[loop2];
-			} else
-			{
-				secondBest = tempRank[loop2];
+				if(tempRank[loop2] > bestRank)
+				{
+					secondBest = bestRank;
+					bestRank = tempRank[loop2];
+				} else
+				{
+					secondBest = tempRank[loop2];
+				}
 			}
 		}
-	}
 
-	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
-	{
-		if(tempRank[loop1] == bestRank)
-			playerRank[loop1] = tempRank[loop1] - secondBest;
-		else
-			playerRank[loop1] = tempRank[loop1] - bestRank;
+		for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+		{
+			if(tempRank[loop1] == bestRank)
+				playerRank[loop1] = tempRank[loop1] - secondBest;
+			else
+				playerRank[loop1] = tempRank[loop1] - bestRank;
+		}
+	} else {
+			int choises;
+			IGameState ** nextState = GetNextStates(GetActivePlayerID(), &choises);
+			int maxMyRank = INT_MIN;
+			int maxMyRankID = -1;
+			for(int loop1 = 0; loop1 < choises; loop1++)
+			{
+				int temp = nextState[loop1]->GetPlayerRank(GetActivePlayerID(), GetActivePlayerID());
+				if(temp > maxMyRank)
+				{
+					maxMyRank = temp;
+					maxMyRankID = loop1;
+				}
+			}
+			for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+			{
+				playerRank[loop1] = nextState[maxMyRankID]->GetPlayerRank(loop1 + 1, GetActivePlayerID());
+			}
+			for(int loop1 = 0; loop1 < choises; loop1++)
+			{
+				delete nextState[loop1];
+			}
+			delete [] nextState;
 	}
 
 	isRankUpToDate = true;

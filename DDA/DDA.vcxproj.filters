@@ -51,7 +51,7 @@
     <Filter Include="Games\Lost cities">
       <UniqueIdentifier>{8cd8d835-6b9d-4c13-a162-79562b80dc20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Games\Lost cities\Ludo">
+    <Filter Include="Games\Ludo">
       <UniqueIdentifier>{34716857-8def-4c11-b431-42373f18af4e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -369,13 +369,13 @@
       <Filter>Games\Lost cities</Filter>
     </ClCompile>
     <ClCompile Include="LudoState.cpp">
-      <Filter>Games\Lost cities\Ludo</Filter>
+      <Filter>Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="Ludo.cpp">
-      <Filter>Games\Lost cities\Ludo</Filter>
+      <Filter>Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="LudoTile.cpp">
-      <Filter>Games\Lost cities\Ludo</Filter>
+      <Filter>Games\Ludo</Filter>
     </ClCompile>
     <ClCompile Include="PlayerLevel.cpp">
       <Filter>Players</Filter>
@@ -851,13 +851,13 @@
       <Filter>Players</Filter>
     </ClInclude>
     <ClInclude Include="LudoTile.h">
-      <Filter>Games\Lost cities\Ludo</Filter>
+      <Filter>Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="LudoState.h">
-      <Filter>Games\Lost cities\Ludo</Filter>
+      <Filter>Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="Ludo.h">
-      <Filter>Games\Lost cities\Ludo</Filter>
+      <Filter>Games\Ludo</Filter>
     </ClInclude>
     <ClInclude Include="LostCitiesState.h">
       <Filter>Games\Lost cities</Filter>
