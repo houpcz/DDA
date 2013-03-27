@@ -54,9 +54,12 @@ IGameState::~IGameState() {
 void IGameState::UpdateGameStat()
 {
 	int realNumberPlayer = gameStat->NumberPlayers() - 1;
-	for(int loop1 = 0; loop1 < gameStat->NumberPlayers(); loop1++)
+	if(gameStat->TurnNumber() != 0)
 	{
-		gameStat->AddPlayerLevel(loop1, game->GetPlayer(loop1)->Level());
+		for(int loop1 = 0; loop1 < gameStat->NumberPlayers(); loop1++)
+		{
+			gameStat->AddPlayerLevel(loop1, game->GetPlayer(loop1)->Level());
+		}
 	}
 	gameStat->AddTurnNumber();
 
