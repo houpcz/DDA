@@ -72,6 +72,8 @@ public :
 	long long ChoisesSum() { return choisesSum; };
 	long long TurnNumber() { return turnNumber; };
 	long long Level() { return level;};
+	long long LeaderTime() { return leaderTime;};
+	long long DeltaH() { return deltaH; };
 };
 
 class GameStat
@@ -88,6 +90,9 @@ private :
 	long long leaderSwitches;
 	long long sumRankDifference;
 	long long endRankDifference;
+	float leaderTime;
+	float control;
+	float justice;
 
 	PlayerStat * playerStat;
 	ISpecificStat * gameStat; 
@@ -109,6 +114,7 @@ public:
 	const GameStat operator+(const GameStat &other);
 
 	void Reset();
+	void CountMetrics();
 	void AddTurnNumber() { turnNumber++; }
 	void AddTurnNumberReal() { turnNumberReal++; }
 	void AddLeaderSwitch() { leaderSwitches++; };
@@ -164,6 +170,9 @@ public:
 	long long LeaderSwitches() { return leaderSwitches; };
 	long long SumRankDifference() { return sumRankDifference;};
 	long long EndRankDifference() { return endRankDifference;};
+	float LeaderTime() { return leaderTime; };
+	float Justice() { return justice; };
+	float Control() { return control; };
 	long PlayerWinner(int playerID) { 
 		CheckPlayerID(playerID);
 		return playerStat[playerID].Winner(); 

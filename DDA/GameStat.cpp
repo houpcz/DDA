@@ -24,6 +24,9 @@ void GameStat::Reset()
 	sumRankDifference = 0;
 	endRankDifference = 0;
 	controlSum = 0;
+	justice = 0.0f;
+	leaderTime = 0.0f;
+	control = 0.0f;
 
 	if(gameStat != NULL)
 		gameStat->Reset();
@@ -37,6 +40,38 @@ GameStat::~GameStat(void)
 		delete gameStat;
 		gameStat = NULL;
 	}
+}
+
+void GameStat::CountMetrics()
+{
+	int player0turn = turnNumber - turnNumberReal;
+	int realNumberPlayers = numberPlayers - 1;
+	control = controlSum / (float) (realNumberPlayers * player0turn);
+
+	float muJustice = 0.0f;
+	float muLeaderTime = 0.0;
+	float * sP = new float[numberPlayers];
+	for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
+	{
+		sP[loop1] = playerStat[loop1 + 1].DeltaH() / (float) player0turn;
+		muJustice += sP[loop1];
+		muLeaderTime += playerStat[loop1 + 1].LeaderTime();
+	}
+	muJustice /= numberPlayers;
+	muLeaderTime /= numberPlayers;
+	float sumJustice = 0.0;
+	float sumLeaderTime = 0.0;
+	for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
+	{
+		float dJ = muJustice - sP[loop1];
+		sumJustice += dJ * dJ;
+		float dL = muLeaderTime - playerStat[loop1 + 1].LeaderTime();
+		sumLeaderTime += dL * dL;
+	}
+	justice = sqrt(sumJustice / realNumberPlayers);
+	leaderTime = sqrt(sumLeaderTime / realNumberPlayers);
+
+	delete [] sP;
 }
 
 GameStat::GameStat(const GameStat &origin)
@@ -53,6 +88,9 @@ void GameStat::CopyToMe(const GameStat &origin)
 	sumRankDifference = origin.sumRankDifference;
 	endRankDifference = origin.endRankDifference;
 	controlSum = origin.controlSum;
+	leaderTime = origin.leaderTime;
+	justice = origin.justice;
+	control = origin.control;
 
 	if(origin.gameStat == NULL)
 		gameStat = NULL;
@@ -85,6 +123,9 @@ const GameStat GameStat::operator+(const GameStat &other)
 	newGameStat.sumRankDifference = sumRankDifference + other.sumRankDifference;
 	newGameStat.endRankDifference = endRankDifference + other.endRankDifference;
 	newGameStat.controlSum = controlSum + other.controlSum;
+	newGameStat.leaderTime = leaderTime + other.leaderTime;
+	newGameStat.control = control + other.control;
+	newGameStat.justice = justice + other.justice;
 
 	if(gameStat != NULL && other.gameStat != NULL)
 		newGameStat.gameStat = gameStat->Plus(other.gameStat);

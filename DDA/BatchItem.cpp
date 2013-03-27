@@ -73,7 +73,7 @@ void BatchItem::ExportToCsv(QString path)
 	setupHeader += ";" + gameSetup.first + '\n';
 	file->write(setupHeader.toAscii());
 	file->write(GetName(';').toAscii() + ';' + gameSetup.second.toAscii() + '\n');
-	QString temp = QString("Turn Number;Leader Switches;SSD;ESD");
+	QString temp = QString("Turn Number;Leader Switches;SSD;ESD;J;C;LT");
 	for(int loop2 = 0; loop2 < allGameStat[0]->NumberPlayers(); loop2++)
 	{
 		temp+= ";P" + QString::number(loop2+1) + "W";
@@ -105,6 +105,9 @@ void BatchItem::ExportToCsv(QString path)
 		temp += QString::number(allGameStat[loop1]->LeaderSwitches()) + ";";
 		temp += czech.toString(allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumberReal(), 'f') + ";";
 		temp += QString::number(allGameStat[loop1]->EndRankDifference()) + ";";
+		temp += czech.toString(allGameStat[loop1]->Justice()) + ";";
+		temp += czech.toString(allGameStat[loop1]->Control()) + ";";
+		temp += czech.toString(allGameStat[loop1]->LeaderTime()) + ";";
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
 		{
 			temp += QString::number(allGameStat[loop1]->PlayerWinner(loop2)) + ";";
@@ -119,7 +122,7 @@ void BatchItem::ExportToCsv(QString path)
 		}
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
 		{
-			temp += czeck.toString(allGameStat[loop1]->PlayerChoisesSum(loop2) / (float) allGameStat[loop1]->PlayerTurnNumber(loop2)) + ";";
+			temp += czech.toString(allGameStat[loop1]->PlayerChoisesSum(loop2) / (float) allGameStat[loop1]->PlayerTurnNumber(loop2)) + ";";
 		}
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
 		{
@@ -180,7 +183,10 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	float leaderSwitches;
 	float gameRankDiff;
 	float endRankDiff;
-	
+	float justice;
+	float control;
+	float leaderTime;
+
 	vector<float> values;
 	values.reserve(batchSize);
 
@@ -192,12 +198,15 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 		leaderSwitches = sumGameStat->LeaderSwitches() / (float) realBatchSize;
 		gameRankDiff = sumGameStat->SumRankDifference() / (float) realBatchSize / avgTurnNumberReal;
 		endRankDiff = sumGameStat->EndRankDifference() / (float) realBatchSize;
+		justice = sumGameStat->Justice() / (float) realBatchSize;
+		control = sumGameStat->Control() / (float) realBatchSize;
+		leaderTime = sumGameStat->LeaderTime() / (float) realBatchSize;
 
 		if(fnc == AGGR_DEVIATION)
 		{
 			float sumVal;
 
-			for(int loop2 = 0; loop2 < 5; loop2++)
+			for(int loop2 = 0; loop2 < 8; loop2++)
 			{
 				sumVal = 0.0f;
 				for(int loop1 = 0; loop1 < realBatchSize; loop1++)
@@ -209,6 +218,9 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 						case 2 : val = allGameStat[loop1]->LeaderSwitches() - leaderSwitches; break;
 						case 3 : val = allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumber() - gameRankDiff; break;
 						case 4 : val = allGameStat[loop1]->EndRankDifference() - endRankDiff; break;
+						case 5 : val = allGameStat[loop1]->Justice() - justice; break;
+						case 6 : val = allGameStat[loop1]->Control() - control; break;
+						case 7 : val = allGameStat[loop1]->LeaderTime() - leaderTime; break;
 					}
 					sumVal += (val * val) / realBatchSize;
 				}
@@ -221,6 +233,9 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 					case 2 : leaderSwitches = deviation; break;
 					case 3 : gameRankDiff = deviation; break;
 					case 4 : endRankDiff = deviation; break;
+					case 5 : justice = deviation; break;
+					case 6 : control = deviation; break;
+					case 7 : leaderTime = deviation; break;
 				}
 			}
 		}
@@ -246,6 +261,9 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 				case 2 : leaderSwitches = val; break;
 				case 3 : gameRankDiff = val; break;
 				case 4 : endRankDiff = val; break;
+				case 5 : justice = val; break;
+				case 6 : control = val; break;
+				case 7 : leaderTime = val; break;
 			}
 		}
 	}
@@ -256,6 +274,9 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 	treeWidgetItem->setData(5, 0, leaderSwitches);
 	treeWidgetItem->setData(6, 0, gameRankDiff);
 	treeWidgetItem->setData(7, 0, endRankDiff);
+	treeWidgetItem->setData(8, 0, justice);
+	treeWidgetItem->setData(9, 0, control);
+	treeWidgetItem->setData(10, 0, leaderTime);
 }
 
 void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
@@ -390,6 +411,9 @@ vector<float> BatchItem::GetStatAsVector(int statName)
 			case 2 : val = allGameStat[loop1]->LeaderSwitches(); break;
 			case 3 : val = allGameStat[loop1]->SumRankDifference() / (float) allGameStat[loop1]->TurnNumber(); break;
 			case 4 : val = allGameStat[loop1]->EndRankDifference(); break;
+			case 5 : val = allGameStat[loop1]->Justice(); break;
+			case 6 : val = allGameStat[loop1]->Control(); break;
+			case 7 : val = allGameStat[loop1]->LeaderTime(); break;
 		}
 
 		result.push_back(val);

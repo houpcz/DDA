@@ -26,6 +26,9 @@ BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
 	gameStat->addItem("Leader switches");
 	gameStat->addItem("Avg score diff");
 	gameStat->addItem("End score diff");
+	gameStat->addItem("Justice");
+	gameStat->addItem("Control");
+	gameStat->addItem("Leader Time");
 	gameStat->addItem("Player stat");
 
 	playerStat = new QComboBox(this);

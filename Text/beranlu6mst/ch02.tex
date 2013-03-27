@@ -191,9 +191,9 @@ Další metriky využívají heuristiku, která numericky ohodnotí stav hry pro
 
 V článku \cite{24DynLev} na základě zmíněné heuristiky přicházejí k třem metrikám. Počet změn ve vedení, napínavost během hry a konečný náskok. Hráč, který dle heuristiky má největší pravděpodobnost na výhru, je ve vedení. Jestliže se dostane do vedení jiný hráč, zaznamená se to. Metrika měří počet výměn hráčů ve vedení během hry od začátku do konce. Je zde předpoklad, že hra je více zábavná, jestliže se hráči častěji ve vedení střídají, a tedy není pořadí hráčů stejné na začátku, během a na konci hry. Napínavost je dána průměrným náskokem prvního hráče před druhým během hry. Konečný náskok je dán rozdílem heuristik prvního a druhého hráče na konci hry.
 
-Všechny 4 zmíněné metriky (3 předchozí + win-rate) lze dobře využít v teorii her pro ohodnocení jednotlivých algoritmů a porovnání jich mezi sebou. Metriky doplníme o další tři nové. Počet výměn hráčů ve vedení nemusí být dostatečný. Mohlo by se stát, že každý z hráčů by byl během hry 2 krát ve vedení, ale jeden z nich by byl ve vedení 90\% času a zbylí hráči zbývajících 10\%. Metrika vedení bude udávat rozptyl časů ve vedení jednotlivých hráčů.
+Všechny 4 zmíněné metriky (3 předchozí + win-rate) lze dobře využít v teorii her pro ohodnocení jednotlivých algoritmů a porovnání jich mezi sebou. Metriky doplníme o další tři nové. Počet výměn hráčů ve vedení nemusí být dostatečný. Mohlo by se stát, že každý z hráčů by byl během hry 2 krát ve vedení, ale jeden z nich by byl ve vedení 90\% času a zbylí hráči zbývajících 10\%. Metrika vedení bude udávat směrodatnou odchylku časů ve vedení jednotlivých hráčů.
 
-Jednou ze složek flow je kontrola. Hráč chce mít pocit vlády nad hrou. Jestliže budeme hru příliš často a hodně přizpůsobovat hráči, on/a si může všimnout, že nemá plnou kontrolu nad hrou, hra ho může přestat bavit. Proto by počet zásahů do hry měl být minimální. Spočítáme si pro každého hráče heuristiku vždy před adaptivním krokem $h_1$ a po něm $h_2$. Rozdíl $\Delta h = h_2 - h_1$ znázorňuje, jak moc jsme konkrétnímu hráči ublížili/pomohli k vítězství.  Můžeme vytvořit 2 nové metriky, kontrolu a spravedlnost. Kontrola bude dána průměrem z absolutních hodnot $\Delta h$ během hry na jednoho hráče. Trochu paradoxně, čím menší hodnota kontroly, tím lépe. Tím méně bylo zasaženo do hry. Pro spravedlnost je důležité během hry pomáhat/ubližovat všem přibližně stejně. Čím vyrovnanější $s(p) = \frac{1}{k}\sum_i^k \Delta h_i(p)$ na konci hry mezi jednotlivými hráči, tím lépe. Metrika spravedlnost je dáno rozptylem hodnot $s(p)$
+Jednou ze složek flow je kontrola. Hráč chce mít pocit vlády nad hrou. Jestliže budeme hru příliš často a hodně přizpůsobovat hráči, on/a si může všimnout, že nemá plnou kontrolu nad hrou, hra ho může přestat bavit. Proto by počet zásahů do hry měl být minimální. Spočítáme si pro každého hráče heuristiku vždy před adaptivním krokem $h_1$ a po něm $h_2$. Rozdíl $\Delta h = h_2 - h_1$ znázorňuje, jak moc jsme konkrétnímu hráči ublížili/pomohli k vítězství.  Můžeme vytvořit 2 nové metriky, kontrolu a spravedlnost. Kontrola bude dána průměrem z absolutních hodnot $\Delta h$ během hry na jednoho hráče. Trochu paradoxně, čím menší hodnota kontroly, tím lépe. Tím méně bylo zasaženo do hry. Pro spravedlnost je důležité během hry pomáhat/ubližovat všem přibližně stejně. Čím vyrovnanější $s(p) = \frac{1}{k}\sum_i^k \Delta h_i(p)$ na konci hry mezi jednotlivými hráči, tím lépe. Metrika spravedlnost je dáno směrodatnou odchylkou hodnot $s(p)$
 
 \subsubsection{Algoritmus}
 
@@ -225,9 +225,9 @@ Pro lepší pochopení nastíněných metrik prohození prvních hráčů, napí
 \State $\mu_v = \frac{1}{|P|}\sum_{p \in P} dobaVedeni(p)$
 \State $napinavost = \frac{1}{k}\sum_i^k{h_i(pF_i) - h_i(pS_i)}$ 
 \State $konecnyNaskok = h_k(pF_k) - h_k(pS_k)$
-\State $vedeni = \frac{1}{|P|}\sum_{p \in P} |\mu_v - dobaVedeni(p)|^2$
+\State $vedeni = \sqrt{\frac{1}{|P|}\sum_{p \in P} |\mu_v - dobaVedeni(p)|^2}$
 \State $kontrola = \frac{1}{k |P|}\sum_i^k{\sum_{p \in P} |\Delta h_i(p)|}$
-\State $spravedlnost = \frac{1}{|P|}\sum_{p \in P} |\mu_s - s(p)|^2$
+\State $spravedlnost = \sqrt{\frac{1}{|P|}\sum_{p \in P} |\mu_s - s(p)|^2}$
 \end{algorithmic}
 \end{algorithm}
 

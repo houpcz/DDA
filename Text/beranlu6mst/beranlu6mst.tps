@@ -14,11 +14,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=beranlu6mst.tex
+Document=ch02.tex
 
 [Frame0_View0,0]
-TopLine=29
-Cursor=1830
+TopLine=290
+Cursor=21870
 
 [Frame1]
 Flags=0
@@ -32,11 +32,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch01.tex
+Document=beranlu6mst.tex
 
 [Frame1_View0,0]
-TopLine=135
-Cursor=10772
+TopLine=29
+Cursor=1830
 
 [Frame2]
 Flags=0
@@ -50,11 +50,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch02.tex
+Document=ch01.tex
 
 [Frame2_View0,0]
-TopLine=290
-Cursor=21404
+TopLine=157
+Cursor=10772
 
 [Frame3]
 Flags=0
@@ -89,7 +89,7 @@ Class=BibTeXView
 Document=beranlu6mst.bib
 
 [Frame4_View0,0]
-TopLine=398
+TopLine=405
 Cursor=12353
 
 [SessionInfo]
