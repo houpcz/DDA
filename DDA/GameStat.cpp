@@ -57,8 +57,8 @@ void GameStat::CountMetrics()
 		muJustice += sP[loop1];
 		muLeaderTime += playerStat[loop1 + 1].LeaderTime();
 	}
-	muJustice /= numberPlayers;
-	muLeaderTime /= numberPlayers;
+	muJustice /= realNumberPlayers;
+	muLeaderTime /= realNumberPlayers;
 	float sumJustice = 0.0;
 	float sumLeaderTime = 0.0;
 	for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)

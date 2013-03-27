@@ -92,7 +92,7 @@ void IGameState::UpdateGameStat()
 		if(lastPlayerID == 0)
 		{
 			gameStat->AddControlSum(abs(deltaH));
-			gameStat->AddPlayerDeltaH(loop1, deltaH);
+			gameStat->AddPlayerDeltaH(loop1 + 1, deltaH);
 		}
 		pStatus[loop1] = tempStatus;
 	}
@@ -106,6 +106,7 @@ void IGameState::UpdateGameStat()
 		gameStat->SetEndStatusDifference(outStatusDifference);
 		gameStat->SetWinner(newLeaderID);
 		gameStat->SetGameSpecificStat(GetGameSpecificStat());
+		gameStat->AddPlayerLeaderTime(playerLeader, leaderTime);
 		gameStat->CountMetrics();
 	}
 }

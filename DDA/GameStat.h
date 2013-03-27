@@ -198,6 +198,14 @@ public:
 		CheckPlayerID(playerID);
 		return playerStat[playerID].TurnNumber(); 
 	};
+	long long PlayerDeltaH(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].DeltaH(); 
+	};
+	long long PlayerLeaderTime(int playerID) { 
+		CheckPlayerID(playerID);
+		return playerStat[playerID].LeaderTime(); 
+	};
 };
 
 #endif

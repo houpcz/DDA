@@ -37,6 +37,8 @@ BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
 	playerStat->addItem("Avg choises");
 	playerStat->addItem("Min choises");
 	playerStat->addItem("Max choises");
+	playerStat->addItem("Justice");
+	playerStat->addItem("LT");
 
 	playerName = new QComboBox(this);
 	for(int loop1 = 0; loop1 < batchItem->Game()->GetPlayerCount(); loop1++)

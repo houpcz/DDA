@@ -94,6 +94,14 @@ void BatchItem::ExportToCsv(QString path)
 	{
 		temp+= ";P" + QString::number(loop2+1) + "Turn";
 	}
+	for(int loop2 = 1; loop2 < allGameStat[0]->NumberPlayers(); loop2++)
+	{
+		temp+= ";P" + QString::number(loop2+1) + "Justice";
+	}
+	for(int loop2 = 1; loop2 < allGameStat[0]->NumberPlayers(); loop2++)
+	{
+		temp+= ";P" + QString::number(loop2+1) + "LT";
+	}
 	temp+= allGameStat[0]->GameStatHeader();
 	temp+= "\n";
 
@@ -127,6 +135,14 @@ void BatchItem::ExportToCsv(QString path)
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
 		{
 			temp += QString::number(allGameStat[loop1]->PlayerTurnNumber(loop2)) + ";";
+		}
+		for(int loop2 = 1; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
+		{
+			temp += QString::number(allGameStat[loop1]->PlayerDeltaH(loop2)) + ";";
+		}
+		for(int loop2 = 1; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
+		{
+			temp += QString::number(allGameStat[loop1]->PlayerLeaderTime(loop2)) + ";";
 		}
 		temp = temp.simplified();
 		temp = temp.replace(" ", "");
@@ -241,7 +257,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 		}
 	}
 	else {
-		for(int loop2 = 0; loop2 < 5; loop2++)
+		for(int loop2 = 0; loop2 < 8; loop2++)
 		{
 			values = GetStatAsVector(loop2);
 			sort(values.begin(), values.end());
@@ -281,6 +297,7 @@ void BatchItem::UpdateTreeWidget(EAggrFnc fnc)
 
 void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 {
+	int player0turn = sumGameStat->TurnNumber() - sumGameStat->TurnNumberReal();
 	float realBatchSize = (float) treeWidgetItem->data(2, 0).toInt();
 	if(realBatchSize < 0.5)
 		return;
@@ -294,7 +311,9 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 		float choisesAvg;
 		float choisesMin;
 		float choisesMax;
-	
+		float justice;
+		float leaderTime;
+
 		vector<float> values;
 		values.reserve(batchSize);
 
@@ -306,12 +325,14 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 			choisesAvg = (sumGameStat->PlayerChoisesSum(loop3) / realBatchSize) / avgTurnNumberReal;
 			choisesMin = sumGameStat->PlayerChoisesMin(loop3) / realBatchSize;
 			choisesMax = sumGameStat->PlayerChoisesMax(loop3) / realBatchSize;
+			justice = sumGameStat->PlayerDeltaH(loop3) / (float) player0turn / realBatchSize;
+			leaderTime = sumGameStat->PlayerLeaderTime(loop3) / realBatchSize;
 
 			if(fnc == AGGR_DEVIATION)
 			{
 				float sumVal;
 
-				for(int loop2 = 0; loop2 < 5; loop2++)
+				for(int loop2 = 0; loop2 < 7; loop2++)
 				{
 					sumVal = 0.0f;
 					for(int loop1 = 0; loop1 < realBatchSize; loop1++)
@@ -323,6 +344,8 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 							case 2 : val = (allGameStat[loop1]->PlayerChoisesSum(loop3) / (float) allGameStat[loop1]->PlayerTurnNumber(loop3)) - choisesAvg; break;
 							case 3 : val = allGameStat[loop1]->PlayerChoisesMin(loop3) - choisesMin; break;
 							case 4 : val = allGameStat[loop1]->PlayerChoisesMax(loop3) - choisesMax; break;
+							case 5 : val = allGameStat[loop1]->PlayerDeltaH(loop3) / (float) player0turn - justice; break;
+							case 6 : val = allGameStat[loop1]->PlayerLeaderTime(loop3) - leaderTime; break;
 						}
 						sumVal += (val * val) / realBatchSize;
 					}
@@ -335,12 +358,14 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 						case 2 : choisesAvg = deviation; break;
 						case 3 : choisesMin = deviation; break;
 						case 4 : choisesMax = deviation; break;
+						case 5 : justice = deviation; break;
+						case 6 : leaderTime = deviation; break;
 					}
 				}
 			}
 		}
 		else {
-			for(int loop2 = 0; loop2 < 5; loop2++)
+			for(int loop2 = 0; loop2 < 7; loop2++)
 			{
 				values = GetPlayerStatAsVector(loop2, loop3);
 				sort(values.begin(), values.end());
@@ -360,6 +385,8 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 					case 2 : choisesAvg = val; break;
 					case 3 : choisesMin = val; break;
 					case 4 : choisesMax = val; break;
+					case 5 : justice = val; break;
+					case 6 : leaderTime = val; break;
 				}
 			}
 		}
@@ -369,6 +396,8 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 		playerItem->setData(4, 0, choisesMin);
 		playerItem->setData(5, 0, choisesMax);
 		playerItem->setData(6, 0, turnNumber);
+		playerItem->setData(7, 0, justice);
+		playerItem->setData(8, 0, leaderTime);
 	}
 }
 
@@ -388,6 +417,8 @@ vector<float> BatchItem::GetPlayerStatAsVector(int statName, int playerID)
 			case 2 : val = allGameStat[loop1]->PlayerChoisesSum(playerID) / (float) allGameStat[loop1]->PlayerTurnNumber(playerID); break;
 			case 3 : val = allGameStat[loop1]->PlayerChoisesMin(playerID); break;
 			case 4 : val = allGameStat[loop1]->PlayerChoisesMax(playerID); break;
+			case 5 : val = allGameStat[loop1]->PlayerDeltaH(playerID); break;
+			case 6 : val = allGameStat[loop1]->PlayerLeaderTime(playerID); break;
 		}
 
 		result.push_back(val);

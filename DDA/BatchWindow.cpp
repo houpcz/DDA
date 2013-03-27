@@ -71,7 +71,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 bool ok = connect(aggrFnc, SIGNAL(activated(int)), this, SLOT(AggrFnc(int)));
 
 	 playerStatsTree = new QTreeWidget(this);
-	 playerStatsTree->setColumnCount(7);
+	 playerStatsTree->setColumnCount(9);
 	 QTreeWidgetItem * headerPlayer = new QTreeWidgetItem();
 	 headerPlayer->setData(0, 0, "Player"); 
 	 headerPlayer->setData(1, 0, "Level"); 
@@ -80,6 +80,8 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 headerPlayer->setData(4, 0, "Ch. Min"); 
 	 headerPlayer->setData(5, 0, "Ch. Max"); 
 	 headerPlayer->setData(6, 0, "Turn"); 
+	 headerPlayer->setData(7, 0, "Justice"); 
+	 headerPlayer->setData(8, 0, "L Time"); 
 	 for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
 		 playerStatsTree->resizeColumnToContents(loop1);
 	 playerStatsTree->setHeaderItem(headerPlayer);
