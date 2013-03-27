@@ -39,9 +39,10 @@ bool EAHillClimber::Think()
 			if(tempValue >= bestValue)
 			{
 				if(tempValue != bestValue)
-					bestID.clear();
-				else
+				{
 					bestValue = tempValue;
+					bestID.clear();
+				}	
 
 				bestID.push_back(loop1);
 			}

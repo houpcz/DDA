@@ -7,6 +7,7 @@ EnvironmentAI::EnvironmentAI(int _myID) : IEnvironmentAI(_myID)
 		koefMetric[loop1] = 1.0f;
 
 	koefMetric[KOEF_CONTROL] = 100.0f;
+	koefMetric[KOEF_JUSTICE] = 100.0f;
 }
 
 
