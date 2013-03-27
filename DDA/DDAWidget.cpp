@@ -19,6 +19,7 @@
 #include "PlayerLevel2.h"
 #include "PlayerMonteCarlo.h"
 #include "EnvironmentAIBasic.h"
+#include "EAHillClimber.h"
 #include "EAIMaxOptions.h"
 #include "EAIMinOptions.h"
 
@@ -107,8 +108,9 @@ void DDAWidget::MakePluginLists()
 	//playerAIList.push_back(new PlayerLevel2(7));
 
 	environmentAIList.push_back(new EnvironmentAIBasic(0));
-	environmentAIList.push_back(new EAIMaxOptions(1));
-	environmentAIList.push_back(new EAIMinOptions(2));
+	environmentAIList.push_back(new EAHillClimber(1));
+	//environmentAIList.push_back(new EAIMaxOptions(1));
+	//environmentAIList.push_back(new EAIMinOptions(2));
 
 	// set all games
 	gameList.push_back(new GameMaze(this));

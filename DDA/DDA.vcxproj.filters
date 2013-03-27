@@ -54,6 +54,9 @@
     <Filter Include="Games\Ludo">
       <UniqueIdentifier>{34716857-8def-4c11-b431-42373f18af4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Players\EA">
+      <UniqueIdentifier>{8b726420-cbd3-4845-82d2-61045ede1b9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -340,18 +343,6 @@
     </ClCompile>
     <ClCompile Include="BatchDiagrams.cpp">
       <Filter>Batch</Filter>
-    </ClCompile>
-    <ClCompile Include="EnvironmentAIBasic.cpp">
-      <Filter>Players</Filter>
-    </ClCompile>
-    <ClCompile Include="EnvironmentAI.cpp">
-      <Filter>Players</Filter>
-    </ClCompile>
-    <ClCompile Include="EAIMinOptions.cpp">
-      <Filter>Players</Filter>
-    </ClCompile>
-    <ClCompile Include="EAIMaxOptions.cpp">
-      <Filter>Players</Filter>
     </ClCompile>
     <ClCompile Include="IPlayer.cpp">
       <Filter>Players</Filter>
@@ -650,6 +641,21 @@
     <ClCompile Include="Game.cpp">
       <Filter>Games</Filter>
     </ClCompile>
+    <ClCompile Include="EnvironmentAIBasic.cpp">
+      <Filter>Players\EA</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvironmentAI.cpp">
+      <Filter>Players\EA</Filter>
+    </ClCompile>
+    <ClCompile Include="EAIMinOptions.cpp">
+      <Filter>Players\EA</Filter>
+    </ClCompile>
+    <ClCompile Include="EAIMaxOptions.cpp">
+      <Filter>Players\EA</Filter>
+    </ClCompile>
+    <ClCompile Include="EAHillClimber.cpp">
+      <Filter>Players\EA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -662,9 +668,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EnvironmentAI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FlowGraph.h">
@@ -889,6 +892,12 @@
     <ClInclude Include="IGameState.h">
       <Filter>Games</Filter>
     </ClInclude>
+    <ClInclude Include="EnvironmentAI.h">
+      <Filter>Players\EA</Filter>
+    </ClInclude>
+    <ClInclude Include="EAHillClimber.h">
+      <Filter>Players\EA</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="BatchDiagrams.h">
@@ -901,15 +910,6 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="DDAWidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EAIMaxOptions.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EAIMinOptions.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="EnvironmentAIBasic.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Human.h">
@@ -1013,6 +1013,15 @@
     </CustomBuild>
     <CustomBuild Include="IGame.h">
       <Filter>Games</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EnvironmentAIBasic.h">
+      <Filter>Players\EA</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EAIMinOptions.h">
+      <Filter>Players\EA</Filter>
+    </CustomBuild>
+    <CustomBuild Include="EAIMaxOptions.h">
+      <Filter>Players\EA</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

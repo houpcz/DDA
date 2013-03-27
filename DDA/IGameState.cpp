@@ -110,8 +110,8 @@ void IGameState::UpdateGameStat()
 		gameStat->SetWinner(newLeaderID);
 		gameStat->SetGameSpecificStat(GetGameSpecificStat());
 		gameStat->AddPlayerLeaderTime(playerLeader, leaderTime);
-		gameStat->CountMetrics();
 	}
+	gameStat->CountMetrics();
 }
 
 int IGameState::GetLeaderID(int * outStatusDifference)

@@ -85,6 +85,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="ClickableArea.cpp" />
     <ClCompile Include="DDAWidget.cpp" />
+    <ClCompile Include="EAHillClimber.cpp" />
     <ClCompile Include="EAIMaxOptions.cpp" />
     <ClCompile Include="EAIMinOptions.cpp" />
     <ClCompile Include="EnvironmentAI.cpp" />
@@ -443,6 +444,7 @@
   <ItemGroup>
     <ClInclude Include="BatchItem.h" />
     <ClInclude Include="Board.h" />
+    <ClInclude Include="EAHillClimber.h" />
     <ClInclude Include="EnvironmentAI.h" />
     <ClInclude Include="FlowGraph.h" />
     <ClInclude Include="GameStat.h" />
