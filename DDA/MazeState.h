@@ -72,6 +72,9 @@ private:
 	static const char OPEN = ' ';
 	static const char CLOSE = '#';
 	static const int GOAL_MAX = 10;
+	static const int CRED_HALL_PIECE_SIZE = 3;
+	static const int CRED_PIECE_MAX = 6;
+	int credibility[CRED_PIECE_MAX];
 	char ** maze;
 	char ** mazeClosedList;
 	bool isRankUpToDate;
@@ -145,6 +148,7 @@ public:
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	IGameState * GetRandomNextState(int whoAskID, int * outStateID);
 	virtual float GetNextStateProb(int whoAskID, int actionID) { return 1.0f; };
+	float GetCredibility();
 
 	const vector<int>* GetTileToExplore() const { return &tileToExplore; }
 	int FindTileToExplore(int x, int y);

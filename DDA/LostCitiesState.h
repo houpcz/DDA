@@ -34,6 +34,7 @@ public :
 	static const int PLAYER_AMOUNT = 2;
 	static const int COLOR_AMOUNT = 5;
 	static const int CARD_AMOUNT = 60;
+	static const int VALUE_KINDS = 4;
 	static const int CARD_ONE_COLOR_AMOUNT = CARD_AMOUNT / COLOR_AMOUNT;
 	static const int DISCARD_CARD_OFFSET = 60;
 private:
@@ -45,6 +46,8 @@ private:
 	int lastRealPlayer; // not environmental AI
 	int discardPileTopCardCode[COLOR_AMOUNT];
 	int discardPileTopCardID[COLOR_AMOUNT];
+	int colorCredibility[PLAYER_AMOUNT][COLOR_AMOUNT];
+	int valueCredibility[PLAYER_AMOUNT][VALUE_KINDS];
 	int whoAskIDlast;
 	bool isGameOver;
 	int handSize;
@@ -85,7 +88,7 @@ public:
 	bool IsGameOver();
 	void SetGameOver(bool _gameOver) { isGameOver = _gameOver; };
 	int CountRanks(int playerID, int whoAskID) { return CountRanks(card, playerID, whoAskID); };
-
+	float GetCredibility();
 };
 
 #endif

@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <ctime>
 #include "LostCitiesState.h"
+#include "MatrixFactory.h"
 
 using namespace std;
 
@@ -34,10 +35,35 @@ void LostCitiesState::InitGame(int _handSize, bool _domination)
 	
 	random_shuffle(allCards, allCards + CARD_AMOUNT);
 	
+	for(int loop1 = 0; loop1 < PLAYER_AMOUNT; loop1++)
+	{
+		for(int loop2 = 0; loop2 < COLOR_AMOUNT; loop2++)
+		{
+			colorCredibility[loop1][loop2] = 0;
+		}
+
+		for(int loop2 = 0; loop2 < VALUE_KINDS; loop2++)
+		{
+			valueCredibility[loop1][loop2] = 0;
+		}
+	}
+
 	for(int loop1 = 0; loop1 < handSize; loop1++)
+	{
+		int cardNumber = (allCards[loop1] % 12) / 3;
+		int cardColorNumber = allCards[loop1] / 12;
 		card[allCards[loop1]] = PLAYER_1_HAND_HIDDEN;
+		colorCredibility[0][cardColorNumber]++;
+		valueCredibility[0][cardNumber]++;
+	}
 	for(int loop1 = handSize; loop1 < 2 * handSize; loop1++)
+	{
+		int cardNumber = (allCards[loop1] % 12) / 3;
+		int cardColorNumber = allCards[loop1] / 12;
 		card[allCards[loop1]] = PLAYER_2_HAND_HIDDEN;
+		colorCredibility[1][cardColorNumber]++;
+		valueCredibility[1][cardNumber]++;
+	}
 
 	cardsInDeck = GetInDeckCount();
 	cardsInDeckTurn = 0;
@@ -64,6 +90,11 @@ LostCitiesState& LostCitiesState::operator=(const LostCitiesState &origin)
 
 void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 {
+	lastPlayerID = origin.lastPlayerID;
+	leaderTime = origin.leaderTime;
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+		pStatus[loop1] = origin.pStatus[loop1];
+
 	for(int loop1 = 0; loop1 < CARD_AMOUNT; loop1++)
 	{
 		card[loop1] = origin.card[loop1];
@@ -87,6 +118,19 @@ void LostCitiesState::CopyToMe(const LostCitiesState & origin)
 		discardPileTopCardCode[loop1] = origin.discardPileTopCardCode[loop1];
 		discardPileTopCardID[loop1] = origin.discardPileTopCardID[loop1];
 	}
+
+	for(int loop1 = 0; loop1 < PLAYER_AMOUNT; loop1++)
+	{
+		for(int loop2 = 0; loop2 < COLOR_AMOUNT; loop2++)
+		{
+			colorCredibility[loop1][loop2] = origin.colorCredibility[loop1][loop2];
+		}
+
+		for(int loop2 = 0; loop2 < VALUE_KINDS; loop2++)
+		{
+			valueCredibility[loop1][loop2] = origin.valueCredibility[loop1][loop2];
+		}
+	}
 }
 
 LostCitiesState::~LostCitiesState(void)
@@ -101,12 +145,18 @@ bool LostCitiesState::MakeTurn(int turn)
 {
 	if(activePlayerID == ENVIRONMENTAL_AI)
 	{
+		int cardNumber = (allChoises[turn] % 12) / 3;
+		int cardColorNumber = allChoises[turn] / 12;
 		if(lastRealPlayer == 1)
 		{
+			colorCredibility[0][cardColorNumber]++;
+			valueCredibility[0][cardNumber]++;
 			card[allChoises[turn]] = PLAYER_1_HAND_HIDDEN;
 			activePlayerID = 2;
 			lastRealPlayer = 2;
 		} else {
+			colorCredibility[1][cardColorNumber]++;
+			valueCredibility[1][cardNumber]++;
 			card[allChoises[turn]] = PLAYER_2_HAND_HIDDEN;
 			activePlayerID = 1;
 			lastRealPlayer = 1;
@@ -948,6 +998,18 @@ void LostCitiesState::ChangeCardInsideInformSet(int whoAskID)
 		probCards.erase(probCards.begin() + cardToHandID, probCards.begin() + cardToHandID + 1);
 		unknownCards.erase(unknownCards.begin() + cardToHandID, unknownCards.begin() + cardToHandID + 1);
 	}
+}
+
+float LostCitiesState::GetCredibility()
+{
+	float credSum = 0.0f;
+	for(int loop1 = 0; loop1 < PLAYER_AMOUNT; loop1++)
+	{
+		credSum += MatrixFactory::Inst()->Credibility(colorCredibility[loop1], COLOR_AMOUNT);
+		credSum += MatrixFactory::Inst()->Credibility(valueCredibility[loop1], VALUE_KINDS);
+	}
+
+	return credSum / (MAX_PLAYER * 2);
 }
 
 IGameState * LostCitiesState::GetStateFromSameInformSet(int whoAskID)

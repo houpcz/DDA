@@ -82,11 +82,12 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 headerPlayer->setData(6, 0, "Turn"); 
 	 headerPlayer->setData(7, 0, "Justice"); 
 	 headerPlayer->setData(8, 0, "L Time"); 
-	 //for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
-	 //	 playerStatsTree->resizeColumnToContents(loop1);
+	 for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
+	 	 playerStatsTree->resizeColumnToContents(loop1);
+	 playerStatsTree->setMinimumHeight(150);
 	 playerStatsTree->setHeaderItem(headerPlayer);
 	 playerStatsTree->setRootIsDecorated(false);
-	 playerStatsTree->setMaximumHeight(120);
+	 playerStatsTree->setMaximumHeight(150);
 	 listBatch = new QTreeWidget(this);
 	 listBatch->setColumnCount(12);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();

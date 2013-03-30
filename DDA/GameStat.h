@@ -85,7 +85,7 @@ private :
 	// doesnt count environmental ai turn
 	long long turnNumberReal;
 
-
+	float credibilitySum;
 	long long controlSum;
 	long long leaderSwitches;
 	long long sumRankDifference;
@@ -122,6 +122,7 @@ public:
 	void AddStatusDifference(int difference) { sumRankDifference += difference; };
 	void SetEndStatusDifference(int difference) { endRankDifference = difference; };
 	void AddControlSum(long long control) { controlSum += control; };
+	void AddCredibilitySum(float credibilityPiece) { credibilitySum += credibilityPiece; }
 	void AddPlayerDeltaH(int playerID, int deltaH)
 	{
 		CheckPlayerID(playerID);

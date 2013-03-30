@@ -65,10 +65,12 @@ void IGameState::UpdateGameStat()
 
 	int currentPlayerID = GetActivePlayerID();
 			
-	if(currentPlayerID != 0)
+	if(lastPlayerID != 0)
 	{
 		gameStat->AddTurnNumberReal();
 		leaderTime++;
+	} else {
+		gameStat->AddCredibilitySum(GetCredibility());
 	}
 
 	int outStatusDifference;

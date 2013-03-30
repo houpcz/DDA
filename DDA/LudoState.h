@@ -8,6 +8,7 @@ class LudoState :
 {
 public:
 	static const int FIRST_HOME_TILE = 40;
+	static const int MAX_CUBE = 6;
 	static const int MAX_PLAYER = 4;
 	static const int MAX_FIGURE = 4;
 	static const int MAX_CHOISES = MAX_FIGURE * 2;
@@ -20,6 +21,7 @@ private:
 	int figure[MAX_PLAYER][MAX_FIGURE];
 	int figureNextState[MAX_CHOISES];
 	int playerRank[MAX_PLAYER];
+	int credibility[MAX_PLAYER][MAX_CUBE];
 	bool isRankUpToDate;
 
 	void CountPlayerRanks();
@@ -47,6 +49,7 @@ public:
 	float GetNextStateProb(int whoAskID, int actionID) { return 1.0f; };
 	int MakeTurn(int playerChoise);
 	int GetLastDice() const { return lastDice; }
+	float GetCredibility();
 	bool IsGameOver();
 };
 

@@ -31,6 +31,9 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 		}
 	}
 
+	for(int loop1 = 0; loop1 < CRED_PIECE_MAX; loop1++)
+		credibility[loop1] = 0;
+
 	playerX = mazeWidth / 2;
 	playerY = mazeHeight / 2;
 	startX = playerX;
@@ -131,6 +134,11 @@ MazeState& MazeState::operator=(const MazeState &origin)
 
 void MazeState::CopyToMe(const MazeState & origin)
 {
+	lastPlayerID = origin.lastPlayerID;
+	leaderTime = origin.leaderTime;
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+		pStatus[loop1] = origin.pStatus[loop1];
+
 	mazeWidth = origin.mazeWidth;
 	mazeHeight = origin.mazeHeight;
 	visibleGoals = origin.visibleGoals;
@@ -155,6 +163,7 @@ void MazeState::CopyToMe(const MazeState & origin)
 	setupOpenHallEnds = origin.setupOpenHallEnds;
 	isRankUpToDate = origin.isRankUpToDate;
 	goalAmount = origin.goalAmount;
+
 
 	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
 	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
@@ -842,6 +851,11 @@ bool MazeState::ExploreEnvironment(int turn, bool * twoUndefined, int * wallX, i
 		realHallSize = min(max(hole1, hole2) + 2, hallSize);
 	}
 	
+	int credID = (realHallSize + 1) / CRED_HALL_PIECE_SIZE;
+	if(credID >= CRED_PIECE_MAX)
+		credID = CRED_PIECE_MAX - 1;
+	credibility[credID]++;
+
 	//hallSize = min(max(hole1, hole2) + 2, hallSize);
 
 	if(hallSize == 1)
@@ -1168,6 +1182,11 @@ void MazeState::AddCloseDoor(int x, int y)
 		maze[y][x] = TILE_DOOR;
 
 	tileToExplore.push_back(Pos2Dto1D(x, y));
+}
+
+float MazeState::GetCredibility()
+{
+	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX);
 }
 
 int MazeState::GetPlayerChoises(int whoAskID) 

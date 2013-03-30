@@ -71,3 +71,51 @@ void MatrixFactory::ReturnMatrix(char ** matrix, int width, int height)
 	}
 	mutex.unlock();
 }
+
+float MatrixFactory::Credibility(int * arr, int arrLength)
+{
+	int sumAll = 0;
+	int * tempArr = new int[arrLength];
+	for(int loop1 = 0; loop1 < arrLength; loop1++)
+	{
+		sumAll += arr[loop1];
+	}
+
+	int ones = sumAll % arrLength;
+	for(int loop1 = 0; loop1 < arrLength; loop1++)
+	{
+		if(loop1 < ones)
+			tempArr[loop1] = 1;
+		else
+			tempArr[loop1] = 0;
+	}
+	float minVar = Variance(tempArr, arrLength);
+	delete [] tempArr;
+
+	float var = Variance(arr, arrLength) - minVar;
+
+	if(var < 0.5f)
+		var = 0.5f;
+
+	return var - 0.5f;
+}
+
+float MatrixFactory::Variance(int * arr, int arrLength)
+{
+	float mu = 0.0;
+	for(int loop1 = 0; loop1 < arrLength; loop1++)
+	{
+		mu += arr[loop1];
+	}
+	mu /= arrLength;
+
+	float var = 0.0f;
+	for(int loop1 = 0; loop1 < arrLength; loop1++)
+	{
+		float delta = mu - arr[loop1];
+		var += delta * delta;
+	}
+	var /= arrLength;
+
+	return var;
+}

@@ -1,4 +1,5 @@
 
+#include "MatrixFactory.h"
 #include "Ludo.h"
 
 
@@ -17,6 +18,11 @@ LudoState::LudoState(Game * _game) : IGameState(_game)
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
 			figure[loop1][loop2] = loop2;
+		}
+
+		for(int loop2 = 0; loop2 < MAX_CUBE; loop2++)
+		{
+			credibility[loop1][loop2] = 0;
 		}
 	}
 
@@ -56,6 +62,11 @@ void LudoState::CopyToMe(const LudoState & origin)
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
 			figure[loop1][loop2] = origin.figure[loop1][loop2];
+		}
+
+		for(int loop2 = 0; loop2 < MAX_CUBE; loop2++)
+		{
+			credibility[loop1][loop2] = origin.credibility[loop1][loop2];
 		}
 	}
 	for(int loop1 = 0; loop1 < MAX_CHOISES; loop1++)
@@ -224,6 +235,7 @@ int LudoState::MakeTurn(int playerChoise)
 
 	if(dicePlayerNow)
 	{
+		credibility[activePlayerID][playerChoise]++;
 		lastDice = playerChoise + 1;
 		NextChoises();
 	} else {
@@ -460,6 +472,15 @@ IGameState * LudoState::SimulateToTheEnd(int whoAskID)
 ISpecificStat * LudoState::GetGameSpecificStat()
 {
 	return NULL;
+}
+
+float LudoState::GetCredibility()
+{
+	float credSum = 0.0f;
+	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+		credSum += MatrixFactory::Inst()->Credibility(credibility[loop1], MAX_CUBE);
+
+	return credSum / MAX_PLAYER;
 }
 
 bool LudoState::IsGameOver()

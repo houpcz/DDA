@@ -24,6 +24,7 @@ void GameStat::Reset()
 	sumRankDifference = 0;
 	endRankDifference = 0;
 	controlSum = 0;
+	credibilitySum = 0.0f;
 	justice = 0.0f;
 	leaderTime = 0.0f;
 	credibility = 0.0f;
@@ -47,14 +48,27 @@ void GameStat::CountMetrics()
 {
 	int player0turn = turnNumber - turnNumberReal;
 	int realNumberPlayers = numberPlayers - 1;
-	randomness = controlSum / (float) (realNumberPlayers * player0turn);
+
+	if(player0turn == 0)
+	{
+		randomness = 0.0f;
+		credibility = 0.0f;
+	} else {
+		randomness = controlSum / (float) (realNumberPlayers * player0turn);
+		credibility = credibilitySum / player0turn;
+	}
 
 	float muJustice = 0.0f;
 	float muLeaderTime = 0.0;
 	float * sP = new float[numberPlayers];
 	for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
 	{
-		sP[loop1] = playerStat[loop1 + 1].DeltaH() / (float) player0turn;
+		if(player0turn == 0)
+		{
+			sP[loop1] = 0.0f;
+		} else
+			sP[loop1] = playerStat[loop1 + 1].DeltaH() / (float) player0turn;
+
 		muJustice += sP[loop1];
 		muLeaderTime += playerStat[loop1 + 1].LeaderTime();
 	}
@@ -92,6 +106,7 @@ void GameStat::CopyToMe(const GameStat &origin)
 	leaderTime = origin.leaderTime;
 	justice = origin.justice;
 	credibility = origin.credibility;
+	credibilitySum = origin.credibilitySum;
 	randomness = origin.randomness;
 
 	if(origin.gameStat == NULL)
@@ -127,6 +142,7 @@ const GameStat GameStat::operator+(const GameStat &other)
 	newGameStat.controlSum = controlSum + other.controlSum;
 	newGameStat.leaderTime = leaderTime + other.leaderTime;
 	newGameStat.credibility = credibility + other.credibility;
+	newGameStat.credibilitySum = credibilitySum + other.credibilitySum;
 	newGameStat.randomness = randomness + other.randomness;
 	newGameStat.justice = justice + other.justice;
 

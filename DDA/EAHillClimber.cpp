@@ -19,7 +19,7 @@ bool EAHillClimber::Think()
 {
 	int choises;
 	IGameState * currentState = game->GetCurrentState();
-
+	float tempVals[KOEF_COUNT];
 	if(0.1f < rand() / (float)RAND_MAX)
 	{
 		IGameState ** nextState = currentState->GetNextStates(myID, &choises);
@@ -31,12 +31,18 @@ bool EAHillClimber::Think()
 				continue;
 
 			GameStat stat = nextState[loop1]->GetGameStat();
-			float tempValue =  koefMetric[KOEF_LEADER_SWITCHES] * stat.LeaderSwitches() - 
-							   koefMetric[KOEF_CREDIBILITY] * stat.Credibility() - 
-							   koefMetric[KOEF_RANDOMNESS] * stat.Credibility() - 
-							   koefMetric[KOEF_JUSTICE] * stat.Justice() - 
-							   koefMetric[KOEF_LEADER_TIME] * stat.LeaderTime() - 
-							   koefMetric[KOEF_STATUS_DIFFERENCE] * stat.StatusDifference();
+			tempVals[KOEF_LEADER_SWITCHES] = koefMetric[KOEF_LEADER_SWITCHES] * stat.LeaderSwitches();
+			tempVals[KOEF_CREDIBILITY] = koefMetric[KOEF_CREDIBILITY] * stat.Credibility();
+			tempVals[KOEF_RANDOMNESS] = koefMetric[KOEF_RANDOMNESS] * stat.Randomness();
+			tempVals[KOEF_JUSTICE] = koefMetric[KOEF_JUSTICE] * stat.Justice();
+			tempVals[KOEF_LEADER_TIME] = koefMetric[KOEF_LEADER_TIME] * stat.LeaderTime();
+			tempVals[KOEF_STATUS_DIFFERENCE] = koefMetric[KOEF_STATUS_DIFFERENCE] * stat.StatusDifference();
+			float tempValue = tempVals[KOEF_LEADER_SWITCHES] -
+				              tempVals[KOEF_CREDIBILITY] - 
+							  tempVals[KOEF_RANDOMNESS] -
+							  tempVals[KOEF_JUSTICE] -
+							  tempVals[KOEF_LEADER_TIME] -
+							  tempVals[KOEF_STATUS_DIFFERENCE];
 			if(tempValue >= bestValue)
 			{
 				if(tempValue != bestValue)
