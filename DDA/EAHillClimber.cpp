@@ -32,7 +32,8 @@ bool EAHillClimber::Think()
 
 			GameStat stat = nextState[loop1]->GetGameStat();
 			float tempValue =  koefMetric[KOEF_LEADER_SWITCHES] * stat.LeaderSwitches() - 
-							   koefMetric[KOEF_CONTROL] * stat.Control() - 
+							   koefMetric[KOEF_CREDIBILITY] * stat.Credibility() - 
+							   koefMetric[KOEF_RANDOMNESS] * stat.Credibility() - 
 							   koefMetric[KOEF_JUSTICE] * stat.Justice() - 
 							   koefMetric[KOEF_LEADER_TIME] * stat.LeaderTime() - 
 							   koefMetric[KOEF_STATUS_DIFFERENCE] * stat.StatusDifference();

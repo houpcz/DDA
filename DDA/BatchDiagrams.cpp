@@ -27,7 +27,8 @@ BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
 	gameStat->addItem("Avg score diff");
 	gameStat->addItem("End score diff");
 	gameStat->addItem("Justice");
-	gameStat->addItem("Control");
+	gameStat->addItem("Credibility");
+	gameStat->addItem("Randomness");
 	gameStat->addItem("Leader Time");
 	gameStat->addItem("Player stat");
 

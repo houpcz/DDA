@@ -91,8 +91,9 @@ private :
 	long long sumRankDifference;
 	long long endRankDifference;
 	float leaderTime;
-	float control;
+	float randomness;
 	float justice;
+	float credibility;
 
 	PlayerStat * playerStat;
 	ISpecificStat * gameStat; 
@@ -173,7 +174,8 @@ public:
 	long long EndRankDifference() { return endRankDifference;};
 	float LeaderTime() { return leaderTime; };
 	float Justice() { return justice; };
-	float Control() { return control; };
+	float Credibility() { return credibility; };
+	float Randomness() { return randomness; };
 	long PlayerWinner(int playerID) { 
 		CheckPlayerID(playerID);
 		return playerStat[playerID].Winner(); 

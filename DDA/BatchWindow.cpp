@@ -82,13 +82,13 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 headerPlayer->setData(6, 0, "Turn"); 
 	 headerPlayer->setData(7, 0, "Justice"); 
 	 headerPlayer->setData(8, 0, "L Time"); 
-	 for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
-		 playerStatsTree->resizeColumnToContents(loop1);
+	 //for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
+	 //	 playerStatsTree->resizeColumnToContents(loop1);
 	 playerStatsTree->setHeaderItem(headerPlayer);
 	 playerStatsTree->setRootIsDecorated(false);
 	 playerStatsTree->setMaximumHeight(120);
 	 listBatch = new QTreeWidget(this);
-	 listBatch->setColumnCount(11);
+	 listBatch->setColumnCount(12);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
 	 header->setData(0, 0, "Game name"); 
 	 header->setData(1, 0, "Batch"); 
@@ -99,8 +99,9 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 header->setData(6, 0, "Avg Diff"); 
 	 header->setData(7, 0, "End Diff"); 
 	 header->setData(8, 0, "Justice"); 
-	 header->setData(9, 0, "Control"); 
-	 header->setData(10, 0, "L Time"); 
+	 header->setData(9, 0, "Cred."); 
+	 header->setData(10, 0, "Rand."); 
+	 header->setData(11, 0, "L Time"); 
 	 listBatch->setHeaderItem(header);
 	 listBatch->setRootIsDecorated(false);
 	 for(int loop1 = 0; loop1 < listBatch->columnCount(); loop1++)

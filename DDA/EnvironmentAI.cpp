@@ -3,10 +3,10 @@
 
 EnvironmentAI::EnvironmentAI(int _myID) : IEnvironmentAI(_myID)
 {
-	for(int loop1 = 0; loop1 < MAX_METRIC; loop1++)
+	for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
 		koefMetric[loop1] = 1.0f;
 
-	koefMetric[KOEF_CONTROL] = 100.0f;
+	koefMetric[KOEF_CREDIBILITY] = 100.0f;
 	koefMetric[KOEF_JUSTICE] = 100.0f;
 }
 

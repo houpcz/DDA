@@ -26,7 +26,8 @@ void GameStat::Reset()
 	controlSum = 0;
 	justice = 0.0f;
 	leaderTime = 0.0f;
-	control = 0.0f;
+	credibility = 0.0f;
+	randomness = 0.0f;
 
 	if(gameStat != NULL)
 		gameStat->Reset();
@@ -46,7 +47,7 @@ void GameStat::CountMetrics()
 {
 	int player0turn = turnNumber - turnNumberReal;
 	int realNumberPlayers = numberPlayers - 1;
-	control = controlSum / (float) (realNumberPlayers * player0turn);
+	randomness = controlSum / (float) (realNumberPlayers * player0turn);
 
 	float muJustice = 0.0f;
 	float muLeaderTime = 0.0;
@@ -90,7 +91,8 @@ void GameStat::CopyToMe(const GameStat &origin)
 	controlSum = origin.controlSum;
 	leaderTime = origin.leaderTime;
 	justice = origin.justice;
-	control = origin.control;
+	credibility = origin.credibility;
+	randomness = origin.randomness;
 
 	if(origin.gameStat == NULL)
 		gameStat = NULL;
@@ -124,7 +126,8 @@ const GameStat GameStat::operator+(const GameStat &other)
 	newGameStat.endRankDifference = endRankDifference + other.endRankDifference;
 	newGameStat.controlSum = controlSum + other.controlSum;
 	newGameStat.leaderTime = leaderTime + other.leaderTime;
-	newGameStat.control = control + other.control;
+	newGameStat.credibility = credibility + other.credibility;
+	newGameStat.randomness = randomness + other.randomness;
 	newGameStat.justice = justice + other.justice;
 
 	if(gameStat != NULL && other.gameStat != NULL)
