@@ -20,7 +20,10 @@ protected :
 	float koefMetric[KOEF_COUNT];
 public:
 	EnvironmentAI(int _myID);
-	~EnvironmentAI(void);
+	virtual ~EnvironmentAI(void);
+	void SetMetricCoef(int metricID, float value);
+	float * CoefMetric() { return koefMetric; };
+	virtual bool CoefsHaveMeaning() { return false; };
 };
 
 #endif

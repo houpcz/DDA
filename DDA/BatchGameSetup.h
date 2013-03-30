@@ -6,6 +6,7 @@
 #include <QSpinBox>
 #include <QGridLayout>
 #include <QPushButton>
+#include <qlabel.h>
 #include <vector>
 #include "EnvironmentAI.h"
 #include "IGame.h"
@@ -24,6 +25,8 @@ private :
 	QComboBox ** playerList;
 	QSpinBox ** playerLevel;
 	QPushButton * okButton;
+	QLabel *eaCoefLabel[KOEF_COUNT];
+	QSpinBox *eaCoefBox[KOEF_COUNT];
 	vector<IEnvironmentAI *> environmentAIList;
 	vector<IPlayer *> playerAIList;
 	int playerCount;

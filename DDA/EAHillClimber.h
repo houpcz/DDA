@@ -22,5 +22,6 @@ public:
 	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("EA Hill Climber"); };
 	IPlayer * Factory(int playerID) { return new EAHillClimber(playerID); };
+	bool CoefsHaveMeaning() { return true; };
 };
 

@@ -20,7 +20,8 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 	for(int loop1 = 0; loop1 < environmentAIList.size(); loop1++)
 		playerList[0]->addItem(environmentAIList[loop1]->GetAIName());
 
-	gridLayout->addWidget(playerList[0], 0, 0);
+	connect(playerList[0], SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateLevelSpin()));
+	gridLayout->addWidget(playerList[0], 0, 2);
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
 		playerList[loop1] = new QComboBox(this);
@@ -33,8 +34,8 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 			playerList[loop1]->addItem(playerAIList[loop2]->GetAIName());
 		}
 
-		gridLayout->addWidget(playerList[loop1], loop1, 0);
-		gridLayout->addWidget(playerLevel[loop1-1], loop1, 1);
+		gridLayout->addWidget(playerList[loop1], loop1 - 1, 0);
+		gridLayout->addWidget(playerLevel[loop1-1], loop1 - 1, 1);
 	} 
 
 
@@ -65,13 +66,28 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 
 	okButton = new QPushButton(tr("Save"));
 	connect(okButton, SIGNAL(clicked()), this, SLOT(SaveSetup()));
-	gridLayout->addWidget(okButton, 0, 1);
+	gridLayout->addWidget(okButton, 1000, 3);
 
 	vector<pair<QWidget *, QString> > gSS = game->GetSetupWidget();
 	for(int loop1 = 0; loop1 < gSS.size(); loop1++)
 	{
-		gridLayout->addWidget(new QLabel(gSS[loop1].second), playerCount + loop1, 0);
-		gridLayout->addWidget(gSS[loop1].first, playerCount + loop1, 1);
+		gridLayout->addWidget(new QLabel(gSS[loop1].second), playerCount + loop1 - 1, 0);
+		gridLayout->addWidget(gSS[loop1].first, playerCount + loop1 - 1, 1);
+	}
+
+	eaCoefLabel[KOEF_LEADER_SWITCHES] = new QLabel(tr("Leader switches"));
+	eaCoefLabel[KOEF_CREDIBILITY] = new QLabel(tr("Credibility"));
+	eaCoefLabel[KOEF_JUSTICE] = new QLabel(tr("Justice"));
+	eaCoefLabel[KOEF_LEADER_TIME] = new QLabel(tr("Leader Time"));
+	eaCoefLabel[KOEF_STATUS_DIFFERENCE] = new QLabel(tr("Status Difference"));
+	eaCoefLabel[KOEF_RANDOMNESS] = new QLabel(tr("Randomness"));
+	for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+	{
+		eaCoefBox[loop1] = new QSpinBox(this);
+		eaCoefBox[loop1]->setMinimum(0);
+		eaCoefBox[loop1]->setMaximum(99999);
+		gridLayout->addWidget(eaCoefBox[loop1], loop1 + 1, 3);
+		gridLayout->addWidget(eaCoefLabel[loop1], loop1 + 1, 2);
 	}
 
 	setLayout(gridLayout);
@@ -106,9 +122,18 @@ void BatchGameSetup::SaveSetup()
 		if(str1.compare(str2) == 0)
 		{
 			game->SetPlayer(0, environmentAIList[loop1]);
+			IPlayer * player = game->GetPlayer(0);
+			EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(player);
+			for(int loop2 = 0; loop2 < KOEF_COUNT; loop2++)
+			{
+				environmentAIList[loop1]->SetMetricCoef(loop2, eaCoefBox[loop2]->value());
+				ePlayer->SetMetricCoef(loop2, eaCoefBox[loop2]->value());
+			}
 			break;
 		}
 	}
+
+	
 
 
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
@@ -137,5 +162,21 @@ void BatchGameSetup::UpdateLevelSpin()
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
 		playerLevel[loop1 - 1]->setEnabled(playerAIList[playerList[loop1]->currentIndex() + ((human) ? 0 : 1)]->IsScalable());
+	}
+
+	QString str1 = playerList[0]->currentText();
+	for(int loop1 = 0; loop1 < environmentAIList.size(); loop1++)
+	{		
+		QString str2 = environmentAIList[loop1]->GetAIName();
+		if(str1.compare(str2) == 0)
+		{
+			EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(environmentAIList[loop1]);
+			float * coefs = ePlayer->CoefMetric();
+			for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+			{
+				eaCoefBox[loop1]->setValue(coefs[loop1]);
+				eaCoefBox[loop1]->setEnabled(ePlayer->CoefsHaveMeaning());
+			}
+		}
 	}
 }

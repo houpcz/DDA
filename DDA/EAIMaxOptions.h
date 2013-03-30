@@ -1,14 +1,14 @@
 #ifndef _EAIMAXOPTIONS_H_
 #define _EAIMAXOPTIONS_H_
 
-#include "ienvironmentai.h"
+#include "environmentai.h"
 class EAIMaxOptions :
-	public IEnvironmentAI
+	public EnvironmentAI
 {
 Q_OBJECT
 
 public:
-	EAIMaxOptions(int _myID) : IEnvironmentAI(_myID) {};
+	EAIMaxOptions(int _myID) : EnvironmentAI(_myID) {};
 	virtual ~EAIMaxOptions(void);
 	virtual bool Think();	
 	QString GetAIName() { return QString("Max Options"); };

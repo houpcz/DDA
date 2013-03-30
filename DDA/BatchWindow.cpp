@@ -48,7 +48,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 batchSize = new QSpinBox(this);
 	 batchSize->setMinimum(0);
 	 batchSize->setMaximum(1000000);
-	 batchSize->setValue(120); 
+	 batchSize->setValue(1000); 
 	 addBatch = new QPushButton(tr("Add"), this);
 	 connect(addBatch, SIGNAL(clicked()), this, SLOT(AddItemToBatch()));
 	 removeBatch = new QPushButton(tr("Remove"), this);
@@ -174,7 +174,7 @@ void BatchWindow::NextBatchItem()
 		for(int loop1 = 0; loop1 < sizeThread; loop1++)
 		{
 			int maxID = (loop1 + 1) * itemPerThread;
-			if(loop1 == MAX_THREAD - 1)
+			if(loop1 == sizeThread - 1)
 				maxID = batchSize;
 
 			batchThread[loop1]->Start(batchItem[currentBatchItemID], minID, maxID);
@@ -298,10 +298,10 @@ void BatchWindow::SaveAllToCsv()
 
 void BatchWindow::ItemSelect()
 {
-	if(batchIsRunning)
+	int currentID = listBatch->currentIndex().row();
+	if(batchIsRunning && currentBatchItemID != currentID)
 		return;
 
-	int currentID = listBatch->currentIndex().row();
 	if(currentID < 0 || currentID >= batchItem.size())
 		return;
 

@@ -2,6 +2,7 @@
 #include "EnvironmentAIBasic.h"
 #include "Human.h"
 #include "PlayerRandomAI.h"
+#include "PlayerHillClimber.h"
 #include "Qt\qcheckbox.h"
 
 GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
@@ -26,7 +27,7 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	{
 		player[PLAYER_AI] = new Human(PLAYER_AI);
 	} else {
-		player[PLAYER_AI] = new PlayerRandomAI(PLAYER_AI);
+		player[PLAYER_AI] = new PlayerHillClimber(PLAYER_AI);
 	}
 
 	QObject::connect(player[PLAYER_AI], SIGNAL(ImReady(void)),

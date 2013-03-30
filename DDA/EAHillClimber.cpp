@@ -20,7 +20,7 @@ bool EAHillClimber::Think()
 	int choises;
 	IGameState * currentState = game->GetCurrentState();
 	float tempVals[KOEF_COUNT];
-	if(0.1f < rand() / (float)RAND_MAX)
+	if(0.2f < rand() / (float)RAND_MAX)
 	{
 		IGameState ** nextState = currentState->GetNextStates(myID, &choises);
 		vector<int> bestID;
