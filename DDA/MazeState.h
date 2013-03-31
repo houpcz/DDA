@@ -74,6 +74,7 @@ private:
 	static const int GOAL_MAX = 10;
 	static const int CRED_HALL_PIECE_SIZE = 2;
 	static const int CRED_PIECE_MAX = 6;
+	static const int MAKE_DOOR_IN_THE_END = 10000000;
 	int credibility[CRED_PIECE_MAX];
 	char ** maze;
 	char ** mazeClosedList;

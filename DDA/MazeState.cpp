@@ -729,6 +729,7 @@ void MazeState::FindNonRedundantTurns()
 						{
 							int turn = loop2 + loop1 * hallSizePlus1;
 							helpVector.push_back(turn + hallSize);
+							helpVector.push_back(turn + hallSize + MAKE_DOOR_IN_THE_END);
 						}
 					}
 				}
@@ -780,6 +781,14 @@ void MazeState::ExploreHallSize1(int dx, int dy, int holeX, int holeY, int turn)
 
 bool MazeState::ExploreEnvironment(int turn, bool * twoUndefined, int * wallX, int * wallY)
 {
+	if(turn >= MAKE_DOOR_IN_THE_END)
+	{
+		turn -= MAKE_DOOR_IN_THE_END;
+		setupOpenHallEnds = OPEN_HALL_ENDS_ALWAYS;
+	} else {
+		setupOpenHallEnds = OPEN_HALL_ENDS_NEVER;
+	}
+
 	int dx = 0, dy = 0;
 	int holeX = 0, holeY = 0;
 	*twoUndefined = false;
