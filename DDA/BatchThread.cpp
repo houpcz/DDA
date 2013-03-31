@@ -18,8 +18,8 @@ BatchThread::~BatchThread(void)
 bool BatchThread::Start(BatchItem * _batchItem, int _firstID, int _lastID)
 {
 	batchItem = _batchItem;
-	IGame * g = batchItem->Game();
-	game = g->Factory(NULL, false);
+	IGame * g = batchItem->Game(); 
+	game = g->Factory(NULL, false); 
 	for(int loop1 = 0; loop1 < g->GetPlayerCount(); loop1++)
 	{
 		game->SetPlayer(loop1, g->GetPlayer(loop1)->Factory(loop1));

@@ -43,7 +43,12 @@ public:
 	void MousePressEvent ( int xMouse, int yMouse );
 	virtual pair<QString,QString> GetSetupString();
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
-	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new LostCities(_widget, _paint); };
+	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { 
+		LostCities * game =  new LostCities(_widget, _paint); 
+		game->realHandSize = realHandSize;
+		game->domination = domination;
+		return game;
+	};
 public slots:
 	void SetHandSize(int _handSize);
 	void SetDomination(int state);

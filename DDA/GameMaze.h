@@ -36,7 +36,15 @@ public :
 	void MousePressEvent ( int xMouse, int yMouse );
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
 	virtual pair<QString,QString> GetSetupString();
-	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new GameMaze(_widget, _paint); };
+	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { 
+		GameMaze * game = new GameMaze(_widget, _paint); 
+		game->mazeWidth = mazeWidth;
+		game->mazeHeight = mazeHeight;
+		game->stepsToGameOver = stepsToGameOver;
+		game->abstraction = abstraction;
+		game->visibleGoals = visibleGoals;
+		return game;
+	};
 
 	public slots:
 		void SetMazeWidth(int width);

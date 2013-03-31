@@ -20,6 +20,10 @@ public:
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("Hill Climber"); };
-	IPlayer * Factory(int playerID) { return new PlayerHillClimber(playerID); };
+	IPlayer * Factory(int playerID) { 
+		PlayerHillClimber * player =  new PlayerHillClimber(playerID); 
+		player->level = level;
+		return player;
+	};
 };
 

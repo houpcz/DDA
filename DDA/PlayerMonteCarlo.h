@@ -10,6 +10,10 @@ public:
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("Monte Carlo"); };
-	IPlayer * Factory(int playerID) { return new PlayerMonteCarlo(playerID); };
+	IPlayer * Factory(int playerID) { 
+		PlayerMonteCarlo * player = new PlayerMonteCarlo(playerID); 
+		player->level = level;
+		return player;
+	};
 };
 

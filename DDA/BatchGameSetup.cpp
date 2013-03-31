@@ -164,6 +164,14 @@ void BatchGameSetup::UpdateLevelSpin()
 		playerLevel[loop1 - 1]->setEnabled(playerAIList[playerList[loop1]->currentIndex() + ((human) ? 0 : 1)]->IsScalable());
 	}
 
+
+	EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(game->GetPlayer(0));
+	float * coefs = ePlayer->CoefMetric();
+	for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+	{
+		eaCoefBox[loop1]->setValue(coefs[loop1]);
+	}
+	/*
 	QString str1 = playerList[0]->currentText();
 	for(int loop1 = 0; loop1 < environmentAIList.size(); loop1++)
 	{		
@@ -178,5 +186,5 @@ void BatchGameSetup::UpdateLevelSpin()
 				eaCoefBox[loop1]->setEnabled(ePlayer->CoefsHaveMeaning());
 			}
 		}
-	}
+	}*/
 }

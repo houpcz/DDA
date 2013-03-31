@@ -39,5 +39,9 @@ public:
 	float GetBoardHeight() { return boardHeight; }
 	virtual pair<QString,QString> GetSetupString();
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
-	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { return new Ludo(_widget, _paint); };
+	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { 
+		Ludo * game = new Ludo(_widget, _paint); 
+		
+		return game;
+	};
 };

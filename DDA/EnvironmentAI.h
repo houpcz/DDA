@@ -22,6 +22,13 @@ public:
 	EnvironmentAI(int _myID);
 	virtual ~EnvironmentAI(void);
 	void SetMetricCoef(int metricID, float value);
+	void SetMetricCoefs(float * coefs) 
+	{
+		for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+		{
+			koefMetric[loop1] = coefs[loop1];
+		}
+	}
 	float * CoefMetric() { return koefMetric; };
 	virtual bool CoefsHaveMeaning() { return false; };
 };

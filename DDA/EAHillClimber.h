@@ -21,7 +21,12 @@ public:
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("EA Hill Climber"); };
-	IPlayer * Factory(int playerID) { return new EAHillClimber(playerID); };
+	IPlayer * Factory(int playerID) { 
+		EAHillClimber * player =  new EAHillClimber(playerID); 
+		player->level = level;
+		player->SetMetricCoefs(CoefMetric());
+		return player;
+	};
 	bool CoefsHaveMeaning() { return true; };
 };
 
