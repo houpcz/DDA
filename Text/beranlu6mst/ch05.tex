@@ -4,7 +4,9 @@
 
 \subsection{Bludiště}
 
-Herní plán bludiště se skládá z 2D čtvercové sítě. Na mapě je umístěn neznámý počet bomb. Cílem hráče je tyto bomby včas najít a zneškodnit. Jednotlivé čtverce mapy představují zdi, dveře, bomby, nebo průchozí pole. Hráč vidí bludiště z ptačí perspektivy a bludiště objevuje postupně. Vždy po otevření dveří se mu zobrazí chodba za nimi. Všechny bomby vybuchnou ve stejný čas. Čas je zde měřen na počet kroků hráče.
+Bludiště je jednoduchou hrou pro jednoho hráče. Na mapě je umístěn neznámý počet bomb. Cílem hráče je tyto bomby včas najít a zneškodnit.
+
+Herní plán bludiště se skládá z 2D čtvercové sítě. Jednotlivé čtverce mapy představují zdi, dveře, bomby, nebo průchozí pole. Hráč vidí bludiště z ptačí perspektivy a bludiště objevuje postupně. Vždy po otevření dveří se mu zobrazí chodba za nimi. Všechny bomby vybuchnou ve stejný čas. Čas je zde měřen na počet kroků hráče.
 
 Terorista navíc na některé dveře připevnil senzory, a poté dveře přemaloval namodro, nebo červeně. Jestliže hráč otevře modré dveře, získá čas navíc. Otevře-li červené, čas se mu zkrátí.
 
@@ -18,13 +20,15 @@ Druh dveří na každé možné konkrétní pozici je určen před začátkem hr
 
 Generování chodeb má jasně daná pravidla. Chodba může být libovolně dlouhá, i přes celý herní plán. Chodba může být zakončena zdí, nebo mohou na konci následovat další dveře. Z vygenerované chodby vedou vždy maximálně jedny dveře vlevo a jedny vpravo. Může se stát, že díky pozdějšímu napojení dvou chodem na sebe vznikne chodba s více dveřmi po levé, či pravé straně, ale nikdy nejsou na žádné straně vygenerovány dvě dveře naráz. Toto omezení je vynahrazeno možností ukončit chodbu dveřmi a ne zdí. Více dveří na jedné straně lze tak vygenerovat postupně pomocí dvou chodem stejným směrem.
 
-I bez volby druhů dveří zbývá příliš mnoho možných tahů. Na mapě 40x40 polí může být délka generované chodby maximálně 39 polí dlouhá. Počet kombinací umístění dveří vlevo nebo vpravo se zakončením dveřmi, nebo zdí je $2*40^2$ (pozice 1-39, plus možnost nedat žádné dveře). Větvící faktor větší než 1600 by nebyl příliš použitelný pro herní algoritmy. Proto je délka možné chodby rozdělena až na pět úseků. HP volí pouze mezi úseky. Tato část větvícího faktoru je snížena na snesitelných 50 v nejhorším případě.
+I bez volby druhů dveří zbývá příliš mnoho možných tahů. Na mapě 40x40 polí může být délka generované chodby maximálně 39 polí dlouhá. Počet kombinací umístění dveří vlevo nebo vpravo se zakončením dveřmi, nebo zdí je $2*40^2$ (pozice 1-39, plus možnost nedat žádné dveře). Větvící faktor větší než 3200 by nebyl příliš použitelný pro herní algoritmy. 
 
-Zásadní podmínkou pro generování bludiště bylo zakázat vygenerování neřešitelného bludiště. V žádném kroku nesmí být vygenerována chodba, která znemožní v budoucnu přístup k jakékoli z bomb. Bez důkazu bylo experimentálně ověřeno tvrzení, že pokud v jednom tahu existuje cesta mezi bombou a jedněmi z dveří přes zatím neodhalené čtverce mapy, tak v takovém případě existuje posloupnost tahů/možných chodeb, které skrz neodhalené čtverce vytvoří cestu mezi bombou a hráčem.
+Pro snížení větvícího faktoru nahradíme vždy několik tahů jedním. Provedeme abstrakci. HP neurčuje přesnou pozici dveří, ale jen přibližnou. Chodba je rozdělena do několika úseků a HP hráč si volí pouze, ve kterém úseku chce dveře. Konkrétní místo se vybere náhodně v rámci úseku. Dále HP nevybírá, jestli chodbu zakončí zdí, nebo dveřmi. Opět náhodná volba. Tímto byl větvící faktor HP hráče u bludišť o velikosti 40x40 snížen na maximální hodnotu 26.
 
-Toto tvrzení by nebylo platné, kdyby nebyla povolena libovolná délka chodeb a ani v případě, kdyby se o zakončení chodeb rozhodovalo podobně jako u barvy dveří.
+Zásadní podmínkou pro generování bludiště bylo zakázat vygenerování neřešitelného bludiště. V žádném kroku nesmí být vygenerována chodba, která znemožní v budoucnu přístup k jakékoli z bomb. Bez důkazu bylo experimentálně ověřeno tvrzení, že pokud v jednom tahu existuje cesta mezi bombou a jedněmi z dveří přes zatím neodhalené čtverce mapy, tak v takovém případě existuje posloupnost tahů/možných chodeb, které skrz neodhalené čtverce vytvoří cestu mezi bombou a hráčem. Toto tvrzení by nebylo platné, kdyby nebyla povolena libovolná délka chodeb.
 
-\subsubsection{Použitá heuristika}
+\subsubsection{Heuristika a uvěřitelnost}
+
+
 
 \subsection{Ludo}
 

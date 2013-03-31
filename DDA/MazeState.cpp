@@ -177,6 +177,9 @@ void MazeState::CopyToMe(const MazeState & origin)
 		}
 	}
 
+	for(int loop1 = 0; loop1 < CRED_PIECE_MAX; loop1++)
+		credibility[loop1] = origin.credibility[loop1];
+
 	tileToExplore = origin.tileToExplore;
 	environmentTurns = origin.environmentTurns;
 	environmentTurnsAbstract = origin.environmentTurnsAbstract;
@@ -1195,7 +1198,7 @@ void MazeState::AddCloseDoor(int x, int y)
 
 float MazeState::GetCredibility()
 {
-	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX);
+	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 100;
 }
 
 int MazeState::GetPlayerChoises(int whoAskID) 

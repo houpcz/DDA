@@ -45,25 +45,6 @@
       \endverb
       \keyw{Adaptation model;Brain modeling;Computational modeling;Games;IEEE Transactions on Computational Intelligence and AI in Games;Learning systems;Predictive models;computer games;computer games;game adaptivity;gameplay expectation;generation engine;learning preference;procedural content generation;semantic modeling;simulation;Adaptive games;declarative modeling;online adaptivity;player assessment;player modeling;procedural content generation;semantic modeling;}
     \endentry
-    \entry{15UnTrue}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=b75e9f44a51889c1f029138fac60e0b1}{Tassi}{T\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=b75e9f44a51889c1f029138fac60e0b1}{Tassi}{T\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{b75e9f44a51889c1f029138fac60e0b1}
-      \strng{fullhash}{b75e9f44a51889c1f029138fac60e0b1}
-      \field{sortinit}{0}
-      \field{labeltitle}{{A Universal Truth}}
-      \field{title}{{A Universal Truth}}
-      \field{urlday}{24}
-      \field{urlmonth}{02}
-      \field{urlyear}{2013}
-      \verb{url}
-      \verb http://unrealitymag.com/index.php/2012/01/09/a-universal-truth/
-      \endverb
-    \endentry
     \entry{17Evol}{inproceedings}{}
       \name{labelname}{1}{}{%
         {{hash=061c3572009b581f345bdad18078b20d}{Ashlock}{A\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
