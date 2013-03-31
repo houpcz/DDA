@@ -72,7 +72,7 @@ private:
 	static const char OPEN = ' ';
 	static const char CLOSE = '#';
 	static const int GOAL_MAX = 10;
-	static const int CRED_HALL_PIECE_SIZE = 3;
+	static const int CRED_HALL_PIECE_SIZE = 2;
 	static const int CRED_PIECE_MAX = 6;
 	int credibility[CRED_PIECE_MAX];
 	char ** maze;

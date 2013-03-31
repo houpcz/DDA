@@ -95,11 +95,11 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 			   (currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 - 1, loop1) != TILE_DOOR) &&
 			   (currentState->GetTile(loop2, loop1 - 1) != TILE_EMPTY && currentState->GetTile(loop2, loop1 - 1) != TILE_DOOR) &&
 			   (currentState->GetTile(loop2 + 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 + 1, loop1) != TILE_DOOR) &&
-			   (currentState->GetTile(loop2, loop1 + 1) != TILE_EMPTY && currentState->GetTile(loop2, loop1 + 1) != TILE_DOOR))/* &&
+			   (currentState->GetTile(loop2, loop1 + 1) != TILE_EMPTY && currentState->GetTile(loop2, loop1 + 1) != TILE_DOOR) &&
 			   currentState->GetTile(loop2 - 1, loop1 - 1) != TILE_EMPTY &&
 			   currentState->GetTile(loop2 + 1, loop1 - 1) != TILE_EMPTY &&
 			   currentState->GetTile(loop2 + 1, loop1 + 1) != TILE_EMPTY &&
-			   currentState->GetTile(loop2 - 1, loop1 + 1) != TILE_EMPTY)*/
+			   currentState->GetTile(loop2 - 1, loop1 + 1) != TILE_EMPTY)
 			   whatDraw = TILE_UNDEFINED;
 
 			switch(whatDraw)

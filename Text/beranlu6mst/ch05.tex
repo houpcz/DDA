@@ -1,7 +1,48 @@
 \chapter{Testující prostředí}
 
-Ahoj
+\section{Použité hry}
 
+\subsection{Bludiště}
+
+Herní plán bludiště se skládá z 2D čtvercové sítě. Na mapě je umístěn neznámý počet bomb. Cílem hráče je tyto bomby včas najít a zneškodnit. Jednotlivé čtverce mapy představují zdi, dveře, bomby, nebo průchozí pole. Hráč vidí bludiště z ptačí perspektivy a bludiště objevuje postupně. Vždy po otevření dveří se mu zobrazí chodba za nimi. Všechny bomby vybuchnou ve stejný čas. Čas je zde měřen na počet kroků hráče.
+
+Terorista navíc na některé dveře připevnil senzory, a poté dveře přemaloval namodro, nebo červeně. Jestliže hráč otevře modré dveře, získá čas navíc. Otevře-li červené, čas se mu zkrátí.
+
+V prostředí jsou implementovány dvě varianty hry. V první hráč od začátku zná pozici všech bomb, musí pouze nalézt cestu k nim. V druhé variantě je i pozice bomb utajena.
+
+\subsubsection{Hráč prostředí}
+
+Člověk si má myslet, že při hraní objevuje již předgenerované bludiště. Ve skutečnosti se bludiště tvoří postupně, jak ho hráč objevuje. Když hráč otevře nové dveře, vytvoří se mu nová chodba. Pro obě varianty hry platí, že rozmístění bomb je pevně dané, bomby nejsou umisťovány v průběhu hry. 
+
+Druh dveří na každé možné konkrétní pozici je určen před začátkem hry. Z toho vyplývá, že hráč prostředí může barvu dveří ovlivňovat pouze nepřímo. Může ovlivnit umístění dveří, které následně určí jejich barvu.
+
+Generování chodeb má jasně daná pravidla. Chodba může být libovolně dlouhá, i přes celý herní plán. Chodba může být zakončena zdí, nebo mohou na konci následovat další dveře. Podobně jako u barvy dveří hráč prostředí neurčuje přímo, jestli chodba bude zakončená dveřmi, nebo ne. Opět druh zakončení svázán s pozicí na mapě.
+
+Z vygenerované chodby vedou vždy maximálně jedny dveře vlevo a jedny vpravo. Může se stát, že díky pozdějšímu napojení dvou chodem na sebe vznikne chodba s více dveřmi po levé, či pravé straně, ale nikdy nejsou na žádné straně vygenerovány dvě dveře naráz. Toto omezení je vynahrazeno možností ukončit chodbu dveřmi. Více dveří na jedné straně lze tak vygenerovat postupně pomocí dvou chodem stejným směrem.
+
+Zásadní podmínkou pro generování bludiště bylo zakázat vygenerování neřešitelného bludiště. V žádném kroku nesmí být vygenerována chodba, která znemožní v budoucnu přístup k jakékoli z bomb. Bez důkazu bylo experimentálně ověřeno tvrzení, že pokud v jednom tahu existuje cesta mezi bombou a jedněmi z dveří přes zatím neodhalené čtverce mapy, tak v takovém případě existuje posloupnost tahů/možných chodeb, které skrz neodhalené čtverce vytvoří cestu mezi bombou a hráčem.
+
+I přes daná omezení pro tahy HP, možných tahů může být velmi mnoho. Na mapě 40x40 polí může být délka generované chodby maximálně 39 polí dlouhá. Počet kombinací umístění dveří vlevo a vpravo je $40^2$ (pozice 1-39, plus možnost nedat žádné dveře). Větvící faktor větší než 1600 by nebyl příliš použitelný pro herní algoritmy. Proto je délka možné chodby rozdělena až na pět úseků. HP volí pouze mezi úseky. Tato část větvícího faktoru je snížena na snesitelných 25.
+
+\subsubsection{Použitá heuristika}
+
+\subsection{Ludo}
+
+Ludo patří mezi zástupce stíhacích her. U nás je nejznámější zástupcem stíhacích her hra Člověče, nezlob se. Nejdřív uvedu společného rysy obou her. Znalci Člověče, nezlob se mohou zbytek odstavce přeskočit. Každý hráč má k dispozici 4 figury a jeho cílem je dovést všechny jeho figury z počáteční pozice do cíle. Herní plán se skládá ze 4 startovních a koncových pozic za každého hráče v jeho barvě a z 40 sdílených pozic uspořádaných do kružnice. Hráči se střídají ve svých tazích. Jeden tah se skládá z hodu kostkou a posunu jedné z figur hráče o počet pozic vpřed dle hodnoty na hozené kostce. Na žádném z polí nemohou být dvě figury na stejné pozici. Pokud by se tak mělo stát, figura nehrajícího hráče stojícího na stejné pozici jako nově posunutá figurka aktuálního hráče, je přesunuta zpět na startovní pozici. Ze startovní pozice na hlavní herní plán hráč může přesunout figuru, jestliže hodí na kostce šestku. Tuto šestku už nemůže použít pro pohyb jiné nebo stejné figury. Jestliže nemá hráč ani jednu z figur na hlavním plánu, může házet až třikrát, dokud nehodí šestku. Vítězí hráč, který jako první přesune všechny své figury do cílových pozic.
+
+Hra Ludo do hry přidává bezpečné pozice. Některé pozice na herním plánu jsou odlišeny od ostatních. Jestliže na ní hráč má figuru, nemůže být odstraněna oponentem. Pokud oponent hodí kostkou přesně hodnotu, která by ho posunula na obsazenou bezpečnou pozici, tah nemůže provést. Další změnou je neexistence bonusových hodů po hození hodnoty 6, a to ani v případě, že pomocí 6 hráč figuru nově nasadil na herní plán.
+
+V obou zmíněných variantách hráč má na začátku hry všechny figury na startovních pozicích v tzv. startovním domečku. Pro urychlení hry, ale i odstranění počáteční frustrace hráčů s menším štěstím, v implementované variantě hry všechny figury všech hráčů začínají na hlavním plánu.
+
+\subsubsection{Hráč prostředí}
+
+\subsubsection{Použitá heuristika}
+
+\subsection{Ztracená města}
+
+\subsubsection{Hráč prostředí}
+
+\subsubsection{Použitá heuristika}
 
 \endinput
 %%
