@@ -12,6 +12,7 @@ public:
 	static const int MAX_PLAYER = 4;
 	static const int MAX_FIGURE = 4;
 	static const int MAX_CHOISES = MAX_FIGURE * 2;
+	static const int MAX_LAST_DICE = 4;
 private:
 	static const int safeTile[FIRST_HOME_TILE];
 	int lastDice;
@@ -22,6 +23,7 @@ private:
 	int figureNextState[MAX_CHOISES];
 	int playerRank[MAX_PLAYER];
 	int credibility[MAX_PLAYER][MAX_CUBE];
+	int credibilityRecent[MAX_PLAYER][MAX_LAST_DICE];
 	bool isRankUpToDate;
 
 	void CountPlayerRanks();

@@ -1005,7 +1005,7 @@ float LostCitiesState::GetCredibility()
 	float credSum = 0.0f;
 	for(int loop1 = 0; loop1 < PLAYER_AMOUNT; loop1++)
 	{
-		credSum += MatrixFactory::Inst()->Credibility(colorCredibility[loop1], COLOR_AMOUNT);
+		credSum += MatrixFactory::Inst()->Credibility(colorCredibility[loop1], COLOR_AMOUNT) / 2;
 		credSum += MatrixFactory::Inst()->Credibility(valueCredibility[loop1], VALUE_KINDS);
 	}
 

@@ -24,6 +24,11 @@ LudoState::LudoState(Game * _game) : IGameState(_game)
 		{
 			credibility[loop1][loop2] = 0;
 		}
+
+		for(int loop2 = 0; loop2 < MAX_LAST_DICE; loop2++)
+		{
+			credibilityRecent[loop1][loop2] = -1;
+		}
 	}
 
 	dicePlayerNow = true;
@@ -67,6 +72,11 @@ void LudoState::CopyToMe(const LudoState & origin)
 		for(int loop2 = 0; loop2 < MAX_CUBE; loop2++)
 		{
 			credibility[loop1][loop2] = origin.credibility[loop1][loop2];
+		}
+
+		for(int loop2 = 0; loop2 < MAX_LAST_DICE; loop2++)
+		{
+			credibilityRecent[loop1][loop2] = origin.credibilityRecent[loop1][loop2];
 		}
 	}
 	for(int loop1 = 0; loop1 < MAX_CHOISES; loop1++)
@@ -236,6 +246,12 @@ int LudoState::MakeTurn(int playerChoise)
 	if(dicePlayerNow)
 	{
 		credibility[activePlayerID][playerChoise]++;
+		for(int loop1 = MAX_LAST_DICE - 1; loop1 > 0; loop1--)
+		{
+			credibilityRecent[activePlayerID][loop1] = credibilityRecent[activePlayerID][loop1 - 1];
+		}
+		credibilityRecent[activePlayerID][0] = playerChoise;
+
 		lastDice = playerChoise + 1;
 		NextChoises();
 	} else {
@@ -478,7 +494,23 @@ float LudoState::GetCredibility()
 {
 	float credSum = 0.0f;
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
+	{
 		credSum += MatrixFactory::Inst()->Credibility(credibility[loop1], MAX_CUBE);
+
+		float credBonus = 1.0;
+		if(credibilityRecent[loop1][0] == credibilityRecent[loop1][1])
+			for(int loop2 = 2; loop2 < MAX_LAST_DICE; loop2++)
+			{
+				if(credibilityRecent[loop1][loop2] > 0)
+				{
+					if(credibilityRecent[loop1][loop2] == credibilityRecent[loop1][loop2 - 1])
+					{
+						credBonus *= 15.0f;
+					} else
+						break;
+				}
+			}
+	}
 
 	return credSum / MAX_PLAYER;
 }
