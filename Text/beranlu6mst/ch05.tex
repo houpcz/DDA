@@ -2,6 +2,28 @@
 
 \section{Použité hry}
 
+Pro testování navržených algoritmů v předchozí kapitole jsem si zvolil následující tři relativně jednoduché hry - Bludiště, Ludo a Ztracená města. Hry se liší počtem hráčů, úplností informací a determinismus. Zařazení do jednotlivých kategorií znázorňuje následující tabulka \ref{tab:klasifikaceher}.
+
+\begin{table*}[b]\footnotesize
+\vspace*{0mm}
+\caption{{\label{tab:klasifikaceher}} Klasifikace her do různých tříd dle počtu hráčů, determinismu a úplnosti informace. }
+\vspace*{0mm}
+\label{shadowtable}
+\begin{center}
+\begin{tabular}{| l || c | c | c |}
+\hline
+Název hry & Počet hráčů & Determinismus & Informace \\
+\hline
+\hline
+Bludiště & 1 & Bez náhody (z pohledu hráče) & Neúplná \\ \hline
+Ludo & 4 & S náhodou & Úplná \\ \hline
+Ztracená města & 2 & S náhodou & Neúplná \\ \hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+Schéma podsekcí jednotlivých her je stejné. Nejdříve popíši cíl a pravidla hry. Následuje popis hráče prostředí (HP) v dané hře. Nakonec popisuji funkci hodnosti, status funkci a výpočet uvěřitelnosti, které jsou využívány metrikami pro měření zábavnosti. Pojmy funkcí hodnosti a statusu vychází z algoritmu Dynamická úroveň.\ref{sec-dynlevel}
+
 \subsection{Bludiště}
 
 Bludiště je jednoduchou hrou pro jednoho hráče. Na mapě je umístěn neznámý počet bomb. Cílem hráče je tyto bomby včas najít a zneškodnit.
@@ -28,7 +50,15 @@ Zásadní podmínkou pro generování bludiště bylo zakázat vygenerování ne
 
 \subsubsection{Heuristika a uvěřitelnost}
 
+Určení hodnosti hry hráčem závisí na variantě hry. Ve variantě s viditelnými bombami se spočítá manhattonská vzdálenost mezi hráčem a nejbližší bombou. Výsledná hodnost je dána rozdílem počtu kroků do konce hry a desetinásobkem spočítané vzdálenosti.
 
+Ve druhé variantě hry nelze využít informací o poloze bomb. Heuristika navádí hráče k nejbližším dveřím s ohledem na blízkost dveří dalších. Jejím základem je počet kroků do konce mínus dvojnásobek reálné vzdálenosti k nejbližším dalším dveřím. K výsledku se přičte počet již nalezených bomb krát velká konstanta, aby hráč vždy upřednostnil odstranění bomby před hledáním další.
+
+Pro jednoduchost se hráč ve hře pohybuje skokem mezi jednotlivými dveřmi a vždy se změří reálná vzdálenost takového pohybu. Z tohoto důvodu ve všech stavech mimo prvního hráč stojí na pozici nově otevřených dveří, nebo čerstvě odstraněné bomby. Z tohoto důvodu bonus/penalizace za otevření různých druhů dveří je už v heuristice započítán v proměnné počet kroků do konce hry.
+
+Status funkce se v této hře výrazně liší od funkce hodnosti a je shodná pro obě varianty hry. Je složena se součtu vzdáleností k jednotlivým aktivním bombám($sumDist$) a počtu ještě neprozkoumaných čtverců ($undefinedTiles$) a samozřejmě počtu kroků do konce hry ($stepsToGameOver$). Výsledný vzorec : $status = stepsToGameOver - \frac{3}{2}sumDist-(undefinedTiles / 2 * coef)$. Koeficient coef je roven nule, jestliže hra skončila a hráč vyhrál, jinak je roven 1. 
+
+Uvěřitelnost v této hře je definována na základě délek nově vytvářených chodeb. Cílem bude tvořit bludiště bez příliš dlouhých chodeb a s přibližně stejným zastoupením různých délek. V našem konkrétním případě se zaznamená počet chodeb do délky 2, délek 2/3, 4/5, 6/7, 8/9 a zvlášť počet chodem o délce 10 a delších. Výsledná uvěřitelnost hry je dána součtem stonásobku počtu chodeb delších než 9 a uvěřitelnosti četností prvních 5 délek.
 
 \subsection{Ludo}
 
@@ -40,13 +70,41 @@ V obou zmíněných variantách hráč má na začátku hry všechny figury na s
 
 \subsubsection{Hráč prostředí}
 
-\subsubsection{Použitá heuristika}
+Hráč prostředí zde ovládá hrací kostku. Vzhledem k pravidlům hry je vliv HP hráče velice vysoký. Teoreticky je pouze na něm, který z ostatních hráčů vyhraje. Např. nemusí dovolit žádnému z hráčů hodit na kostce poslední potřebnou hodnotu pro umístění figury do cílové pozice. Z tohoto důvodu je zde zásadní metrikou uvěřitelnost.
+
+\subsubsection{Použitá heuristika a uvěřitelnost}
+
+\emph{Heuristiky} pro hodnotící a status funkci jsem použil totožné. Heuristika pro jednotlivé hráče vyjadřuje přibližně, kolik průměrně kol hráč potřebuje k dokončení hry. Hodnota se rovná součtu počtu kol potřebných k dosažení cíle všech figur hráče. 
+
+Výpočet pro jednu figuru je následující. Průměrný hod má hodnotu 3,5. Počet kol k dosažení cíle je roven počtu polí před figurkou děleno 3,5. Pro nasazení figury je potřeba hodit 6. Abychom měli alespoň 50\% hození 6, musíme kostkou hodit 4 krát. ($1-\frac{5}{6}^4$) Uvažujme případ, kdy hráč nemá žádnou figuru na hracím plánu. V takovém případě hráč hází 3 krát, a tedy potřebuje $\frac{4}{3}$ tahů, které se přičtou k heuristice pro každou nenasazenou figuru. Figury před cílovým domečkem musí na kostce hodit hodnotu odpovídající volné pozici v cílovém domečku. Uvažujme pesimistický případ, kdy je vhodná pouze jedna hodnota. V takovém případě přičteme další 4 potřebné tahy k heuristice.
+
+Jestliže figura nestojí na bezpečné pozici a zároveň za ní stojí do vzdálenosti 6 figura oponenta, přičteme k heuristice $\frac{1}{6}$ z potřebných tahů k dostání se do aktuální pozice figury.
+
+\emph{Uvěřitelnost} hry závisí na hodech kostkou. Každý z hráčů očekává, že během hry každou hodí každou hodnotu kostky přibližně stejněkrát. Zároveň je nepravděpodobné, že by hráč po sobě hodil 3 a vícekrát stejnou hodnotu. Uvěřitelnost hráče se skládá ze dvou částí. Je součtem uvěřitelnosti četnosti hodů kostkou a penalizací za hod stejné hodnoty 3 a vícekrát. Výsledná uvěřitelnost je rovna sumě uvěřitelností pro jednotlivé hráče.
 
 \subsection{Ztracená města}
 
+Ztracená města patří mezi jednoduché karetní hry od společnosti Albi. Herní balíček se skládá ze 60 karet 5 barev představujících jednotlivé expedice. Každá expedice může být složena až ze 12 karet. První 3 karty jsou sázkové, zbylé mají hodnotu 2 až 10. Cílem hry je vytvářet co nejdelší a nejhodnotnější expedice a získat větší bodový zisk než soupeř. Na začátku hry si každý z hráčů lízne 8 karet ze zamíchaného balíčku. Hráči se postupně střídají v kolech. Každé kolo se skládá ze dvou částí - zahrání karty a dolíznutí karty. Při zahrání karty má hráč na výběr v přiložení karty do jeho existující expedice, nebo odložení karty na vrchol společného odkládacího balíčku příslušné barvy. Při přiložení karty do expedice musí být splněno pravidlo, že nově přidaná karta má vyšší hodnotu než je nejvyšší hodnota v dané expedici. Sázkové karty hráč může přidat do expedice pouze v případě, že v ní nemá již kartu nesázkovou. V druhé fázi si hráč dobere kartu do celkového počtu 8 karet. Má na výběr mezi zakrytým dobíracím balíčkem, nebo si může vzít kartu z vrchu jednoho odkládacího balíčku.
+
+Bodové hodnocení expedic hráče se spočítá následovně. U každé expedice se sečtou hodnoty běžných karet. Z expedice se odečtou náklady v celkové hodnotě 20. V případě, že hráč má vyloženu 1, 2, nebo všechny tři sázkové karty, výslednou hodnotu vynásobí 2, 3, nebo 4. Expedice může mít ve výsledku zápornou hodnotu. Např. má-li hráč v expedici jednu sázkovou kartu a karty s hodnotami 4 a 5, bodové hodnocení se spočítá $(4 + 5 - 20) * 2$. Jestliže je expedice složena alespoň z 8 z celkových 12 karet, hráč si přičte dalších bonusových 20 bodů. (Tyto body se nenásobí)
+
+Kompletní originální pravidla hry s vysvětlujícími obrázky lze nalézt na \cite{Neni}.
+
 \subsubsection{Hráč prostředí}
 
-\subsubsection{Použitá heuristika}
+Na začátku hry je náhodně rozdáno 8 karet pro každého hráče. Vždy, když se hráč rozhodne táhnout kartu z balíčku, kartu vybere hráč prostředí.
+
+\subsubsection{Použitá heuristika a uvěřitelnost}
+
+Podobně jako u hry Ludo, i zde je využívána stejná heuristika pro funkce status a hodnosti. Heuristika je vždy počítána jako by se jednalo o hru s úplnou informací. Můžeme ji počítat tímto způsobem, protože umělá inteligence nikdy nevolá heuristiku přímo na aktuální stav, ale vždy na stav ze stejného informačního setu, který stochasticky vygeneruje.
+
+Heuristika odhaduje předpokládaný počet bodů získaných z jednotlivých expedic. Počítáme body pouze z expedic, které již byly založeny. Pro každou založenou expedici spočteme aktuální počet bodů a výsledek vynásobíme konstantou 10. Poté projdeme všechny karty v ruce, v balíčku a vrchní kartu z odložených karet, které ještě hráč může zahrát. (mají vyšší hodnotu než nejvyšší vyložená karta) Součet bodů těchto karet vynásobíme konstantami 8, 4, nebo 3 a 7 pro karty z ruky, balíčku a vrchní kartu. Pro karty z balíčku se vybere konstanta 3, jestliže hráč založí 4. expedici, jinak je 4. Heuristika je převzata z \cite{Neni} včetně koeficientů.
+
+Aby hra byla \emph{uvěřitená}, jednotliví hráči musí během hry získat podobné počty barev a hodnot karet. Uvěřitelnost barvy je méně důležitá. Naopak pokud se pokusíme, aby každý hráč dostal od každé barvy během hry stejný počet karet, můžete to negativně ovlivnit průběh hry. Hodnoty karet rozdělíme do 4 kategorií - sázkové karty, hodnoty 2, 3, 4, hodnoty 5, 6, 7 a nakonec 8, 9, 10. Hra bude více uvěřitelná, když každý hráč během hry získá podobně karet z každé kategorie.
+
+Výsledná uvěřitelnost je sumou uvěřitelností četnosti kategorií hodnot a poloviny uvěřitelnosti četností barev pro každého hráče zvlášť.
+
+\section{Použité umělé inteligence}
 
 \endinput
 %%

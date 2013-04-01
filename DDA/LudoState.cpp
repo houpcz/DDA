@@ -395,12 +395,12 @@ void LudoState::CountPlayerRanks()
 
 				if(figure[loop2][loop1] >= FIRST_HOME_TILE)
 				{
-					result += 4;
+					//result += 4;
 				} else if(figure[loop2][loop1] >= 0)
 				{
-					result -= 6 + (int) (((FIRST_HOME_TILE - figure[loop2][loop1]) / 3.5f / 6.0f) + 0.5f);
+					result -= (int) (((FIRST_HOME_TILE - figure[loop2][loop1]) / 3.5f) + 0.5f) + 4;
 				} else {
-					result -= (int) ((FIRST_HOME_TILE / 3.5f) + 0.5f) + 2;
+					result -= (int) ((FIRST_HOME_TILE / 3.5f) + 0.5f + 3.0f + 4.0f/3.0f);
 				}
 			}
 			tempRank[loop2] = result + 100;
@@ -416,7 +416,7 @@ void LudoState::CountPlayerRanks()
 					int opponentID = board[opponentPos];
 					if(safeTile[opponentPos] == 0 && board[opponentPos] > 0 && opponentID != board[loop1])
 					{
-						tempRank[opponentID] -= (int) ((((FIRST_HOME_TILE + opponentPos - Ludo::firstTile[opponentID]) % FIRST_HOME_TILE) / 3.5f) + 0.5f);
+						tempRank[opponentID] -= (int) (((((FIRST_HOME_TILE + opponentPos - Ludo::firstTile[opponentID]) % FIRST_HOME_TILE) / 3.5f + 3.0f + 4.0f/3.0f) / 6.0f) + 0.5f);
 					}
 				}
 			}
@@ -497,8 +497,10 @@ float LudoState::GetCredibility()
 	{
 		credSum += MatrixFactory::Inst()->Credibility(credibility[loop1], MAX_CUBE);
 
-		float credBonus = 1.0;
+		float credBonus = 0.0;
 		if(credibilityRecent[loop1][0] == credibilityRecent[loop1][1])
+		{
+			credBonus = 1.0;
 			for(int loop2 = 2; loop2 < MAX_LAST_DICE; loop2++)
 			{
 				if(credibilityRecent[loop1][loop2] > 0)
@@ -510,9 +512,11 @@ float LudoState::GetCredibility()
 						break;
 				}
 			}
+		}
+		credSum += credBonus;
 	}
 
-	return credSum / MAX_PLAYER;
+	return credSum;
 }
 
 bool LudoState::IsGameOver()

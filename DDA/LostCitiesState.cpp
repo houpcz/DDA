@@ -1009,7 +1009,7 @@ float LostCitiesState::GetCredibility()
 		credSum += MatrixFactory::Inst()->Credibility(valueCredibility[loop1], VALUE_KINDS);
 	}
 
-	return credSum / (MAX_PLAYER * 2);
+	return credSum;
 }
 
 IGameState * LostCitiesState::GetStateFromSameInformSet(int whoAskID)
