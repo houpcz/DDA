@@ -775,8 +775,26 @@
       \verb 10.1109/ICECC.2011.6066649
       \endverb
     \endentry
+    \entry{ch5LT}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=e9bf66c9b1385ae3ea9c7e21d4c84a43}{Vasconcelos}{V\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=e9bf66c9b1385ae3ea9c7e21d4c84a43}{Vasconcelos}{V\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{e9bf66c9b1385ae3ea9c7e21d4c84a43}
+      \strng{fullhash}{e9bf66c9b1385ae3ea9c7e21d4c84a43}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Lost Cities}}
+      \field{title}{{Lost Cities}}
+      \field{urlday}{01}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.ncc.up.pt/~pbv/stuff/lostcities/
+      \endverb
+    \endentry
   \endsortlist
-  \missing{Neni}
 \endrefsection
 \endinput
 

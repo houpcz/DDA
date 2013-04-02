@@ -43,6 +43,7 @@ public :
 	virtual void PrintToFile(const char * firstLine) {};
 	virtual IGameState * Clone() = 0;
 
+	virtual float FreedomLimit() = 0;
 	int GetLeaderID(int * outRankDifference);
 	void UpdateGameStat();
 	GameStat GetGameStat() {

@@ -64,7 +64,11 @@ void IGameState::UpdateGameStat()
 	gameStat->AddTurnNumber();
 
 	int currentPlayerID = GetActivePlayerID();
-			
+
+	int playerChoises = GetPlayerChoises(currentPlayerID);
+	if(currentPlayerID != 0)
+		gameStat->AddFreedomSum(playerChoises);
+
 	if(lastPlayerID != 0)
 	{
 		gameStat->AddTurnNumberReal();
@@ -83,7 +87,6 @@ void IGameState::UpdateGameStat()
 	}
 	playerLeader = newLeaderID;
 
-	int playerChoises = GetPlayerChoises(currentPlayerID);
 	gameStat->UpdatePlayerChoises(currentPlayerID, playerChoises);
 	gameStat->AddPlayerTurnNumber(currentPlayerID);
 

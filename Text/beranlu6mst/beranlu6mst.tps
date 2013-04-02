@@ -13,12 +13,12 @@ NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
-Class=BibTeXView
-Document=beranlu6mst.bib
+Class=LaTeXView
+Document=ch05.tex
 
 [Frame0_View0,0]
-TopLine=419
-Cursor=12353
+TopLine=132
+Cursor=13689
 
 [Frame1]
 Flags=0
@@ -31,12 +31,12 @@ NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
-Class=LaTeXView
-Document=beranlu6mst.tex
+Class=BibTeXView
+Document=beranlu6mst.bib
 
 [Frame1_View0,0]
-TopLine=45
-Cursor=2395
+TopLine=407
+Cursor=14467
 
 [Frame2]
 Flags=0
@@ -50,11 +50,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch05.tex
+Document=ch03.tex
 
 [Frame2_View0,0]
-TopLine=23
-Cursor=2375
+TopLine=565
+Cursor=42277
 
 [Frame3]
 Flags=0
@@ -68,11 +68,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch04.tex
+Document=ch06.tex
 
 [Frame3_View0,0]
 TopLine=0
-Cursor=0
+Cursor=31
 
 [Frame4]
 Flags=0
@@ -86,11 +86,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch01.tex
+Document=ch04.tex
 
 [Frame4_View0,0]
-TopLine=49
-Cursor=5744
+TopLine=0
+Cursor=0
 
 [Frame5]
 Flags=0
@@ -104,11 +104,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch07.tex
+Document=ch01.tex
 
 [Frame5_View0,0]
-TopLine=0
-Cursor=16
+TopLine=240
+Cursor=5744
 
 [Frame6]
 Flags=0
@@ -122,11 +122,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch06.tex
+Document=ch02.tex
 
 [Frame6_View0,0]
-TopLine=0
-Cursor=31
+TopLine=25
+Cursor=19143
 
 [Frame7]
 Flags=0
@@ -140,11 +140,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch02.tex
+Document=beranlu6mst.tex
 
 [Frame7_View0,0]
-TopLine=290
-Cursor=19143
+TopLine=45
+Cursor=2395
 
 [Frame8]
 Flags=0
@@ -158,11 +158,11 @@ NormalPos.top=32
 NormalPos.right=1562
 NormalPos.bottom=584
 Class=LaTeXView
-Document=ch03.tex
+Document=ch07.tex
 
 [Frame8_View0,0]
-TopLine=684
-Cursor=39142
+TopLine=0
+Cursor=16
 
 [SessionInfo]
 FrameCount=9

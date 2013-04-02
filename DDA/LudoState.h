@@ -45,6 +45,7 @@ public:
 	int GetActivePlayerID() const;
 	int GetPlayerRank(int playerID, int whoAskID);
 	int GetPlayerStatus(int playerID);
+	float FreedomLimit() { return 4.0f; };
 	IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates);
 	IGameState * GetRandomNextState(int whoAskID, int * outStateID);
 	IGameState * SimulateToTheEnd(int whoAskID);

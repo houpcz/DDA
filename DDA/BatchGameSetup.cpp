@@ -75,13 +75,14 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		gridLayout->addWidget(gSS[loop1].first, playerCount + loop1 - 1, 1);
 	}
 
-	eaCoefLabel[KOEF_LEADER_SWITCHES] = new QLabel(tr("Leader switches"));
-	eaCoefLabel[KOEF_CREDIBILITY] = new QLabel(tr("Credibility"));
-	eaCoefLabel[KOEF_JUSTICE] = new QLabel(tr("Justice"));
-	eaCoefLabel[KOEF_LEADER_TIME] = new QLabel(tr("Leader Time"));
-	eaCoefLabel[KOEF_STATUS_DIFFERENCE] = new QLabel(tr("Status Difference"));
-	eaCoefLabel[KOEF_RANDOMNESS] = new QLabel(tr("Randomness"));
-	for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+	eaCoefLabel[COEF_LEADER_SWITCHES] = new QLabel(tr("Leader switches"));
+	eaCoefLabel[COEF_CREDIBILITY] = new QLabel(tr("Credibility"));
+	eaCoefLabel[COEF_JUSTICE] = new QLabel(tr("Justice"));
+	eaCoefLabel[COEF_LEADER_TIME] = new QLabel(tr("Leader Time"));
+	eaCoefLabel[COEF_STATUS_DIFFERENCE] = new QLabel(tr("Status Difference"));
+	eaCoefLabel[COEF_RANDOMNESS] = new QLabel(tr("Randomness"));
+	eaCoefLabel[COEF_FREEDOM] = new QLabel(tr("Freedom"));
+	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
 	{
 		eaCoefBox[loop1] = new QSpinBox(this);
 		eaCoefBox[loop1]->setMinimum(0);
@@ -124,7 +125,7 @@ void BatchGameSetup::SaveSetup()
 			game->SetPlayer(0, environmentAIList[loop1]);
 			IPlayer * player = game->GetPlayer(0);
 			EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(player);
-			for(int loop2 = 0; loop2 < KOEF_COUNT; loop2++)
+			for(int loop2 = 0; loop2 < COEF_COUNT; loop2++)
 			{
 				environmentAIList[loop1]->SetMetricCoef(loop2, eaCoefBox[loop2]->value());
 				ePlayer->SetMetricCoef(loop2, eaCoefBox[loop2]->value());
@@ -167,7 +168,7 @@ void BatchGameSetup::UpdateLevelSpin()
 
 	EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(game->GetPlayer(0));
 	float * coefs = ePlayer->CoefMetric();
-	for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
 	{
 		eaCoefBox[loop1]->setValue(coefs[loop1]);
 	}

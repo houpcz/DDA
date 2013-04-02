@@ -21,7 +21,7 @@ public:
 	~MaxNPlayer(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};
-	virtual bool IsScalable() { return false; }
+	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("Max N"); };
 	IPlayer * Factory(int playerID) { return new MaxNPlayer(playerID); };
 };

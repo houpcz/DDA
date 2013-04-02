@@ -176,8 +176,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.2}Pou\IeC {\v z}it\IeC {\'e} um\IeC {\v e}l\IeC {\'e} inteligence}{46}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Proveden\IeC {\'e} experimenty}{47}{chapter.6}
+\contentsline {subsection}{\numberline {5.2.1}HillClimber}{46}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Z\IeC {\'a}v\IeC {\v e}r}{48}{chapter.7}
+\contentsline {subsection}{\numberline {5.2.2}Max N}{46}{subsection.5.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Literatura}{49}{chapter.7}
+\contentsline {subsection}{\numberline {5.2.3}Monte Carlo}{46}{subsection.5.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.4}Minimax IS}{46}{subsection.5.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.5}\IeC {\v S}k\IeC {\'a}lov\IeC {\'a}n\IeC {\'\i }}{46}{subsection.5.2.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Proveden\IeC {\'e} experimenty}{48}{chapter.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Z\IeC {\'a}v\IeC {\v e}r}{49}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Literatura}{50}{chapter.7}

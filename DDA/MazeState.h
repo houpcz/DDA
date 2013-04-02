@@ -128,6 +128,7 @@ public:
 	MazeState& operator=(const MazeState &origin);
 	virtual ~MazeState(void);
 
+	float FreedomLimit() { return 10.0f; };
 	ISpecificStat * GetGameSpecificStat();
 	void SetActivePlayerID(int _activePlayerID) { activePlayerID = _activePlayerID; }
 	int GetPlayerX() const { return playerX; }

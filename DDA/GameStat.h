@@ -94,6 +94,8 @@ private :
 	float randomness;
 	float justice;
 	float credibility;
+	float freedom;
+	long long freedomSum;
 
 	PlayerStat * playerStat;
 	ISpecificStat * gameStat; 
@@ -122,6 +124,7 @@ public:
 	void AddStatusDifference(int difference) { sumRankDifference += difference; };
 	void SetEndStatusDifference(int difference) { endRankDifference = difference; };
 	void AddControlSum(long long control) { controlSum += control; };
+	void AddFreedomSum(long long freedom) { freedomSum += freedom; };
 	void AddCredibilitySum(float credibilityPiece) { credibilitySum += credibilityPiece; }
 	void AddPlayerDeltaH(int playerID, int deltaH)
 	{
@@ -177,6 +180,7 @@ public:
 	float Justice() { return justice; };
 	float Credibility() { return credibility; };
 	float Randomness() { return randomness; };
+	float Freedom() { return freedom; }
 	long PlayerWinner(int playerID) { 
 		CheckPlayerID(playerID);
 		return playerStat[playerID].Winner(); 

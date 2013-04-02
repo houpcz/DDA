@@ -98,13 +98,41 @@ Na začátku hry je náhodně rozdáno 8 karet pro každého hráče. Vždy, kdy
 
 Podobně jako u hry Ludo, i zde je využívána stejná heuristika pro funkce status a hodnosti. Heuristika je vždy počítána jako by se jednalo o hru s úplnou informací. Můžeme ji počítat tímto způsobem, protože umělá inteligence nikdy nevolá heuristiku přímo na aktuální stav, ale vždy na stav ze stejného informačního setu, který stochasticky vygeneruje.
 
-Heuristika odhaduje předpokládaný počet bodů získaných z jednotlivých expedic. Počítáme body pouze z expedic, které již byly založeny. Pro každou založenou expedici spočteme aktuální počet bodů a výsledek vynásobíme konstantou 10. Poté projdeme všechny karty v ruce, v balíčku a vrchní kartu z odložených karet, které ještě hráč může zahrát. (mají vyšší hodnotu než nejvyšší vyložená karta) Součet bodů těchto karet vynásobíme konstantami 8, 4, nebo 3 a 7 pro karty z ruky, balíčku a vrchní kartu. Pro karty z balíčku se vybere konstanta 3, jestliže hráč založí 4. expedici, jinak je 4. Heuristika je převzata z \cite{Neni} včetně koeficientů.
+Heuristika odhaduje předpokládaný počet bodů získaných z jednotlivých expedic. Počítáme body pouze z expedic, které již byly založeny. Pro každou založenou expedici spočteme aktuální počet bodů a výsledek vynásobíme konstantou 10. Poté projdeme všechny karty v ruce, v balíčku a vrchní kartu z odložených karet, které ještě hráč může zahrát. (mají vyšší hodnotu než nejvyšší vyložená karta) Součet bodů těchto karet vynásobíme konstantami 8, 4, nebo 3 a 7 pro karty z ruky, balíčku a vrchní kartu. Pro karty z balíčku se vybere konstanta 3, jestliže hráč založí 4. expedici, jinak je 4. Heuristika je převzata z \cite{ch5LT} včetně koeficientů.
 
 Aby hra byla \emph{uvěřitená}, jednotliví hráči musí během hry získat podobné počty barev a hodnot karet. Uvěřitelnost barvy je méně důležitá. Naopak pokud se pokusíme, aby každý hráč dostal od každé barvy během hry stejný počet karet, můžete to negativně ovlivnit průběh hry. Hodnoty karet rozdělíme do 4 kategorií - sázkové karty, hodnoty 2, 3, 4, hodnoty 5, 6, 7 a nakonec 8, 9, 10. Hra bude více uvěřitelná, když každý hráč během hry získá podobně karet z každé kategorie.
 
 Výsledná uvěřitelnost je sumou uvěřitelností četnosti kategorií hodnot a poloviny uvěřitelnosti četností barev pro každého hráče zvlášť.
 
 \section{Použité umělé inteligence}
+
+\subsection{HillClimber}
+
+Algoritmus HillClimber patří mezi základní jednoduché algoritmy. Ke své funkčnosti potřebuje funkci, jež dokáže získat všechny následující tahy a funkci, která je ohodnotí hodností. Ohodnocené tahy seřadí dle hodnosti a vybere nejlepší z nich. Algoritmus je určen pro hry Bludiště a Ludo.
+
+Pro hru Ztracená města je určená varianta s IS (informační set). HillClimber IS před rozhodnutím provede několik desítek iterací. Na začátku iterace vygeneruje náhodně tah ze stejného informačního setu. Pro jednotlivé tahy si ukládáme sumu hodností přes všechny iterace. Můžeme si to dovolit, protože ve hře Ztracená města nejsou možné tahy hráče v jednom kole závislé na neúplné informaci, na soupeřově kartách v ruce. Výsledná sumární ohodnocení pro tahy seřadíme a opět vybereme nejlepší z nich.
+
+\subsection{Max N}
+
+Algoritmus Max N je rozšířenou variantou známějšího algoritmu minimax pro více hráčů a je zde použit pro hru Ludo. Algoritmus prochází herní strom do hloubky, která je zpravidla omezena konstantou. V dané hloubce ohodnotí stav pomocí funkce hodnosti pro všechny hráče a výsledný soubor hodností propaguje výše. 
+
+Každý vnitřní uzel odpovídá tahu jednoho hráče. Ve chvíli, kdy se sesbírají soubory hodností ze všech potomků, se další postup liší dle typu hráče. Jedná-li se o hráče prostředí, tak jde z hlediska AI o tzv. chance node. V tomto případě se o patro výše propaguje zprůměrovaná skupina hodností z potomků. (uvažujeme hry, kde jednotlivé tahy mají stejnou pravděpodobnost)
+
+Běžný hráč vybere z potomků takovou skupinu hodností, kde hodnost tohoto hráče je co nejvyšší a tuto skupinu opět propaguje o patro výš.
+
+ALGORITMUS : DOPLNIT TODO
+
+\subsection{Monte Carlo}
+
+\subsection{Minimax IS}
+
+\subsection{Škálování}
+
+Všechny uvedené algoritmy umožňují škálování umělé inteligence. Škálování potřebuje pro simulaci různě silných hráčů. Vedle algoritmu můžeme nastavit parametr úrovně mezi 1 a 100. Použil jsem dva způsoby škálování. 
+
+První je využit pro HillClimber včetně varianty IS a pro Max N. Ve všech případech algoritmus nevrátí jen nejlepší možný tah, ale všechny tahy seřazené dle jejich vhodnosti. Ze seřazených tahů se nevybírá nejlepší tah, ale nejpravděpodobněji se vybere ten, který se nachází v $\frac{úroveň}{100}$ části pole. Vybere se tah dle gaussovského rozdělení pravděpodobnosti se střední hodnotou v $\frac{úroveň}{100}$ a odchylkou $0,4$. Kdybychom vybírali tah přesně v dané části pole, ztratili bychom výraznou část tohoto škálování. Např. u hry Člověče, nezlob se, kde má hráč v jednu chvíli na výběr maximálně 4 tahy, by se hráči s úrovněmi 76-100 chovali zcela stejně.
+
+Druhý typ škálování je využit u algoritmů Monte Carlo a Minimax IS. Úroveň zde ovlivňuje počet iterací algoritmu. S vyšší úrovní proběhne větší počet iterací, a tím je pravděpodobnější inteligentnější chování.
 
 \endinput
 %%

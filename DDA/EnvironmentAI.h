@@ -4,32 +4,33 @@
 #include "IEnvironmentAI.h"
 
 enum {
-	KOEF_LEADER_SWITCHES,
-	KOEF_CREDIBILITY,
-	KOEF_JUSTICE,
-	KOEF_LEADER_TIME,
-	KOEF_STATUS_DIFFERENCE,
-	KOEF_RANDOMNESS,
-	KOEF_COUNT
+	COEF_LEADER_SWITCHES,
+	COEF_CREDIBILITY,
+	COEF_JUSTICE,
+	COEF_LEADER_TIME,
+	COEF_STATUS_DIFFERENCE,
+	COEF_FREEDOM,
+	COEF_RANDOMNESS,
+	COEF_COUNT
 };
 
 class EnvironmentAI :
 	public IEnvironmentAI
 {
 protected :
-	float koefMetric[KOEF_COUNT];
+	float coefMetric[COEF_COUNT];
 public:
 	EnvironmentAI(int _myID);
 	virtual ~EnvironmentAI(void);
 	void SetMetricCoef(int metricID, float value);
 	void SetMetricCoefs(float * coefs) 
 	{
-		for(int loop1 = 0; loop1 < KOEF_COUNT; loop1++)
+		for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
 		{
-			koefMetric[loop1] = coefs[loop1];
+			coefMetric[loop1] = coefs[loop1];
 		}
 	}
-	float * CoefMetric() { return koefMetric; };
+	float * CoefMetric() { return coefMetric; };
 	virtual bool CoefsHaveMeaning() { return false; };
 };
 

@@ -25,8 +25,8 @@ private :
 	QComboBox ** playerList;
 	QSpinBox ** playerLevel;
 	QPushButton * okButton;
-	QLabel *eaCoefLabel[KOEF_COUNT];
-	QSpinBox *eaCoefBox[KOEF_COUNT];
+	QLabel *eaCoefLabel[COEF_COUNT];
+	QSpinBox *eaCoefBox[COEF_COUNT];
 	vector<IEnvironmentAI *> environmentAIList;
 	vector<IPlayer *> playerAIList;
 	int playerCount;

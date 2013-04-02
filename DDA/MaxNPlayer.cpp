@@ -87,7 +87,6 @@ bool MaxNPlayer::Think()
 	delete [] nextState;
 	sort(scores.begin(), scores.end(), comparator);
 	
-	/*
 	double mean = (level / 100.0) * choises;
 	double deviation = 0.4;
 	normal_distribution<> normalDistribution(mean, deviation);
@@ -98,8 +97,8 @@ bool MaxNPlayer::Think()
 		choise = choises - 1;
 
 	myTurn = scores[choise].second;
-	*/
-	myTurn = scores[scores.size() - 1].second;
+	
+	//myTurn = scores[scores.size() - 1].second;
 	isReady = true;
 
 	return true;
