@@ -71,7 +71,7 @@ class MazeState : public IGameState
 private:
 	static const char OPEN = ' ';
 	static const char CLOSE = '#';
-	static const int GOAL_MAX = 10;
+	static const int GOAL_MAX = 1;
 	static const int CRED_HALL_PIECE_SIZE = 2;
 	static const int CRED_PIECE_MAX = 6;
 	static const int MAKE_DOOR_IN_THE_END = 10000000;
@@ -136,6 +136,7 @@ public:
 	int GetActivePlayerID() const {
 		return activePlayerID;
 	}
+	float Freedom();
 	char ** GetMaze() const { return maze; }
 	bool VisibleGoals() { return visibleGoals;}
 	int GetDoorKind(int x, int y);

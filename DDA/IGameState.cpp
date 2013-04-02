@@ -61,13 +61,14 @@ void IGameState::UpdateGameStat()
 			gameStat->AddPlayerLevel(loop1, game->GetPlayer(loop1)->Level());
 		}
 	}
+
 	gameStat->AddTurnNumber();
 
 	int currentPlayerID = GetActivePlayerID();
 
 	int playerChoises = GetPlayerChoises(currentPlayerID);
 	if(currentPlayerID != 0)
-		gameStat->AddFreedomSum(playerChoises);
+		gameStat->AddFreedomSum(Freedom());
 
 	if(lastPlayerID != 0)
 	{

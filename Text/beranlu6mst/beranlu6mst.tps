@@ -17,8 +17,8 @@ Class=LaTeXView
 Document=ch05.tex
 
 [Frame0_View0,0]
-TopLine=132
-Cursor=13689
+TopLine=188
+Cursor=15159
 
 [Frame1]
 Flags=0
@@ -35,7 +35,7 @@ Class=BibTeXView
 Document=beranlu6mst.bib
 
 [Frame1_View0,0]
-TopLine=407
+TopLine=423
 Cursor=14467
 
 [Frame2]
@@ -53,7 +53,7 @@ Class=LaTeXView
 Document=ch03.tex
 
 [Frame2_View0,0]
-TopLine=565
+TopLine=687
 Cursor=42277
 
 [Frame3]
@@ -107,7 +107,7 @@ Class=LaTeXView
 Document=ch01.tex
 
 [Frame5_View0,0]
-TopLine=240
+TopLine=236
 Cursor=5744
 
 [Frame6]
@@ -125,7 +125,7 @@ Class=LaTeXView
 Document=ch02.tex
 
 [Frame6_View0,0]
-TopLine=25
+TopLine=47
 Cursor=19143
 
 [Frame7]

@@ -36,7 +36,7 @@ public :
 	virtual IGameState ** GetNextStates(int whoAskID, int *outNumberNextStates) = 0;
 	virtual IGameState * SimulateToTheEnd(int whoAskID) = 0;
 	virtual IGameState * GetStateFromSameInformSet(int whoAskID) { return NULL; };
-
+	virtual float Freedom() { return GetPlayerChoises(0);} ;
 	//virtual IGameState * GetRandomState() = 0;
 	//virtual GetPlayerStatus(int playerID, int whoAskID) = 0;
 	virtual bool IsGameOver() = 0;

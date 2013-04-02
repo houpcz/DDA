@@ -1085,7 +1085,7 @@ int MazeState::GetPlayerStatus(int playerID)
 	float undefinedCover = ((float) undefinedTiles) / (mazeWidth * mazeHeight);
 	
 	int koef = (goalAmount > 0) ? 1 : 0;
-	int status = (int) (sumDist * 1.5f - stepsToGameOver + (undefinedTiles / 2.0f * koef));
+	int status = (int) (sumDist * 1.5f - stepsToGameOver + (undefinedTiles / 3.0f * koef));
 	return (playerID == 0) ? status : -status;
 }
 
@@ -1180,6 +1180,9 @@ void MazeState::PrintToFile(const char * firstLine)
 				case MazeTile::TILE_UNDEFINED : c = '?'; break;
 				case MazeTile::TILE_WALL : c = '#'; break;
 			}
+			if(loop1 == playerY && loop2 == playerX)
+				c = '$' ;
+
 			putc(c, fw);
 		}
 		fprintf(fw, "\n");
@@ -1198,7 +1201,26 @@ void MazeState::AddCloseDoor(int x, int y)
 
 float MazeState::GetCredibility()
 {
-	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 100;
+	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 1000000;
+}
+
+float MazeState::Freedom()
+{
+	int freedom = 0;
+	for(int loop1 = 0; loop1 < tileToExplore.size(); loop1++)
+	{
+		int x, y;
+		Pos1Dto2D(tileToExplore[loop1], &x, &y);
+		if(GetTile(x - 1, y) == TILE_UNDEFINED ||
+		   GetTile(x + 1, y) == TILE_UNDEFINED ||
+		   GetTile(x, y + 1) == TILE_UNDEFINED ||
+		   GetTile(x, y - 1) == TILE_UNDEFINED)
+		{
+			freedom++;
+		}
+	}
+
+	return freedom;
 }
 
 int MazeState::GetPlayerChoises(int whoAskID) 

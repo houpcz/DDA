@@ -20,7 +20,12 @@ bool EAHillClimber::Think()
 	int choises;
 	IGameState * currentState = game->GetCurrentState();
 	float tempVals[COEF_COUNT];
-	if(0.2f < rand() / (float)RAND_MAX)
+	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
+	{
+		tempVals[loop1] = 0.0f;
+	}
+	int notNull = 0;
+	if(0.0f < rand() / (float)RAND_MAX)
 	{
 		IGameState ** nextState = currentState->GetNextStates(myID, &choises);
 		vector<int> bestID;
@@ -30,6 +35,7 @@ bool EAHillClimber::Think()
 			if(nextState[loop1] == NULL)
 				continue;
 
+			notNull++;
 			GameStat stat = nextState[loop1]->GetGameStat();
 			tempVals[COEF_LEADER_SWITCHES] = coefMetric[COEF_LEADER_SWITCHES] * stat.LeaderSwitches();
 			tempVals[COEF_CREDIBILITY] = coefMetric[COEF_CREDIBILITY] * stat.Credibility();
@@ -57,13 +63,28 @@ bool EAHillClimber::Think()
 			}
 		}
 
-		for(int loop1 = 0; loop1 < choises; loop1++)
+		if(bestID.size() == 0)
 		{
-			delete nextState[loop1];
+			char message[256];
+			sprintf(message, "EA Hill Climber, no good option. Possible option %d.", notNull);
+			currentState->PrintToFile(message);
+			for(int loop1 = 0; loop1 < choises; loop1++)
+			{
+				if(nextState[loop1] != NULL)
+					nextState[loop1]->PrintToFile(message);
+			}
+			 
+			//throw message;
 		}
-		delete [] nextState;
 
 		myTurn = bestID[rand() % bestID.size()];
+
+		for(int loop1 = 0; loop1 < choises; loop1++)
+		{
+			if(nextState[loop1] != NULL)
+				delete nextState[loop1];
+		}
+		delete [] nextState;
 	} else {
 		IGameState * state = currentState->GetRandomNextState(myID, &myTurn);
 		delete state;

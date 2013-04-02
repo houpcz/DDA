@@ -14,7 +14,7 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	mazeHeight = 41; 
 	visibleGoals = false;
 	abstraction = true;
-	stepsToGameOver = 1000;
+	stepsToGameOver = 500;
 	
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;
@@ -22,7 +22,10 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	playerCount = 2;
 	
 	player = new IPlayer*[playerCount];
-	player[ENVINRONMENT_AI] = new EnvironmentAIBasic(ENVINRONMENT_AI);
+	EnvironmentAI * eai = new EnvironmentAIBasic(ENVINRONMENT_AI);
+	float coefs[COEF_COUNT] = { 0, 10, 0, 10, 50, 0 };
+	eai->SetMetricCoefs(coefs);
+	player[ENVINRONMENT_AI] = eai;
 	if(paint)
 	{
 		player[PLAYER_AI] = new Human(PLAYER_AI);
