@@ -874,9 +874,6 @@
     <ClInclude Include="MinMaxISPlayer.h">
       <Filter>Players</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerHillClimberIS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MaxNPlayer.h">
       <Filter>Players</Filter>
     </ClInclude>
@@ -898,6 +895,9 @@
     <ClInclude Include="EAHillClimber.h">
       <Filter>Players\EA</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerHillClimberIS.h">
+      <Filter>Players</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="BatchDiagrams.h">
@@ -907,12 +907,6 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="DDAWidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Human.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="IPlayer.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="Qwt\qwt_abstract_slider.h">
@@ -1022,6 +1016,12 @@
     </CustomBuild>
     <CustomBuild Include="IEnvironmentAI.h">
       <Filter>Players\EA</Filter>
+    </CustomBuild>
+    <CustomBuild Include="IPlayer.h">
+      <Filter>Players</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Human.h">
+      <Filter>Players</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

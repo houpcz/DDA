@@ -11,6 +11,12 @@
 
 using namespace std;
 
+enum {
+	GAME_MAZE_ID,
+	GAME_LUDO_ID,
+	GAME_LC_ID
+};
+
 class IGame : public QObject
 {
 Q_OBJECT
@@ -45,6 +51,7 @@ public:
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget() = 0; 
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) = 0;
 	virtual vector<IGameState *> GetAllGameState() = 0;
+	virtual int GetGameID() = 0;
 public slots:
 	void PlayerIsReady();
 };

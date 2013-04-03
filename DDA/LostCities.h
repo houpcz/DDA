@@ -43,6 +43,7 @@ public:
 	void MousePressEvent ( int xMouse, int yMouse );
 	virtual pair<QString,QString> GetSetupString();
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
+	int GetGameID() { return GAME_LC_ID; };
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { 
 		LostCities * game =  new LostCities(_widget, _paint); 
 		game->realHandSize = realHandSize;

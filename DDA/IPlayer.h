@@ -32,6 +32,7 @@ public:
 	int Level() { return level; };
 	virtual bool IsScalable() = 0;
 	virtual IPlayer * Factory(int playerID) = 0;
+	virtual bool IsCompatibleWithGame(int gameID) { return true; };
 signals:
 	void ImReady();
 };

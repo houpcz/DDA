@@ -6,6 +6,7 @@
 #include <cmath>
 #include "IGameState.h" 
 #include "iplayer.h"
+#include "IGame.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ public:
 	virtual bool IsScalable() { return false; }
 	QString GetAIName() { return QString("Mini Max IS"); };
 	IPlayer * Factory(int playerID) { return new MinMaxISPlayer(playerID); };
+	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID; }
 };
 
 #endif

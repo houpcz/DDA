@@ -29,9 +29,10 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		playerLevel[loop1-1]->setRange(1, 100);
 		playerLevel[loop1-1]->setValue(game->GetPlayer(loop1)->Level());
 		connect(playerList[loop1], SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateLevelSpin()));
-		for(int loop2 = (human) ? 0 : 1; loop2 < playerAIList.size(); loop2++)
+		for(int loop2 = (human && loop1 == 1) ? 0 : 1; loop2 < playerAIList.size(); loop2++)
 		{
-			playerList[loop1]->addItem(playerAIList[loop2]->GetAIName());
+			if(playerAIList[loop2]->IsCompatibleWithGame(game->GetGameID()))
+				playerList[loop1]->addItem(playerAIList[loop2]->GetAIName());
 		}
 
 		gridLayout->addWidget(playerList[loop1], loop1 - 1, 0);

@@ -13,6 +13,7 @@ public:
 	virtual bool IsScalable() { return false; }
 	QString GetAIName() { return QString("Random AI"); };
 	IPlayer * Factory(int playerID) { return new PlayerRandomAI(playerID); };
+	bool IsCompatibleWithGame(int gameID) { return true; }
 };
 
 #endif

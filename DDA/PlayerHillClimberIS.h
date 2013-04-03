@@ -4,6 +4,7 @@
 #include <random>
 #include <cmath>
 #include "iplayer.h"
+#include "IGame.h"
 
 using namespace std;
 
@@ -21,5 +22,6 @@ public:
 	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("Hill Climber IS"); };
 	IPlayer * Factory(int playerID) { return new PlayerHillClimberIS(playerID); };
+	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID; }
 };
 

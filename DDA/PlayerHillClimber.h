@@ -4,6 +4,7 @@
 #include <random>
 #include <cmath>
 #include "iplayer.h"
+#include "IGame.h"
 
 using namespace std;
 
@@ -25,5 +26,6 @@ public:
 		player->level = level;
 		return player;
 	};
+	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LUDO_ID || gameID == GAME_MAZE_ID; }
 };
 

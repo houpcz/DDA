@@ -1,5 +1,7 @@
 #pragma once
 #include "iplayer.h"
+#include "IGame.h"
+
 class PlayerMonteCarlo :
 	public IPlayer
 {
@@ -15,5 +17,6 @@ public:
 		player->level = level;
 		return player;
 	};
+	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LUDO_ID || gameID == GAME_LC_ID; }
 };
 

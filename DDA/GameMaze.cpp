@@ -258,6 +258,7 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));
 	connect(spinBoxStep, SIGNAL(valueChanged(int)), this, SLOT(SetStepsToGameOver(int)));
 
+	/*
 	QCheckBox * visibleGoalsBox = new QCheckBox();
 	visibleGoalsBox->setChecked(visibleGoals);
 	widgets.push_back(pair<QWidget *, QString>(visibleGoalsBox, QString("Visible bombs")));
@@ -267,7 +268,7 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	abstractionBox->setChecked(abstraction);
 	widgets.push_back(pair<QWidget *, QString>(abstractionBox, QString("State abstraction")));
 	connect(abstractionBox, SIGNAL(stateChanged(int)), this, SLOT(SetAbstraction(int)));
-
+	*/
 	return widgets;
 }
 
