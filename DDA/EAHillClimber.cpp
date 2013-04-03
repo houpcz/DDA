@@ -42,7 +42,8 @@ bool EAHillClimber::Think()
 			tempVals[COEF_RANDOMNESS] = coefMetric[COEF_RANDOMNESS] * stat.Randomness();
 			tempVals[COEF_JUSTICE] = coefMetric[COEF_JUSTICE] * stat.Justice();
 			tempVals[COEF_LEADER_TIME] = coefMetric[COEF_LEADER_TIME] * stat.LeaderTime();
-			tempVals[COEF_STATUS_DIFFERENCE] = coefMetric[COEF_STATUS_DIFFERENCE] * stat.StatusDifference();
+			tempVals[COEF_AVG_STATUS_DIFFERENCE] = coefMetric[COEF_AVG_STATUS_DIFFERENCE] * stat.StatusDifference();
+			tempVals[COEF_END_STATUS_DIFFERENCE] = coefMetric[COEF_END_STATUS_DIFFERENCE] * stat.EndRankDifference();
 			tempVals[COEF_FREEDOM] = coefMetric[COEF_FREEDOM] * stat.Freedom();
 			float tempValue = tempVals[COEF_LEADER_SWITCHES] +
 							  tempVals[COEF_FREEDOM] -
@@ -50,7 +51,8 @@ bool EAHillClimber::Think()
 							  tempVals[COEF_RANDOMNESS] -
 							  tempVals[COEF_JUSTICE] -
 							  tempVals[COEF_LEADER_TIME] -
-							  tempVals[COEF_STATUS_DIFFERENCE];
+							  tempVals[COEF_AVG_STATUS_DIFFERENCE] -
+							  tempVals[COEF_END_STATUS_DIFFERENCE];
 			if(tempValue >= bestValue)
 			{
 				if(tempValue != bestValue)

@@ -80,7 +80,8 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 	eaCoefLabel[COEF_CREDIBILITY] = new QLabel(tr("Credibility"));
 	eaCoefLabel[COEF_JUSTICE] = new QLabel(tr("Justice"));
 	eaCoefLabel[COEF_LEADER_TIME] = new QLabel(tr("Leader Time"));
-	eaCoefLabel[COEF_STATUS_DIFFERENCE] = new QLabel(tr("Status Difference"));
+	eaCoefLabel[COEF_AVG_STATUS_DIFFERENCE] = new QLabel(tr("Avg Status Difference"));
+	eaCoefLabel[COEF_END_STATUS_DIFFERENCE] = new QLabel(tr("End Status Difference"));
 	eaCoefLabel[COEF_RANDOMNESS] = new QLabel(tr("Randomness"));
 	eaCoefLabel[COEF_FREEDOM] = new QLabel(tr("Freedom"));
 	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
@@ -123,14 +124,20 @@ void BatchGameSetup::SaveSetup()
 		QString str2 = environmentAIList[loop1]->GetAIName();
 		if(str1.compare(str2) == 0)
 		{
-			game->SetPlayer(0, environmentAIList[loop1]);
-			IPlayer * player = game->GetPlayer(0);
-			EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(player);
 			for(int loop2 = 0; loop2 < COEF_COUNT; loop2++)
 			{
 				environmentAIList[loop1]->SetMetricCoef(loop2, eaCoefBox[loop2]->value());
+			}
+
+			game->SetPlayer(0, environmentAIList[loop1]);
+			IPlayer * player = game->GetPlayer(0);
+			EnvironmentAI * ePlayer = dynamic_cast<EnvironmentAI*>(player);
+
+			for(int loop2 = 0; loop2 < COEF_COUNT; loop2++)
+			{
 				ePlayer->SetMetricCoef(loop2, eaCoefBox[loop2]->value());
 			}
+			
 			break;
 		}
 	}

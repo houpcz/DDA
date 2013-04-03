@@ -108,7 +108,10 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	tileGame[72] = new LudoTile(5, 5, normal, this);
 
 	player = new IPlayer*[5];
-	player[0] = new EnvironmentAIBasic(0);
+	EnvironmentAI * eai = new EnvironmentAIBasic(0);
+	float coefs[COEF_COUNT] = { 10, 99999, 10, 10, 10, 10, 1, 0 };
+	eai->SetMetricCoefs(coefs);
+	player[0] = eai;
 	if(paint)
 	{
 		player[1] = new Human(1);

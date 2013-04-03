@@ -37,7 +37,12 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	maxPlayerAI = 2;
 
 	player = new IPlayer*[3];
-	player[0] = new EnvironmentAIBasic(0);
+
+	EnvironmentAI * eai = new EnvironmentAIBasic(0);
+	float coefs[COEF_COUNT] = { 100, 1000, 100, 100, 100, 0, 10, 0 };
+	eai->SetMetricCoefs(coefs);
+
+	player[0] = eai;
 	if(paint)
 	{
 		player[1] = new Human(1);

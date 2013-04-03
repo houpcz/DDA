@@ -1064,6 +1064,25 @@ int MazeState::GetPlayerRank(int playerID, int whoAskID)
 int MazeState::GetPlayerStatus(int playerID)
 {
 	int undefinedTiles = 0;
+	int sumDist = 0;
+	for(int loop1 = 0; loop1 < goalStart; loop1++)
+	{
+		if(maze[goalY[loop1]][goalX[loop1]] == TILE_EMPTY)
+			continue;
+
+		sumDist += GetDistanceBetween(goalX[loop1], goalY[loop1], playerX, playerY, true);
+	}
+
+	int x = goalX[0];
+	int y = goalY[0];
+	if(maze[y - 1][x] == TILE_EMPTY ||
+	   maze[y + 1][x] == TILE_EMPTY ||
+	   maze[y][x + 1] == TILE_EMPTY ||
+	   maze[y][x - 1] == TILE_EMPTY)
+	{
+		return stepsToGameOver - sumDist;
+	}
+
 	
 	for(int loop1 = 0; loop1 < mazeWidth; loop1++)
 	{
@@ -1074,14 +1093,6 @@ int MazeState::GetPlayerStatus(int playerID)
 		}
 	}
 	
-	int sumDist = 0;
-	for(int loop1 = 0; loop1 < goalStart; loop1++)
-	{
-		if(maze[goalY[loop1]][goalX[loop1]] == TILE_EMPTY)
-			continue;
-
-		sumDist += GetDistanceBetween(goalX[loop1], goalY[loop1], playerX, playerY, true);
-	}
 	float undefinedCover = ((float) undefinedTiles) / (mazeWidth * mazeHeight);
 	
 	int koef = (goalAmount > 0) ? 1 : 0;

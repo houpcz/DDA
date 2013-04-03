@@ -23,7 +23,7 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	
 	player = new IPlayer*[playerCount];
 	EnvironmentAI * eai = new EnvironmentAIBasic(ENVINRONMENT_AI);
-	float coefs[COEF_COUNT] = { 0, 10, 0, 10, 50, 0 };
+	float coefs[COEF_COUNT] = { 0, 10, 0, 0, 100, 500, 100, 0 };
 	eai->SetMetricCoefs(coefs);
 	player[ENVINRONMENT_AI] = eai;
 	if(paint)

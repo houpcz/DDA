@@ -174,8 +174,8 @@ public:
 	long long TurnNumberReal() { return turnNumberReal; };
 	long long LeaderSwitches() { return leaderSwitches; };
 	long long SumRankDifference() { return sumRankDifference;};
-	float StatusDifference() { return sumRankDifference / (float) turnNumber; };
-	long long EndRankDifference() { return endRankDifference;};
+	float StatusDifference() { return abs(sumRankDifference / (float) turnNumber); };
+	long long EndRankDifference() { return abs(endRankDifference);};
 	float LeaderTime() { return leaderTime; };
 	float Justice() { return justice; };
 	float Credibility() { return credibility; };

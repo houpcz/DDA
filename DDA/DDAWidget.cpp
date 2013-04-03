@@ -227,6 +227,8 @@ void DDAWidget::ChangePlayerMenu()
 		{
 			if(loop1 > 0 && loop2 == 0)
 				continue;
+			if(!playerAIList[loop2]->IsCompatibleWithGame(activeGame->GetGameID()))
+				continue;
 
 			setPlayer = new QAction(playerAIList[loop2]->GetAIName(), this);
 			connect(setPlayer, SIGNAL(triggered()), signalMapper, SLOT(map()));
