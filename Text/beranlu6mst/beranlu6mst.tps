@@ -12,13 +12,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
-Document=ch05.tex
+Document=ch02.tex
 
 [Frame0_View0,0]
-TopLine=188
-Cursor=15159
+TopLine=376
+Cursor=26106
 
 [Frame1]
 Flags=0
@@ -30,13 +30,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
-Class=BibTeXView
-Document=beranlu6mst.bib
+NormalPos.bottom=552
+Class=LaTeXView
+Document=ch03.tex
 
 [Frame1_View0,0]
-TopLine=423
-Cursor=14467
+TopLine=377
+Cursor=25440
 
 [Frame2]
 Flags=0
@@ -48,13 +48,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
-Document=ch03.tex
+Document=ch05.tex
 
 [Frame2_View0,0]
-TopLine=687
-Cursor=42277
+TopLine=188
+Cursor=15159
 
 [Frame3]
 Flags=0
@@ -66,13 +66,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
-Class=LaTeXView
-Document=ch06.tex
+NormalPos.bottom=552
+Class=BibTeXView
+Document=beranlu6mst.bib
 
 [Frame3_View0,0]
-TopLine=0
-Cursor=31
+TopLine=439
+Cursor=14467
 
 [Frame4]
 Flags=0
@@ -84,13 +84,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
-Document=ch04.tex
+Document=ch06.tex
 
 [Frame4_View0,0]
 TopLine=0
-Cursor=0
+Cursor=31
 
 [Frame5]
 Flags=0
@@ -102,13 +102,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
-Document=ch01.tex
+Document=ch04.tex
 
 [Frame5_View0,0]
-TopLine=236
-Cursor=5744
+TopLine=0
+Cursor=0
 
 [Frame6]
 Flags=0
@@ -120,13 +120,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
-Document=ch02.tex
+Document=ch01.tex
 
 [Frame6_View0,0]
-TopLine=47
-Cursor=19143
+TopLine=236
+Cursor=5744
 
 [Frame7]
 Flags=0
@@ -138,7 +138,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
 Document=beranlu6mst.tex
 
@@ -156,7 +156,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=584
+NormalPos.bottom=552
 Class=LaTeXView
 Document=ch07.tex
 

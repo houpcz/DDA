@@ -2,7 +2,7 @@
 #include "LostCities.h"
 #include "EnvironmentAIBasic.h"
 #include "PlayerRandomAI.h"
-#include "PlayerHillClimber.h"
+#include "PlayerHillClimberIS.h"
 #include "Human.h"
 
 LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
@@ -47,9 +47,9 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	{
 		player[1] = new Human(1);
 	} else {
-		player[1] = new PlayerHillClimber(1);
+		player[1] = new PlayerHillClimberIS(1);
 	}
-	player[2] = new PlayerHillClimber(2);
+	player[2] = new PlayerHillClimberIS(2);
 
 	QObject::connect(player[0], SIGNAL(ImReady(void)),
                         this, SLOT(PlayerIsReady(void)));
