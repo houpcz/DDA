@@ -15,6 +15,9 @@ private :
 	int lastMouseX;
 	int lastMouseY;
 
+	int boardX;
+	int boardY;
+
 	int mazeWidth;
 	int mazeHeight;
 	int stepsToGameOver;

@@ -95,6 +95,8 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	tileGame[69] = new LudoTile(8, 5, player4, this);
 	tileGame[70] = new LudoTile(7, 5, player4, this);
 	tileGame[71] = new LudoTile(6, 5, player4, this);
+	boardX = 0;
+	boardY = 0;
 
 	for(int loop1 = 0; loop1 < LudoState::FIRST_HOME_TILE; loop1++)
 	{
@@ -182,6 +184,10 @@ void Ludo::Draw(QPainter * painter, int tickMillis)
 	boardWidth = painter->viewport().width();
 	tileWidth = boardWidth / 11.0f;
 	tileHeight = boardHeight / 11.0f;
+	tileWidth = min(tileWidth, tileHeight);
+	tileHeight = min(tileWidth, tileHeight);
+	boardX = (painter->viewport().width() - tileWidth * 11) / 2;
+	boardY = (painter->viewport().height() - tileHeight * 11) / 2;
 
 	for(int loop1 = 0; loop1 < MAX_TILE; loop1++)
 	{	

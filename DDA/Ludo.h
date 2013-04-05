@@ -17,6 +17,8 @@ private:
 	LudoState *currentState;
 	LudoTile *tileGame[MAX_TILE];
 	int activeHumanFigure;
+	int boardX;
+	int boardY;
 	float tileWidth;
 	float tileHeight;
 	float boardWidth;
@@ -40,6 +42,8 @@ public:
 	virtual pair<QString,QString> GetSetupString();
 	virtual vector<pair<QWidget *, QString> > GetSetupWidget(); 
 	int GetGameID() { return GAME_LUDO_ID; };
+	int BoardX() { return boardX; };
+	int BoardY() { return boardY; };
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { 
 		Ludo * game = new Ludo(_widget, _paint); 
 		

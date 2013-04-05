@@ -10,6 +10,8 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	minPlayerAI = 1;
 	maxPlayerAI = 1;
 
+	boardX = 0;
+	boardY = 0;
 	mazeWidth = 41;
 	mazeHeight = 41; 
 	visibleGoals = false;
@@ -88,6 +90,9 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	tileWidth = min(tileWidth, tileHeight);
 	tileHeight = min(tileWidth, tileHeight);
 	
+	boardX = (viewportWidth - tileWidth * mazeWidth) / 2.0f;
+	boardY = (viewportHeight - tileHeight * mazeHeight) / 2.0f;
+
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
@@ -123,7 +128,7 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 					painter->setBrush(QBrush(QColor(180, 180, 160)));
 					break;
 			}
-			painter->fillRect(loop2 * tileWidth, loop1 * tileHeight, tileWidth + 1, tileHeight + 1, painter->brush());
+			painter->fillRect(boardX + loop2 * tileWidth, boardY + loop1 * tileHeight, tileWidth + 1, tileHeight + 1, painter->brush());
 		}
 	}
 
@@ -147,22 +152,22 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 					color = QColor(200, 77, 77); break;
 			}
 		}
-		painter->fillRect(x * tileWidth + 1, 
-			              y * tileHeight + 1, 
+		painter->fillRect(boardX + x * tileWidth + 1, 
+			              boardY + y * tileHeight + 1, 
 						  tileWidth - 2, tileHeight - 2, QBrush(color));
 	}
 
 	
 	painter->setBrush(QBrush(QColor(200, 200, 10)));
-	painter->drawEllipse(currentState->GetPlayerX() * tileWidth + 1, 
-			                currentState->GetPlayerY() * tileHeight + 1, 
+	painter->drawEllipse(boardX +currentState->GetPlayerX() * tileWidth + 1, 
+			                boardY + currentState->GetPlayerY() * tileHeight + 1, 
 							tileWidth - 2, tileHeight - 2);
 
-	int mouseXID = (int) (lastMouseX / tileWidth);
-	int mouseYID = (int) (lastMouseY / tileHeight);
+	int mouseXID = (int) ((lastMouseX - boardX)/ tileWidth);
+	int mouseYID = (int) ((lastMouseY - boardY)/ tileHeight);
 	painter->setBrush(QBrush(QColor(200, 200, 10, 100)));
-	painter->drawRect(mouseXID * tileWidth + 1, 
-			             mouseYID * tileHeight + 1, 
+	painter->drawRect(boardX + mouseXID * tileWidth + 1, 
+			             boardY + mouseYID * tileHeight + 1, 
 							tileWidth - 2, tileHeight - 2);
 
 
@@ -207,8 +212,8 @@ void GameMaze::MousePressEvent ( int xMouse, int yMouse )
 {
 	if(state == STATE_RUNNING)
 	{
-		int mouseXID = (int) (xMouse / tileWidth);
-		int mouseYID = (int) (yMouse / tileHeight);
+		int mouseXID = (int) ((xMouse - boardX) / tileWidth);
+		int mouseYID = (int) ((yMouse - boardY) / tileHeight);
 
 		int playerTurn = currentState->FindTileToExplore(mouseXID, mouseYID);
 
@@ -258,12 +263,11 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));
 	connect(spinBoxStep, SIGNAL(valueChanged(int)), this, SLOT(SetStepsToGameOver(int)));
 
-	/*
 	QCheckBox * visibleGoalsBox = new QCheckBox();
 	visibleGoalsBox->setChecked(visibleGoals);
 	widgets.push_back(pair<QWidget *, QString>(visibleGoalsBox, QString("Visible bombs")));
 	connect(visibleGoalsBox, SIGNAL(stateChanged(int)), this, SLOT(SetVisibleGoals(int)));
-
+	/*
 	QCheckBox * abstractionBox = new QCheckBox();
 	abstractionBox->setChecked(abstraction);
 	widgets.push_back(pair<QWidget *, QString>(abstractionBox, QString("State abstraction")));
