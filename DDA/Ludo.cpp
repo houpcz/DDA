@@ -3,6 +3,7 @@
 #include "PlayerRandomAI.h"
 #include "PlayerHillClimber.h"
 #include "Human.h"
+#include <qcheckbox.h>
 
 const int Ludo::firstTile[LudoState::MAX_PLAYER] = { 0, 10, 20, 30 };
 const QColor Ludo::playerColor[LudoState::MAX_PLAYER] = { Qt::blue, Qt::red, Qt::green, Qt::yellow };
@@ -11,6 +12,7 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
 	minPlayerAI = 2;
 	maxPlayerAI = 4;
+	onlyTwoPlayers = false;
 
 	QColor normal = Qt::cyan;
 	QColor safe = Qt::darkCyan;
@@ -164,7 +166,7 @@ void Ludo::StartGame()
 	if(currentState != NULL)
 		delete currentState;
 
-	currentState = new LudoState(this);
+	currentState = new LudoState(this, onlyTwoPlayers);
 
 	player[0]->StartGame(this);
 	player[1]->StartGame(this);
@@ -369,5 +371,15 @@ vector<pair<QWidget *, QString> > Ludo::GetSetupWidget()
 {
 	vector<pair<QWidget *, QString> > widgets;
 
+	QCheckBox * twoPlayersBox = new QCheckBox();
+	twoPlayersBox->setChecked(onlyTwoPlayers);
+	widgets.push_back(pair<QWidget *, QString>(twoPlayersBox, QString("Only 2 players")));
+	connect(twoPlayersBox, SIGNAL(stateChanged(int)), this, SLOT(SetOnlyTwoPlayers(int)));
+
 	return widgets;
+}
+
+void Ludo::SetOnlyTwoPlayers(int twoPlayers)
+{
+	onlyTwoPlayers = twoPlayers != 0;
 }

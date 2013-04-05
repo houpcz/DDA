@@ -28,7 +28,7 @@ public:
 	virtual bool IsScalable() { return false; }
 	QString GetAIName() { return QString("POSM"); };
 	IPlayer * Factory(int playerID) { return new PlayerPOSM(playerID); };
-	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID; }
+	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID || gameID == GAME_LUDO_ID; }
 };
 
 

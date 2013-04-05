@@ -656,6 +656,12 @@
     <ClCompile Include="EAHillClimber.cpp">
       <Filter>Players\EA</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_Ludo.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_Ludo.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -859,9 +865,6 @@
     <ClInclude Include="LudoState.h">
       <Filter>Games\Ludo</Filter>
     </ClInclude>
-    <ClInclude Include="Ludo.h">
-      <Filter>Games\Ludo</Filter>
-    </ClInclude>
     <ClInclude Include="LostCitiesState.h">
       <Filter>Games\Lost cities</Filter>
     </ClInclude>
@@ -1022,6 +1025,9 @@
     </CustomBuild>
     <CustomBuild Include="Human.h">
       <Filter>Players</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Ludo.h">
+      <Filter>Games\Ludo</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>

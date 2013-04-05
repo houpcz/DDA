@@ -8,8 +8,9 @@ const int LudoState::safeTile[] = {0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 								   0, 0, 0, 1, 0, 0, 0, 1, 0, 0};
 
-LudoState::LudoState(Game * _game) : IGameState(_game)
+LudoState::LudoState(Game * _game, bool _twoPlayers) : IGameState(_game)
 {
+	twoPlayers = _twoPlayers;
 	playerCount = 5;
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
@@ -17,7 +18,10 @@ LudoState::LudoState(Game * _game) : IGameState(_game)
 		figure[loop1][0] = 0;
 		for(int loop2 = 0; loop2 < MAX_FIGURE; loop2++)
 		{
-			figure[loop1][loop2] = loop2;
+			if(twoPlayers && loop1 % 2 == 1)
+				figure[loop1][loop2] = -1;
+			else
+				figure[loop1][loop2] = loop2;
 		}
 
 		for(int loop2 = 0; loop2 < MAX_CUBE; loop2++)
@@ -57,6 +61,7 @@ LudoState& LudoState::operator=(const LudoState &origin)
 
 void LudoState::CopyToMe(const LudoState & origin)
 {
+	twoPlayers = origin.twoPlayers;
 	lastDice = origin.lastDice;
 	multipleDice = origin.multipleDice;
 	dicePlayerNow = origin.dicePlayerNow;
@@ -316,9 +321,13 @@ int LudoState::MakeTurn(int playerChoise)
 			} else {
 				multipleDice = 2;
 				activePlayerID = (activePlayerID + 1) % 4;
+				if(twoPlayers)
+					activePlayerID = (activePlayerID + 1) % 4;
 			}
 		} else {
 			activePlayerID = (activePlayerID + 1) % 4;
+			if(twoPlayers)
+				activePlayerID = (activePlayerID + 1) % 4;
 		}
 	}
 	dicePlayerNow = !dicePlayerNow;

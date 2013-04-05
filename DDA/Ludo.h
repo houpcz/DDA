@@ -7,6 +7,8 @@
 class Ludo :
 	public Game
 {
+	Q_OBJECT
+
 public :
 	static const int MAX_TILE = 73;
 	static const int PLAYER_1_START = 40;
@@ -23,6 +25,7 @@ private:
 	float tileHeight;
 	float boardWidth;
 	float boardHeight;
+	bool onlyTwoPlayers;
 	
 	static const QColor playerColor[LudoState::MAX_PLAYER];
 	int GetTileID(int player, int figure, int & atStart, bool nextState = false);
@@ -46,7 +49,11 @@ public:
 	int BoardY() { return boardY; };
 	virtual IGame * Factory(QWidget * _widget, bool _paint = true) { 
 		Ludo * game = new Ludo(_widget, _paint); 
-		
+		game->onlyTwoPlayers = onlyTwoPlayers;
 		return game;
 	};
+
+public slots:
+	void SetOnlyTwoPlayers(int twoPlayers);
+
 };

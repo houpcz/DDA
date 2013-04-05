@@ -23,7 +23,7 @@ public:
 	virtual bool IsScalable() { return false; }
 	QString GetAIName() { return QString("Dynamic level"); };
 	IPlayer * Factory(int playerID) { return new PlayerLevel(playerID); };
-	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID; }
+	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID || gameID == GAME_LUDO_ID; }
 };
 
 

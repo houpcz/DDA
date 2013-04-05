@@ -14,6 +14,7 @@ public:
 	static const int MAX_CHOISES = MAX_FIGURE * 2;
 	static const int MAX_LAST_DICE = 4;
 private:
+	bool twoPlayers;
 	static const int safeTile[FIRST_HOME_TILE];
 	int lastDice;
 	int multipleDice;
@@ -31,7 +32,7 @@ private:
 	bool IsPlayerWinner(int playerID) const;
 	bool IsTileFreeCheckOpponents(int newPosition);
 public:
-	LudoState(Game * _game);
+	LudoState(Game * _game, bool _twoPlayers);
 	virtual ~LudoState(void);
 	LudoState(const LudoState & origin);
 	LudoState& operator=(const LudoState &origin);
