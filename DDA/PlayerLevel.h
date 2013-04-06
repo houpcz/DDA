@@ -4,13 +4,13 @@
 #include <vector>
 #include <random>
 #include <cmath>
-#include "iplayer.h"
+#include "EnvironmentAI.h"
 #include "IGame.h"
 
 using namespace std;
 
 class PlayerLevel :
-	public IPlayer
+	public EnvironmentAI
 {
 private :
 	void UpdateLevel();

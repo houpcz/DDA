@@ -3,17 +3,17 @@
 #include <vector>
 #include <random>
 #include <cmath>
-#include "iplayer.h"
+#include "EnvironmentAI.h"
 #include "IGame.h"
 
 using namespace std;
 
 class PlayerPOSM :
-	public IPlayer
+	public EnvironmentAI
 {
 private :
 	void UpdateDifficultyLevel();
-	static const int W_LENGTH = 50;
+	static const int W_LENGTH = 100;
 	double w[W_LENGTH];
 	double A[W_LENGTH];
 	double B[W_LENGTH];

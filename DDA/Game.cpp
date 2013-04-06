@@ -110,7 +110,7 @@ void Game::Paint(QPainter * painter)
 
 				QString winnerText;
 				QColor winnerColor;
-				if(score < 0)
+				if(leaderID == 0)
 				{
 					winnerColor = Qt::red;
 					winnerText = "You lose!";

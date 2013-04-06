@@ -3,7 +3,7 @@
 
 using namespace std;
 
-PlayerLevel::PlayerLevel(int _myID) : IPlayer(_myID)
+PlayerLevel::PlayerLevel(int _myID) : EnvironmentAI(_myID)
 {
 }
 
@@ -40,18 +40,25 @@ bool PlayerLevel::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
+		if(nextState[loop1] == NULL)
+			continue;
+
 		scores.push_back(valueIndex(nextState[loop1]->GetPlayerRank(myID, myID), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
+	int realChoises = scores.size();
 	
-	int choise = (int) (level / 100.0) * choises;
+	int choise = (int) (level / 100.0) * realChoises;
 	if(choise < 0)
 		choise = 0;
-	else if(choise >= choises)
-		choise = choises - 1;
+	else if(choise >= realChoises)
+		choise = realChoises - 1;
 
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
+		if(nextState[loop1] == NULL)
+			continue;
+
 		delete nextState[loop1];
 	}
 	delete [] nextState;

@@ -109,6 +109,8 @@ void DDAWidget::MakePluginLists()
 
 	environmentAIList.push_back(new EnvironmentAIBasic(0));
 	environmentAIList.push_back(new EAHillClimber(1));
+	environmentAIList.push_back(new PlayerPOSM(4));
+	environmentAIList.push_back(new PlayerLevel(5));
 	//environmentAIList.push_back(new EAIMaxOptions(1));
 	//environmentAIList.push_back(new EAIMinOptions(2));
 

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-PlayerPOSM::PlayerPOSM(int _myID) : IPlayer(_myID)
+PlayerPOSM::PlayerPOSM(int _myID) : EnvironmentAI(_myID)
 {
 	beta = 0.5;
 }
@@ -19,7 +19,7 @@ void PlayerPOSM::StartGame(IGame * _game)
 	for(int loop1 = 0; loop1 < W_LENGTH; loop1++)
 		w[loop1] = 1.0;
 
-	kdiff = 25;
+	kdiff = 50;
 }
 
 void PlayerPOSM::UpdateDifficultyLevel()
@@ -85,7 +85,7 @@ void PlayerPOSM::UpdateDifficultyLevel()
     }
 
 	kdiff = bestID;
-	level = 51 + kdiff;
+	level = 1 + kdiff;
 	//qDebug(QString::number(level).toAscii() + " -> " + QString::number(h).toAscii());
 }
 
@@ -100,18 +100,25 @@ bool PlayerPOSM::Think()
 	vector<valueIndex> scores;
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
+		if(nextState[loop1] == NULL)
+			continue;
+
 		scores.push_back(valueIndex(nextState[loop1]->GetPlayerRank(myID, myID), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
+	int realChoises = scores.size();
 	
-	int choise = (level / 100.0) * choises;
-	if(choise < 0)
+	int choise = (level / 100.0) * realChoises;
+	if(realChoises < 0)
 		choise = 0;
-	else if(choise >= choises)
-		choise = choises - 1;
+	else if(choise >= realChoises)
+		choise = realChoises - 1;
 
 	for(int loop1 = 0; loop1 < choises; loop1++)
 	{
+		if(nextState[loop1] == NULL)
+			continue;
+
 		delete nextState[loop1];
 	}
 	delete [] nextState;
