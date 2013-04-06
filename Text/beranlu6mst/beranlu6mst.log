@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  4 APR 2013 19:59
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  6 APR 2013 19:02
 entering extended mode
 **beranlu6mst.tex
 (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.tex
@@ -988,8 +988,14 @@ Package biblatex Info: ... file 'czech.lbx' found.
 File: czech.lbx 2013/01/10 v2.5 biblatex localization (PK/JW/AB)
 )
 (C:\_projekty\DDA\Text\beranlu6mst\ch01.aux) (C:\_projekty\DDA\Text\beranlu6mst\ch02.aux)
-(C:\_projekty\DDA\Text\beranlu6mst\ch03.aux) (C:\_projekty\DDA\Text\beranlu6mst\ch04.aux)
-(C:\_projekty\DDA\Text\beranlu6mst\ch05.aux
+(C:\_projekty\DDA\Text\beranlu6mst\ch03.aux) (C:\_projekty\DDA\Text\beranlu6mst\ch04.aux
+
+LaTeX Warning: Label `shadowtable' multiply defined.
+
+) (C:\_projekty\DDA\Text\beranlu6mst\ch05.aux
+
+LaTeX Warning: Label `tab:klasifikaceher' multiply defined.
+
 
 LaTeX Warning: Label `shadowtable' multiply defined.
 
@@ -1106,7 +1112,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 51.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) <logo/lev.pdf, id=411, 561.09625pt x 440.64626pt>
+) <logo/lev.pdf, id=463, 561.09625pt x 440.64626pt>
 File: logo/lev.pdf Graphic file (type pdf)
 
 <use logo/lev.pdf>
@@ -1173,7 +1179,7 @@ Overfull \hbox (28.6479pt too wide) in paragraph at lines 89--91
 []\T1/lmr/m/n/10.95 Jestli∫e hr·£ opa-ko-van• umÌr·, do-stane se mu po-moci ve form• bo-nu-so-v˝ch lÈk∑(painkillers),
  []
 
-[5] <fig/ch1elderlypeople.png, id=705, 429.85594pt x 152.82094pt>
+[5] <fig/ch1elderlypeople.png, id=774, 429.85594pt x 152.82094pt>
 File: fig/ch1elderlypeople.png Graphic file (type png)
  <use fig/ch1elderlypeople.png>
 Package pdftex.def Info: fig/ch1elderlypeople.png used on input line 126.
@@ -1201,7 +1207,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 173.
 ) [9] (C:\_projekty\DDA\Text\beranlu6mst\ch02.tex
 Kapitola 2.
-<fig/ch2ddaarch.png, id=747, 619.113pt x 452.892pt>
+<fig/ch2ddaarch.png, id=816, 619.113pt x 452.892pt>
 File: fig/ch2ddaarch.png Graphic file (type png)
  <use fig/ch2ddaarch.png>
 Package pdftex.def Info: fig/ch2ddaarch.png used on input line 12.
@@ -1215,13 +1221,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2.2}) h
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.18 
-      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2ddaarch.png>] <fig/ch2ddapatterns.png, id=758, 420.97275pt x 197.538pt>
+      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2ddaarch.png>] <fig/ch2ddapatterns.png, id=827, 420.97275pt x 197.538pt>
 File: fig/ch2ddapatterns.png Graphic file (type png)
 
 <use fig/ch2ddapatterns.png>
 Package pdftex.def Info: fig/ch2ddapatterns.png used on input line 21.
 (pdftex.def)             Requested size: 310.1859pt x 145.55188pt.
- <fig/ch2senzorfactory.png, id=763, 529.98pt x 280.6485pt>
+ <fig/ch2senzorfactory.png, id=832, 529.98pt x 280.6485pt>
 File: fig/ch2senzorfactory.png Graphic file (type png)
  <use fig/ch2senzorfactory.png>
 Package pdftex.def Info: fig/ch2senzorfactory.png used on input line 34.
@@ -1240,19 +1246,19 @@ ored
                                                   \fi \fi 
 l.42 
       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2ddapatterns.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2senzorfactory
-.png>] <fig/ch2adaptationdesing.png, id=774, 345.08925pt x 239.6955pt>
+.png>] <fig/ch2adaptationdesing.png, id=843, 345.08925pt x 239.6955pt>
 File: fig/ch2adaptationdesing.png Graphic file (type png)
  <use fig/ch2adaptationdesing.png>
 Package pdftex.def Info: fig/ch2adaptationdesing.png used on input line 45.
 (pdftex.def)             Requested size: 206.7906pt x 143.63553pt.
 
-<fig/ch2casebase.png, id=778, 349.90726pt x 310.761pt>
+<fig/ch2casebase.png, id=847, 349.90726pt x 310.761pt>
 File: fig/ch2casebase.png Graphic file (type png)
  <use fig/ch2casebase.png>
 Package pdftex.def Info: fig/ch2casebase.png used on input line 56.
 (pdftex.def)             Requested size: 206.7906pt x 183.65561pt.
 
-<fig/ch2gamereco.png, id=782, 421.575pt x 273.4215pt>
+<fig/ch2gamereco.png, id=851, 421.575pt x 273.4215pt>
 File: fig/ch2gamereco.png Graphic file (type png)
  <use fig/ch2gamereco.png>
 Package pdftex.def Info: fig/ch2gamereco.png used on input line 67.
@@ -1276,7 +1282,7 @@ ored
                                                   \fi \fi 
 l.81 
       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2casebase.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2gamereco.png>]
-<fig/ch2flow.png, id=800, 523.35526pt x 324.61275pt>
+<fig/ch2flow.png, id=869, 523.35526pt x 324.61275pt>
 File: fig/ch2flow.png Graphic file (type png)
  <use fig/ch2flow.png>
 Package pdftex.def Info: fig/ch2flow.png used on input line 88.
@@ -1288,13 +1294,13 @@ red
                                                   \fi \fi 
 l.102 	\item V
               yrovnanost n√°roƒçnosti √∫kol≈Ø a schopnost√≠ <C:/_projekty/DDA/Text/beranlu6mst/fig/ch2flow.png>]
-[15] <fig/ch2flowzone1.png, id=848, 258.9675pt x 173.64874pt>
+[15] <fig/ch2flowzone1.png, id=917, 258.9675pt x 173.64874pt>
 File: fig/ch2flowzone1.png Graphic file (type png)
  <use fig/ch2flowzone1.png>
 Package pdftex.def Info: fig/ch2flowzone1.png used on input line 168.
 (pdftex.def)             Requested size: 206.7906pt x 138.66745pt.
 
-<fig/ch2flowzone2.png, id=853, 258.9675pt x 194.7275pt>
+<fig/ch2flowzone2.png, id=922, 258.9675pt x 194.7275pt>
 File: fig/ch2flowzone2.png Graphic file (type png)
  <use fig/ch2flowzone2.png>
 Package pdftex.def Info: fig/ch2flowzone2.png used on input line 177.
@@ -1323,7 +1329,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) ha
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.34 
-     ] <fig/ch3pomdp.png, id=901, 295.1025pt x 216.05719pt>
+     ] <fig/ch3pomdp.png, id=970, 295.1025pt x 216.05719pt>
 File: fig/ch3pomdp.png Graphic file (type png)
  <use fig/ch3pomdp.png>
 Package pdftex.def Info: fig/ch3pomdp.png used on input line 55.
@@ -1335,7 +1341,7 @@ e ignored
                                                   \fi \fi 
 l.81 \end{equation}
                     <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3pomdp.png>] [25]
-<fig/ch3cbrspring.png, id=927, 511.9125pt x 301.8778pt>
+<fig/ch3cbrspring.png, id=996, 511.9125pt x 301.8778pt>
 File: fig/ch3cbrspring.png Graphic file (type png)
  <use fig/ch3cbrspring.png>
 Package pdftex.def Info: fig/ch3cbrspring.png used on input line 124.
@@ -1347,13 +1353,13 @@ ored
                                                   \fi \fi 
 l.139 \subsubsection
                     {Shlukov√°n√≠ pozorov√°n√≠} <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3cbrspring.png>] [27]
-<fig/ch3deadend.png, id=941, 222.07968pt x 319.94531pt>
+<fig/ch3deadend.png, id=1010, 222.07968pt x 319.94531pt>
 File: fig/ch3deadend.png Graphic file (type png)
  <use fig/ch3deadend.png>
 Package pdftex.def Info: fig/ch3deadend.png used on input line 189.
 (pdftex.def)             Requested size: 222.07913pt x 319.94452pt.
  [28]
-<fig/ch3fuzzytable.png, id=950, 595.47469pt x 172.39406pt>
+<fig/ch3fuzzytable.png, id=1019, 595.47469pt x 172.39406pt>
 File: fig/ch3fuzzytable.png Graphic file (type png)
  <use fig/ch3fuzzytable.png>
 Package pdftex.def Info: fig/ch3fuzzytable.png used on input line 207.
@@ -1371,7 +1377,7 @@ gnored
                                                   \fi \fi 
 l.217 
        <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3deadend.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3fuzzytable.png>]
-<fig/ch3fuzzywinrate.png, id=961, 429.85594pt x 185.19188pt>
+<fig/ch3fuzzywinrate.png, id=1030, 429.85594pt x 185.19188pt>
 File: fig/ch3fuzzywinrate.png Graphic file (type png)
  <use fig/ch3fuzzywinrate.png>
 Package pdftex.def Info: fig/ch3fuzzywinrate.png used on input line 234.
@@ -1383,13 +1389,13 @@ ored
                                                   \fi \fi 
 l.243 
        <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3fuzzywinrate.png>]
-<fig/ch3evolchess.png, id=972, 321.6015pt x 322.20375pt>
+<fig/ch3evolchess.png, id=1041, 321.6015pt x 322.20375pt>
 File: fig/ch3evolchess.png Graphic file (type png)
  <use fig/ch3evolchess.png>
 Package pdftex.def Info: fig/ch3evolchess.png used on input line 252.
 (pdftex.def)             Requested size: 124.07562pt x 124.30693pt.
 
-<fig/ch3evolchess2.png, id=973, 322.20375pt x 322.20375pt>
+<fig/ch3evolchess2.png, id=1042, 322.20375pt x 322.20375pt>
 File: fig/ch3evolchess2.png Graphic file (type png)
  <use fig/ch3evolchess2.png>
 Package pdftex.def Info: fig/ch3evolchess2.png used on input line 253.
@@ -1408,7 +1414,7 @@ File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 274.
- [32] <fig/ch3evoltrack.png, id=989, 460.72125pt x 272.217pt>
+ [32] <fig/ch3evoltrack.png, id=1058, 460.72125pt x 272.217pt>
 File: fig/ch3evoltrack.png Graphic file (type png)
 
 <use fig/ch3evoltrack.png>
@@ -1425,7 +1431,7 @@ ack.png>]
 Underfull \vbox (badness 1824) has occurred while \output is active []
 
  [34]
-<fig/ch3feromons.png, id=1010, 414.79968pt x 164.86594pt>
+<fig/ch3feromons.png, id=1079, 414.79968pt x 164.86594pt>
 File: fig/ch3feromons.png Graphic file (type png)
  <use fig/ch3feromons.png>
 Package pdftex.def Info: fig/ch3feromons.png used on input line 362.
@@ -1439,7 +1445,7 @@ l.368
        <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3feromons.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 396.
  [36] [37] [38] [39]
-<fig/ch3pacman.png, id=1052, 333.49594pt x 215.30438pt>
+<fig/ch3pacman.png, id=1121, 333.49594pt x 215.30438pt>
 File: fig/ch3pacman.png Graphic file (type png)
  <use fig/ch3pacman.png>
 Package pdftex.def Info: fig/ch3pacman.png used on input line 534.
@@ -1452,25 +1458,53 @@ ored
 l.552 
        <C:/_projekty/DDA/Text/beranlu6mst/fig/ch3pacman.png>]) [41] (C:\_projekty\DDA\Text\beranlu6mst\ch04.tex
 Kapitola 4.
-) [42
+[42
 
 
 
-] (C:\_projekty\DDA\Text\beranlu6mst\ch05.tex
+pdfTeX warning (ext4): destination with the same identifier (name{table.4.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.36 
+     ] <fig/ttt-minimax.jpg, id=1140, 640.3925pt x 454.69875pt>
+File: fig/ttt-minimax.jpg Graphic file (type jpg)
+ <use fig/ttt-minimax.jpg>
+Package pdftex.def Info: fig/ttt-minimax.jpg used on input line 41.
+(pdftex.def)             Requested size: 310.1859pt x 220.24416pt.
+ [43pdfTeX warning (ext4): destination with the same identifier (name{figure.4.20}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.49 
+      <C:/_projekty/DDA/Text/beranlu6mst/fig/ttt-minimax.jpg>] [44] <fig/ch4mcts.png, id=1150, 368.577pt x 157.18726pt>
+File: fig/ch4mcts.png Graphic file (type png)
+
+<use fig/ch4mcts.png>
+Package pdftex.def Info: fig/ch4mcts.png used on input line 89.
+(pdftex.def)             Requested size: 310.1859pt x 132.28822pt.
+ [45pdfTeX warning (ext4): destination with the same identifier (name{figure.4.21}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.99 	\[
+         <C:/_projekty/DDA/Text/beranlu6mst/fig/ch4mcts.png>]) [46] (C:\_projekty\DDA\Text\beranlu6mst\ch05.tex
 Kapitola 5.
 
 Underfull \vbox (badness 1931) has occurred while \output is active []
 
- [43
+ [47
 
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{table.5.2}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{table.5.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.40 
-     ] [44] [45] [46] [47] [48]
+     ] [48] [49] [50] [51] [52]
 
 LaTeX Warning: Command \' invalid in math mode on input line 133.
 
@@ -1483,15 +1517,15 @@ LaTeX Warning: Command \' invalid in math mode on input line 133.
 
 LaTeX Warning: Command \v invalid in math mode on input line 133.
 
-) [49] (C:\_projekty\DDA\Text\beranlu6mst\ch06.tex
+) [53] (C:\_projekty\DDA\Text\beranlu6mst\ch06.tex
 Kapitola 6.
-) [50
+) [54
 
 
 
 ] (C:\_projekty\DDA\Text\beranlu6mst\ch07.tex
 Kapitola 7.
-) [51
+) [55
 
 
 
@@ -1506,7 +1540,7 @@ Overfull \hbox (4.50673pt too wide) in paragraph at lines 83--83
 m/n/10.95 : [][]$\T1/lmtt/m/n/10.95 http : / / www . giantbomb . com / ai -[] director /
  []
 
-[52
+[56
 
 
 
@@ -1526,9 +1560,9 @@ Overfull \hbox (5.28348pt too wide) in paragraph at lines 83--83
 Package biblatex Warning: Month out of range
 (biblatex)                at entry 'SwPatterns' on input line 81.
 
-[53]
+[57]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 85.
- [54]
+ [58]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
  (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.aux (C:\_projekty\DDA\Text\beranlu6mst\ch01.aux)
 (C:\_projekty\DDA\Text\beranlu6mst\ch02.aux) (C:\_projekty\DDA\Text\beranlu6mst\ch03.aux)
@@ -1537,7 +1571,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 85.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 85.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 85.
 Package rerunfilecheck Info: File `beranlu6mst.out' has not changed.
-(rerunfilecheck)             Checksum: 1A28E872543F5653749A1E4ACFFF6E2B;15793.
+(rerunfilecheck)             Checksum: 5A1FB3C0DEB4E711568C2D470E8BA3D6;17656.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1546,10 +1580,10 @@ Package logreq Info: Writing requests to 'beranlu6mst.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 85.
  ) 
 Here is how much of TeX's memory you used:
- 19633 strings out of 493921
- 297926 string characters out of 3147276
- 744481 words of memory out of 3000000
- 22213 multiletter control sequences out of 15000+200000
+ 19679 strings out of 493921
+ 298581 string characters out of 3147276
+ 744618 words of memory out of 3000000
+ 22236 multiletter control sequences out of 15000+200000
  94790 words of font info for 77 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  52i,12n,49p,1383b,2640s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1572,9 +1606,9 @@ blic/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro10.pfb
 1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on beranlu6mst.pdf (64 pages, 1925365 bytes).
+Output written on beranlu6mst.pdf (68 pages, 2005367 bytes).
 PDF statistics:
- 1306 PDF objects out of 1440 (max. 8388607)
- 283 named destinations out of 1000 (max. 500000)
- 934 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1402 PDF objects out of 1440 (max. 8388607)
+ 303 named destinations out of 1000 (max. 500000)
+ 1048 words of extra memory for PDF output out of 10000 (max. 10000000)
 
