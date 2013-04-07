@@ -1110,7 +1110,7 @@ int MazeState::GetPlayerStatus(int playerID)
 	int undefinedTiles = 0;
 	int sumDist = 0;
 	int tempDist = 0;
-	int distToGoal0 = 0;
+
 	for(int loop1 = 0; loop1 < goalStart; loop1++)
 	{
 		if(maze[goalY[loop1]][goalX[loop1]] != TILE_GOAL)
@@ -1118,25 +1118,16 @@ int MazeState::GetPlayerStatus(int playerID)
 
 		tempDist = GetDistanceBetween(goalX[loop1], goalY[loop1], playerX, playerY, true);
 
-		if(loop1 == 0)
+		if(maze[goalY[loop1] + 1][goalX[loop1]] == TILE_EMPTY ||
+		   maze[goalY[loop1] - 1][goalX[loop1]] == TILE_EMPTY ||
+		   maze[goalY[loop1]][goalX[loop1] + 1] == TILE_EMPTY ||
+		   maze[goalY[loop1]][goalX[loop1] - 1] == TILE_EMPTY)
 		{
-			distToGoal0 = tempDist;
 			sumDist += tempDist;
 		} else {
-			sumDist += tempDist;
+			sumDist += tempDist * 2;
 		}
 	}
-
-	int x = goalX[0];
-	int y = goalY[0];
-	if(maze[y - 1][x] == TILE_EMPTY ||
-	   maze[y + 1][x] == TILE_EMPTY ||
-	   maze[y][x + 1] == TILE_EMPTY ||
-	   maze[y][x - 1] == TILE_EMPTY)
-	{
-		return stepsToGameOver - distToGoal0;
-	}
-
 	
 	for(int loop1 = 0; loop1 < mazeWidth; loop1++)
 	{
@@ -1152,7 +1143,7 @@ int MazeState::GetPlayerStatus(int playerID)
 
 
 	int koef = (maze[goalY[0]][goalX[0]] == TILE_GOAL) ? 1 : 0;
-	int status = (int) (sumDist * 1.5f * koef - stepsToGameOver + (undefinedTiles / 3.0f * koef));
+	int status = (int) (sumDist * koef - stepsToGameOver + goalAmount * 50);
 	return (playerID == 0) ? status : -status;
 }
 

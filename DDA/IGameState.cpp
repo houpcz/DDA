@@ -80,6 +80,7 @@ void IGameState::UpdateGameStat()
 
 	int outStatusDifference;
 	int newLeaderID = GetLeaderID(&outStatusDifference);
+	gameStat->SetEndStatusDifference(abs(outStatusDifference));
 	gameStat->AddStatusDifference(abs(outStatusDifference));
 	if(newLeaderID != playerLeader) {
 		gameStat->AddPlayerLeaderTime(playerLeader, leaderTime);
@@ -112,7 +113,6 @@ void IGameState::UpdateGameStat()
 		int outStatusDifference;
 		int newLeaderID = GetLeaderID(&outStatusDifference);
 		gameStat->AddStatusDifference(abs(outStatusDifference));
-		gameStat->SetEndStatusDifference(abs(outStatusDifference));
 		gameStat->SetWinner(newLeaderID);
 		gameStat->SetGameSpecificStat(GetGameSpecificStat());
 		gameStat->AddPlayerLeaderTime(playerLeader, leaderTime);

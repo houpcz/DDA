@@ -16,7 +16,7 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	mazeHeight = 41; 
 	visibleGoals = true;
 	abstraction = true;
-	stepsToGameOver = 777;
+	stepsToGameOver = 666;
 	
 	tileWidth = 10.0f;
 	tileHeight = 10.0f;

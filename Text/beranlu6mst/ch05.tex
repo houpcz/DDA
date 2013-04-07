@@ -1,5 +1,7 @@
 \chapter{Testující prostředí}
 
+
+
 \section{Použité hry}
 
 Pro testování navržených algoritmů v předchozí kapitole jsem si zvolil následující tři relativně jednoduché hry - Bludiště, Ludo a Ztracená města. Hry se liší počtem hráčů, úplností informací a determinismus. Zařazení do jednotlivých kategorií znázorňuje následující tabulka \ref{tab:klasifikaceher}.
@@ -26,39 +28,33 @@ Schéma podsekcí jednotlivých her je stejné. Nejdříve popíši cíl a pravi
 
 \subsection{Bludiště}
 
-Bludiště je jednoduchou hrou pro jednoho hráče. Na mapě je umístěn neznámý počet bomb. Cílem hráče je tyto bomby včas najít a zneškodnit.
+Bludiště je jednoduchou hrou pro jednoho hráče. Terorista v bludišti umístil několik bomb. Cílem hráče je tyto bomby včas najít a zneškodnit. Hráč má k dispozici plánek s umístěním všech bomb, ale bohužel jsou v plánku vyznačeny i neexistující bomby. Hráč musí zkontrolovat všechny místa označená na mapě. Buď zjistí, že dané místo není dostupné, a tudíž se tam bomba nenachází, nebo místo dostupné je a bombu musí zneškodnit. (stačí dojít na její místo) 
 
 Herní plán bludiště se skládá z 2D čtvercové sítě. Jednotlivé čtverce mapy představují zdi, dveře, bomby, nebo průchozí pole. Hráč vidí bludiště z ptačí perspektivy a bludiště objevuje postupně. Vždy po otevření dveří se mu zobrazí chodba za nimi. Všechny bomby vybuchnou ve stejný čas. Čas je zde měřen na počet kroků hráče.
 
 Terorista navíc na některé dveře připevnil senzory, a poté dveře přemaloval namodro, nebo červeně. Jestliže hráč otevře modré dveře, získá čas navíc. Otevře-li červené, čas se mu zkrátí.
 
-V prostředí jsou implementovány dvě varianty hry. V první hráč od začátku zná pozici všech bomb, musí pouze nalézt cestu k nim. V druhé variantě je i pozice bomb utajena.
-
 \subsubsection{Hráč prostředí}
 
-Člověk si má myslet, že při hraní objevuje již předgenerované bludiště. Ve skutečnosti se bludiště tvoří postupně, jak ho hráč objevuje. Když hráč otevře nové dveře, vytvoří se mu nová chodba. Pro obě varianty hry platí, že rozmístění bomb je pevně dané, bomby nejsou umisťovány v průběhu hry. 
+Člověk si má myslet, že při hraní objevuje již dříve vygenerované bludiště. Ve skutečnosti se bludiště tvoří postupně, jak ho hráč objevuje. Když hráč otevře nové dveře, vytvoří se mu nová chodba. 
 
 Druh dveří na každé možné konkrétní pozici je určen před začátkem hry. Z toho vyplývá, že hráč prostředí může barvu dveří ovlivňovat pouze nepřímo. Může ovlivnit umístění dveří, které následně určí jejich barvu.
 
-Generování chodeb má jasně daná pravidla. Chodba může být libovolně dlouhá, i přes celý herní plán. Chodba může být zakončena zdí, nebo mohou na konci následovat další dveře. Z vygenerované chodby vedou vždy maximálně jedny dveře vlevo a jedny vpravo. Může se stát, že díky pozdějšímu napojení dvou chodem na sebe vznikne chodba s více dveřmi po levé, či pravé straně, ale nikdy nejsou na žádné straně vygenerovány dvě dveře naráz. Toto omezení je vynahrazeno možností ukončit chodbu dveřmi a ne zdí. Více dveří na jedné straně lze tak vygenerovat postupně pomocí dvou chodem stejným směrem.
+Generování chodeb má jasně daná pravidla. Chodba může být libovolně dlouhá, i přes celý herní plán. Chodba může být zakončena zdí, nebo mohou na konci následovat další dveře. Z vygenerované chodby vedou vždy maximálně jedny dveře vlevo a jedny vpravo. Může se stát, že díky pozdějšímu napojení dvou chodem na sebe vznikne chodba s více dveřmi po levé, či pravé straně, ale nikdy nejsou na žádné straně vygenerovány dvě dveře naráz. Toto omezení je vynahrazeno možností ukončit chodbu dveřmi a ne zdí. Více dveří na jedné straně lze tak vygenerovat postupně pomocí dvou chodeb vytvořených ve stejném směru.
 
 I bez volby druhů dveří zbývá příliš mnoho možných tahů. Na mapě 40x40 polí může být délka generované chodby maximálně 39 polí dlouhá. Počet kombinací umístění dveří vlevo nebo vpravo se zakončením dveřmi, nebo zdí je $2*40^2$ (pozice 1-39, plus možnost nedat žádné dveře). Větvící faktor větší než 3200 by nebyl příliš použitelný pro herní algoritmy. 
 
 Pro snížení větvícího faktoru nahradíme vždy několik tahů jedním. Provedeme abstrakci. HP neurčuje přesnou pozici dveří, ale jen přibližnou. Chodba je rozdělena do několika úseků a HP hráč si volí pouze, ve kterém úseku chce dveře. Konkrétní místo se vybere náhodně v rámci úseku. Dále HP nevybírá, jestli chodbu zakončí zdí, nebo dveřmi. Opět náhodná volba. Tímto byl větvící faktor HP hráče u bludišť o velikosti 40x40 snížen na maximální hodnotu 26.
 
-Zásadní podmínkou pro generování bludiště bylo zakázat vygenerování neřešitelného bludiště. V žádném kroku nesmí být vygenerována chodba, která znemožní v budoucnu přístup k jakékoli z bomb. Bez důkazu bylo experimentálně ověřeno tvrzení, že pokud v jednom tahu existuje cesta mezi bombou a jedněmi z dveří přes zatím neodhalené čtverce mapy, tak v takovém případě existuje posloupnost tahů/možných chodeb, které skrz neodhalené čtverce vytvoří cestu mezi bombou a hráčem. Toto tvrzení by nebylo platné, kdyby nebyla povolena libovolná délka chodeb.
-
 \subsubsection{Heuristika a uvěřitelnost}
 
-Určení hodnosti hry hráčem závisí na variantě hry. Ve variantě s viditelnými bombami se spočítá manhattonská vzdálenost mezi hráčem a nejbližší bombou. Výsledná hodnost je dána rozdílem počtu kroků do konce hry a desetinásobkem spočítané vzdálenosti.
-
-Ve druhé variantě hry nelze využít informací o poloze bomb. Heuristika navádí hráče k nejbližším dveřím s ohledem na blízkost dveří dalších. Jejím základem je počet kroků do konce mínus dvojnásobek reálné vzdálenosti k nejbližším dalším dveřím. K výsledku se přičte počet již nalezených bomb krát velká konstanta, aby hráč vždy upřednostnil odstranění bomby před hledáním další.
+Heuristika pro hodnost se spočítá jako manhattonská vzdálenost mezi hráčem a nejbližší bombou. Výsledná hodnost je dána rozdílem počtu kroků do konce hry a desetinásobkem spočítané vzdálenosti.
 
 Pro jednoduchost se hráč ve hře pohybuje skokem mezi jednotlivými dveřmi a vždy se změří reálná vzdálenost takového pohybu. Z tohoto důvodu ve všech stavech mimo prvního hráč stojí na pozici nově otevřených dveří, nebo čerstvě odstraněné bomby. Z tohoto důvodu bonus/penalizace za otevření různých druhů dveří je už v heuristice započítán v proměnné počet kroků do konce hry.
 
-Status funkce se v této hře výrazně liší od funkce hodnosti a je shodná pro obě varianty hry. Je složena se součtu vzdáleností k jednotlivým aktivním bombám($sumDist$) a počtu ještě neprozkoumaných čtverců ($undefinedTiles$) a samozřejmě počtu kroků do konce hry ($stepsToGameOver$). Výsledný vzorec : $status = stepsToGameOver - \frac{3}{2}sumDist-(undefinedTiles / 2 * coef)$. Koeficient coef je roven nule, jestliže hra skončila a hráč vyhrál, jinak je roven 1. 
+Status funkce se v této hře výrazně liší od funkce hodnosti. Je složena se součtu vzdáleností k jednotlivým aktivním bombám($sumDist$) a počtu ještě neprozkoumaných čtverců ($undefinedTiles$) a samozřejmě počtu kroků do konce hry ($stepsToGameOver$). Výsledný vzorec : $status = stepsToGameOver - \frac{3}{2}sumDist-(undefinedTiles / 2 * coef)$. Koeficient coef je roven nule, jestliže hra skončila a hráč vyhrál, jinak je roven 1. 
 
-Uvěřitelnost v této hře je definována na základě délek nově vytvářených chodeb. Cílem bude tvořit bludiště bez příliš dlouhých chodeb a s přibližně stejným zastoupením různých délek. V našem konkrétním případě se zaznamená počet chodeb do délky 2, délek 2/3, 4/5, 6/7, 8/9 a zvlášť počet chodem o délce 10 a delších. Výsledná uvěřitelnost hry je dána součtem stonásobku počtu chodeb delších než 9 a uvěřitelnosti četností prvních 5 délek.
+Uvěřitelnost v této hře je definována na základě délek nově vytvářených chodeb. Cílem bude tvořit bludiště bez příliš dlouhých chodeb a s přibližně stejným zastoupením různých délek. V našem konkrétním případě se zaznamená počet chodeb do délky 2, délek 2/3, 4/5, 6/7, 8/9 a zvlášť počet chodem o délce 10 a delších. Výsledná uvěřitelnost hry je dána součtem tisícinásobku počtu chodeb delších než 9 a uvěřitelnosti četností pole prvních 5 délek.
 
 \subsection{Ludo}
 
@@ -98,7 +94,7 @@ Na začátku hry je náhodně rozdáno 8 karet pro každého hráče. Vždy, kdy
 
 Podobně jako u hry Ludo, i zde je využívána stejná heuristika pro funkce status a hodnosti. Heuristika je vždy počítána jako by se jednalo o hru s úplnou informací. Můžeme ji počítat tímto způsobem, protože umělá inteligence nikdy nevolá heuristiku přímo na aktuální stav, ale vždy na stav ze stejného informačního setu, který stochasticky vygeneruje.
 
-Heuristika odhaduje předpokládaný počet bodů získaných z jednotlivých expedic. Počítáme body pouze z expedic, které již byly založeny. Pro každou založenou expedici spočteme aktuální počet bodů a výsledek vynásobíme konstantou 10. Poté projdeme všechny karty v ruce, v balíčku a vrchní kartu z odložených karet, které ještě hráč může zahrát. (mají vyšší hodnotu než nejvyšší vyložená karta) Součet bodů těchto karet vynásobíme konstantami 8, 4, nebo 3 a 7 pro karty z ruky, balíčku a vrchní kartu. Pro karty z balíčku se vybere konstanta 3, jestliže hráč založí 4. expedici, jinak je 4. Heuristika je převzata z \cite{ch5LT} včetně koeficientů.
+Heuristika odhaduje předpokládaný počet bodů získaných z jednotlivých expedic. Počítáme body pouze z expedic, které již byly založeny. Pro každou založenou expedici spočteme aktuální počet bodů a výsledek vynásobíme konstantou 10. Poté projdeme všechny karty v ruce, v balíčku a vrchní kartu z odložených karet, které ještě hráč může zahrát. (mají vyšší hodnotu než nejvyšší vyložená karta) Součet bodů těchto karet vynásobíme konstantami 8, 4, nebo 3 a 7 pro karty z ruky, balíčku a vrchní kartu. Pro karty z balíčku se vybere konstanta 2, jestliže hráč založí 4. expedici, jinak je 3. Heuristika je převzata z \cite{ch5LT} včetně koeficientů.
 
 Aby hra byla \emph{uvěřitená}, jednotliví hráči musí během hry získat podobné počty barev a hodnot karet. Uvěřitelnost barvy je méně důležitá. Naopak pokud se pokusíme, aby každý hráč dostal od každé barvy během hry stejný počet karet, můžete to negativně ovlivnit průběh hry. Hodnoty karet rozdělíme do 4 kategorií - sázkové karty, hodnoty 2, 3, 4, hodnoty 5, 6, 7 a nakonec 8, 9, 10. Hra bude více uvěřitelná, když každý hráč během hry získá podobně karet z každé kategorie.
 
@@ -106,33 +102,57 @@ Výsledná uvěřitelnost je sumou uvěřitelností četnosti kategorií hodnot 
 
 \section{Použité umělé inteligence}
 
-\subsection{HillClimber}
+V aplikaci jsou implementovány dva druhy hráčů. První druh představuje hráče prostředí, kteří se starají o náhodný prvek ve hře. Druhým typem jsou běžní hráči, kteří se chovají relativně rozumně.
 
-Algoritmus HillClimber patří mezi základní jednoduché algoritmy. Ke své funkčnosti potřebuje funkci, jež dokáže získat všechny následující tahy a funkci, která je ohodnotí hodností. Ohodnocené tahy seřadí dle hodnosti a vybere nejlepší z nich. Algoritmus je určen pro hry Bludiště a Ludo.
+Pro všechny tři hry jsem připravil hráče založené na DDA algoritmech Dynamická úroveň a POSM uvedených ve třetí kapitole. Tito hráči slouží pro porovnání mého nového přístupu s již existujícími.
 
-Pro hru Ztracená města je určená varianta s IS (informační set). HillClimber IS před rozhodnutím provede několik desítek iterací. Na začátku iterace vygeneruje náhodně tah ze stejného informačního setu. Pro jednotlivé tahy si ukládáme sumu hodností přes všechny iterace. Můžeme si to dovolit, protože ve hře Ztracená města nejsou možné tahy hráče v jednom kole závislé na neúplné informaci, na soupeřově kartách v ruce. Výsledná sumární ohodnocení pro tahy seřadíme a opět vybereme nejlepší z nich.
+\subsection{Hráči prostředí}
 
-\subsection{Max N}
+Prvním hráčem prostředí je hráč hrající náhodně. S tímto hráčem se všechny hry chovají zcela přirozeně jako by v nich tento typ hráče vůbec nebyl. Tento hráč byl přidán pro srovnání naměřených metrik u her, které neovlivňuje hráč prostředí, a které naopak ovlivňuje.
 
-Algoritmus Max N je rozšířenou variantou známějšího algoritmu minimax pro více hráčů a je zde použit pro hru Ludo. Algoritmus prochází herní strom do hloubky, která je zpravidla omezena konstantou. V dané hloubce ohodnotí stav pomocí funkce hodnosti pro všechny hráče a výsledný soubor hodností propaguje výše. 
+Dále je v aplikaci implementována trojice hráčů prostředí navržených v předcházející kapitole.
 
-Každý vnitřní uzel odpovídá tahu jednoho hráče. Ve chvíli, kdy se sesbírají soubory hodností ze všech potomků, se další postup liší dle typu hráče. Jedná-li se o hráče prostředí, tak jde z hlediska AI o tzv. chance node. V tomto případě se o patro výše propaguje zprůměrovaná skupina hodností z potomků. (uvažujeme hry, kde jednotlivé tahy mají stejnou pravděpodobnost)
+Hra Bludiště disponuje dvěma hráči navíc. Obsahuje hráče založené na algoritmech POSM a Dynamická úroveň. Tito hráči dělají ze hry Bludiště hru se dvěma soupeřícími hráči. Klasický hráč má za úkol splnit úkol, nalézt všechny bomby a jeho soupeř se mu v tom snaží zabránit. 
 
-Běžný hráč vybere z potomků takovou skupinu hodností, kde hodnost tohoto hráče je co nejvyšší a tuto skupinu opět propaguje o patro výš.
+\subsection{Běžní hráči}
 
-ALGORITMUS : DOPLNIT TODO
+V testovacím prostředí existuje několik hráčů postavených na různých algoritmech. Aplikace byla navržena tak, aby každý hráč byl použitelný pro každou hru. Některé kombinace her a hráčů nebyly příliš rozumné, a proto v aplikaci jsou povoleny pouze některé.
 
-\subsection{Monte Carlo}
+Ve všech hrách lze využít hráče hrajícího náhodně. Slouží pouze jako jeden z benchmarků pro ostatní algoritmy. Pomohl např. objevit chybu v dřívější heuristice pro Člověče, nezlob se. Náhodný hráč vyhrával častěji než hráč využívající heuristiku.
+
+U her Bludiště a Ludo je aktivní další jednoduchý hráč nazvaný HillClimber. Ke své funkčnosti potřebuje funkci, jež dokáže získat všechny následující tahy a funkci, která je ohodnotí hodností. Ohodnocené tahy seřadí dle hodnosti a vybere nejlepší z nich.
+
+Pro hru Ztracená města je určená varianta s IS (informační set). HillClimber IS před rozhodnutím provede několik desítek iterací. Na začátku iterace vygeneruje náhodně stav hry ze stejného informačního setu jako je aktuální stav. Nad tímto stavem provede základní algoritmus Hill Climber, ohodnotí všechny tahy z něj. Pro jednotlivé tahy si ukládáme sumu hodností přes všechny iterace. Můžeme si to dovolit, protože ve hře Ztracená města nejsou možné tahy hráče v jednom kole závislé na neúplné informaci, na soupeřově kartách v ruce. Výsledná sumární ohodnocení pro tahy seřadíme a opět vybereme nejlepší z nich.
+
+Bludiště žádné jiné hráči nevyužívá, jelikož hráči nemají být seznámeni se způsobem tvorby bludiště.
+
+Ve hře Ludo nalezneme hráče založené na Monte Carlo prohledávání stromu a na vícehráčové variantě algoritmu Minimax, na algoritmu Max N. Oba algoritmy byly stručně popsány na začátku předchozí kapitoly.
+
+Pro hru Ztracená města jsem se snažil vytvořit hráče, který nebude podvádět (nebude znát karty v soupeřově ruce a ani skryté v balíčku) a zároveň bude lepší než jednoduchý algoritmus HillClimberIS.
+Nejdříve jsem se pokoušel o různé varianty hráče založené na Monte Carlo prohledávání stromu. Bohužel všechny varianty hráče se chovali v průměru hůře než jednoduchý HillClimber IS. Z tohoto důvodu jsem se rozhodl pro implementaci hráče navrženého Pedrem Vasconcelosem \cite{ch5LT} pro stejnou hru a nazval jsem ho Minimax IS.
+
+Hry Ludo a Ztracená města navíc obsahují dva hráče implementující DDA mechanismus. Jsou to hráči Dynamická úroveň a POSM pojmenovaní dle algoritmů popsaných ve třetí kapitole.
 
 \subsection{Minimax IS}
 
+Algoritmus Minimax IS se od klasického Minimaxu liší obdobně jako HillClimber IS od HillClimberu. 
+
+Algoritmus v iteracích provádí dva kroky. Nejdříve vytvoří na základě aktuálního stavu stav ze stejné informační množiny. V našem případě se jedná o zamíchání neznámých soupeřových karet s balíčkem a z takto zamíchaných karet se doplní soupeřova ruka. Nad novým stavem se zavolá Minimax s prořezáváním alfa, beta. Zapamatuje se nejlepších tah dle Minimaxu a pokračuje se další iterací. Nakonec hráč zahraje tah, který byl nejvíce krát vybrán Minimaxem.
+
+Vasconcelos herní strom prořezává do hloubky i do šířky. Prořezávání do hloubky je dle očekávání. V určité hloubce stromu se stav ohodnotí dle heuristické funkce. Při prořezávání do šířky se z každého uzlu ohodnotí všechny následující tahy dle stejné heuristické funkce, Minimax prochází pouze tři nejlepší z nich.
+
+Hloubku stromu a počet iterací mění v průběhu hry. Čím méně karet zbývá v balíčku, tím provádí méně iterací, ale naopak zvedá maximální hloubku stromu.
+
+Oproti originální verzi algoritmu jsem provedl několik změn. Každou změnu jsem vždy otestoval vůči hráčům HillClimber IS i proti HillClimber, který pracuje s úplnou informací. Ukázalo se, že šířka stromu 3 hned od první hloubky je příliš málo. Z tohoto důvodu v hloubce 1 ořezávám strom na šířku 10 a až poté ořezávám na šířku 3. Dále jsem upravil poměr počtu iterací a hloubky stromu. Čas získaný snížením maximální hloubky stromu šlo využít pro zvětšení počtu iterací. Tato změna také přispěla k lepšímu chování. 
+
+Poslední, ale ne nedůležitou změnou, je úprava generování stavu ze stejné informační množiny. Každý hráč si pro všechny karty, které doposud neviděl, udržuje hodnotu pravděpodobnosti, s jakou je daná karta v soupeřově ruce. Pravděpodobnosti se upravují v průběhu hry na základě soupeřových tahů dle několika pravidel získaných od znalce hry. Příkladem je pravidlo, které se použije, pokud soupeř vyloží novou expedici. V takovém případě se zvedne pravděpodobnost pro karty stejné barvy a vyšší hodnoty než je vyložená karta. Naopak lze předpokládat, že soupeř nevlastní žádnou kartu nižší hodnoty stejné barvy, protože tah vyložení takové karty by dominoval provedenému tahu. Stav ze stejné informační množiny se generuje na základě těchto pravděpodobností a ne dle uniformního rozdělení pravděpodobnosti jako tomu bylo v původním algoritmu.
+
 \subsection{Škálování}
 
-Všechny uvedené algoritmy umožňují škálování umělé inteligence. Škálování potřebuje pro simulaci různě silných hráčů. Vedle algoritmu můžeme nastavit parametr úrovně mezi 1 a 100. Použil jsem dva způsoby škálování. 
+Všechny uvedené algoritmy umožňují škálování umělé inteligence. Škálování potřebuje pro simulaci různě silných hráčů. Vedle algoritmu můžeme nastavit parametr úrovně mezi 1 a 100.
 
-První je využit pro HillClimber včetně varianty IS a pro Max N. Ve všech případech algoritmus nevrátí jen nejlepší možný tah, ale všechny tahy seřazené dle jejich vhodnosti. Ze seřazených tahů se nevybírá nejlepší tah, ale nejpravděpodobněji se vybere ten, který se nachází v $\frac{úroveň}{100}$ části pole. Vybere se tah dle gaussovského rozdělení pravděpodobnosti se střední hodnotou v $\frac{úroveň}{100}$ a odchylkou $0,4$. Kdybychom vybírali tah přesně v dané části pole, ztratili bychom výraznou část tohoto škálování. Např. u hry Člověče, nezlob se, kde má hráč v jednu chvíli na výběr maximálně 4 tahy, by se hráči s úrovněmi 76-100 chovali zcela stejně.
-
-Druhý typ škálování je využit u algoritmů Monte Carlo a Minimax IS. Úroveň zde ovlivňuje počet iterací algoritmu. S vyšší úrovní proběhne větší počet iterací, a tím je pravděpodobnější inteligentnější chování.
+Každý z algoritmů pro běžné hráče je upraven tak, aby nevracel pouze nejlepší možný tah, ale aby vrátil ohodnocené všechny tahy. Ohodnocené tahy se seřadí vzestupně.
+Ze seřazených tahů se nevybírá nejlepší tah, ale nejpravděpodobněji se vybere ten, který se nachází v $\frac{úroveň}{100}$. Vybere se tah dle gaussovského rozdělení pravděpodobnosti se střední hodnotou v $\frac{úroveň}{100}$ a odchylkou $0,4$. Kdybychom vybírali tah přesně v daném zlomku, ztratili bychom výraznou část tohoto škálování. Např. u hry Člověče, nezlob se, kde má hráč v jednu chvíli na výběr maximálně 4 tahy, by se hráči s úrovněmi 76-100 chovali zcela stejně.
 
 \endinput
 %%
