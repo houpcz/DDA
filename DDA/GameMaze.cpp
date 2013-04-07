@@ -14,7 +14,7 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	boardY = 0;
 	mazeWidth = 41;
 	mazeHeight = 41; 
-	visibleGoals = false;
+	visibleGoals = true;
 	abstraction = true;
 	stepsToGameOver = 500;
 	
@@ -98,9 +98,8 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
 		{
 			int whatDraw = maze[loop1][loop2];
-			if(!currentState->VisibleGoals() && 
-			   !currentState->IsGameOver() &&
-			   (currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 - 1, loop1) != TILE_DOOR) &&
+			
+			if((currentState->GetTile(loop2 - 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 - 1, loop1) != TILE_DOOR) &&
 			   (currentState->GetTile(loop2, loop1 - 1) != TILE_EMPTY && currentState->GetTile(loop2, loop1 - 1) != TILE_DOOR) &&
 			   (currentState->GetTile(loop2 + 1, loop1) != TILE_EMPTY && currentState->GetTile(loop2 + 1, loop1) != TILE_DOOR) &&
 			   (currentState->GetTile(loop2, loop1 + 1) != TILE_EMPTY && currentState->GetTile(loop2, loop1 + 1) != TILE_DOOR) &&
@@ -109,6 +108,10 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 			   currentState->GetTile(loop2 + 1, loop1 + 1) != TILE_EMPTY &&
 			   currentState->GetTile(loop2 - 1, loop1 + 1) != TILE_EMPTY)
 			   whatDraw = TILE_UNDEFINED;
+
+			if(currentState->VisibleGoals() && maze[loop1][loop2] == TILE_GOAL)
+				whatDraw = TILE_GOAL;
+
 
 			switch(whatDraw)
 			{
@@ -155,6 +158,15 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 		painter->fillRect(boardX + x * tileWidth + 1, 
 			              boardY + y * tileHeight + 1, 
 						  tileWidth - 2, tileHeight - 2, QBrush(color));
+		/*
+		painter->setBrush(QBrush(QColor(0, 0, 0)));
+		painter->setBackground(QBrush(QColor(0, 0, 0)));
+		if(maze[y][x] == TILE_GOAL)
+		{
+			painter->drawEllipse(boardX + x * tileWidth + 1, 
+			              boardY + y * tileHeight + 1, 
+						  tileWidth - 2, tileHeight - 2);
+		}*/
 	}
 
 	
@@ -264,10 +276,12 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));
 	connect(spinBoxStep, SIGNAL(valueChanged(int)), this, SLOT(SetStepsToGameOver(int)));
 
+	/*
 	QCheckBox * visibleGoalsBox = new QCheckBox();
 	visibleGoalsBox->setChecked(visibleGoals);
 	widgets.push_back(pair<QWidget *, QString>(visibleGoalsBox, QString("Visible bombs")));
 	connect(visibleGoalsBox, SIGNAL(stateChanged(int)), this, SLOT(SetVisibleGoals(int)));
+	*/
 	/*
 	QCheckBox * abstractionBox = new QCheckBox();
 	abstractionBox->setChecked(abstraction);

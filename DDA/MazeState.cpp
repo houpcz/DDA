@@ -36,7 +36,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 
 	playerX = mazeWidth / 2;
 	playerY = mazeHeight / 2;
-	startX = playerX;
+	startX = playerX; 
 	startY = playerY;
 	maze[playerY][playerX] = TILE_EMPTY;
 	maze[playerY + 1][playerX] = TILE_EMPTY;
@@ -59,7 +59,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 	for(int loop1 = 0; loop1 < goalAmount; loop1++)
 	{
 		int minDist;
-		int MAX_TRIES = 150;
+		int MAX_TRIES = 250;
 		int tries = 0;
 		do {
 			tempX = 2 + rand() % (mazeWidth / 2 - 4) + ((tries % 4  == 0 || tries % 4 == 1) ? 0 : (mazeWidth / 2));
@@ -79,7 +79,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 			tries++;
 			if(tries > MAX_TRIES)
 				break;
-		} while(maze[tempY][tempX] != TILE_UNDEFINED || minDist <= 4);
+		} while(maze[tempY][tempX] != TILE_UNDEFINED || minDist <= 3);
 
 		if(tries > MAX_TRIES)
 		{
@@ -91,15 +91,17 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 		goalY[loop1] = tempY;
 		maze[tempY][tempX] = TILE_GOAL;
 
-		maze[tempY + 1][tempX + 1] = TILE_WALL;
-		maze[tempY - 1][tempX + 1] = TILE_WALL;
-		maze[tempY + 1][tempX - 1] = TILE_WALL;
-		maze[tempY - 1][tempX - 1] = TILE_WALL;
-		maze[tempY + 1][tempX] = TILE_WALL;
-		maze[tempY - 1][tempX] = TILE_WALL;
-		maze[tempY][tempX + 1] = TILE_WALL;
-		maze[tempY][tempX - 1] = TILE_WALL;
-
+		//if(loop1 == 0)
+		{
+			maze[tempY + 1][tempX + 1] = TILE_WALL;
+			maze[tempY - 1][tempX + 1] = TILE_WALL;
+			maze[tempY + 1][tempX - 1] = TILE_WALL;
+			maze[tempY - 1][tempX - 1] = TILE_WALL;
+			//maze[tempY + 1][tempX] = TILE_WALL;
+			//maze[tempY - 1][tempX] = TILE_WALL;
+			//maze[tempY][tempX + 1] = TILE_WALL;
+			//maze[tempY][tempX - 1] = TILE_WALL;
+		}
 		switch(rand() % 4)
 		{
 			case 0 : maze[tempY + 1][tempX] = TILE_UNDEFINED; break;
@@ -359,7 +361,7 @@ bool MazeState::IsStateLegal()
 
 	for(int loop1 = 0; loop1 < goalStart; loop1++)
 	{
-		if(maze[goalY[loop1]][goalX[loop1]] == TILE_EMPTY)
+		if(maze[goalY[loop1]][goalX[loop1]] != TILE_GOAL)
 			continue;
 		while(!q.empty())
 			q.pop();
@@ -396,6 +398,9 @@ bool MazeState::IsStateLegal()
 				break;
 			}
 
+			if(maze[y][x] == TILE_GOAL) // you cant go throug goals
+				continue;
+
 			if(x > 0 && (maze[y][x-1] == TILE_UNDEFINED || maze[y][x-1] == TILE_GOAL) && OPEN == mazeClosedList[y][x-1])
 			{
 				mazeClosedList[y][x-1] = CLOSE;
@@ -421,12 +426,33 @@ bool MazeState::IsStateLegal()
 		}
 
 		if(!isLegal)
-			return false;
+		{
+			if(loop1 == 0)
+			{
+				return false;
+			} else {
+				SetWallFrom(goalX[loop1], goalY[loop1]);
+				goalAmount--;
+			}
+			
+		}
 	}
 
 	return true;
 }
 
+void MazeState::SetWallFrom(int x, int y)
+{
+	maze[y][x] = TILE_WALL;
+	if(GetTile(x + 1, y) == TILE_UNDEFINED)
+		SetWallFrom(x + 1, y);
+	if(GetTile(x - 1, y) == TILE_UNDEFINED)
+		SetWallFrom(x - 1, y);
+	if(GetTile(x, y + 1) == TILE_UNDEFINED)
+		SetWallFrom(x, y + 1);
+	if(GetTile(x, y - 1) == TILE_UNDEFINED)
+		SetWallFrom(x, y - 1);
+}
 bool MazeState::RealExplore(int tileToExploreID)
 {
 	if(abstraction && activePlayerID == ENVINRONMENT_AI)
@@ -560,6 +586,27 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 
 	if(GetTile(playerX, playerY) == TILE_GOAL)
 	{
+		if(GetTile(playerX + 1, playerY) == TILE_UNDEFINED)
+		{
+			SetTileEmpty(playerX + 1, playerY);
+			AddCloseDoor(playerX + 1, playerY);
+		}
+		if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
+		{
+			SetTileEmpty(playerX - 1, playerY);
+			AddCloseDoor(playerX - 1, playerY);
+		}
+		if(GetTile(playerX, playerY + 1) == TILE_UNDEFINED)
+		{
+			SetTileEmpty(playerX, playerY + 1);
+			AddCloseDoor(playerX, playerY + 1);
+		}
+		if(GetTile(playerX, playerY - 1) == TILE_UNDEFINED)
+		{
+			SetTileEmpty(playerX, playerY - 1);
+			AddCloseDoor(playerX, playerY - 1);
+		}
+
 		goalAmount--;
 		if(goalAmount == 0)
 			return true;
@@ -1065,12 +1112,22 @@ int MazeState::GetPlayerStatus(int playerID)
 {
 	int undefinedTiles = 0;
 	int sumDist = 0;
+	int tempDist = 0;
+	int distToGoal0 = 0;
 	for(int loop1 = 0; loop1 < goalStart; loop1++)
 	{
-		if(maze[goalY[loop1]][goalX[loop1]] == TILE_EMPTY)
+		if(maze[goalY[loop1]][goalX[loop1]] != TILE_GOAL)
 			continue;
 
-		sumDist += GetDistanceBetween(goalX[loop1], goalY[loop1], playerX, playerY, true);
+		tempDist = GetDistanceBetween(goalX[loop1], goalY[loop1], playerX, playerY, true);
+
+		if(loop1 == 0)
+		{
+			distToGoal0 = tempDist;
+			sumDist += tempDist * 2;
+		} else {
+			sumDist += tempDist;
+		}
 	}
 
 	int x = goalX[0];
@@ -1080,7 +1137,7 @@ int MazeState::GetPlayerStatus(int playerID)
 	   maze[y][x + 1] == TILE_EMPTY ||
 	   maze[y][x - 1] == TILE_EMPTY)
 	{
-		return stepsToGameOver - sumDist;
+		return stepsToGameOver - distToGoal0;
 	}
 
 	
@@ -1095,8 +1152,10 @@ int MazeState::GetPlayerStatus(int playerID)
 	
 	float undefinedCover = ((float) undefinedTiles) / (mazeWidth * mazeHeight);
 	
-	int koef = (goalAmount > 0) ? 1 : 0;
-	int status = (int) (sumDist * 1.5f - stepsToGameOver + (undefinedTiles / 3.0f * koef));
+
+
+	int koef = (maze[goalY[0]][goalX[0]] == TILE_GOAL) ? 1 : 0;
+	int status = (int) (sumDist * 1.5f * koef - stepsToGameOver + (undefinedTiles / 4.0f * koef));
 	return (playerID == 0) ? status : -status;
 }
 
@@ -1160,7 +1219,7 @@ ISpecificStat * MazeState::GetGameSpecificStat()
 
 bool MazeState::IsGameOver()
 {
-	if(goalAmount == 0)
+	if(maze[goalY[0]][goalX[0]] == TILE_EMPTY)
 	{
 		return true;
 	}
@@ -1212,7 +1271,7 @@ void MazeState::AddCloseDoor(int x, int y)
 
 float MazeState::GetCredibility()
 {
-	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 1000000;
+	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 10000;
 }
 
 float MazeState::Freedom()
