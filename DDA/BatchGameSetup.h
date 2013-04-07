@@ -24,6 +24,7 @@ private :
 	QGridLayout * gridLayout;
 	QComboBox ** playerList;
 	QSpinBox ** playerLevel;
+	vector<int> *playerOff;
 	QPushButton * okButton;
 	QLabel *eaCoefLabel[COEF_COUNT];
 	QSpinBox *eaCoefBox[COEF_COUNT];

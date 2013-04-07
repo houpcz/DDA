@@ -8,11 +8,15 @@ MatrixFactory::MatrixFactory(void)
 	currentWidth = 0;
 	currentHeight = 0;
 	bufferSize = 0;
+
+	random_device randomDevice;
+    generator = new mt19937(randomDevice());
 }
 
 
 MatrixFactory::~MatrixFactory(void)
 {
+	delete generator;
 	ClearBuffer();
 }
 
@@ -70,6 +74,24 @@ void MatrixFactory::ReturnMatrix(char ** matrix, int width, int height)
 		buffer[bufferSize++] = matrix;
 	}
 	mutex.unlock();
+}
+
+
+int MatrixFactory::GetTurnIDByLevel(int maxTurn, int level)
+{
+	if(level == 100)
+		return maxTurn - 1;
+
+	double mean = (level / 100.0) * maxTurn;
+	double deviation = 0.4; 
+	normal_distribution<> normalDistribution(mean, deviation);
+	int choise = (int) (normalDistribution(*generator) + 0.5);
+	if(choise < 0)
+		choise = 0;
+	else if(choise >= maxTurn)
+		choise = maxTurn - 1;
+
+	return choise;
 }
 
 float MatrixFactory::Credibility(int * arr, int arrLength)

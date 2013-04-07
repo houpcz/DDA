@@ -1,10 +1,9 @@
 #include "MaxNPlayer.h"
 #include "IGame.h"
+#include "MatrixFactory.h"
 
 MaxNPlayer::MaxNPlayer(int _myID) : IPlayer(_myID)
 {
-	random_device randomDevice;
-    generator = new mt19937(randomDevice());
 }
 
 MaxNPlayer::~MaxNPlayer(void)
@@ -86,19 +85,8 @@ bool MaxNPlayer::Think()
 	}
 	delete [] nextState;
 	sort(scores.begin(), scores.end(), comparator);
+	myTurn = scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 	
-	double mean = (level / 100.0) * choises;
-	double deviation = 0.4;
-	normal_distribution<> normalDistribution(mean, deviation);
-	int choise = (int) (normalDistribution(*generator) + 0.5);
-	if(choise < 0)
-		choise = 0;
-	else if(choise >= choises)
-		choise = choises - 1;
-
-	myTurn = scores[choise].second;
-	
-	//myTurn = scores[scores.size() - 1].second;
 	isReady = true;
 
 	return true;

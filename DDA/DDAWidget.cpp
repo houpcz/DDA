@@ -29,7 +29,7 @@
 
 DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 {
-	resize(500, 500 + 21);
+	resize(600, 600 + 21);
 
 	setPalette(QPalette(QColor(250, 250, 200)));
 	setMouseTracking(false);

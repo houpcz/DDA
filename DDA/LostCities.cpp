@@ -7,8 +7,8 @@
 
 LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 {
-	cardWidth = 60;
-	cardHeight = 60;
+	cardWidth = 80;
+	cardHeight = 80;
 	
 	for(int loop1 = 0; loop1 < CLICKABLE_AREAS; loop1++)
 	{
@@ -18,15 +18,15 @@ LostCities::LostCities(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	for(int loop1 = 0; loop1 < HAND_SIZE; loop1++)
 	{
-		clickableArea[loop1].MoveTo(cardWidth / 4 + loop1 * (cardWidth / 2), 500 - ((cardHeight * 6) / 4));
+		clickableArea[loop1].MoveTo(cardWidth / 4 + loop1 * (cardWidth / 2), 600 - ((cardHeight * 4) / 3));
 	}
 
 	for(int loop1 = 0; loop1 < LostCitiesState::COLOR_AMOUNT; loop1++)
 	{
-		clickableArea[loop1 + ClickableArea::EXPEDITION].MoveTo(cardWidth / 4 + loop1 * (1.5f * cardWidth), 250);
-		clickableArea[loop1 + ClickableArea::DISCARD].MoveTo(cardWidth / 4 + loop1 * (1.5f * cardWidth), 180);
+		clickableArea[loop1 + ClickableArea::EXPEDITION].MoveTo(cardWidth / 4 + loop1 * (cardWidth + 20), 290);
+		clickableArea[loop1 + ClickableArea::DISCARD].MoveTo(cardWidth / 4 + loop1 * (cardWidth + 20), 200);
 	}
-	clickableArea[ClickableArea::DECK].MoveTo(cardWidth / 4 + 15 * (cardWidth / 3), 500 - (cardHeight * 6 / 4));
+	clickableArea[ClickableArea::DECK].MoveTo(600 - cardWidth * 4 / 3, 600 - (cardHeight * 4 / 3));
 				
 	for(int loop1 = 0; loop1 < CLICKABLE_MAX_ACTIVE; loop1++)
 	{
@@ -181,7 +181,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 
 			case PLAYER_1_ON_DESK :
 				newCollumn = expedition[0][cardColorNumber] >= 6;
-				DrawCard(painter, loop1, cardWidth / 4 + cardColorNumber * (1.5f * cardWidth) + newCollumn * 13, 250 + (cardHeight / 3) * expedition[0][cardColorNumber] - newCollumn * 6 * (cardHeight / 3));
+				DrawCard(painter, loop1, cardWidth / 4 + cardColorNumber * (20 + cardWidth) + newCollumn * 13, 290 + (cardHeight / 4) * expedition[0][cardColorNumber] - newCollumn * 6 * (cardHeight / 4));
 				
 				clickableArea[ClickableArea::EXPEDITION + cardColorNumber].SetCardID(loop1);
 
@@ -189,7 +189,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 				break;
 			case PLAYER_2_ON_DESK :
 				newCollumn = expedition[1][cardColorNumber] >= 6;
-				DrawCard(painter, loop1, cardWidth / 4 + cardColorNumber * (1.5f * cardWidth) - newCollumn * 13, 110 - (cardHeight / 3) * expedition[1][cardColorNumber] + newCollumn * 6 * (cardHeight / 3));
+				DrawCard(painter, loop1, cardWidth / 4 + cardColorNumber * (20 + cardWidth) - newCollumn * 13, 110 - (cardHeight / 4) * expedition[1][cardColorNumber] + newCollumn * 6 * (cardHeight / 4));
 				expedition[1][cardColorNumber]++;
 				break;
 			case IN_DECK :
@@ -208,7 +208,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 				clickableArea[ClickableArea::DISCARD + cardColorNumber].SetCardID(discardPile[discardPileMax - 1]);
 			for(int loop2 = 0; loop2 < discardPileMax; loop2++)
 			{
-				DrawCard(painter, discardPile[loop2], cardWidth / 4 + cardColorNumber * (1.5f * cardWidth), 180);
+				DrawCard(painter, discardPile[loop2], cardWidth / 4 + cardColorNumber * (20 + cardWidth), 200);
 			}
 			discardPileMax = 0;
 		}
@@ -232,7 +232,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 
 			case PLAYER_2_HAND_HIDDEN :
 			case PLAYER_2_HAND_KNOWN : 
-				DrawCard(painter, loop1, cardHand2ID * 30 + 500, 100);
+				//DrawCard(painter, loop1, cardHand2ID * 30 + 500, 100);
 				cardHand2ID++;
 				break;
 		}	
@@ -243,7 +243,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 		int expeditionHeight = expedition[0][loop2]- 1;
 		if(expeditionHeight > 5)
 			expeditionHeight = 5;
-		clickableArea[ClickableArea::EXPEDITION + loop2].SetHeight((cardHeight / 3) * expeditionHeight + cardHeight);
+		clickableArea[ClickableArea::EXPEDITION + loop2].SetHeight((cardHeight / 4) * expeditionHeight + cardHeight);
 	}
 
 	char cardInDeckString[24];
@@ -277,9 +277,11 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->setFont(QFont("SansSerif", 20, 3, false));
 	char temp[25];
 	sprintf(temp, "%d", currentState->GetPlayerPoints(1));
-	painter->drawText(445, 240, 500, 500, 0, temp);
+	painter->drawText(525, 280, 500, 500, 0, temp);
 	sprintf(temp, "%d", currentState->GetPlayerPoints(2));
-	painter->drawText(445, 145, 500, 500, 0, temp);
+	painter->drawText(525, 155, 500, 500, 0, temp);
+
+	/*
 	painter->setPen(Qt::black);
 	painter->setFont(QFont("SansSerif", 15, 3, false));
 	sprintf(temp, "%4d %4d Env Sees 1", currentState->GetPlayerRank(1, 0), currentState->CountRanks(1, 0));
@@ -288,6 +290,7 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 	painter->drawText(510, 350, 500, 500, 0, temp);
 	sprintf(temp, "%4d %4d 2 seams 1", currentState->GetPlayerRank(1, 2), currentState->CountRanks(1, 2));
 	painter->drawText(510, 370, 500, 500, 0, temp);
+	*/
 }
 
 void LostCities::DrawCard(QPainter * painter, int cardID, int x, int y)

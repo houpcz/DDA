@@ -14,16 +14,25 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 
 	gridLayout = new QGridLayout();
 	playerList = new QComboBox*[playerCount];
+	playerOff = new vector<int>[playerCount - 1];
 	playerLevel = new QSpinBox*[playerCount - 1];
 
 	playerList[0] = new QComboBox(this);
 	for(int loop1 = 0; loop1 < environmentAIList.size(); loop1++)
+	{
+		if(game->GetGameID() != 0 && loop1 >= environmentAIList.size() - 2)
+			break;
+
 		playerList[0]->addItem(environmentAIList[loop1]->GetAIName());
+	}
 
 	connect(playerList[0], SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateLevelSpin()));
 	gridLayout->addWidget(playerList[0], 0, 2);
+	int leapedNumber;
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
+		leapedNumber = 0;
+
 		playerList[loop1] = new QComboBox(this);
 		playerLevel[loop1-1] = new QSpinBox(this);
 		playerLevel[loop1-1]->setRange(1, 100);
@@ -32,7 +41,12 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		for(int loop2 = (human && loop1 == 1) ? 0 : 1; loop2 < playerAIList.size(); loop2++)
 		{
 			if(playerAIList[loop2]->IsCompatibleWithGame(game->GetGameID()))
+			{
+				playerOff[loop1 - 1].push_back(leapedNumber);
 				playerList[loop1]->addItem(playerAIList[loop2]->GetAIName());
+			} else {
+				leapedNumber++;
+			}
 		}
 
 		gridLayout->addWidget(playerList[loop1], loop1 - 1, 0);
@@ -112,6 +126,7 @@ BatchGameSetup::~BatchGameSetup(void)
 	}
 	delete [] playerList;
 	delete [] playerLevel;
+	delete [] playerOff;
 }
 
 void BatchGameSetup::SaveSetup()
@@ -170,7 +185,11 @@ void BatchGameSetup::UpdateLevelSpin()
 
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
-		playerLevel[loop1 - 1]->setEnabled(playerAIList[playerList[loop1]->currentIndex() + ((human) ? 0 : 1)]->IsScalable());
+		int id1 = playerOff[loop1 - 1][playerList[loop1]->currentIndex()];
+		int id2 = playerList[loop1]->currentIndex();
+		int id3 = ((human && loop1 == 1) ? 0 : 1);
+		int sumID = id1 + id2 + id3;
+		playerLevel[loop1 - 1]->setEnabled(playerAIList[sumID]->IsScalable());
 	}
 
 

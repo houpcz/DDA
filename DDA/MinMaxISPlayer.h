@@ -22,7 +22,7 @@ public:
 	~MinMaxISPlayer(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};
-	virtual bool IsScalable() { return false; }
+	virtual bool IsScalable() { return true; }
 	QString GetAIName() { return QString("Mini Max IS"); };
 	IPlayer * Factory(int playerID) { return new MinMaxISPlayer(playerID); };
 	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID; }

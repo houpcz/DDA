@@ -369,6 +369,7 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 		bool domPlayed;
 		bool domTakeDiscard[COLOR_AMOUNT];
 
+		int inDeckCount = GetInDeckCount();
 		for(char loop1 = 0; loop1 < COLOR_AMOUNT; loop1++)
 		{
 			bool canAddCardToExpedition = true;
@@ -409,7 +410,7 @@ void LostCitiesState::CountPlayerChoises(int whoAskID)
 					{
 						allChoises.push_back(cardID + DISCARD_CARD_OFFSET); // may add to expedition
 						drawFrom.push_back(DRAW_FROM_DECK);
-						if(loop2 > 2)
+						if(loop2 > 2 && inDeckCount > 5)
 							domPlayed = true;
 					}
 				}  else if(card[cardID] >= ON_DESK)

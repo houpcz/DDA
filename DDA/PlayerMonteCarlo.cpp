@@ -15,8 +15,8 @@ bool PlayerMonteCarlo::Think()
 {
 	int choises;
 	
-	MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, 6000 + level * 5);
-	myTurn = mcts.BestTurn();
+	MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, 5000);
+	myTurn = mcts.BestTurn(level);
 	isReady = true;
 
 	return true;

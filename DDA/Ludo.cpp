@@ -267,9 +267,9 @@ void Ludo::Draw(QPainter * painter, int tickMillis)
 		}
 
 		painter->setPen(Qt::black);
-		painter->drawText(x - 1, y - 1, 110, 110, Qt::AlignCenter, QString(numberString));
+		//painter->drawText(x - 1, y - 1, 110, 110, Qt::AlignCenter, QString(numberString));
 		painter->setPen(playerColor[loop1]);
-		painter->drawText(x, y, 110, 110, Qt::AlignCenter, QString(numberString));
+		//painter->drawText(x, y, 110, 110, Qt::AlignCenter, QString(numberString));
 	}
 }
 

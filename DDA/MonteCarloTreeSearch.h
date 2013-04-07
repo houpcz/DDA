@@ -22,7 +22,7 @@ public:
 	void Backpropagation(double reward);
 
 	MonteCarloNode ** Children() { return children; }
-	int GetBestChildID();
+	int GetBestChildID(int level);
 	IGameState * GameState() { return myState; }
 };
 
@@ -37,7 +37,7 @@ private:
 public:
 	MonteCarloTreeSearch(IGameState * rootState, int whoAskID, int algorithmIterations);
 	~MonteCarloTreeSearch(void);
-	int BestTurn();
+	int BestTurn(int level);
 };
 
 #endif

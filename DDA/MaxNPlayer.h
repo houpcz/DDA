@@ -15,7 +15,6 @@ class MaxNPlayer :
 {
 private:
 	int leafNumber;
-	mt19937 * generator;
 	float * MaxN(IGameState * state, int depth);
 public:
 	MaxNPlayer(int _myID);

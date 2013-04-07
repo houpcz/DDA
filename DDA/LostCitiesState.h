@@ -26,8 +26,8 @@ public :
 	static const int PREDICTED_ON_BOARD = 10;
 	static const int PREDICTED_IN_HAND = 8;
 	static const int PREDICTED_TOP_DISCARD = 7;
-	static const int PREDICTED_DECK_1 = 3;
-	static const int PREDICTED_DECK_2 = 4;
+	static const int PREDICTED_DECK_1 = 1;
+	static const int PREDICTED_DECK_2 = 3;
 	static const int NOBODY = -1;
 	static const int DRAW_FROM_DECK = 7;
 	static const int ENVIRONMENTAL_AI = 0;

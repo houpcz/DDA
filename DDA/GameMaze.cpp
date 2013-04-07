@@ -189,15 +189,16 @@ void GameMaze::Draw(QPainter * painter, int tickMillis)
 	if(wasIlegal)
 	{
 		painter->setPen(Qt::white);
-		painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString("Ilegal"));
+		//painter->drawText(0, 100, painter->viewport().width() - 2, painter->viewport().height() / 8 + 52 , Qt::AlignCenter, QString("Ilegal"));
 	}
 
-	
+	/*
 	painter->setFont(QFont("Helvetica", 14, QFont::Bold));
 	painter->setPen(Qt::black);
 	painter->drawText(tileWidth * mazeWidth + 8, 0, tileWidth * mazeWidth + 200, painter->viewport().height() / 8 + 52 , Qt::AlignLeft, QString(numberString));
 	painter->setPen(Qt::red);
 	painter->drawText(tileWidth * mazeWidth + 10, 0, tileWidth * mazeWidth + 202, painter->viewport().height() / 8 + 54, Qt::AlignLeft, QString(numberString));
+	*/
 }
 
 void GameMaze::MouseMoveEvent ( int xMouse, int yMouse )

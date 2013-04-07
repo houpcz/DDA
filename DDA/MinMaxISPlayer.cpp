@@ -1,16 +1,14 @@
 #include "MinMaxISPlayer.h"
 #include "LostCitiesState.h"
 #include "IGame.h"
+#include "MatrixFactory.h"
 
 MinMaxISPlayer::MinMaxISPlayer(int _myID) : IPlayer(_myID)
 {
-	random_device randomDevice;
-    generator = new mt19937(randomDevice());
 }
 
 MinMaxISPlayer::~MinMaxISPlayer(void)
 {
-	delete generator;
 }
 
 float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int depth)
@@ -61,7 +59,8 @@ float MinMaxISPlayer::MiniMax(IGameState * state, float alfa, float beta, int de
 
 		bool maximaze = activePlayerID == myID;
 		result = -FLT_MAX;
-		for(int loop1 = 0; loop1 < 3 && loop1 < scores.size(); loop1++)
+		int up = (maximaze) ? 3 : 1;
+		for(int loop1 = 0; loop1 < up && loop1 < scores.size(); loop1++)
 		{
 			int turn = scores[scores.size() - 1 - loop1].second;
 			float temp = MiniMax(nextState[turn], alfa, beta, depth - 1);
@@ -109,11 +108,13 @@ bool MinMaxISPlayer::Think()
 	int cardCount = currState->GetInDeckCount();
 	int repeats = cardCount * 6 + 5;
 	int treeBreadth = 10; 
-	int treeDepth = 3;
-	if(cardCount < 8)
+	int treeDepth = 5;
+	if(cardCount < 10)
 		treeDepth = 5;
-	if(cardCount < 6)
+	if(cardCount < 8)
 		treeDepth = 7;
+	if(cardCount < 6)
+		treeDepth = 9;
 	/*
 	if(cardCount < 10)
 		treeDepth = 5;*/
@@ -171,10 +172,10 @@ bool MinMaxISPlayer::Think()
 			scores.push_back(valueIndex((int) (rank[loop1] / rankCount[loop1]), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
-	
+	myTurn = scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
+
 	delete [] rank;
 	delete [] rankCount;
-	myTurn = scores[scores.size() - 1].second;
 	isReady = true;
 
 	return true;

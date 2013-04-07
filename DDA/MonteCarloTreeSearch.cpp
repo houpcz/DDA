@@ -1,5 +1,7 @@
 #include "MonteCarloTreeSearch.h"
 #include <vector>
+#include "IPlayer.h"
+#include "MatrixFactory.h"
 
 using namespace std;
 
@@ -44,19 +46,15 @@ void MonteCarloNode::Expansion(int whoAskID)
 	delete [] nextStates;
 }
 
-int MonteCarloNode::GetBestChildID()
+int MonteCarloNode::GetBestChildID(int level)
 {
-	int bestID = 0;
-	double bestVal = children[0]->value;
-	for(int loop1 = 1; loop1 < childrenNumber; loop1++)
+	vector<valueDIndex> scores;
+	for(int loop1 = 0; loop1 < childrenNumber; loop1++)
 	{
-		if(children[loop1]->value > bestVal)
-		{
-			bestID = loop1;
-			bestVal = children[loop1]->value;
-		}
+		scores.push_back(valueDIndex(children[loop1]->value, loop1));
 	}
-	return bestID;
+	sort(scores.begin(), scores.end(), comparatorD);
+	return scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 }
 
 void MonteCarloNode::Backpropagation(double reward)
@@ -179,9 +177,9 @@ double MonteCarloTreeSearch::Simulation(MonteCarloNode * tempNode)
 	}*/
 }
 
-int MonteCarloTreeSearch::BestTurn()
+int MonteCarloTreeSearch::BestTurn(int level)
 {
-	return rootNode->GetBestChildID();
+	return rootNode->GetBestChildID(level);
 }
 
 MonteCarloTreeSearch::~MonteCarloTreeSearch(void)

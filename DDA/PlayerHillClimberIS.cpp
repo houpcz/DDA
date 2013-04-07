@@ -1,17 +1,15 @@
 #include "PlayerHillClimberIS.h"
 #include "IGame.h"
+#include "MatrixFactory.h"
 
 using namespace std;
 
 PlayerHillClimberIS::PlayerHillClimberIS(int _myID) : IPlayer(_myID)
 {
-	random_device randomDevice;
-    generator = new mt19937(randomDevice());
 }
 
 PlayerHillClimberIS::~PlayerHillClimberIS(void)
 {
-	delete generator;
 }
 
 
@@ -49,18 +47,9 @@ bool PlayerHillClimberIS::Think()
 		scores.push_back(valueIndex((int) tempRanks[loop1], loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
-	
-	double mean = (level / 100.0) * choises;
-	double deviation = 0.4; 
-	normal_distribution<> normalDistribution(mean, deviation);
-	int choise = (int) (normalDistribution(*generator) + 0.5);
-	if(choise < 0)
-		choise = 0;
-	else if(choise >= choises)
-		choise = choises - 1;
+	myTurn = scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 
 	delete [] tempRanks;
-	myTurn = scores[choise].second;
 	isReady = true;
 
 	return true;

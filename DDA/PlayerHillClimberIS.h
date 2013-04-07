@@ -12,7 +12,6 @@ class PlayerHillClimberIS :
 	public IPlayer
 {
 private :
-	mt19937 * generator;
 
 public:
 	PlayerHillClimberIS(int _myID);

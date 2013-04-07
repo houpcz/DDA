@@ -11,9 +11,6 @@ using namespace std;
 class PlayerHillClimber :
 	public IPlayer
 {
-private :
-	mt19937 * generator;
-
 public:
 	PlayerHillClimber(int _myID);
 	~PlayerHillClimber(void);
