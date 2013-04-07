@@ -586,28 +586,25 @@ bool MazeState::ExplorePlayer(int tileToExploreID)
 
 	if(GetTile(playerX, playerY) == TILE_GOAL)
 	{
-		if(GetTile(playerX + 1, playerY) == TILE_UNDEFINED)
+		goalAmount--;
+		maze[playerY][playerX] = TILE_EMPTY;
+		if(goalAmount > 0 && goalX[0] == playerX && goalY[0] == playerY)
 		{
-			SetTileEmpty(playerX + 1, playerY);
-			AddCloseDoor(playerX + 1, playerY);
-		}
-		if(GetTile(playerX - 1, playerY) == TILE_UNDEFINED)
-		{
-			SetTileEmpty(playerX - 1, playerY);
-			AddCloseDoor(playerX - 1, playerY);
-		}
-		if(GetTile(playerX, playerY + 1) == TILE_UNDEFINED)
-		{
-			SetTileEmpty(playerX, playerY + 1);
-			AddCloseDoor(playerX, playerY + 1);
-		}
-		if(GetTile(playerX, playerY - 1) == TILE_UNDEFINED)
-		{
-			SetTileEmpty(playerX, playerY - 1);
-			AddCloseDoor(playerX, playerY - 1);
+			for(int loop1 = 1; loop1 < goalStart; loop1++)
+			{
+				if(maze[goalY[loop1]][goalX[loop1]] == TILE_GOAL)
+				{
+					int temp = goalX[loop1];
+					goalX[loop1] = goalX[0];
+					goalX[0] = temp;
+
+					temp = goalY[loop1];
+					goalY[loop1] = goalY[0];
+					goalY[0] = temp;
+				}
+			}
 		}
 
-		goalAmount--;
 		if(goalAmount == 0)
 			return true;
 		else
@@ -1124,7 +1121,7 @@ int MazeState::GetPlayerStatus(int playerID)
 		if(loop1 == 0)
 		{
 			distToGoal0 = tempDist;
-			sumDist += tempDist * 2;
+			sumDist += tempDist;
 		} else {
 			sumDist += tempDist;
 		}
@@ -1155,7 +1152,7 @@ int MazeState::GetPlayerStatus(int playerID)
 
 
 	int koef = (maze[goalY[0]][goalX[0]] == TILE_GOAL) ? 1 : 0;
-	int status = (int) (sumDist * 1.5f * koef - stepsToGameOver + (undefinedTiles / 4.0f * koef));
+	int status = (int) (sumDist * 1.5f * koef - stepsToGameOver + (undefinedTiles / 3.0f * koef));
 	return (playerID == 0) ? status : -status;
 }
 

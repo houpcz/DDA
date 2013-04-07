@@ -299,7 +299,7 @@ void BatchWindow::SaveAllToCsv()
 void BatchWindow::ItemSelect()
 {
 	int currentID = listBatch->currentIndex().row();
-	if(batchIsRunning && currentBatchItemID != currentID)
+	if(batchIsRunning && currentBatchItemID == currentID)
 		return;
 
 	if(currentID < 0 || currentID >= batchItem.size())
