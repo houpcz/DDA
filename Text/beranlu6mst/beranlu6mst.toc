@@ -222,7 +222,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2.3}Minimax IS}{53}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.4}\IeC {\v S}k\IeC {\'a}lov\IeC {\'a}n\IeC {\'\i }}{53}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.4}\IeC {\v S}k\IeC {\'a}lov\IeC {\'a}n\IeC {\'\i }}{54}{subsection.5.2.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}Proveden\IeC {\'e} experimenty}{55}{chapter.6}
 \defcounter {refsection}{0}\relax 
