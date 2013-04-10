@@ -33,10 +33,10 @@ private:
 	int whoAskID;
 
 	MonteCarloNode * Selection(MonteCarloNode *);
-	double Simulation(MonteCarloNode *);
+	virtual double Simulation(MonteCarloNode *);
 public:
 	MonteCarloTreeSearch(IGameState * rootState, int whoAskID, int algorithmIterations);
-	~MonteCarloTreeSearch(void);
+	virtual ~MonteCarloTreeSearch(void);
 	int BestTurn(int level);
 };
 

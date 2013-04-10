@@ -668,6 +668,12 @@
     <ClCompile Include="MatrixFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EMonteCarlo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMaxN.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -911,6 +917,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MatrixFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EMonteCarlo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EMaxN.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
