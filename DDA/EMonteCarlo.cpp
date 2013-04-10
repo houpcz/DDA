@@ -27,8 +27,14 @@ bool EMonteCarlo::Think()
 			break;
 	}
 
-	MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, iteration, coefMetric, false);
-	myTurn = mcts.BestTurn();
+	if(0.15f < rand() / (float)RAND_MAX)
+	{
+		MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, iteration, coefMetric, false);
+		myTurn = mcts.BestTurn();
+	} else {
+		IGameState * state = game->GetCurrentState()->GetRandomNextState(myID, &myTurn);
+		delete state;
+	}
 	isReady = true;
 
 	return true;

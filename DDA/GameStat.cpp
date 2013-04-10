@@ -62,35 +62,53 @@ void GameStat::CountMetrics()
 		credibility = credibilitySum / player0turn;
 	}
 
-	float muJustice = 0.0f;
-	float muLeaderTime = 0.0;
-	float * sP = new float[numberPlayers];
-	for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
+	if(realNumberPlayers > 1)
 	{
-		if(player0turn == 0)
+		float muJustice = 0.0f;
+		float muLeaderTime = 0.0;
+		float * sP = new float[realNumberPlayers];
+		for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
 		{
-			sP[loop1] = 0.0f;
-		} else
-			sP[loop1] = playerStat[loop1 + 1].DeltaH() / (float) player0turn;
+			if(player0turn == 0)
+			{
+				sP[loop1] = 0.0f;
+			} else
+				sP[loop1] = playerStat[loop1 + 1].DeltaH() / (float) player0turn;
 
-		muJustice += sP[loop1];
-		muLeaderTime += playerStat[loop1 + 1].LeaderTime();
+			muJustice += sP[loop1];
+			muLeaderTime += playerStat[loop1 + 1].LeaderTime();
+		}
+		muJustice /= realNumberPlayers;
+		muLeaderTime /= realNumberPlayers;
+		float sumJustice = 0.0;
+		float sumLeaderTime = 0.0;
+		for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
+		{
+			float dJ = muJustice - sP[loop1];
+			sumJustice += dJ * dJ;
+			float dL = muLeaderTime - playerStat[loop1 + 1].LeaderTime();
+			sumLeaderTime += dL * dL;
+		}
+		justice = sqrt(sumJustice / realNumberPlayers);
+		leaderTime = sqrt(sumLeaderTime / realNumberPlayers);
+		delete [] sP;
+	} else {
+		float muLeaderTime = 0.0;
+		for(int loop1 = 0; loop1 < numberPlayers; loop1++)
+		{
+			muLeaderTime += playerStat[loop1].LeaderTime();
+		}
+		muLeaderTime /= numberPlayers;
+		float sumLeaderTime = 0.0;
+		for(int loop1 = 0; loop1 < numberPlayers; loop1++)
+		{
+			float dL = muLeaderTime - playerStat[loop1].LeaderTime();
+			sumLeaderTime += dL * dL;
+		}
+		justice = 0.0f;
+		leaderTime = sqrt(sumLeaderTime / realNumberPlayers);
 	}
-	muJustice /= realNumberPlayers;
-	muLeaderTime /= realNumberPlayers;
-	float sumJustice = 0.0;
-	float sumLeaderTime = 0.0;
-	for(int loop1 = 0; loop1 < realNumberPlayers; loop1++)
-	{
-		float dJ = muJustice - sP[loop1];
-		sumJustice += dJ * dJ;
-		float dL = muLeaderTime - playerStat[loop1 + 1].LeaderTime();
-		sumLeaderTime += dL * dL;
-	}
-	justice = sqrt(sumJustice / realNumberPlayers);
-	leaderTime = sqrt(sumLeaderTime / realNumberPlayers);
-
-	delete [] sP;
+	
 }
 
 GameStat::GameStat(const GameStat &origin)
