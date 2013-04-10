@@ -359,6 +359,7 @@
     <ClCompile Include="LudoTile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixFactory.cpp" />
+    <ClCompile Include="Utility.cpp" />
     <ClCompile Include="MazeStat.cpp" />
     <ClCompile Include="MazeState.cpp" />
     <ClCompile Include="MaxNPlayer.cpp" />
@@ -461,6 +462,7 @@
     <ClInclude Include="ISpecificStat.h" />
     <ClInclude Include="LevelGraph.h" />
     <ClInclude Include="LostCitiesState.h" />
+    <ClInclude Include="MatrixFactory.h" />
     <ClInclude Include="MinMaxISPlayer.h" />
     <ClInclude Include="PlayerHillClimberIS.h" />
     <ClInclude Include="Qwt\qwt.h" />
@@ -886,7 +888,7 @@
     </CustomBuild>
     <ClInclude Include="LudoState.h" />
     <ClInclude Include="LudoTile.h" />
-    <ClInclude Include="MatrixFactory.h" />
+    <ClInclude Include="Utility.h" />
     <ClInclude Include="MazeStat.h" />
     <ClInclude Include="MazeState.h" />
     <ClInclude Include="MaxNPlayer.h" />

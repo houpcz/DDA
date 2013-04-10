@@ -4,6 +4,7 @@
 #include "igame.h"
 #include "GameStat.h"
 #include "IPlayer.h"
+#include "MatrixFactory.h"
 #include <qobject.h>
 #include <qwidget.h>
 
@@ -25,6 +26,7 @@ protected:
 	int playerCount;
 	int playerLeader;
 	IPlayer ** player;
+	MatrixFactory matrixFactory; // only used for Maze game
 
 	int minPlayerAI;
 	int maxPlayerAI;
@@ -56,6 +58,7 @@ public:
 	int GetMinPlayerAI() { return minPlayerAI; };
 	int GetMaxPlayerAI() { return maxPlayerAI; };
 	int GetPlayerCount() { return playerCount;};
+	MatrixFactory * GetMatrixFactory() { return &matrixFactory; };
 	GameStat GetGameStat() { return GetCurrentState()->GetGameStat(); }
 	vector<IGameState *> GetAllGameState() { return gameState;} ;
 };

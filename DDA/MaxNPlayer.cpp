@@ -1,6 +1,6 @@
 #include "MaxNPlayer.h"
 #include "IGame.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 MaxNPlayer::MaxNPlayer(int _myID) : IPlayer(_myID)
 {
@@ -85,7 +85,7 @@ bool MaxNPlayer::Think()
 	}
 	delete [] nextState;
 	sort(scores.begin(), scores.end(), comparator);
-	myTurn = scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
+	myTurn = scores[Utility::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 	
 	isReady = true;
 

@@ -1,6 +1,6 @@
 #include "EAHillClimber.h"
 #include "IGame.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -40,7 +40,7 @@ bool EAHillClimber::Think()
 			notNull++;
 			GameStat stat = nextState[loop1]->GetGameStat();
 			
-			float tempValue = MatrixFactory::WeightedMetrics(&stat, coefMetric);
+			float tempValue = Utility::WeightedMetrics(&stat, coefMetric);
 			//if(tempValue < 0)
 			//{
 			//	GameStat sta = currentState->GetGameStat();

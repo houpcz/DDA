@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <ctime>
 #include "LostCitiesState.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -1006,8 +1006,8 @@ float LostCitiesState::GetCredibility()
 	float credSum = 0.0f;
 	for(int loop1 = 0; loop1 < PLAYER_AMOUNT; loop1++)
 	{
-		credSum += MatrixFactory::Inst()->Credibility(colorCredibility[loop1], COLOR_AMOUNT) / 2;
-		credSum += MatrixFactory::Inst()->Credibility(valueCredibility[loop1], VALUE_KINDS);
+		credSum += Utility::Inst()->Credibility(colorCredibility[loop1], COLOR_AMOUNT) / 2;
+		credSum += Utility::Inst()->Credibility(valueCredibility[loop1], VALUE_KINDS);
 	}
 
 	return credSum;

@@ -1,7 +1,7 @@
 #include "MonteCarloTreeSearch.h"
 #include <vector>
 #include "IPlayer.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -54,7 +54,7 @@ int MonteCarloNode::GetBestChildID(int level)
 		scores.push_back(valueDIndex(children[loop1]->value, loop1));
 	}
 	sort(scores.begin(), scores.end(), comparatorD);
-	return scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
+	return scores[Utility::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 }
 
 void MonteCarloNode::Backpropagation(double reward)

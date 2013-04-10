@@ -1,5 +1,5 @@
 
-#include "MatrixFactory.h"
+#include "Utility.h"
 #include "Ludo.h"
 
 
@@ -504,7 +504,7 @@ float LudoState::GetCredibility()
 	float credSum = 0.0f;
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 	{
-		credSum += MatrixFactory::Inst()->Credibility(credibility[loop1], MAX_CUBE);
+		credSum += Utility::Inst()->Credibility(credibility[loop1], MAX_CUBE);
 
 		float credBonus = 0.0;
 		if(credibilityRecent[loop1][0] == credibilityRecent[loop1][1] && credibilityRecent[loop1][0] >= 0)

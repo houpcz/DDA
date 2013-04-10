@@ -1,6 +1,6 @@
 #include "PlayerHillClimberIS.h"
 #include "IGame.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -47,7 +47,7 @@ bool PlayerHillClimberIS::Think()
 		scores.push_back(valueIndex((int) tempRanks[loop1], loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
-	myTurn = scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
+	myTurn = scores[Utility::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 
 	delete [] tempRanks;
 	isReady = true;

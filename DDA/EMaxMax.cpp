@@ -1,6 +1,6 @@
 #include "EMaxMax.h"
 #include "IGame.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -18,7 +18,7 @@ void EMaxMax::MaxMax(IGameState * state, int depth)
 {
 	int choises;
 	GameStat stat = state->GetGameStat();
-	float tempVal = MatrixFactory::WeightedMetrics(&stat, coefMetric);
+	float tempVal = Utility::WeightedMetrics(&stat, coefMetric);
 
 	if(depth == 0 || state->IsGameOver())
 	{
@@ -43,7 +43,7 @@ void EMaxMax::MaxMax(IGameState * state, int depth)
 			{
 				if(nextState[loop1] != NULL) {
 					GameStat st = nextState[loop1]->GetGameStat();
-					scores.push_back(valueDIndex(MatrixFactory::WeightedMetrics(&st, coefMetric), loop1));
+					scores.push_back(valueDIndex(Utility::WeightedMetrics(&st, coefMetric), loop1));
 				}
 			}
 			sort(scores.begin(), scores.end(), comparatorD);

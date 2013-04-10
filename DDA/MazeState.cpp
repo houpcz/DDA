@@ -1,9 +1,11 @@
 
 #include <queue>
 #include <QDebug>
+#include "Game.h"
 #include "MazeState.h"
 #include "MazeStat.h"
 #include "MatrixFactory.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -21,8 +23,8 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 
 	setupOpenHallEnds = OPEN_HALL_ENDS_ALWAYS;
 	possibleWayToGoal = true;
-	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
-	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
+	maze = game->GetMatrixFactory()->GetMatrix(mazeWidth, mazeHeight);
+	mazeClosedList = game->GetMatrixFactory()->GetMatrix(mazeWidth, mazeHeight);
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
 		for(int loop2 = 0; loop2 < mazeWidth; loop2++)
@@ -167,8 +169,8 @@ void MazeState::CopyToMe(const MazeState & origin)
 	goalAmount = origin.goalAmount;
 
 
-	maze = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
-	mazeClosedList = MatrixFactory::Inst()->GetMatrix(mazeWidth, mazeHeight);
+	maze = game->GetMatrixFactory()->GetMatrix(mazeWidth, mazeHeight);
+	mazeClosedList = game->GetMatrixFactory()->GetMatrix(mazeWidth, mazeHeight);
 
 	for(int loop1 = 0; loop1 < mazeHeight; loop1++)
 	{
@@ -196,8 +198,9 @@ MazeState::~MazeState(void)
 
 void MazeState::ClearMe()
 {
-	MatrixFactory::Inst()->ReturnMatrix(maze, mazeWidth, mazeHeight);
-	MatrixFactory::Inst()->ReturnMatrix(mazeClosedList, mazeWidth, mazeHeight);
+	
+	game->GetMatrixFactory()->ReturnMatrix(maze, mazeWidth, mazeHeight);
+	game->GetMatrixFactory()->ReturnMatrix(mazeClosedList, mazeWidth, mazeHeight);
 	tileToExplore.clear();
 	environmentTurns.clear();
 	environmentTurnsAbstract.clear();
@@ -1259,7 +1262,7 @@ void MazeState::AddCloseDoor(int x, int y)
 
 float MazeState::GetCredibility()
 {
-	return MatrixFactory::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 10000;
+	return Utility::Inst()->Credibility(credibility, CRED_PIECE_MAX - 1) + credibility[CRED_PIECE_MAX -1] * 10000;
 }
 
 float MazeState::Freedom()

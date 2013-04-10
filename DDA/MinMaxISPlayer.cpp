@@ -1,7 +1,7 @@
 #include "MinMaxISPlayer.h"
 #include "LostCitiesState.h"
 #include "IGame.h"
-#include "MatrixFactory.h"
+#include "Utility.h"
 
 MinMaxISPlayer::MinMaxISPlayer(int _myID) : IPlayer(_myID)
 {
@@ -172,7 +172,7 @@ bool MinMaxISPlayer::Think()
 			scores.push_back(valueIndex((int) (rank[loop1] / rankCount[loop1]), loop1));
 	}
 	sort(scores.begin(), scores.end(), comparator);
-	myTurn = scores[MatrixFactory::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
+	myTurn = scores[Utility::Inst()->GetTurnIDByLevel(scores.size(), level)].second;
 
 	delete [] rank;
 	delete [] rankCount;
