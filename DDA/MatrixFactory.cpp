@@ -1,5 +1,6 @@
 #include "MatrixFactory.h"
 #include <stdlib.h>
+#include "EnvironmentAI.h"
 
 MatrixFactory MatrixFactory::inst=MatrixFactory();
 
@@ -76,6 +77,33 @@ void MatrixFactory::ReturnMatrix(char ** matrix, int width, int height)
 	mutex.unlock();
 }
 
+float MatrixFactory::WeightedMetrics(GameStat * stat, float * coefMetric)
+{
+	float tempVals[COEF_COUNT];
+	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
+	{
+		tempVals[loop1] = 0.0f;
+	}
+
+	tempVals[COEF_LEADER_SWITCHES] = coefMetric[COEF_LEADER_SWITCHES] * stat->LeaderSwitches();
+	tempVals[COEF_CREDIBILITY] = coefMetric[COEF_CREDIBILITY] * stat->Credibility();
+	tempVals[COEF_RANDOMNESS] = coefMetric[COEF_RANDOMNESS] * stat->Randomness();
+	tempVals[COEF_JUSTICE] = coefMetric[COEF_JUSTICE] * stat->Justice();
+	tempVals[COEF_LEADER_TIME] = coefMetric[COEF_LEADER_TIME] * stat->LeaderTime();
+	tempVals[COEF_AVG_STATUS_DIFFERENCE] = coefMetric[COEF_AVG_STATUS_DIFFERENCE] * stat->StatusDifference();
+	tempVals[COEF_END_STATUS_DIFFERENCE] = coefMetric[COEF_END_STATUS_DIFFERENCE] * stat->EndRankDifference();
+	tempVals[COEF_FREEDOM] = coefMetric[COEF_FREEDOM] * stat->Freedom();
+	float tempValue = tempVals[COEF_LEADER_SWITCHES] +
+						tempVals[COEF_FREEDOM] -
+				        tempVals[COEF_CREDIBILITY] - 
+						tempVals[COEF_RANDOMNESS] -
+						tempVals[COEF_JUSTICE] -
+						tempVals[COEF_LEADER_TIME] -
+						tempVals[COEF_AVG_STATUS_DIFFERENCE] -
+						tempVals[COEF_END_STATUS_DIFFERENCE];
+
+	return tempValue;
+}
 
 int MatrixFactory::GetTurnIDByLevel(int maxTurn, int level)
 {
@@ -115,9 +143,12 @@ float MatrixFactory::Credibility(int * arr, int arrLength)
 	delete [] tempArr;
 
 	float var = Variance(arr, arrLength) - minVar;
-
+	//if(var > 0.5)
+	//{
+	//	Variance(arr, arrLength);
+	//}
 	if(var < 0.5f)
-		var = 0.5f;
+		return 0.0f;
 
 	return var - 0.5f;
 }

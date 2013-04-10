@@ -24,7 +24,7 @@ public :
 
 	IGameState();
 	IGameState(Game * _game);
-	void Init(Game * _game, GameStat * stat = NULL);
+	void Init(Game * _game, const IGameState * originState, GameStat * stat = NULL);
 	virtual ~IGameState();
 	virtual ISpecificStat * GetGameSpecificStat() = 0;
 	virtual int GetPlayerChoises(int whoAskID) = 0;

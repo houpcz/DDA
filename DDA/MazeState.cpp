@@ -119,7 +119,7 @@ MazeState::MazeState(int _activePlayerID, int _stepsToGameOver, int mWidth, int 
 
 MazeState::MazeState(const MazeState & origin)
 {
-	IGameState::Init(origin.game, origin.gameStat);
+	IGameState::Init(origin.game, &origin, origin.gameStat);
 	CopyToMe(origin);
 }
 

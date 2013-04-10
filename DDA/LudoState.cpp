@@ -45,7 +45,7 @@ LudoState::LudoState(Game * _game, bool _twoPlayers) : IGameState(_game)
 
 LudoState::LudoState(const LudoState & origin)
 {
-	IGameState::Init(origin.game, origin.gameStat);
+	IGameState::Init(origin.game, &origin, origin.gameStat);
 	CopyToMe(origin);
 }
 
@@ -507,7 +507,7 @@ float LudoState::GetCredibility()
 		credSum += MatrixFactory::Inst()->Credibility(credibility[loop1], MAX_CUBE);
 
 		float credBonus = 0.0;
-		if(credibilityRecent[loop1][0] == credibilityRecent[loop1][1])
+		if(credibilityRecent[loop1][0] == credibilityRecent[loop1][1] && credibilityRecent[loop1][0] >= 0)
 		{
 			credBonus = 1.0;
 			for(int loop2 = 2; loop2 < MAX_LAST_DICE; loop2++)

@@ -662,6 +662,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_Ludo.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="EMaxMax.cpp">
+      <Filter>Players\EA</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClickableArea.h">
@@ -900,6 +903,9 @@
     </ClInclude>
     <ClInclude Include="PlayerHillClimberIS.h">
       <Filter>Players</Filter>
+    </ClInclude>
+    <ClInclude Include="EMaxMax.h">
+      <Filter>Players\EA</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

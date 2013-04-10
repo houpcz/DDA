@@ -113,7 +113,7 @@ Ludo::Ludo(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 
 	player = new IPlayer*[5];
 	EnvironmentAI * eai = new EnvironmentAIBasic(0);
-	float coefs[COEF_COUNT] = { 10, 99999, 10, 10, 10, 10, 1, 0 };
+	float coefs[COEF_COUNT] = { 10, 1000, 10, 10, 10, 0, 1, 0 };
 	eai->SetMetricCoefs(coefs);
 	player[0] = eai;
 	if(paint)

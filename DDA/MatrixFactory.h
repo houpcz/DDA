@@ -4,6 +4,7 @@
 #include <vector>
 #include <random>
 #include <cmath>
+#include "GameStat.h"
 
 using namespace std;
 
@@ -28,6 +29,7 @@ public:
 	int GetTurnIDByLevel(int maxTurn, int level);
 	float Credibility(int * arr, int arrLength);
 	float Variance(int * arr, int arrLength);
+	static float WeightedMetrics(GameStat * gameStat, float * coefs);
 private:
 	MatrixFactory(void);
 	void ClearBuffer();

@@ -21,12 +21,13 @@ IGameState::IGameState(Game * _game)
 	for(int loop1 = 0; loop1 < MAX_PLAYER; loop1++)
 		pStatus[loop1] = 0;
 
-	Init(_game);
+	Init(_game, this);
 };
 
-void IGameState::Init(Game * _game, GameStat * stat)
+void IGameState::Init(Game * _game, const IGameState * originState, GameStat * stat)
 {
 	game = _game;
+	lastPlayerID = originState->lastPlayerID;
 	playerCount = game->GetPlayerCount();
 	if(currentPlayerStatus != NULL || gameStat != NULL)
 		int errro = 0;
@@ -35,7 +36,10 @@ void IGameState::Init(Game * _game, GameStat * stat)
 
 	for(int loop1 = 0; loop1 < playerCount - 1; loop1++)
 	{
-		currentPlayerStatus[loop1] = 0;
+		if(stat == NULL)
+			currentPlayerStatus[loop1] = 0;
+		else
+			currentPlayerStatus[loop1] = originState->currentPlayerStatus[loop1];
 	}
 
 	if(stat == NULL)

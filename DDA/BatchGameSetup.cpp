@@ -102,7 +102,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 	{
 		eaCoefBox[loop1] = new QSpinBox(this);
 		eaCoefBox[loop1]->setMinimum(0);
-		eaCoefBox[loop1]->setMaximum(99999);
+		eaCoefBox[loop1]->setMaximum(999999);
 		gridLayout->addWidget(eaCoefBox[loop1], loop1 + 1, 3);
 		gridLayout->addWidget(eaCoefLabel[loop1], loop1 + 1, 2);
 	}
