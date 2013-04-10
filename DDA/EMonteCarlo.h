@@ -12,7 +12,6 @@ class EMonteCarlo :
 	public EnvironmentAI
 {
 private :
-	mt19937 * generator;
 
 public:
 	EMonteCarlo(int _myID);
@@ -20,7 +19,7 @@ public:
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
-	QString GetAIName() { return QString("EA Hill Climber"); };
+	QString GetAIName() { return QString("E MonteCarlo"); };
 	IPlayer * Factory(int playerID) { 
 		EMonteCarlo * player =  new EMonteCarlo(playerID); 
 		player->level = level;

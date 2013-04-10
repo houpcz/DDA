@@ -15,9 +15,12 @@ bool PlayerMonteCarlo::Think()
 {
 	int choises;
 	
+	throw "Not Implemented";
+
+	/*
 	MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, 5000);
 	myTurn = mcts.BestTurn(level);
-	isReady = true;
+	isReady = true;*/
 
 	return true;
 }

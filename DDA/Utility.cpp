@@ -19,11 +19,6 @@ Utility::~Utility(void)
 float Utility::WeightedMetrics(GameStat * stat, float * coefMetric)
 {
 	float tempVals[COEF_COUNT];
-	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
-	{
-		tempVals[loop1] = 0.0f;
-	}
-
 	tempVals[COEF_LEADER_SWITCHES] = coefMetric[COEF_LEADER_SWITCHES] * stat->LeaderSwitches();
 	tempVals[COEF_CREDIBILITY] = coefMetric[COEF_CREDIBILITY] * stat->Credibility();
 	tempVals[COEF_RANDOMNESS] = coefMetric[COEF_RANDOMNESS] * stat->Randomness();

@@ -21,6 +21,8 @@
 #include "EnvironmentAIBasic.h"
 #include "EAHillClimber.h"
 #include "EMaxN.h"
+#include "EMonteCarlo.h"
+#include "EMonteCarloDelta.h"
 #include "EMaxMax.h"
 #include "EAIMaxOptions.h"
 #include "EAIMinOptions.h"
@@ -103,7 +105,7 @@ void DDAWidget::MakePluginLists()
 	playerAIList.push_back(new PlayerHillClimberIS(31));
 	playerAIList.push_back(new MaxNPlayer(4));
 	playerAIList.push_back(new MinMaxISPlayer(7));
-	playerAIList.push_back(new PlayerMonteCarlo(8));
+	//playerAIList.push_back(new PlayerMonteCarlo(8));
 
 	playerAIList.push_back(new PlayerPOSM(5));
 	playerAIList.push_back(new PlayerLevel(6));
@@ -112,7 +114,9 @@ void DDAWidget::MakePluginLists()
 	environmentAIList.push_back(new EnvironmentAIBasic(0));
 	environmentAIList.push_back(new EAHillClimber(1));
 	environmentAIList.push_back(new EMaxMax(2));
-	environmentAIList.push_back(new EMaxN(3));
+	environmentAIList.push_back(new EMonteCarlo(3));
+	environmentAIList.push_back(new EMonteCarloDelta(7));
+	environmentAIList.push_back(new EMaxN(6));
 	environmentAIList.push_back(new PlayerPOSM(4));
 	environmentAIList.push_back(new PlayerLevel(5));
 	//environmentAIList.push_back(new EAIMaxOptions(1));

@@ -8,25 +8,26 @@
 
 using namespace std;
 
-class EAHillClimber :
+class EMonteCarloDelta :
 	public EnvironmentAI
 {
 private :
-	mt19937 * generator;
 
 public:
-	EAHillClimber(int _myID);
-	~EAHillClimber(void);
+	EMonteCarloDelta(int _myID);
+	~EMonteCarloDelta(void);
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return true; }
-	QString GetAIName() { return QString("E Hill Climber"); };
+	QString GetAIName() { return QString("E MonteCarlo Delta"); };
 	IPlayer * Factory(int playerID) { 
-		EAHillClimber * player =  new EAHillClimber(playerID); 
+		EMonteCarloDelta * player =  new EMonteCarloDelta(playerID); 
 		player->level = level;
 		player->SetMetricCoefs(CoefMetric());
 		return player;
 	};
 	bool CoefsHaveMeaning() { return true; };
 };
+
+
 

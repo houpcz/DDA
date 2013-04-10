@@ -91,6 +91,7 @@
     <ClCompile Include="EMaxMax.cpp" />
     <ClCompile Include="EMaxN.cpp" />
     <ClCompile Include="EMonteCarlo.cpp" />
+    <ClCompile Include="EMonteCarloDelta.cpp" />
     <ClCompile Include="EnvironmentAI.cpp" />
     <ClCompile Include="EnvironmentAIBasic.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -458,6 +459,7 @@
     <ClInclude Include="EMaxMax.h" />
     <ClInclude Include="EMaxN.h" />
     <ClInclude Include="EMonteCarlo.h" />
+    <ClInclude Include="EMonteCarloDelta.h" />
     <ClInclude Include="EnvironmentAI.h" />
     <ClInclude Include="FlowGraph.h" />
     <ClInclude Include="GameStat.h" />

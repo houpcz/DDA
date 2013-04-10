@@ -1,33 +1,33 @@
-#include "EMonteCarlo.h"
+#include "EMonteCarloDelta.h"
 #include "IGame.h"
 #include "Utility.h"
 #include "MonteCarloTreeSearch.h"
 
 using namespace std;
 
-EMonteCarlo::EMonteCarlo(int _myID) : EnvironmentAI(_myID)
+EMonteCarloDelta::EMonteCarloDelta(int _myID) : EnvironmentAI(_myID)
 {
 }
 
-EMonteCarlo::~EMonteCarlo(void)
+EMonteCarloDelta::~EMonteCarloDelta(void)
 {
 }
 
 
-bool EMonteCarlo::Think()
+bool EMonteCarloDelta::Think()
 {
 	int iteration;
 	switch(game->GetGameID())
 	{
 		case GAME_MAZE_ID : 
-			iteration = 3000;
+			iteration = 5000;
 			break;
 		default : 
 			iteration = 10000;
 			break;
 	}
 
-	MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, iteration, coefMetric, false);
+	MonteCarloTreeSearch mcts(game->GetCurrentState(), myID, iteration, coefMetric, true);
 	myTurn = mcts.BestTurn();
 	isReady = true;
 
