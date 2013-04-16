@@ -105,13 +105,29 @@ Volba počtu iterací je na programátorovi. Čím více iterací zvolí, tím l
 
 \section{Hráč prostředí}
 
+V této sekci popíši vlastní přístup k dynamickému vyvažování obtížnosti. Zmíním jeho omezení a naopak výhody oproti ostatním existujícím metodám. V podsekcích se zmíním o 4 různých algoritmech založených na společném principu - využití hráče prostředí.
 
+Hráč prostředí(HP) je imaginárním hráčem vloženým do hry, který ovlivňuje náhodné jevy a neznámou informaci ve hře. Oproti běžným hráčům má zcela jiný cíl. Snaží se hru udělat více zábavnou. Dále v textu hráč popisuje běžného hráče a HP hráče prostředí.
+
+V nedeterministických hrách HP provádí tahy, které by v klasickém přístupu prováděl náhodný generátor čísel. V herním stromu nahrazuje uzly náhody (chance node). 
+
+U her s neúplnou informací je situace odlišná. Při klasickém přístupu hráči pracují s informačními množinami(IM) stavů, ale samotná hra pracuje s jedním konkrétním stavem, ve kterém se hráči nacházejí. V našem přístupu bude s IM stavů pracovat i hra. IM pro hru bude obsahovat pouze stavy, které jsou průnikem stavů ze všech IM jednotlivých hráčů. Stavy z průniku představují informaci, která je neznámá všem hráčům. 
+
+V případě, že ve hře nastane událost, která má zmenšit IM jednoho z hráčů, dostane se ke slovu HP. V dané chvíli odkrývaná informace neexistuje, HP ji musí vytvořit provedením tahu. Po provedení tahu se zároveň zmenší IM hry. Ve chvíli, kdy v IM hry zůstane pouze jediný tah, HP již nemůže do hry nijak zasahovat.
+
+Pro ujasnění funkce HP uvedu příklad na hře Solitaire. Solitaire je hrou pro jednoho hráče a hraje s balíčkem karet. Pravidla hry pro nás nyní nejsou důležitá. Důležitá je pouze informace, že některé karty hráč na počátku hry vidí pouze rubem vzhůru a nezná jejich hodnotu. Při klasické přístupu se zpravidla karty před začátkem zamíchají a rozdají se před hráče, některé zakrytě. Hráč hodnotu zakrytých karet nezná, ale hra ano. V našem přístupu bychom před začátkem hry nepřiřadili konkrétní hodnoty zakrytým kartám. Pouze bychom si pamatovali, že dané karty hráč doposud neodkryl a zároveň bychom si pamatovali, které karty jsme doposud nikam nepřiřadili. Ve chvíli, kdy se hráč rozhodne některou z karet odkrýt, HP rozhodne, kterou kartu odkryl. Může vybírat pouze z karet, které jsou ještě k dispozici.
+
+Z popisu hráče prostředí vyplývá hlavní omezení jeho využití - hráč prostředí může být využit pouze ve hrách s neúplnou informací nebo s náhodou. Tento přístup nelze využít u her jako jsou šachy nebo dáma.
+
+Naopak má velkou výhodu proti většině přístupů popsaných v předcházejících kapitole, které často byly založeny na ovlivňování oponentů ve hře. HP může být použit i u her pro jednoho hráče, kde žádný NPC není. HP lze použít také u vícehráčových her, kde jsou všichni hráči zastoupeni lidmi. V takovém případě také nelze použít DDA založené na adaptivitě NPC.
 
 \subsection{E-HillClimber}
 
-\subsection{Druhy}
+\subsection{E-MaxMax}
 
-\subsection{Treti}
+\subsection{E-MinMax}
+
+\subsection{E-MonteCarlo}
 
 \endinput
 %%

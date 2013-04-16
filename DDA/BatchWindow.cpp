@@ -6,6 +6,7 @@
 #include "LostCities.h"
 #include "Ludo.h"
 #include "GameMaze.h"
+#include <ctime>
 
 BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _environmentAIList, vector<IPlayer *> _playerAIList, QWidget *parent) : QWidget(parent)
 {
@@ -71,7 +72,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 bool ok = connect(aggrFnc, SIGNAL(activated(int)), this, SLOT(AggrFnc(int)));
 
 	 playerStatsTree = new QTreeWidget(this);
-	 playerStatsTree->setColumnCount(9);
+	 playerStatsTree->setColumnCount(8);
 	 QTreeWidgetItem * headerPlayer = new QTreeWidgetItem();
 	 headerPlayer->setData(0, 0, "Player"); 
 	 headerPlayer->setData(1, 0, "Level"); 
@@ -80,8 +81,8 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 headerPlayer->setData(4, 0, "Ch. Min"); 
 	 headerPlayer->setData(5, 0, "Ch. Max"); 
 	 headerPlayer->setData(6, 0, "Turn"); 
-	 headerPlayer->setData(7, 0, "Justice"); 
-	 headerPlayer->setData(8, 0, "L Time"); 
+	 //headerPlayer->setData(7, 0, "Justice"); 
+	 headerPlayer->setData(7, 0, "Leader Time"); 
 	 for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
 	 	 playerStatsTree->resizeColumnToContents(loop1);
 	 playerStatsTree->setMinimumHeight(150);
@@ -96,11 +97,11 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 header->setData(2, 0, "Compl."); 
 	 header->setData(3, 0, "Turn N."); 
 	 header->setData(4, 0, "P1 winner"); 
-	 header->setData(5, 0, "Leader S."); 
-	 header->setData(6, 0, "Avg Diff"); 
-	 header->setData(7, 0, "End Diff"); 
+	 header->setData(5, 0, "Leader Sw."); 
+	 header->setData(6, 0, "Thrill"); 
+	 header->setData(7, 0, "Lead"); 
 	 header->setData(8, 0, "Justice"); 
-	 header->setData(9, 0, "Cred."); 
+	 header->setData(9, 0, "Credib."); 
 	 header->setData(10, 0, "Rand."); 
 	 header->setData(11, 0, "L Time"); 
 	 listBatch->setHeaderItem(header);
@@ -158,6 +159,17 @@ void BatchWindow::NextBatchItem()
 			return;
 		}
 
+		time_t rawtime;
+		struct tm * ti;
+		char buffer [256];
+		time (&rawtime);
+		ti = localtime (&rawtime);
+		sprintf (buffer,"%04d-%02d-%02d_%02d-%02d_", ti->tm_year + 1900, ti->tm_mon + 1, ti->tm_mday, ti->tm_hour, ti->tm_min);
+
+		if(batchProgress == batchItem[currentBatchItemID]->BatchSize())
+		{
+			batchItem[currentBatchItemID]->ExportToCsv("temp\\" + QString(buffer) + QString::number(currentBatchItemID) + "-" + batchItem[currentBatchItemID]->GetName() + ".csv");
+		}
 		batchItem[currentBatchItemID]->UpdateTreeWidget((BatchItem::EAggrFnc) aggrFnc->currentIndex());
 	}
 
@@ -168,7 +180,7 @@ void BatchWindow::NextBatchItem()
 		int batchSize = batchItem[currentBatchItemID]->BatchSize();
 		int itemPerThread = batchSize / sizeThread;
 		//if(itemPerThread * sizeThread != batchSize)
-		//	itemPerThread += 1;
+		//	itemPerThread += 1; 
 
 		int minID = 0;
 		for(int loop1 = 0; loop1 < sizeThread; loop1++)

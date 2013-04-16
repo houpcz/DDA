@@ -23,7 +23,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		if(game->GetGameID() != 0 && loop1 >= environmentAIList.size() - 2)
 			break;
 
-		if(game->GetGameID() != 1 && loop1 == environmentAIList.size() - 3)
+		if(game->GetGameID() == 0 && loop1 == environmentAIList.size() - 3)
 			continue;
 
 		playerList[0]->addItem(environmentAIList[loop1]->GetAIName());

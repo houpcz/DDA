@@ -1,5 +1,6 @@
 #include "BatchItem.h"
 #include <QMessageBox>
+#include "EnvironmentAI.h"
 
 BatchItem::BatchItem(int _batchSize, IGame * _game, QTreeWidgetItem * _treeWidgetItem)
 {
@@ -47,7 +48,9 @@ QString BatchItem::GetName(char splitChar)
 
 	for(int loop1 = 0; loop1 < game->GetPlayerCount(); loop1++)
 	{
-		playerNames += splitChar + game->GetPlayer(loop1)->GetAIName() + splitChar + QString::number(game->GetPlayer(loop1)->Level());
+		QString aiName = game->GetPlayer(loop1)->GetAIName();
+		aiName = aiName.remove(QRegExp("[a-z]."));
+		playerNames += splitChar + aiName + splitChar + QString::number(game->GetPlayer(loop1)->Level());
 	}
 
 	return game->GetGameName() + splitChar + QString::number(batchSize) + playerNames;
@@ -73,7 +76,19 @@ void BatchItem::ExportToCsv(QString path)
 	setupHeader += ";" + gameSetup.first + '\n';
 	file->write(setupHeader.toAscii());
 	file->write(GetName(';').toAscii() + ';' + gameSetup.second.toAscii() + '\n');
-	QString temp = QString("Turn Number;Leader Switches;SSD;ESD;J;C;R;LT");
+	QString eaiHeader = QString("LEADER_SWITCHES;CREDIBILITY;JUSTICE;LEADER_TIME;THRILL;LEAD;FREEDOM;RANDOMNESS\n");
+	EnvironmentAI * eai = dynamic_cast<EnvironmentAI*>(game->GetPlayer(0));
+	float * coefs = eai->CoefMetric();
+	QString coefStr;
+	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
+	{
+		coefStr += QString::number((int) (coefs[loop1] + 0.1f)) + QString(";");
+	}
+	coefStr += QString("\n");
+	file->write(eaiHeader.toAscii());
+	file->write(coefStr.toAscii());
+
+	QString temp = QString("Poèet kol;Zmìna vedení;Napínavost;Náskok;Spravedlnost;Uvìøitelnost;Svoboda;Náhodnost;Vedení");
 	for(int loop2 = 0; loop2 < allGameStat[0]->NumberPlayers(); loop2++)
 	{
 		temp+= ";P" + QString::number(loop2+1) + "W";
@@ -115,6 +130,7 @@ void BatchItem::ExportToCsv(QString path)
 		temp += QString::number(allGameStat[loop1]->EndRankDifference()) + ";";
 		temp += czech.toString(allGameStat[loop1]->Justice()) + ";";
 		temp += czech.toString(allGameStat[loop1]->Credibility()) + ";";
+		temp += czech.toString(allGameStat[loop1]->Freedom()) + ";";
 		temp += czech.toString(allGameStat[loop1]->Randomness()) + ";";
 		temp += czech.toString(allGameStat[loop1]->LeaderTime()) + ";";
 		for(int loop2 = 0; loop2 < allGameStat[loop1]->NumberPlayers(); loop2++)
@@ -403,8 +419,8 @@ void BatchItem::UpdatePlayerTreeWidget(QTreeWidget * playerTree, EAggrFnc fnc)
 		playerItem->setData(4, 0, choisesMin);
 		playerItem->setData(5, 0, choisesMax);
 		playerItem->setData(6, 0, turnNumber);
-		playerItem->setData(7, 0, justice);
-		playerItem->setData(8, 0, leaderTime);
+		//playerItem->setData(7, 0, justice);
+		playerItem->setData(7, 0, leaderTime);
 	}
 }
 

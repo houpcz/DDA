@@ -86,6 +86,20 @@ float * EMaxN::MaxN(IGameState * state, int depth)
 
 bool EMaxN::Think()
 {
+	int depth;
+	switch(game->GetGameID())
+	{
+		case GAME_LC_ID : 
+			depth = 3;
+			break;
+		case GAME_MAZE_ID :
+			depth = 2;
+			break;
+		default : 
+			depth = 6;
+			break;
+	}
+
 	int choises;
 	IGameState * currentState = game->GetCurrentState();
 	
@@ -105,7 +119,7 @@ bool EMaxN::Think()
 			notNull++;
 			GameStat stat = nextState[loop1]->GetGameStat();
 			Utility::WeightedMetrics(&stat, coefMetric);
-			float * values = MaxN(nextState[loop1], 6);
+			float * values = MaxN(nextState[loop1], depth);
 			float tempValue = values[playerCount];
 			delete [] values;
 			if(tempValue >= bestValue)

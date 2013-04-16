@@ -205,11 +205,27 @@ Nové metriky spravedlnost a náhodnost porovnávají statusy hráčů před a p
 
 Ve zbytku sekce popíši výpočet všech nastíněných metrik.
 
+\subsubsection{Poměr vítězství}
+
+První metrika poměr vítězství vychází přímo z hodnoty win-rate. Hru považujeme za více zábavnou, jestliže se hráči o vítězství dělí v průběhu několika her rovnoměrně. Poměr vítězství se spočítá jako směrodatná odchylka hodnot win-rate jednotlivých hráčů.
+
 \subsubsection{Změna vedení}
 
 Hráč, který má kladný status, je ve vedení. Jestliže se dostane do vedení jiný hráč, zaznamená se to. Metrika měří počet výměn hráčů ve vedení během hry od začátku do konce. Je zde předpoklad, že hra je více zábavná, jestliže se hráči častěji ve vedení střídají, a tedy není pořadí hráčů stejné na začátku, během a na konci hry. 
 
 U hry s jedním hráčem se status hráče rovná přímo jeho zisku. Metrika změna vedení u hry s jedním hráčem se rovná počtu změn znaménka statusu tohoto hráče.
+
+\subsubsection{Náskok}
+
+Metrika náskok je závislá pouze na aktuálním kole $a$. Udává náskok prvního hráče nad ostatními. Hodnota náskoku se přímo rovná statusu prvního hráče. Status prvního hráče v kole $a$ označíme $s^*_a$. Potom výpočet metriky lze jednoduše zapsat jako absolutní hodnotu statusu :
+
+	\[
+	naskok(a) = |s^*_a|
+\]
+
+Absolutní hodnotu můžeme vynechat u her více hráčů, kde status vedoucího hráče není nikdy záporný.
+
+Hru budeme považovat za zábavnější, jestliže hodnota náskoku bude co nejmenší.
 
 \subsubsection{Napínavost hry}
 Napínavost je dána průměrným náskokem prvního hráče před druhým během hry od prvního do aktuálního kola a. Náskok v i-tém tahu je dán statusem hráče ve vedení, označíme jej $s^*_i$. Vzorec pro výpočet napínavosti vypadá následovně :
@@ -218,23 +234,7 @@ Napínavost je dána průměrným náskokem prvního hráče před druhým běhe
 	napinavost(a) = \frac{1}{a}\sum_{i=1}^a{|s^*_i|}
 \]
 
-Absolutní hodnotu můžeme vynechat u her více hráčů, kde status vedoucího hráče není nikdy záporný.
-
-Hru budeme považovat za zábavnější, jestliže hodnota napínavosti bude co nejmenší.
-
-\subsubsection{Konečný náskok}
-
-Metriku konečného náskoku definujeme ze statusu nejlepšího hráče na konci hry. Jestliže hra neskončila, konečný náskok je roven 0.
-
-	\[
-	naskok(a) = \left\{
-  \begin{array}{l l}
-    0 & \quad \text{pokud $a \neq k$}\\
-    |s^*_k| & \quad \text{pokud $a = k$}
-  \end{array} \right.
-\]
-
-Stejně jako u napínavosti můžeme absolutní hodnotu vynechat u vícehráčových her. Opět čím nižší hodnota náskoku, tím lépe.
+Stejně jako u náskoku můžeme absolutní hodnotu vynechat u vícehráčových her. Opět čím nižší hodnota náskoku, tím lépe.
 
 \subsubsection{Vedení}
 
