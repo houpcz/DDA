@@ -200,25 +200,25 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.1}Pou\IeC {\v z}it\IeC {\'e} hry}{50}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Bludi\IeC {\v s}t\IeC {\v e}}{50}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.1}Bludi\IeC {\v s}t\IeC {\v e}}{51}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{51}{section*.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{51}{section*.65}
+\contentsline {subsubsection}{Heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{52}{section*.65}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1.2}Ludo}{52}{subsection.5.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{52}{section*.66}
+\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{53}{section*.66}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{53}{section*.67}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{53}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{54}{subsection.5.1.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{54}{section*.68}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{54}{section*.69}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Pou\IeC {\v z}it\IeC {\'e} um\IeC {\v e}l\IeC {\'e} inteligence}{54}{section.5.2}
+\contentsline {section}{\numberline {5.2}Pou\IeC {\v z}it\IeC {\'e} um\IeC {\v e}l\IeC {\'e} inteligence}{55}{section.5.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2.1}Hr\IeC {\'a}\IeC {\v c}i prost\IeC {\v r}ed\IeC {\'\i }}{55}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
@@ -232,12 +232,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.1}Bludi\IeC {\v s}t\IeC {\v e}}{58}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Ludo}{58}{section.6.2}
+\contentsline {subsection}{\numberline {6.1.1}Vzhled bludi\IeC {\v s}t\IeC {\v e} pro r\IeC {\r u}zn\IeC {\'e} DDA algoritmy}{60}{subsection.6.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{58}{section.6.3}
+\contentsline {section}{\numberline {6.2}Ludo}{60}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Celkov\IeC {\'e} srovn\IeC {\'a}n\IeC {\'\i }}{58}{section.6.4}
+\contentsline {section}{\numberline {6.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{60}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Z\IeC {\'a}v\IeC {\v e}r}{63}{chapter.7}
+\contentsline {section}{\numberline {6.4}Celkov\IeC {\'e} srovn\IeC {\'a}n\IeC {\'\i }}{60}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Literatura}{64}{chapter.7}
+\contentsline {chapter}{\numberline {7}Z\IeC {\'a}v\IeC {\v e}r}{62}{chapter.7}
+\defcounter {refsection}{0}\relax 
+\protect \contentsline {chapter}{P\IeC {\v r}\IeC {\'\i }lohy}{}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Ovl\IeC {\'a}d\IeC {\'a}n\IeC {\'\i } aplikace}{63}{appendix.A}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Dopl\IeC {\v n}uj\IeC {\'\i }c\IeC {\'\i } grafy experiment\IeC {\r u}}{64}{appendix.B}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Literatura}{66}{figure.B.29}

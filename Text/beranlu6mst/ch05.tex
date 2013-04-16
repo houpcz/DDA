@@ -1,6 +1,16 @@
 \chapter{Testující prostředí}
 
+V této kapitole popíši testující prostředí pro otestování navržených algoritmů hráčů prostředí a porovnání s dvěma existujícími přístupy.
 
+Pro testování byly použity tři relativně jednoduché hry popsané dále. Jedná se o variantu bludiště, variaci Člověče, nezlob se s názvem Ludo a o karetní hru Ztracená města.
+
+Prostředí obsahuje dva módy. Herní mód a dávkové spouštění algoritmů. V herním módu může jednotlivé hry hrát člověk. Hry mají jednoduché grafické ztvárnění a lze je ovládat pomocí myši. Po skončení hry si hráč může zobrazit Flow diagram.
+
+Mód dávkového spouštění umožňuje provádění experimentů v dávkách. U každého experimentu lze nastavit druh hry, počet iterací experimentu, druhy jednotlivých hráčů včetně hráče prostředí a případně herně specifické parametry jako je velikost bludiště. Před spuštěním experimentů může uživatel ovlivnit počet vláken, v kterých se budou provádět experimenty. Vícevláknové spouštění je zde z důvodu maximálního využití vícejádrových procesorů. Po spuštění dávky se spouští postupně jednotlivé experimenty. Do paměti se ukládají informace o každé iteraci všech experimentů. Především jsou zaznamenávány metriky zábavnosti. 
+
+Po skončení dávky může uživatel napočítané informace uložit na disk. Pro rychlé zhodnocení proběhlých algoritmů se v aplikaci zobrazují agregované informace. Uživatel má na výběr mezi střední hodnotou, odchylkou, minimem a maximem z naměřených hodnot v rámci každého experimentu. Dále lze zobrazit histogramy pro jednotlivé hodnoty.
+
+Bližší popis prostředí a jeho ovládaní lze nalézt v příloze.
 
 \section{Použité hry}
 
