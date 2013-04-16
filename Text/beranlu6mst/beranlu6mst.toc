@@ -72,21 +72,23 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.2}Metriky z\IeC {\'a}bavnosti}{17}{subsection.2.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Zm\IeC {\v e}na veden\IeC {\'\i }}{18}{section*.23}
+\contentsline {subsubsection}{Pom\IeC {\v e}r v\IeC {\'\i }t\IeC {\v e}zstv\IeC {\'\i }}{18}{section*.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{N\IeC {\'a}skok}{19}{section*.24}
+\contentsline {subsubsection}{Zm\IeC {\v e}na veden\IeC {\'\i }}{19}{section*.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Nap\IeC {\'\i }navost hry}{19}{section*.25}
+\contentsline {subsubsection}{N\IeC {\'a}skok}{19}{section*.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Veden\IeC {\'\i }}{19}{section*.26}
+\contentsline {subsubsection}{Nap\IeC {\'\i }navost hry}{19}{section*.26}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Svoboda}{20}{section*.27}
+\contentsline {subsubsection}{Veden\IeC {\'\i }}{19}{section*.27}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Spravedlnost}{20}{section*.28}
+\contentsline {subsubsection}{Svoboda}{20}{section*.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Uv\IeC {\v e}\IeC {\v r}itelnost}{20}{section*.29}
+\contentsline {subsubsection}{Spravedlnost}{20}{section*.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{N\IeC {\'a}hodnost}{21}{section*.30}
+\contentsline {subsubsection}{Uv\IeC {\v e}\IeC {\v r}itelnost}{21}{section*.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{N\IeC {\'a}hodnost}{21}{section*.31}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Existuj\IeC {\'\i }c\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }stupy}{22}{chapter.3}
 \defcounter {refsection}{0}\relax 
@@ -94,75 +96,75 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.1}\IeC {\v C}\IeC {\'a}ste\IeC {\v c}n\IeC {\v e} pozorovateln\IeC {\'e} markovsk\IeC {\'e} rozhodovac\IeC {\'\i } procesy}{23}{subsection.3.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Influence diagramy}{23}{section*.31}
+\contentsline {subsubsection}{Influence diagramy}{23}{section*.32}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{P\IeC {\v r}\IeC {\'\i }klad popisu stavu hry}{24}{section*.32}
+\contentsline {subsubsection}{P\IeC {\v r}\IeC {\'\i }klad popisu stavu hry}{24}{section*.33}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.2}Producent \IeC {\textendash } konzument}{24}{subsection.3.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} metrika}{24}{section*.33}
+\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} metrika}{24}{section*.34}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Vyva\IeC {\v z}uj\IeC {\'\i }c\IeC {\'\i } strategie}{25}{section*.34}
+\contentsline {subsubsection}{Vyva\IeC {\v z}uj\IeC {\'\i }c\IeC {\'\i } strategie}{25}{section*.35}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.3}Case-base reasoning}{25}{subsection.3.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Sb\IeC {\v e}r a \IeC {\'u}prava dat}{26}{section*.35}
+\contentsline {subsubsection}{Sb\IeC {\v e}r a \IeC {\'u}prava dat}{26}{section*.36}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Ohodnocen\IeC {\'\i } her}{26}{section*.36}
+\contentsline {subsubsection}{Ohodnocen\IeC {\'\i } her}{26}{section*.37}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Shlukov\IeC {\'a}n\IeC {\'\i } pozorov\IeC {\'a}n\IeC {\'\i }}{27}{section*.37}
+\contentsline {subsubsection}{Shlukov\IeC {\'a}n\IeC {\'\i } pozorov\IeC {\'a}n\IeC {\'\i }}{27}{section*.38}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Inicializace hry}{27}{section*.38}
+\contentsline {subsubsection}{Inicializace hry}{27}{section*.39}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Online adaptace}{27}{section*.39}
+\contentsline {subsubsection}{Online adaptace}{27}{section*.40}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.4}Fuzzy pravidla}{28}{subsection.3.1.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Dead-end}{28}{section*.40}
+\contentsline {subsubsection}{Dead-end}{28}{section*.41}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Fuzzy pravidla}{28}{section*.41}
+\contentsline {subsubsection}{Fuzzy pravidla}{28}{section*.42}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Adaptivn\IeC {\'\i } zm\IeC {\v e}na po\IeC {\v c}tu pravidel}{29}{section*.42}
+\contentsline {subsubsection}{Adaptivn\IeC {\'\i } zm\IeC {\v e}na po\IeC {\v c}tu pravidel}{29}{section*.43}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{V\IeC {\'y}sledky}{30}{section*.43}
+\contentsline {subsubsection}{V\IeC {\'y}sledky}{30}{section*.44}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.5}Evolu\IeC {\v c}n\IeC {\'\i } algoritmus}{30}{subsection.3.1.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Generov\IeC {\'a}n\IeC {\'\i } bludi\IeC {\v s}\IeC {\v t}}{31}{section*.44}
+\contentsline {subsubsection}{Generov\IeC {\'a}n\IeC {\'\i } bludi\IeC {\v s}\IeC {\v t}}{31}{section*.45}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Generov\IeC {\'a}n\IeC {\'\i } trat\IeC {\v e}}{32}{section*.45}
+\contentsline {subsubsection}{Generov\IeC {\'a}n\IeC {\'\i } trat\IeC {\v e}}{32}{section*.46}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1.6}Mraven\IeC {\v c}\IeC {\'\i } feromony}{33}{subsection.3.1.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c}\IeC {\r u}v profil}{34}{section*.46}
+\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c}\IeC {\r u}v profil}{34}{section*.47}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Z\IeC {\'a}kon propagace}{34}{section*.47}
+\contentsline {subsubsection}{Z\IeC {\'a}kon propagace}{34}{section*.48}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Z\IeC {\'a}kon vyprch\IeC {\'a}v\IeC {\'a}n\IeC {\'\i }}{35}{section*.48}
+\contentsline {subsubsection}{Z\IeC {\'a}kon vyprch\IeC {\'a}v\IeC {\'a}n\IeC {\'\i }}{35}{section*.49}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Matice interakce}{35}{section*.49}
+\contentsline {subsubsection}{Matice interakce}{35}{section*.50}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}Vyu\IeC {\v z}iteln\IeC {\'e} v teorii her}{36}{section.3.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.1}\IeC {\v C}\IeC {\'a}ste\IeC {\v c}n\IeC {\v e} uspo\IeC {\v r}\IeC {\'a}dan\IeC {\'a} mno\IeC {\v z}ina \IeC {\textendash } Mistr}{36}{subsection.3.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Algoritmus POSM}{36}{section*.50}
+\contentsline {subsubsection}{Algoritmus POSM}{36}{section*.51}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{P\IeC {\v r}\IeC {\'\i }klad s bal\IeC {\'o}nky}{37}{section*.51}
+\contentsline {subsubsection}{P\IeC {\v r}\IeC {\'\i }klad s bal\IeC {\'o}nky}{37}{section*.52}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.2}Dynamick\IeC {\'a} \IeC {\'u}rove\IeC {\v n}}{38}{subsection.3.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Popis algoritmu}{38}{section*.52}
+\contentsline {subsubsection}{Popis algoritmu}{38}{section*.53}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Ohodnocovac\IeC {\'\i } a status funkce}{39}{section*.53}
+\contentsline {subsubsection}{Ohodnocovac\IeC {\'\i } a status funkce}{39}{section*.54}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.3}Monte-Carlo prohled\IeC {\'a}v\IeC {\'a}n\IeC {\'\i } stromu}{39}{subsection.3.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Pravidla hry Pac-Man}{40}{section*.54}
+\contentsline {subsubsection}{Pravidla hry Pac-Man}{40}{section*.55}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Tvorba DDA pomoc\IeC {\'\i } MCTS}{40}{section*.55}
+\contentsline {subsubsection}{Tvorba DDA pomoc\IeC {\'\i } MCTS}{40}{section*.56}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Vyu\IeC {\v z}it\IeC {\'\i } neuronov\IeC {\'y}ch s\IeC {\'\i }t\IeC {\'\i }}{41}{section*.56}
+\contentsline {subsubsection}{Vyu\IeC {\v z}it\IeC {\'\i } neuronov\IeC {\'y}ch s\IeC {\'\i }t\IeC {\'\i }}{41}{section*.57}
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Vlastn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }stup}{42}{chapter.4}
 \defcounter {refsection}{0}\relax 
@@ -170,72 +172,72 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1.1}Z\IeC {\'a}kladn\IeC {\'\i } definice}{42}{subsection.4.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{D\IeC {\v e}len\IeC {\'\i } her}{42}{section*.57}
+\contentsline {subsubsection}{D\IeC {\v e}len\IeC {\'\i } her}{42}{section*.58}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Extenzivn\IeC {\'\i } forma hry}{43}{section*.58}
+\contentsline {subsubsection}{Extenzivn\IeC {\'\i } forma hry}{43}{section*.59}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Zero-sum hry}{44}{section*.59}
+\contentsline {subsubsection}{Zero-sum hry}{44}{section*.60}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1.2}Algoritmy pou\IeC {\v z}\IeC {\'\i }van\IeC {\'e} pro hry}{44}{subsection.4.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Minimax}{44}{section*.60}
+\contentsline {subsubsection}{Minimax}{44}{section*.61}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Alfa-beta pro\IeC {\v r}ez\IeC {\'a}v\IeC {\'a}n\IeC {\'\i }}{45}{section*.61}
+\contentsline {subsubsection}{Alfa-beta pro\IeC {\v r}ez\IeC {\'a}v\IeC {\'a}n\IeC {\'\i }}{45}{section*.62}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Monte-Carlo prohled\IeC {\'a}n\IeC {\'\i } stromu}{45}{section*.62}
+\contentsline {subsubsection}{Monte-Carlo prohled\IeC {\'a}n\IeC {\'\i } stromu}{45}{section*.63}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{46}{section.4.2}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2.1}E-HillClimber}{47}{subsection.4.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.2}E-MaxMax}{47}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.2}E-MaxMax}{48}{subsection.4.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.3}E-MinMax}{47}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.3}E-MaxN}{48}{subsection.4.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.4}E-MonteCarlo}{47}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.4}E-MonteCarlo}{49}{subsection.4.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Testuj\IeC {\'\i }c\IeC {\'\i } prost\IeC {\v r}ed\IeC {\'\i }}{48}{chapter.5}
+\contentsline {chapter}{\numberline {5}Testuj\IeC {\'\i }c\IeC {\'\i } prost\IeC {\v r}ed\IeC {\'\i }}{50}{chapter.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Pou\IeC {\v z}it\IeC {\'e} hry}{48}{section.5.1}
+\contentsline {section}{\numberline {5.1}Pou\IeC {\v z}it\IeC {\'e} hry}{50}{section.5.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Bludi\IeC {\v s}t\IeC {\v e}}{48}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.1}Bludi\IeC {\v s}t\IeC {\v e}}{50}{subsection.5.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{49}{section*.63}
+\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{51}{section*.64}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{49}{section*.64}
+\contentsline {subsubsection}{Heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{51}{section*.65}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.2}Ludo}{50}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.2}Ludo}{52}{subsection.5.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{50}{section*.65}
+\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{52}{section*.66}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{51}{section*.66}
+\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{53}{section*.67}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{51}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{53}{subsection.5.1.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{52}{section*.67}
+\contentsline {subsubsection}{Hr\IeC {\'a}\IeC {\v c} prost\IeC {\v r}ed\IeC {\'\i }}{54}{section*.68}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{52}{section*.68}
+\contentsline {subsubsection}{Pou\IeC {\v z}it\IeC {\'a} heuristika a uv\IeC {\v e}\IeC {\v r}itelnost}{54}{section*.69}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Pou\IeC {\v z}it\IeC {\'e} um\IeC {\v e}l\IeC {\'e} inteligence}{52}{section.5.2}
+\contentsline {section}{\numberline {5.2}Pou\IeC {\v z}it\IeC {\'e} um\IeC {\v e}l\IeC {\'e} inteligence}{54}{section.5.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.1}Hr\IeC {\'a}\IeC {\v c}i prost\IeC {\v r}ed\IeC {\'\i }}{53}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.1}Hr\IeC {\'a}\IeC {\v c}i prost\IeC {\v r}ed\IeC {\'\i }}{55}{subsection.5.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.2}B\IeC {\v e}\IeC {\v z}n\IeC {\'\i } hr\IeC {\'a}\IeC {\v c}i}{53}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.2}B\IeC {\v e}\IeC {\v z}n\IeC {\'\i } hr\IeC {\'a}\IeC {\v c}i}{55}{subsection.5.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.3}Minimax IS}{54}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.3}Minimax IS}{56}{subsection.5.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2.4}\IeC {\v S}k\IeC {\'a}lov\IeC {\'a}n\IeC {\'\i }}{55}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.4}\IeC {\v S}k\IeC {\'a}lov\IeC {\'a}n\IeC {\'\i }}{57}{subsection.5.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Proveden\IeC {\'e} experimenty}{56}{chapter.6}
+\contentsline {chapter}{\numberline {6}Proveden\IeC {\'e} experimenty}{58}{chapter.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Bludi\IeC {\v s}t\IeC {\v e}}{56}{section.6.1}
+\contentsline {section}{\numberline {6.1}Bludi\IeC {\v s}t\IeC {\v e}}{58}{section.6.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Ludo}{56}{section.6.2}
+\contentsline {section}{\numberline {6.2}Ludo}{58}{section.6.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{56}{section.6.3}
+\contentsline {section}{\numberline {6.3}Ztracen\IeC {\'a} m\IeC {\v e}sta}{58}{section.6.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Celkov\IeC {\'e} srovn\IeC {\'a}n\IeC {\'\i }}{56}{section.6.4}
+\contentsline {section}{\numberline {6.4}Celkov\IeC {\'e} srovn\IeC {\'a}n\IeC {\'\i }}{58}{section.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Z\IeC {\'a}v\IeC {\v e}r}{61}{chapter.7}
+\contentsline {chapter}{\numberline {7}Z\IeC {\'a}v\IeC {\v e}r}{63}{chapter.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{Literatura}{62}{chapter.7}
+\contentsline {chapter}{Literatura}{64}{chapter.7}

@@ -45,7 +45,7 @@ Příklad herního stromu varianty piškvorek 3x3 Tic-Tac-Toe jen na Obr. \ref{f
 
 U nedeterministických her existují vnitřní uzly dvou typů. První odpovídá tahu aktuálního hráče stejně jako u her deterministických. Druhým typem je uzel náhody (chance node). Uzel náhody odpovídá stavu hry, kdy je na řadě náhodná událost - např. hod kostkou. Hrany z tohoto uzlu odpovídají náhodným jevům, možným stavům hry po náhodné události. Hrany jsou navíc ohodnocené číslem, které představuje pravděpodobnost jednotlivých náhodných jevů. V případě hodu kostkou budou všechny hrany ohodnoceny $\frac{1}{6}$.
 
-U her s neúplnou informací hráči přesně nevědí, v jakém konkrétním uzlu herního stromu se nacházejí. Z jejich pohledu může být více uzlů představovat aktuální stav hry. Tato množina navzájem od sebe nerozlišitelných uzlů se nazývá informační množinou. Přestože hráč přesně neví, v kterém uzlu v rámci informačního stromu se nachází, může přiřazovat různé pravděpodobnosti jednotlivým stavům na základě předchozích tahů soupeřů.
+U her s neúplnou informací hráči přesně nevědí, v jakém konkrétním uzlu herního stromu se nacházejí. Z jejich pohledu může být více uzlů představovat aktuální stav hry. Tato množina navzájem od sebe nerozlišitelných uzlů se nazývá \emph{informační množinou}. Přestože hráč přesně neví, v kterém uzlu v rámci informačního stromu se nachází, může přiřazovat různé pravděpodobnosti jednotlivým stavům na základě předchozích tahů soupeřů.
 
 Herní strom můžeme upravit pro hry s neúplnou informací. Uzel takového stromu nemusí představovat pouze jeden stav hry, ale celou množinu stavů, odpovídající informační množinu.
 
@@ -107,27 +107,69 @@ Volba počtu iterací je na programátorovi. Čím více iterací zvolí, tím l
 
 V této sekci popíši vlastní přístup k dynamickému vyvažování obtížnosti. Zmíním jeho omezení a naopak výhody oproti ostatním existujícím metodám. V podsekcích se zmíním o 4 různých algoritmech založených na společném principu - využití hráče prostředí.
 
-Hráč prostředí(HP) je imaginárním hráčem vloženým do hry, který ovlivňuje náhodné jevy a neznámou informaci ve hře. Oproti běžným hráčům má zcela jiný cíl. Snaží se hru udělat více zábavnou. Dále v textu hráč popisuje běžného hráče a HP hráče prostředí.
+Hráč prostředí(HP) je imaginárním hráčem vloženým do hry, který ovlivňuje náhodné jevy a neznámou informaci ve hře. Oproti běžným hráčům má zcela jiný cíl. Snaží se hru udělat více zábavnou. Ve druhé kapitole jsem uvedl několik metrik, které lze použít při měření zábavnosti hry. HP se těmito metrikami řídí a snaží se maximalizovat jejich váženou sumu. Suma je vážená koeficienty, které jsou specifické pro každou hru. Pomocí koeficientů lze upravit zaměření zábavnosti jen na některé její složky. Dále v textu hráč popisuje běžného hráče a HP hráče prostředí.
+
+HP nerozlišuje hráče ovládané člověkem, nebo počítačem. Jedním z jeho úkolů je pomáhat slabším hráčům a přitom nerozlišuje, jestli pomáhá počítači, nebo člověku.
 
 V nedeterministických hrách HP provádí tahy, které by v klasickém přístupu prováděl náhodný generátor čísel. V herním stromu nahrazuje uzly náhody (chance node). 
 
-U her s neúplnou informací je situace odlišná. Při klasickém přístupu hráči pracují s informačními množinami(IM) stavů, ale samotná hra pracuje s jedním konkrétním stavem, ve kterém se hráči nacházejí. V našem přístupu bude s IM stavů pracovat i hra. IM pro hru bude obsahovat pouze stavy, které jsou průnikem stavů ze všech IM jednotlivých hráčů. Stavy z průniku představují informaci, která je neznámá všem hráčům. 
+U her s neúplnou informací je situace odlišná. V takových hrách můžeme měnit pouze informace, které jsou skryté všem hráčům. V opačném případě by se mohlo stát, že by HP měnil hru před očima některého z hráčů. Při klasickém přístupu hráči pracují s informačními množinami(IM) stavů, ale samotná hra pracuje s jedním konkrétním stavem, ve kterém se hráči nacházejí. V našem přístupu bude s IM stavů pracovat i hra. IM pro hru bude obsahovat pouze stavy, které jsou průnikem stavů ze všech IM jednotlivých hráčů. Stavy z průniku představují informaci, která je neznámá všem hráčům. 
 
-V případě, že ve hře nastane událost, která má zmenšit IM jednoho z hráčů, dostane se ke slovu HP. V dané chvíli odkrývaná informace neexistuje, HP ji musí vytvořit provedením tahu. Po provedení tahu se zároveň zmenší IM hry. Ve chvíli, kdy v IM hry zůstane pouze jediný tah, HP již nemůže do hry nijak zasahovat.
+V případě, že ve hře nastane událost, která má zmenšit IM jednoho z hráčů, dostane se ke slovu HP. V dané chvíli odkrývaná informace neexistuje, HP ji musí vytvořit provedením tahu. Po provedení tahu se zároveň zmenší IM hry. Ve chvíli, kdy v IM hry zůstane pouze jediný stav, HP již nemůže do hry nijak zasahovat.
 
-Pro ujasnění funkce HP uvedu příklad na hře Solitaire. Solitaire je hrou pro jednoho hráče a hraje s balíčkem karet. Pravidla hry pro nás nyní nejsou důležitá. Důležitá je pouze informace, že některé karty hráč na počátku hry vidí pouze rubem vzhůru a nezná jejich hodnotu. Při klasické přístupu se zpravidla karty před začátkem zamíchají a rozdají se před hráče, některé zakrytě. Hráč hodnotu zakrytých karet nezná, ale hra ano. V našem přístupu bychom před začátkem hry nepřiřadili konkrétní hodnoty zakrytým kartám. Pouze bychom si pamatovali, že dané karty hráč doposud neodkryl a zároveň bychom si pamatovali, které karty jsme doposud nikam nepřiřadili. Ve chvíli, kdy se hráč rozhodne některou z karet odkrýt, HP rozhodne, kterou kartu odkryl. Může vybírat pouze z karet, které jsou ještě k dispozici.
+Pro ujasnění funkce HP uvedu příklad na hře Solitaire. Solitaire je hrou pro jednoho hráče a hraje s balíčkem karet. Pravidla hry pro nás nyní nejsou důležitá. Důležitá je pouze informace, že některé karty hráč na počátku hry vidí pouze rubem vzhůru a nezná jejich hodnotu. 
+
+Při klasické přístupu se zpravidla karty před začátkem zamíchají a rozdají se před hráče, některé zakrytě. Hráč hodnotu zakrytých karet nezná, ale hra ano. Když hráč odkryje některou z karet, karta má již přiřazenou hodnotu. 
+
+V našem přístupu bychom před začátkem hry nepřiřadili konkrétní hodnoty zakrytým kartám. Pouze bychom si pamatovali, že dané karty hráč doposud neodkryl a zároveň bychom si pamatovali, které karty jsme doposud nikam nepřiřadili. Ve chvíli, kdy se hráč rozhodne některou z karet odkrýt, HP rozhodne, kterou kartu odkryl. Může vybírat pouze z karet, které jsou ještě k dispozici.
 
 Z popisu hráče prostředí vyplývá hlavní omezení jeho využití - hráč prostředí může být využit pouze ve hrách s neúplnou informací nebo s náhodou. Tento přístup nelze využít u her jako jsou šachy nebo dáma.
 
-Naopak má velkou výhodu proti většině přístupů popsaných v předcházejících kapitole, které často byly založeny na ovlivňování oponentů ve hře. HP může být použit i u her pro jednoho hráče, kde žádný NPC není. HP lze použít také u vícehráčových her, kde jsou všichni hráči zastoupeni lidmi. V takovém případě také nelze použít DDA založené na adaptivitě NPC.
+Naopak má velkou výhodu oproti většině přístupů popsaných v předcházejících kapitole, které často byly založeny na ovlivňování oponentů ve hře. HP může být použit i u her pro jednoho hráče, kde žádný NPC není. HP lze také použít u vícehráčových her, kde jsou všichni hráči zastoupeni lidmi. V takovém případě také nelze použít DDA založené na adaptivitě NPC.
 
 \subsection{E-HillClimber}
 
+Nejjednodušší z algoritmů založených na HP prostředí je E-HillClimber. Nejdříve se dle předem dané pravděpodobnosti rozhodne, jestli bude se bude rozhodovat deterministicky, nebo nedeterministicky.
+
+Při nedeterministickém chování HP vždy náhodně vybere jeden z možných tahů. Hra se chová zcela přirozeně stejně jako by v ní žádný HP nebyl.
+
+Při deterministickém rozhodování HP ohodnotí všechny následující stavy pomocí vážené sumy metrik zábavnosti a vybere tah s nejlépe ohodnoceným následujícím stavem. Především v počátku hry se může stát, že více stavů je ohodnoceno stejně, v takovém případě se HP rozhodne náhodně mezi nejlepšími stavy.
+
+Poměr nedeterministického a deterministického chování je zcela na autoru algoritmu. Je žádoucí, aby se HP alespoň v některých případech choval náhodně. V opačném případě by se mohlo stát, že by lidský hráč snadno odhalil přítomnost HP, protože by se HP vždy choval stejně.
+
+Tento jednoduchý algoritmus má oproti následující trojice velikou výhodu. Nevyžaduje žádnou simulaci ostatních hráčů. Nepotřebuje znát ani jejich možné tahy. Z tohoto důvodu je snadno použitelný nejen u tahových her, ale i u her v reálném čase, kde je často velmi obtížné až nemožné specifikovat možné tahy hráčů.
+
+Další nemalou výhodou tohoto algoritmu je jeho rychlost. Algoritmus nevyžaduje téměř žádný výpočetní výkon. Časová náročnost je lineárně závislá na počtu možných tahů HP hráče. Označíme-li $b$ počet možných tahů. Časová náročnost $O(b) = b$.
+
 \subsection{E-MaxMax}
 
-\subsection{E-MinMax}
+E-MaxMax je druhým jednoduchým algoritmem. Oproti E-HillClimberu již vyžaduje herní strom, možné tahy jednotlivých hráčů. Tento algoritmus simuluje jednoduché rozhodování hráčů a ohodnocuje jednotlivé tahy HP hráče až na základě stavů v předem dané hloubce herního stromu.
+
+Stejně jako u E-HillClimberu a i následně u dalších algoritmů zde platí, že by se HP neměl rozhodovat vždy zcela deterministicky.
+
+V případě deterministického rozhodování HP pro každý ze svých tahů odsimuluje část hry. Tah následně ohodnotí dle konečného stavu simulace. V jednotlivých krocích simulace každý z hráčů včetně HP maximalizuje svůj užitek pouze v rámci jednoho patra herního stromu. HP ve svých uzlech vybírá nejlepší tah stejně jako E-HillClimber. Ostatní hráči pracují s heuristickou funkcí, která jim ohodnotí vhodnost všech následujících tahů a také vyberou pro sebe nejlepší možný tah.
+
+Nakonec HP vybere nejlépe ohodnocený tah.
+
+Tento algoritmus je pomalejší než algoritmus předchozí, ale je stále velice rychlý. Horní odhad výpočetní složitosti je dán počtem ohodnocovaných uzlů herního stromu. Algoritmus v každém uzlu vybírá pouze jeden z následujících tahů. Označíme maximální větvící faktor stromu $b$ a hloubku stromu $d$. $O(b, d) = b^2d$. Součin $bd$ odpovídá časové náročnosti jedné simulace. Těchto simulací je maximálně $b$.
+
+\subsection{E-MaxN}
+ 
+Algoritmus E-MaxN patří k přístupu, který se snaží o přesnou simulaci hry po provedení svých tahů. HP z každého možného stavu, který následuje po jeho tahu, provede stejné rozhodování, které provádějí jednotliví hráči. Tato varianta předpokládá, že se soupeři rozhodují na základě algoritmu MaxN, ale nemělo by být obtížné upravit tento algoritmus pro soupeře založené na jiných algoritmech.
+
+HP nezasahuje do průběhu simulace hry. Předpokládá, že se hráči rozhodují, jako by ve hře žádný HP nebyl, a tedy s uzly náhody pracuje stejně jako je obvyklé. Simulace hry se liší pouze v propagaci informací z listů ke kořeni herního stromu. Heuristika používaná hráči se propaguje jako obvykle. Ohodnocení stavu HP hráčem se přes uzly ostatních hráčů propaguje s heuristikou hráčů. Propagace se liší pouze v uzlech náhody. Hráči z nich propagují váženou sumu pravděpodobností tahů a jejich heuristik. HP ví, že dané uzly nejsou náhodné, že se v nich rozhoduje on. Z tohoto důvodu v uzlech náhody volí nejlepší ohodnocení z potomků.
+
+Časová složitost algoritmu roste exponenciálně s hloubkou $d$ procházeného stromu. $O(b, d) = b^{d+1}$. MaxN pro každý tah má časovou složitost $b^d$ a MaxN se spouští až pro $b$ tahů.
 
 \subsection{E-MonteCarlo}
+
+Posledním navrženým algoritmem je E-MonteCarlo založeným na Monte Carlo prohledávání herního stromu(MCTS). Algoritmus se chová zcela stejně jako bylo popsáno dříve v této kapitole s jediným rozdílem.
+
+Na konci fáze Simulace dochází k ohodnocení stavu. E-MonteCarlo stav ohodnotí pomocí metrik zábavnosti stejným způsobem jako předchozí algoritmy. Zbylé fáze MCTS se opět neliší.
+
+Na závěr E-MonteCarlo vybere nejlépe ohodnoceného potomka aktuálního stavu hry.
+
+Časová náročnost algoritmu je závislá na počtu iterací MCTS a neliší se od časové náročnosti MCTS.
 
 \endinput
 %%
