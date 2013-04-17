@@ -436,28 +436,6 @@
       \verb http://www.pages.drexel.edu/~ne34/edu.html
       \endverb
     \endentry
-    \entry{SwPatterns}{inproceedings}{}
-      \name{labelname}{2}{}{%
-        {{hash=472e81664efab4aef4e2230373092be5}{Chowdhury}{C\bibinitperiod}{M.I.}{M\bibinitperiod}{}{}{}{}}%
-        {{hash=b8c6d9ebc773e3382444f940b9fe3e36}{Katchabaw}{K\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{2}{}{%
-        {{hash=472e81664efab4aef4e2230373092be5}{Chowdhury}{C\bibinitperiod}{M.I.}{M\bibinitperiod}{}{}{}{}}%
-        {{hash=b8c6d9ebc773e3382444f940b9fe3e36}{Katchabaw}{K\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{b5636d749fd9bbe6fa2371a4a408f1d7}
-      \strng{fullhash}{b5636d749fd9bbe6fa2371a4a408f1d7}
-      \field{sortinit}{0}
-      \field{labeltitle}{Software design patterns for enabling auto dynamic difficulty in video games}
-      \field{booktitle}{Computer Games (CGAMES), 2012 17th International Conference on}
-      \field{month}{30 2012-aug. 1}
-      \field{title}{Software design patterns for enabling auto dynamic difficulty in video games}
-      \field{year}{2012}
-      \field{pages}{76\bibrangedash 80}
-      \verb{doi}
-      \verb 10.1109/CGames.2012.6314555
-      \endverb
-    \endentry
     \entry{FlowCZ}{online}{}
       \name{labelname}{1}{}{%
         {{hash=69bf6f2c23b207645e40fbd64b56c325}{Samek}{S\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%

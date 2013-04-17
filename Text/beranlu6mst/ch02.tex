@@ -1,81 +1,10 @@
-\chapter{Obecné}
-
-
-\section{Model architektury}
-
-Ať už použijeme DDA s online nebo offline adaptivitou, implicitní nebo explicitní, je zde spousta společných rysů, a proto je na místě vytvořit obecný model architektury dynamického vyvažování obtížnosti. Ve všech případech se snažíme podchytit zjednodušený model hráče na základě jeho projevů ve hře, a poté tyto informace dodáme hře, která herní svět upraví k lepšímu zážitku hráče.
-
-Jeden z možných modelů DDA znázorňuje obr. \ref{fig:ch2ddaarch}. V principu se zaznamenávají akce hráče a herní proměnné jako je např. počet životů hráče. Na základě těchto logů se vytváří model hráče, model jeho zkušeností, dovedností, preferencí a osobnosti. Model hráče v kombinaci s aktuálním stavem hry slouží k odhadu očekávaného zážitku hráče v dalším stavu hry. A nakonec model zážitku s model výkonu hráče slouží jako vstup adaptačnímu a generačnímu enginu, který posléze upraví herní komponenty jakými je např. umělá inteligence NPC.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.75\textwidth]{ch2ddaarch}
-	\caption{Přehled principů architektury adaptivních her. \cite{16Survey} }
-	\label{fig:ch2ddaarch}
-\end{figure}
-
-V \cite{SwPatterns} se zabývali modelem DDA z pohledu návrhových vzorů objektového programování. Abstraktní model je znázorněn na obr. \ref{fig:ch2ddapatterns}. Senzory sbírají důležitá herní data, dle kterých se bude dále rozhodovat. Návrhový vzor Observer je připojen k Senzorům a v případě, že zaznamená zatelnou změnu v systému, vytvoří událost, trigger. Jednotlivé události jsou spojeny s akcemi a dohromady spolu tvoří pravidla uložená v databázi. V případě, že se spustí trigger spojený s akcí v některém z pravidel, rozhodne se v provedení této akce, což má na starost řadič, který má za úkol provést požadovanou změnu do stavu hry.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.75\textwidth]{ch2ddapatterns}
-	\caption{Návrhové vzory DDA \cite{SwPatterns} }
-	\label{fig:ch2ddapatterns}
-\end{figure}
-
-Dále se podíváme na jednotlivé návrhové vzory detailněji.
-
-\subsection{Sensor factory}
-
-Senzory jsou objekty, které pravidelně čtou herní data\footnote{Senzory nemusí zaznamenávat pouze herní data. Mohou zaznamenávat i prostředí uživatele např. pomocí Kinectu, nebo snímat aktuální tep hráče.} a upozorňují na změny zbytek DDA systému. Schéma návrhového vzoru znázorňuje obr. \ref{fig:ch2senzorfactory}. Senzor je abstraktní třídou, která zahrnuje periodické sbírání dat a upozorňující mechanismus. Konkrétní senzory z této třídy dědí a musí přepisovat abstraktní metodu refreshValue(), která zaznamenává konkrétní proměnnou systému. Třída SenzorFactory je zodpovědná za vytváření jednotlivých senzorů a je implementací návrhového vzoru factory. Továrna na senzory vyžaduje název senzoru a objekt, který má monitorovat. Vytvořené senzory si ukládá do registru. V případě, že uživatel zažádá o senzor, který už někdo vytvořil, dostane referenci na tento senzor. V opačném případě zkontroluje v ResourceManageru, jestli vytvořením nového senzoru se poruší některá z omezení zdrojů a pokud ne, senzor vytvoří.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{ch2senzorfactory}
-	\caption{Návrhový vzor sensor factory. \cite{SwPatterns} }
-	\label{fig:ch2senzorfactory}
-\end{figure}
-
-\subsection{Adaptation detector}
-
-Hrubá data získaná senzory se musí dále zpracovat. Tyto data získává AdaptationDetector pomocí observeru z návrhového vzoru senzor-observer. Na tomto místě se rozhoduje, jestli senzory již zaznamenaly dostatečnou změnu systému. Nedostatečnou změnou může být vystřelení jednoho náboje z plně nabitého revolveru. Naopak vystřílení půlky zásobníku může být významné. O významnost změny se stará TreshholdAnalyzer s Tresholdem. Treshold uchovává parametr hranice a její typ. (menší rovno, větší apod.) V případě dosažení prahu TresholdAnalyzer dá vědět AdaptationDetectoru, který vytvoří trigger, spouštěč. Trigger s sebou může nést další dodatečné informace jako je např. množství přeživších nepřátel. Viz obr. \ref{fig:ch2adaptationdesing}.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{ch2adaptationdesing}
-	\caption{Návrhový vzor sensor factory. \cite{SwPatterns} }
-	\label{fig:ch2adaptationdesing}
-\end{figure}
-
-\subsection{Case based reasoning}
-
-Trigger spustí rozhodování na základě případů. Tento návrhový vzor(obr. \ref{fig:ch2casebase}) se použije, jestliže je možné vyvažování obtížnosti definovat konečným množstvím případů. InferenceEngine obsahuje dvě datové struktury: TriggerPool a FixedRules. Fixed rules obsahují pravidla, která jsou úzce spojená s konkrétní hrou. Pravidlo je kombinací triggeru a akce/rozhodnutí. TriggerPool funguje jako fronta událostí. Do fronty se řadí spuštěné triggery a jsou obsluhovány od nejstaršího. InferenceEngine vždy odebere jeden trigger z poolu, najde ho v databázi FixedRules pravidel a s ním nalezne vhodné rozhodnutí, které se má dále provést.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{ch2casebase}
-	\caption{Návrhový vzor Case based reasoning. \cite{SwPatterns} }
-	\label{fig:ch2casebase}
-\end{figure}
-
-\subsection{Game reconfiguration}
-
-Posledním krokem je provedení požadované změny v herním světě. Návrhový vzor Game reconfiguration(obr. \ref{fig:ch2gamereco}) v sobě obsahuje jiný návrhový vzor, adapter. AdaptationDriver dostane ke zpracování rozhodnutí z InferenceEnginu. AdaptationDriver provede rozhodnutí za pomoci Driveru. Driver mění objekty, jež implementují rozhraní State, přes které zjišťuje aktuální stav objektu. S provedením jeho změny čeká dokud se nestane objekt neaktivním.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.5\textwidth]{ch2gamereco}
-	\caption{Návrhový vzor Game reconfiguration. \cite{SwPatterns} }
-	\label{fig:ch2gamereco}
-\end{figure}
-
-\section{Zábava}
+\chapter{Definice zábavy}
 
 Pojem zábava patří mezi velice subjektivní pojmy. Pro každého je zábavného něco jiného a svět her není výjimkou. Mezi hlavní zastupitele zkoumající tento pozitivní požitek patří Mihaly Csikszentmihalyi, který ideální stav maximální zábavy, maximálního ponoření do některé z činností nazval flow. Blíže tento stav bude popsán v následující podsekci.
 
 Přestože se jedná o pojem subjektivní, pro použití DDA je nutné najít některé složky zábavy, které jsou změřitelné, kvantifikovatelné. Musíme být schopni zábavu měřit. Jestliže ji dokážeme změřit, můžeme to využít pro stavbu DDA algoritmů a i pro měření kvalit různých algoritmů mezi sebou. Možné metriky budou popsány dále.
 
-\subsection{Flow}
+\section{Flow}
 
 Flow (tok) je stav mysli, kdy je osoba v průběhu provozování činnosti naprosto soustředěná, pociťuje nadšení, úspěch. „Flow je stav vědomí, kdy je člověk plně zaujatý svou činností. Nezabývá se jinými stimuly z okolí ani svými myšlenkami nebo pocity. Je naprosto soustředěný na prováděnou činnost. Dosahuje většinou, na své poměry, nadprůměrných výkonů, ale přitom mu to nepůsobí výraznou námahu. Je to harmonický zážitek, kdy tělo a mysl spolu bez námahy spolupracují. Tento stav je většinou spojen s pocity energie, radosti, harmonie a seberealizace.“ \cite{FlowCZ} S pojmem Flow prvně přišel zástupce pozitivní psychologie Mihaly Csikszentmihalyi ve své práci Flow: The psychology of optimal experience, česky vydané pod názvem O štěstí a smyslu života.
 
@@ -110,7 +39,7 @@ Dle Csikszentmihalyi se flow skládá z devíti elementů. \cite{FlowEng} Ne vš
 
 Rozepisování jednotlivých bodů není záměrem této práce. Bližší informace lze nalézt např. na \cite{FlowEng}, \cite{FlowCZ}, nebo v originální knize \cite{OptimalFun}.
 
-\subsubsection{Flow ve hrách}
+\subsection{Flow ve hrách}
 
 Nás bude více zajímat napojení flow na vývoj počítačových her. Jenova Chen ve své diplomové práci Flow in Games\cite{thesisflow} vybral několik flow komponent, které označil za hlavní při návrhu hry. Dle Chena musí hra obsahovat následující tři elementy, aby hráč dosáhl stavu flow.
 
@@ -159,7 +88,7 @@ Podobné koncentraci. Hra má pohlcovat a udržovat hráče v maximální pozorn
 \textbf{Sociální interakce} : 
 Tento bod je přidán oproti prvotnímu flow. K dokonalému zážitku potřebuje člověk další lidské spoluhráče a protihráče.
 
-\subsubsection{Zóna flow pro různé hráče}
+\subsection{Zóna flow pro různé hráče}
 
 Vraťme se znovu ke flow diagramu \ref{fig:ch2flow}. Dle příkladu s Alexem a jeho učením se tenisu by se mohlo zdát, že pro každého je ideální udržovat zcela vyrovnanou hodnotu schopností a náročnosti úkolů a udržovat uživatele v úzkém flow pásu, jak znázorňuje obr. \ref{fig:ch2flowzone1}.
 
@@ -179,7 +108,7 @@ Bohužel takový flow diagram nebere v úvahu individualitu hráče. Existují h
 	\label{fig:ch2flowzone2}
 \end{figure}	
 
-\subsection{Metriky zábavnosti} \label{sec:defzab}
+\section{Metriky zábavnosti} \label{sec:defzab}
 
 Hlavním cílem počítačových her je pobavení hráče. Může být tedy dobré umět zábavu přímo, či nepřímo změřit. Pro techniku DDA je existence takové metriky zcela zásadní. Bez ní by hra nevěděla, jakým způsobem se má přizpůsobovat hráči a neuměla by ohodnotit, jestli to dělá dobře. 
 
@@ -205,17 +134,17 @@ Nové metriky spravedlnost a náhodnost porovnávají statusy hráčů před a p
 
 Ve zbytku sekce popíši výpočet všech nastíněných metrik.
 
-\subsubsection{Poměr vítězství}
+\subsection{Poměr vítězství}
 
 První metrika poměr vítězství vychází přímo z hodnoty win-rate. Hru považujeme za více zábavnou, jestliže se hráči o vítězství dělí v průběhu několika her rovnoměrně. Poměr vítězství se spočítá jako směrodatná odchylka hodnot win-rate jednotlivých hráčů.
 
-\subsubsection{Změna vedení}
+\subsection{Změna vedení}
 
 Hráč, který má kladný status, je ve vedení. Jestliže se dostane do vedení jiný hráč, zaznamená se to. Metrika měří počet výměn hráčů ve vedení během hry od začátku do konce. Je zde předpoklad, že hra je více zábavná, jestliže se hráči častěji ve vedení střídají, a tedy není pořadí hráčů stejné na začátku, během a na konci hry. 
 
 U hry s jedním hráčem se status hráče rovná přímo jeho zisku. Metrika změna vedení u hry s jedním hráčem se rovná počtu změn znaménka statusu tohoto hráče.
 
-\subsubsection{Náskok}
+\subsection{Náskok}
 
 Metrika náskok je závislá pouze na aktuálním kole $a$. Udává náskok prvního hráče nad ostatními. Hodnota náskoku se přímo rovná statusu prvního hráče. Status prvního hráče v kole $a$ označíme $s^*_a$. Potom výpočet metriky lze jednoduše zapsat jako absolutní hodnotu statusu :
 
@@ -227,7 +156,7 @@ Absolutní hodnotu můžeme vynechat u her více hráčů, kde status vedoucího
 
 Hru budeme považovat za zábavnější, jestliže hodnota náskoku bude co nejmenší.
 
-\subsubsection{Napínavost hry}
+\subsection{Napínavost hry}
 Napínavost je dána průměrným náskokem prvního hráče před druhým během hry od prvního do aktuálního kola a. Náskok v i-tém tahu je dán statusem hráče ve vedení, označíme jej $s^*_i$. Vzorec pro výpočet napínavosti vypadá následovně :
 
 	\[
@@ -236,7 +165,7 @@ Napínavost je dána průměrným náskokem prvního hráče před druhým běhe
 
 Stejně jako u náskoku můžeme absolutní hodnotu vynechat u vícehráčových her. Opět čím nižší hodnota náskoku, tím lépe.
 
-\subsubsection{Vedení}
+\subsection{Vedení}
 
 Hra nebývá příliš zábavná, jestliže po většinu času je stejný ve vedení. Hra je pro všechny hráče více zábavná, jestliže se každý hráč držel přibližně stejnou dobu na prvním místě.
 
@@ -256,7 +185,7 @@ Tato metrika nemá žádný význam u jednohráčových her, jelikož vzhledem k
 
 Opět platí, že čím menší hodnota vedení, tím považujeme hru za zábavnější.
 
-\subsubsection{Svoboda}
+\subsection{Svoboda}
 
 Svoboda se jednoduše spočte zprůměrováním počtu možných tahů všech hráčů od začátku hry do aktuálního kola hry.
 
@@ -266,7 +195,7 @@ Svoboda se jednoduše spočte zprůměrováním počtu možných tahů všech hr
 
 Čím větší hodnota svobody, tím lépe.
 
-\subsubsection{Spravedlnost}
+\subsection{Spravedlnost}
 
 U nedeterministických her se nezřídka stane, že náhoda rozhodne vítěze hry. Např. u karetní hry se může stát, že i když jeden hráč hraje ideální tahy, tak přesto hru prohraje. Definujeme si spravedlnost na základě statusu všech hráčů před prvkem náhody a po něm. Rozdíl statusů před a po pro každého hráče značí, kolik a jak jsme jednotlivým hráčům pomohli, či ublížili. Hra bude nejvíce spravedlivá, jestliže všechny hráče poškodíme/pomůžeme jim stejně.
 
@@ -288,7 +217,7 @@ Následně metriku spravedlnosti vypočteme jako směrodatnou odchylku pro $s(p)
 
 Spravedlivější hry budeme považovat za zábavnější. Znovu platí, že čím menší hodnota metriky spravedlnosti, tím lépe.
 
-\subsubsection{Uvěřitelnost}
+\subsection{Uvěřitelnost}
 
 Metrika uvěřitelnosti bude patřit mezi ty nejdůležitější. Dle flow musí mít hráči pocit kontroly. Jakmile získají podezření, že hra se nechová dle jejich očekávání, pocit flow se vytratí. Uvěřitelnost je silně závislá na typu hry. U každé hry je neuvěřitelné něco jiného. Můžeme ale nalézt společný základní kámen pro metriku uvěřitelnosti, definujeme si uvěřitelnost pole četností.
 
@@ -311,7 +240,7 @@ Výsledný vzorec pro uvěřitelnost pole četností :
 \]
 
 
-\subsubsection{Náhodnost}
+\subsection{Náhodnost}
 
 Poslední metrikou je náhodnost/determinismus hry. U deterministických her výsledek závisí pouze na schopnostech jednotlivých hráčů. U her nedeterministických má vliv na výsledek náhoda. Budeme měřit velikost vlivu náhody. Metrika náhodnost se bude rovnat průměrnému rozdílu statusů hráčů před a po náhodném prvku ve hře.
 
