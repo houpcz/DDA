@@ -68,6 +68,23 @@ Algoritmy E-HC, E-MM a E-MC dopadly obdobně. Algoritmu E-HC se nejlépe dařilo
 
 \subsection{Vzhled bludiště pro různé DDA algoritmy}
 
+Druh použitého DDA algoritmu má velký vliv na výsledný vzhled bludiště. Typické zástupce vytvořených bludišť ukazuje obr. \ref{fig-mazes}. Pro bludiště vytvořené náhodně jsou typické zpočátku dlouhé chodby a posléze vyplňování chodbiček mezi dlouhými chodbami. Z vlastních algoritmů jsem vybral zástupce E-MaxMax, jehož bludiště působí nejpřirozeněji.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.35\textwidth]{mzadny}
+	\hspace{3pt}
+	\includegraphics[width=0.35\textwidth]{mmaxmax} \\
+	\vspace{6pt}
+	\includegraphics[width=0.35\textwidth]{mposm}
+	\hspace{3pt}
+	\includegraphics[width=0.35\textwidth]{mdl}
+	\caption{Srovnání bludišť vytvořených různými DDA algoritmy. Zleva-doprava, shora-dolů: žádný, E-MaxMax, POSM, DL}
+	\label{fig-mazes}
+\end{figure}
+
+Bludiště vytvořená pomocí POSM a DL vypadají obdobně. Je pro ně typický výrazný počáteční kříž chodeb, kde algoritmy brzy uzavřou tři možné cesty a nechají mu jednu polední.
+
 \section{Ludo}
 
 Oproti hře Bludiště je ve hře Ludo zásadní metrikou uvěřitelnost. V případě, že na tuto metriku nedáme důraz, HP nedovolí žádnému z hráčů hru vyhrát. Z jeho pohledu je ideální, když všichni hráči mají 3 figury v cíli a 4 těsně před cílem. Tato situace se mu zdá napínavá a ona by i ve skutečné hře byla, ale ne v případě použití falešné kostky. Z tohoto důvodu jsem nastavil koeficienty u uvěřitelnosti na 1000, spravedlnost, vedení, napětí na 10, náskok na 3 a svobodu na 1.
@@ -183,6 +200,11 @@ DL a POSM opět ovládaly jednoho z hráčů, a tedy nemohly ovlivnit čtveřici
 E MC a E HC dopadly navzájem podobně, ale oba lépe než hra bez DDA. Jelikož E HC je znatelně rychlejší, je v tomto případě vhodnější než E MC. Vítězem u Ztracených měst je jednoznačně E MN, který byl nejlepší v metrikách změna vedení, napínavost, náskok a spravedlnost.
 
 \section{Celkové srovnání}
+
+Pro celkové srovnání použitých DDA algoritmů jsem každý algoritmus ohodnotil v jednotlivých hrách na základě všech 9 metrik a zvlášť na základě pouze 4 metrik změna vedení, napětí, náskok a poměr vítězství. Dvojí hodnocení jsem použil ze dvou důvodů. Algoritmy POSM a DL nebyly navrženy pro testování na daných metrikách a za druhé jejich použití u her Ludo a Ztracená města neovlivňuje 4 ze zbylých metrik.
+
+Hodnocení algoritmu ve hře se rovná součtu hodnocení za jednotlivé metriky. Algoritmus, který si vedl nejlépe v daném metrice, získal celý bod za tuto metriku. Ostatní algoritmy si přičetly poměr jejich hodnoty k nejlepší hodnotě. Z toho vyplývá, že u prvního hodnocení je maximální hodnota 9, u druhého 4.
+
 \begin{figure}
   \centering
   \includegraphics[width=0.80\textwidth]{ch5all}
@@ -190,12 +212,66 @@ E MC a E HC dopadly navzájem podobně, ale oba lépe než hra bez DDA. Jelikož
 	\label{fig-ch5all}
 \end{figure}
 
+První hodnocení je znázorněno na grafu \ref{fig-ch5all} a v tabulce \ref{tab-all8m}. Nejlépe dopadly algoritmy E MM a E MN. E MN získal ve Ztracených městech téměř maximální počet 9 bodů, získal 8,87. Za nimi následuje dvojice E HC a E MC se zisky kolem 6,5 bodů. DL s POSM dopadly nejhůře se zisky kolem 4 bodů.
+
+\begin{table*}[b]\footnotesize
+\vspace*{0mm}
+\caption{{\label{tab-all8m}} Celkové hodnocení algoritmů v 6 experimentech na základě 9 metrik.}
+\vspace*{0mm}
+\label{shadowtable}
+\begin{center}
+\begin{tabular}{| l || r | r | r | r | r | r | r | r | r |}
+\hline
+Algoritmus & Bludiště & ZM-HC IS & ZM-MM IS & Ludo-2HC & Ludo-2MN & Ludo-4MN \\
+\hline
+\hline
+Žádný & 4,21 & 4,88 & 4,94 & 4,23 & 5,22 & 5,03\\ \hline  
+E HC & 6,71 & 6,35 & 5,86 & 7,40 & 7,43 & 7,06\\ \hline  
+E MM & 6,47 & 7,62 & 7,48 & 8,47 & 7,85 & 8,10\\ \hline  
+E MC & 6,34 & 6,20 & 5,53 & 7,50 & 7,46 & 7,18\\ \hline  
+E MN & Neměřeno & 8,87 & 7,87 & 8,00 & 7,61 & 7,89\\ \hline  
+POSM & 3,30 & 4,59 & 3,59 & 4,23 & 4,00 & 4,43\\ \hline  
+DL & 3,23 & 4,14 & 3,38 & 4,20 & 3,99 & 3,87\\ \hline  
+\end{tabular}
+\end{center}
+\end{table*}
+
+Zaměříme-li se pouze na 4 zmíněné metriky, dojde ke stejným závěrům. Zajímavostí je, že ve hře Ztracená města s dvěma HillClimber hráči algoritmus E MN dominoval ve všech 4 metrikách. DL a POSM i zde sbírají poslední místa.
+
+Oba tyto algoritmy byly navrženy a testovány u her, kde jeden špatný tah zpravidla nerozhodne hru - testovanými hrami byl backgammon u DL a dáma s čínskými šachy u POSM.
+
 \begin{figure}
   \centering
   \includegraphics[width=0.80\textwidth]{ch5all4m}
 	\caption{ Srovnání alg. DDA na základě všech experimentů a metrik Změna vedení, Napětí, Náskok a Poměr vítězů. }
 	\label{fig-ch5all4m}
 \end{figure}
+
+Vzhledem výsledkům lze říci, že v případě dostatku výpočetního času a znalosti možných tahů hráčů, je nejvhodnější využít jeden z algoritmů E-MaxMax, nebo E-MaxN. Algoritmus založený na Monte Carlo prohledávání stromu dopadá obdobně jako E-HillClimber, ale má mnohem větší časovou náročnost a též potřebuje znalost možných tahů, a tedy se neukázal jako doporučitelný. E-HillClimber sice zaostává za první zmíněnou dvojicí, ale ne o moc. Průměrně dosáhl výsledku 6,8 bodů, E-MaxMax 7,7 a E-MaxN 8,1. Z důvodu jednoduché implementace algoritmu a dobrým výsledkům může být E-HillClimber velice vhodným kandidátem na požití pro techniky DDA ve velikém spektru aplikací. Algoritmy dynamická úroveň a POSM se neukázaly být vhodné pro použití u tohoto typu her.
+
+Pro doplnění E-MonteCarlo dosáhlo průměrně 6,7 bodů, POSM 4,0 a DL 3,8. Bez DDA se dosáhlo 4,8 bodů.
+
+\begin{table*}[b]\footnotesize
+\vspace*{0mm}
+\caption{{\label{tab-all4m}} Celkové hodnocení algoritmů v 6 experimentech na základě 4 metrik - změna vedení, napínavost, náskok a poměr vítězství.}
+\vspace*{0mm}
+\label{shadowtable}
+\begin{center}
+\begin{tabular}{| l || r | r | r | r | r | r | r | r | r |}
+\hline
+Algoritmus & Bludiště & ZM-HC IS & ZM-MM IS & Ludo-2HC & Ludo-2MN & Ludo-4MN \\
+\hline
+\hline
+Žádný & 1,62 & 1,54 & 2,01 & 0,76 & 1,67 & 1,94\\ \hline  
+E HC & 3,66 & 2,09 & 1,76 & 3,36 & 3,34 & 3,05\\ \hline  
+E MM & 2,62 & 3,09 & 2,89 & 3,83 & 3,18 & 3,39\\ \hline  
+E MC & 2,86 & 1,99 & 1,73 & 3,24 & 3,15 & 3,13\\ \hline  
+E MN & Neměřeno & 4,00 & 3,20 & 3,38 & 3,07 & 3,10\\ \hline  
+POSM & 1,38 & 1,39 & 0,88 & 1,07 & 0,60 & 1,59\\ \hline  
+DL & 1,34 & 1,27 & 0,79 & 1,08 & 0,62 & 1,33 \\ \hline  
+\end{tabular}
+\end{center}
+\end{table*}
 
 \endinput
 %%

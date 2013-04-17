@@ -90,6 +90,7 @@ void Game::Paint(QPainter * painter)
 {
 	if(paint) {
 		Draw(painter, 0);
+		//return;
 		if(state != STATE_STOPPED)
 		{
 			IGameState * currentState = GetCurrentState();

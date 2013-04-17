@@ -60,22 +60,24 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {22}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Bludi\IeC {\v s}t\IeC {\v e} s Hill Climber hr\IeC {\'a}\IeC {\v c}em.}}{59}{figure.6.22}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {23}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo se 4 Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50, 100, 100, 100)}}{60}{figure.6.23}
+\contentsline {figure}{\numberline {23}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } bludi\IeC {\v s}\IeC {\v t} vytvo\IeC {\v r}en\IeC {\'y}ch r\IeC {\r u}zn\IeC {\'y}mi DDA algoritmy. Zleva-doprava, shora-dol\IeC {\r u}: \IeC {\v z}\IeC {\'a}dn\IeC {\'y}, E-MaxMax, POSM, DL}}{60}{figure.6.23}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {24}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} M\IeC {\v e}sta s dv\IeC {\v e}ma MiniMax IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{62}{figure.6.24}
+\contentsline {figure}{\numberline {24}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo se 4 Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50, 100, 100, 100)}}{61}{figure.6.24}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {25}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik. }}{63}{figure.6.25}
+\contentsline {figure}{\numberline {25}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} M\IeC {\v e}sta s dv\IeC {\v e}ma MiniMax IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{63}{figure.6.25}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {26}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik Zm\IeC {\v e}na veden\IeC {\'\i }, Nap\IeC {\v e}t\IeC {\'\i }, N\IeC {\'a}skok a Pom\IeC {\v e}r v\IeC {\'\i }t\IeC {\v e}z\IeC {\r u}. }}{63}{figure.6.26}
+\contentsline {figure}{\numberline {26}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik. }}{64}{figure.6.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {27}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik Zm\IeC {\v e}na veden\IeC {\'\i }, Nap\IeC {\v e}t\IeC {\'\i }, N\IeC {\'a}skok a Pom\IeC {\v e}r v\IeC {\'\i }t\IeC {\v e}z\IeC {\r u}. }}{65}{figure.6.27}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {28}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Hill Climber hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{68}{figure.B.28}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {27}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Hill Climber hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{66}{figure.B.27}
+\contentsline {figure}{\numberline {29}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{68}{figure.B.29}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {28}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{66}{figure.B.28}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {29}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} m\IeC {\v e}sta s Hill Climber IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100) }}{67}{figure.B.29}
+\contentsline {figure}{\numberline {30}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} m\IeC {\v e}sta s Hill Climber IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100) }}{69}{figure.B.30}
