@@ -31,7 +31,7 @@ Oba algoritmy pracují pouze s hloubkou 1 a často se dostanou do situace, kdy u
 
 \begin{table*}[b]\footnotesize
 \vspace*{0mm}
-\caption{{\label{tab-mazem}} Porovnání metrik zábavnosti u jednotlivých algoritmů ve hře Bludiště. }
+\caption{{\label{tab-mazem}} Porovnání metrik zábavnosti u jednotlivých algoritmů ve hře Bludiště. Metriky změna vedení a svoboda se maximalizují, zbytek minimalizuje.}
 \vspace*{0mm}
 \label{shadowtable}
 \begin{center}
@@ -64,11 +64,15 @@ DL & 7,45030571 & 22,91638791 & 40,45994322 & 0,154 \\ \hline
 \end{center}
 \end{table*}
 
-Algoritmy E-HC, E-MM a E-MC dopadly obdobně. Algoritmu E-HC se nejlépe dařilo v metrikách poměr vítězství a změna vedení, E-MM zvítězil v uvěřitelnosti, náhodnosti a svobodě, E-MC dopadl nejlépe v napínavosti, náskoku a ve vedení.
+Algoritmy E-HC, E-MM a E-MC dopadly obdobně. Algoritmu E-HC se nejlépe dařilo v metrikách poměr vítězství a změna vedení, E-MM zvítězil v uvěřitelnosti, náhodnosti a svobodě, E-MC dopadl nejlépe v napínavosti, náskoku a ve vedení. Celkově nejlépe si vedl v této hře algoritmus E-MaxMax.
 
 \subsection{Vzhled bludiště pro různé DDA algoritmy}
 
 \section{Ludo}
+
+Oproti hře Bludiště je ve hře Ludo zásadní metrikou uvěřitelnost. V případě, že na tuto metriku nedáme důraz, HP nedovolí žádnému z hráčů hru vyhrát. Z jeho pohledu je ideální, když všichni hráči mají 3 figury v cíli a 4 těsně před cílem. Tato situace se mu zdá napínavá a ona by i ve skutečné hře byla, ale ne v případě použití falešné kostky. Z tohoto důvodu jsem nastavil koeficienty u uvěřitelnosti na 1000, spravedlnost, vedení, napětí na 10, náskok na 3 a svobodu na 1.
+
+S tímto nastavením jsem provedl 3 experimenty. V prvních dvou hráli pouze dva hráči, jednou s algoritmem Hill Climber, podruhé s Max N. Experiment s dvěma hráči jsem spouštěl, aby měli algoritmy Dynamický level a POSM prostředí, pro které byly navrhnuty - dvouhráčové hry. V třetí experimentu byly 4 hráči Max N. První měl úroveň 50, další tři 100. Pro test DL a POSM jsem nahradil všechny 3 poslední hráče právě algoritmy DL, nebo POSM.
 
 \begin{figure}
   \centering
@@ -77,7 +81,97 @@ Algoritmy E-HC, E-MM a E-MC dopadly obdobně. Algoritmu E-HC se nejlépe dařilo
 	\label{fig-ch5ludo4maxn}
 \end{figure}
 
+Výsledky všech 3 experimentů byly obdobné. Zde uvedu pouze graf(\ref{fig-ch5ludo4maxn}) a tabulku(\ref{tab-ludom}) posledního experimentu. Grafy zbylých dvou experimentů lze nalézt v příloze.
+
+\begin{table*}[b]\footnotesize
+\vspace*{0mm}
+\caption{{\label{tab-ludom}} Porovnání metrik zábavnosti u jednotlivých algoritmů ve hře Ludo. Metriky změna vedení a svoboda se maximalizují, zbytek minimalizuje.}
+\vspace*{0mm}
+\label{shadowtable}
+\begin{center}
+\begin{tabular}{| l || r | r | r | r | r | r | r | r | r | r |}
+\hline
+Algoritmus & Počet kol	& Změna vedení & Napínavost & Náskok & Spravedlnost\\
+\hline
+\hline
+Žádný & 321,629 & 33,207 & 10,96064284 & 10,69 & 0,053439508 \\ \hline  
+E HC & 367,71 & 86,401 & 2,191965172 & 4,576 & 0,030182817 \\ \hline  
+E MM & 374,831 & 95,074 & 2,197616324 & 4,911 & 0,029112477 \\ \hline  
+E MC & 370,011 & 86,126 & 2,047674062 & 4,351 & 0,030268374 \\ \hline  
+E MN & 349,386 & 97,275 & 2,378575689 & 5,096 & 0,031668999 \\ \hline  
+POSM & 329,262 & 35,024 & 10,57217622 & 10,292 & 0,079106286 \\ \hline  
+DL & 342,281 & 47,836 & 10,26501397 & 10,484 & 0,113375705 \\ \hline  
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{| l || r | r | r | r | r | r | r | r | r |}
+\hline
+Algoritmus & Uvěřitelnost & Svoboda & Náhodnost & Vedení &	Poměr vítězství \\
+\hline
+\hline
+Žádný & 24,57354378 & 1,86791164 & 1,189324764 & 67,3734372 & 0,021365861 \\ \hline  
+E HC & 1,226482879 & 1,95087896 & 0,996415593 & 67,020713 & 0,078176083 \\ \hline  
+E MM & 0,396586046 & 1,90887509 & 1,047952319 & 61,58128218 & 0,035686132 \\ \hline  
+E MC & 1,078624424 & 1,95431191 & 0,963174893 & 70,7910895 & 0,087272562 \\ \hline  
+E MN & 0,383798925 & 1,9757931 & 1,100121925 & 52,281059 & 0,055709066 \\ \hline  
+POSM & 25,21722299 & 1,79829072 & 1,216838264 & 68,67222926 & 0,035035696 \\ \hline  
+DL & 26,54645197 & 1,77747205 & 1,250394015 & 86,85364229 & 0,096187317 \\ \hline  
+\end{tabular}
+\end{center}
+\end{table*}
+
+Algoritmy POSM a DL měli zde již svou tradiční úlohu - ovládali běžné hráče. Z tohoto důvodu neovlivňovaly metriky uvěřitelnost, svoboda, náhodnost a spravedlnost, které musely dopadnout podobně jako při nepoužití žádného DDA algoritmu. Oba zlepšily metriku změny vedení, ale zhoršily poměr vítězství. Náskok i napínavost měly podobnou, jako by se žádné DDA nepoužilo. 
+
+U této hry a ještě více u Ztracených měst se projevil zásadní problém těchto DDA mechanismů. Pokud hráči jimi ovládaní jsou ve vedení, zhoršují svoje chování. Zhoršují ho až do zcela iracionální podoby. U hry Ludo se iracionální chování projeví např. v situaci, kdy hráč má jednu figurku před cílem a na kostce padla správná hodnota, aby hráč mohl přesunout svou figurku do cíle. V případě, že je hráč již dlouho ve vedení, tak raději nechá v figurku v potencionálně nebezpečné pozici a pohne figurkou jinou. 
+
+Algoritmy E-HC, E-MM, E-MC a E-MN velmi předčily zbytek algoritmů i v metrice uvěřitelnost. V případě náhodného chování kostky se může s malou pravděpodobností stát, že padne jednomu hráči 6 třikrát po sobě. Je to relativně málo pravděpodobné, ale stát se to může. Algoritmy HP se snaží tyto málo pravděpodobné jevy eliminovat, a proto si dle metriky uvěřitelnost vedly lépe.
+
+Celkově si nejlépe vedly E-MM a E-MN, které dokáží celkem věrně simulovat chování hráčů a následně se rozhodovat dle stavů hry dále v budoucnu. Mohou lépe naplánovat chování kostky z hlediska uvěřitelnosti a díky tomu se zaměřit více na ostatní metriky.
+
 \section{Ztracená města}
+
+I u Ztracených měst byla nejdůležitější metrikou uvěřitelnost. Bez ní prohrávající hráč získával postupně karty hodnot 10, 9, 8 atd. barev již vyložených expedic, dokud se nedostal do vedení. Nastavení koeficientů metrik jsem zvolil 1000 pro uvěřitelnost, 100 pro změnu vedení, spravedlnost, vedení a napětí, 10 pro svobodu a 0 pro náskok.
+
+\begin{table*}[b]\footnotesize
+\vspace*{0mm}
+\caption{{\label{tab-lcm}} Porovnání metrik zábavnosti u jednotlivých algoritmů ve hře Ztracená města. Metriky změna vedení a svoboda se maximalizují, zbytek minimalizuje.}
+\vspace*{0mm}
+\label{shadowtable}
+\begin{center}
+\begin{tabular}{| l || r | r | r | r | r | r | r | r | r | r |}
+\hline
+Algoritmus & Počet kol	& Změna vedení & Napínavost & Náskok & Spravedlnost\\
+\hline
+\hline
+Žádný & 51,21 & 5,17 & 169,3785106 & 159,11 & 2,97949985 \\ \hline  
+E HC & 51,652 & 6,219 & 90,11489792 & 109,66 & 2,083795471 \\ \hline  
+E MM & 51,058 & 15,105 & 35,89171719 & 92,52 & 2,51490921 \\ \hline  
+E MC & 51,076 & 6,763 & 84,52874032 & 106,63 & 2,407272356 \\ \hline  
+E MN & 51,284 & 16,647 & 34,66283799 & 78,3 & 1,853999951 \\ \hline  
+POSM & 53,785 & 5,038 & 204,2092341 & 217,97 & 3,458477317 \\ \hline  
+DL & 49,957 & 4,838 & 283,7280003 & 228,54 & 3,401727139 \\ \hline  
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{| l || r | r | r | r | r | r | r | r | r |}
+\hline
+Algoritmus & Uvěřitelnost & Svoboda & Náhodnost & Vedení &	Poměr vítězství \\
+\hline
+\hline
+Žádný & 4,930532754 & 30,0635238 & 12,59686374 & 15,751 & 0,016 \\ \hline  
+E HC & 0,612039822 & 31,8330098 & 10,61479482 & 15,426 & 0,055 \\ \hline  
+E MM & 0,467313632 & 29,8150478 & 11,6301367 & 6,802 & 0,093 \\ \hline  
+E MC & 0,78408408 & 31,6226395 & 11,05890933 & 14,119 & 0,089 \\ \hline  
+E MN & 0,52395678 & 29,1162948 & 11,52272589 & 7,209 & 0,081 \\ \hline  
+POSM & 4,956223714 & 27,4061938 & 12,97565858 & 16,7575 & 0,358 \\ \hline  
+DL & 4,944157754 & 26,5193542 & 14,25249958 & 18,3885 & 0,408 \\ \hline  
+\end{tabular}
+\end{center}
+\end{table*}
+
+Opět byly spuštěny dva experimenty s různými v hráči. V jednom hráli proti sobě HillClimber IS s úrovněmi 50 a 100 a v druhém MiniMax IS se stejnými úrovněmi. Výsledky byly podobné, a proto se zaměřím na experiment se složitějším hráči (graf \ref{fig-ch5lcmm}, tabulka \ref{tab-lcm}). Graf druhého experimentu lze nalézt v příloze.
+
+DL a POSM opět ovládaly jednoho z hráčů, a tedy nemohly ovlivnit čtveřici metrik spravedlnost, uvěřitelnost, svoboda a náhodnost. Oba dva algoritmy dopadly špatně z důvodu nastíněného u hry Ludo. Ve Ztracených městech člověk dokáže snadno rozlišit zcela iracionální tahy od těch použitelných. DL a POSM ale mají tyto iracionální tahy k dispozici. Jestliže je hráč ovládaný DL nebo POSM ve vedení, nejrychleji srovná skóre vyložením nové expedice, za kterou má záporné body. Bohužel takový tah může být zásadní a i kdyby posléze hrál daný hráč dokonale, nemusí mu to stačit k opětovnému dostání se do vedení. Z tohoto důvodu je u Ztracených měst lepší nepoužít žádný algoritmus než POSM a DL v nezměněné podobě.
 
 \begin{figure}
   \centering
@@ -85,6 +179,8 @@ Algoritmy E-HC, E-MM a E-MC dopadly obdobně. Algoritmu E-HC se nejlépe dařilo
 	\caption{Srovnání DDA alg. ve hře Ztracená Města s dvěma MiniMax IS hráči. (úrovně 50 a 100)}
 	\label{fig-ch5lcmm}
 \end{figure}
+
+E MC a E HC dopadly navzájem podobně, ale oba lépe než hra bez DDA. Jelikož E HC je znatelně rychlejší, je v tomto případě vhodnější než E MC. Vítězem u Ztracených měst je jednoznačně E MN, který byl nejlepší v metrikách změna vedení, napínavost, náskok a spravedlnost.
 
 \section{Celkové srovnání}
 \begin{figure}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  16 APR 2013 18:40
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2013.2.27)  17 APR 2013 12:38
 entering extended mode
 **beranlu6mst.tex
 (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.tex
@@ -1003,6 +1003,15 @@ LaTeX Warning: Label `shadowtable' multiply defined.
 
 LaTeX Warning: Label `shadowtable' multiply defined.
 
+
+LaTeX Warning: Label `shadowtable' multiply defined.
+
+
+LaTeX Warning: Label `tab-ludom' multiply defined.
+
+
+LaTeX Warning: Label `shadowtable' multiply defined.
+
 ) (C:\_projekty\DDA\Text\beranlu6mst\ch07.aux) (C:\_projekty\DDA\Text\beranlu6mst\app01.aux)
 (C:\_projekty\DDA\Text\beranlu6mst\app02.aux))
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
@@ -1544,11 +1553,8 @@ Package pdftex.def Info: fig/ch5mazehc.png used on input line 21.
 
 
 
-]
-Underfull \vbox (badness 1205) has occurred while \output is active []
-
- [59pdfTeX warning (ext4): destination with the same identifier (name{figure.6.22}) has been already used, duplicate ign
-ored
+] [59pdfTeX warning (ext4): destination with the same identifier (name{figure.6.22}) has been already used, duplicate ig
+nored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1563,40 +1569,57 @@ l.68
 File: fig/ch5ludo4maxn.png Graphic file (type png)
 
 <use fig/ch5ludo4maxn.png>
-Package pdftex.def Info: fig/ch5ludo4maxn.png used on input line 75.
+Package pdftex.def Info: fig/ch5ludo4maxn.png used on input line 79.
 (pdftex.def)             Requested size: 310.1859pt x 186.60808pt.
- <fig/ch5lcmm.png, id=1296, 755.82375pt x 454.69875pt>
+ [60pdfTeX warning (ext4): destination with the same identifier (name{figure.6.23}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.126 
+       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5ludo4maxn.png>]
+
+LaTeX Warning: Reference `tab-lcm' on page 61 undefined on input line 172.
+
+[61pdfTeX warning (ext4): destination with the same identifier (name{table.6.5}) has been already used, duplicate ignore
+d
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.175 
+      ] <fig/ch5lcmm.png, id=1311, 755.82375pt x 454.69875pt>
 File: fig/ch5lcmm.png Graphic file (type png)
  <use fig/ch5lcmm.png>
-Package pdftex.def Info: fig/ch5lcmm.png used on input line 84.
+Package pdftex.def Info: fig/ch5lcmm.png used on input line 178.
 (pdftex.def)             Requested size: 310.1859pt x 186.60808pt.
 
-<fig/ch5all.png, id=1297, 873.2625pt x 455.7025pt>
-File: fig/ch5all.png Graphic file (type png)
- <use fig/ch5all.png>
-Package pdftex.def Info: fig/ch5all.png used on input line 92.
-(pdftex.def)             Requested size: 330.86623pt x 172.65419pt.
+Underfull \vbox (badness 6380) has occurred while \output is active []
 
-<fig/ch5all4m.png, id=1298, 873.2625pt x 454.69875pt>
+ [62pdfTeX warning (ext4): destination with the same identifier (name{figure.6.24}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.184 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.6.6}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.184 
+       <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5lcmm.png>] <fig/ch5all.png, id=1317, 873.2625pt x 455.7025pt>
+File: fig/ch5all.png Graphic file (type png)
+
+<use fig/ch5all.png>
+Package pdftex.def Info: fig/ch5all.png used on input line 188.
+(pdftex.def)             Requested size: 330.86623pt x 172.65419pt.
+ <fig/ch5all4m.png, id=1318, 873.2625pt x 454.69875pt>
 File: fig/ch5all4m.png Graphic file (type png)
  <use fig/ch5all4m.png>
-Package pdftex.def Info: fig/ch5all4m.png used on input line 99.
+Package pdftex.def Info: fig/ch5all4m.png used on input line 195.
 (pdftex.def)             Requested size: 330.86623pt x 172.2739pt.
-) [60pdfTeX warning (ext4): destination with the same identifier (name{figure.6.23}) has been already used, duplicate ig
+) [63pdfTeX warning (ext4): destination with the same identifier (name{figure.6.25}) has been already used, duplicate ig
 nored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.71 	\include{ch06}
-                    pdfTeX warning (ext4): destination with the same identifier (name{figure.6.24}) has been already use
-d, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.71 	\include{ch06}
-                     <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5ludo4maxn.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5
-lcmm.png>] [61pdfTeX warning (ext4): destination with the same identifier (name{figure.6.25}) has been already used, dup
-licate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
@@ -1610,36 +1633,36 @@ l.71 	\include{ch06}
                      <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5all.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5all4m.
 png>] (C:\_projekty\DDA\Text\beranlu6mst\ch07.tex
 Kapitola 7.
-) [62
+) [64
 
 
 
 ] (C:\_projekty\DDA\Text\beranlu6mst\app01.tex
 P\v {r}\'{\i }loha A.
-) [63
+) [65
 
 
 
 ] (C:\_projekty\DDA\Text\beranlu6mst\app02.tex
 P\v {r}\'{\i }loha B.
-<fig/ch5ludo2hc.png, id=1320, 755.82375pt x 454.69875pt>
+<fig/ch5ludo2hc.png, id=1333, 755.82375pt x 454.69875pt>
 File: fig/ch5ludo2hc.png Graphic file (type png)
  <use fig/ch5ludo2hc.png>
 Package pdftex.def Info: fig/ch5ludo2hc.png used on input line 5.
 (pdftex.def)             Requested size: 310.1859pt x 186.60808pt.
 
-<fig/ch5ludo2maxn.png, id=1321, 755.82375pt x 454.69875pt>
+<fig/ch5ludo2maxn.png, id=1334, 755.82375pt x 454.69875pt>
 File: fig/ch5ludo2maxn.png Graphic file (type png)
  <use fig/ch5ludo2maxn.png>
 Package pdftex.def Info: fig/ch5ludo2maxn.png used on input line 12.
 (pdftex.def)             Requested size: 310.1859pt x 186.60808pt.
 
-<fig/ch5lchc.png, id=1322, 755.82375pt x 454.69875pt>
+<fig/ch5lchc.png, id=1335, 755.82375pt x 454.69875pt>
 File: fig/ch5lchc.png Graphic file (type png)
  <use fig/ch5lchc.png>
 Package pdftex.def Info: fig/ch5lchc.png used on input line 19.
 (pdftex.def)             Requested size: 310.1859pt x 186.60808pt.
-) [64
+) [66
 
 
 
@@ -1656,7 +1679,7 @@ sed, duplicate ignored
                                                   \fi \fi 
 l.77 		\include{app02}
                        <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5ludo2hc.png> <C:/_projekty/DDA/Text/beranlu6mst/fig/ch5
-ludo2maxn.png>] [65pdfTeX warning (ext4): destination with the same identifier (name{figure.B.29}) has been already used
+ludo2maxn.png>] [67pdfTeX warning (ext4): destination with the same identifier (name{figure.B.29}) has been already used
 , duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1673,7 +1696,7 @@ Overfull \hbox (4.50673pt too wide) in paragraph at lines 84--84
 m/n/10.95 : [][]$\T1/lmtt/m/n/10.95 http : / / www . giantbomb . com / ai -[] director /
  []
 
-[66
+[68
 
 
 
@@ -1693,9 +1716,9 @@ Overfull \hbox (5.28348pt too wide) in paragraph at lines 84--84
 Package biblatex Warning: Month out of range
 (biblatex)                at entry 'SwPatterns' on input line 82.
 
-[67]
+[69]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
- [68]
+ [70]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
  (C:\_projekty\DDA\Text\beranlu6mst\beranlu6mst.aux (C:\_projekty\DDA\Text\beranlu6mst\ch01.aux)
 (C:\_projekty\DDA\Text\beranlu6mst\ch02.aux) (C:\_projekty\DDA\Text\beranlu6mst\ch03.aux)
@@ -1708,16 +1731,19 @@ Package rerunfilecheck Info: File `beranlu6mst.out' has not changed.
 (rerunfilecheck)             Checksum: 5F3E0E62A5A694521AA5988A2B5D6D6E;18958.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'beranlu6mst.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 19790 strings out of 493921
- 300566 string characters out of 3147276
- 751485 words of memory out of 3000000
- 22296 multiletter control sequences out of 15000+200000
+ 19796 strings out of 493921
+ 300618 string characters out of 3147276
+ 761828 words of memory out of 3000000
+ 22298 multiletter control sequences out of 15000+200000
  94790 words of font info for 77 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  52i,12n,49p,1383b,2640s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1740,9 +1766,9 @@ blic/lm/lmri12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro10.pfb
 1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Files/MiKTeX 2.9/font
 s/type1/public/lm/lmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on beranlu6mst.pdf (80 pages, 2204754 bytes).
+Output written on beranlu6mst.pdf (82 pages, 2215837 bytes).
 PDF statistics:
- 1540 PDF objects out of 1728 (max. 8388607)
- 332 named destinations out of 1000 (max. 500000)
+ 1553 PDF objects out of 1728 (max. 8388607)
+ 336 named destinations out of 1000 (max. 500000)
  1152 words of extra memory for PDF output out of 10000 (max. 10000000)
 
