@@ -114,13 +114,13 @@ void Game::Paint(QPainter * painter)
 				if(leaderID == 0)
 				{
 					winnerColor = Qt::red;
-					winnerText = "You lose!";
+					winnerText = "Bomba vybuchla!";
 				} else {
 					winnerColor = Qt::darkCyan;
 					if(playerCount <= 2)
-						winnerText = "You won!";
+						winnerText = "Vyhrál jsi!";
 					else
-						winnerText = QString("Player ") + QString::number(leaderID) + QString(" won!");
+						winnerText = QString::fromLocal8Bit("Hráè èíslo ") + QString::number(leaderID) + QString(" vyhrál!");
 				}
 
 				painter->setFont(QFont("Helvetica", 28, QFont::Bold));

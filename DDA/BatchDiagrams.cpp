@@ -17,29 +17,29 @@ BatchDiagrams::BatchDiagrams(BatchItem * _batchItem, int batchID)
     symbol->setLineWidth( 1 );
 	symbol->setPalette( QPalette( Qt::blue ) );
     histogram->setSymbol( symbol );
-	plot->setAxisTitle( QwtPlot::yLeft, "Number of Games" );
+	plot->setAxisTitle( QwtPlot::yLeft, QString::fromLocal8Bit("Poèet her") );
 	SetHistogramData(batchItem->GetStatAsVector(0));
 
 	gameStat = new QComboBox(this);
-	gameStat->addItem("Turn number");
-	gameStat->addItem("Player 1 winner");
-	gameStat->addItem("Leader switches");
-	gameStat->addItem("Avg score diff");
-	gameStat->addItem("End score diff");
-	gameStat->addItem("Justice");
-	gameStat->addItem("Credibility");
-	gameStat->addItem("Randomness");
-	gameStat->addItem("Leader Time");
-	gameStat->addItem("Player stat");
+	gameStat->addItem(QString::fromLocal8Bit("Poèet tahù"));
+	gameStat->addItem(QString::fromLocal8Bit("Vítìz hráè 1"));
+	gameStat->addItem(QString::fromLocal8Bit("Prohození vítìzù"));
+	gameStat->addItem(QString::fromLocal8Bit("Napìtí"));
+	gameStat->addItem(QString::fromLocal8Bit("Náskok"));
+	gameStat->addItem(QString::fromLocal8Bit("Spravedlnost"));
+	gameStat->addItem(QString::fromLocal8Bit("Uvìøitelnost"));
+	gameStat->addItem(QString::fromLocal8Bit("Náhodnost"));
+	gameStat->addItem(QString::fromLocal8Bit("Doba vedení"));
+	gameStat->addItem(QString::fromLocal8Bit("Statistika hráèù"));
 
 	playerStat = new QComboBox(this);
-	playerStat->addItem("Turn number");
-	playerStat->addItem("Winner");
-	playerStat->addItem("Avg choises");
-	playerStat->addItem("Min choises");
-	playerStat->addItem("Max choises");
-	playerStat->addItem("Justice");
-	playerStat->addItem("LT");
+	playerStat->addItem(QString::fromLocal8Bit("Poèet tahù"));
+	playerStat->addItem(QString::fromLocal8Bit("Vítìz"));
+	playerStat->addItem(QString::fromLocal8Bit("Prùmìrnì voleb"));
+	playerStat->addItem(QString::fromLocal8Bit("Min. voleb"));
+	playerStat->addItem(QString::fromLocal8Bit("Max. voleb"));
+	playerStat->addItem(QString::fromLocal8Bit("Spravedlnost"));
+	playerStat->addItem(QString::fromLocal8Bit("Doba ve vedení"));
 
 	playerName = new QComboBox(this);
 	for(int loop1 = 0; loop1 < batchItem->Game()->GetPlayerCount(); loop1++)

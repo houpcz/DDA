@@ -38,18 +38,17 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	setPalette(QPalette(QColor(250, 250, 200)));
 	setMouseTracking(false);
 
-	setWindowTitle(QString::fromUtf8("Dynamic difficulty adjustement"));
+	setWindowTitle(QString::fromLocal8Bit("Dynamické vyvažování obtížnosti"));
 
 	MakePluginLists();
 
-	QMenu * game = menuBar()->addMenu(tr("Game"));	
-	QAction * startGameAction = new QAction(tr("&New"), this);
-    startGameAction->setShortcut(tr("N"));
-    startGameAction->setStatusTip(tr("Start new game"));
+	QMenu * game = menuBar()->addMenu(tr("Hra"));	
+	QAction * startGameAction = new QAction(QString::fromLocal8Bit("Nová hra"), this);
+    startGameAction->setStatusTip(QString::fromLocal8Bit("Zaèít novou hru"));
     connect(startGameAction, SIGNAL(triggered()), this, SLOT(NewGame()));
 	game->addAction(startGameAction);
 
-	QMenu * setGameMenu = game->addMenu(tr("Change Game"));
+	QMenu * setGameMenu = game->addMenu(QString::fromLocal8Bit("Zmìnit hru"));
 
 	gameMapper = new QSignalMapper(this);
 	for(int loop1 = 0; loop1 < gameList.size(); loop1++)
@@ -62,19 +61,19 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	connect(gameMapper, SIGNAL(mapped(int)),
              this, SLOT(SetGame(int)));
 
-	QAction * setupMenuAction = new QAction(tr("&Setup"), this);
-	setupMenuAction->setShortcut(tr("S"));
+	QAction * setupMenuAction = new QAction(QString::fromLocal8Bit("Nastavení"), this);
+	//setupMenuAction->setShortcut(tr("S"));
 	connect(setupMenuAction, SIGNAL(triggered()), this, SLOT(SetupGame()));
 	game->addAction(setupMenuAction);
 
-	QAction * batchMenuAction = new QAction(tr("&Batch"), this);
-    batchMenuAction->setShortcut(tr("B"));
-    batchMenuAction->setStatusTip(tr("Start batch of games"));
+	QAction * batchMenuAction = new QAction(QString::fromLocal8Bit("Dávkové spouštìní"), this);
+    //batchMenuAction->setShortcut(tr("B"));
+    batchMenuAction->setStatusTip(QString::fromLocal8Bit("Spustí mód dávkového spouštìní"));
     connect(batchMenuAction, SIGNAL(triggered()), this, SLOT(BatchMenu()));
 	game->addAction(batchMenuAction);
 
+	/*
 	playersMenu = menuBar()->addMenu(tr("Players"));
-
 	QMenu * viewMenu = menuBar()->addMenu(tr("View"));
 	QAction * viewFlow = new QAction(tr("&Flow"), this);
 	connect(viewFlow, SIGNAL(triggered()), this, SLOT(ShowFlowView()));
@@ -82,6 +81,7 @@ DDAWidget::DDAWidget(QWidget *parent) : QMainWindow(parent)
 	QAction * viewLevel = new QAction(tr("&Level"), this);
 	connect(viewLevel, SIGNAL(triggered()), this, SLOT(ShowLevelView()));
 	viewMenu->addAction(viewLevel);
+	*/
 
 	signalMapper = new QSignalMapper(this);
 	environmentMapper = new QSignalMapper(this);
@@ -115,7 +115,7 @@ void DDAWidget::MakePluginLists()
 	environmentAIList.push_back(new EAHillClimber(1));
 	environmentAIList.push_back(new EMaxMax(2));
 	environmentAIList.push_back(new EMonteCarlo(3));
-	environmentAIList.push_back(new EMonteCarloDelta(7));
+	//environmentAIList.push_back(new EMonteCarloDelta(7));
 	environmentAIList.push_back(new EMaxN(6));
 	environmentAIList.push_back(new PlayerPOSM(4));
 	environmentAIList.push_back(new PlayerLevel(5));
@@ -214,6 +214,8 @@ void DDAWidget::SetGame(int gameID)
 
 void DDAWidget::ChangePlayerMenu()
 {
+	return;
+
 	playersMenu->clear();
 	signalMapper->disconnect();
 	environmentMapper->disconnect();

@@ -14,7 +14,7 @@ public:
 	virtual bool Think() { return false; };
 	void HumanTurn(int turn);
 	virtual bool IsScalable() { return false; };
-	QString GetAIName() { return QString("Human"); };
+	QString GetAIName() { return QString::fromLocal8Bit("Èlovìk"); };
 	IPlayer * Factory(int playerID) { return new Human(playerID); };
 };
 

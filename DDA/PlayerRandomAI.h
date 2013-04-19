@@ -11,7 +11,7 @@ public:
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return false; }
-	QString GetAIName() { return QString("Random AI"); };
+	QString GetAIName() { return QString::fromLocal8Bit("Náhodná AI"); };
 	IPlayer * Factory(int playerID) { return new PlayerRandomAI(playerID); };
 	bool IsCompatibleWithGame(int gameID) { return true; }
 };

@@ -11,7 +11,7 @@ public:
 	EnvironmentAIBasic(int _myID) : EnvironmentAI(_myID) {};
 	virtual ~EnvironmentAIBasic(void);
 	virtual bool Think();	
-	QString GetAIName() { return QString("Random Environment"); };
+	QString GetAIName() { return QString::fromLocal8Bit("Náhodné prostøedí"); };
 	IPlayer * Factory(int playerID) { return new EnvironmentAIBasic(playerID); };
 };
 

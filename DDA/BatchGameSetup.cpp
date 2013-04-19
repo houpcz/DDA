@@ -82,7 +82,7 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		}
 	}
 
-	okButton = new QPushButton(tr("Save"));
+	okButton = new QPushButton(QString::fromLocal8Bit("Uložit"));
 	connect(okButton, SIGNAL(clicked()), this, SLOT(SaveSetup()));
 	gridLayout->addWidget(okButton, 1000, 3);
 
@@ -93,14 +93,14 @@ BatchGameSetup::BatchGameSetup(IGame * _game, vector<IEnvironmentAI *> _environm
 		gridLayout->addWidget(gSS[loop1].first, playerCount + loop1 - 1, 1);
 	}
 
-	eaCoefLabel[COEF_LEADER_SWITCHES] = new QLabel(tr("Leader switches"));
-	eaCoefLabel[COEF_CREDIBILITY] = new QLabel(tr("Credibility"));
-	eaCoefLabel[COEF_JUSTICE] = new QLabel(tr("Justice"));
-	eaCoefLabel[COEF_LEADER_TIME] = new QLabel(tr("Leader Time"));
-	eaCoefLabel[COEF_AVG_STATUS_DIFFERENCE] = new QLabel(tr("Avg Status Difference"));
-	eaCoefLabel[COEF_END_STATUS_DIFFERENCE] = new QLabel(tr("End Status Difference"));
-	eaCoefLabel[COEF_RANDOMNESS] = new QLabel(tr("Randomness"));
-	eaCoefLabel[COEF_FREEDOM] = new QLabel(tr("Freedom"));
+	eaCoefLabel[COEF_LEADER_SWITCHES] = new QLabel(QString::fromLocal8Bit("Prohození vítìzù"));
+	eaCoefLabel[COEF_CREDIBILITY] = new QLabel(QString::fromLocal8Bit("Uvìøitelnost"));
+	eaCoefLabel[COEF_JUSTICE] = new QLabel(QString::fromLocal8Bit("Spravedlnost"));
+	eaCoefLabel[COEF_LEADER_TIME] = new QLabel(QString::fromLocal8Bit("Doba vedení"));
+	eaCoefLabel[COEF_AVG_STATUS_DIFFERENCE] = new QLabel(QString::fromLocal8Bit("Napínavost"));
+	eaCoefLabel[COEF_END_STATUS_DIFFERENCE] = new QLabel(QString::fromLocal8Bit("Náskok"));
+	eaCoefLabel[COEF_RANDOMNESS] = new QLabel(QString::fromLocal8Bit("Náhodnost"));
+	eaCoefLabel[COEF_FREEDOM] = new QLabel(QString::fromLocal8Bit("Svoboda"));
 	for(int loop1 = 0; loop1 < COEF_COUNT; loop1++)
 	{
 		eaCoefBox[loop1] = new QSpinBox(this);
@@ -166,7 +166,7 @@ void BatchGameSetup::SaveSetup()
 	for(int loop1 = 1; loop1 < playerCount; loop1++)
 	{
 		str1 = playerList[loop1]->currentText();
-		for(int loop2 = 1; loop2 < playerAIList.size(); loop2++)
+		for(int loop2 = 0; loop2 < playerAIList.size(); loop2++)
 		{		
 			QString str2 = playerAIList[loop2]->GetAIName();
 			if(str1.compare(str2) == 0)

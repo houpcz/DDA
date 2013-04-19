@@ -373,7 +373,7 @@ vector<pair<QWidget *, QString> > Ludo::GetSetupWidget()
 
 	QCheckBox * twoPlayersBox = new QCheckBox();
 	twoPlayersBox->setChecked(onlyTwoPlayers);
-	widgets.push_back(pair<QWidget *, QString>(twoPlayersBox, QString("Only 2 players")));
+	widgets.push_back(pair<QWidget *, QString>(twoPlayersBox, QString::fromLocal8Bit("Pouze dva hr·Ëi")));
 	connect(twoPlayersBox, SIGNAL(stateChanged(int)), this, SLOT(SetOnlyTwoPlayers(int)));
 
 	return widgets;

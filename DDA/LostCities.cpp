@@ -200,6 +200,10 @@ void LostCities::Draw(QPainter * painter, int tickMillis)
 				discardPileMax++;
 				break;
 		}	
+
+		painter->setBrush(Qt::gray);
+		painter->drawRoundRect(cardWidth / 4 + cardColorNumber * (20 + cardWidth), 200, cardWidth, cardHeight);
+
 		if(loop1 % LostCitiesState::CARD_ONE_COLOR_AMOUNT == LostCitiesState::CARD_ONE_COLOR_AMOUNT - 1)
 		{
 			if(discardPileMax == 0)
@@ -478,12 +482,12 @@ vector<pair<QWidget *, QString> > LostCities::GetSetupWidget()
 	spinBox->setMinimum(2);
 	spinBox->setMaximum(8);
 	spinBox->setValue(realHandSize);
-	widgets.push_back(pair<QWidget *, QString>(spinBox, QString("Hand Size")));
+	widgets.push_back(pair<QWidget *, QString>(spinBox, QString::fromLocal8Bit("Karet v ruce")));
 	bool ok = connect(spinBox, SIGNAL(valueChanged(int)), this, SLOT(SetHandSize(int)));
 	
 	QCheckBox * dominationBox = new QCheckBox();
 	dominationBox->setChecked(domination);
-	widgets.push_back(pair<QWidget *, QString>(dominationBox, QString("State domination")));
+	widgets.push_back(pair<QWidget *, QString>(dominationBox, QString::fromLocal8Bit("Dominance stavù")));
 	connect(dominationBox, SIGNAL(stateChanged(int)), this, SLOT(SetDomination(int)));
 
 	return widgets;

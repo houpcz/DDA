@@ -25,8 +25,8 @@ GameMaze::GameMaze(QWidget * _widget, bool _paint) : Game(_widget, _paint)
 	
 	player = new IPlayer*[playerCount];
 	EnvironmentAI * eai = new EnvironmentAIBasic(ENVINRONMENT_AI);
-	//float coefs[COEF_COUNT] = { 0, 10, 0, 0, 100, 500, 100, 0 };
-	float coefs[COEF_COUNT] = { 10000, 0, 0, 10, 10, 100, 100, 0 };
+	float coefs[COEF_COUNT] = { 0, 10, 0, 0, 100, 500, 100, 0 };
+	//float coefs[COEF_COUNT] = { 10000, 0, 0, 10, 10, 100, 100, 0 };
 	eai->SetMetricCoefs(coefs);
 	player[ENVINRONMENT_AI] = eai;
 	if(paint)
@@ -260,21 +260,21 @@ vector<pair<QWidget *, QString> > GameMaze::GetSetupWidget()
 	spinBoxWidth->setMinimum(5);
 	spinBoxWidth->setMaximum(100);
 	spinBoxWidth->setValue(mazeWidth);
-	widgets.push_back(pair<QWidget *, QString>(spinBoxWidth, QString("Maze width")));
+	widgets.push_back(pair<QWidget *, QString>(spinBoxWidth, QString::fromLocal8Bit("Šíøka bludištì")));
 	connect(spinBoxWidth, SIGNAL(valueChanged(int)), this, SLOT(SetMazeWidth(int)));
 
 	QSpinBox * spinBoxHeight = new QSpinBox();
 	spinBoxHeight->setMinimum(5);
 	spinBoxHeight->setMaximum(100);
 	spinBoxHeight->setValue(mazeHeight);
-	widgets.push_back(pair<QWidget *, QString>(spinBoxHeight, QString("Maze height")));
+	widgets.push_back(pair<QWidget *, QString>(spinBoxHeight, QString::fromLocal8Bit("Výška bludištì")));
 	connect(spinBoxHeight, SIGNAL(valueChanged(int)), this, SLOT(SetMazeHeight(int)));
 
 	QSpinBox * spinBoxStep = new QSpinBox();
 	spinBoxStep->setMinimum(10);
 	spinBoxStep->setMaximum(10000);
 	spinBoxStep->setValue(stepsToGameOver);
-	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString("Max steps")));
+	widgets.push_back(pair<QWidget *, QString>(spinBoxStep, QString::fromLocal8Bit("Max. krokù")));
 	connect(spinBoxStep, SIGNAL(valueChanged(int)), this, SLOT(SetStepsToGameOver(int)));
 
 	/*

@@ -34,7 +34,7 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 		connect(batchThread[loop1], SIGNAL(BatchItemOver()), this, SLOT(BatchOver()), Qt::QueuedConnection);
 	 }
 	 sizeThread = 4;
-	 sizeThreadLabel = new QLabel(tr("Threads"));
+	 sizeThreadLabel = new QLabel(QString::fromLocal8Bit("Vláken"));
 	 sizeThreadBox = new QSpinBox(this);
 	 sizeThreadBox->setMinimum(1);	
 	 sizeThreadBox->setMaximum(MAX_THREAD);
@@ -50,23 +50,23 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 batchSize->setMinimum(0);
 	 batchSize->setMaximum(1000000);
 	 batchSize->setValue(1000); 
-	 addBatch = new QPushButton(tr("Add"), this);
+	 addBatch = new QPushButton(QString::fromLocal8Bit("Pøidej"), this);
 	 connect(addBatch, SIGNAL(clicked()), this, SLOT(AddItemToBatch()));
-	 removeBatch = new QPushButton(tr("Remove"), this);
+	 removeBatch = new QPushButton(QString::fromLocal8Bit("Odstraò"), this);
 	 connect(removeBatch, SIGNAL(clicked()), this, SLOT(RemoveTopItem()));
-	 setupBatch = new QPushButton(tr("Setup"), this);
+	 setupBatch = new QPushButton(QString::fromLocal8Bit("Nastavení"), this);
 	 connect(setupBatch, SIGNAL(clicked()), this, SLOT(SetupBatch()));
-	 saveBatchToCsv = new QPushButton(tr("Save"), this);
+	 saveBatchToCsv = new QPushButton(QString::fromLocal8Bit("Ulož"), this);
 	 connect(saveBatchToCsv, SIGNAL(clicked()), this, SLOT(SaveBatchToCsv()));
-	 saveAllToCsv = new QPushButton(tr("Save All"), this);
+	 saveAllToCsv = new QPushButton(QString::fromLocal8Bit("Ulož vše"), this);
 	 connect(saveAllToCsv, SIGNAL(clicked()), this, SLOT(SaveAllToCsv()));
 	 diagramBatch = new QPushButton(tr("Histogram"), this);
 	 connect(diagramBatch, SIGNAL(clicked()), this, SLOT(OpenDiagramWindow()));
 
 	 aggrFnc = new QComboBox(this);
-	 aggrFnc->addItem("Mean");
-	 aggrFnc->addItem("Std. deviation");
-	 aggrFnc->addItem("Median");
+	 aggrFnc->addItem(QString::fromLocal8Bit("Prùmìr"));
+	 aggrFnc->addItem(QString::fromLocal8Bit("Sm. odchylka"));
+	 aggrFnc->addItem(QString::fromLocal8Bit("Medián"));
 	 aggrFnc->addItem("Min");
 	 aggrFnc->addItem("Max");
 	 bool ok = connect(aggrFnc, SIGNAL(activated(int)), this, SLOT(AggrFnc(int)));
@@ -74,15 +74,15 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 playerStatsTree = new QTreeWidget(this);
 	 playerStatsTree->setColumnCount(8);
 	 QTreeWidgetItem * headerPlayer = new QTreeWidgetItem();
-	 headerPlayer->setData(0, 0, "Player"); 
-	 headerPlayer->setData(1, 0, "Level"); 
-	 headerPlayer->setData(2, 0, "Winner"); 
-	 headerPlayer->setData(3, 0, "Ch. Avg"); 
-	 headerPlayer->setData(4, 0, "Ch. Min"); 
-	 headerPlayer->setData(5, 0, "Ch. Max"); 
-	 headerPlayer->setData(6, 0, "Turn"); 
+	 headerPlayer->setData(0, 0, QString::fromLocal8Bit("Hráè")); 
+	 headerPlayer->setData(1, 0, QString::fromLocal8Bit("Úroveò")); 
+	 headerPlayer->setData(2, 0, QString::fromLocal8Bit("Vítìz")); 
+	 headerPlayer->setData(3, 0, QString::fromLocal8Bit("T. prù.")); 
+	 headerPlayer->setData(4, 0, QString::fromLocal8Bit("T. min.")); 
+	 headerPlayer->setData(5, 0, QString::fromLocal8Bit("T. max.")); 
+	 headerPlayer->setData(6, 0, QString::fromLocal8Bit("Tahù")); 
 	 //headerPlayer->setData(7, 0, "Justice"); 
-	 headerPlayer->setData(7, 0, "Leader Time"); 
+	 headerPlayer->setData(7, 0, QString::fromLocal8Bit("Vedení")); 
 	 for(int loop1 = 0; loop1 < playerStatsTree->columnCount(); loop1++)
 	 	 playerStatsTree->resizeColumnToContents(loop1);
 	 playerStatsTree->setMinimumHeight(150);
@@ -92,18 +92,18 @@ BatchWindow::BatchWindow(vector<IGame *> _gameList, vector<IEnvironmentAI *> _en
 	 listBatch = new QTreeWidget(this);
 	 listBatch->setColumnCount(12);
 	 QTreeWidgetItem * header = new QTreeWidgetItem();
-	 header->setData(0, 0, "Game name"); 
-	 header->setData(1, 0, "Batch"); 
-	 header->setData(2, 0, "Compl."); 
-	 header->setData(3, 0, "Turn N."); 
-	 header->setData(4, 0, "P1 winner"); 
-	 header->setData(5, 0, "Leader Sw."); 
-	 header->setData(6, 0, "Thrill"); 
-	 header->setData(7, 0, "Lead"); 
-	 header->setData(8, 0, "Justice"); 
-	 header->setData(9, 0, "Credib."); 
-	 header->setData(10, 0, "Rand."); 
-	 header->setData(11, 0, "L Time"); 
+	 header->setData(0, 0, QString::fromLocal8Bit("Jméno hry")); 
+	 header->setData(1, 0, QString::fromLocal8Bit("Dávka")); 
+	 header->setData(2, 0, QString::fromLocal8Bit("Hotovo")); 
+	 header->setData(3, 0, QString::fromLocal8Bit("Tahù")); 
+	 header->setData(4, 0, QString::fromLocal8Bit("H1 vítìz")); 
+	 header->setData(5, 0, QString::fromLocal8Bit("Pr. vít.")); 
+	 header->setData(6, 0, QString::fromLocal8Bit("Napìtí")); 
+	 header->setData(7, 0, QString::fromLocal8Bit("Náskok")); 
+	 header->setData(8, 0, QString::fromLocal8Bit("Sprav.")); 
+	 header->setData(9, 0, QString::fromLocal8Bit("Uvìøit.")); 
+	 header->setData(10, 0, QString::fromLocal8Bit("Náhod.")); 
+	 header->setData(11, 0, QString::fromLocal8Bit("Doba v.")); 
 	 listBatch->setHeaderItem(header);
 	 listBatch->setRootIsDecorated(false);
 	 for(int loop1 = 0; loop1 < listBatch->columnCount(); loop1++)
@@ -203,7 +203,7 @@ void BatchWindow::NextBatchItem()
 		aggrFnc->setEnabled(true);
 		diagramBatch->setEnabled(true);
 		sizeThreadBox->setEnabled(true);
-		progressTimeLabel->setText(QString("Done."));
+		progressTimeLabel->setText(QString::fromLocal8Bit("Hotovo."));
 		batchIsRunning = false;
 	}
 
@@ -259,7 +259,7 @@ void BatchWindow::StartBatch()
 void BatchWindow::StopBatch()
 {
 	if(batchIsRunning)
-		progressTimeLabel->setText(QString("  Stopped. Wait please."));
+		progressTimeLabel->setText(QString::fromLocal8Bit("  Zastaveno, poèkejte prosím."));
 	batchIsRunning = false;
 
 	basicTimer.stop();
@@ -293,14 +293,14 @@ void BatchWindow::SaveBatchToCsv()
 	int currentID = listBatch->currentIndex().row();
 	if(currentID >= 0)
 	{
-		QString fileName = QFileDialog::getSaveFileName(this, tr("Save to CSV"), "", tr("CSV (*.csv);;Text files (*.txt)"));
+		QString fileName = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("Uložit jako CSV"), "", tr("CSV (*.csv);;Textové soubory (*.txt)"));
 		batchItem[currentID]->ExportToCsv(fileName);
 	}
 }
 
 void BatchWindow::SaveAllToCsv()
 {
-	QString dirName = QFileDialog::getExistingDirectory(this, tr("Save to CSV"), "");
+	QString dirName = QFileDialog::getExistingDirectory(this, QString::fromLocal8Bit("Uložit jako CSV"), "");
 
 	for(int loop1 = 0; loop1 < batchItem.size(); loop1++)
 	{

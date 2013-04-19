@@ -21,7 +21,7 @@ public:
 	virtual bool Think();
 	void HumanTurn(int turn) {};
 	virtual bool IsScalable() { return false; }
-	QString GetAIName() { return QString("Dynamic level"); };
+	QString GetAIName() { return QString::fromLocal8Bit("Dynamická úroveò"); };
 	IPlayer * Factory(int playerID) { return new PlayerLevel(playerID); };
 	bool IsCompatibleWithGame(int gameID) { return gameID == GAME_LC_ID || gameID == GAME_LUDO_ID; }
 };

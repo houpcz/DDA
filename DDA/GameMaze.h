@@ -32,7 +32,7 @@ public :
 	virtual ~GameMaze();
 	void StartGame();
 	bool PlayerTurn();
-	QString GetGameName() { return tr("Maze"); };
+	QString GetGameName() { return QString::fromLocal8Bit("Bludištì"); };
 	IGameState * GetCurrentState() const;
 	void Draw(QPainter * painter, int tickMillis = 0);
 	void MouseMoveEvent ( int xMouse, int yMouse );
