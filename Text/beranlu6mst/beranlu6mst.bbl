@@ -45,6 +45,82 @@
       \endverb
       \keyw{Adaptation model;Brain modeling;Computational modeling;Games;IEEE Transactions on Computational Intelligence and AI in Games;Learning systems;Predictive models;computer games;computer games;game adaptivity;gameplay expectation;generation engine;learning preference;procedural content generation;semantic modeling;simulation;Adaptive games;declarative modeling;online adaptivity;player assessment;player modeling;procedural content generation;semantic modeling;}
     \endentry
+    \entry{5}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{374d966cfc0e8ab31df1fae2e02b000f}
+      \strng{fullhash}{374d966cfc0e8ab31df1fae2e02b000f}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Game Changers: Dynamic Difficulty}}
+      \field{title}{{Game Changers: Dynamic Difficulty}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.gamasutra.com/blogs/AdamSaltsman/20090507/1340/Game_Changers_Dynamic_Difficulty.php
+      \endverb
+    \endentry
+    \entry{1}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
+      \strng{fullhash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Dynamic Difficulty}}
+      \field{title}{{Dynamic Difficulty}}
+      \field{urlday}{16}
+      \field{urlmonth}{02}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://tvtropes.org/pmwiki/pmwiki.php/Main/DynamicDifficulty
+      \endverb
+    \endentry
+    \entry{powergrid}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=b4927abc3d12202988f71df66c3358ed}{BGG.com}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=b4927abc3d12202988f71df66c3358ed}{BGG.com}{B\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{b4927abc3d12202988f71df66c3358ed}
+      \strng{fullhash}{b4927abc3d12202988f71df66c3358ed}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Power Grid}}
+      \field{title}{{Power Grid}}
+      \field{urlday}{21}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://boardgamegeek.com/boardgame/2651/power-grid
+      \endverb
+    \endentry
+    \entry{fallout}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=3af73cab64aabd2a6a8f4e5d72b5f1a0}{LLC}{L\bibinitperiod}{Bethesda\bibnamedelima Softworks}{B\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=3af73cab64aabd2a6a8f4e5d72b5f1a0}{LLC}{L\bibinitperiod}{Bethesda\bibnamedelima Softworks}{B\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{3af73cab64aabd2a6a8f4e5d72b5f1a0}
+      \strng{fullhash}{3af73cab64aabd2a6a8f4e5d72b5f1a0}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Fallout}}
+      \field{title}{{Fallout}}
+      \field{urlday}{21}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://fallout.bethsoft.com/index.html
+      \endverb
+    \endentry
     \entry{17Evol}{inproceedings}{}
       \name{labelname}{1}{}{%
         {{hash=061c3572009b581f345bdad18078b20d}{Ashlock}{A\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
@@ -65,25 +141,6 @@
       \verb 10.1109/ITW.2010.5593341
       \endverb
       \keyw{Algorithm design and analysis;Color;Dynamic programming;Evolutionary computation;Games;Heuristic algorithms;Image color analysis;computer games;dynamic programming;evolutionary computation;automatic generation;chess pieces;color wheel;dynamic programming;evolutionary algorithm;fitness function;game content;game elements;puzzles;}
-    \endentry
-    \entry{5}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=374d966cfc0e8ab31df1fae2e02b000f}{Saltsman}{S\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{374d966cfc0e8ab31df1fae2e02b000f}
-      \strng{fullhash}{374d966cfc0e8ab31df1fae2e02b000f}
-      \field{sortinit}{0}
-      \field{labeltitle}{{Game Changers: Dynamic Difficulty}}
-      \field{title}{{Game Changers: Dynamic Difficulty}}
-      \field{urlday}{16}
-      \field{urlmonth}{02}
-      \field{urlyear}{2013}
-      \verb{url}
-      \verb http://www.gamasutra.com/blogs/AdamSaltsman/20090507/1340/Game_Changers_Dynamic_Difficulty.php
-      \endverb
     \endentry
     \entry{20Hun}{inproceedings}{}
       \name{labelname}{1}{}{%
@@ -216,25 +273,6 @@
       \field{year}{2007}
       \keyw{drama\_management}
     \endentry
-    \entry{1}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=5374ebb80e2b2a2dff2cf73dfc83fc8d}{TvTropes.org}{T\bibinitperiod}{}{}{}{}{}{}}%
-      }
-      \strng{namehash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
-      \strng{fullhash}{5374ebb80e2b2a2dff2cf73dfc83fc8d}
-      \field{sortinit}{0}
-      \field{labeltitle}{{Dynamic Difficulty}}
-      \field{title}{{Dynamic Difficulty}}
-      \field{urlday}{16}
-      \field{urlmonth}{02}
-      \field{urlyear}{2013}
-      \verb{url}
-      \verb http://tvtropes.org/pmwiki/pmwiki.php/Main/DynamicDifficulty
-      \endverb
-    \endentry
     \entry{3}{online}{}
       \name{labelname}{1}{}{%
         {{hash=98ac24c1f14857c64789729ca20fdb7b}{RocstarGames.com}{R\bibinitperiod}{}{}{}{}{}{}}%
@@ -271,6 +309,44 @@
       \field{urlyear}{2013}
       \verb{url}
       \verb http://www.destructoid.com/good-idea-bad-idea-dynamic-difficulty-adjustment-70591.phtml
+      \endverb
+    \endentry
+    \entry{kinect}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=91da9dc9e484daf8dc9ed72055907025}{Corporation}{C\bibinitperiod}{Microsoft}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=91da9dc9e484daf8dc9ed72055907025}{Corporation}{C\bibinitperiod}{Microsoft}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{91da9dc9e484daf8dc9ed72055907025}
+      \strng{fullhash}{91da9dc9e484daf8dc9ed72055907025}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Kinect for Windows}}
+      \field{title}{{Kinect for Windows}}
+      \field{urlday}{21}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.microsoft.com/en-us/kinectforwindows/
+      \endverb
+    \endentry
+    \entry{wii}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=073b7e4ff1d153a52b07eadb5898cb92}{Nintendo}{N\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=073b7e4ff1d153a52b07eadb5898cb92}{Nintendo}{N\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{073b7e4ff1d153a52b07eadb5898cb92}
+      \strng{fullhash}{073b7e4ff1d153a52b07eadb5898cb92}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Wii is more than a game machine}}
+      \field{title}{{Wii is more than a game machine}}
+      \field{urlday}{21}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.nintendo.com/wii
       \endverb
     \endentry
     \entry{7}{article}{}
@@ -342,25 +418,6 @@
       \field{title}{A Decision-Theoretic Approach to Task Assistance for Persons with Dementia}
       \field{year}{2005}
     \endentry
-    \entry{11Stargate}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=9c92b45f60e2f1c219a45b6f5e9e8ee1}{IMDB.com}{I\bibinitperiod}{}{}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=9c92b45f60e2f1c219a45b6f5e9e8ee1}{IMDB.com}{I\bibinitperiod}{}{}{}{}{}{}}%
-      }
-      \strng{namehash}{9c92b45f60e2f1c219a45b6f5e9e8ee1}
-      \strng{fullhash}{9c92b45f60e2f1c219a45b6f5e9e8ee1}
-      \field{sortinit}{0}
-      \field{labeltitle}{{Stargate SG-1: Season 8, Episode 6}}
-      \field{title}{{Stargate SG-1: Season 8, Episode 6}}
-      \field{urlday}{16}
-      \field{urlmonth}{02}
-      \field{urlyear}{2013}
-      \verb{url}
-      \verb http://www.imdb.com/title/tt0709042/
-      \endverb
-    \endentry
     \entry{12RocksmithRev}{online}{}
       \name{labelname}{1}{}{%
         {{hash=861d19bef83cac6ebf2daec9b8f967af}{Bach}{B\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
@@ -417,25 +474,6 @@
       \field{type}{master thesis}
       \field{year}{2010}
     \endentry
-    \entry{27EdHolland}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=eb564f46ab1a2db1816b8a556d7a953c}{Elangovan}{E\bibinitperiod}{N.}{N\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=eb564f46ab1a2db1816b8a556d7a953c}{Elangovan}{E\bibinitperiod}{N.}{N\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{eb564f46ab1a2db1816b8a556d7a953c}
-      \strng{fullhash}{eb564f46ab1a2db1816b8a556d7a953c}
-      \field{sortinit}{0}
-      \field{labeltitle}{{Education in Holland}}
-      \field{title}{{Education in Holland}}
-      \field{urlday}{16}
-      \field{urlmonth}{02}
-      \field{urlyear}{2013}
-      \verb{url}
-      \verb http://www.pages.drexel.edu/~ne34/edu.html
-      \endverb
-    \endentry
     \entry{FlowCZ}{online}{}
       \name{labelname}{1}{}{%
         {{hash=69bf6f2c23b207645e40fbd64b56c325}{Samek}{S\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
@@ -477,25 +515,6 @@
       \field{year}{1991}
       \keyw{flow, psychology}
     \endentry
-    \entry{FlowEng}{online}{}
-      \name{labelname}{1}{}{%
-        {{hash=d4178c47ab49443bb07ea432ff451e69}{Wright}{W\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
-      }
-      \name{author}{1}{}{%
-        {{hash=d4178c47ab49443bb07ea432ff451e69}{Wright}{W\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
-      }
-      \strng{namehash}{d4178c47ab49443bb07ea432ff451e69}
-      \strng{fullhash}{d4178c47ab49443bb07ea432ff451e69}
-      \field{sortinit}{0}
-      \field{labeltitle}{“In the zone”: enjoyment, creativity, and the nine elements of “flow”}
-      \field{title}{“In the zone”: enjoyment, creativity, and the nine elements of “flow”}
-      \field{urlday}{03}
-      \field{urlmonth}{03}
-      \field{urlyear}{2013}
-      \verb{url}
-      \verb http://www.meaningandhappiness.com/zone-enjoyment-creativity-elements-flow/26/
-      \endverb
-    \endentry
     \entry{thesisflow}{thesis}{}
       \name{labelname}{1}{}{%
         {{hash=9be4d62c296f903e9a24a63cbbdb61c6}{Chen}{C\bibinitperiod}{J.}{J\bibinitperiod}{}{}{}{}}%
@@ -528,6 +547,25 @@
       \field{journaltitle}{Fun and Games}
       \field{title}{Flow in Games: Proposing a Flow Experience Model}
       \field{year}{2012}
+    \endentry
+    \entry{FlowEng}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=d4178c47ab49443bb07ea432ff451e69}{Wright}{W\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=d4178c47ab49443bb07ea432ff451e69}{Wright}{W\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{d4178c47ab49443bb07ea432ff451e69}
+      \strng{fullhash}{d4178c47ab49443bb07ea432ff451e69}
+      \field{sortinit}{0}
+      \field{labeltitle}{“In the zone”: enjoyment, creativity, and the nine elements of “flow”}
+      \field{title}{“In the zone”: enjoyment, creativity, and the nine elements of “flow”}
+      \field{urlday}{03}
+      \field{urlmonth}{03}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.meaningandhappiness.com/zone-enjoyment-creativity-elements-flow/26/
+      \endverb
     \endentry
     \entry{24DynLev}{inproceedings}{}
       \name{labelname}{2}{}{%

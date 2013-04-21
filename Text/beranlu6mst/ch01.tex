@@ -22,17 +22,17 @@ Nakonec přidávám v příloze stručný popis ovládání aplikace a několik 
 
 \section{Cíl diplomové práce}
 
-Cílem diplomové práce je prozkoumat možnosti přístupů k dynamické adaptivitě v počítačových hrách. Zaměřit se na přístupy, jež lze využít v nezměněné, či modifikované podobě v oblasti teorie her. Dalším cílem je vymyslet nový přístup a ten spolu s existujícími algoritmy implementovat a otestovat na třech vybraných jednoduchých hrách. Pomocí metrik změřit kvalitu jednotlivých algoritmů a vzájemně je porovnat. V ideálním případě by měl vlastní přístup předčit přístupy existující.
+Cílem diplomové práce je prozkoumat možnosti přístupů k dynamické adaptivitě v počítačových hrách, navrhnout přístup nový a ten analyzovat a porovnat s přístupy existujícími.
 
 \section{Definice}
 
 Dynamické vyvažování obtížnosti (dynamic difficulty adjustement, DDA) je obecným konceptem, jak přistupovat k návrhu programů, jež jsou využívány uživateli rozdílných schopností a zkušeností. 
 
-Klasickým přístup je předdefinování několika rozdílných nastavení s odlišnými požadavky na dovednosti uživatelů, kteří si mezi těmito nastaveními volí ručně. Naopak dynamický, adaptivní přístup volbu nastavení nechává alespoň z části na samotném programu, který se rozhoduje na základě modelu uživatele.
+Klasickým přístup je předdefinování několika rozdílných nastavení s odlišnými požadavky na dovednosti uživatelů, kteří si mezi těmito nastaveními volí ručně. Naopak dynamický, adaptivní přístup volbu nastavení nechává alespoň z části na samotném programu, který se rozhoduje na základě modelu uživatele. Dále se zaměřím na koncept DDA používaný v počítačových hrách.
 
-Se zkratkou DDA se nejčastěji setkáme v oblasti počítačových her a simulací, ale toto prostředí není závaznou podmínkou. Příklady budou uvedeny v sekci \ref{sec:aplikacedda}. Cílem DDA je přizpůsobovat proměnné systému co nejlépe aktuálním potřebám uživatele.  S typem aplikace úzce souvisí druh potřeb uživatele. Lišit se budou potřeby pacientů využívajících rehabilitační programy a potřeby hráčů počítačových her. Dále se v textu zaměřím na využití DDA v počítačových hrách, případně v tzv. serious game, které mají za úkol udržet uživatele u užitečné činnosti formou zábavné hry.
+Synonymy pro DDA jsou např. dynamic difficulty balancing, dynamic game balancing, auto-dynamic difficulty, adaptive difficulty. Vyvažování obtížnosti je základem velké většiny her využívající DDA. Myšlenka za tím je jednoduchá. Je-li hra pro hráče příliš snadná, hráč se nudí, hru opustí. Naopak je-li hra příliš obtížná, hráč je frustrován, hru opouští. V obou případech hra ztrácí své uživatele.
 
-Synonymy pro DDA jsou např. dynamic difficulty balancing, dynamic game balancing, auto-dynamic difficulty, adaptive difficulty. Ve čtyřech z pěti pojmů se vyskutuje slovo difficulty (obtížnost), které jsem doposud nezmínil. Vyvažování obtížnosti je základem velké většiny hry využívající koncept DDA. Myšlenka za tím je jednoduchá. Je-li hra pro hráče příliš snadná, hráč se nudí, hru opustí. Naopak je-li hra příliš obtížná, hráč je frustrován, hru opouští. V obou případech hra ztrácí své uživatele. U komerčních produktů se pak jedná o ztrátu financí. U programu využívaném při rehabilitaci se pak jedná o ztrátu motivace v pokračovaní rehabilitací. Obtížnost hry tedy přímo souvisí s její zábavností a udělat hru zábavnou pro co největší masu lidí je cílem DDA. Míra zábavnosti hry není závislá pouze na její obtížnosti. Jak lze definovat zábavu a jak ji lze měřit více popíši v kapitole \ref{sec:defzab}. 
+Hlavní cílem DDA v počítačových hrách je udělat hru více zábavnou pro hráče. Míra zábavnosti hry není závislá pouze na její obtížnosti. Jak lze definovat zábavu a jak ji lze měřit více popíši v kapitole \ref{sec:defzab}. 
 
 Každé využití auto-dynamického vyvažování hry lze zařadit do několika kategorií z různých úhlů pohledu. Různé hry vyžadují různé přístupy a je dobré se zamyslet nad konkrétní hrou. Vybrat si z jakých kategorií by mělo být DDA použito. Designér hry by si měl položit několik následujících otázek :
 
@@ -43,7 +43,7 @@ Každé využití auto-dynamického vyvažování hry lze zařadit do několika 
 	\item Jakým způsobem může být ovlivňována obtížnost hry?
 \end{enumerate}
 
-Dle svých odpovědí každý určitě zvládne zařadit hru do následujících kategorií.
+Na základě odpovědí lze hru zařadit do následujících kategorií.
 
 \subsection{Vážné a nevážné hry}
 
@@ -57,17 +57,19 @@ Explicitní použití by mělo být dobře známé i ze všedního života. Kdy�
 
 Příkladem ze světa deskových her může být ve hře Go povolení slabšímu hráči na začátku hry zahrát několik svých kamenů navíc, nebo naopak odebrání některých figur ve hře šachy hráči silnějšímu.
 
-Někdy zařazení hry nemusí být zcela jednoznačné. Mnoho hráčů z laické veřejnosti je si vědomo podvádění v závodních hrách jako je Mario Kart, či Need For Speed, přestože se o tom nedozvědí v pravidlech hry. V případě, že se vývojáři rozhodnou pro implicitní DDA, měli by jej navrhnout tak, aby jej hráč neodhalil. Jestliže o něm každý ví, asi už není zcela korektní hru zařadit do implicitní kategorie.
+Někdy zařazení hry nemusí být zcela jednoznačné. Mnoho hráčů z laické veřejnosti je si vědomo podvádění v závodních hrách jako je Mario Kart\cite{5}, či Need For Speed\cite{1}, přestože se o tom nedozvědí v pravidlech hry. V případě, že se vývojáři rozhodnou pro implicitní DDA, měli by jej navrhnout tak, aby jej hráč neodhalil. Jestliže o něm každý ví, asi už není zcela korektní hru zařadit do implicitní kategorie.
 
-Nejasná kategorizace může být i v opačném případě. Mějme jako příklad moderní deskovou hru Vysoké napětí. Ve hře existují pravidla závislá na aktuálním pořadí hráčů a snaží se pomáhat prohrávajícím hráčům a naopak ubližovat těm ve vedení. U Vysokého napětí hráči nakupují suroviny v opačném pořadí než si vedou. Stejné suroviny mají rozdílnou cenu. Poslední hráč vykoupí nejlevnější suroviny a naopak na toho prvního zůstanou ty nejdražší. Za stejnou věc zaplatí různě, a tedy se zvýší šance posledního hráče dostat se do vedení. Přestože toto pravidlo je všem zúčastněným známo, tak asi málokdo o něm přemýšlí jako o dynamické vyvažování obtížnosti hry.
+Nejasná kategorizace může být i v opačném případě. Mějme jako příklad moderní deskovou hru Vysoké napětí\cite{powergrid}. Ve hře existují pravidla závislá na aktuálním pořadí hráčů a snaží se pomáhat prohrávajícím hráčům a naopak ubližovat těm ve vedení. U Vysokého napětí hráči nakupují suroviny v opačném pořadí než si vedou. Stejné suroviny mají rozdílnou cenu. Poslední hráč vykoupí nejlevnější suroviny a naopak na toho prvního zůstanou ty nejdražší. Za stejnou věc zaplatí různě, a tedy se zvýší šance posledního hráče dostat se do vedení. Přestože toto pravidlo je všem zúčastněným známo, tak asi málokdo o něm přemýšlí jako o dynamické vyvažování obtížnosti hry.
 
 \subsection{Dynamická a statická}
 
-Obtížnost hry lze přizpůsobovat před začátkem hry nebo v jejím průběhu. Dle toho se rozděluje DDA na statickou(offline), či dynamickou(online). Typický příkladem offline adaptivity bude zpracování hráčových dat a úprava hry během jejího načítání. Z tohoto důvodu je offline adaptivita zaměřena především na generování herního světa, herních scénářů a úkolů\cite{16Survey}. Příkladem mohou být hry Fallout 3 a Fallout: New Vegas, kde se při vstupu na nové území generují nepřátelé, a to dle levelu hráčova avatara. Offline adaptivitu lze považovat za jedinou možnou při vytváření různých logických hádanek a her. Na základě rychlosti řešení/nedokončení předchozí hádanky, lze vygenerovat hádanku novou lépe odpovídající hráčovým schopnostem. Tímto problémem se zabývá článek Automatic Generation of Game Elements via Evolution\cite{17Evol}, kde testovanými hrami byla hra se šachovými figurami a hra procházení barevným bludištěm.
+Obtížnost hry lze přizpůsobovat před začátkem hry nebo v jejím průběhu. Dle toho se rozděluje DDA na statickou(offline), či dynamickou(online). Typický příkladem offline adaptivity bude zpracování hráčových dat a úprava hry během jejího načítání. Z tohoto důvodu je offline adaptivita zaměřena především na generování herního světa, herních scénářů a úkolů\cite{16Survey}. Příkladem mohou být hry Fallout 3 a Fallout: New Vegas\cite{fallout}, kde se při vstupu na nové území generují nepřátelé, a to dle levelu hráčova avatara. 
+
+Offline adaptivitu lze nejlépe využít při vytváření logických hádanek a her. Na základě rychlosti řešení/nedokončení předchozí hádanky, lze vygenerovat hádanku novou lépe odpovídající hráčovým schopnostem. Tímto problémem se zabývá článek Automatic Generation of Game Elements via Evolution\cite{17Evol}, kde testovanými hrami byla hra se šachovými figurami a hra procházení barevným bludištěm.
 
 Online adaptivita bude naopak zaměřena na adaptivitu umělé inteligence NPC a úpravu pravidel hry. Vede-li si hráč příliš dobře v závodní hře, ostatním hráčů se zvýší maximální rychlost. Ztratí-li hráč příliš životů, v rohu v další místnosti se objeví lékárnička. Adaptivita může být samozřejmě i druhým směrem. Sebere-li hráč soupeři důležité figurky v deskové hře šachy, soupeři se zvýší "inteligence", začne uvažovat na více kol dopředu. 
 
-Online adaptivitu můžeme zasadit přímo do principů hry. Ve hře Pocket Billiards hrají proti sobě dva hráči na kulečníkovém stole. Na stole je několik koulí dvou barev. Každý hráč má přiřazenou jednu z barev a jeho úkolem je dostrkat své koule do děr dříve než to udělá soupeř. Adaptivita je zde dána samotným principem hry. Dostane-li se jeden hráč do vedení a odstraní z plochy znatelně více koulí než jeho soupeř, pak je pro něj stále obtížnější dostat další koule do děr. Zároveň se zvyšuje pravděpodobnost, že bude muset provést takový šťouch, který může odstranit z plochy soupeřovu koule, a tedy mu tím může pomoci dorovnat skóre.\cite{5}
+Online adaptivitu můžeme zasadit přímo do principů hry. Ve hře Pocket Billiards hrají proti sobě dva hráči na kulečníkovém stole. Na stole je několik koulí dvou barev. Každý hráč má přiřazenou jednu z barev a jeho úkolem je dostrkat své koule do děr dříve než to udělá soupeř. Adaptivita je zde dána samotným principem hry. Dostane-li se jeden hráč do vedení a odstraní z plochy znatelně více koulí než jeho soupeř, pak je pro něj stále obtížnější dostat další koule do děr. Zároveň se zvyšuje pravděpodobnost, že bude muset provést takový tah, který může odstranit z plochy soupeřovu koule, a tedy mu tím může pomoci dorovnat skóre.\cite{5}
 
 \subsection{Adaptivita herních komponent}
 
@@ -81,20 +83,29 @@ Každá hra lze rozdělit do několika komponent. Konkrétně se jedná o násle
 	\item Herní scénáře a úkoly.
 \end{enumerate}
 
-Všechny jednotlivé komponenty mohou být adaptivní a přizpůsobovat se konkrétnímu hráči. \textit{Svět a objekty v něm} : V \cite{17Evol} vytvářejí adaptivně logické úlohy, Hamlet \cite{20Hun} pro Half-Life rozmisťuje inteligentně náboje a lékárničky po úrovních. V Left 4 Dead adaptivně generují prostředí s různou komplexitou. \textit{Herní mechaniky} : Ve hře Max Payne se s výkonem hráče mění zaměřovací asistent a síla protivníků. \cite{RiskTakers} \textit{NPC a jejich umělou inteligenci} : V Pro Evolution Soccer 2008 se soupeř přizpůsobují strategii hráče. \cite{6} \textit{Příběh} : Ve Valve považují výběr typu nepřátel dle aktuálního stavu hráče ve hře Left 4 Dead jako formu vyprávění příběhu. \cite{2} Dále se touto problematikou zabývali např. Barber a Kudenko \cite{Narratives}. \textit{Herní scénáře a úkoly} : Tato oblast patří zatím k těm méně probádaným. Lze si ale představit v dnes populárních MMORPG úpravu úkolů na míru jednotlivých hráčů a dle aktuální situace hry. Pokud např. hráč navštěvuje stále stejné území, může NPC postava zadat jako úkol pobití určitého množství monster nacházející se v dané oblasti a tím pro něj rutinu proměnit v o trochu více zábavnou.
+Všechny jednotlivé komponenty mohou být adaptivní a přizpůsobovat se konkrétnímu hráči. 
+
+\textit{Svět a objekty v něm} : V \cite{17Evol} vytvářejí adaptivně logické úlohy, Hamlet \cite{20Hun} pro Half-Life rozmisťuje inteligentně náboje a lékárničky po úrovních. V Left 4 Dead adaptivně generují prostředí s různou komplexitou. \textit{Herní mechaniky} : Ve hře Max Payne se s výkonem hráče mění zaměřovací asistent a síla protivníků. \cite{RiskTakers} 
+
+\textit{NPC a jejich umělou inteligenci} : V Pro Evolution Soccer 2008 se soupeř přizpůsobují strategii hráče. \cite{6} 
+
+\textit{Příběh} : Ve Valve považují výběr typu nepřátel dle aktuálního stavu hráče ve hře Left 4 Dead jako formu vyprávění příběhu. \cite{2} 
+Dále se touto problematikou zabývali např. Barber a Kudenko \cite{Narratives}. 
+
+\textit{Herní scénáře a úkoly} : Tato oblast patří zatím k těm méně probádaným. Lze si ale představit v dnes populárních MMORPG úpravu úkolů na míru jednotlivých hráčů a dle aktuální situace hry. Pokud např. hráč navštěvuje stále stejné území, může NPC postava zadat jako úkol pobití určitého množství monster nacházející se v dané oblasti a tím pro něj rutinu proměnit v o trochu více zábavnou.
 
 
 \section{Aplikace} \label{sec:aplikacedda}
 
 Algoritmy vyvažování obtížnosti lze využít v širokém spektru aplikací. Mohou být vhodné všude tam, kde je vyžadována určitá dovednost, schopnost. V takovém případě může být obtížné aplikaci, program navrhnout tak, aby byl dobře využitelný velkým spektrem lidí různých schopností.
 
-DDA můžeme nalézt nejen v zábavním průmyslu, ale i u vážných her. Adaptivní obtížnost programu může zefektivňovat léčbu nemocných lidí, nahrazovat osobního trenéra či učitele. V následujících 4 podkapitolách popisuji konkrétní užití dynamické obtížnosti v komerční i v akademické sféře.
+DDA můžeme nalézt nejen v zábavním průmyslu, ale i u vážných her. V následujících 4 podkapitolách popisuji konkrétní užití dynamické obtížnosti v komerční i v akademické sféře.
 
 \subsection{Zábavní průmysl}
 
-Hráče počítačových her lze rozdělit dle jejich schopností od příležitostných až po hardcore hráče. Většina her obsahuje statickou volbu obtížnosti na začátku hry. V některých případech to nemusí být dostačující, a proto se tvůrci komerčních her snaží více, či méně úspěšně implementovat adaptivní obtížnost.
+Hráče počítačových her lze rozdělit dle jejich schopností od příležitostných až po velmi náročné hráče. Většina her obsahuje statickou volbu obtížnosti na začátku hry. V některých případech to nemusí být dostačující, a proto se tvůrci komerčních her snaží více, či méně úspěšně implementovat adaptivní obtížnost.
 
-Na stránce \cite{1} lze nalézt desítky příkladů všech různých žánrů. Do následujícího seznamu 5 her jsem vybral ty známější příklady.
+Na www stránce \cite{1} lze nalézt desítky příkladů všech různých žánrů. Do následujícího seznamu 5 her jsem vybral ty známější příklady.
 
 \subsubsection{Left 4 Dead}
 \label{sec:Left4Dead}
@@ -116,7 +127,9 @@ Dalším příkladem mohou být hry Oblivion a Fallout 3 od Bethesda Softworks. 
 
 Závodní simulátory jsou dobře známé využíváním adaptivní obtížnosti her a mezi nejznámější zástupce patří arkádové závody Mario Kart. Ve hře se adaptivně mění rychlost protivníků a také bonusové power-upy, které můžete sbírat. Hra podporuje natolik prohrávající hráče, že ať už je aktuální stav hry jakýkoli, může vyhrát kdokoliv.
 
-Což lze brát jako velkou výhodu, kdy žádný z hráčů nemá důvod ke vzdávání hry. Nevýhodou je právě známost a odhalení tohoto systému, a tudíž je lehce zneužitelná. Např. konkrétně ve variantě Mario Kart Wii je vedoucí hráč na začátku posledního kola bombardován modrým krunýřem, či jinou devastující zbraní a je záhy poslán na poslední místo. Nejlepší strategií je projet do posledního kola na druhé pozici, což moc nedává smysl. \cite{5}
+Což lze brát jako velkou výhodu, kdy žádný z hráčů nemá důvod ke vzdávání hry. Nevýhodou je právě známost a odhalení tohoto systému, a tudíž je lehce zneužitelná. Např. konkrétně ve variantě Mario Kart Wii je vedoucí hráč na začátku posledního kola bombardován modrým krunýřem, či jinou devastující zbraní a je záhy poslán na poslední místo. 
+
+Optimální strategie pro hraní hry v tomto případě zahrnuje princip vyvažování. Optimální strategií je projet do posledního kola na druhé pozici. \cite{5}
 
 \subsubsection{Pro Evolution Soccer 2008}
 
@@ -124,7 +137,7 @@ Což lze brát jako velkou výhodu, kdy žádný z hráčů nemá důvod ke vzd�
 
 \subsection{Cvičení}
 
-Herní zařízení jako jsou Microsoft Kinect a Nintendo Wii dávají prostor pohybovým hrám. Stejně jako v jiných příkladech i zde platí, že existují lidé s diametrálně odlišnou fyzickou kondicí. Kondice se v ideálním případě při opakované hře stále zlepšuje, a proto je vhodné k tomu přizpůsobovat obtížnost hry.
+Herní zařízení jako jsou Microsoft Kinect\cite{kinect} a Nintendo Wii\cite{wii} dávají prostor pohybovým hrám. Stejně jako v jiných příkladech i zde platí, že existují lidé s diametrálně odlišnou fyzickou kondicí. Kondice se v ideálním případě při opakované hře stále zlepšuje, a proto je vhodné k tomu přizpůsobovat obtížnost hry.
 
 Příkladem takové aplikace může být jednoduchá chodící hra hratelná v internetovém prohlížeči, jež má za úkol motivovat starší lidi k pohybu.
 
@@ -132,7 +145,7 @@ V druhém případě nebylo využito žádné ze zmíněných zařízení. Auto�
 
 \subsubsection{Podpora pohybu starších lidí}
 
-Evropská populace stárne a odmítání pohybu staršími lidmi se stává závažným problémem. Z nedostatku fyzické námahy klesá síla a ohebnost těchto lidí, ztrácejí kostní hmotu a tím zvyšují pravděpodobnost pádu a zlomení některé z končetin. Z tohoto důvodu se skupina z Technologického institutu zaměřila na vývoj hry, jež má starší lidi motivovat k pohybu a jejíž nedílnou součástí je vyvažování obtížnosti. \cite{8}
+Skupina z Technologického institutu se zaměřila na vývoj hry, jež má starší lidi motivovat k pohybu a jejíž nedílnou součástí je vyvažování obtížnosti. \cite{8}
 
 Hra je vytvářena v HTML5 pro běžné použití ve webových prohlížečích a využívá Microsoft Kinect ovládání.
 
@@ -175,23 +188,25 @@ Lidé trpící nemocemi jako je Alzheimerova choroba potřebují pomoci i při b
 
 Existuje velké množství vzdělávacích programů a her. Jak takovou hru udělat, aby efektivně vzdělávala úplného začátečníka, ale i již pokročilého uživatele? I zde je prostor pro adaptivní přizpůsobování se programu uživateli. Představme si simulátor výuky v autoškole, kde by se dle schopnostech začínajícího řidiče měnilo prostředí. Na začátku by žák projížděl vesnicemi s minimálním provozem. Jak by se žák zlepšoval, přibýval by provoz, dopravní značky, semafory, vjel by do města apod. Jestliže by jel příliš rychle, v dalším úseku by se objevil retardér atd.
 
-Ve sci-fi seriálu Stargate:SG1 ukázali možnost využití DDA při vojenském výcviku. Čím lépe si hrdina vedl ve virtuální realitě, tím více překážek mu bylo kladeno do cesty. \cite{11Stargate} 
-
-Dále přiblížím komerční hru pomáhající s výukou na elektrickou kytaru a diplomovou práci o rozšiřování slovní zásoby předškolních dětí zábavnou formou.
+Dále přiblížím dvojici výukových her. První se zaměřuje na na výuky hry na elektrickou kytaru. Druhá má za úkol rozšiřovat slovní zásoby předškolních dětí zábavnou formou.
 
 \subsubsection{Výuka hry na elektrickou kytaru}
 
-Známé herní vydavatelství Ubisoft vydalo během loňského podzimu hru Rocksmith, která má zábavnou formou uživatele naučit hrát na elektronickou kytaru. Oproti Guitar Hero, Rock Band neovládáte hru speciálním plastovým ovladačem, naopak využíváte opravdovou elektrickou kytaru, kterou připojíte přes speciální kabel do USB. Lze využít kytaru zakoupenou se hrou, nebo jakoukoli jinou.
+Hra Rocksmith má zábavnou formou uživatele naučit hrát na elektronickou kytaru. Oproti Guitar Hero, Rock Band neovládáte hru speciálním plastovým ovladačem, naopak využíváte opravdovou elektrickou kytaru, kterou připojíte přes speciální kabel do USB. Lze využít kytaru zakoupenou se hrou, nebo jakoukoli jinou.
 
 V této výukové hře máte za úkol zahrát na kytaru správné akordy ve správnou chvíli. „Vše začíná jednoduchým brnkáním na jednu notu a pokračuje přes slajdy a příklepy k akordům a dalším složitějším technikám.”\cite{12RocksmithRev} Tímto lze popsat statickou část obtížnosti, ale autoři se zaměřili i na dynamické vyvažování obtížnosti a sami to vyzdvihují ve svém propagačním videu.\cite{13RocksmithVid} Jestliže během hraní uděláte několik chyb po sobě, hra se zjednoduší. Např. místo každého tónu budete hrát pouze každý třetí.
 
 \subsubsection{Rozšiřování slovní zásoby}
 
-Peter Peerdeman se ve své diplomové práci Intelligent Tutoring in Educational Games\cite{14Haas} zabýval využitím DDA u výukových her. Vytvořil hru Mijn naam is Haas(holandsky Moje jméno je Zajíc), která je zaměřena na mladší hráče, jež si mají rozšířit svojí slovní zásobu. Hlavní postavou ve hře je zajíc, který se stává průvodcem po hře. Hráč ovládá hru kreslením různých objektů do světa zajíce a hra se mu přizpůsobuje a dle nakreslených objektů vybírá další úkoly. Např. nakreslí-li několik mraků, začne pršet a dalším úkolem je nakreslit deštník, který by ochránil zajíce Haase před zmoknutím.
+Peter Peerdeman se ve své diplomové práci Intelligent Tutoring in Educational Games\cite{14Haas} zabýval využitím DDA u výukových her. Hra Mijn naam is Haas(Moje jméno je Zajíc) je zaměřena na mladší hráče, jež si mají rozšířit svojí slovní zásobu. Hlavní postavou ve hře je zajíc, který se stává průvodcem po hře. Hráč ovládá hru kreslením různých objektů do světa zajíce a hra se mu přizpůsobuje a dle nakreslených objektů vybírá další úkoly. Např. nakreslí-li několik mraků, začne pršet a dalším úkolem je nakreslit deštník, který by ochránil zajíce Haase před zmoknutím.
 
-Hra při zadávání úkolů vhodně vybírá slovíčka dle úrovně hráče. Využívá se databáze 6000 slov, kde každé slovo je ohodnoceno číslem mezi 0 – 100 určující jejich obtížnost. Ohodnocení slova vyjadřuje kolik procent učitelů si myslí, že toto slovo je důležité znát žáky druhých tříd(groep  2)  základních škol v Holandsku. \footnote{Groep 2 navštěvují pětileté děti. Navštěvování první třídy ve 4 letech je dobrovolné, druhou třídu musí děti navštěvovat povinně. Číst, psát a počítat se začnou učit až v groep 3, která věkem dětí odpovídá prvním třídám v ČR. \cite{27EdHolland}} Lze předpokládat, že slova s hodnotou 90-100 žáci již dobře znají a naopak slova ohodnocená 0 – 30 nejsou důležitá k naučení. Zbytek slov lze rozdělit do šesti úrovní obtížnosti. Obtížnost 1 obsahující slova s hodnotou 80 – 90 až po obtížnost 6 se slovy s hodnotou 30 – 40.
+Hra při zadávání úkolů vhodně vybírá slovíčka dle úrovně hráče. Využívá se databáze 6000 slov, kde každé slovo je ohodnoceno číslem mezi 0 – 100 určující jejich obtížnost. Ohodnocení slova vyjadřuje kolik procent učitelů si myslí, že toto slovo je důležité znát pětiletými dětmi v Holandsku. Lze předpokládat, že slova s hodnotou 90-100 žáci již dobře znají a naopak slova ohodnocená 0 – 30 nejsou důležitá k naučení. Zbytek slov lze rozdělit do šesti úrovní obtížnosti. Obtížnost 1 obsahující slova s hodnotou 80 – 90 až po obtížnost 6 se slovy s hodnotou 30 – 40.
 
 Zadání úkolu vždy obsahuje většinu slov dítěti dobře známých, zbylé tvoří prostor pro učení. Každý úkol má přiřazeno několik různě obtížných synonym a program vybírá nejvhodnější slovo dle úrovně hráče, které několikrát zopakuje v různých větách pro lepší pochopení jeho významu.
+
+\vspace{5mm}
+
+Lze vidět, že DDA má široké spektrum různých aplikací, a proto má smysl se jím zabývat.
 
 \endinput
 %%
