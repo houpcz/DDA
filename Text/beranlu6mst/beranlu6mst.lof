@@ -16,64 +16,62 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4}{\ignorespaces Influence diagram pro adaptivn\IeC {\'\i } syst\IeC {\'e}my}}{20}{figure.3.4}
+\contentsline {figure}{\numberline {4}{\ignorespaces Proces adaptivn\IeC {\'\i } AI zalo\IeC {\v z}en\IeC {\'e} na CBR \cite {21cbr}}}{21}{figure.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5}{\ignorespaces Proces adaptivn\IeC {\'\i } AI zalo\IeC {\v z}en\IeC {\'e} na CBR \cite {21cbr}}}{22}{figure.3.5}
+\contentsline {figure}{\numberline {5}{\ignorespaces Screenshot ze hry Dead-End. \cite {25deadend} }}{24}{figure.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {6}{\ignorespaces Screenshot ze hry Dead-End. \cite {25deadend} }}{25}{figure.3.6}
+\contentsline {figure}{\numberline {6}{\ignorespaces \IeC {\v C}\IeC {\'a}st fuzzy pravidel pro p\IeC {\v r}edvoj. \cite {25deadend} }}{25}{figure.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {7}{\ignorespaces \IeC {\v C}\IeC {\'a}st fuzzy pravidel pro p\IeC {\v r}edvoj. \cite {25deadend} }}{25}{figure.3.7}
+\contentsline {figure}{\numberline {7}{\ignorespaces P\IeC {\v r}ibli\IeC {\v z}ov\IeC {\'a}n\IeC {\'\i } se k po\IeC {\v z}adovan\IeC {\'e}mu win-rate 75\% b\IeC {\v e}hem 100 kol proti t\IeC {\v r}em r\IeC {\r u}zn\IeC {\'y}m hr\IeC {\'a}\IeC {\v c}\IeC {\r u}m. \cite {25deadend} }}{26}{figure.3.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {8}{\ignorespaces P\IeC {\v r}ibli\IeC {\v z}ov\IeC {\'a}n\IeC {\'\i } se k po\IeC {\v z}adovan\IeC {\'e}mu win-rate 75\% b\IeC {\v e}hem 100 kol proti t\IeC {\v r}em r\IeC {\r u}zn\IeC {\'y}m hr\IeC {\'a}\IeC {\v c}\IeC {\r u}m. \cite {25deadend} }}{27}{figure.3.8}
+\contentsline {figure}{\numberline {8}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad jednoho vygenerovan\IeC {\'e}ho bludi\IeC {\v s}t\IeC {\v e} se 6 jezdci a hr\IeC {\'a}\IeC {\v c}em ovl\IeC {\'a}daj\IeC {\'\i }ho v\IeC {\v e}\IeC {\v z}. Vstup do bludi\IeC {\v s}t\IeC {\v e} je ozna\IeC {\v c}en E, v\IeC {\'y}stup X. Vlevo z pohledu hr\IeC {\'a}\IeC {\v c}e, vpravo zn\IeC {\'a}zorn\IeC {\v e}n\IeC {\'e} ohro\IeC {\v z}ovan\IeC {\'e} pozice. \cite {17Evol} }}{28}{figure.3.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {9}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad jednoho vygenerovan\IeC {\'e}ho bludi\IeC {\v s}t\IeC {\v e} se 6 jezdci a hr\IeC {\'a}\IeC {\v c}em ovl\IeC {\'a}daj\IeC {\'\i }ho v\IeC {\v e}\IeC {\v z}. Vstup do bludi\IeC {\v s}t\IeC {\v e} je ozna\IeC {\v c}en E, v\IeC {\'y}stup X. Vlevo z pohledu hr\IeC {\'a}\IeC {\v c}e, vpravo zn\IeC {\'a}zorn\IeC {\v e}n\IeC {\'e} ohro\IeC {\v z}ovan\IeC {\'e} pozice. \cite {17Evol} }}{28}{figure.3.9}
+\contentsline {figure}{\numberline {9}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad t\IeC {\v r}\IeC {\'\i } vygenerovan\IeC {\'y}ch trat\IeC {\'\i }. Prvn\IeC {\'\i } generov\IeC {\'a}na pro \IeC {\v s}patn\IeC {\'e}ho hr\IeC {\'a}\IeC {\v c}e, druh\IeC {\'a} a t\IeC {\v r}et\IeC {\'\i } pro dobr\IeC {\'e}ho. P\IeC {\v r}i generaci t\IeC {\v r}et\IeC {\'\i } trat\IeC {\v e} byla pou\IeC {\v z}ita pouze jedna z fitness funkc\IeC {\'\i }. \cite {EvolTrack} }}{29}{figure.3.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {10}{\ignorespaces P\IeC {\v r}\IeC {\'\i }klad t\IeC {\v r}\IeC {\'\i } vygenerovan\IeC {\'y}ch trat\IeC {\'\i }. Prvn\IeC {\'\i } generov\IeC {\'a}na pro \IeC {\v s}patn\IeC {\'e}ho hr\IeC {\'a}\IeC {\v c}e, druh\IeC {\'a} a t\IeC {\v r}et\IeC {\'\i } pro dobr\IeC {\'e}ho. P\IeC {\v r}i generaci t\IeC {\v r}et\IeC {\'\i } trat\IeC {\v e} byla pou\IeC {\v z}ita pouze jedna z fitness funkc\IeC {\'\i }. \cite {EvolTrack} }}{29}{figure.3.10}
+\contentsline {figure}{\numberline {10}{\ignorespaces (a) Z\IeC {\'o}na schopnost\IeC {\'\i }, (b) Interak\IeC {\v c}n\IeC {\'\i } matice pro st\IeC {\'\i }\IeC {\v z}en\IeC {\'\i } hry, (c) Interak\IeC {\v c}n\IeC {\'\i } matice pro zjednodu\IeC {\v s}en\IeC {\'\i } hry \cite {26poststroke} }}{32}{figure.3.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {11}{\ignorespaces (a) Z\IeC {\'o}na schopnost\IeC {\'\i }, (b) Interak\IeC {\v c}n\IeC {\'\i } matice pro st\IeC {\'\i }\IeC {\v z}en\IeC {\'\i } hry, (c) Interak\IeC {\v c}n\IeC {\'\i } matice pro zjednodu\IeC {\v s}en\IeC {\'\i } hry \cite {26poststroke} }}{32}{figure.3.11}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {12}{\ignorespaces Zjednodu\IeC {\v s}en\IeC {\'a} verze Pac-Mana. Obr\IeC {\'a}zek p\IeC {\v r}evzat z \cite {18Pac1}}}{36}{figure.3.12}
+\contentsline {figure}{\numberline {11}{\ignorespaces Zjednodu\IeC {\v s}en\IeC {\'a} verze Pac-Mana. Obr\IeC {\'a}zek p\IeC {\v r}evzat z \cite {18Pac1}}}{37}{figure.3.11}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {13}{\ignorespaces V\IeC {\'y}\IeC {\v r}ez hern\IeC {\'\i }ho stromu hry Tic-Tac-Toe. }}{39}{figure.4.13}
+\contentsline {figure}{\numberline {12}{\ignorespaces V\IeC {\'y}\IeC {\v r}ez hern\IeC {\'\i }ho stromu hry Tic-Tac-Toe. }}{40}{figure.4.12}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {14}{\ignorespaces Sch\IeC {\'e}ma jedn\IeC {\'e} iterace MCTS. }}{41}{figure.4.14}
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {15}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Bludi\IeC {\v s}t\IeC {\v e} s Hill Climber hr\IeC {\'a}\IeC {\v c}em.}}{55}{figure.6.15}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {16}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } bludi\IeC {\v s}\IeC {\v t} vytvo\IeC {\v r}en\IeC {\'y}ch r\IeC {\r u}zn\IeC {\'y}mi DDA algoritmy. Zleva-doprava, shora-dol\IeC {\r u}: \IeC {\v z}\IeC {\'a}dn\IeC {\'y}, E-MaxMax, POSM, DL}}{56}{figure.6.16}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {17}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo se 4 Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50, 100, 100, 100)}}{57}{figure.6.17}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {18}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} M\IeC {\v e}sta s dv\IeC {\v e}ma MiniMax IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{59}{figure.6.18}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {19}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik. }}{60}{figure.6.19}
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {20}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik Zm\IeC {\v e}na veden\IeC {\'\i }, Nap\IeC {\v e}t\IeC {\'\i }, N\IeC {\'a}skok a Pom\IeC {\v e}r v\IeC {\'\i }t\IeC {\v e}z\IeC {\r u}. }}{61}{figure.6.20}
+\contentsline {figure}{\numberline {13}{\ignorespaces Sch\IeC {\'e}ma jedn\IeC {\'e} iterace MCTS. }}{42}{figure.4.13}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {21}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } d\IeC {\'a}vkov\IeC {\'e}ho spou\IeC {\v s}t\IeC {\v e}n\IeC {\'\i } experiment\IeC {\r u}. }}{64}{figure.A.21}
+\contentsline {figure}{\numberline {14}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Bludi\IeC {\v s}t\IeC {\v e} s Hill Climber hr\IeC {\'a}\IeC {\v c}em.}}{56}{figure.6.14}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {22}{\ignorespaces Histogram metriky Nap\IeC {\v e}t\IeC {\'\i } pro hru bludi\IeC {\v s}t\IeC {\v e} a 1000 iterac\IeC {\'\i } experimentu. }}{65}{figure.A.22}
+\contentsline {figure}{\numberline {15}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } bludi\IeC {\v s}\IeC {\v t} vytvo\IeC {\v r}en\IeC {\'y}ch r\IeC {\r u}zn\IeC {\'y}mi DDA algoritmy. Zleva-doprava, shora-dol\IeC {\r u}: \IeC {\v z}\IeC {\'a}dn\IeC {\'y}, E-MaxMax, POSM, DL}}{57}{figure.6.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {23}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } hry Bludi\IeC {\v s}t\IeC {\v e}. Zelen\IeC {\'y} \IeC {\v c}tverec p\IeC {\v r}edstavuje mo\IeC {\v z}nou bombu. }}{66}{figure.A.23}
+\contentsline {figure}{\numberline {16}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo se 4 Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50, 100, 100, 100)}}{58}{figure.6.16}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {24}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } hry Ludo. B\IeC {\'\i }l\IeC {\'y} podklad zna\IeC {\v c}\IeC {\'\i } aktivn\IeC {\'\i } figurky. }}{67}{figure.A.24}
+\contentsline {figure}{\numberline {17}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} M\IeC {\v e}sta s dv\IeC {\v e}ma MiniMax IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{60}{figure.6.17}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {25}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } hry Ztracen\IeC {\'a} m\IeC {\v e}sta. }}{68}{figure.A.25}
+\contentsline {figure}{\numberline {18}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik. }}{61}{figure.6.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {19}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } alg. DDA na z\IeC {\'a}klad\IeC {\v e} v\IeC {\v s}ech experiment\IeC {\r u} a metrik Zm\IeC {\v e}na veden\IeC {\'\i }, Nap\IeC {\v e}t\IeC {\'\i }, N\IeC {\'a}skok a Pom\IeC {\v e}r v\IeC {\'\i }t\IeC {\v e}z\IeC {\r u}. }}{62}{figure.6.19}
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {26}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Hill Climber hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{69}{figure.B.26}
+\addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {27}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{69}{figure.B.27}
+\contentsline {figure}{\numberline {20}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } d\IeC {\'a}vkov\IeC {\'e}ho spou\IeC {\v s}t\IeC {\v e}n\IeC {\'\i } experiment\IeC {\r u}. }}{65}{figure.A.20}
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {28}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} m\IeC {\v e}sta s Hill Climber IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100) }}{70}{figure.B.28}
+\contentsline {figure}{\numberline {21}{\ignorespaces Histogram metriky Nap\IeC {\v e}t\IeC {\'\i } pro hru bludi\IeC {\v s}t\IeC {\v e} a 1000 iterac\IeC {\'\i } experimentu. }}{66}{figure.A.21}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {22}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } hry Bludi\IeC {\v s}t\IeC {\v e}. Zelen\IeC {\'y} \IeC {\v c}tverec p\IeC {\v r}edstavuje mo\IeC {\v z}nou bombu. }}{67}{figure.A.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {23}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } hry Ludo. B\IeC {\'\i }l\IeC {\'y} podklad zna\IeC {\v c}\IeC {\'\i } aktivn\IeC {\'\i } figurky. }}{68}{figure.A.23}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {24}{\ignorespaces U\IeC {\v z}ivatelsk\IeC {\'e} rozhran\IeC {\'\i } hry Ztracen\IeC {\'a} m\IeC {\v e}sta. }}{69}{figure.A.24}
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {25}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Hill Climber hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{70}{figure.B.25}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {26}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ludo s dv\IeC {\v e}ma Max N hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100)}}{70}{figure.B.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {27}{\ignorespaces Srovn\IeC {\'a}n\IeC {\'\i } DDA alg. ve h\IeC {\v r}e Ztracen\IeC {\'a} m\IeC {\v e}sta s Hill Climber IS hr\IeC {\'a}\IeC {\v c}i. (\IeC {\'u}rovn\IeC {\v e} 50 a 100) }}{71}{figure.B.27}

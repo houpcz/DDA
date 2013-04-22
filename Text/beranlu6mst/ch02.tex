@@ -35,7 +35,7 @@ Nás bude více zajímat napojení flow na vývoj počítačových her. Jenova C
 
 Jsou-li splněny všechny tři body, hráč může ztratit pojem o čase a zcela se do hry ponořit.
 
-Stavem flow ve hrách se dále zabýval Lennart Nacket, který ve svém článku\cite{FlowAll} shrnuje spojení flow s počítačovými hrami od různých autorů. Sweetserův a Wyethův herní flow osmi složkami vycházejícími z 9 složek flow od M. Csikszentmihalyi (\cite{OptimalFun}, \cite{FlowEng}, \cite{FlowCZ}).
+Stavem flow ve hrách se dále zabýval Lennart Nacket, který ve svém článku\cite{FlowAll} shrnuje spojení flow s počítačovými hrami od různých autorů. Sweetserův a Wyethův herní flow obsahuje osm složek vycházejících z 9 složek flow od M. Csikszentmihalyi (\cite{OptimalFun}, \cite{FlowEng}, \cite{FlowCZ}).
 
 \begin{enumerate}
   \item Jasné cíle
@@ -87,15 +87,15 @@ Bohužel takový flow diagram nebere v úvahu individualitu hráče. Existují z
 
 \section{Metriky zábavnosti} \label{sec:defzab}
 
-Hlavním cílem počítačových her je pobavení hráče. Může být tedy dobré umět zábavu přímo, či nepřímo změřit. Pro techniku DDA je existence takové metriky zcela zásadní. Bez ní by hra nevěděla, jakým způsobem se má přizpůsobovat hráči a neuměla by ohodnotit, jestli to dělá dobře. 
+Hlavním cílem počítačových her je pobavení hráče. Z tohoto důvodu je žádoucí umět zábavu přímo, či nepřímo změřit. Pro techniku DDA je existence takové metriky zcela zásadní. Bez ní by hra nevěděla, jakým způsobem se má přizpůsobovat hráči a neuměla by ohodnotit, jestli to dělá dobře. 
 
-Metriky můžeme rozdělit do několika kategorií. Některé metriky jsou specifické pro konkrétní hru, jiné jsou obecně použitelné pro většinu existujících her. Dále jsou metriky, jež vycházejí pouze ze stavu hry, softwaru. Protikladem mohou být speciální metriky měřící hodnoty z vnějšího světa. Příkladem může sledování srdečního tepu \cite{7}. Dále lze využít webkameru, senzory na herních i neherních zařízení. Kromě tepu lze využívat např. pevnost stisku joysticku, měnící se odpor kůže, teplotu těla.\cite{16Survey} V této práci se pro naše účely zaměřím na metriky univerzálně použitelné a získané ze stavu hry.
+Metriky můžeme rozdělit do několika kategorií. Některé metriky jsou specifické pro konkrétní hru, jiné jsou obecně použitelné pro většinu existujících her. Dále jsou metriky, jež vycházejí pouze ze stavu hry, softwaru. Protikladem mohou být speciální metriky měřící hodnoty z vnějšího světa. Příkladem může sledování srdečního tepu \cite{7}. Dále lze využít webkameru, senzory na herních i neherních zařízení. Kromě tepu lze využívat např. pevnost stisku joysticku, měnící se odpor kůže, teplotu těla\cite{16Survey}. V této práci se pro naše účely zaměřím na metriky univerzálně použitelné a získané ze stavu hry.
 
 Zábava ve hrách se často zjednodušuje do podoby náročnosti hry vzhledem k dovednostem hráče. Z tohoto důvodu velké množství přístupů pracuje s metrikami, které zábavu měří nepřímo, měří obtížnost hry. Často používanou metrikou je hodnota win-rate, poměr vítězstvích hráče ku jeho prohrám. Hodnota 0,5 značí polovinu výher a polovinu proher. Mnohé přístupy hodnotu 0,5 berou jako ideální. V tomto případě se hra snaží obtížnosti přiblížit co nejpřesněji dovednostem hráče. Jak bylo naznačeno v předchozí sekci, ne každý hráč ocení polovinu proher. Zde je prostor pro kombinaci statické a dynamické obtížnosti. Při statické obtížnosti si hráč vybere jednu z předem daných obtížností, např. začátečník, pokročilý, expert, kterým budou odpovídat hodnoty win-rate 25, 50, 75 %.
 
 Další metriky využívají heuristiku, která numericky ohodnotí stav hry pro každého hráče. Numerickou hodnotu nazveme ziskem. Velikost zisku nepřímo vyjadřuje pravděpodobnost výhry hráče. Samotná heuristika je herně specifická, ale prakticky u každé hry lze nějakou vymyslet, a proto jsou metriky, které ji využívají, obecně použitelné. 
 
-Na základě této heuristiky definujeme status funkci dle pojmů z algoritmu Dynamická úroveň a rozšíříme jí ze dvouhráčových her na jednohráčové a vícehráčové hry. U jednohráčové hry se status hráče přímo rovná jeho zisku. V ostatních případech najdeme hráče s největším ziskem. Status tohoto hráče se rovná rozdílu jeho zisku a zisku druhého hráče v pořadí. Pro ostatní hráče se status spočítá jako jejich zisk mínus zisk hráče s největším ziskem. U her s dvěma hráči bude zisk jednoho hráče číslo opačné k zisku druhého hráče.
+Na základě této heuristiky definujeme status funkci dle algoritmu Dynamická úroveň\cite{24DynLev} a rozšíříme jí ze dvouhráčových her na jednohráčové a vícehráčové hry. U jednohráčové hry se status hráče přímo rovná jeho zisku. V ostatních případech najdeme hráče s největším ziskem. Status tohoto hráče se rovná rozdílu jeho zisku a zisku druhého hráče v pořadí. Pro ostatní hráče se status spočítá jako jejich zisk mínus zisk hráče s největším ziskem. U her s dvěma hráči bude status jednoho hráče číslo opačné ke statusu druhého hráče.
 
 Je-li status kladný, hráč má větší šanci na výhru. V případě záporného statusu je větší pravděpodobnost hráčovy prohry. U dvou a vícehráčových her má vždy jeden hráč status kladný, ostatní mají status záporný.
 
@@ -105,9 +105,9 @@ V článku \cite{24DynLev} na základě zmíněné heuristiky přicházejí k t�
 
 Metriky doplníme o dalších pět nových. Počet výměn hráčů ve vedení nemusí být dostatečný. Mohlo by se stát, že každý z hráčů by byl během hry 2 krát ve vedení, ale jeden z nich by byl ve vedení 90\% času a zbylí hráči zbývajících 10\%. Z tohoto důvodu zavedeme metriku s jednoslovným názvem vedení. Další metrikou je svoboda. Hráč může ztratit zájem o hru, jestliže nemá možnosti volby a existuje-li jenom malé množství možných tahů.
 
-Poslední 3 metriky jsou spjaty s mým DDA přístupem popsaným ve 4. kapitole a jsou použitelné pouze u her, které jsou nedeterministické nebo které nejsou s úplnou informací. V případě neúplné informace potřebujeme, aby hra obsahovala informace, které nejsou známy ani jednomu z hráčů. Příkladem můžou být zakryté karty v balíčku, ale ne karty v soupeřově ruce. My se v rámci našeho přístupu budeme snažit náhodné jevy a neznámou informaci v rámci pravidel hry ovlivňovat, a proto se vyskytla potřeba dalších tří metrik.
+Poslední 3 metriky jsou spjaty s mým DDA přístupem popsaným dále ve 4. kapitole a jsou použitelné pouze u her, které jsou nedeterministické nebo které nejsou s úplnou informací. V případě neúplné informace potřebujeme, aby hra obsahovala informace, které nejsou známy ani jednomu z hráčů. Příkladem můžou být zakryté karty v balíčku, ale ne karty v soupeřově ruce. My se v rámci našeho přístupu budeme snažit náhodné jevy a neznámou informaci v rámci pravidel hry ovlivňovat, a proto se vyskytla potřeba dalších tří metrik.
 
-Nové metriky spravedlnost a náhodnost porovnávají statusy hráčů před a po odkrytí skryté informace alespoň jednomu z hráčů (např. líznutí karty), nebo před a po projevu náhodného jevu. (např. hod kostkou) Poslední metrikou je uvěřitelnost. Hra by nebyla uvěřitelná, jestliže by jednomu hráči padlo pětkrát za sebou 6, nebo pokud by si vytáhl všechny karty stejné barvy. 
+Nové metriky spravedlnost a náhodnost porovnávají statusy hráčů před a po odkrytí skryté informace alespoň jednomu z hráčů (např. líznutí karty), nebo před a po projevu náhodného jevu (např. hod kostkou). Poslední metrikou je uvěřitelnost. Hra by nebyla uvěřitelná, jestliže by jednomu hráči padlo pětkrát za sebou 6, nebo pokud by si vytáhl všechny karty stejné barvy. 
 
 Ve zbytku sekce popíši výpočet všech nastíněných metrik.
 
@@ -144,7 +144,7 @@ Stejně jako u náskoku můžeme absolutní hodnotu vynechat u vícehráčových
 
 \subsection{Vedení}
 
-Hra nebývá příliš zábavná, jestliže po většinu času je stejný ve vedení. Hra je pro všechny hráče více zábavná, jestliže se každý hráč držel přibližně stejnou dobu na prvním místě.
+Hra nebývá příliš zábavná, jestliže po většinu času je stejný hráč ve vedení. Hra je pro všechny hráče více zábavná, jestliže se každý hráč držel přibližně stejnou dobu na prvním místě.
 
 Metrika vedení bude udávat směrodatnou odchylku časů ve vedení jednotlivých hráčů.
 
@@ -158,7 +158,7 @@ Výpočet metriky vedení :
 	vedeni(a) = \sqrt{\frac{1}{|P|}\sum_{p \in P} |\mu_v - dobaVedeni(p)|^2}
 \]
 
-Tato metrika nemá žádný význam u jednohráčových her, jelikož vzhledem k jejímu výpočtu bude rovna vždy nule.
+U her s jedním hráčem považujeme za dobu ve vedení počet kol, kdy hráč má kladný status. Metrika vedení se zde spočte jako směrodatná odchylka počtu kol s kladným a záporným statusem.
 
 Opět platí, že čím menší hodnota vedení, tím považujeme hru za zábavnější.
 
@@ -196,15 +196,17 @@ Spravedlivější hry budeme považovat za zábavnější. Znovu platí, že č�
 
 \subsection{Uvěřitelnost}
 
-Metrika uvěřitelnosti bude patřit mezi ty nejdůležitější. Dle flow musí mít hráči pocit kontroly. Jakmile získají podezření, že hra se nechová dle jejich očekávání, pocit flow se vytratí. Uvěřitelnost je silně závislá na typu hry. U každé hry je neuvěřitelné něco jiného. Můžeme ale nalézt společný základní kámen pro metriku uvěřitelnosti, definujeme si uvěřitelnost pole četností.
+Metrika uvěřitelnosti bude patřit mezi ty nejdůležitější. Dle flow musí mít hráči pocit kontroly. Jakmile získají podezření, že hra se nechová dle jejich očekávání, pocit flow se vytratí. Uvěřitelnost je silně závislá na typu hry. U každé hry je neuvěřitelné něco jiného. 
 
 Ve hře obsahující hrací šestihranné kostky každý předpokládá, že s největší pravděpodobností každému z hráčů padne během hry každé číslo od 1 do 6 přibližně ve stejném počtu. U karetních her hráč předpokládá, že od každé barvy dostane během hry stejné množství karet. V případě, že bude dostávat pouze samé srdcové karty, přestane věřit, že hra se chová náhodně, a to i v případě, že se takto náhodný jev stal.
+
+Přestože rozdílně vnímáme uvěřitelnost různých her, můžeme nalézt společný základní kámen pro metriku uvěřitelnosti. Definujeme si pojem uvěřitelnost pole četností.
 
 Během hry si budeme zaznamenávat četnosti výsledků náhodných jevů. Hra bude nejvíce uvěřitelná, jestliže si budou četnosti všech jevů odpovídat. Základem uvěřitelnosti pole četností bude rozptyl četností jednoho náhodného jevu $var_1$.
 
 Rozptyl četností hodnot je zřídka roven nule, a to i když je jev zcela náhodný. Po třech hodech kostkou nikdy nebude rozptyl roven nule. Od $var_1$ odečteme minimální hodnotu rozptylu $var_{min}$ pro daný součet všech četností jednotlivých jevů.
 
-Nejen hry s nulovým rozdílem $var_1 - var_{min}$ jsou uvěřitelné. Z tohoto důvodu si definujeme hodnotu prahu T, při které je hra ještě stále zcela uvěřitelná. Velikost prahu je závislá na konkrétní hře a je potřeba ji určit heuristicky.
+Nejen hry s nulovým rozdílem $var_1 - var_{min}$ jsou uvěřitelné. Z tohoto důvodu si definujeme hodnotu prahu T, při které je hra ještě stále zcela uvěřitelná. Velikost prahu je závislá na konkrétní hře. Můžeme ji určit heuristicky.
 
 Výsledný vzorec pro uvěřitelnost pole četností :
 

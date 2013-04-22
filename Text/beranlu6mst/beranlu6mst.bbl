@@ -600,6 +600,25 @@
       \endverb
       \keyw{dynamic difficulty balancing, game playing agents}
     \endentry
+    \entry{hlsdk}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=ea020c258596cf259856ffe352c6ef2a}{Champandard}{C\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=ea020c258596cf259856ffe352c6ef2a}{Champandard}{C\bibinitperiod}{A.}{A\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{ea020c258596cf259856ffe352c6ef2a}
+      \strng{fullhash}{ea020c258596cf259856ffe352c6ef2a}
+      \field{sortinit}{0}
+      \field{labeltitle}{{The AI from Half-Life’s SDK in Retrospective}}
+      \field{title}{{The AI from Half-Life’s SDK in Retrospective}}
+      \field{urlday}{22}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://aigamedev.com/open/article/halflife-sdk/
+      \endverb
+    \endentry
     \entry{21cbr}{article}{}
       \name{labelname}{3}{}{%
         {{hash=ff8007d7fc80e4e4916113b6dfece0da}{Bakkes}{B\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
@@ -618,6 +637,25 @@
       \field{journaltitle}{ICCBR}
       \field{title}{A CBR-Inspired Approach to Rapid and Reliable Adaption of Video Game AI}
       \field{year}{2011}
+    \endentry
+    \entry{kmeans}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=fbca15e814dfe895cc0c4a1b281957f3}{Matteucci}{M\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=fbca15e814dfe895cc0c4a1b281957f3}{Matteucci}{M\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{fbca15e814dfe895cc0c4a1b281957f3}
+      \strng{fullhash}{fbca15e814dfe895cc0c4a1b281957f3}
+      \field{sortinit}{0}
+      \field{labeltitle}{{K-Means Clustering}}
+      \field{title}{{K-Means Clustering}}
+      \field{urlday}{22}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://home.deib.polimi.it/matteucc/Clustering/tutorial_html/kmeans.html
+      \endverb
     \endentry
     \entry{25deadend}{inproceedings}{}
       \name{labelname}{2}{}{%

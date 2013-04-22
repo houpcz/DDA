@@ -12,13 +12,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=app01.tex
+Document=ch03.tex
 
 [Frame0_View0,0]
-TopLine=0
-Cursor=620
+TopLine=591
+Cursor=43549
 
 [Frame1]
 Flags=0
@@ -30,13 +30,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=ch03.tex
+Document=beranlu6mst.tex
 
 [Frame1_View0,0]
-TopLine=436
-Cursor=29009
+TopLine=3
+Cursor=635
 
 [Frame2]
 Flags=0
@@ -48,13 +48,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=ch01.tex
+Document=ch05.tex
 
 [Frame2_View0,0]
-TopLine=259
-Cursor=19335
+TopLine=22
+Cursor=2184
 
 [Frame3]
 Flags=0
@@ -66,13 +66,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=ch05.tex
+Document=ch02.tex
 
 [Frame3_View0,0]
-TopLine=38
-Cursor=2184
+TopLine=268
+Cursor=18786
 
 [Frame4]
 Flags=0
@@ -84,13 +84,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=app02.tex
+Document=ch06.tex
 
 [Frame4_View0,0]
-TopLine=0
-Cursor=223
+TopLine=71
+Cursor=6414
 
 [Frame5]
 Flags=0
@@ -102,7 +102,7 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
 Document=ch07.tex
 
@@ -120,13 +120,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=abbreviations.tex
+Document=abstract.tex
 
 [Frame6_View0,0]
 TopLine=0
-Cursor=126
+Cursor=1233
 
 [Frame7]
 Flags=0
@@ -138,13 +138,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=declaration.tex
+Document=ch04.tex
 
 [Frame7_View0,0]
-TopLine=0
-Cursor=586
+TopLine=110
+Cursor=16488
 
 [Frame8]
 Flags=0
@@ -156,13 +156,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
-Class=LaTeXView
-Document=acknowledgement.tex
+NormalPos.bottom=300
+Class=BibTeXView
+Document=beranlu6mst.bib
 
 [Frame8_View0,0]
-TopLine=0
-Cursor=274
+TopLine=4
+Cursor=690
 
 [Frame9]
 Flags=0
@@ -174,13 +174,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=beranlu6mst.tex
+Document=abbreviations.tex
 
 [Frame9_View0,0]
-TopLine=16
-Cursor=1382
+TopLine=0
+Cursor=27
 
 [Frame10]
 Flags=0
@@ -192,13 +192,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=abstract.tex
+Document=ch01.tex
 
 [Frame10_View0,0]
-TopLine=0
-Cursor=1233
+TopLine=285
+Cursor=25813
 
 [Frame11]
 Flags=0
@@ -210,13 +210,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
-Class=BibTeXView
-Document=beranlu6mst.bib
+NormalPos.bottom=300
+Class=LaTeXView
+Document=declaration.tex
 
 [Frame11_View0,0]
-TopLine=508
-Cursor=14467
+TopLine=0
+Cursor=320
 
 [Frame12]
 Flags=0
@@ -228,13 +228,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=ch02.tex
+Document=app01.tex
 
 [Frame12_View0,0]
-TopLine=291
-Cursor=20580
+TopLine=52
+Cursor=4112
 
 [Frame13]
 Flags=0
@@ -246,13 +246,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=ch06.tex
+Document=app02.tex
 
 [Frame13_View0,0]
-TopLine=185
-Cursor=6414
+TopLine=0
+Cursor=223
 
 [Frame14]
 Flags=0
@@ -264,13 +264,13 @@ MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=32
 NormalPos.right=1562
-NormalPos.bottom=561
+NormalPos.bottom=300
 Class=LaTeXView
-Document=ch04.tex
+Document=acknowledgement.tex
 
 [Frame14_View0,0]
-TopLine=211
-Cursor=16488
+TopLine=0
+Cursor=274
 
 [SessionInfo]
 FrameCount=15

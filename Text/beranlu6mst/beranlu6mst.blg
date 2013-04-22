@@ -1,30 +1,30 @@
 [0] Config.pm:361> INFO - This is Biber 1.5
-[1] Config.pm:364> INFO - Logfile is 'beranlu6mst.blg'
-[125] biber-MSWIN:190> INFO - === %a %b %e, %Y, %H:%M:%S
-[143] Biber.pm:327> INFO - Reading 'beranlu6mst.bcf'
-[249] Biber.pm:619> INFO - Found 38 citekeys in bib section 0
-[276] Biber.pm:2976> INFO - Processing section 0
-[298] Biber.pm:3086> INFO - Looking for bibtex format file 'beranlu6mst.bib' for section 0
-[304] bibtex.pm:889> INFO - Decoding LaTeX character macros into UTF-8
-[319] bibtex.pm:764> INFO - Found BibTeX data source 'beranlu6mst.bib'
-[415] Utils.pm:167> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[415] Utils.pm:167> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
-[417] Utils.pm:167> WARN - I didn't find a database entry for 'Neni' (section 0)
-[432] Utils.pm:167> WARN - I didn't find a database entry for crossref 'DBLP:conf/nips/2011' in entry '22posm1' - ignoring (section 0)
-[451] Utils.pm:167> WARN - The field 'issn' in entry '17Evol' cannot be null, deleting it
-[451] Utils.pm:167> WARN - The field 'number' in entry '17Evol' cannot be null, deleting it
-[451] Utils.pm:167> WARN - The field 'volume' in entry '17Evol' cannot be null, deleting it
-[465] Utils.pm:167> WARN - The field 'issn' in entry '23posm2' cannot be null, deleting it
-[465] Utils.pm:167> WARN - The field 'number' in entry '23posm2' cannot be null, deleting it
-[466] Utils.pm:167> WARN - The field 'volume' in entry '23posm2' cannot be null, deleting it
-[466] Utils.pm:167> WARN - The field 'issn' in entry '18Pac1' cannot be null, deleting it
-[466] Utils.pm:167> WARN - The field 'number' in entry '18Pac1' cannot be null, deleting it
-[467] Utils.pm:167> WARN - The field 'issn' in entry '19Pac2' cannot be null, deleting it
-[467] Utils.pm:167> WARN - The field 'number' in entry '19Pac2' cannot be null, deleting it
-[468] Utils.pm:167> WARN - The field 'volume' in entry '19Pac2' cannot be null, deleting it
-[656] Biber.pm:2860> INFO - Overriding locale 'English_United States.1252' default tailoring 'variable = shifted' with 'variable = non-ignorable'
-[656] Biber.pm:2866> INFO - Sorting 'entry' list 'none' keys
-[656] Biber.pm:2870> INFO - No sort tailoring available for locale 'English_United States.1252'
-[989] bbl.pm:462> INFO - Writing 'beranlu6mst.bbl' with encoding 'UTF-8'
-[992] bbl.pm:535> INFO - Output to beranlu6mst.bbl
-[992] Biber.pm:107> INFO - WARNINGS: 15
+[0] Config.pm:364> INFO - Logfile is 'beranlu6mst.blg'
+[86] biber-MSWIN:190> INFO - === %a %b %e, %Y, %H:%M:%S
+[87] Biber.pm:327> INFO - Reading 'beranlu6mst.bcf'
+[179] Biber.pm:619> INFO - Found 40 citekeys in bib section 0
+[203] Biber.pm:2976> INFO - Processing section 0
+[232] Biber.pm:3086> INFO - Looking for bibtex format file 'beranlu6mst.bib' for section 0
+[237] bibtex.pm:889> INFO - Decoding LaTeX character macros into UTF-8
+[251] bibtex.pm:764> INFO - Found BibTeX data source 'beranlu6mst.bib'
+[319] Utils.pm:167> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[319] Utils.pm:167> WARN - BibTeX subsystem: author, warning: comma(s) at end of name (removing)
+[320] Utils.pm:167> WARN - I didn't find a database entry for 'Neni' (section 0)
+[329] Utils.pm:167> WARN - I didn't find a database entry for crossref 'DBLP:conf/nips/2011' in entry '22posm1' - ignoring (section 0)
+[346] Utils.pm:167> WARN - The field 'issn' in entry '17Evol' cannot be null, deleting it
+[346] Utils.pm:167> WARN - The field 'number' in entry '17Evol' cannot be null, deleting it
+[347] Utils.pm:167> WARN - The field 'volume' in entry '17Evol' cannot be null, deleting it
+[354] Utils.pm:167> WARN - The field 'issn' in entry '23posm2' cannot be null, deleting it
+[355] Utils.pm:167> WARN - The field 'number' in entry '23posm2' cannot be null, deleting it
+[355] Utils.pm:167> WARN - The field 'volume' in entry '23posm2' cannot be null, deleting it
+[355] Utils.pm:167> WARN - The field 'issn' in entry '18Pac1' cannot be null, deleting it
+[356] Utils.pm:167> WARN - The field 'number' in entry '18Pac1' cannot be null, deleting it
+[356] Utils.pm:167> WARN - The field 'issn' in entry '19Pac2' cannot be null, deleting it
+[357] Utils.pm:167> WARN - The field 'number' in entry '19Pac2' cannot be null, deleting it
+[357] Utils.pm:167> WARN - The field 'volume' in entry '19Pac2' cannot be null, deleting it
+[514] Biber.pm:2860> INFO - Overriding locale 'English_United States.1252' default tailoring 'variable = shifted' with 'variable = non-ignorable'
+[514] Biber.pm:2866> INFO - Sorting 'entry' list 'none' keys
+[514] Biber.pm:2870> INFO - No sort tailoring available for locale 'English_United States.1252'
+[791] bbl.pm:462> INFO - Writing 'beranlu6mst.bbl' with encoding 'UTF-8'
+[793] bbl.pm:535> INFO - Output to beranlu6mst.bbl
+[794] Biber.pm:107> INFO - WARNINGS: 15
