@@ -102,6 +102,37 @@
       \verb http://boardgamegeek.com/boardgame/2651/power-grid
       \endverb
     \endentry
+    \entry{BoardGames}{inproceedings}{}
+      \name{labelname}{5}{}{%
+        {{hash=b9f4e07b4c689f2999006ada8a516445}{Kraaijenbrink}{K\bibinitperiod}{Eva}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=79159f9c01751beae51ab294a2fe10a3}{Gils}{G\bibinitperiod}{Frank}{F\bibinitperiod}{}{}{}{}}%
+        {{hash=67624e4788e38c082180a60f5f482571}{Cheng}{C\bibinitperiod}{Quan}{Q\bibinitperiod}{}{}{}{}}%
+        {{hash=cd7b13af3db77a38ea78bba755d4ab50}{Herk}{H\bibinitperiod}{Robert}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=a1f8abe67cf7730c9da8899e1ac48e83}{Hoven}{H\bibinitperiod}{Elise}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{5}{}{%
+        {{hash=b9f4e07b4c689f2999006ada8a516445}{Kraaijenbrink}{K\bibinitperiod}{Eva}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=79159f9c01751beae51ab294a2fe10a3}{Gils}{G\bibinitperiod}{Frank}{F\bibinitperiod}{}{}{}{}}%
+        {{hash=67624e4788e38c082180a60f5f482571}{Cheng}{C\bibinitperiod}{Quan}{Q\bibinitperiod}{}{}{}{}}%
+        {{hash=cd7b13af3db77a38ea78bba755d4ab50}{Herk}{H\bibinitperiod}{Robert}{R\bibinitperiod}{}{}{}{}}%
+        {{hash=a1f8abe67cf7730c9da8899e1ac48e83}{Hoven}{H\bibinitperiod}{Elise}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Uppsala, Sweden}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{2f0d64ef493b6acbf23c5fee2aff1188}
+      \strng{fullhash}{9360203c67201b0899112d1365b2f524}
+      \field{sortinit}{0}
+      \field{labeltitle}{Balancing Skills to Optimize Fun in Interactive Board Games}
+      \field{booktitle}{Proceedings of the 12th IFIP TC 13 International Conference on Human-Computer Interaction: Part I}
+      \field{series}{INTERACT '09}
+      \field{title}{Balancing Skills to Optimize Fun in Interactive Board Games}
+      \field{year}{2009}
+      \field{pages}{301\bibrangedash 313}
+    \endentry
     \entry{fallout}{online}{}
       \name{labelname}{1}{}{%
         {{hash=3af73cab64aabd2a6a8f4e5d72b5f1a0}{LLC}{L\bibinitperiod}{Bethesda\bibnamedelima Softworks}{B\bibinitperiod\bibinitdelim S\bibinitperiod}{}{}{}{}}%
@@ -493,6 +524,24 @@
       \verb http://flowsport.webnode.cz/
       \endverb
     \endentry
+    \entry{stesti}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=6b19ccd2e7b0dc522a2a2be891c23f33}{Csikszentmihalyi}{C\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=6b19ccd2e7b0dc522a2a2be891c23f33}{Csikszentmihalyi}{C\bibinitperiod}{M.}{M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Lidové noviny}%
+      }
+      \strng{namehash}{6b19ccd2e7b0dc522a2a2be891c23f33}
+      \strng{fullhash}{6b19ccd2e7b0dc522a2a2be891c23f33}
+      \field{sortinit}{0}
+      \field{labeltitle}{O štěstí a smyslu života: Můžeme ovládat své prožitky a ovlivňovat jejich kvalitu?}
+      \field{series}{Psychologie P}
+      \field{title}{O štěstí a smyslu života: Můžeme ovládat své prožitky a ovlivňovat jejich kvalitu?}
+      \field{year}{1996}
+    \endentry
     \entry{OptimalFun}{book}{}
       \name{labelname}{1}{}{%
         {{hash=4102f9749c0a86a4a970e9b54bfb1b29}{Csikszentmihalyi}{C\bibinitperiod}{Mihaly}{M\bibinitperiod}{}{}{}{}}%
@@ -829,6 +878,141 @@
       \verb 10.1109/ICECC.2011.6066649
       \endverb
     \endentry
+    \entry{Shoham:2008:MSA:1483085}{book}{}
+      \name{labelname}{2}{}{%
+        {{hash=774e2e16526f33f383bed004b13bf326}{Shoham}{S\bibinitperiod}{Yoav}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=91d47c0d6ebf96d50082140932162381}{Leyton-Brown}{L\bibinithyphendelim B\bibinitperiod}{Kevin}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{2}{}{%
+        {{hash=774e2e16526f33f383bed004b13bf326}{Shoham}{S\bibinitperiod}{Yoav}{Y\bibinitperiod}{}{}{}{}}%
+        {{hash=91d47c0d6ebf96d50082140932162381}{Leyton-Brown}{L\bibinithyphendelim B\bibinitperiod}{Kevin}{K\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{a8425ae9eea5ffe62c10cc31270be58e}
+      \strng{fullhash}{a8425ae9eea5ffe62c10cc31270be58e}
+      \field{sortinit}{0}
+      \field{labeltitle}{Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations}
+      \field{isbn}{0521899435}
+      \field{title}{Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations}
+      \field{year}{2008}
+    \endentry
+    \entry{tictactoe}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=fe8bf5d29e05cdb201428c2388a7ad13}{College}{C\bibinitperiod}{Westminster}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=fe8bf5d29e05cdb201428c2388a7ad13}{College}{C\bibinitperiod}{Westminster}{W\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{fe8bf5d29e05cdb201428c2388a7ad13}
+      \strng{fullhash}{fe8bf5d29e05cdb201428c2388a7ad13}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Adversarial Search}}
+      \field{title}{{Adversarial Search}}
+      \field{urlday}{27}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.people.westminstercollege.edu/faculty/ggagne/fall2012/301/chapters/chapter5/index.html
+      \endverb
+    \endentry
+    \entry{minimax}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=73f3556e06c8adeb70c63f43d416aeb3}{University}{U\bibinitperiod}{Cornell}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=73f3556e06c8adeb70c63f43d416aeb3}{University}{U\bibinitperiod}{Cornell}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{73f3556e06c8adeb70c63f43d416aeb3}
+      \strng{fullhash}{73f3556e06c8adeb70c63f43d416aeb3}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Minimax search and Alpha-Beta Pruning}}
+      \field{title}{{Minimax search and Alpha-Beta Pruning}}
+      \field{urlday}{25}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.cs.cornell.edu/courses/cs312/2002sp/lectures/rec21.htm
+      \endverb
+    \endentry
+    \entry{montecarlo}{article}{}
+      \name{labelname}{10}{}{%
+        {{hash=54ee6e8df1d6383636cf7fd5d72edcde}{Browne}{B\bibinitperiod}{C.B.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=01d6691162b351a4964f8d69054e838f}{Powley}{P\bibinitperiod}{E.}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=e4495a90822fa516e46d942863a8829c}{Whitehouse}{W\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=e8346e90c4fce883fab08717e2ce1ab2}{Lucas}{L\bibinitperiod}{S.M.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=8900e9ad06730df0bf306284624cd673}{Cowling}{C\bibinitperiod}{P.I.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=6fe968f3e4822f1d640dc0b870e42941}{Rohlfshagen}{R\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=12401064590e804d277e700df95db639}{Tavener}{T\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=74dbbc640c52ea3a60a28cda007ac0bf}{Perez}{P\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=1444cd78203981d65ce1a6e49836bc4e}{Samothrakis}{S\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=873ca96a8779e71c31184cbfe793d6b6}{Colton}{C\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{10}{}{%
+        {{hash=54ee6e8df1d6383636cf7fd5d72edcde}{Browne}{B\bibinitperiod}{C.B.}{C\bibinitperiod}{}{}{}{}}%
+        {{hash=01d6691162b351a4964f8d69054e838f}{Powley}{P\bibinitperiod}{E.}{E\bibinitperiod}{}{}{}{}}%
+        {{hash=e4495a90822fa516e46d942863a8829c}{Whitehouse}{W\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=e8346e90c4fce883fab08717e2ce1ab2}{Lucas}{L\bibinitperiod}{S.M.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=8900e9ad06730df0bf306284624cd673}{Cowling}{C\bibinitperiod}{P.I.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=6fe968f3e4822f1d640dc0b870e42941}{Rohlfshagen}{R\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
+        {{hash=12401064590e804d277e700df95db639}{Tavener}{T\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=74dbbc640c52ea3a60a28cda007ac0bf}{Perez}{P\bibinitperiod}{D.}{D\bibinitperiod}{}{}{}{}}%
+        {{hash=1444cd78203981d65ce1a6e49836bc4e}{Samothrakis}{S\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+        {{hash=873ca96a8779e71c31184cbfe793d6b6}{Colton}{C\bibinitperiod}{S.}{S\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{6b3dd8e5382265896fb1528ed33a974c}
+      \strng{fullhash}{7605619ad3f278b3f86b2bf0aa7907d0}
+      \field{sortinit}{0}
+      \field{labeltitle}{A Survey of Monte Carlo Tree Search Methods}
+      \field{journaltitle}{Computational Intelligence and AI in Games, IEEE Transactions on}
+      \field{number}{1}
+      \field{title}{A Survey of Monte Carlo Tree Search Methods}
+      \field{volume}{4}
+      \field{year}{2012}
+      \field{pages}{1\bibrangedash 43}
+    \endentry
+    \entry{maxn}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=33d312490c279f5313d4d93871fd6cfb}{Wilson}{W\bibinitperiod}{B.}{B\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=33d312490c279f5313d4d93871fd6cfb}{Wilson}{W\bibinitperiod}{B.}{B\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{33d312490c279f5313d4d93871fd6cfb}
+      \strng{fullhash}{33d312490c279f5313d4d93871fd6cfb}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Search Algorithms for Multi-player Games}}
+      \field{title}{{Search Algorithms for Multi-player Games}}
+      \field{urlday}{25}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.cs.umd.edu/~bswilson/presentation.pdf
+      \endverb
+    \endentry
+    \entry{ztracmesta}{online}{}
+      \name{labelname}{1}{}{%
+        {{hash=b33685866c2d06414ae13351df69b90e}{Albi}{A\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=b33685866c2d06414ae13351df69b90e}{Albi}{A\bibinitperiod}{}{}{}{}{}{}}%
+      }
+      \strng{namehash}{b33685866c2d06414ae13351df69b90e}
+      \strng{fullhash}{b33685866c2d06414ae13351df69b90e}
+      \field{sortinit}{0}
+      \field{labeltitle}{{Ztracená města - pravidla}}
+      \field{title}{{Ztracená města - pravidla}}
+      \field{urlday}{27}
+      \field{urlmonth}{04}
+      \field{urlyear}{2013}
+      \verb{url}
+      \verb http://www.modernihry.cz/files/Ztracena_mesta.pdf
+      \endverb
+    \endentry
     \entry{ch5LT}{online}{}
       \name{labelname}{1}{}{%
         {{hash=e9bf66c9b1385ae3ea9c7e21d4c84a43}{Vasconcelos}{V\bibinitperiod}{P.}{P\bibinitperiod}{}{}{}{}}%
@@ -849,7 +1033,6 @@
       \endverb
     \endentry
   \endsortlist
-  \missing{Neni}
 \endrefsection
 \endinput
 

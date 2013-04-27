@@ -2,6 +2,10 @@
 
 \section{Aplikace}
 
+Aplikace byla naprogramována v jazyce C++ a používá knihovnu funkcí Qt. Na CD je přiložen projekt pro Visual Studio 2010 se všemi zdrojovými kódy. Dále je k dispozici zkompilovaná verze programu s potřebnými dynamickými knihovnami.
+
+Pro spuštění zkompilované verze je potřeba pouze počítač s operačním systémem Windows. Aplikace se neinstaluje, stačí spuštění .exe souboru.
+
 Ovládání aplikace by mělo být intuitivní. V hlavním menu jsou volby Nová hra, Změnit hru, Nastavení a Dávkové spouštění. Nová hra restartuje hru s novým nastavením. Ve změnit hru lze vybrat jednu ze tří implementovaných her a v Nastavení ji nakonfigurovat.
 
 Menu Dávkové spouštění slouží k provádění experimentů. Zpět z Dávkového spouštění se uživatel dostane vybráním Nová hra z hlavní nabídky.
@@ -40,7 +44,7 @@ V této části stručně popíši uživatelské rozhraní jednotlivých her. Ne
 
 Nastavení her je stejné pro dávkové spouštění i při hraní člověk proti počítači. V levé polovině uživatel může nastavit algoritmy pro jednotlivé hráče a případně jejich úroveň, pokud to daný algoritmus umožňuje. Pod nastavením hráčů jsou speciální nastavení pro jednotlivé hry popsány níže.
 
-V pravé části nastavení se volí hráč prostředí a koeficienty pro jednotlivé metriky. Nastavení se stane platné až po uložení tlačítkem Uložit.
+V pravé části nastavení se volí hráč prostředí a koeficienty pro jednotlivé metriky. Nastavení se stane platné až po uložení tlačítkem Uložit a po spuštění nové hry.
 
 \subsection{Bludiště}
 
@@ -92,7 +96,7 @@ Při druhém kliknutí hráč vybírá, co s kartou udělá. Může jí buď zah
 
 Nakonec třetím kliknutím hráč vybere, odkud dobere kartu. Jedna z možností je dobrat z dobíracího balíčku, který je znázorněn šedivě v pravém dolním rohu. Je na něm číslo udávající počet zbývajících karet v balíčku. V případě, že jsou na stole odložené karty, může hráč kliknout na jednu z nich a vzít si ji do ruky.
 
-Hráčovi se vždy zvýrazňují oblasti ve hře, které jsou zrovna aktivní a hráč na ně může kliknout.
+Uživateli se vždy zvýrazňují oblasti ve hře, které jsou zrovna aktivní a hráč na ně může kliknout.
 
 \emph{Speciální nastavení} : Lze nastavit počet karet v ruce. Oficiální pravidla hry umožňují variantu 8 a 5 karet v ruce.
 
