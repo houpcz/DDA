@@ -4,7 +4,7 @@ V této kapitole navrhnu vlastní inovativní přístup k dynamicky vyvažované
 
 \section{Teorie her}
 
-S teorií her se lze setkat především v ekonomické oblasti. Pro tuto sekci jsem vybral pouze témata z teorie her, jež budou využity. Nejdříve neformálně zadefinuji různé druhy her, hry v extenzivní formě a zero-sum hry. Následně nastíním algoritmy Minimax a Monte Carlo prohledávání stromu, které se používají pro hráče her v extenzivní formě. Vhodným rozšiřujícím zdrojem pro tuto problematiku je např. kniha Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations\cite{Shoham:2008:MSA:1483085}.
+S teorií her se lze setkat především v ekonomické oblasti. Pro tuto sekci jsem vybral pouze témata z teorie her, jež budou využity. Nejdříve neformálně nadefinuji různé druhy her, hry v extenzivní formě a zero-sum hry. Následně nastíním algoritmy Minimax a Monte Carlo prohledávání stromu, které se používají pro hráče her v extenzivní formě. Vhodným rozšiřujícím zdrojem pro tuto problematiku je např. kniha Multiagent Systems: Algorithmic, Game-Theoretic, and Logical Foundations\cite{Shoham:2008:MSA:1483085}.
 
 \subsection{Základní definice}
 
@@ -32,14 +32,14 @@ Nedeterministické  & Člověče, nezlob se & Prší \\ \hline
 
 \subsubsection{Extenzivní forma hry}
 
-Hry v teorii her můžou být znázorněny ve dvou základních formách - normální a extenzivní forma. Hry v normální formě jsou používány pro hry, kde se hráči rozhodují současně. My budeme potřebovat formu vhodnou pro hry, kde se hráči ve svých rozhodnutích střídají a kde se rozhodují na základě dřívějších rozhodnutích. Průběh takové hry můžeme znázornit pomocí grafu. Tento graf se nazývá herním stromem. Graf je orientovaný s jedním kořenem a je bez cyklů. Uzly stromu představují možné stavy hry. Stav hry mimo jiné obsahuje informaci o hráči, který je na řadě. Hrany vedoucí z uzlu odpovídají všem možným tahům hráče, který je v daném stavu na řadě. Kořen představuje počáteční stav hry a listy stavy koncové. Všechny listy mají přiřazenou utilitu/zisk pro každého hráče. Jednoduchá utility funkce přiřadí hodnotu +1 výherci a -1 všem ostatním hráčům, v případě remízy přiřadí 0 všem hráčům.
+Hry v teorii her můžou být znázorněny ve dvou základních formách - normální a extenzivní forma. Hry v normální formě jsou používány pro hry, kde se hráči rozhodují současně. My budeme potřebovat formu vhodnou pro hry, kde se hráči ve svých rozhodnutích střídají a kde se rozhodují na základě dřívějších rozhodnutí. Průběh takové hry můžeme znázornit pomocí grafu. Tento graf se nazývá herním stromem. Graf je orientovaný s jedním kořenem a je bez cyklů. Uzly stromu představují možné stavy hry. Stav hry mimo jiné obsahuje informaci o hráči, který je na řadě. Hrany vedoucí z uzlu odpovídají všem možným tahům hráče, který je v daném stavu na řadě. Kořen představuje počáteční stav hry a listy stavy koncové. Všechny listy mají přiřazenou utilitu/zisk pro každého hráče. Jednoduchá utility funkce přiřadí hodnotu +1 výherci a -1 všem ostatním hráčům, v případě remízy přiřadí 0 všem hráčům.
 
 Příklad herního stromu varianty piškvorek 3x3 Tic-Tac-Toe jen na obr. \ref{fig-ttt-minimax}. V této hře se hráči pravidelně střídají, a proto uzly ve stejné hloubce odpovídají tahům stejného hráče. Aktuální hráč je v obrázku znázorněn vlevo. Ve spodní části jsou ukázány listy s utilitou pro hráče hrajícího křížky.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.75\textwidth]{ttt-minimax}
-	\caption{ Výřez herního stromu hry Tic-Tac-Toe\cite{tictactoe}. }
+	\caption{ Výřez herního stromu hry Tic-Tac-Toe \cite{tictactoe}. }
 	\label{fig-ttt-minimax}
 \end{figure}
 
@@ -47,7 +47,7 @@ U nedeterministických her existují vnitřní uzly dvou typů. První odpovíd�
 
 U her s neúplnou informací hráči přesně nevědí, v jakém konkrétním uzlu herního stromu se nacházejí. Z jejich pohledu může být více uzlů představovat aktuální stav hry. Tato množina navzájem od sebe nerozlišitelných uzlů se nazývá \emph{informační množinou}. Přestože hráč přesně neví, v kterém uzlu v rámci informačního stromu se nachází, může přiřazovat různé pravděpodobnosti jednotlivým stavům na základě předchozích tahů soupeřů.
 
-Herní strom můžeme upravit pro hry s neúplnou informací. Uzel takového stromu nemusí představovat pouze jeden stav hry, ale celou množinu stavů, odpovídající informační množinu.
+Herní strom můžeme upravit pro hry s neúplnou informací. Uzel takového stromu nemusí představovat pouze jeden stav hry, ale celou množinu stavů, odpovídající informační množině.
 
 \subsubsection{Zero-sum hry}
 
@@ -107,13 +107,13 @@ Volba počtu iterací je na programátorovi. Čím více iterací zvolí, tím l
 
 V této sekci popíši vlastní přístup k dynamickému vyvažování obtížnosti. Zmíním jeho omezení a naopak výhody oproti ostatním existujícím metodám. V podsekcích se zmíním o 4 různých algoritmech založených na společném principu - využití hráče prostředí.
 
-Hráč prostředí(HP) je imaginárním hráčem vloženým do hry, který ovlivňuje náhodné jevy a neznámou informaci ve hře. Oproti běžným hráčům má zcela jiný cíl. Snaží se hru udělat více zábavnou. Ve druhé kapitole jsem uvedl několik metrik, které lze použít při měření zábavnosti hry. HP se těmito metrikami řídí a snaží se maximalizovat jejich váženou sumu. Suma je vážená koeficienty, které jsou specifické pro každou hru. Pomocí koeficientů lze upravit zaměření zábavnosti jen na některé její složky. Dále v textu hráč popisuje běžného hráče a HP hráče prostředí.
+Hráč prostředí (HP) je imaginárním hráčem vloženým do hry, který ovlivňuje náhodné jevy a neznámou informaci ve hře. Oproti běžným hráčům má zcela jiný cíl. Snaží se hru udělat více zábavnou. Ve druhé kapitole jsem uvedl několik metrik, které lze použít při měření zábavnosti hry. HP se těmito metrikami řídí a snaží se maximalizovat jejich váženou sumu. Suma je vážená koeficienty, které jsou specifické pro každou hru. Pomocí koeficientů lze upravit zaměření zábavnosti jen na některé její složky. Dále v textu hráč popisuje běžného hráče a HP hráče prostředí.
 
 HP nerozlišuje hráče ovládané člověkem, nebo počítačem. Jedním z jeho úkolů je pomáhat slabším hráčům a přitom nerozlišuje, jestli pomáhá počítači, nebo člověku.
 
 V nedeterministických hrách HP provádí tahy, které by v klasickém přístupu prováděl náhodný generátor čísel. V herním stromu nahrazuje uzly náhody (chance node). 
 
-U her s neúplnou informací je situace odlišná. V takových hrách můžeme měnit pouze informace, které jsou skryté všem hráčům. V opačném případě by se mohlo stát, že by HP měnil hru před očima některého z hráčů. Při klasickém přístupu hráči pracují s informačními množinami(IM) stavů, ale samotná hra pracuje s jedním konkrétním stavem, ve kterém se hráči nacházejí. V našem přístupu bude s IM stavů pracovat i hra. IM pro hru bude obsahovat pouze stavy, které jsou průnikem stavů ze všech IM jednotlivých hráčů. Stavy z průniku představují informaci, která je neznámá všem hráčům. 
+U her s neúplnou informací je situace odlišná. V takových hrách můžeme měnit pouze informace, které jsou skryté všem hráčům. V opačném případě by se mohlo stát, že by HP měnil hru před očima některého z hráčů. Při klasickém přístupu hráči pracují s informačními množinami (IM) stavů, ale samotná hra pracuje s jedním konkrétním stavem, ve kterém se hráči nacházejí. V našem přístupu bude s IM stavů pracovat i hra. IM pro hru bude obsahovat pouze stavy, které jsou průnikem stavů ze všech IM jednotlivých hráčů. Stavy z průniku představují informaci, která je neznámá všem hráčům. 
 
 V případě, že ve hře nastane událost, která má zmenšit IM jednoho z hráčů, dostane se ke slovu HP. V dané chvíli odkrývaná informace neexistuje, HP ji musí vytvořit provedením tahu. Po provedení tahu se zároveň zmenší IM hry. Ve chvíli, kdy v IM hry zůstane pouze jediný stav, HP již nemůže do hry nijak zasahovat.
 
@@ -125,7 +125,7 @@ V našem přístupu bychom před začátkem hry nepřiřadili konkrétní hodnot
 
 Z popisu hráče prostředí vyplývá hlavní omezení jeho využití - hráč prostředí může být využit pouze ve hrách s neúplnou informací nebo s náhodou. Tento přístup nelze využít u her jako jsou šachy nebo dáma.
 
-Naopak má velkou výhodu oproti většině přístupů popsaných v předcházejících kapitole, které často byly založeny na ovlivňování oponentů ve hře. HP může být použit i u her pro jednoho hráče, kde žádný NPC není. HP lze také použít u vícehráčových her, kde jsou všichni hráči zastoupeni lidmi. V takovém případě také nelze použít DDA založené na adaptivitě NPC.
+Naopak má velkou výhodu oproti většině přístupů popsaných v předcházejících kapitole, které často byly založeny na ovlivňování oponentů ve hře. HP může být použit i u her pro jednoho hráče, kde žádný NPC není. HP lze také použít u vícehráčových her, kde jsou všichni hráči zastoupeni lidmi. V takovém případě také nelze použít DDA založené na adaptabilitě NPC.
 
 \subsection{E-HillClimber}
 

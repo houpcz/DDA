@@ -7,7 +7,8 @@ U každého přístupu popíši, co bylo jeho úkolem, jakým způsobem ho řeš
 \section{Producent – konzument}
 
 V mnohých hrách můžeme pozorovat vztah producent – konzument mezi světem a hráčem. Jestliže hráč získá ze světa moc prostředků, hra přestává být výzvou a naopak. Má-li hráč málo prostředku (např. munice, zdraví), může být frustrován kvůli vysoké obtížnosti.
-Robin Hunicke popsala systém The Hamlet\cite{20Hun} integrovaný do Half-Life SDK\cite{hlsdk}, který vyvažuje obtížnost hry právě pomocí výměny zdrojů mezi světem a hráčem. Half-Life patří mezi klasické zástupce first-person shooter (FPS, „střílečky“).
+
+Robin Hunicke popsala systém The Hamlet\cite{20Hun} integrovaný do Half-Life SDK\cite{hlsdk}, který vyvažuje obtížnost hry právě pomocí výměny zdrojů mezi světem a hráčem. Half-Life patří mezi klasické zástupce first-person shooter (FPS).
 
 \subsection{Použitá metrika}
 
@@ -39,7 +40,7 @@ Během souboje se zaznamenává poškození d, které každý z protivníků ud�
 
 \subsection{Vyvažující strategie}
 
-Systém Hamlet mění obtížnost na základě poptávky a nabídky. Na straně nabídky může systém zasáhnout umisťováním předmětů v herním prostředí (lékárničky, munice, zbraně). Dále může přizpůsobovat účinnost a přesnost hráčových zbraních, projev brnění apod.
+Systém Hamlet mění obtížnost na základě poptávky a nabídky. Na straně nabídky může systém zasáhnout umisťováním předmětů v herním prostředí (lékárničky, munice, zbraně). Dále může přizpůsobovat účinnost a přesnost hráčových zbraní, projev brnění apod.
 
 Na straně poptávky manipuluje s nepřáteli (změnou jejich třídy, množství, počtu jejich životů, určením místa jejich objevení se na mapě). Stejně jako u hráče lze přizpůsobit sílu a přesnost jejich zbraní.
 
@@ -51,25 +52,25 @@ Cílem této politiky je udržet zdraví hráče na střední hodnotě 60 se sta
 
 DDA systém byl ověřen při experimentu, kterého se účastnilo 20 osob různé úrovně. Každá osoba absolvovala dvě hry v délce alespoň 15 minut. V jedné hře bylo zapnuté dynamické vyvažování obtížnosti, v druhé nikoli.
 
-Zaznamenával se počet smrtí během prvních 15 minut hry. Nakonec každý z účastníku odpověděl, která z her ho bavila více.
+Zaznamenával se počet smrtí během prvních 15 minut hry. Nakonec každý z účastníků odpověděl, která z her ho bavila více.
 
 Střední hodnota a směrodatná odchylka počtu smrtí u vyvažované hry byly rovny 4,0 a 3,0, u nevyvažované 6,4 a 2,1.
 
-U začátečníků se neprojevila souvislost mezi použitím/nepoužítím DDA a pocitem zábavy, pokročilí hráči více upřednostňovali použití DDA.
+U začátečníků se neprojevila souvislost mezi použitím/nepoužitím DDA a pocitem zábavy, pokročilí hráči více upřednostňovali použití DDA.
 
 \section{Case-base reasoning} \label{sec:CBR}
 
-Další možností pro implementaci DDA je Case-base reasoning(CBR). CBR metoda používá databázi stavů s ohodnocením jednotlivých hráčů v daném stavu a se strategiemi, které hráči v tu chvíli používali. Při rozhodování hráč vždy nahlédne do databáze, vybere několik stavů podobných současnému stavu a vybere z nich ten nejvhodnější. Pokud se snažíme o co nejlepšího hráče, vybere se z podobných stavů stav, kde dosahuje hráč nejlepšího výsledku. Při aplikaci DDA bude nejvhodnějším stavem stav, kdy jsou síly vyrovnané.
+Další možností pro implementaci DDA je Case-base reasoning (CBR). CBR metoda používá databázi stavů s ohodnocením jednotlivých hráčů v daném stavu a se strategiemi, které hráči v tu chvíli používali. Při rozhodování hráč vždy nahlédne do databáze, vybere několik stavů podobných současnému stavu a vybere z nich ten nejvhodnější. Pokud se snažíme o co nejlepšího hráče, vybere se z podobných stavů stav, kde dosahuje hráč nejlepšího výsledku. Při aplikaci DDA bude nejvhodnějším stavem stav, kdy jsou síly vyrovnané.
 
 Tento přístup byl využit u strategické hry Spring\cite{21cbr}. Proces celé adaptivní AI znázorňuje diagram na obr. \ref{fig:ch3cbrspring}.
-Začne se sběrem dat (game observation). Proběhne simulace stovek her s různými hráči a vždy se v průběhu hry v určitých intervalech zaznamená zjednodušený popis stavu hry, použité strategie všech hráčů. 
+Začne se sběrem dat (game observation). Proběhne simulace stovek her s různými hráči a vždy se v průběhu hry v určitých intervalech zaznamená zjednodušený popis stavu hry a použité strategie všech hráčů. 
 
 Následuje offline zpracování (A. Offline processing), které může být časově náročné. Jednotlivé stavy se ohodnotí číslem (Game indexing). Dle předem známé heuristiky se určí, který z hráčů vede a „o kolik“. Kvůli velké paměťové náročnosti a posléze náročnosti vyhledávání v databázi se data komprimují pomocí shlukování (Clustering of observations). Situace hry navzájem si podobné se nahradí situací jednou.
  
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{ch3cbrspring}
-	\caption{Proces adaptivní AI založené na CBR \cite{21cbr}}
+	\caption{Proces adaptivní AI založené na CBR \cite{21cbr}.}
 	\label{fig:ch3cbrspring}
 \end{figure}
 
@@ -77,15 +78,15 @@ Při inicializaci (B. Initialisation) se nastaví první strategie AI, která se
 
 \subsection{Sběr a úprava dat}
 
-Při sběru dat pro adaptivní AI ve hře Spring získali 448 567 pozorování z celkem 975 her na třech různých herních mapách. Výsledná data zabírala 1192 MB nekomprimovaně. Spouštěli se vždy hry s dvěma protihráči. Pokaždé inicializováni různými strategiemi. V tomto kontextu se strategií míní vektor celkem 27 parametrů představující důraz na různé strategické chování na vysoké úrovni. Např. parametr aircraft\_rate ovlivňuje, jak moc často by měl hráč vytvářet vzdušné jednotky. Jakým způsobem se toho dosáhne už nesouvisí s těmito parametry. Dále je nutné popsat a uložit popis dané situace, jež se později použije pro vyhledávání podobných pozorování. Pozorování je popsáno 6 parametry. Fáze hry, síla materiálu, bezpečí velitele, ovládané území, ekonomická síla a počet vojenských jednotek.
+Při sběru dat pro adaptivní AI ve hře Spring získali 448 567 pozorování z celkem 975 her na třech různých herních mapách. Výsledná data zabírala 1192 MB. Spouštěly se vždy hry s dvěma protihráči. Pokaždé inicializováni různými strategiemi. V tomto kontextu se strategií míní vektor celkem 27 parametrů představující důraz na různé strategické chování na vysoké úrovni. Např. parametr aircraft\_rate ovlivňuje, jak moc často by měl hráč vytvářet vzdušné jednotky. Jakým způsobem se toho dosáhne už nesouvisí s těmito parametry. Dále je nutné popsat a uložit popis dané situace, jež se později použije pro vyhledávání podobných pozorování. Pozorování je popsáno 6 parametry. Fáze hry, síla materiálu, bezpečí velitele, ovládané území, ekonomická síla a počet vojenských jednotek.
 
 \subsection{Ohodnocení her}
 
-Každé z pozorováních se ohodnotí pomocí fitness funkce. Získané číslo určuje, kdo v dané chvíli vítězí. Fitness hodnota blížící se nule značí vyrovnané síly obou soupeřů. Vypočítá se např. z fáze hry, množství surovin a jednotek jednotlivých hráčů.
+Každé z pozorování se ohodnotí pomocí fitness funkce. Získané číslo určuje, kdo v dané chvíli vítězí. Fitness hodnota blížící se nule značí vyrovnané síly obou soupeřů. Vypočítá se např. z fáze hry, množství surovin a jednotek jednotlivých hráčů.
 
 \subsection{Shlukování pozorování}
 
-Shlukování je velice časově náročné, a proto se provádí offline. Cílem je nahradit více pozorováních jedním reprezentantem, který může být jedním pozorováním z původních dat, nebo pozorování vzniklé zprůměrováním podobných dat. Záleží na zvoleném algoritmu. Zde postačil dobře známý a jednoduchý algoritmus k-means\cite{kmeans}.
+Shlukování je velice časově náročné, a proto se provádí offline. Cílem je nahradit více pozorování jedním reprezentantem, který může být jedním pozorováním z původních dat, nebo pozorování vzniklé zprůměrováním podobných dat. Záleží na zvoleném algoritmu. Zde postačil dobře známý a jednoduchý algoritmus k-means\cite{kmeans}.
 
 \subsection{Inicializace hry}
 
@@ -95,7 +96,7 @@ V této fázi procesu se určí první strategie dynamické AI. Nejdříve se ur
 
 V průběhu hry se čas od času spustí adaptace herní strategie dle aktuálního stavu hry. Tato adaptace se skládá ze dvou částí, z porovnávání stavů a výběru strategie.
 
-Podobnost dvou pozorování je rovna váženě sumě podobnosti šestice parametrů v jednotlivých pozorováních.
+Podobnost dvou pozorování je rovna váženě sumě podobnosti šestice parametrů v jednotlivých pozorování.
 
 \begin{equation}
 	   podobnost(poz1,poz2)=((1+f)*(0,5*u)) + mp + sc + cp + ep
@@ -110,7 +111,7 @@ cp &= &rozdilObsazenychPozic(poz1,poz2) \\
 ep &= &rozdilEkonomickeSily(poz1,poz2)
 \end{eqnarray*}
 
-Samotná selekce nejvhodnější strategie se skládá ze tří kroků. Nejdříve se z databáze shluků vybere N nejbližších sousedů k aktuálnímu stavu hry dle výše uvedeného vzorce. Posléze se vybere menší podmnožina M stavů na základě herního indexu(fitness) dle zvoleného kritéria.
+Samotná selekce nejvhodnější strategie se skládá ze tří kroků. Nejdříve se z databáze shluků vybere N nejbližších sousedů k aktuálnímu stavu hry dle výše uvedeného vzorce. Posléze se vybere menší podmnožina M stavů na základě herního indexu (fitness) dle zvoleného kritéria.
 
 Zde se může projevit kombinace statické volby obtížnosti s dynamickou. Hráč si může před začátkem hry zvolit jednu z pevně daných obtížností, např. lehká, normální, těžká. Vybere-li si běžnou obtížnost, bude algoritmus vybírat M stavů, jež mají fitness nejblíže k 0, která značí vyrovnané šance obou hráčů na výhru. Naopak hraje-li těžkou hru, algoritmus může vybírat pozorování s fitness odpovídající větší šanci na výhru soupeře.
 
@@ -118,9 +119,9 @@ Zbývá vybrat jedinou novou cílovou strategii. Z M stavů se vybere takový st
 
 \subsection{Provedené experimenty}
 
-Autoři článku provedli dva typy experimentů. V prvním se adaptivní hráč snažil chovat co nejlépe, jeho cílem bylo porazit nepřítele. V druhém případě měl adaptivní hráč za úkol udržovat co nejdéle vyrovnaný stav hry. Oponentem adaptivnímu hráči byl v jednom případě umělý hráč z originální hry(AAI) a v druhém případě hráč s náhodně nagenerovanou strategií. Pro srovnání pustili stejné experimenty s adaptivním hráčem, který měl vypnutou adaptivitu, jeho strategie se v průběhu hry neměnila.
+Autoři článku provedli dva typy experimentů. V prvním se adaptivní hráč snažil chovat co nejlépe, jeho cílem bylo porazit nepřítele. V druhém případě měl adaptivní hráč za úkol udržovat co nejdéle vyrovnaný stav hry. Oponentem adaptivnímu hráči byl v jednom případě umělý hráč z originální hry (AAI) a v druhém případě hráč s náhodně vygenerovanou strategií. Pro srovnání pustili stejné experimenty s adaptivním hráčem, který měl vypnutou adaptabilitu, jeho strategie se v průběhu hry neměnila.
 
-Proti AAI hráč vyhrál ve 39\% her, když neměl zapnutou adaptivitu, a ve 77\% se zapnutou adaptivitou. Proti náhodnému soupeři vyhrál bez adaptivity v 47\% případů, s adaptivitou v 64\% her.
+Proti AAI hráč vyhrál ve 39\% her, když neměl zapnutou adaptabilitu, a v 77\% se zapnutou adaptabilitou. Proti náhodnému soupeři vyhrál bez adaptability v 47\% případů, s adaptabilitou v 64\% her.
 
 Při druhém experimentu adaptivní hráč udržoval vyrovnaný stav hry průměrně 37 minut proti AAI a 36 minut proti náhodnému protihráči. Bez DDA byl vyrovnaný stav 27 a 28 minut proti AAI a náhodnému hráči.
 
@@ -130,29 +131,29 @@ Výsledky obou experimentů byly pozitivní. DDA v tomto případě mělo smysl.
 
 Tento princip využívá fuzzy logiku. Fuzzy logika se od klasické logiky liší především funkcí příslušnosti. U ostrých množin prvek buď do množiny patří, nebo nepatří. Ve fuzzy logice lze popsat situace, kdy prvek do množiny patří pouze z části.
 
-Mějme rozhodovací pravidlo ve strategické hře : Pokud je blízko soupeřova armáda a je velká, začni rekrutovat hodně vojáků. Pojmy blízko, velká, hodně jsou neurčité. Bez fuzzy logiky bychom pravidlo mohli zapsat ve tvaru Pokud je soupeřova armáda vzdálená do 100m a má sílu větší než 1000 jednotek, začni rekrutovat 100 vojáků. Nedostatkem tohoto ostrého pravidla je, že pokud bude armáda mít sílu 999 jednotek, pravidlo se neaplikuje. Tento nedostatek lze eliminovat pomocí fuzzy pravidel. Fuzzy pravidla nemají ostré hranice, kdy se aplikují a kdy naopak ne. V případě, že se některé podmínky nesplní jen těsně, pravidlo se stále provede, ale s menším efektem. V daném příkladu by to mohlo znamenat pouze vytvoření menšího počtu vojáků.
+Mějme rozhodovací pravidlo ve strategické hře: Pokud je blízko soupeřova armáda a je velká, začni rekrutovat hodně vojáků. Pojmy blízko, velká, hodně jsou neurčité. Bez fuzzy logiky bychom pravidlo mohli zapsat ve tvaru: Pokud je soupeřova armáda vzdálená do 100m a má sílu větší než 1000 jednotek, začni rekrutovat 100 vojáků. Nedostatkem tohoto ostrého pravidla je, že pokud bude armáda mít sílu 999 jednotek, pravidlo se neaplikuje. Tento nedostatek lze eliminovat pomocí fuzzy pravidel. Fuzzy pravidla nemají ostré hranice, kdy se aplikují a kdy naopak ne. V případě, že se některé podmínky nesplní jen těsně, pravidlo se stále provede, ale s menším efektem. V daném příkladu by to mohlo znamenat pouze vytvoření menšího počtu vojáků.
 
 Základní myšlenka DDA založené na fuzzy pravidlech je jednoduchá. Mějme databázi fuzzy pravidel, kde každé z fuzzy pravidel může být aktivní, nebo vypnuté. Jestliže se hra jeví příliš těžká, vybere se některé z pravidel, a to se vypne. Naopak v případě, kdy se hra jeví příliš jednoduchá, jedno pravidlo se znovu aktivuje. Tímto způsobem se dynamicky upravuje umělá inteligence hráčů.
 
 \subsection{Dead-end}
 
-Autoři přístupu zvolili pro jeho testování jednoduchou hru Dead-end\cite{25deadend}. Hráč je obklopen třemi stěnami a na čtvrté straně je východ. Jeho cílem uniknout tímto východem. Jeho snažení brání nepřátelské figury, které se naopak snaží hráče chytnout. Hráč má několik životů. Jestliže dojde ke kolizi hráče s nepřátelským duchem, jeden život ztratí. Ztratí-li všechny životy, hráč prohrává. Ve hře je navíc nastaven časový limit. Vyprší-li tento limit, hráč také prohrává. Naopak dostane-li se ven s alespoň jedním životem, vyhrává. Všechny postavičky se mohou pohybovat osmi směry.
+Autoři přístupu zvolili pro jeho testování jednoduchou hru Dead-end\cite{25deadend}. Hráč je obklopen třemi stěnami a na čtvrté straně je východ. Jeho cílem je uniknout tímto východem. Jeho snažení brání nepřátelské figury, které se naopak snaží hráče chytnout. Hráč má několik životů. Jestliže dojde ke kolizi hráče s nepřátelským duchem, jeden život ztratí. Ztratí-li všechny životy, hráč prohrává. Ve hře je navíc nastaven časový limit. Vyprší-li tento limit, hráč také prohrává. Naopak dostane-li se ven s alespoň jedním životem, vyhrává. Všechny postavičky se mohou pohybovat osmi směry.
 
 Duchy lze rozdělit do dvou rolí. Duch nejníže vzhledem k souřadnici y tvoří předvoj a jistým způsobem ovládá ostatní duchy, obránce.
 
 \begin{figure}
   \centering
   \includegraphics{ch3deadend}
-	\caption{Screenshot ze hry Dead-End\cite{25deadend}. }
+	\caption{Snímek obrazovky ze hry Dead-End \cite{25deadend}.}
 	\label{ch3deadend}
 \end{figure}
 
 \subsection{Fuzzy pravidla}
 
-Duši se rozhodují na základě 5 vstupních fuzzy proměnných, jedné ostré proměnné a pěti výstupních proměnných.
-Vstupními proměnnými pro pravidla předvoje jsou vzdálenost k hráči, vzdálenost k východu na ose y,  vzdálenost k hráči na ose x a binární proměnná, jestli duch už prošel kolem předvoje. Výstupními proměnnými jsou proměnné pro akce, které může duch provést – chytej hráče, nebo ustupuj od hráče.
+Duchové se rozhodují na základě 5 vstupních fuzzy proměnných, jedné ostré proměnné a pěti výstupních proměnných.
+Vstupními proměnnými pro pravidla předvoje jsou vzdálenost k hráči, vzdálenost k východu na ose y,  vzdálenost k hráči na ose x a binární proměnná, jestli hráč už prošel kolem předvoje. Výstupními proměnnými jsou proměnné pro akce, které může duch provést – chytej hráče, nebo ustupuj od hráče.
 
-Vstupní fuzzy proměnné pro obránce jsou vzdálenost k hráči, vzdálenost k předvoji, vzdálenost k nejbližšími jinému obránci na ose x a stejná binární proměnná značící, jestli byl už duch obejit.
+Vstupní fuzzy proměnné pro obránce jsou vzdálenost k hráči, vzdálenost k předvoji, vzdálenost k nejbližšímu jinému obránci na ose x a stejná binární proměnná značící, jestli byl už duch obejit hráčem.
 
 Možné akce obránců jsou – chytej hráče, přibliž se k předvoji, oddal se od předvoje, oddal se od nejbližšího jiného obránce.
 Příklad fuzzy pravidla pro předvoj z kompletní tabulky 40 pravidel z \cite{25deadend} :
@@ -161,11 +162,11 @@ Pokud je hráč blízko předvoje a je blízko východu a hráč ještě neproš
 \begin{figure}
   \centering
   \includegraphics[width=0.75\textwidth]{ch3fuzzytable}
-	\caption{Část fuzzy pravidel pro předvoj\cite{25deadend}. }
+	\caption{Část fuzzy pravidel pro předvoj \cite{25deadend}. }
 	\label{fig-ch3fuzzytable}
 \end{figure}
 
-Uvedené příklady fuzzy proměnných a pravidel by měli pro základní představu postačovat. Kompletní seznam fuzzy pravidel a detailnější popis jednotlivých proměnných včetně grafů funkce příslušnosti lze najít v již zmiňovaném zdroji \cite{25deadend}.
+Uvedené příklady fuzzy proměnných a pravidel by měly pro základní představu postačovat. Kompletní seznam fuzzy pravidel a detailnější popis jednotlivých proměnných včetně grafů funkce příslušnosti lze najít v již zmiňovaném zdroji \cite{25deadend}.
 
 \subsection{Adaptivní změna počtu pravidel}
 
@@ -179,16 +180,16 @@ Pokud má dojít k deaktivaci pravidla, deaktivuje se pravidlo, které bylo vyu�
 
 Reaktivace pravidla je o něco složitější proces. Nejdříve se všechna pravidla rozdělí do skupin dle jejich konsekventů. Příspěvek celé skupiny pravidel je roven sumě příspěvků jednotlivých pravidel ve skupině. 
 
-Poté se spočte suma vstupních příslušností hodnot pro každé z pravidel deaktivovaných dříve. Nakonec se zaktivuje pravidlo s největší sumou vstupních příslušností. Jestliže existují dvě pravidla se stejnou hodnotou sumy, zvolí se pravidlo jehož skupina má nejnižší příspěvek.
+Poté se spočte suma vstupních příslušností hodnot pro každé z pravidel deaktivovaných dříve. Nakonec se zaktivuje pravidlo s největší sumou vstupních příslušností. Jestliže existují dvě pravidla se stejnou hodnotou sumy, zvolí se pravidlo, jehož skupina má nejnižší příspěvek.
 
 \subsection{Výsledky}
 
-Na závěr připojuji jeden z grafů ukazující adaptivnost AI k třem různým hráčům s požadovanou hodnotou win-rate 75\%, obr. \ref{fig-ch3fuzzywinrate}. Ke srovnání na cílovou hodnotu došlo kolem 25. hry. Znamená to, že stačilo přibližně 25 her k upravení množiny pravidel, aby hráč vyhrával v 75\% případů, což byla cílová hodnota win-rate.
+Na závěr připojuji jeden z grafů ukazující adaptabilitu AI k třem různým hráčům s požadovanou hodnotou win-rate 75\%, obr. \ref{fig-ch3fuzzywinrate}. Ke srovnání na cílovou hodnotu došlo kolem 25. hry. Znamená to, že stačilo přibližně 25 her k upravení množiny pravidel, aby hráč vyhrával v 75\% případů.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.75\textwidth]{ch3fuzzywinrate}
-	\caption{Přibližování se k požadovanému win-rate 75\% během 100 kol proti třem různým hráčům\cite{25deadend}. }
+	\caption{Přibližování se k požadovanému win-rate 75\% během 100 kol proti třem různým hráčům \cite{25deadend}. }
 	\label{fig-ch3fuzzywinrate}
 \end{figure}
 
@@ -207,7 +208,7 @@ V práci \cite{17Evol} byl evoluční algoritmus použit pro generování logick
 
 Testovacími hrami byly dva typy bludišť. V obou hrách byl stejný cíl, nalézt cestu mezi dvěma body. Obě bludiště dále sdílely hrací plán složený ze čtverců a nepřímo znázorněné překážky. Obtížnost hry je dána minimálním počtem kroků nutných k průchodu bludiště. 
 
-Neplatí zde zcela přímá úměra. Obecně neplatí, že čím větší minimální počet kroků k dosažení cíle, tím je hra těžší. V případě, že bychom minimální počet kroků zcela maximalizovali, získáme bludiště, kde na začátku každý z tahů vede blíže k výhře. 
+Neplatí zde zcela přímá úměra. Obecně neplatí, že čím větší minimální počet kroků k dosažení cíle, tím je hra těžší. V případě, že bychom minimální počet kroků zcela maximalizovali, získáme bludiště, kde na začátku každý z tahů vede blíže k cíli. 
 
 Tuto hypotézu podporují informace získané při automatickém průchodu bludišť nutného pro ohodnocení obtížnosti hry. Algoritmus řešící bludiště se střední hodnotou minimálního počtu kroků pro daný typ bludiště běžel kratší dobu než pro bludiště s hodnotami blízkými minimu a maximu minimálnímu počtu kroků.
 
@@ -217,7 +218,7 @@ V první hře hráč pohybuje šachovou figurkou dle jejích platných tahů. D�
   \centering
   \includegraphics[width=0.3\textwidth]{ch3evolchess}
 	\includegraphics[width=0.3\textwidth]{ch3evolchess2}
-	\caption{Příklad jednoho vygenerovaného bludiště se 6 jezdci a hráčem ovládajího věž. Vstup do bludiště je označen E, výstup X. Vlevo z pohledu hráče, vpravo znázorněné ohrožované pozice\cite{17Evol}. }
+	\caption{Příklad jednoho vygenerovaného bludiště se 6 jezdci a hráčem ovládajícího věž. Vstup do bludiště je označen E, výstup X. Vlevo z pohledu hráče, vpravo znázorněné ohrožované pozice \cite{17Evol}. }
 	\label{fig-ch3evolchess}
 \end{figure}
 
@@ -235,7 +236,7 @@ V proběhnutých experimentech algoritmus dokázal vyvinout bludiště s předem
 
 \subsection{Generování tratě}
 
-Cílem práce \cite{EvolTrack} bylo procedurální generování co nejzábavnějších tratí pro závodní hry. Autoři článku za základě vlastních zkušeností a zkušeností dotazovaných hráčů definovali, jaká by měla být závodní hra, aby byla zábavná:
+Cílem práce \cite{EvolTrack} bylo procedurální generování co nejzábavnějších tratí pro závodní hry. Autoři článku na základě vlastních zkušeností a zkušeností dotazovaných hráčů definovali, jaká by měla být závodní hra, aby byla zábavná:
 
 \begin{itemize}
 	\item Hráči rádi jezdí co největší rychlostí. Trať by měla umožňovat dosažení maximální rychlosti aut.
@@ -249,19 +250,19 @@ Pro zjednodušení se generovaná trať skládala s předem daného počtu stejn
 \begin{figure}
   \centering
   \includegraphics[width=0.75\textwidth]{ch3evoltrack}
-	\caption{Příklad tří vygenerovaných tratí. První generována pro špatného hráče, druhá a třetí pro dobrého. Při generaci třetí tratě byla použita pouze jedna z fitness funkcí\cite{EvolTrack}. }
+	\caption{Příklad tří vygenerovaných tratí. První generována pro špatného hráče, druhá a třetí pro dobrého. Při generaci třetí tratě byla použita pouze jedna z fitness funkcí \cite{EvolTrack}. }
 	\label{fig-ch3evoltrack}
 \end{figure}
 
-Metodou selekce byl kaskádový elitismus. Nejdříve se nagenerovalo 100 jedinců. Dle první fitness funkce se vybralo 50 nejlepších jedinců, kteří postoupili do druhého kola. V druhém kole se použila jiná, druhá fitness funkce, která vyřadila dalších 20 nejhorších jedinců. Ze zbylých 30 skončilo 15 nejlepších dle poslední třetí fitness funkce. První fitness funkci minimalizovala rozdíl cílené(předem dané parametrem) a skutečné hodnotě průměrné rychlosti na trati. Druhá fitness funkce maximalizovala maximální dosaženou rychlost na trati. Cílem bylo, aby trať obsahovala alespoň nějakou posloupnost rovných úseků. Poslední fitness funkce se zaměřila na měření množství výzev na trati. Vycházela z variance rychlosti na trati a počtu ujetých kol za danou dobu. 
+Metodou selekce byl kaskádový elitismus. Nejdříve se vygenerovalo 100 jedinců. Dle první fitness funkce se vybralo 50 nejlepších jedinců, kteří postoupili do druhého kola. V druhém kole se použila jiná, druhá fitness funkce, která vyřadila dalších 20 nejhorších jedinců. Ze zbylých 30 skončilo 15 nejlepších dle poslední třetí fitness funkce. První fitness funkci minimalizovala rozdíl cílené (předem dané parametrem) a skutečné hodnotě průměrné rychlosti na trati. Druhá fitness funkce maximalizovala maximální dosaženou rychlost na trati. Cílem bylo, aby trať obsahovala alespoň nějakou posloupnost rovných úseků. Poslední fitness funkce se zaměřila na měření množství výzev na trati. Vycházela z variance rychlosti na trati a počtu ujetých kol za danou dobu. 
 
-Každá z vygenerovaných tratí byla vyzkoušena virtuálním hráčem nahrazující lidského hráče založeného na neuronových sítí. Vstupem do sítě byla aktuální rychlost, směr k dalšími checkpointu a 6 senzorů sledujících překážky.
+Každá z vygenerovaných tratí byla vyzkoušena virtuálním hráčem nahrazující lidského hráče založeného na neuronových sítích. Vstupem do sítě byla aktuální rychlost, směr k dalšími záchytnému bodu a 6 senzorů sledujících překážky.
 
-Během experimentů byly mimo jiné vytvořeny tři tratě zobrazené na obr. \ref{fig-ch3evoltrack}. Dle nastaveného parametru měla být první trať jednoduché, další dvě složitější. Závěrem lze říci, že se povedlo vygenerovat tratě s cílenou obtížností, kde první je bez ostrých zatáček, ale naopak v dalších dvou se ostré zatáčky objevují.
+Během experimentů byly mimo jiné vytvořeny tři tratě zobrazené na obr. \ref{fig-ch3evoltrack}. Dle nastaveného parametru měla být první trať jednoduchá, další dvě složitější. Závěrem lze říci, že se povedlo vygenerovat tratě s cílenou obtížností, kde první je bez ostrých zatáček, ale naopak v dalších dvou se ostré zatáčky objevují.
 
 \subsection{Mravenčí feromony} \label{sec:ants}
 
-Optimalizace pomocí simulace umělých mravenčích kolonií patří mezi známé přístupy inspirované přírodou. Princip optimalizace mravenčími koloniemi je následující :
+Optimalizace pomocí simulace umělých mravenčích kolonií patří mezi známé přístupy inspirované přírodou. Princip optimalizace mravenčími koloniemi je následující:
 
 \begin{enumerate}
 	\item Daný problém se vhodně modeluje jako graf skládající se z uzlů a hran mezi nimi.
@@ -271,7 +272,7 @@ Optimalizace pomocí simulace umělých mravenčích kolonií patří mezi znám
 	\item Optimalizace končí, jestliže se ustálí cesty v grafu. 
 \end{enumerate}
 
-Tímto algoritmem se inspirovali vývojáři jedné ze serious games určené pro rehabilitaci částečně ochrnutých končetin lidí, jež utrpěli mozkovou mrtvici\cite{26poststroke}.
+Tímto algoritmem se inspirovali vývojáři jedné z vážných her určené pro rehabilitaci částečně ochrnutých končetin lidí, jež utrpěli mozkovou mrtvici\cite{26poststroke}.
 
 Cílem práce bylo vytvořit hru, která budu procvičovat znovu ovládnutí pohybu ruky. DDA mělo za úkol adaptivně měnit obtížnost hry a přizpůsobovat se individuálním potřebám pacientů. 
 
@@ -279,7 +280,7 @@ Výsledkem je jednoduchá hra odehrávající se na desce o rozměrech přibliž
 
 \subsubsection{Hráčův profil}
 
-Schopnosti pacienta jsou zaznamenávány do tabulky Zóna schopnosti(ability zone). Zóna schopnosti je matice o velikosti m x n. Každá z buněk má přiřazeno reálné číslo reprezentující snadnost dosažení dané buňky. Cílem je vytvořit model obrazu schopností pacienta.
+Schopnosti pacienta jsou zaznamenávány do tabulky Zóna schopnosti (ability zone). Zóna schopnosti je matice o velikosti m x n. Každá z buněk má přiřazeno reálné číslo reprezentující snadnost dosažení dané buňky. Cílem je vytvořit model obrazu schopností pacienta.
 Tato definice pouze popisuje strukturu a zamýšlenou funkci zóny schopnosti, ale již nezmiňuje, jak takovou strukturu vytvořit. Existuje více různých cest.
 
 Jednou z možností je uložit do každé buňky statistickou úspěšnost dosažení buňky pacientem, jestliže to dostal za úkol. Jinou možností jsou biologicky inspirovaní umělí mravenci.
@@ -304,7 +305,7 @@ Ve vzorci konstanta $A$ značí nominální úroveň feromonu, jež se přidáv�
 
 Vyprchávání feromonů je též velice důležité. Zajistí zapomenutí oblastí, které hráč zasáhl pouze náhodou. Jelikož pacientovi pohyby nejsou plně kontrolovatelné, může se stát, že neúmyslně zasáhne některé buňky, které nechce.
 
-Z tohoto důvodu chceme, aby vyprchávaly více feromony, jež byly zasáhnuty náhodou. S vědomostí, které buňky zóny schopností pacient zasáhl pohybem po cestě p můžeme upravit množství feromonů na nich.
+Z tohoto důvodu chceme, aby vyprchávaly více feromony, jež byly zasaženy náhodou. S vědomostí, které buňky zóny schopností pacient zasáhl pohybem po cestě p, můžeme upravit množství feromonů na nich.
 
 \begin{equation}
 	F_{t+1} = F_t\frac{1}{vrcholyRychlosti(p)}
@@ -316,26 +317,28 @@ Z tohoto důvodu chceme, aby vyprchávaly více feromony, jež byly zasáhnuty n
 
 Matice interakce je maticí m x n binárních hodnot. Jednička značí možnost vygenerovat cíl hry z odpovídající buňky, 0 naopak. V případě, že je náročnost hry odpovídající aktuálním schopnostem pacienta, matice interakce se nemění a generují se z ní nové cíle k dosažení rukou. Delší série výher značí, že hra je jednoduchá a hráč může být brzy znuděn a nemotivován ke hře, k rehabilitaci a naopak delší série proher může způsobovat frustraci se stejným dopadem, koncem rehabilitace a možná i nechutí v ní v budoucnu pokračovat. V takovém případě se matice interakce musí přepočítat.
 
-V obou případech se vypočítá pro každou z buněk jednoduchým vzorečkem gradient.
+V obou případech se vypočítá pro každou z buněk jednoduchým vzorcem gradient.
 
 \begin{equation}
 	grad(A_{i,j}) = \sum_{k \in \{i-1, i, i+1\}} \sum_{l \in \{j-1, j, j+1\}} A_{i, j} - A_{k, l}
 \end{equation}
 
-V případě příliš obtížné hry bude matice interakce obsahovat 1 na místech kladného gradientu, v opačném případě při příliš lehké hře bude obsahovat 1 v místech záporného gradientu. Příklad na Obr. \ref{fig-ch3feromons}.
+V případě příliš obtížné hry bude matice interakce obsahovat 1 na místech kladného gradientu, v opačném případě při příliš lehké hře bude obsahovat 1 v místech záporného gradientu. Příklad na obr. \ref{fig-ch3feromons}.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.75\textwidth]{ch3feromons}
-	\caption{(a) Zóna schopností, (b) Interakční matice pro stížení hry, (c) Interakční matice pro zjednodušení hry \cite{26poststroke} }
+	\caption{(a) Zóna schopností, (b) Interakční matice pro ztížení hry, (c) Interakční matice pro zjednodušení hry \cite{26poststroke}. }
 	\label{fig-ch3feromons}
 \end{figure}
 
-První matice (a) obsahuje hodnoty zóny schopností po jednoduchém pohybu „zdola nahoru“ do buňky 3, 3. V matice (b) jsou jedničky na pozicích záporného gradientu dle výše uvedeného vzorce. V matici (c) jsou naopak jedničky na pozicích kladného gradientu. Z matic lze snadno vyčíst ztížení hry u matice (b) a zjednodušení u matice (c).
+První matice (a) obsahuje hodnoty zóny schopností po jednoduchém pohybu „zdola nahoru“ do buňky (3, 3). V matici (b) jsou jedničky na pozicích záporného gradientu dle výše uvedeného vzorce. V matici (c) jsou naopak jedničky na pozicích kladného gradientu. Z matic lze snadno vyčíst ztížení hry u matice (b) a zjednodušení u matice (c).
 
 \subsection{Provedené experimenty}
 
-Autoři přístupu ho otestovali na skupině 10 lidí. Každý dostal nejdříve za úkol si představit, že drží v ruce gumu, a měl touto virtuální gumou vymazat co největší plochu. Následně každému z účastníků experimentu byly generovány pozice na desce, kterých měl účastník svou rukou dosáhnout. Cílem bylo dosáhnout co největšímu počtu pozic během dvou minut. V prvním případě se pozice generovali zcela náhodně, v druhém pomocí představeného DDA principu.
+Autoři přístupu ho otestovali na skupině 10 lidí. Každý dostal nejdříve za úkol si představit, že drží v ruce gumu, a měl touto virtuální gumou vymazat co největší plochu. Během této činnosti se inicializovala zóna schopností.
+
+Následně každému z účastníků experimentu byly generovány pozice na desce, které měl účastník svou rukou dosáhnout. Cílem bylo dosáhnout co největšímu počtu pozic během dvou minut. V prvním případě se pozice generovaly zcela náhodně, v druhém pomocí představeného DDA principu.
 
 Po skončení experimentů měli účastníci odpovědět, jakou pociťovali obtížnost, frustraci a únavu během obou polovin experimentu.
 
@@ -350,7 +353,7 @@ Základní princip algoritmu je jednoduchý. Mistr (program) inicializuje obtí�
 
 \subsection{Algoritmus POSM}
 
-Vstupem algoritmu je částečně uspořádaná množina $(K,\geq)$ možných nastavení obtížnosti. Uspořádání je následující : $\forall i,j \in K$ píšeme $i>j$, pokud $i$ je více obtížné než $j$.
+Vstupem algoritmu je částečně uspořádaná množina $(K,\geq)$ možných nastavení obtížnosti. Uspořádání je následující: $\forall i,j \in K$ píšeme $i>j$, pokud $i$ je více obtížné než $j$.
 Po nastavení obtížnosti se odehraje kus hry a určí se hráčem pozorovaná obtížnost $o_t$.
 
 \begin{itemize}
@@ -393,13 +396,13 @@ Kroky algoritmu POSM:
 \end{algorithmic}
 \end{algorithm}
 
-Na prvním řádku se inicializuje vektor w představující hodnoty „správnosti“ volby každé z obtížností. Na 3. řádku se uloží ke každé obtížnosti suma správnosti obtížností, které jsou těžší, nebo stejné než ona. Na 4. řádku se naopak uloží ke každé z obtížností suma správnosti obtížností, kterou jsou lehčí, nebo stejné než ona. Na pátém řádku se volí nová obtížnost dle uvedeného vzorce. Poté proběhne kus hry a algoritmus získá odpověď o reálné obtížnosti vzhledem k hráči. Na následujících řádcích se „správnosti“ jednotlivých obtížností vhodně upraví do další iterace hry.
+Na prvním řádku se inicializuje vektor w představující hodnoty „správnosti“ volby každé z obtížností. Na 3. řádku se uloží ke každé obtížnosti suma správnosti obtížností, které jsou těžší, nebo stejné než ona. Na 4. řádku se naopak uloží ke každé z obtížností suma správnosti obtížností, které jsou lehčí, nebo stejné než ona. Na pátém řádku se volí nová obtížnost dle uvedeného vzorce. Poté proběhne kus hry a algoritmus získá odpověď o reálné obtížnosti vzhledem k hráči. Na následujících řádcích se „správnosti“ jednotlivých obtížností vhodně upraví do další iterace hry.
 
 \subsection{Příklad s balónky}
 
-Algoritmus se lépe vysvětlí na příkladě\cite{23posm2}. Mějme jednoduchou hru sestřelování padajících balónků. Hráč je má sestřelit dříve než se dotknou země. Obtížností hry může být rychlost padání. Mějme předpřipraveno 10 různých rychlostí odpovídajících 10 nastavením obtížnosti.
+Algoritmus se lépe vysvětlí na příkladě\cite{23posm2}. Mějme jednoduchou hru sestřelování padajících balónků. Hráč je má sestřelit dříve než se dotknou země. Obtížností hry může být rychlost padání. Mějme připraveno 10 různých rychlostí odpovídajících 10 nastavením obtížnosti.
 
-Při inicializaci se vektor $w$ nastaví na 10 jedniček. Při prvním běhu bude vektor $A$ obsahovat $(10; 9; 8; 7; 6; 5; 4; 3; 2; 1)$ a vektor $B$ $(1; 2; 3; 4; 5; 6; 7; 8; 9; 10)$. Na 5. řádku se vybere náhodně 5. nebo 6. obtížnost, protože v obou případech :
+Při inicializaci se vektor $w$ nastaví na 10 jedniček. Při prvním běhu bude vektor $A$ obsahovat $(10; 9; 8; 7; 6; 5; 4; 3; 2; 1)$ a vektor $B$ $(1; 2; 3; 4; 5; 6; 7; 8; 9; 10)$. Na 5. řádku se vybere náhodně 5. nebo 6. obtížnost, protože v obou případech:
 
 
 	\[
@@ -457,7 +460,7 @@ Výsledky zobrazuje tab. \ref{tab:expposm}. Z tabulky lze vyčíst, že POSM dob
 
 Autoři tohoto přístupu se zaměřili na dynamické vyvažování obtížnosti v deskových hrách\cite{24DynLev}. Sami svůj algoritmus nijak nenazvali, my ho budeme nazývat dynamická úroveň na základě jeho hlavního principu.
 
-Algoritmus byl navržen k adaptivitě umělé inteligence jednoho z hráčů v dvouhráčové hře a ozkoušen na deskové hře backgammon (vrhcáby).
+Algoritmus byl navržen k adaptabilitě umělé inteligence jednoho z hráčů v dvouhráčové hře a ozkoušen na deskové hře backgammon (vrhcáby).
 
 \subsection{Popis algoritmu}
 
@@ -471,7 +474,7 @@ Dynamický hráč se při volbě nového tahu řídí následujícími kroky:
 	\item Uprav odhad soupeřovy úrovně na základě status funkce.
 	\item Vygeneruj všechny možné následující stavy ze stavu aktuálního.
 	\item Přiřaď hodnosti vygenerovaným stavům.
-	\item Vyber následující tah jako nejvhodnější vzhledem k odhadované soupeřově úrovně.
+	\item Vyber následující tah jako nejvhodnější vzhledem k odhadované soupeřově úrovni.
 \end{enumerate}
 
 Pseudokód algoritmu by mohl vypadat následovně:
@@ -499,12 +502,12 @@ Pseudokód algoritmu by mohl vypadat následovně:
 
 Na prvním řádku se určí inicializační úroveň jako odhad úrovně soupeře. V článku[24] není přesně definováno, jak počáteční úroveň volit. Možností je náhodně generované číslo, případně statický výběr hráčem z několika předdefinovaných možností. Např. „lehká“ = 25, „střední“ = 50 atd.
 
-Třetí a čtvrtý řádek slouží k novému odhadu úrovně oponenta. Figuruje zde konstanta $\alpha$, určující dynamičnost změny úrovně hráče. Konstanta je závislá na konkrétní hře. Může být volena experimentálně, nebo se může i v průběhu hry měnit např. pomocí algoritmu simulovaného žíhání.
+Třetí a čtvrtý řádek slouží k novému odhadu úrovně oponenta. Figuruje zde konstanta $\alpha$, která určuje dynamičnost změny úrovně hráče. Konstanta je závislá na konkrétní hře. Může být volena experimentálně, nebo se může i v průběhu hry měnit např. pomocí algoritmu simulovaného žíhání.
 
-Na řádcích 5 – 7 se vygenerují následující stavy a vybere se ten s nejvhodnější hodností dle úrovně soupeře. Příklad : existuje 20 možných tahů, které jsme ohodnotili a dle ohodnocení seřadili. Jestliže je úroveň rovna 75, zvolí se tah v $\frac{3}{4}$ seřazených tahů, tedy 5. nejlepší tah. Pro úroveň 50 se zvolí tah v polovině, tedy tah 10. ze seřazených tahů.
+Na řádcích 5 – 7 se vygenerují následující stavy a vybere se ten s nejvhodnější hodností dle úrovně soupeře. Příklad: existuje 20 možných tahů, které jsme ohodnotili a dle ohodnocení seřadili. Jestliže je úroveň rovna 75, zvolí se tah v $\frac{3}{4}$ seřazených tahů, tedy 5. nejlepší tah. Pro úroveň 50 se zvolí tah v polovině, tedy tah 10. ze seřazených tahů.
 Na osmém řádku se počká na tah oponenta a celý cyklus se opakuje od začátku.
 
-\subsection{Ohodnocovací a status funkce}
+\subsection{Funkce hodnosti a statusu}
 
 Algoritmus používá dvě různé funkce k ohodnocení stavu hry z pohledu hráče - status funkci a funkci hodnosti. Status funkce vyjadřuje, jak vnímá svůj status ve hře člověk, naopak funkce hodnosti hodnotí stav podrobněji z pohledu počítače. 
 
@@ -528,7 +531,7 @@ Výsledky provedených experimentů byly pozitivní. Ve všech 4 metrikách pře
   \centering
   \includegraphics[width=0.48\textwidth]{dll}
 	\includegraphics[width=0.48\textwidth]{dlls}
-	\caption{Výsledky experimentů s algoritmem dynamická úroveň\cite{24DynLev}.}
+	\caption{Výsledky experimentů s algoritmem dynamická úroveň \cite{24DynLev}.}
 	\label{fig:ch3dlmet}
 \end{figure}
 
@@ -536,7 +539,7 @@ Výsledky provedených experimentů byly pozitivní. Ve všech 4 metrikách pře
 
 Metoda MCTS iterativně vytváří herní strom, kde uzly odpovídají stavům hry a hrany možným tahům aktivního hráče z daného stavu. Na začátku je strom tvořen pouze jedním uzlem, poté se v iteracích opakují 4 kroky - selekce, expanze, simulace a zpětná propagace. 
 
-Během \emph{selekce} se vybere list z částečně postaveného stromu. Při výběru se začne v kořeni a podle předem daného pravidla se volí potomci až se algoritmus dostane do listu. Vybraný list se \emph{expanduje}. Z listu se stane vnitřní uzel, přidají se mu potomci odpovídající možným tahům z daného stavu. Z každého přidaného uzlu se provede \emph{simulace} hry ideálně až do konce. Je nutné, aby simulace nebyla výpočetně náročná. Z tohoto důvodu se hráči volí tahy náhodně. Nakonec se výsledek hry \emph{propaguje} přes rodiče až do kořene.
+Během \emph{selekce} se vybere list z částečně postaveného stromu. Při výběru se začne v kořeni a podle předem daného pravidla se volí potomci dokud se algoritmus nedostane do listu. Vybraný list se \emph{expanduje}. Z listu se stane vnitřní uzel, přidají se mu potomci odpovídající možným tahům z daného stavu. Z každého přidaného uzlu se provede \emph{simulace} hry ideálně až do konce. Je nutné, aby simulace nebyla výpočetně náročná. Z tohoto důvodu se hráči volí tahy náhodně. Nakonec se výsledek hry \emph{propaguje} přes rodiče až do kořene.
 
 Nakonec hráč zahraje tah odpovídající nejlépe ohodnocenému potomku kořenu stromu.
 
@@ -545,18 +548,18 @@ Jejich cílem bylo pomocí MCTS vytvořit hráče, který dosahuje předem zvole
 
 \subsection{Pravidla hry Pac-Man}
 
-Cílem hráče hrajícího za žlutou postavu Pac-Mana je sníst všechny kuličky v bludišti a zároveň se vyhýbat nepřátelům, duchům. Pac-Man zvítězí, jestliže sní všechny kuličky, duši zvítězí, jestliže chytnou Pac-Mana. Jestliže do 55 kroků žádná z těchto událostí nenastane, hra končí remízou. Oproti původnímu Pac-Manovi jsou ve hře další úpravy.
+Cílem hráče hrajícího za žlutou postavu Pac-Mana je sníst všechny kuličky v bludišti a zároveň se vyhýbat nepřátelům, duchům. Pac-Man zvítězí, jestliže sní všechny kuličky, duchové zvítězí, jestliže chytnou Pac-Mana. Jestliže do 55 kroků žádná z těchto událostí nenastane, hra končí remízou. Oproti původnímu Pac-Manovi jsou ve hře další úpravy.
 
 \begin{itemize}
 	\item Bludiště je zmenšeno na velikost 16x16 a neobsahuje žádné bonusy.
-	\item Ve hře jsou pouze dva duši místo původních 4 a mají stejnou rychlost jako Pac-Man. Z toho vyplývá, že jeden duch nikdy nemůže sám chytit Pac-Mana, duši musí spolupracovat.
-	\item Pac-Man i duši se rozhodují pouze na křižovatkách. Jejich možné akce jsou jít vpravo/vlevo/nahoru/dolů, případně u křižovatek u kraje bludiště jejich podmnožina, procházení zdí je zakázáno.
+	\item Ve hře jsou pouze dva duchové místo původních 4 a mají stejnou rychlost jako Pac-Man. Z toho vyplývá, že jeden duch nikdy nemůže sám chytit Pac-Mana, duchové musí spolupracovat.
+	\item Pac-Man i duchové se rozhodují pouze na křižovatkách. Jejich možné akce jsou jít vpravo/vlevo/nahoru/dolů, případně u křižovatek u kraje bludiště jejich podmnožina, procházení zdí je zakázáno.
 \end{itemize}
 
 \begin{figure}
   \centering
   \includegraphics[width=0.5\textwidth]{ch3pacman}
-	\caption{Zjednodušená verze Pac-Mana. Obrázek převzat z článku \cite{18Pac1}}
+	\caption{Zjednodušená verze Pac-Mana. Obrázek převzat z článku \cite{18Pac1}.}
 	\label{fig:ch3pacman}
 \end{figure}
 
@@ -586,7 +589,7 @@ Explicitnost a implicitnost nevychází přímo z použité metody, ale zálež�
 
 \begin{table*}[b]\footnotesize
 \vspace*{0mm}
-\caption{{\label{tab:klasifikacemetod}} Klasifikace metod do různých tříd. Mnohdy je zařazení nejasné, a proto je tabulka z části tvořena subjektivním pohledem.}
+\caption{{\label{tab:klasifikacemetod}} Klasifikace metod do různých tříd dle vědeckých článků, které je použily.}
 \vspace*{0mm}
 \label{shadowtable}
 \begin{center}
@@ -607,6 +610,6 @@ MCTS  & & \checkmark & & \checkmark & \checkmark & & \\ \hline
 \end{center}
 \end{table*}
 
-Mimo evoluční algoritmus lze všechny metody zařadit mezi online algoritmy. Přístup producent-konzument je i offline algoritmem. Byl využit u střílečky z pohledu první osoby. Staticky je zde přizpůsobován svět, když do něho hráč vstoupí. Naopak dynamicky se upravuje přesnost a účinnost střelby nepřátel během boje. POSM patří k velice obecným přístupům. Vyžaduje na designérovi návrh konečného množství obtížností a algoritmus z nich posléze vybírá nejvhodnější obtížnost v danou dobu. Z tohoto důvodu je zcela na návrháři, jestli obtížnost bude měněna jen před začátkem hry na základě předchozích her, nebo bude měněna i v průběhu.
+Mimo evoluční algoritmus lze všechny metody zařadit mezi online algoritmy. Přístup producent-konzument je i offline algoritmem. Byl využit u střílečky z pohledu první osoby. Staticky je zde přizpůsobován svět, když do něho hráč vstoupí. Naopak dynamicky se upravuje přesnost a účinnost střelby nepřátel během boje. POSM patří k velmi obecným přístupům. Vyžaduje na designérovi návrh konečného množství obtížností a algoritmus z nich posléze vybírá nejvhodnější obtížnost v danou dobu. Z tohoto důvodu je zcela na návrháři, jestli obtížnost bude měněna jen před začátkem hry na základě předchozích her, nebo bude měněna i v průběhu.
 
 Poslední trojice kategorií představuje, čím je dána obtížnost hry. Ve většině případů upravovali umělou inteligenci protihráčů. Jak už bylo zmíněno, producent-konzument upravoval kromě NPC i svět, u POSM je volba obtížnosti na návrháři. Evoluční algoritmus byl využit pro generování úrovní do logické hry. Simulace mravenců byla využita ve vážné hře, měnil se v ní druh úkolu dle jeho obtížnosti.

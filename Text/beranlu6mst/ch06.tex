@@ -12,7 +12,7 @@ Pro jednodušší vizuální porovnávání algoritmů mezi sebou upravuji metri
 
 \section{Bludiště}
 
-Pro testování bludiště jsem nastavil jeho velikost na šířku a výšku 41 čtverců, maximální počet kroků 777. Koeficienty metrik byly nastaveny na 10 pro uvěřitelnost, 100 pro napětí, 500 pro náskok a 100 pro svobodu. Zbylé koeficienty byly nastaveny na 0. Výsledek si lze prohlédnout na následujícím grafu (\ref{fig-ch5mazehc}) a tabulce(\ref{tab-mazem}).
+Pro testování bludiště jsem nastavil jeho velikost na šířku a výšku 41 čtverců, maximální počet kroků 777. Koeficienty metrik byly nastaveny na 10 pro uvěřitelnost, 100 pro napětí, 500 pro náskok a 100 pro svobodu. Zbylé koeficienty byly nastaveny na 0. Výsledek si lze prohlédnout na následujícím grafu (\ref{fig-ch5mazehc}) a tabulce (\ref{tab-mazem}).
 
 V grafu jsou použity zkratky pro použité algoritmy. E-HC představuje E-HillClimber, E-MM je pro E-MaxMax, E-MC pro E-MonteCarlo, POSM pro Částečně uspořádaná množina – Mistr a DL pro Dynamickou úroveň. U Bludiště nebyl použit E-MN pro E-Max$^n$. Algoritmus E-Max$^n$ má za úkol simulovat hráče. Hráč ve hře bludiště se rozhoduje pouze dle následujících stavů. Z tohoto důvodu zde je postačující Algoritmus E-MaxMax, který plní přesně stejnou funkci jako E-Max$^n$ u dalších her. Algoritmus Žádný představuje naměřené metriky z hry, kdy nebyl použit žádný DDA mechanismus. Slouží pro srovnání s DDA algoritmy.
 
@@ -79,7 +79,7 @@ Druh použitého DDA algoritmu má velký vliv na výsledný vzhled bludiště. 
 	\includegraphics[width=0.35\textwidth]{mposm}
 	\hspace{3pt}
 	\includegraphics[width=0.35\textwidth]{mdl}
-	\caption{Srovnání bludišť vytvořených různými DDA algoritmy. Zleva-doprava, shora-dolů: žádný, E-MaxMax, POSM, DL}
+	\caption{Srovnání bludišť vytvořených různými DDA algoritmy. Zleva-doprava, shora-dolů: žádný, E-MaxMax, POSM, DL.}
 	\label{fig-mazes}
 \end{figure}
 
@@ -89,7 +89,7 @@ Bludiště vytvořená pomocí POSM a DL vypadají obdobně. Je pro ně typický
 
 Oproti hře Bludiště je ve hře Ludo zásadní metrikou uvěřitelnost. V případě, že na tuto metriku nedáme důraz, HP nedovolí žádnému z hráčů hru vyhrát. Z jeho pohledu je ideální, když všichni hráči mají 3 figury v cíli a 4 těsně před cílem. Tato situace se mu zdá napínavá a ona by i ve skutečné hře byla, ale ne v případě použití falešné kostky. Z tohoto důvodu jsem nastavil koeficienty u uvěřitelnosti na 1000, spravedlnost, vedení, napětí na 10, náskok na 3 a svobodu na 1.
 
-S tímto nastavením jsem provedl 3 experimenty. V prvních dvou hráli pouze dva hráči, jednou s algoritmem Hill Climber, podruhé s Max$^n$. Experiment s dvěma hráči jsem spouštěl, aby měly algoritmy Dynamický level a POSM prostředí, pro které byly navrhnuty - dvouhráčové hry. V třetí experimentu byly 4 hráči Max$^n$. První měl úroveň 50, další tři 100. Pro test DL a POSM jsem nahradil všechny 3 poslední hráče právě algoritmy DL, nebo POSM.
+S tímto nastavením jsem provedl 3 experimenty. V prvních dvou hráli pouze dva hráči, jednou s algoritmem Hill Climber, podruhé s Max$^n$. Experiment s dvěma hráči jsem spouštěl, aby měly algoritmy Dynamický level a POSM prostředí, pro které byly navrhnuty - dvouhráčové hry. V třetí experimentu byli 4 hráči Max$^n$. První měl úroveň 50, další tři 100. Pro test DL a POSM jsem nahradil všechny 3 poslední hráče právě algoritmy DL, nebo POSM.
 
 \begin{figure}
   \centering
@@ -98,7 +98,7 @@ S tímto nastavením jsem provedl 3 experimenty. V prvních dvou hráli pouze dv
 	\label{fig-ch5ludo4maxn}
 \end{figure}
 
-Výsledky všech 3 experimentů byly obdobné. Zde uvedu pouze graf(\ref{fig-ch5ludo4maxn}) a tabulku(\ref{tab-ludom}) posledního experimentu. Grafy zbylých dvou experimentů lze nalézt v příloze.
+Výsledky všech 3 experimentů byly obdobné. Zde uvedu pouze graf (\ref{fig-ch5ludo4maxn}) a tabulku (\ref{tab-ludom}) posledního experimentu. Grafy zbylých dvou experimentů lze nalézt v příloze.
 
 \begin{table*}[b]\footnotesize
 \vspace*{0mm}
@@ -186,18 +186,18 @@ DL & 4,944157754 & 26,5193542 & 14,25249958 & 18,3885 & 0,408 \\ \hline
 \end{center}
 \end{table*}
 
-Opět byly spuštěny dva experimenty s různými v hráči. V jednom hráli proti sobě HillClimber IS s úrovněmi 50 a 100 a v druhém MiniMax IS se stejnými úrovněmi. Výsledky byly podobné, a proto se zaměřím na experiment se složitějšími hráči (graf \ref{fig-ch5lcmm}, tabulka \ref{tab-lcm}). Graf druhého experimentu lze nalézt v příloze.
+Opět byly spuštěny dva experimenty s různými v hráči. V jednom hráli proti sobě hráči HillClimber IS s úrovněmi 50 a 100 a v druhém MiniMax IS se stejnými úrovněmi. Výsledky byly podobné, a proto se zaměřím na experiment se složitějšími hráči (graf \ref{fig-ch5lcmm}, tabulka \ref{tab-lcm}). Graf druhého experimentu lze nalézt v příloze.
 
-DL a POSM opět ovládaly jednoho z hráčů, a tedy nemohly ovlivnit čtveřici metrik spravedlnost, uvěřitelnost, svoboda a náhodnost. Oba dva algoritmy dopadly špatně z důvodu nastíněného u hry Ludo. Ve Ztracených městech člověk dokáže snadno rozlišit zcela iracionální tahy od těch použitelných. DL a POSM ale mají tyto iracionální tahy k dispozici. Jestliže je hráč ovládaný DL nebo POSM ve vedení, nejrychleji srovná skóre vyložením nové expedice, za kterou má záporné body. Bohužel takový tah může být zásadní a i kdyby posléze hrál daný hráč dokonale, nemusí mu to stačit k opětovnému dostání se do vedení. Z tohoto důvodu je u Ztracených měst lepší nepoužít žádný algoritmus než POSM a DL v nezměněné podobě.
+Algoritmy DL a POSM opět ovládaly jednoho z hráčů, a tedy nemohly ovlivnit čtveřici metrik spravedlnost, uvěřitelnost, svoboda a náhodnost. Oba dva algoritmy dopadly špatně z důvodu nastíněného u hry Ludo. Ve Ztracených městech člověk dokáže snadno rozlišit zcela iracionální tahy od těch použitelných. DL a POSM ale mají tyto iracionální tahy k dispozici. Jestliže je hráč ovládaný DL nebo POSM ve vedení, nejrychleji srovná skóre vyložením nové expedice, za kterou má záporné body. Bohužel takový tah může být zásadní a i kdyby posléze hrál daný hráč dokonale, nemusí mu to stačit k opětovnému dostání se do vedení. Z tohoto důvodu je u Ztracených měst lepší nepoužít žádný algoritmus než POSM a DL v nezměněné podobě.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.75\textwidth]{ch5lcmm}
-	\caption{Srovnání DDA alg. ve hře Ztracená Města s dvěma MiniMax IS hráči. (úrovně 50 a 100)}
+	\caption{Srovnání DDA alg. ve hře Ztracená Města se dvěma MiniMax IS hráči. (úrovně 50 a 100)}
 	\label{fig-ch5lcmm}
 \end{figure}
 
-E-MC a E-HC dopadly navzájem podobně, ale oba lépe než hra bez DDA. Jelikož E-HC je znatelně rychlejší, je v tomto případě vhodnější než E-MC. Vítězem u Ztracených měst je jednoznačně E-MN, který byl nejlepší v metrikách změna vedení, napínavost, náskok a spravedlnost.
+Algoritmy E-MC a E-HC dopadly navzájem podobně, ale oba lépe než hra bez DDA. Jelikož E-HC je znatelně rychlejší, je v tomto případě vhodnější než E-MC. Vítězem u Ztracených měst je jednoznačně E-MN, který byl nejlepší v metrikách změna vedení, napínavost, náskok a spravedlnost.
 
 \section{Celkové srovnání}
 
@@ -243,7 +243,7 @@ Oba tyto algoritmy byly navrženy a testovány u her, kde jeden špatný tah zpr
 \begin{figure}
   \centering
   \includegraphics[width=0.80\textwidth]{ch5all4m}
-	\caption{ Srovnání alg. DDA na základě všech experimentů a metrik Změna vedení, Napětí, Náskok a Poměr vítězů. }
+	\caption{ Srovnání alg. DDA na základě všech experimentů a metrik změna vedení, napětí, náskok a poměr vítězů. }
 	\label{fig-ch5all4m}
 \end{figure}
 

@@ -8,7 +8,7 @@ Prostředí obsahuje dva módy. Herní mód a dávkové spouštění algoritmů.
 
 Mód dávkového spouštění umožňuje provádění experimentů v dávkách. U každého experimentu lze nastavit druh hry, počet iterací experimentu, druhy jednotlivých hráčů včetně hráče prostředí a případně herně specifické parametry jako je velikost bludiště. Před spuštěním experimentů může uživatel ovlivnit počet vláken, v kterých se budou provádět experimenty. Vícevláknové spouštění je zde z důvodu maximálního využití vícejádrových procesorů. Po spuštění dávky se spouští postupně jednotlivé experimenty. Do paměti se ukládají informace o každé iteraci všech experimentů. Především jsou zaznamenávány metriky zábavnosti. 
 
-Po skončení dávky může uživatel napočítané informace uložit na disk. Pro rychlé zhodnocení proběhlých algoritmů se v aplikaci zobrazují agregované informace. Uživatel má na výběr mezi střední hodnotou, odchylkou, minimem a maximem z naměřených hodnot v rámci každého experimentu. Dále lze zobrazit histogramy pro jednotlivé hodnoty.
+Po skončení dávky může uživatel napočítané informace uložit na disk. Pro rychlé zhodnocení proběhlých algoritmů se v aplikaci zobrazují agregované informace. Uživatel má na výběr mezi střední hodnotou, směrodatnou odchylkou, minimem a maximem z naměřených hodnot v rámci každého experimentu. Dále lze zobrazit histogramy pro jednotlivé hodnoty.
 
 Bližší popis prostředí a jeho ovládaní lze nalézt v příloze.
 
@@ -16,9 +16,9 @@ Bližší popis prostředí a jeho ovládaní lze nalézt v příloze.
 
 Pro testování navržených algoritmů v předchozí kapitole jsem si zvolil následující tři relativně jednoduché hry - Bludiště, Ludo a Ztracená města. Hry se liší počtem hráčů, zda obsahují pouze úplnou informaci, a jestli jsou plně deterministické, nebo obsahují i náhodný prvek hry. Zařazení do jednotlivých kategorií znázorňuje následující tabulka \ref{tab:klasifikaceher}.
 
-\begin{table*}[b]\footnotesize
+\begin{table*}[t]\footnotesize
 \vspace*{0mm}
-\caption{{\label{tab:klasifikaceher}} Klasifikace her do různých tříd dle počtu hráčů, determinismu a úplnosti informace. }
+\caption{{\label{tab:klasifikaceher}} Klasifikace testovacích her dle počtu hráčů, determinismu a úplnosti informace. }
 \vspace*{0mm}
 \label{shadowtable}
 \begin{center}
@@ -50,13 +50,13 @@ Terorista navíc na některé dveře připevnil senzory, a poté dveře přemalo
 
 Druh dveří na každé možné konkrétní pozici je určen před začátkem hry. Z toho vyplývá, že hráč prostředí může barvu dveří ovlivňovat pouze nepřímo. Může ovlivnit umístění dveří, které následně určí jejich barvu.
 
-Generování chodeb má jasně daná pravidla. Chodba může být libovolně dlouhá, i přes celý herní plán. Chodba může být zakončena zdí, nebo mohou na konci následovat další dveře. Z vygenerované chodby vedou vždy maximálně jedny dveře vlevo a jedny vpravo. Může se stát, že díky pozdějšímu napojení dvou chodem na sebe vznikne chodba s více dveřmi po levé, či pravé straně, ale nikdy nejsou na žádné straně vygenerovány dvě dveře naráz. Toto omezení je vynahrazeno možností ukončit chodbu dveřmi a ne zdí. Více dveří na jedné straně lze tak vygenerovat postupně pomocí dvou chodeb vytvořených ve stejném směru.
+Generování chodeb má jasně daná pravidla. Chodba může být libovolně dlouhá, i přes celý herní plán. Chodba může být zakončena zdí, nebo mohou na konci následovat další dveře. Z vygenerované chodby vedou vždy maximálně jedny dveře vlevo a jedny vpravo. Může se stát, že díky pozdějšímu napojení dvou chodem na sebe vznikne chodba s více dveřmi po levé, či pravé straně, ale nikdy nejsou na žádné straně vygenerovány dvoje dveře naráz. Toto omezení je vynahrazeno možností ukončit chodbu dveřmi a ne zdí. Více dveří na jedné straně lze tak vygenerovat postupně pomocí dvou chodeb vytvořených ve stejném směru.
 
 I bez volby druhů dveří zbývá příliš mnoho možných tahů. Na mapě 40x40 polí může být délka generované chodby maximálně 39 polí dlouhá. Počet kombinací umístění dveří vlevo nebo vpravo se zakončením dveřmi, nebo zdí je $2*40^2$ (pozice 1-39, plus možnost nedat žádné dveře * zakončení chodby dveřmi/zdí). Větvící faktor větší než 3200 by nebyl příliš použitelný pro herní algoritmy. 
 
-Pro snížení větvícího faktoru nahradíme vždy několik tahů jedním. Provedeme abstrakci. HP neurčuje přesnou pozici dveří, ale jen přibližnou. Chodba je rozdělena do několika úseků a HP hráč si volí pouze, ve kterém úseku chce dveře. Konkrétní místo se vybere náhodně v rámci úseku. Dále HP nevybírá, jestli chodbu zakončí zdí, nebo dveřmi. Způsob zakončení chodby je též volen náhodně. Oba náhodné výběry jsou pouze pseudonáhodné. Ve skutečnosti jsou pevně dané na základě stavu hry a náhodně vygenerovaného čísla před začátkem hry. Z tohoto důvodu HP vybírá již mezi konkrétními chodbami. Nemůže se tedy stát, že by HP hráč při plánování na několik kol dopředu počítal se stavem hry, který by nakonec nenastal.
+Pro snížení větvícího faktoru nahradíme vždy několik tahů jedním. Provedeme abstrakci. HP neurčuje přesnou pozici dveří, ale jen přibližnou. Chodba je rozdělena do několika úseků a HP si volí pouze, ve kterém úseku chce dveře. Konkrétní místo se vybere náhodně v rámci úseku. Dále HP nevybírá, jestli chodbu zakončí zdí, nebo dveřmi. Způsob zakončení chodby je též volen náhodně. Oba náhodné výběry jsou pouze pseudonáhodné. Ve skutečnosti jsou pevně dané na základě stavu hry a náhodně vygenerovaného čísla před začátkem hry. Z tohoto důvodu HP vybírá již mezi konkrétními chodbami. Nemůže se tedy stát, že by HP při plánování na několik kol dopředu počítal se stavem hry, který by nakonec nenastal.
 
-Tímto byl větvící faktor HP hráče u bludišť o velikosti 40x40 snížen na maximální hodnotu 26.
+Tímto byl větvící faktor HP u bludišť o velikosti 40x40 snížen na maximální hodnotu 26.
 
 \subsubsection{Heuristika a uvěřitelnost}
 
@@ -80,7 +80,7 @@ V obou zmíněných variantách hráč má na začátku hry všechny figury na s
 
 \subsubsection{Hráč prostředí}
 
-Hráč prostředí zde ovládá hrací kostku. Vzhledem k pravidlům hry je vliv HP hráče velmi vysoký. Teoreticky je pouze na něm, který z ostatních hráčů vyhraje. Např. nemusí dovolit žádnému z hráčů hodit na kostce poslední potřebnou hodnotu pro umístění figury do cílové pozice. Z tohoto důvodu je zde zásadní metrikou uvěřitelnost.
+Hráč prostředí zde ovládá hrací kostku. Vzhledem k pravidlům hry je vliv HP velmi vysoký. Teoreticky je pouze na něm, který z ostatních hráčů vyhraje. Např. nemusí dovolit žádnému z hráčů hodit na kostce poslední potřebnou hodnotu pro umístění figury do cílové pozice. Z tohoto důvodu je zde zásadní metrikou uvěřitelnost.
 
 \subsubsection{Použitá heuristika a uvěřitelnost}
 
@@ -90,7 +90,7 @@ Výpočet pro jednu figuru je následující. Průměrný hod má hodnotu 3,5. P
 
 Jestliže figura nestojí na bezpečné pozici a zároveň za ní stojí do vzdálenosti 6 figura oponenta, přičteme k heuristice $\frac{1}{6}$ z potřebných tahů k dostání se do aktuální pozice figury.
 
-Uvěřitelnost hry závisí na hodech kostkou. Každý z hráčů očekává, že během hry každou hodí každou hodnotu kostky přibližně stejněkrát. Zároveň je nepravděpodobné, že by hráč po sobě hodil 3 a vícekrát stejnou hodnotu. Uvěřitelnost hráče se skládá ze dvou částí. Je součtem uvěřitelnosti četnosti hodů kostkou a penalizací za hod stejné hodnoty 3 a vícekrát. Výsledná uvěřitelnost je rovna sumě uvěřitelností pro jednotlivé hráče.
+Uvěřitelnost hry závisí na hodech kostkou. Každý z hráčů očekává, že během hry hodí každou hodnotu kostky přibližně stejněkrát. Zároveň je nepravděpodobné, že by hráč po sobě hodil 3 a vícekrát stejnou hodnotu. Uvěřitelnost hráče se skládá ze dvou částí. Je součtem uvěřitelnosti četnosti hodů kostkou a penalizací za hod stejné hodnoty 3 a vícekrát. Výsledná uvěřitelnost je rovna sumě uvěřitelností pro jednotlivé hráče.
 
 \subsection{Ztracená města}
 
@@ -98,7 +98,7 @@ Ztracená města patří mezi jednoduché karetní hry od společnosti Albi. Her
 
 Cílem hry je vytvářet co nejdelší a nejhodnotnější expedice a získat větší bodový zisk než soupeř. Na začátku hry si každý z hráčů lízne 8 karet ze zamíchaného balíčku. Hráči se postupně střídají v kolech. Každé kolo se skládá ze dvou částí - zahrání karty a dolíznutí karty. 
 
-Při zahrání karty má hráč na výběr v přiložení karty do jeho existující expedice, nebo odložení karty na vrchol společného odkládacího balíčku příslušné barvy. Při přiložení karty do expedice musí být splněno pravidlo, že nově přidaná karta má vyšší hodnotu než je nejvyšší hodnota v dané expedici. Sázkové karty hráč může přidat do expedice pouze v případě, že v ní nemá již kartu nesázkovou. 
+Při zahrání karty má hráč na výběr v přiložení karty do jeho existující expedice, nebo odložení karty na vrchol společného odkládacího balíčku příslušné barvy. Při přiložení karty do expedice musí být splněno pravidlo, že nově přidaná karta má vyšší hodnotu než je nejvyšší hodnota v dané expedici. Sázkové karty hráč může přidat do expedice pouze v případě, že v ní nemá již kartu, která není sázková. 
 
 V druhé fázi si hráč dobere kartu do celkového počtu 8 karet. Má na výběr mezi zakrytým dobíracím balíčkem, nebo si může vzít kartu z vrchu jednoho odkládacího balíčku.
 
@@ -116,7 +116,7 @@ Podobně jako u hry Ludo, i zde je využívána stejná heuristika pro funkce st
 
 Heuristika odhaduje předpokládaný počet bodů získaných z jednotlivých expedic. Počítáme body pouze z expedic, které již byly založeny. Pro každou založenou expedici spočteme aktuální počet bodů a výsledek vynásobíme konstantou 10. Poté projdeme všechny karty v ruce, v balíčku a vrchní kartu z odložených karet, které ještě hráč může zahrát. (mají vyšší hodnotu než nejvyšší vyložená karta) Součet bodů těchto karet vynásobíme konstantami 8, 2/3 a 7 pro karty z ruky, balíčku a vrchní kartu. Pro karty z balíčku se vybere konstanta 2, jestliže hráč založí 4. expedici, jinak je 3. Heuristika je převzata z \cite{ch5LT} včetně koeficientů.
 
-Aby hra byla uvěřitená, jednotliví hráči musí během hry získat podobné počty barev a hodnot karet. Uvěřitelnost barvy je méně důležitá. Naopak pokud se pokusíme, aby každý hráč dostal od každé barvy během hry stejný počet karet, můžete to negativně ovlivnit průběh hry. Hodnoty karet rozdělíme do 4 kategorií - sázkové karty, hodnoty 2, 3, 4, hodnoty 5, 6, 7 a nakonec 8, 9, 10. Hra bude více uvěřitelná, když každý hráč během hry získá podobně karet z každé kategorie.
+Aby hra byla uvěřitelná, jednotliví hráči musí během hry získat podobné počty barev a hodnot karet. Uvěřitelnost barvy je méně důležitá. Naopak pokud se pokusíme, aby každý hráč dostal od každé barvy během hry stejný počet karet, můžete to negativně ovlivnit průběh hry. Hodnoty karet rozdělíme do 4 kategorií - sázkové karty, hodnoty 2, 3, 4, hodnoty 5, 6, 7 a nakonec 8, 9, 10. Hra bude více uvěřitelná, když každý hráč během hry získá podobně karet z každé kategorie.
 
 Výsledná uvěřitelnost je sumou uvěřitelností četnosti kategorií hodnot a poloviny uvěřitelnosti četností barev pro každého hráče zvlášť.
 
@@ -128,7 +128,7 @@ Pro všechny tři hry jsem připravil hráče založené na DDA algoritmech Dyna
 
 \subsection{Hráči prostředí}
 
-Prvním hráčem prostředí je hráč hrající náhodně. S tímto hráčem se všechny hry chovají zcela přirozeně jako by v nich tento typ hráče vůbec nebyl. Tento hráč byl přidán pro srovnání naměřených metrik u her, které neovlivňuje hráč prostředí, a které naopak ovlivňuje.
+Prvním hráčem prostředí je hráč hrající náhodně. S tímto hráčem se všechny hry chovají zcela přirozeně, jako by v nich tento typ hráče vůbec nebyl. Tento hráč byl přidán pro srovnání naměřených metrik u her, které neovlivňuje hráč prostředí a které naopak ovlivňuje.
 
 Dále je v aplikaci implementována čtveřice hráčů prostředí navržených v předcházející kapitole.
 
@@ -138,18 +138,19 @@ Hra Bludiště disponuje dvěma hráči navíc. Obsahuje hráče založené na a
 
 V testovacím prostředí existuje několik hráčů postavených na různých algoritmech. Aplikace byla navržena tak, aby každý hráč byl použitelný pro každou hru. Některé kombinace her a hráčů nebyly příliš rozumné, a proto v aplikaci jsou povoleny pouze některé.
 
-Ve všech hrách lze využít hráče hrajícího náhodně. Slouží pouze jako jeden z benchmarků pro ostatní algoritmy. Pomohl např. objevit chybu v dřívější heuristice pro Člověče, nezlob se. Náhodný hráč vyhrával častěji než hráč využívající heuristiku.
+Ve všech hrách lze využít hráče hrajícího náhodně. Slouží pouze jako jeden z benchmarků pro ostatní algoritmy.
 
 U her Bludiště a Ludo je aktivní další jednoduchý hráč nazvaný HillClimber. Ke své funkčnosti potřebuje funkci, jež dokáže získat všechny následující tahy a funkci, která je ohodnotí hodností. Ohodnocené tahy seřadí dle hodnosti a vybere nejlepší z nich.
 
 Pro hru Ztracená města je určená varianta s IS (informační set). HillClimber IS před rozhodnutím provede několik desítek iterací. Na začátku iterace vygeneruje náhodně stav hry ze stejného informačního setu jako je aktuální stav. Nad tímto stavem provede základní algoritmus Hill Climber, ohodnotí všechny tahy z něj. Pro jednotlivé tahy si ukládáme sumu hodností přes všechny iterace. Můžeme si to dovolit, protože ve hře Ztracená města nejsou možné tahy hráče v jednom kole závislé na neúplné informaci, na soupeřově kartách v ruce. Výsledná sumární ohodnocení pro tahy seřadíme a opět vybereme nejlepší z nich.
 
-Bludiště žádné jiné hráči nevyužívá, jelikož hráči nemají být seznámeni se způsobem tvorby bludiště.
+Bludiště žádné jiné hráče nevyužívá, jelikož hráči nemají být seznámeni se způsobem tvorby bludiště.
 
 Ve hře Ludo nalezneme hráče založené na Monte Carlo prohledávání stromu a na vícehráčové variantě algoritmu Minimax, na algoritmu Max$^n$. Oba algoritmy byly stručně popsány na začátku předchozí kapitoly.
 
-Pro hru Ztracená města jsem se snažil vytvořit hráče, který nebude podvádět (nebude znát karty v soupeřově ruce a ani skryté v balíčku) a zároveň bude lepší než jednoduchý algoritmus HillClimberIS.
-Nejdříve jsem se pokoušel o různé varianty hráče založené na Monte Carlo prohledávání stromu. Bohužel všechny varianty hráče se chovali v průměru hůře než jednoduchý HillClimber IS. Z tohoto důvodu jsem se rozhodl pro implementaci hráče navrženého Pedrem Vasconcelosem \cite{ch5LT} pro stejnou hru a nazval jsem ho Minimax IS.
+Pro hru Ztracená města jsem se snažil vytvořit hráče, který nebude podvádět (nebude znát karty v soupeřově ruce a ani skryté v balíčku) a zároveň bude lepší než jednoduchý algoritmus HillClimber IS.
+
+Nejdříve jsem se pokoušel o různé varianty hráče založené na Monte Carlo prohledávání stromu. Bohužel všechny varianty hráče se chovaly v průměru hůře než jednoduchý HillClimber IS. Z tohoto důvodu jsem se rozhodl pro implementaci hráče navrženého Pedrem Vasconcelosem \cite{ch5LT} pro stejnou hru a nazval jsem ho Minimax IS.
 
 Hry Ludo a Ztracená města navíc obsahují dva hráče implementující DDA mechanismus. Jsou to hráči Dynamická úroveň a POSM pojmenovaní dle algoritmů popsaných ve třetí kapitole.
 
@@ -157,7 +158,7 @@ Hry Ludo a Ztracená města navíc obsahují dva hráče implementující DDA me
 
 Algoritmus Minimax IS se od klasického Minimaxu liší obdobně jako HillClimber IS od HillClimberu. 
 
-Algoritmus v iteracích provádí dva kroky. Nejdříve vytvoří na základě aktuálního stavu stav ze stejné informační množiny. V našem případě se jedná o zamíchání neznámých soupeřových karet s balíčkem a z takto zamíchaných karet se doplní soupeřova ruka. Nad novým stavem se zavolá Minimax s prořezáváním alfa-beta. Zapamatuje se nejlepších tah dle Minimaxu a pokračuje se další iterací. Nakonec hráč zahraje tah, který byl nejvíce krát vybrán Minimaxem.
+Algoritmus v iteracích provádí dva kroky. Nejdříve vytvoří na základě aktuálního stavu stav ze stejné informační množiny. V našem případě se jedná o zamíchání neznámých soupeřových karet s balíčkem a z takto zamíchaných karet se doplní soupeřova ruka. Nad novým stavem se zavolá Minimax s prořezáváním alfa-beta. Zapamatuje se nejlepších tah dle Minimaxu a pokračuje se další iterací. Nakonec hráč zahraje tah, který byl nejvícekrát vybrán Minimaxem.
 
 Vasconcelos herní strom prořezává do hloubky i do šířky. Prořezávání do hloubky je dle očekávání. V určité hloubce stromu se stav ohodnotí dle heuristické funkce. Při prořezávání do šířky se z každého uzlu ohodnotí všechny následující tahy dle stejné heuristické funkce, Minimax prochází pouze tři nejlepší z nich.
 
